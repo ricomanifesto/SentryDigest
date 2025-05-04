@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,43 +86,228 @@
       color: #6c757d;
       font-size: 0.9rem;
     }
-    
-    /* Initial loading state styles */
-    .initial-message {
-      background-color: white;
-      border-radius: 5px;
-      padding: 2rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      margin: 3rem auto;
-      max-width: 600px;
-    }
-    .spinner {
-      border: 5px solid #f3f3f3;
-      border-top: 5px solid #2c3e50;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      animation: spin 2s linear infinite;
-      margin: 1rem auto;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
   </style>
 </head>
 <body>
   <header>
     <h1>Cybersecurity News Aggregator</h1>
-    <p class="last-updated">Ready for updates</p>
-    <p class="sources-info">Will track cybersecurity news sources from config</p>
+    <p class="last-updated">Last updated: 5/4/2025, 7:08:27 PM</p>
   </header>
   
-  <div class="initial-message">
-    <h2>Cybersecurity News Feed</h2>
-    <p>This page will automatically update with the latest cybersecurity news every 3 hours.</p>
-    <div class="spinner"></div>
+  <div class="news-container">
+    
+      <div class="news-item">
+        <span class="news-source">Bleeping Computer</span>
+        <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/openai-document-explains-when-to-use-each-chatgpt-model/" target="_blank" rel="noopener">OpenAI document explains when to use each ChatGPT model</a></h2>
+        <div class="news-date">May 4, 2025 - 5:59 PM</div>
+        <p class="news-summary">OpenAI admitted that it can be confusing for users to choose between all the different models, but the company has quietly published a document that makes it easier to understand ChatGPT. [...]...</p>
+      </div>
+    
+      <div class="news-item">
+        <span class="news-source">Bleeping Computer</span>
+        <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/stealc-malware-enhanced-with-stealth-upgrades-and-data-theft-tools/" target="_blank" rel="noopener">StealC malware enhanced with stealth upgrades and data theft tools</a></h2>
+        <div class="news-date">May 4, 2025 - 2:11 PM</div>
+        <p class="news-summary">The creators of StealC, a widely-used information stealer and malware downloader, have released its second major version, bringing multiple stealth and data theft enhancements. [...]...</p>
+      </div>
+    
+      <div class="news-item">
+        <span class="news-source">Bleeping Computer</span>
+        <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/google-notebooklm-is-now-using-gemini-25-flash/" target="_blank" rel="noopener">Google NotebookLM is now using Gemini 2.5 Flash</a></h2>
+        <div class="news-date">May 3, 2025 - 9:21 PM</div>
+        <p class="news-summary">Google NotebookLM, which is a research and note-taking AI tool, is getting upgraded to Gemini 2.5 Flash. [...]...</p>
+      </div>
+    
+      <div class="news-item">
+        <span class="news-source">The Hacker News</span>
+        <h2 class="news-title"><a href="https://thehackernews.com/2025/05/malicious-go-modules-deliver-disk.html" target="_blank" rel="noopener">Malicious Go Modules Deliver Disk-Wiping Linux Malware in Advanced Supply Chain Attack</a></h2>
+        <div class="news-date">May 3, 2025 - 2:31 PM</div>
+        <p class="news-summary">Cybersecurity researchers have discovered three malicious Go modules that include obfuscated code to fetch next-stage payloads that can irrevocably overwrite a Linux system's primary disk and render i...</p>
+      </div>
+    
+      <div class="news-item">
+        <span class="news-source">Bleeping Computer</span>
+        <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/microsoft-ends-authenticator-password-autofill-moves-users-to-edge/" target="_blank" rel="noopener">Microsoft ends Authenticator password autofill, moves users to Edge</a></h2>
+        <div class="news-date">May 3, 2025 - 2:16 PM</div>
+        <p class="news-summary">Microsoft has announced that it will discontinue the password storage and autofill feature in the Authenticator app starting in July and will complete the deprecation in August 2025. [...]...</p>
+      </div>
+    
+      <div class="news-item">
+        <span class="news-source">The Hacker News</span>
+        <h2 class="news-title"><a href="https://thehackernews.com/2025/05/iranian-hackers-maintain-2-year-access.html" target="_blank" rel="noopener">Iranian Hackers Maintain 2-Year Access to Middle East CNI via VPN Flaws and Malware</a></h2>
+        <div class="news-date">May 3, 2025 - 9:33 AM</div>
+        <p class="news-summary">An Iranian state-sponsored threat group has been attributed to a long-term cyber intrusion aimed at a critical national infrastructure (CNI) in the Middle East that lasted nearly two years.
+The activi...</p>
+      </div>
+    
+      <div class="news-item">
+        <span class="news-source">The Hacker News</span>
+        <h2 class="news-title"><a href="https://thehackernews.com/2025/05/us-charges-yemeni-hacker-behind-black.html" target="_blank" rel="noopener">U.S. Charges Yemeni Hacker Behind Black Kingdom Ransomware Targeting 1,500 Systems</a></h2>
+        <div class="news-date">May 3, 2025 - 7:06 AM</div>
+        <p class="news-summary">The U.S. Department of Justice (DoJ) on Thursday announced charges against a 36-year-old Yemeni national for allegedly deploying the Black Kingdom ransomware against global targets, including business...</p>
+      </div>
+    
+      <div class="news-item">
+        <span class="news-source">Dark Reading</span>
+        <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/uk-retailers-reeling-ransomware-attacks" target="_blank" rel="noopener">UK Retailers Reeling From Likely Ransomware Attacks</a></h2>
+        <div class="news-date">May 2, 2025 - 8:36 PM</div>
+        <p class="news-summary">A series of cyberattacks have struck multiple major British retailers in recent weeks, and a ransomware gang has reportedly claimed responsibility....</p>
+      </div>
+    
+      <div class="news-item">
+        <span class="news-source">Dark Reading</span>
+        <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/nydfs-rules-businesses-ny" target="_blank" rel="noopener">What NY's New Security Rules Mean for Finance Firms</a></h2>
+        <div class="news-date">May 2, 2025 - 7:59 PM</div>
+        <p class="news-summary">According to the New York Department of Financial Services, finance companies operating in New York — even if not based there — must implement a variety of protections against unauthorized access to I...</p>
+      </div>
+    
+      <div class="news-item">
+        <span class="news-source">Bleeping Computer</span>
+        <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/co-op-confirms-data-theft-after-dragonforce-ransomware-claims-attack/" target="_blank" rel="noopener">Co-op confirms data theft after DragonForce ransomware claims attack</a></h2>
+        <div class="news-date">May 2, 2025 - 7:52 PM</div>
+        <p class="news-summary">The Co-op cyberattack is far worse than initially reported, with the company now confirming that data was stolen for a significant number of current and past customers. [...]...</p>
+      </div>
+    
+      <div class="news-item">
+        <span class="news-source">Bleeping Computer</span>
+        <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/magento-supply-chain-attack-compromises-hundreds-of-e-stores/" target="_blank" rel="noopener">Magento supply chain attack compromises hundreds of e-stores</a></h2>
+        <div class="news-date">May 2, 2025 - 6:09 PM</div>
+        <p class="news-summary">A supply chain attack involving 21 backdoored Magento extensions has compromised between 500 and 1,000 e-commerce stores, including one belonging to a $40 billion multinational. [...]...</p>
+      </div>
+    
+      <div class="news-item">
+        <span class="news-source">Dark Reading</span>
+        <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/attackers-targeting-developer-secrets" target="_blank" rel="noopener">Attackers Ramp Up Efforts Targeting Developer Secrets</a></h2>
+        <div class="news-date">May 2, 2025 - 4:29 PM</div>
+        <p class="news-summary">Software teams need to follow security best practices to eliminate the leak of secrets, as threat actors increase their scanning for configuration and repository files....</p>
+      </div>
+    
+      <div class="news-item">
+        <span class="news-source">Dark Reading</span>
+        <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/despite-arrests-scattered-spider-continues-hacking" target="_blank" rel="noopener">Despite Arrests, Scattered Spider Continues High-Profile Hacking</a></h2>
+        <div class="news-date">May 2, 2025 - 3:59 PM</div>
+        <p class="news-summary">While law enforcement has identified and arrested several alleged members, the notorious threat group continues to wreak havoc....</p>
+      </div>
+    
+      <div class="news-item">
+        <span class="news-source">Bleeping Computer</span>
+        <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/us-indicts-black-kingdom-ransomware-admin-for-microsoft-exchange-attacks/" target="_blank" rel="noopener">US indicts Black Kingdom ransomware admin for Microsoft Exchange attacks</a></h2>
+        <div class="news-date">May 2, 2025 - 2:32 PM</div>
+        <p class="news-summary">A 36-year-old Yemeni national, who is believed to be the developer and primary operator of 'Black Kingdom' ransomware, has been indicted by the United States for conducting 1,500 attacks on Microsoft ...</p>
+      </div>
+    
+      <div class="news-item">
+        <span class="news-source">Dark Reading</span>
+        <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/cut-cisa-everyone-pays" target="_blank" rel="noopener">Cut CISA and Everyone Pays for It</a></h2>
+        <div class="news-date">May 2, 2025 - 2:00 PM</div>
+        <p class="news-summary">Gutting CISA won't just lose us a partner. It will lose us momentum. And in this game, that's when things break....</p>
+      </div>
+    
+      <div class="news-item">
+        <span class="news-source">Bleeping Computer</span>
+        <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/uk-ncsc-cyberattacks-impacting-uk-retailers-are-a-wake-up-call/" target="_blank" rel="noopener">UK NCSC: Cyberattacks impacting UK retailers are a wake-up call</a></h2>
+        <div class="news-date">May 2, 2025 - 1:57 PM</div>
+        <p class="news-summary">The United Kingdom's National Cyber Security Centre warned that ongoing cyberattacks impacting multiple UK retail chains should be taken as a "wake-up call." [...]...</p>
+      </div>
+    
+      <div class="news-item">
+        <span class="news-source">The Hacker News</span>
+        <h2 class="news-title"><a href="https://thehackernews.com/2025/05/tiktok-slammed-with-530-million-gdpr.html" target="_blank" rel="noopener">TikTok Slammed With €530 Million GDPR Fine for Sending E.U. Data to China</a></h2>
+        <div class="news-date">May 2, 2025 - 12:25 PM</div>
+        <p class="news-summary">Ireland's Data Protection Commission (DPC) on Friday fined popular video-sharing platform TikTok €530 million ($601 million) for infringing data protection regulations in the region by transferring Eu...</p>
+      </div>
+    
+      <div class="news-item">
+        <span class="news-source">Bleeping Computer</span>
+        <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/tiktok-fined-530-million-for-sending-european-user-data-to-china/" target="_blank" rel="noopener">TikTok fined €530 million for sending European user data to China</a></h2>
+        <div class="news-date">May 2, 2025 - 12:14 PM</div>
+        <p class="news-summary">The Irish Data Protection Commission (DPC) has fined TikTok €530 million (over $601 million) for illegally transferring the personal data of users in the European Economic Area (EEA) to China, violati...</p>
+      </div>
+    
+      <div class="news-item">
+        <span class="news-source">The Hacker News</span>
+        <h2 class="news-title"><a href="https://thehackernews.com/2025/05/how-to-automate-cve-and-vulnerability.html" target="_blank" rel="noopener">How to Automate CVE and Vulnerability Advisory Response with Tines</a></h2>
+        <div class="news-date">May 2, 2025 - 10:30 AM</div>
+        <p class="news-summary">Run by the team at workflow orchestration and AI platform Tines, the Tines library features pre-built workflows shared by security practitioners from across the community - all free to import and depl...</p>
+      </div>
+    
+      <div class="news-item">
+        <span class="news-source">Bleeping Computer</span>
+        <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-fixes-exchange-online-bug-flagging-gmail-emails-as-spam/" target="_blank" rel="noopener">Microsoft fixes Exchange Online bug flagging Gmail emails as spam</a></h2>
+        <div class="news-date">May 2, 2025 - 10:15 AM</div>
+        <p class="news-summary">​Microsoft has resolved an issue with a machine learning model that mistakenly flagged emails from Gmail accounts as spam in Exchange Online. [...]...</p>
+      </div>
+    
+      <div class="news-item">
+        <span class="news-source">ZDNet Security</span>
+        <h2 class="news-title"><a href="https://www.zdnet.com/article/is-your-roku-tv-spying-on-you-likely-but-heres-how-you-can-take-back-control/" target="_blank" rel="noopener">Is your Roku TV spying on you? Likely, but here's how you can take back control</a></h2>
+        <div class="news-date">May 2, 2025 - 9:30 AM</div>
+        <p class="news-summary">Your Amazon Fire Stick, Chromecast, and other streaming devices gather personal data for different purposes. If that concerns you, here's how to regain some control....</p>
+      </div>
+    
+      <div class="news-item">
+        <span class="news-source">The Hacker News</span>
+        <h2 class="news-title"><a href="https://thehackernews.com/2025/05/mintsloader-drops-ghostweaver-via.html" target="_blank" rel="noopener">MintsLoader Drops GhostWeaver via Phishing, ClickFix — Uses DGA, TLS for Stealth Attacks</a></h2>
+        <div class="news-date">May 2, 2025 - 8:57 AM</div>
+        <p class="news-summary">The malware loader known as MintsLoader has been used to deliver a PowerShell-based remote access trojan called GhostWeaver.
+"MintsLoader operates through a multi-stage infection chain involving obfus...</p>
+      </div>
+    
+      <div class="news-item">
+        <span class="news-source">Bleeping Computer</span>
+        <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-makes-all-new-accounts-passwordless-by-default/" target="_blank" rel="noopener">Microsoft makes all new accounts passwordless by default</a></h2>
+        <div class="news-date">May 2, 2025 - 7:21 AM</div>
+        <p class="news-summary">Microsoft has announced that all new Microsoft accounts will be "passwordless by default" to secure them against password attacks such as phishing, brute force, and credential stuffing. [...]...</p>
+      </div>
+    
+      <div class="news-item">
+        <span class="news-source">The Hacker News</span>
+        <h2 class="news-title"><a href="https://thehackernews.com/2025/05/microsoft-sets-passkeys-default-for-new.html" target="_blank" rel="noopener">Microsoft Sets Passkeys Default for New Accounts; 15 Billion Users Gain Passwordless Support</a></h2>
+        <div class="news-date">May 2, 2025 - 6:40 AM</div>
+        <p class="news-summary">A year after Microsoft announced passkeys support for consumer accounts, the tech giant has announced a big change that pushes individuals signing up for new accounts to use the phishing-resistant aut...</p>
+      </div>
+    
+      <div class="news-item">
+        <span class="news-source">ZDNet Security</span>
+        <h2 class="news-title"><a href="https://www.zdnet.com/article/best-travel-vpn/" target="_blank" rel="noopener">Best travel VPNs 2025: The top travel VPNs for avoiding geo-blocks and censorship</a></h2>
+        <div class="news-date">May 2, 2025 - 12:54 AM</div>
+        <p class="news-summary">VPNs shield you from spying and online tracking. Our favorite travel VPNs offer fast speeds, massive server networks, unlimited connections, and more....</p>
+      </div>
+    
+      <div class="news-item">
+        <span class="news-source">Krebs on Security</span>
+        <h2 class="news-title"><a href="https://krebsonsecurity.com/2025/05/xai-dev-leaks-api-key-for-private-spacex-tesla-llms/" target="_blank" rel="noopener">xAI Dev Leaks API Key for Private SpaceX, Tesla LLMs</a></h2>
+        <div class="news-date">May 2, 2025 - 12:52 AM</div>
+        <p class="news-summary">A employee at Elon Musk's artificial intelligence company xAI leaked a private key on GitHub that for the past two months could have allowed anyone to query private xAI large language models (LLMs) wh...</p>
+      </div>
+    
+      <div class="news-item">
+        <span class="news-source">Dark Reading</span>
+        <h2 class="news-title"><a href="https://www.darkreading.com/cloud-security/sans-top5-cyber-broken-out-soc" target="_blank" rel="noopener">SANS Top 5: Cyber Has Busted Out of the SOC</a></h2>
+        <div class="news-date">May 1, 2025 - 11:28 PM</div>
+        <p class="news-summary">This year's top cyber challenges include cloud authorization sprawl, ICS cyberattacks and ransomware, a lack of cloud logging, and regulatory constraints keeping defenders from fully utilizing AI's ca...</p>
+      </div>
+    
+      <div class="news-item">
+        <span class="news-source">Dark Reading</span>
+        <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/enterprises-need-beware-five-threats" target="_blank" rel="noopener">Enterprises Need to Beware of These 5 Threats</a></h2>
+        <div class="news-date">May 1, 2025 - 11:14 PM</div>
+        <p class="news-summary">A panel of SANS Institute leaders detailed current threats and provided actionable steps for enterprises to consider....</p>
+      </div>
+    
+      <div class="news-item">
+        <span class="news-source">Bleeping Computer</span>
+        <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hacker-nullbulge-pleads-guilty-to-stealing-disneys-slack-data/" target="_blank" rel="noopener">Hacker 'NullBulge' pleads guilty to stealing Disney's Slack data</a></h2>
+        <div class="news-date">May 1, 2025 - 11:13 PM</div>
+        <p class="news-summary">A California man who used the alias "NullBulge" has pleaded guilty to illegally accessing Disney's internal Slack channels and stealing over 1.1 terabytes of internal company data. [...]...</p>
+      </div>
+    
+      <div class="news-item">
+        <span class="news-source">Dark Reading</span>
+        <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/experts-real-id-security-may-7-deadline" target="_blank" rel="noopener">Experts Debate Real ID Security Ahead of May 7 Deadline</a></h2>
+        <div class="news-date">May 1, 2025 - 7:47 PM</div>
+        <p class="news-summary">Real IDs have been in the works since 2005. Are their security standards still rigorous enough in 2025?...</p>
+      </div>
+    
   </div>
   
   <footer>
@@ -129,3 +315,4 @@
   </footer>
 </body>
 </html>
+  
