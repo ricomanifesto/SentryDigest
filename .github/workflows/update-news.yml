@@ -1,0 +1,39 @@
+name: Update Cybersecurity News
+
+on:
+  schedule:
+    # Run every 3 hours
+    - cron: '0 */3 * * *'
+  push:
+    paths:
+      - 'config/news-sources.json'  # Run when config file is updated
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  update-news:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Fetch news and build site
+        run: node scripts/fetch-news.js
+      
+      - name: Configure Git
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+      
+      - name: Commit and push if changes
+        run: |
+          git add .
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update cybersecurity news [automated]" && git push)

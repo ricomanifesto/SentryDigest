@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cybersecurity News Aggregator</title>
+  <meta name="description" content="Latest cybersecurity news from top sources">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem;
+      background-color: #f8f9fa;
+    }
+    header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      border-radius: 5px;
+      margin-bottom: 2rem;
+    }
+    h1 {
+      margin: 0;
+    }
+    .last-updated {
+      font-size: 0.9rem;
+      color: #eee;
+      margin-top: 0.5rem;
+    }
+    .sources-info {
+      font-size: 0.9rem;
+      color: #eee;
+      margin-top: 0.2rem;
+    }
+    .news-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .news-item {
+      background-color: white;
+      border-radius: 5px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+    }
+    .news-item:hover {
+      transform: translateY(-5px);
+    }
+    .news-source {
+      display: inline-block;
+      background-color: #e9ecef;
+      padding: 0.25rem 0.5rem;
+      border-radius: 3px;
+      font-size: 0.8rem;
+      margin-bottom: 0.5rem;
+    }
+    .news-title {
+      font-size: 1.1rem;
+      margin: 0.5rem 0;
+    }
+    .news-title a {
+      color: #2c3e50;
+      text-decoration: none;
+    }
+    .news-title a:hover {
+      text-decoration: underline;
+    }
+    .news-date {
+      color: #6c757d;
+      font-size: 0.8rem;
+    }
+    .news-summary {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #495057;
+    }
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      color: #6c757d;
+      font-size: 0.9rem;
+    }
+    
+    /* Initial loading state styles */
+    .initial-message {
+      background-color: white;
+      border-radius: 5px;
+      padding: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      margin: 3rem auto;
+      max-width: 600px;
+    }
+    .spinner {
+      border: 5px solid #f3f3f3;
+      border-top: 5px solid #2c3e50;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 2s linear infinite;
+      margin: 1rem auto;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Cybersecurity News Aggregator</h1>
+    <p class="last-updated">Ready for updates</p>
+    <p class="sources-info">Will track cybersecurity news sources from config</p>
+  </header>
+  
+  <div class="initial-message">
+    <h2>Cybersecurity News Feed</h2>
+    <p>This page will automatically update with the latest cybersecurity news every 3 hours.</p>
+    <div class="spinner"></div>
+  </div>
+  
+  <footer>
+    <p>Powered by GitHub Actions | Automatically updates every 3 hours</p>
+  </footer>
+</body>
+</html>
