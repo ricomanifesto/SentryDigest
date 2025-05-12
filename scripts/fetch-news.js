@@ -136,6 +136,7 @@ function generateHTML(newsItems) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cybersecurity News Aggregator</title>
   <meta name="description" content="Latest cybersecurity news from top sources">
+  <link rel="alternate" type="application/rss+xml" title="Cybersecurity News RSS Feed" href="./feed.xml" />
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -216,11 +217,20 @@ function generateHTML(newsItems) {
       color: #6c757d;
       font-size: 0.9rem;
     }
+    .rss-link {
+      display: inline-block;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+    .rss-link img {
+      height: 16px;
+      width: 16px;
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>Cybersecurity News Aggregator</h1>
+    <h1>Cybersecurity News Aggregator <a href="./feed.xml" class="rss-link" title="Subscribe to RSS feed"><img src="https://i.imgur.com/QxNpgm5.png" alt="RSS" /></a></h1>
     <p class="last-updated">Last updated: ${new Date().toLocaleString()}</p>
   </header>
   
@@ -241,7 +251,7 @@ function generateHTML(newsItems) {
   </div>
   
   <footer>
-    <p>Powered by GitHub Actions | Automatically updates every 3 hours</p>
+    <p>Powered by GitHub Actions | Automatically updates every 3 hours | <a href="./feed.xml">RSS Feed</a></p>
   </footer>
 </body>
 </html>

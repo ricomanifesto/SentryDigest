@@ -28,6 +28,9 @@ jobs:
       - name: Fetch news and build site
         run: node scripts/fetch-news.js
       
+      - name: Generate RSS feed
+        run: node scripts/generate-rss.js
+      
       - name: Configure Git
         run: |
           git config user.name github-actions
