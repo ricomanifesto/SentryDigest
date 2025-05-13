@@ -55,6 +55,6 @@ jobs:
         uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
-          repository: yourusername/SentryInsight
+          repository: ricomanifesto/SentryInsight
           event-type: sentrydigest-updated
           client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
