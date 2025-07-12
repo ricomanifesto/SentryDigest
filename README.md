@@ -1,5 +1,7 @@
 # SentryDigest
 
+<img src="assets/logo.png" alt="SentryDigest Logo" width="100">
+
 Aggregates cybersecurity news from multiple RSS sources into a single dashboard. Updates every 3 hours via GitHub Actions.
 
 **[Live Dashboard](https://ricomanifesto.github.io/SentryDigest/)**
