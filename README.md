@@ -53,7 +53,7 @@ Runs:
 - On `news-sources.json` changes
 - Manual trigger via GitHub Actions
 
-Updates trigger [SentryInsight](https://github.com/ricomanifesto/SentryInsight) analysis.
+Updates trigger [SentryInsight](https://github.com/ricomanifesto/SentryInsight) and [GRCInsight](https://github.com/ricomanifesto/GRCInsight) analysis.
 
 ## Output
 
