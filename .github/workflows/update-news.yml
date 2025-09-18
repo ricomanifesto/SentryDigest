@@ -49,12 +49,21 @@ jobs:
             echo "changes_made=true" >> $GITHUB_OUTPUT
           fi
       
-      # New step to trigger SentryInsight if changes were made
+      # Trigger downstream analysis tools if changes were made
       - name: Trigger SentryInsight Analysis
         if: steps.commit.outputs.changes_made == 'true'
         uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           repository: ricomanifesto/SentryInsight
+          event-type: sentrydigest-updated
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+
+      - name: Trigger GRC Insight Analysis
+        if: steps.commit.outputs.changes_made == 'true'
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          repository: ricomanifesto/GRCInsight
           event-type: sentrydigest-updated
           client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
