@@ -15,7 +15,6 @@ Cybersecurity news aggregator that pulls from multiple RSS sources into one dash
 - Threatpost
 - Bleeping Computer
 - Dark Reading
-- ZDNet Security
 
 ## Setup
 
