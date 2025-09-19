@@ -296,7 +296,7 @@ function generateHTML(newsItems) {
         });
         const total = ${totalItems};
         const srcCount = ${uniqueSources.length};
-        if (stats) stats.textContent = `Showing ${'${'}visible${'}'} of ${'${'}total${'}'} articles from ${'${'}srcCount${'}'} sources • Last updated ` + (new Date('${nowIso}').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('${nowIso}').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);

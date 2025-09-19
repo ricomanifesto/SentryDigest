@@ -4,320 +4,151 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cybersecurity News Aggregator</title>
+  <title>SentryDigest | Cybersecurity News</title>
   <meta name="description" content="Latest cybersecurity news from top sources">
   <link rel="alternate" type="application/rss+xml" title="Cybersecurity News RSS Feed" href="./feed.xml" />
   <link rel="icon" type="image/png" href="./assets/logo.png">
   <link rel="apple-touch-icon" href="./assets/logo.png">
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 1rem;
-      background-color: #f8f9fa;
+    :root { 
+      --bg: #f7f8fa; 
+      --fg: #1f2937; 
+      --muted: #6b7280; 
+      --card: #ffffff; 
+      --card-border: #e5e7eb; 
+      --accent: #2563eb; 
+      --accent-contrast: #ffffff; 
+      --chip: #e5e7eb;
     }
-    header {
-      background-color: #2c3e50;
-      color: white;
-      padding: 1rem;
-      text-align: center;
-      border-radius: 5px;
-      margin-bottom: 2rem;
+    [data-theme="dark"] {
+      --bg: #0b1020;
+      --fg: #e5e7eb;
+      --muted: #9ca3af;
+      --card: #141b2f;
+      --card-border: #26304a;
+      --accent: #60a5fa;
+      --accent-contrast: #0b1020;
+      --chip: #1f2937;
     }
-    h1 {
-      margin: 0;
-    }
-    .last-updated {
-      font-size: 0.9rem;
-      color: #eee;
-      margin-top: 0.5rem;
-    }
-    .sources-info {
-      font-size: 0.9rem;
-      color: #eee;
-      margin-top: 0.2rem;
-    }
-    .news-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-    .news-item {
-      background-color: white;
-      border-radius: 5px;
-      padding: 1.5rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: transform 0.2s;
-    }
-    .news-item:hover {
-      transform: translateY(-5px);
-    }
-    .news-source {
-      display: inline-block;
-      background-color: #e9ecef;
-      padding: 0.25rem 0.5rem;
-      border-radius: 3px;
-      font-size: 0.8rem;
-      margin-bottom: 0.5rem;
-    }
-    .news-title {
-      font-size: 1.1rem;
-      margin: 0.5rem 0;
-    }
-    .news-title a {
-      color: #2c3e50;
-      text-decoration: none;
-    }
-    .news-title a:hover {
-      text-decoration: underline;
-    }
-    .news-date {
-      color: #6c757d;
-      font-size: 0.8rem;
-    }
-    .news-summary {
-      margin-top: 0.5rem;
-      font-size: 0.9rem;
-      color: #495057;
-    }
-    footer {
-      margin-top: 2rem;
-      text-align: center;
-      color: #6c757d;
-      font-size: 0.9rem;
-    }
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--fg); margin: 0; background: radial-gradient(1200px 600px at 20% -10%, rgba(37,99,235,.08), transparent 50%), var(--bg); }
+    .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+    header.site-header { background: linear-gradient(180deg, rgba(37,99,235,0.15), rgba(37,99,235,0.0)); border-bottom: 1px solid var(--card-border); position: sticky; top: 0; z-index: 10; backdrop-filter: saturate(140%) blur(8px); }
+    .masthead { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand img { width: 28px; height: 28px; border-radius: 6px; }
+    .brand .title { font-weight: 700; letter-spacing: 0.2px; }
+    .brand .subtitle { color: var(--muted); font-size: 0.9rem; }
+    .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .search { display: flex; align-items: center; gap: 8px; background: var(--card); border: 1px solid var(--card-border); padding: 8px 10px; border-radius: 10px; }
+    .search input { border: none; outline: none; background: transparent; color: var(--fg); min-width: 220px; }
+    .select { border: 1px solid var(--card-border); background: var(--card); color: var(--fg); padding: 8px 10px; border-radius: 10px; }
+    .btn { border: 1px solid var(--card-border); background: var(--card); color: var(--fg); padding: 8px 10px; border-radius: 10px; cursor: pointer; }
+    .btn:hover { border-color: var(--accent); }
+    .stats { color: var(--muted); font-size: 0.9rem; margin-top: 6px; }
+    .news-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin-top: 18px; }
+    .news-item { background: var(--card); border: 1px solid var(--card-border); border-radius: 14px; padding: 16px; transition: transform .2s ease, box-shadow .2s ease; }
+    .news-item:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(2,8,23,0.08); }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+    .chip { display: inline-flex; align-items: center; gap: 6px; background: var(--chip); color: var(--fg); border-radius: 999px; padding: 4px 10px; font-size: 12px; }
+    .chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+    .news-title { font-size: 1.06rem; margin: 6px 0 8px; }
+    .news-title a { color: var(--fg); text-decoration: none; }
+    .news-title a:hover { text-decoration: underline; }
+    .news-meta { color: var(--muted); font-size: 0.85rem; display: flex; gap: 8px; align-items: baseline; }
+    .badge-new { color: #16a34a; font-weight: 600; font-size: 0.8rem; }
+    .news-summary { margin-top: 8px; color: var(--fg); opacity: 0.9; }
+    footer { border-top: 1px solid var(--card-border); color: var(--muted); font-size: 0.9rem; padding: 18px 0; margin-top: 22px; }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Cybersecurity News Aggregator</h1>
-    <p class="last-updated">Last updated: 9/19/2025, 1:33:16 PM</p>
+  <header class="site-header">
+    <div class="container masthead">
+      <div class="brand">
+        <img src="./assets/logo.png" alt="SentryDigest" />
+        <div>
+          <div class="title">SentryDigest</div>
+          <div class="subtitle">Cybersecurity News Aggregator</div>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="10.5" cy="10.5" r="7.5" stroke="currentColor" stroke-width="2"/></svg>
+          <input id="search" type="text" placeholder="Search title or summary..." aria-label="Search" />
+        </div>
+        <select id="sourceFilter" class="select" aria-label="Filter by source">
+          <option value="">All sources</option>
+          
+        </select>
+        <a class="btn" href="./feed.xml">RSS</a>
+        <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
+      </div>
+    </div>
   </header>
-  
-  <div class="news-container">
-    
-      <div class="news-item">
-        <span class="news-source">Bleeping Computer</span>
-        <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/software/steam-will-stop-running-on-windows-32-bit-in-january-2026/" target="_blank" rel="noopener">Steam will stop running on Windows 32-bit in January 2026</a></h2>
-        <div class="news-date">September 19, 2025 - 12:14 PM</div>
-        <p class="news-summary">Valve has announced that its Steam digital distribution service will drop support for 32-bit versions of Windows starting January 2026. [...]...</p>
-      </div>
-    
-      <div class="news-item">
-        <span class="news-source">The Hacker News</span>
-        <h2 class="news-title"><a href="https://thehackernews.com/2025/09/how-to-automate-alert-triage-with-ai.html" target="_blank" rel="noopener">How To Automate Alert Triage With AI Agents and Confluence SOPs Using Tines</a></h2>
-        <div class="news-date">September 19, 2025 - 11:00 AM</div>
-        <p class="news-summary">Run by the team at workflow orchestration and AI platform Tines, the Tines library features over 1,000 pre-built workflows shared by security practitioners from across the community - all free to impo...</p>
-      </div>
-    
-      <div class="news-item">
-        <span class="news-source">The Hacker News</span>
-        <h2 class="news-title"><a href="https://thehackernews.com/2025/09/russian-hackers-gamaredon-and-turla.html" target="_blank" rel="noopener">Russian Hackers Gamaredon and Turla Collaborate to Deploy Kazuar Backdoor in Ukraine</a></h2>
-        <div class="news-date">September 19, 2025 - 8:24 AM</div>
-        <p class="news-summary">Cybersecurity researchers have discerned evidence of two Russian hacking groups Gamaredon and Turla collaborating together to target and co-comprise Ukrainian entities.
-Slovak cybersecurity company ES...</p>
-      </div>
-    
-      <div class="news-item">
-        <span class="news-source">The Hacker News</span>
-        <h2 class="news-title"><a href="https://thehackernews.com/2025/09/uk-arrest-two-teen-scattered-spider.html" target="_blank" rel="noopener">U.K. Arrests Two Teen Scattered Spider Hackers Linked to August 2024 TfL Cyber Attack</a></h2>
-        <div class="news-date">September 19, 2025 - 7:05 AM</div>
-        <p class="news-summary">Law enforcement authorities in the U.K. have arrested two teen members of the Scattered Spider hacking group in connection with their alleged participation in an August 2024 cyber attack targeting Tra...</p>
-      </div>
-    
-      <div class="news-item">
-        <span class="news-source">The Hacker News</span>
-        <h2 class="news-title"><a href="https://thehackernews.com/2025/09/cisa-warns-of-two-malware-strains.html" target="_blank" rel="noopener">CISA Warns of Two Malware Strains Exploiting Ivanti EPMM CVE-2025-4427 and CVE-2025-4428</a></h2>
-        <div class="news-date">September 19, 2025 - 4:10 AM</div>
-        <p class="news-summary">The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Thursday released details of two sets of malware that were discovered in an unnamed organization's network following the exploitatio...</p>
-      </div>
-    
-      <div class="news-item">
-        <span class="news-source">Bleeping Computer</span>
-        <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/openais-4-gpt-go-plan-may-expand-to-more-regions/" target="_blank" rel="noopener">OpenAI's $4 GPT Go plan may expand to more regions</a></h2>
-        <div class="news-date">September 19, 2025 - 12:30 AM</div>
-        <p class="news-summary">.OpenAI released $4 GPT Go in August, but it was limited to just India. Now, OpenAI is expanding GPT Go to include new regions. [...]...</p>
-      </div>
-    
-      <div class="news-item">
-        <span class="news-source">Bleeping Computer</span>
-        <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/chatgpt-search-is-now-smarter-as-openai-takes-on-google-search/" target="_blank" rel="noopener">ChatGPT Search is now smarter as OpenAI takes on Google Search</a></h2>
-        <div class="news-date">September 18, 2025 - 11:10 PM</div>
-        <p class="news-summary">OpenAI has rolled out a big update to ChatGPT Search, which is an AI-powered search feature, similar to Google AI Mode. [...]...</p>
-      </div>
-    
-      <div class="news-item">
-        <span class="news-source">Dark Reading</span>
-        <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/7-lessons-securing-ai-transformation-former-cia-digital-guru" target="_blank" rel="noopener">7 Lessons for Securing AI Transformation From Former CIA Digital Guru</a></h2>
-        <div class="news-date">September 18, 2025 - 10:31 PM</div>
-        <p class="news-summary">Jennifer Ewbank, former CIA deputy director of digital innovation, discusses resilience, cultural shifts, and cyber fundamentals in the AI era....</p>
-      </div>
-    
-      <div class="news-item">
-        <span class="news-source">Bleeping Computer</span>
-        <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/chatgpt-now-gives-you-greater-control-over-gpt-5-thinking-model/" target="_blank" rel="noopener">ChatGPT now gives you greater control over GPT-5 Thinking model</a></h2>
-        <div class="news-date">September 18, 2025 - 10:20 PM</div>
-        <p class="news-summary">OpenAI is finally rolling out a toggle that allows you to decide how hard the GPT-5-thinking model can think. This feature is rolling out to Plus and Pro subscribers. [...]...</p>
-      </div>
-    
-      <div class="news-item">
-        <span class="news-source">Dark Reading</span>
-        <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/tiktok-deal-enterprise-risks" target="_blank" rel="noopener">TikTok Deal Won't End Enterprise Risks</a></h2>
-        <div class="news-date">September 18, 2025 - 8:28 PM</div>
-        <p class="news-summary">The proposed restructuring plan would address many concerns related to the social media platform, but risks remain for security teams....</p>
-      </div>
-    
-      <div class="news-item">
-        <span class="news-source">Dark Reading</span>
-        <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/sonicwall-breached-firewall-backup" target="_blank" rel="noopener">SonicWall Breached, Firewall Backup Data Exposed</a></h2>
-        <div class="news-date">September 18, 2025 - 7:26 PM</div>
-        <p class="news-summary">Threat actors breached the MySonicWall service and accessed backup firewall configuration files belonging to "fewer than 5%" of its install base, according to the company....</p>
-      </div>
-    
-      <div class="news-item">
-        <span class="news-source">Bleeping Computer</span>
-        <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/uk-arrests-scattered-spider-teens-linked-to-transport-for-london-hack/" target="_blank" rel="noopener">UK arrests 'Scattered Spider' teens linked to Transport for London hack</a></h2>
-        <div class="news-date">September 18, 2025 - 2:37 PM</div>
-        <p class="news-summary">Two teenagers, believed to be linked to the August 2024 cyberattack on Transport for London, have been arrested in the United Kingdom. [...]...</p>
-      </div>
-    
-      <div class="news-item">
-        <span class="news-source">Bleeping Computer</span>
-        <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/systembc-malware-turns-infected-vps-systems-into-proxy-highway/" target="_blank" rel="noopener">SystemBC malware turns infected VPS systems into proxy highway</a></h2>
-        <div class="news-date">September 18, 2025 - 2:35 PM</div>
-        <p class="news-summary">The operators of the SystemBC proxy botnet are hunting for vulnerable commercial virtual private servers (VPS) and maintain an average of 1,500 bots every day that provide a highway for malicious traf...</p>
-      </div>
-    
-      <div class="news-item">
-        <span class="news-source">The Hacker News</span>
-        <h2 class="news-title"><a href="https://thehackernews.com/2025/09/sonicwall-urges-password-resets-after.html" target="_blank" rel="noopener">SonicWall Urges Password Resets After Cloud Backup Breach Affecting Under 5% of Customers</a></h2>
-        <div class="news-date">September 18, 2025 - 2:12 PM</div>
-        <p class="news-summary">SonicWall is urging customers to reset credentials after their firewall configuration backup files were exposed in a security breach impacting MySonicWall accounts.
-The company said it recently detect...</p>
-      </div>
-    
-      <div class="news-item">
-        <span class="news-source">Bleeping Computer</span>
-        <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/target-rich-environment-why-microsoft-365-has-become-the-biggest-risk/" target="_blank" rel="noopener">Target-rich environment: Why Microsoft 365 has become the biggest risk</a></h2>
-        <div class="news-date">September 18, 2025 - 2:02 PM</div>
-        <p class="news-summary">Microsoft 365's dominance and tight integration makes it a massive target in today's cyber landscape. Its tight integration expands the attack surface and amplifies risk. Learn from Acronis TRU why ba...</p>
-      </div>
-    
-      <div class="news-item">
-        <span class="news-source">Bleeping Computer</span>
-        <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/notepad-gets-free-ai-features-on-copilot-plus-pcs-with-windows-11/" target="_blank" rel="noopener">Notepad gets free AI features on Copilot+ PCs with Windows 11</a></h2>
-        <div class="news-date">September 18, 2025 - 1:50 PM</div>
-        <p class="news-summary">Microsoft is adding free AI-powered text writing capabilities to Notepad for customers with Copilot+ PCs running Windows 11. [...]...</p>
-      </div>
-    
-      <div class="news-item">
-        <span class="news-source">Bleeping Computer</span>
-        <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/pypi-invalidates-tokens-stolen-in-ghostaction-supply-chain-attack/" target="_blank" rel="noopener">PyPI invalidates tokens stolen in GhostAction supply chain attack</a></h2>
-        <div class="news-date">September 18, 2025 - 1:09 PM</div>
-        <p class="news-summary">The Python Software Foundation team has invalidated all PyPI tokens stolen in the GhostAction supply chain attack in early September, confirming that the threat actors didn't abuse them to publish mal...</p>
-      </div>
-    
-      <div class="news-item">
-        <span class="news-source">The Hacker News</span>
-        <h2 class="news-title"><a href="https://thehackernews.com/2025/09/countloader-broadens-russian-ransomware.html" target="_blank" rel="noopener">CountLoader Broadens Russian Ransomware Operations With Multi-Version Malware Loader</a></h2>
-        <div class="news-date">September 18, 2025 - 12:56 PM</div>
-        <p class="news-summary">Cybersecurity researchers have discovered a new malware loader codenamed CountLoader that has been put to use by Russian ransomware gangs to deliver post-exploitation tools like Cobalt Strike and Adap...</p>
-      </div>
-    
-      <div class="news-item">
-        <span class="news-source">The Hacker News</span>
-        <h2 class="news-title"><a href="https://thehackernews.com/2025/09/silentsync-rat-delivered-via-two.html" target="_blank" rel="noopener">SilentSync RAT Delivered via Two Malicious PyPI Packages Targeting Python Developers</a></h2>
-        <div class="news-date">September 18, 2025 - 11:38 AM</div>
-        <p class="news-summary">Cybersecurity researchers have discovered two new malicious packages in the Python Package Index (PyPI) repository that are designed to deliver a remote access trojan called SilentSync on Windows syst...</p>
-      </div>
-    
-      <div class="news-item">
-        <span class="news-source">The Hacker News</span>
-        <h2 class="news-title"><a href="https://thehackernews.com/2025/09/how-cisos-can-drive-effective-ai.html" target="_blank" rel="noopener">How CISOs Can Drive Effective AI Governance</a></h2>
-        <div class="news-date">September 18, 2025 - 11:30 AM</div>
-        <p class="news-summary">AI’s growing role in enterprise environments has heightened the urgency for Chief Information Security Officers (CISOs) to drive effective AI governance. When it comes to any emerging technology, gove...</p>
-      </div>
-    
-      <div class="news-item">
-        <span class="news-source">Bleeping Computer</span>
-        <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/watchguard-warns-of-critical-vulnerability-in-firebox-firewalls/" target="_blank" rel="noopener">WatchGuard warns of critical vulnerability in Firebox firewalls</a></h2>
-        <div class="news-date">September 18, 2025 - 8:23 AM</div>
-        <p class="news-summary">WatchGuard has released security updates to address a remote code execution vulnerability impacting the company's Firebox firewalls. [...]...</p>
-      </div>
-    
-      <div class="news-item">
-        <span class="news-source">Bleeping Computer</span>
-        <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/google-patches-sixth-chrome-zero-day-exploited-in-attacks-this-year/" target="_blank" rel="noopener">Google patches sixth Chrome zero-day exploited in attacks this year</a></h2>
-        <div class="news-date">September 18, 2025 - 7:23 AM</div>
-        <p class="news-summary">Google has released emergency security updates to patch a Chrome zero-day vulnerability, the sixth one tagged as exploited in attacks since the start of the year. [...]...</p>
-      </div>
-    
-      <div class="news-item">
-        <span class="news-source">The Hacker News</span>
-        <h2 class="news-title"><a href="https://thehackernews.com/2025/09/google-patches-chrome-zero-day-cve-2025.html" target="_blank" rel="noopener">Google Patches Chrome Zero-Day CVE-2025-10585 as Active V8 Exploit Threatens Millions</a></h2>
-        <div class="news-date">September 18, 2025 - 5:49 AM</div>
-        <p class="news-summary">Google on Wednesday released security updates for the Chrome web browser to address four vulnerabilities, including one that it said has been exploited in the wild.
-The zero-day vulnerability in quest...</p>
-      </div>
-    
-      <div class="news-item">
-        <span class="news-source">Dark Reading</span>
-        <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/mastering-digital-breadcrumbs-stay-ahead-of-evolving-threats" target="_blank" rel="noopener">Mastering Digital Breadcrumbs to Stay Ahead of Evolving Threats</a></h2>
-        <div class="news-date">September 17, 2025 - 10:14 PM</div>
-        <p class="news-summary">Digital forensics offers a challenging but rewarding career path for cybersecurity professionals willing to invest in specialized knowledge and continuous learning....</p>
-      </div>
-    
-      <div class="news-item">
-        <span class="news-source">Dark Reading</span>
-        <h2 class="news-title"><a href="https://www.darkreading.com/cloud-security/cloud-edge-new-attack-surface" target="_blank" rel="noopener">The Cloud Edge Is the New Attack Surface</a></h2>
-        <div class="news-date">September 17, 2025 - 9:44 PM</div>
-        <p class="news-summary">The cloud now acts as the connecting infrastructure for many companies' assets — from IoT devices to workstations to applications and workloads — exposing the edge to threats....</p>
-      </div>
-    
-      <div class="news-item">
-        <span class="news-source">Bleeping Computer</span>
-        <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/shinyhunters-claims-15-billion-salesforce-records-stolen-in-drift-hacks/" target="_blank" rel="noopener">ShinyHunters claims 1.5 billion Salesforce records stolen in Drift hacks</a></h2>
-        <div class="news-date">September 17, 2025 - 9:11 PM</div>
-        <p class="news-summary">The ShinyHunters extortion group claims to have stolen over 1.5 billion Salesforce records from 760 companies using compromised Salesloft Drift OAuth tokens. [...]...</p>
-      </div>
-    
-      <div class="news-item">
-        <span class="news-source">Dark Reading</span>
-        <h2 class="news-title"><a href="https://www.darkreading.com/application-security/microsoft-disrupts-raccoono365-phishing-service" target="_blank" rel="noopener">Microsoft Disrupts 'RaccoonO365' Phishing Service</a></h2>
-        <div class="news-date">September 17, 2025 - 7:44 PM</div>
-        <p class="news-summary">Phishing-as-a-service (PhaaS) kits have become an increasingly popular way for lower-skill individuals who want to get into cybercrime....</p>
-      </div>
-    
-      <div class="news-item">
-        <span class="news-source">Dark Reading</span>
-        <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/scattered-lapsus-hunters-hacking-end" target="_blank" rel="noopener">'Scattered Lapsus$ Hunters,' Others Announce End of Hacking Spree</a></h2>
-        <div class="news-date">September 17, 2025 - 7:12 PM</div>
-        <p class="news-summary">Though the groups have shared their decision to go dark, threat researchers say there are signs that it's business as usual....</p>
-      </div>
-    
-      <div class="news-item">
-        <span class="news-source">The Hacker News</span>
-        <h2 class="news-title"><a href="https://thehackernews.com/2025/09/ta558-uses-ai-generated-scripts-to.html" target="_blank" rel="noopener">TA558 Uses AI-Generated Scripts to Deploy Venom RAT in Brazil Hotel Attacks</a></h2>
-        <div class="news-date">September 17, 2025 - 6:30 PM</div>
-        <p class="news-summary">The threat actor known as TA558 has been attributed to a fresh set of attacks delivering various remote access trojans (RATs) like Venom RAT to breach hotels in Brazil and Spanish-speaking markets.
-Ru...</p>
-      </div>
-    
-      <div class="news-item">
-        <span class="news-source">Dark Reading</span>
-        <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/ai-powered-sign-up-fraud-scaling-fast" target="_blank" rel="noopener">AI-Powered Sign-up Fraud Is Scaling Fast</a></h2>
-        <div class="news-date">September 17, 2025 - 2:00 PM</div>
-        <p class="news-summary">The AI era means attackers are smarter, faster, and hitting you where you least expect it — your sign-up funnel....</p>
-      </div>
-    
-  </div>
+
+  <main class="container">
+    <div class="stats" id="stats">Showing 0 of 0 articles from 0 sources • Last updated <time datetime="2025-09-19T13:41:46.705Z">9/19/2025, 8:41:46 AM</time></div>
+
+    <div class="news-container" id="newsContainer">
+      
+        <div class="news-item" style="grid-column: 1 / -1; text-align: center;">
+          <h2>No news items found</h2>
+          <p>No news could be fetched from the configured sources. This could be due to temporary feed issues or network problems. The site will try again on the next update cycle.</p>
+        </div>
+      
+    </div>
+  </main>
   
   <footer>
-    <p>Powered by GitHub Actions | Automatically updates every 3 hours | <a href="./feed.xml">RSS Feed</a></p>
+    <div class="container">
+      Powered by GitHub Actions • Updates every 3 hours • <a href="./feed.xml">RSS Feed</a>
+    </div>
   </footer>
+
+  <script>
+    (function(){
+      const root = document.documentElement;
+      const themeKey = 'sentrydigest:theme';
+      const saved = localStorage.getItem(themeKey);
+      if (saved === 'dark' || (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        root.setAttribute('data-theme','dark');
+      }
+      const btn = document.getElementById('themeToggle');
+      btn && btn.addEventListener('click', function(){
+        const dark = root.getAttribute('data-theme') === 'dark';
+        root.setAttribute('data-theme', dark ? 'light' : 'dark');
+        localStorage.setItem(themeKey, dark ? 'light' : 'dark');
+      });
+
+      const q = (sel) => document.querySelector(sel);
+      const qa = (sel) => Array.prototype.slice.call(document.querySelectorAll(sel));
+      const search = q('#search');
+      const filter = q('#sourceFilter');
+      const stats = q('#stats');
+      const cards = qa('.news-item');
+
+      function update(){
+        const term = (search && search.value || '').toLowerCase().trim();
+        const src = filter && filter.value || '';
+        let visible = 0;
+        cards.forEach(card => {
+          const matchesText = !term || (card.getAttribute('data-title').toLowerCase().includes(term) || card.getAttribute('data-summary').toLowerCase().includes(term));
+          const matchesSource = !src || card.getAttribute('data-source') === src;
+          const show = matchesText && matchesSource;
+          card.style.display = show ? '' : 'none';
+          if (show) visible++;
+        });
+        const total = 0;
+        const srcCount = 0;
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-09-19T13:41:46.705Z').toLocaleString());
+      }
+      if (search) search.addEventListener('input', debounce(update, 120));
+      if (filter) filter.addEventListener('change', update);
+      update();
+
+      function debounce(fn, wait){ let t; return function(){ clearTimeout(t); t=setTimeout(fn, wait); } }
+    })();
+  </script>
 </body>
 </html>
   
