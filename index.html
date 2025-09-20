@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-09-20T03:14:51.611Z">9/20/2025, 3:14:51 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-09-20T06:09:09.958Z">9/20/2025, 6:09:09 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="ShadowLeak Zero-Click Flaw Leaks Gmail Data via OpenAI ChatGPT Deep Research Agent" data-summary="Cybersecurity researchers have disclosed a zero-click flaw in OpenAI ChatGPT's Deep Research agent that could allow an attacker to leak sensitive Gmail inbox data with a single crafted email without a...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/09/shadowleak-zero-click-flaw-leaks-gmail.html" target="_blank" rel="noopener">ShadowLeak Zero-Click Flaw Leaks Gmail Data via OpenAI ChatGPT Deep Research Agent</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-09-20T05:31:00.000Z">September 20, 2025 - 5:31 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Cybersecurity researchers have disclosed a zero-click flaw in OpenAI ChatGPT's Deep Research agent that could allow an attacker to leak sensitive Gmail inbox data with a single crafted email without a...</p>
+        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Patch Now: Max-Severity Fortra GoAnywhere Bug Allows Command Injection" data-summary="Exploitation of the flaw, tracked as CVE-2025-10035, is highly dependent on whether systems are exposed to the Internet, according to Fortra....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -345,7 +357,7 @@ Slovak cybersecurity company ES...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2025/09/cisa-warns-of-two-malware-strains.html" target="_blank" rel="noopener">CISA Warns of Two Malware Strains Exploiting Ivanti EPMM CVE-2025-4427 and CVE-2025-4428</a></h2>
           <div class="news-meta">
             <time datetime="2025-09-19T04:10:00.000Z">September 19, 2025 - 4:10 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Thursday released details of two sets of malware that were discovered in an unnamed organization's network following the exploitatio...</p>
         </article>
@@ -445,20 +457,6 @@ Slovak cybersecurity company ES...</p>
           </div>
           <p class="news-summary">The operators of the SystemBC proxy botnet are hunting for vulnerable commercial virtual private servers (VPS) and maintain an average of 1,500 bots every day that provide a highway for malicious traf...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="SonicWall Urges Password Resets After Cloud Backup Breach Affecting Under 5% of Customers" data-summary="SonicWall is urging customers to reset credentials after their firewall configuration backup files were exposed in a security breach impacting MySonicWall accounts.
-The company said it recently detect...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/09/sonicwall-urges-password-resets-after.html" target="_blank" rel="noopener">SonicWall Urges Password Resets After Cloud Backup Breach Affecting Under 5% of Customers</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-09-18T14:12:00.000Z">September 18, 2025 - 2:12 PM</time>
-            
-          </div>
-          <p class="news-summary">SonicWall is urging customers to reset credentials after their firewall configuration backup files were exposed in a security breach impacting MySonicWall accounts.
-The company said it recently detect...</p>
-        </article>
     </div>
   </main>
   
@@ -503,7 +501,7 @@ The company said it recently detect...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-09-20T03:14:51.611Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-09-20T06:09:09.958Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
