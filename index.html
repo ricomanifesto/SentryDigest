@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-09-21T15:06:14.736Z">9/21/2025, 3:06:14 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-09-21T18:08:07.247Z">9/21/2025, 6:08:07 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft Entra ID flaw allowed hijacking any company's tenant" data-summary="A critical combination of legacy components could have allowed complete access to the Microsoft Entra ID tenant of every company in the world. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/microsoft-entra-id-flaw-allowed-hijacking-any-companys-tenant/" target="_blank" rel="noopener">Microsoft Entra ID flaw allowed hijacking any company's tenant</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-09-21T17:30:51.000Z">September 21, 2025 - 5:30 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A critical combination of legacy components could have allowed complete access to the Microsoft Entra ID tenant of every company in the world. [...]...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="DPRK Hackers Use ClickFix to Deliver BeaverTail Malware in Crypto Job Scams" data-summary="Threat actors with ties to the Democratic People's Republic of Korea (aka DPRK or North Korea) have been observed leveraging ClickFix-style lures to deliver a known malware called BeaverTail and Invis...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
@@ -111,7 +123,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/canada-dismantles-tradeogre-exchange-seizes-40-million-in-crypto/" target="_blank" rel="noopener">Canada dismantles TradeOgre exchange, seizes $40 million in crypto</a></h2>
           <div class="news-meta">
             <time datetime="2025-09-20T17:11:40.000Z">September 20, 2025 - 5:11 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The Royal Canadian Mounted Police has shut down the TradeOgre cryptocurrency exchange and seized more than $40 million believed to originate from criminal activities. [...]...</p>
         </article>
@@ -447,18 +459,6 @@ Slovak cybersecurity company ES...</p>
           </div>
           <p class="news-summary">The former CIA deputy director for digital innovation discusses resilience, cultural shifts, and cyber fundamentals in the AI era....</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="ChatGPT now gives you greater control over GPT-5 Thinking model" data-summary="OpenAI is finally rolling out a toggle that allows you to decide how hard the GPT-5-thinking model can think. This feature is rolling out to Plus and Pro subscribers. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/chatgpt-now-gives-you-greater-control-over-gpt-5-thinking-model/" target="_blank" rel="noopener">ChatGPT now gives you greater control over GPT-5 Thinking model</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-09-18T22:20:56.000Z">September 18, 2025 - 10:20 PM</time>
-            
-          </div>
-          <p class="news-summary">OpenAI is finally rolling out a toggle that allows you to decide how hard the GPT-5-thinking model can think. This feature is rolling out to Plus and Pro subscribers. [...]...</p>
-        </article>
     </div>
   </main>
   
@@ -503,7 +503,7 @@ Slovak cybersecurity company ES...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-09-21T15:06:14.736Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-09-21T18:08:07.247Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
