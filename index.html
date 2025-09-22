@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
+          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,46 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-09-22T12:12:10.973Z">9/22/2025, 12:12:10 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-09-22T15:07:35.411Z">9/22/2025, 3:07:35 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="15 Years of Zero Trust: Why It Matters More Than Ever" data-summary="With the emergence of AI-driven attacks and quantum computing, and the explosion of hyperconnected devices, zero trust remains a core strategy for security operations....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/15-years-of-zero-trust-why-it-matters-more-than-ever" target="_blank" rel="noopener">15 Years of Zero Trust: Why It Matters More Than Ever</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-09-22T14:00:00.000Z">September 22, 2025 - 2:00 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">With the emergence of AI-driven attacks and quantum computing, and the explosion of hyperconnected devices, zero trust remains a core strategy for security operations....</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft says recent updates cause DRM video playback issues" data-summary="Microsoft has confirmed a known issue that prevents some apps from playing Digital Rights Management (DRM) protected video content or displaying and recording live TV. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-says-recent-updates-cause-drm-video-playback-issues/" target="_blank" rel="noopener">Microsoft says recent updates cause DRM video playback issues</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-09-22T13:55:47.000Z">September 22, 2025 - 1:55 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Microsoft has confirmed a known issue that prevents some apps from playing Digital Rights Management (DRM) protected video content or displaying and recording live TV. [...]...</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="⚡ Weekly Recap: Chrome 0-Day, AI Hacking Tools, DDR5 Bit-Flips, npm Worm & More" data-summary="The security landscape now moves at a pace no patch cycle can match. Attackers aren’t waiting for quarterly updates or monthly fixes—they adapt within hours, blending fresh techniques with old, forgot...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/09/weekly-recap-chrome-0-day-ai-hacking.html" target="_blank" rel="noopener">⚡ Weekly Recap: Chrome 0-Day, AI Hacking Tools, DDR5 Bit-Flips, npm Worm & More</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-09-22T11:47:00.000Z">September 22, 2025 - 11:47 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The security landscape now moves at a pace no patch cycle can match. Attackers aren’t waiting for quarterly updates or monthly fixes—they adapt within hours, blending fresh techniques with old, forgot...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="How to Gain Control of AI Agents and Non-Human Identities" data-summary="We hear this a lot:
 “We’ve got hundreds of service accounts and AI agents running in the background. We didn’t create most of them. We don’t know who owns them. How are we supposed to secure them?”
 Ev...">
@@ -107,7 +143,7 @@ Ev...">
 “We’ve got hundreds of service accounts and AI agents running in the background. We didn’t create most of them. We don’t know who owns them. How are we supposed to secure them?”
 Ev...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Verified Steam game steals streamer's cancer treatment donations" data-summary="A gamer seeking financial support for cancer treatment lost $32,000 after downloading from Steam a verified game named Block Blasters that drained his cryptocurrency wallet. [...]...">
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Verified Steam game steals streamer's cancer treatment donations" data-summary="A gamer seeking financial support for cancer treatment lost $32,000 after downloading from Steam a verified game named BlockBlasters that drained his cryptocurrency wallet. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
@@ -117,7 +153,7 @@ Ev...</p>
             <time datetime="2025-09-22T09:28:10.000Z">September 22, 2025 - 9:28 AM</time>
             <span class="badge-new">NEW</span>
           </div>
-          <p class="news-summary">A gamer seeking financial support for cancer treatment lost $32,000 after downloading from Steam a verified game named Block Blasters that drained his cryptocurrency wallet. [...]...</p>
+          <p class="news-summary">A gamer seeking financial support for cancer treatment lost $32,000 after downloading from Steam a verified game named BlockBlasters that drained his cryptocurrency wallet. [...]...</p>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Microsoft Patches Critical Entra ID Flaw Enabling Global Admin Impersonation Across Tenants" data-summary="A critical token validation failure in Microsoft Entra ID (previously Azure Active Directory) could have allowed attackers to impersonate any user, including Global Administrators, across any tenant.
 ...">
@@ -219,12 +255,12 @@ The malware has been codenamed MalTerm...</p>
           </div>
           <p class="news-summary">Exploitation of the flaw, tracked as CVE-2025-10035, is highly dependent on whether systems are exposed to the Internet, according to Fortra....</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Capture the Flag Competition Leads to Cybersecurity Career" data-summary="As Splunk celebrates the 10th anniversary of Boss of the SOC competition, it continues to be a valuable platform for security professionals to test their skills, learn new techniques, and potentially ...">
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Capture-the-Flag Competition Leads to Cybersecurity Career" data-summary="As Splunk celebrates the 10th anniversary of Boss of the SOC competition, it continues to be a valuable platform for security professionals to test their skills, learn new techniques, and potentially ...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
           </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-careers/capture-the-flag-leads-cybersecurity-careers" target="_blank" rel="noopener">Capture the Flag Competition Leads to Cybersecurity Career</a></h2>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-careers/capture-the-flag-leads-cybersecurity-careers" target="_blank" rel="noopener">Capture-the-Flag Competition Leads to Cybersecurity Career</a></h2>
           <div class="news-meta">
             <time datetime="2025-09-19T19:20:16.000Z">September 19, 2025 - 7:20 PM</time>
             
@@ -427,44 +463,6 @@ The vulnerability, tracked as CVE-...</p>
           </div>
           <p class="news-summary">Run by the team at workflow orchestration and AI platform Tines, the Tines library features over 1,000 pre-built workflows shared by security practitioners from across the community - all free to impo...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Russian Hackers Gamaredon and Turla Collaborate to Deploy Kazuar Backdoor in Ukraine" data-summary="Cybersecurity researchers have discerned evidence of two Russian hacking groups Gamaredon and Turla collaborating together to target and co-comprise Ukrainian entities.
-Slovak cybersecurity company ES...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/09/russian-hackers-gamaredon-and-turla.html" target="_blank" rel="noopener">Russian Hackers Gamaredon and Turla Collaborate to Deploy Kazuar Backdoor in Ukraine</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-09-19T08:24:00.000Z">September 19, 2025 - 8:24 AM</time>
-            
-          </div>
-          <p class="news-summary">Cybersecurity researchers have discerned evidence of two Russian hacking groups Gamaredon and Turla collaborating together to target and co-comprise Ukrainian entities.
-Slovak cybersecurity company ES...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="U.K. Arrests Two Teen Scattered Spider Hackers Linked to August 2024 TfL Cyber Attack" data-summary="Law enforcement authorities in the U.K. have arrested two teen members of the Scattered Spider hacking group in connection with their alleged participation in an August 2024 cyber attack targeting Tra...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/09/uk-arrest-two-teen-scattered-spider.html" target="_blank" rel="noopener">U.K. Arrests Two Teen Scattered Spider Hackers Linked to August 2024 TfL Cyber Attack</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-09-19T07:05:00.000Z">September 19, 2025 - 7:05 AM</time>
-            
-          </div>
-          <p class="news-summary">Law enforcement authorities in the U.K. have arrested two teen members of the Scattered Spider hacking group in connection with their alleged participation in an August 2024 cyber attack targeting Tra...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="CISA Warns of Two Malware Strains Exploiting Ivanti EPMM CVE-2025-4427 and CVE-2025-4428" data-summary="The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Thursday released details of two sets of malware that were discovered in an unnamed organization's network following the exploitatio...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/09/cisa-warns-of-two-malware-strains.html" target="_blank" rel="noopener">CISA Warns of Two Malware Strains Exploiting Ivanti EPMM CVE-2025-4427 and CVE-2025-4428</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-09-19T04:10:00.000Z">September 19, 2025 - 4:10 AM</time>
-            
-          </div>
-          <p class="news-summary">The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Thursday released details of two sets of malware that were discovered in an unnamed organization's network following the exploitatio...</p>
-        </article>
     </div>
   </main>
   
@@ -509,7 +507,7 @@ Slovak cybersecurity company ES...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-09-22T12:12:10.973Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-09-22T15:07:35.411Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
