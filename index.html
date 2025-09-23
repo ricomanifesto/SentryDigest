@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-09-23T06:10:57.070Z">9/23/2025, 6:10:57 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-09-23T09:09:01.702Z">9/23/2025, 9:09:01 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -98,10 +98,22 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/events/-dark-reading-virtual-event-know-your-enemy-how-cybercriminals-and-nation-state-hackers-operate" target="_blank" rel="noopener">[Dark Reading Virtual Event] Know Your Enemy: How cybercriminals and nation-state hackers operate</a></h2>
           <div class="news-meta">
-            <time datetime="2025-09-23T06:10:56.600Z">September 23, 2025 - 6:10 AM</time>
+            <time datetime="2025-09-23T09:09:01.250Z">September 23, 2025 - 9:09 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="BadIIS Malware Spreads via SEO Poisoning — Redirects Traffic, Plants Web Shells" data-summary="Cybersecurity researchers are calling attention to a search engine optimization (SEO) poisoning campaign likely undertaken by a Chinese-speaking threat actor using a malware called BadIIS in attacks t...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/09/badiis-malware-spreads-via-seo.html" target="_blank" rel="noopener">BadIIS Malware Spreads via SEO Poisoning — Redirects Traffic, Plants Web Shells</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-09-23T08:13:00.000Z">September 23, 2025 - 8:13 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Cybersecurity researchers are calling attention to a search engine optimization (SEO) poisoning campaign likely undertaken by a Chinese-speaking threat actor using a malware called BadIIS in attacks t...</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Airport disruptions in Europe caused by a ransomware attack" data-summary="The disruptions over the weekend at several major European airports were caused by a ransomware attack targeting the check-in and boarding systems. [...]...">
           <div class="chips">
@@ -449,18 +461,6 @@ The malware has been codenamed MalTerm...</p>
           </div>
           <p class="news-summary">The loophole allows cyberattackers to exfiltrate company data via OpenAI's infrastructure, leaving no trace at all on enterprise systems....</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="UNC1549 Hacks 34 Devices in 11 Telecom Firms via LinkedIn Job Lures and MINIBIKE Malware" data-summary="An Iran-nexus cyber espionage group known as UNC1549 has been attributed to a new campaign targeting European telecommunications companies, successfully infiltrating 34 devices across 11 organizations...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/09/unc1549-hacks-34-devices-in-11-telecom.html" target="_blank" rel="noopener">UNC1549 Hacks 34 Devices in 11 Telecom Firms via LinkedIn Job Lures and MINIBIKE Malware</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-09-19T16:06:00.000Z">September 19, 2025 - 4:06 PM</time>
-            
-          </div>
-          <p class="news-summary">An Iran-nexus cyber espionage group known as UNC1549 has been attributed to a new campaign targeting European telecommunications companies, successfully infiltrating 34 devices across 11 organizations...</p>
-        </article>
     </div>
   </main>
   
@@ -505,7 +505,7 @@ The malware has been codenamed MalTerm...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-09-23T06:10:57.070Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-09-23T09:09:01.702Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
