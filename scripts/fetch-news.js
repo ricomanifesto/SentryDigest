@@ -296,9 +296,8 @@ async function fetchVirusTotalCampaigns(source) {
   try {
     // Helper to compute preferred date from attributes
     const pickDate = (attrs) => {
-      // Override to creation-only when sort mode is 'created'
       if (globalSortMode === 'created') {
-        if (typeof attrs.creation_date === 'number') return attrs.creation_date;
+        return (typeof attrs.creation_date === 'number') ? attrs.creation_date : null;
       }
       for (const key of opts.dateFieldPriority) {
         if (typeof attrs[key] === 'number') return attrs[key];
@@ -345,10 +344,7 @@ async function fetchVirusTotalCampaigns(source) {
     // Client-side filter by daysWindow using preferred date field
     const filtered = collected.filter(c => {
       const attrs = c.attributes || {};
-      // For 'created' mode, enforce window on creation_date if present
-      const ts = (globalSortMode === 'created' && typeof attrs.creation_date === 'number')
-        ? attrs.creation_date
-        : pickDate(attrs);
+      const ts = pickDate(attrs);
       return typeof ts === 'number' && ts >= createdAfterEpoch;
     });
 
@@ -365,9 +361,7 @@ async function fetchVirusTotalCampaigns(source) {
       const attrs = c.attributes || {};
       const id = c.id;
       const name = attrs.name || id;
-      const ts = (globalSortMode === 'created')
-        ? (typeof attrs.creation_date === 'number' ? attrs.creation_date : pickDate(attrs))
-        : pickDate(attrs);
+      const ts = pickDate(attrs);
       const date = ts ? new Date(ts * 1000) : new Date();
       const description = attrs.description || attrs.summary || '';
       const linkPrimary = `https://www.virustotal.com/gui/collection/${encodeURIComponent(id)}`;
