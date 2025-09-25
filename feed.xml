@@ -9,44 +9,22 @@
             <link>https://ricomanifesto.github.io/SentryDigest/</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Thu, 25 Sep 2025 18:10:41 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 25 Sep 2025 19:41:01 GMT</lastBuildDate>
         <atom:link href="https://ricomanifesto.github.io/SentryDigest/feed.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Thu, 25 Sep 2025 18:10:41 GMT</pubDate>
+        <pubDate>Thu, 25 Sep 2025 19:41:01 GMT</pubDate>
         <language><![CDATA[en]]></language>
         <ttl>180</ttl>
         <comment>News aggregated from: Krebs on Security, The Hacker News, Threatpost, Bleeping Computer, Dark Reading, VirusTotal TI</comment>
         <item>
-            <title><![CDATA[Campaign: Financially Motivated Threat Actor Gaining Access via Drive-By Downloads of FAKEUPDATES]]></title>
-            <description><![CDATA[Date: 2025-09-23 • Beginning in December 2023, UNC2165 resumed their intrusion operations after a period of dormancy dating back to April 2023. Consistent with previous campaigns, the threat cluster leveraged UNC1543 distribution channels, involving search engine optimization (SEO) poisoning and FAKEUPDATES, to deliver the COLORFAKE.V2 in-memory dropper and MYTHIC payloads. Additional UNC2165 campaigns were observed starting in late March and continuing into April. In all but one instance, UNC1543 FAKEUPDATES infections were confirmed leading to UNC2165 activity.  In almost all cases, the actors established persistence by creating a scheduled task, which executes a Python script to establish a remote connection to a C&C. Shortly following compromise, actors used Windows built-in operating system utilities to perform network reconnaissance activities. In at least one incident, the actors were observed using RDP to move laterally and install additional payloads such as COLORFAKE.V2. In several cases, UNC2165 enumerated the local Chrome and Microsoft Edge login data alongside the encryption keys from the state files. This allows the actors to decrypt passwords stored in Chrome and Microsoft Edge. In some of the incidents, the group leveraged FAKEUPDATES to execute PowerShell commands to replace HTML body tags within victims' Outlook signatures with a link to a remote resource used to harvest NT LAN Manager (NTLM) login information. In at least one case, PowerShell commands were used to create .LNK files, which, when executed, download a remote payload via the file’s icon. While no significant follow-on activity was observed, the incidents are believed to be financially motivated based on previous UNC2165 activity.]]></description>
-            <link>https://www.virustotal.com/gui/collection/campaign--13abb7ca-237a-5ae9-8841-ef90e2f460e5</link>
-            <guid isPermaLink="false">https://www.virustotal.com/gui/collection/campaign--13abb7ca-237a-5ae9-8841-ef90e2f460e5</guid>
+            <title><![CDATA[Campaign: Financially Motivated Actor Uses ClickFix Lures to Deploy ZAPCAT Backdoor and Provide Access to Ransomware Affiliate(s)]]></title>
+            <description><![CDATA[Created: 2025-09-15 • This campaign was executed across multiple stages by two distinct threat actors: UNC6258 and UNC6259. The intrusions began with UNC6258 gaining initial access through a malicious PowerShell command that used msiexec.exe to deploy the first-stage trojan, BLACKWIDOW. Disguised as an NVIDIA executable, BLACKWIDOW utilized a DLL Search Order Hijack against libcef.dll to achieve execution and establish persistence. After securing a foothold and conducting credential theft from local browsers, the activity shifted, with the second actor, UNC6259, becoming active and deploying the second-stage implant, ZAPCAT, via rundll32.exe. ZAPCAT's primary function was to conduct extensive internal reconnaissance, focusing on Active Directory by enumerating domain trusts, Service Principal Names (SPNs), and Domain Administrator groups, alongside broader system discovery using WMI and PowerShell. This sophisticated multi-actor operation highlights the actors' proficiency in abusing legitimate system tools for malicious purposes, culminating in an attempt to pivot to other systems via SMB after obtaining necessary credentials. This handoff and methodical reconnaissance effort underscore a well-planned objective to maximize network visibility before proceeding with lateral movement.]]></description>
+            <link>https://www.virustotal.com/gui/collection/campaign--d6131d2b-0549-5609-9333-c61deb5bc9f6</link>
+            <guid isPermaLink="false">https://www.virustotal.com/gui/collection/campaign--d6131d2b-0549-5609-9333-c61deb5bc9f6</guid>
             <category><![CDATA[VirusTotal TI]]></category>
             <dc:creator><![CDATA[VirusTotal TI]]></dc:creator>
-            <pubDate>Tue, 23 Sep 2025 00:00:00 GMT</pubDate>
+            <pubDate>Mon, 15 Sep 2025 21:59:47 GMT</pubDate>
             <dc:source>VirusTotal TI</dc:source>
-            <dc:date>2025-09-23</dc:date>
-        </item>
-        <item>
-            <title><![CDATA[Campaign: Financially Motivated Threat Actor Distributes Several Payloads via Drive-By Downloads of Fake Browser Updates]]></title>
-            <description><![CDATA[Date: 2025-09-18 • Since April 2024, UNC5518 has been distributing FAKETREFF, a JavaScript downloader that displays a fake error message urging users to take action. UNC5518 has evolved their techniques over time, including the introduction of obfuscation, multi-stage scripts leading to FAKETREFF, and the use of the ClickFix social engineering technique. UNC5518 FAKETREFF campaigns throughout 2024 and 2025 have led to a variety of additional malware, including QUICKBIND, NETSUPPORT, BANANACOOKIE, CLEANBOOST, CORNFLAKE, DARKGATE, and VOLTMARKER. UNC5518 campaigns appear to be fairly opportunistic, impacting a wide range of industry verticals and geographic regions.]]></description>
-            <link>https://www.virustotal.com/gui/collection/campaign--cea8e459-d40b-5543-ba41-ecb7996ca989</link>
-            <guid isPermaLink="false">https://www.virustotal.com/gui/collection/campaign--cea8e459-d40b-5543-ba41-ecb7996ca989</guid>
-            <category><![CDATA[VirusTotal TI]]></category>
-            <dc:creator><![CDATA[VirusTotal TI]]></dc:creator>
-            <pubDate>Thu, 18 Sep 2025 00:00:00 GMT</pubDate>
-            <dc:source>VirusTotal TI</dc:source>
-            <dc:date>2025-09-18</dc:date>
-        </item>
-        <item>
-            <title><![CDATA[Campaign: FIN6 Targeting Multiple Organizations via Legitimate Job Postings]]></title>
-            <description><![CDATA[Date: 2025-09-17 • Mandiant has tracked an ongoing FIN6 campaign active since at least December 21, 2022 involving the use of spoofed personal websites to distribute BULLZLINK and SQUIDSLEEP payloads. FIN6 has targeted corporate recruiters using job sites including LinkedIn and Indeed, directing victims to download an archive containing a BULLZLINK downloader hosted on actor-controlled domains. Domains and the file names of BULLZLINK samples associated with this activity have both incorporated common first and last names, presumably related to the personas being used to contact their targets. Other campaign elements such as website URLs and zip file names have also been tailored in a way to suggest customization to the specific jobs roles they may be using as a pretense for engagement.\n\n \n\nHistorical FIN6 campaigns have shared numerous technical and operational overlaps with this most recent activity, and have commonly leveraged job-themed files hosted on domains that appear to be fake personal websites or fake job boards. Malicious files delivered through these sites have consistently been BULLZLINK leading to SQUIDSLEEP and SQUIDGATE.]]></description>
-            <link>https://www.virustotal.com/gui/collection/campaign--183a3a9d-fbe6-54b1-9ec7-a807687ba94c</link>
-            <guid isPermaLink="false">https://www.virustotal.com/gui/collection/campaign--183a3a9d-fbe6-54b1-9ec7-a807687ba94c</guid>
-            <category><![CDATA[VirusTotal TI]]></category>
-            <dc:creator><![CDATA[VirusTotal TI]]></dc:creator>
-            <pubDate>Wed, 17 Sep 2025 00:00:00 GMT</pubDate>
-            <dc:source>VirusTotal TI</dc:source>
-            <dc:date>2025-09-17</dc:date>
+            <dc:date>2025-09-15</dc:date>
         </item>
         <item>
             <title><![CDATA[[Dark Reading Virtual Event] Know Your Enemy: How cybercriminals and nation-state hackers operate]]></title>
@@ -55,8 +33,30 @@
             <guid isPermaLink="false">https://www.darkreading.com/events/-dark-reading-virtual-event-know-your-enemy-how-cybercriminals-and-nation-state-hackers-operate</guid>
             <category><![CDATA[Dark Reading]]></category>
             <dc:creator><![CDATA[Dark Reading]]></dc:creator>
-            <pubDate>Thu, 25 Sep 2025 18:10:38 GMT</pubDate>
+            <pubDate>Thu, 25 Sep 2025 19:40:58 GMT</pubDate>
             <dc:source>Dark Reading</dc:source>
+            <dc:date>2025-09-25</dc:date>
+        </item>
+        <item>
+            <title><![CDATA[Chinese APT Drops 'Brickstorm' Backdoors on Edge Devices]]></title>
+            <description><![CDATA[The China-linked cyber-espionage group UNC5221 is compromising network appliances that cannot run traditional EDR agents to deploy new versions of the "Brickstorm" backdoor....]]></description>
+            <link>https://www.darkreading.com/cyberattacks-data-breaches/chinese-apt-brickstorm-backdoors-edge-devices</link>
+            <guid isPermaLink="false">https://www.darkreading.com/cyberattacks-data-breaches/chinese-apt-brickstorm-backdoors-edge-devices</guid>
+            <category><![CDATA[Dark Reading]]></category>
+            <dc:creator><![CDATA[Dark Reading]]></dc:creator>
+            <pubDate>Thu, 25 Sep 2025 19:05:29 GMT</pubDate>
+            <dc:source>Dark Reading</dc:source>
+            <dc:date>2025-09-25</dc:date>
+        </item>
+        <item>
+            <title><![CDATA[Urgent: Cisco ASA Zero-Day Duo Under Attack; CISA Triggers Emergency Mitigation Directive]]></title>
+            <description><![CDATA[Cisco is urging customers to patch two security flaws impacting the VPN web server of Cisco Secure Firewall Adaptive Security Appliance (ASA) Software and Cisco Secure Firewall Threat Defense (FTD) So...]]></description>
+            <link>https://thehackernews.com/2025/09/urgent-cisco-asa-zero-day-duo-under.html</link>
+            <guid isPermaLink="false">https://thehackernews.com/2025/09/urgent-cisco-asa-zero-day-duo-under.html</guid>
+            <category><![CDATA[The Hacker News]]></category>
+            <dc:creator><![CDATA[The Hacker News]]></dc:creator>
+            <pubDate>Thu, 25 Sep 2025 18:17:00 GMT</pubDate>
+            <dc:source>The Hacker News</dc:source>
             <dc:date>2025-09-25</dc:date>
         </item>
         <item>
@@ -79,6 +79,35 @@
             <dc:creator><![CDATA[Bleeping Computer]]></dc:creator>
             <pubDate>Thu, 25 Sep 2025 17:52:55 GMT</pubDate>
             <dc:source>Bleeping Computer</dc:source>
+            <dc:date>2025-09-25</dc:date>
+        </item>
+        <item>
+            <title><![CDATA[Threatsday Bulletin: Rootkit Patch, Federal Breach, OnePlus SMS Leak, TikTok Scandal & More]]></title>
+            <description><![CDATA[/* ===== Container ===== */
+.td-wrap {}
+
+/* ===== Section ===== */
+.td-section {
+}
+.td-title { margin: 16px 0 4px; font-size: 32px; line-height: 1.2; font-weight: 800; }
+.td-subtitle { margin: 0 0 24p...]]></description>
+            <link>https://thehackernews.com/2025/09/threatsday-bulletin-rootkit-patch.html</link>
+            <guid isPermaLink="false">https://thehackernews.com/2025/09/threatsday-bulletin-rootkit-patch.html</guid>
+            <category><![CDATA[The Hacker News]]></category>
+            <dc:creator><![CDATA[The Hacker News]]></dc:creator>
+            <pubDate>Thu, 25 Sep 2025 17:24:00 GMT</pubDate>
+            <dc:source>The Hacker News</dc:source>
+            <dc:date>2025-09-25</dc:date>
+        </item>
+        <item>
+            <title><![CDATA[Vane Viper Generates 1 Trillion DNS Queries to Power Global Malware and Ad Fraud Network]]></title>
+            <description><![CDATA[The threat actor known as Vane Viper has been outed as a purveyor of malicious ad technology (adtech), while relying on a tangled web of shell companies and opaque ownership structures to deliberately...]]></description>
+            <link>https://thehackernews.com/2025/09/vane-viper-generates-1-trillion-dns.html</link>
+            <guid isPermaLink="false">https://thehackernews.com/2025/09/vane-viper-generates-1-trillion-dns.html</guid>
+            <category><![CDATA[The Hacker News]]></category>
+            <dc:creator><![CDATA[The Hacker News]]></dc:creator>
+            <pubDate>Thu, 25 Sep 2025 17:22:00 GMT</pubDate>
+            <dc:source>The Hacker News</dc:source>
             <dc:date>2025-09-25</dc:date>
         </item>
         <item>
@@ -170,7 +199,7 @@
             <dc:date>2025-09-25</dc:date>
         </item>
         <item>
-            <title><![CDATA[Microsoft will offer free Windows 10 security updates in Europe]]></title>
+            <title><![CDATA[Microsoft will offer free Windows 10 extended security updates in Europe]]></title>
             <description><![CDATA[Microsoft will offer free extended security updates for Windows 10 users in the European Economic Area (EEA), which includes Iceland, Liechtenstein, Norway, and all 27 European Union member states. [....]]></description>
             <link>https://www.bleepingcomputer.com/news/microsoft/microsoft-will-offer-free-windows-10-security-updates-in-europe/</link>
             <guid isPermaLink="false">https://www.bleepingcomputer.com/news/microsoft/microsoft-will-offer-free-windows-10-security-updates-in-europe/</guid>
@@ -189,24 +218,6 @@ It’s not because security teams can't see e...]]></description>
             <category><![CDATA[The Hacker News]]></category>
             <dc:creator><![CDATA[The Hacker News]]></dc:creator>
             <pubDate>Thu, 25 Sep 2025 11:49:00 GMT</pubDate>
-            <dc:source>The Hacker News</dc:source>
-            <dc:date>2025-09-25</dc:date>
-        </item>
-        <item>
-            <title><![CDATA[Threatsday Bulletin: Rootkit Patch, Federal Breach, OnePlus SMS Leak, TikTok Scandal & More]]></title>
-            <description><![CDATA[/* ===== Container ===== */
-.td-wrap {}
-
-/* ===== Section ===== */
-.td-section {
-}
-.td-title { margin: 16px 0 4px; font-size: 32px; line-height: 1.2; font-weight: 800; }
-.td-subtitle { margin: 0 0 24p...]]></description>
-            <link>https://thehackernews.com/2025/09/threatsday-bulletin-rootkit-patch.html</link>
-            <guid isPermaLink="false">https://thehackernews.com/2025/09/threatsday-bulletin-rootkit-patch.html</guid>
-            <category><![CDATA[The Hacker News]]></category>
-            <dc:creator><![CDATA[The Hacker News]]></dc:creator>
-            <pubDate>Thu, 25 Sep 2025 11:48:00 GMT</pubDate>
             <dc:source>The Hacker News</dc:source>
             <dc:date>2025-09-25</dc:date>
         </item>
@@ -330,17 +341,6 @@ The crates, named fast...]]></description>
             <dc:creator><![CDATA[The Hacker News]]></dc:creator>
             <pubDate>Wed, 24 Sep 2025 16:36:00 GMT</pubDate>
             <dc:source>The Hacker News</dc:source>
-            <dc:date>2025-09-24</dc:date>
-        </item>
-        <item>
-            <title><![CDATA[Unpatched flaw in OnePlus phones lets rogue apps text messages]]></title>
-            <description><![CDATA[A vulnerability in multiple OnePlus OxygenOS versions allows any installed app to access SMS data and metadata without requiring permission or user interaction. [...]...]]></description>
-            <link>https://www.bleepingcomputer.com/news/security/unpatched-flaw-in-oneplus-phones-lets-rogue-apps-text-messages/</link>
-            <guid isPermaLink="false">https://www.bleepingcomputer.com/news/security/unpatched-flaw-in-oneplus-phones-lets-rogue-apps-text-messages/</guid>
-            <category><![CDATA[Bleeping Computer]]></category>
-            <dc:creator><![CDATA[Bleeping Computer]]></dc:creator>
-            <pubDate>Wed, 24 Sep 2025 15:48:40 GMT</pubDate>
-            <dc:source>Bleeping Computer</dc:source>
             <dc:date>2025-09-24</dc:date>
         </item>
         <item>
