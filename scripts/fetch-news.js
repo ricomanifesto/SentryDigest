@@ -101,11 +101,300 @@ async function fetchRSSFeed(source) {
   }
 }
 
+// Function to fetch latest Threat Actor campaigns from VirusTotal TI (Enterprise)
+async function fetchVirusTotalThreatActorCampaigns(source) {
+  const apiKey = process.env.VIRUSTOTAL_API_KEY || process.env.VT_API_KEY;
+  if (!apiKey) {
+    console.warn('VIRUSTOTAL_API_KEY not set; skipping VirusTotal source');
+    return [];
+  }
+
+  const baseUrl = 'https://www.virustotal.com/api/v3';
+  const http = axios.create({
+    baseURL: baseUrl,
+    headers: { 'x-apikey': apiKey }
+  });
+
+  // Defaults can be overridden per-source via source.options
+  const opts = Object.assign({
+    actorsLimit: 5,
+    campaignsPerActor: 3,
+    // Fetch more from API then filter down by window and per-actor cap
+    campaignFetchLimit: 20,
+    // Order parameter removed to avoid 400s; VT may not support ordering here
+    // Only include campaigns created within this many days
+    daysWindow: 3,
+    actorIds: null // if provided, only fetch for these IDs
+  }, source.options || {});
+
+  try {
+    let actors = [];
+
+    if (Array.isArray(opts.actorIds) && opts.actorIds.length > 0) {
+      // Build synthetic actor entries when actor IDs are provided
+      actors = opts.actorIds.map(id => ({ id, attributes: {} }));
+    } else {
+      // List latest actors (try canonical '/actors', then fallbacks)
+      try {
+        const resp = await http.get('/actors', { params: { limit: opts.actorsLimit } });
+        actors = (resp.data && resp.data.data) || [];
+      } catch (e0) {
+        try {
+          const resp = await http.get('/threat_actors', { params: { limit: opts.actorsLimit } });
+          actors = (resp.data && resp.data.data) || [];
+        } catch (e1) {
+          try {
+            const resp2 = await http.get('/threat-actors', { params: { limit: opts.actorsLimit } });
+            actors = (resp2.data && resp2.data.data) || [];
+          } catch (e2) {
+            const s0 = e0.response && e0.response.status;
+            const s1 = e1.response && e1.response.status;
+            const s2 = e2.response && e2.response.status;
+            console.warn(`VirusTotal: failed listing actors (statuses ${s0}, ${s1}, ${s2})`);
+            actors = [];
+          }
+        }
+      }
+    }
+
+    // For each actor, fetch recent campaigns
+    const items = [];
+    const createdAfterEpoch = Math.floor(Date.now() / 1000) - (Number(opts.daysWindow) * 24 * 60 * 60);
+
+    for (const actor of actors) {
+      const actorId = actor.id;
+      let actorName = (actor.attributes && (actor.attributes.alias || actor.attributes.name)) || actorId;
+
+      // Fetch campaigns related to the actor
+      let campaigns = [];
+      try {
+        // Prefer relationships endpoint which many VT v3 resources use
+        let campResp;
+        try {
+          campResp = await http.get(`/actors/${encodeURIComponent(actorId)}/relationships/campaigns`, {
+            params: { limit: opts.campaignFetchLimit }
+          });
+        } catch (eRel0) {
+          try {
+            campResp = await http.get(`/actors/${encodeURIComponent(actorId)}/campaigns`, {
+              params: { limit: opts.campaignFetchLimit }
+            });
+          } catch (eRelA) {
+            try {
+              campResp = await http.get(`/threat_actors/${encodeURIComponent(actorId)}/relationships/campaigns`, {
+                params: { limit: opts.campaignFetchLimit }
+              });
+            } catch (eRel1) {
+              try {
+                campResp = await http.get(`/threat-actors/${encodeURIComponent(actorId)}/relationships/campaigns`, {
+                  params: { limit: opts.campaignFetchLimit }
+                });
+              } catch (eRel2) {
+                // Fallback to direct campaigns if relationships path isn't available
+                campResp = await http.get(`/threat_actors/${encodeURIComponent(actorId)}/campaigns`, {
+                  params: { limit: opts.campaignFetchLimit }
+                });
+              }
+            }
+          }
+        }
+        campaigns = (campResp.data && campResp.data.data) || [];
+      } catch (err) {
+        // If the campaigns relationship is not available or returns 404/403, skip gracefully
+        const status = err.response && err.response.status;
+        console.warn(`VirusTotal: campaigns fetch failed for actor ${actorId}${status ? ` (status ${status})` : ''}`);
+        continue;
+      }
+
+      // Filter to campaigns created within the time window
+      // Relationship items may not include full attributes; hydrate if needed
+      async function hydrateCampaign(c) {
+        if (c && c.attributes && typeof c.attributes.creation_date === 'number') return c;
+        const id = c && c.id;
+        if (!id) return c;
+        try {
+          const resp = await http.get(`/campaigns/${encodeURIComponent(id)}`);
+          return (resp.data && resp.data.data) || c;
+        } catch {
+          return c;
+        }
+      }
+
+      // Hydrate concurrently but cap per-actor concurrency by slice
+      const hydrated = [];
+      for (const c of campaigns.slice(0, opts.campaignFetchLimit)) {
+        // eslint-disable-next-line no-await-in-loop
+        hydrated.push(await hydrateCampaign(c));
+      }
+
+      const recent = hydrated.filter(c => (c.attributes && typeof c.attributes.creation_date === 'number' && c.attributes.creation_date >= createdAfterEpoch));
+
+      // Cap items per actor after filtering
+      for (const camp of recent.slice(0, opts.campaignsPerActor)) {
+        const attrs = camp.attributes || {};
+        const campaignId = camp.id;
+        const campaignName = attrs.name || campaignId;
+        const createdUnix = typeof attrs.creation_date === 'number' ? attrs.creation_date : null;
+        const date = createdUnix ? new Date(createdUnix * 1000) : new Date();
+        const description = attrs.description || attrs.summary || '';
+
+        // Build a stable GUI link; fall back to the threat actor page with campaigns tab
+        const link = `https://www.virustotal.com/gui/threat-actor/${encodeURIComponent(actorName)}`;
+
+        items.push({
+          title: `${actorName} campaign: ${campaignName}`,
+          link,
+          date,
+          source: source.name || 'VirusTotal TI',
+          summary: [
+            `Actor: ${actorName}`,
+            `Campaign: ${campaignName}`,
+            createdUnix ? `Created: ${moment(new Date(createdUnix * 1000)).format('YYYY-MM-DD')}` : null,
+            description ? description : null
+          ].filter(Boolean).join(' • ')
+        });
+      }
+    }
+
+    return items;
+  } catch (error) {
+    const status = error.response && error.response.status;
+    console.error(`VirusTotal fetch error${status ? ` (status ${status})` : ''}:`, error.message);
+    return [];
+  }
+}
+
+// Function to fetch latest campaigns directly from VirusTotal
+async function fetchVirusTotalCampaigns(source) {
+  const apiKey = process.env.VIRUSTOTAL_API_KEY || process.env.VT_API_KEY;
+  if (!apiKey) {
+    console.warn('VIRUSTOTAL_API_KEY not set; skipping VirusTotal source');
+    return [];
+  }
+
+  const baseUrl = 'https://www.virustotal.com/api/v3';
+  const http = axios.create({ baseURL: baseUrl, headers: { 'x-apikey': apiKey } });
+
+  const opts = Object.assign({
+    campaignsFetchLimit: 30,
+    daysWindow: 3,
+    // Optional explicit endpoint override, e.g. "/intelligence/campaigns"
+    campaignsEndpoint: null,
+    // Try to order server-side by these fields (first that works)
+    orderByCandidates: ['-last_seen', '-last_modification_date', '-creation_date'],
+    // Choose which date to use when filtering/sorting client-side
+    dateFieldPriority: ['last_seen', 'last_modification_date', 'creation_date', 'first_seen'],
+    // Pagination safety controls
+    maxPages: 3,
+    // If window filter yields zero, fall back to returning top N recent items
+    fallbackToTopNWhenEmpty: true
+  }, source.options || {});
+
+  const createdAfterEpoch = Math.floor(Date.now() / 1000) - (Number(opts.daysWindow) * 24 * 60 * 60);
+
+  try {
+    // Helper to compute preferred date from attributes
+    const pickDate = (attrs) => {
+      for (const key of opts.dateFieldPriority) {
+        if (typeof attrs[key] === 'number') return attrs[key];
+      }
+      return null;
+    };
+
+    // Fetch pages until we either pass window threshold or hit page limit
+    const collected = [];
+    let pages = 0;
+    let next = null;
+    let endpoint = opts.campaignsEndpoint || '/collections';
+    const baseParams = opts.campaignsEndpoint ? { limit: opts.campaignsFetchLimit } : { limit: opts.campaignsFetchLimit, filter: 'collection_type:campaign' };
+
+    const orderParamsList = [undefined].concat((opts.orderByCandidates || []).map(order => ({ order })));
+
+    for (const maybeOrder of orderParamsList) {
+      pages = 0; next = null; collected.length = 0;
+      do {
+        const params = Object.assign({}, baseParams, maybeOrder || {}, next ? { cursor: next } : {});
+        let resp;
+        try {
+          resp = await http.get(endpoint, { params });
+        } catch (e) {
+          // If explicit endpoint fails, bail to next order or approach
+          break;
+        }
+        const data = (resp.data && resp.data.data) || [];
+        const meta = (resp.data && resp.data.meta) || {};
+        for (const c of data) {
+          const attrs = c.attributes || {};
+          const ts = pickDate(attrs);
+          if (typeof ts === 'number') {
+            collected.push(c);
+          }
+        }
+        next = meta.next || null;
+        pages += 1;
+      } while (next && pages < Number(opts.maxPages));
+
+      if (collected.length > 0) break; // got some data with a given order param
+    }
+
+    // Client-side filter by daysWindow using preferred date field
+    const filtered = collected.filter(c => {
+      const attrs = c.attributes || {};
+      const ts = pickDate(attrs);
+      return typeof ts === 'number' && ts >= createdAfterEpoch;
+    });
+
+    // If none match the time window and fallback enabled, take top recent by preferred date
+    const sorted = (filtered.length > 0 ? filtered : (opts.fallbackToTopNWhenEmpty ? collected : [])).sort((a, b) => {
+      const at = pickDate(a.attributes || {}) || 0;
+      const bt = pickDate(b.attributes || {}) || 0;
+      return bt - at;
+    });
+
+    const take = sorted.slice(0, opts.campaignsFetchLimit);
+
+    const items = take.map(c => {
+      const attrs = c.attributes || {};
+      const id = c.id;
+      const name = attrs.name || id;
+      const ts = (function(){
+        for (const key of opts.dateFieldPriority) { if (typeof attrs[key] === 'number') return attrs[key]; }
+        return null;
+      })();
+      const date = ts ? new Date(ts * 1000) : new Date();
+      const description = attrs.description || attrs.summary || '';
+      const linkPrimary = `https://www.virustotal.com/gui/collection/${encodeURIComponent(id)}`;
+      const linkFallback = `https://www.virustotal.com/gui/search/campaign%3A${encodeURIComponent(name)}`;
+      return {
+        title: `Campaign: ${name}`,
+        link: linkPrimary,
+        date,
+        source: source.name || 'VirusTotal TI',
+        summary: [
+          ts ? `Date: ${moment(new Date(ts * 1000)).format('YYYY-MM-DD')}` : null,
+          description ? description : null
+        ].filter(Boolean).join(' • '),
+        _vt_fallback_link: linkFallback
+      };
+    });
+
+    return items;
+  } catch (error) {
+    const status = error.response && error.response.status;
+    console.error(`VirusTotal campaigns fetch error${status ? ` (status ${status})` : ''}:`, error.message);
+    return [];
+  }
+}
+
 // Function to fetch news from all sources
 async function fetchAllNews() {
   const allNewsPromises = sources.map(source => {
     if (source.type === 'rss') {
       return fetchRSSFeed(source);
+    } else if (source.type === 'virustotal' && (source.mode === 'threat_actor_campaigns' || source.mode === 'threat-actor-campaigns')) {
+      return fetchVirusTotalThreatActorCampaigns(source);
+    } else if (source.type === 'virustotal' && (source.mode === 'campaigns')) {
+      return fetchVirusTotalCampaigns(source);
     }
     // Add other types of fetching if needed (e.g., web scraping for non-RSS sources)
     return Promise.resolve([]);
@@ -119,9 +408,33 @@ async function fetchAllNews() {
   // Sort by date, newest first
   allNews.sort((a, b) => b.date - a.date);
   
-  // Limit to max news items from config
+  // Enforce per-source minimum inclusion if configured
   const maxItems = config.settings.maxNewsItems || 30;
-  allNews = allNews.slice(0, maxItems);
+  const sourceMin = (config.settings && config.settings.sourceMinItems) || {};
+  const picked = [];
+  const used = new Set();
+  const bySource = allNews.reduce((acc, item) => {
+    const key = item.source || 'unknown';
+    (acc[key] = acc[key] || []).push(item);
+    return acc;
+  }, {});
+  // For each source with a minimum, take that many newest items first
+  for (const [src, min] of Object.entries(sourceMin)) {
+    const arr = (bySource[src] || []).slice(0, Math.max(0, Number(min)));
+    for (const it of arr) {
+      const key = `${it.source}|${it.link}`;
+      if (!used.has(key) && picked.length < maxItems) {
+        picked.push(it); used.add(key);
+      }
+    }
+  }
+  // Fill the rest with remaining newest items
+  for (const it of allNews) {
+    const key = `${it.source}|${it.link}`;
+    if (picked.length >= maxItems) break;
+    if (!used.has(key)) { picked.push(it); used.add(key); }
+  }
+  allNews = picked;
   
   return allNews;
 }

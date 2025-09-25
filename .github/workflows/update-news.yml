@@ -26,6 +26,8 @@ jobs:
         run: npm install
       
       - name: Fetch news and build site
+        env:
+          VIRUSTOTAL_API_KEY: ${{ secrets.VIRUSTOTAL_API_KEY }}
         run: node scripts/fetch-news.js
       
       - name: Generate RSS feed
