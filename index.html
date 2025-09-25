@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Krebs on Security">Krebs on Security</option>
+          <option value="VirusTotal TI">VirusTotal TI</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,58 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-09-25T12:12:03.737Z">9/25/2025, 12:12:03 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-09-25T13:15:46.394Z">9/25/2025, 1:15:46 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="VirusTotal TI" data-host="virustotal.com" data-title="Campaign: Financially Motivated Threat Actor Gaining Access via Drive-By Downloads of FAKEUPDATES" data-summary="Date: 2025-09-23 • Beginning in December 2023, UNC2165 resumed their intrusion operations after a period of dormancy dating back to April 2023. Consistent with previous campaigns, the threat cluster leveraged UNC1543 distribution channels, involving search engine optimization (SEO) poisoning and FAKEUPDATES, to deliver the COLORFAKE.V2 in-memory dropper and MYTHIC payloads. Additional UNC2165 campaigns were observed starting in late March and continuing into April. In all but one instance, UNC1543 FAKEUPDATES infections were confirmed leading to UNC2165 activity.  In almost all cases, the actors established persistence by creating a scheduled task, which executes a Python script to establish a remote connection to a C&C. Shortly following compromise, actors used Windows built-in operating system utilities to perform network reconnaissance activities. In at least one incident, the actors were observed using RDP to move laterally and install additional payloads such as COLORFAKE.V2. In several cases, UNC2165 enumerated the local Chrome and Microsoft Edge login data alongside the encryption keys from the state files. This allows the actors to decrypt passwords stored in Chrome and Microsoft Edge. In some of the incidents, the group leveraged FAKEUPDATES to execute PowerShell commands to replace HTML body tags within victims' Outlook signatures with a link to a remote resource used to harvest NT LAN Manager (NTLM) login information. In at least one case, PowerShell commands were used to create .LNK files, which, when executed, download a remote payload via the file’s icon. While no significant follow-on activity was observed, the incidents are believed to be financially motivated based on previous UNC2165 activity.">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>VirusTotal TI</span>
+            <span class="chip">virustotal.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.virustotal.com/gui/collection/campaign--13abb7ca-237a-5ae9-8841-ef90e2f460e5" target="_blank" rel="noopener">Campaign: Financially Motivated Threat Actor Gaining Access via Drive-By Downloads of FAKEUPDATES</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-09-23T00:00:00.000Z">September 23, 2025 - 12:00 AM</time>
+            
+          </div>
+          <p class="news-summary">Date: 2025-09-23 • Beginning in December 2023, UNC2165 resumed their intrusion operations after a period of dormancy dating back to April 2023. Consistent with previous campaigns, the threat cluster leveraged UNC1543 distribution channels, involving search engine optimization (SEO) poisoning and FAKEUPDATES, to deliver the COLORFAKE.V2 in-memory dropper and MYTHIC payloads. Additional UNC2165 campaigns were observed starting in late March and continuing into April. In all but one instance, UNC1543 FAKEUPDATES infections were confirmed leading to UNC2165 activity.  In almost all cases, the actors established persistence by creating a scheduled task, which executes a Python script to establish a remote connection to a C&C. Shortly following compromise, actors used Windows built-in operating system utilities to perform network reconnaissance activities. In at least one incident, the actors were observed using RDP to move laterally and install additional payloads such as COLORFAKE.V2. In several cases, UNC2165 enumerated the local Chrome and Microsoft Edge login data alongside the encryption keys from the state files. This allows the actors to decrypt passwords stored in Chrome and Microsoft Edge. In some of the incidents, the group leveraged FAKEUPDATES to execute PowerShell commands to replace HTML body tags within victims' Outlook signatures with a link to a remote resource used to harvest NT LAN Manager (NTLM) login information. In at least one case, PowerShell commands were used to create .LNK files, which, when executed, download a remote payload via the file’s icon. While no significant follow-on activity was observed, the incidents are believed to be financially motivated based on previous UNC2165 activity.</p>
+        </article>
+        <article class="news-item" data-source="VirusTotal TI" data-host="virustotal.com" data-title="Campaign: Financially Motivated Threat Actor Distributes Several Payloads via Drive-By Downloads of Fake Browser Updates" data-summary="Date: 2025-09-18 • Since April 2024, UNC5518 has been distributing FAKETREFF, a JavaScript downloader that displays a fake error message urging users to take action. UNC5518 has evolved their techniques over time, including the introduction of obfuscation, multi-stage scripts leading to FAKETREFF, and the use of the ClickFix social engineering technique. UNC5518 FAKETREFF campaigns throughout 2024 and 2025 have led to a variety of additional malware, including QUICKBIND, NETSUPPORT, BANANACOOKIE, CLEANBOOST, CORNFLAKE, DARKGATE, and VOLTMARKER. UNC5518 campaigns appear to be fairly opportunistic, impacting a wide range of industry verticals and geographic regions.">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>VirusTotal TI</span>
+            <span class="chip">virustotal.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.virustotal.com/gui/collection/campaign--cea8e459-d40b-5543-ba41-ecb7996ca989" target="_blank" rel="noopener">Campaign: Financially Motivated Threat Actor Distributes Several Payloads via Drive-By Downloads of Fake Browser Updates</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-09-18T00:00:00.000Z">September 18, 2025 - 12:00 AM</time>
+            
+          </div>
+          <p class="news-summary">Date: 2025-09-18 • Since April 2024, UNC5518 has been distributing FAKETREFF, a JavaScript downloader that displays a fake error message urging users to take action. UNC5518 has evolved their techniques over time, including the introduction of obfuscation, multi-stage scripts leading to FAKETREFF, and the use of the ClickFix social engineering technique. UNC5518 FAKETREFF campaigns throughout 2024 and 2025 have led to a variety of additional malware, including QUICKBIND, NETSUPPORT, BANANACOOKIE, CLEANBOOST, CORNFLAKE, DARKGATE, and VOLTMARKER. UNC5518 campaigns appear to be fairly opportunistic, impacting a wide range of industry verticals and geographic regions.</p>
+        </article>
+        <article class="news-item" data-source="VirusTotal TI" data-host="virustotal.com" data-title="Campaign: FIN6 Targeting Multiple Organizations via Legitimate Job Postings" data-summary="Date: 2025-09-17 • Mandiant has tracked an ongoing FIN6 campaign active since at least December 21, 2022 involving the use of spoofed personal websites to distribute BULLZLINK and SQUIDSLEEP payloads. FIN6 has targeted corporate recruiters using job sites including LinkedIn and Indeed, directing victims to download an archive containing a BULLZLINK downloader hosted on actor-controlled domains. Domains and the file names of BULLZLINK samples associated with this activity have both incorporated common first and last names, presumably related to the personas being used to contact their targets. Other campaign elements such as website URLs and zip file names have also been tailored in a way to suggest customization to the specific jobs roles they may be using as a pretense for engagement.\n\n \n\nHistorical FIN6 campaigns have shared numerous technical and operational overlaps with this most recent activity, and have commonly leveraged job-themed files hosted on domains that appear to be fake personal websites or fake job boards. Malicious files delivered through these sites have consistently been BULLZLINK leading to SQUIDSLEEP and SQUIDGATE.">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>VirusTotal TI</span>
+            <span class="chip">virustotal.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.virustotal.com/gui/collection/campaign--183a3a9d-fbe6-54b1-9ec7-a807687ba94c" target="_blank" rel="noopener">Campaign: FIN6 Targeting Multiple Organizations via Legitimate Job Postings</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-09-17T00:00:00.000Z">September 17, 2025 - 12:00 AM</time>
+            
+          </div>
+          <p class="news-summary">Date: 2025-09-17 • Mandiant has tracked an ongoing FIN6 campaign active since at least December 21, 2022 involving the use of spoofed personal websites to distribute BULLZLINK and SQUIDSLEEP payloads. FIN6 has targeted corporate recruiters using job sites including LinkedIn and Indeed, directing victims to download an archive containing a BULLZLINK downloader hosted on actor-controlled domains. Domains and the file names of BULLZLINK samples associated with this activity have both incorporated common first and last names, presumably related to the personas being used to contact their targets. Other campaign elements such as website URLs and zip file names have also been tailored in a way to suggest customization to the specific jobs roles they may be using as a pretense for engagement.\n\n \n\nHistorical FIN6 campaigns have shared numerous technical and operational overlaps with this most recent activity, and have commonly leveraged job-themed files hosted on domains that appear to be fake personal websites or fake job boards. Malicious files delivered through these sites have consistently been BULLZLINK leading to SQUIDSLEEP and SQUIDGATE.</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="How Cloud Service Disruptions Are Making Resilience Critical for Developers" data-summary="Outages affecting DevOps tools threaten to leave developers coding like it's 1999. How serious is the threat and what can companies do?...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/application-security/cloud-service-disruptions-make-resilience-critical-developers" target="_blank" rel="noopener">How Cloud Service Disruptions Are Making Resilience Critical for Developers</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-09-25T13:39:22.000Z">September 25, 2025 - 1:39 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Outages affecting DevOps tools threaten to leave developers coding like it's 1999. How serious is the threat and what can companies do?...</p>
+        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="[Dark Reading Virtual Event] Know Your Enemy: How cybercriminals and nation-state hackers operate" data-summary="">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -98,10 +146,86 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/events/-dark-reading-virtual-event-know-your-enemy-how-cybercriminals-and-nation-state-hackers-operate" target="_blank" rel="noopener">[Dark Reading Virtual Event] Know Your Enemy: How cybercriminals and nation-state hackers operate</a></h2>
           <div class="news-meta">
-            <time datetime="2025-09-25T12:12:03.387Z">September 25, 2025 - 12:12 PM</time>
+            <time datetime="2025-09-25T13:15:44.571Z">September 25, 2025 - 1:15 PM</time>
             <span class="badge-new">NEW</span>
           </div>
           
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="North Korean Hackers Use New AkdoorTea Backdoor to Target Global Crypto Developers" data-summary="The North Korea-linked threat actors associated with the Contagious Interview campaign have been attributed to a previously undocumented backdoor called AkdoorTea, along with tools like TsunamiKit and...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/09/north-korean-hackers-use-new-akdoortea.html" target="_blank" rel="noopener">North Korean Hackers Use New AkdoorTea Backdoor to Target Global Crypto Developers</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-09-25T13:14:00.000Z">September 25, 2025 - 1:14 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The North Korea-linked threat actors associated with the Contagious Interview campaign have been attributed to a previously undocumented backdoor called AkdoorTea, along with tools like TsunamiKit and...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Teen suspected of Vegas casino cyberattacks released to parents" data-summary="A 17-year-old hacker who surrendered to face charges over cyberattacks targeting Vegas casinos in 2023 has been released into the custody of his parents, a family court judge ruled. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/teen-suspected-of-vegas-casino-cyberattacks-released-to-parents/" target="_blank" rel="noopener">Teen suspected of Vegas casino cyberattacks released to parents</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-09-25T12:51:18.000Z">September 25, 2025 - 12:51 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A 17-year-old hacker who surrendered to face charges over cyberattacks targeting Vegas casinos in 2023 has been released into the custody of his parents, a family court judge ruled. [...]...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft will offer free Windows 10 security updates in Europe" data-summary="Microsoft will offer free extended security updates for Windows 10 users in the European Economic Area (EEA), which includes Iceland, Liechtenstein, Norway, and all 27 European Union member states. [....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-will-offer-free-windows-10-security-updates-in-europe/" target="_blank" rel="noopener">Microsoft will offer free Windows 10 security updates in Europe</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-09-25T12:45:06.000Z">September 25, 2025 - 12:45 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Microsoft will offer free extended security updates for Windows 10 users in the European Economic Area (EEA), which includes Iceland, Liechtenstein, Norway, and all 27 European Union member states. [....</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="CTEM's Core: Prioritization and Validation" data-summary="Despite a coordinated investment of time, effort, planning, and resources, even the most up-to-date cybersecurity systems continue to fail. Every day. Why? 
+It’s not because security teams can't see e...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/09/ctems-core-prioritization-and-validation.html" target="_blank" rel="noopener">CTEM's Core: Prioritization and Validation</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-09-25T11:49:00.000Z">September 25, 2025 - 11:49 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Despite a coordinated investment of time, effort, planning, and resources, even the most up-to-date cybersecurity systems continue to fail. Every day. Why? 
+It’s not because security teams can't see e...</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Threatsday Bulletin: Rootkit Patch, Federal Breach, OnePlus SMS Leak, TikTok Scandal & More" data-summary="/* ===== Container ===== */
+.td-wrap {}
+
+/* ===== Section ===== */
+.td-section {
+}
+.td-title { margin: 16px 0 4px; font-size: 32px; line-height: 1.2; font-weight: 800; }
+.td-subtitle { margin: 0 0 24p...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/09/threatsday-bulletin-rootkit-patch.html" target="_blank" rel="noopener">Threatsday Bulletin: Rootkit Patch, Federal Breach, OnePlus SMS Leak, TikTok Scandal & More</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-09-25T11:48:00.000Z">September 25, 2025 - 11:48 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">/* ===== Container ===== */
+.td-wrap {}
+
+/* ===== Section ===== */
+.td-section {
+}
+.td-title { margin: 16px 0 4px; font-size: 32px; line-height: 1.2; font-weight: 800; }
+.td-subtitle { margin: 0 0 24p...</p>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Tech Overtakes Gaming as Top DDoS Attack Target, New Gcore Radar Report Finds" data-summary="The latest Gcore Radar report analyzing attack data from Q1–Q2 2025, reveals a 41% year-on-year increase in total attack volume. The largest attack peaked at 2.2 Tbps, surpassing the 2 Tbps record in ...">
           <div class="chips">
@@ -110,7 +234,7 @@
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2025/09/tech-overtakes-gaming-as-top-ddos.html" target="_blank" rel="noopener">Tech Overtakes Gaming as Top DDoS Attack Target, New Gcore Radar Report Finds</a></h2>
           <div class="news-meta">
-            <time datetime="2025-09-25T10:15:00.000Z">September 25, 2025 - 10:15 AM</time>
+            <time datetime="2025-09-25T11:30:00.000Z">September 25, 2025 - 11:30 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           <p class="news-summary">The latest Gcore Radar report analyzing attack data from Q1–Q2 2025, reveals a 41% year-on-year increase in total attack volume. The largest attack peaked at 2.2 Tbps, surpassing the 2 Tbps record in ...</p>
@@ -329,7 +453,7 @@ The crates, named fast...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/pypi-urges-users-to-reset-credentials-after-new-phishing-attacks/" target="_blank" rel="noopener">PyPI urges users to reset credentials after new phishing attacks</a></h2>
           <div class="news-meta">
             <time datetime="2025-09-24T13:15:30.000Z">September 24, 2025 - 1:15 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The Python Software Foundation has warned victims of a new wave of phishing attacks using a fake Python Package Index (PyPI) website to reset credentials. [...]...</p>
         </article>
@@ -341,121 +465,9 @@ The crates, named fast...</p>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/threat-actor-deploys-overstep-backdoor-in-ongoing-sonicwall-sma-attacks" target="_blank" rel="noopener">Threat Actor Deploys 'OVERSTEP' Backdoor in Ongoing SonicWall SMA Attacks</a></h2>
           <div class="news-meta">
             <time datetime="2025-09-24T13:00:00.000Z">September 24, 2025 - 1:00 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Hackers tracked as UNC6148 are attacking SonicWall security devices by installing hidden software, allowing them to control systems, steal passwords, and hide their activities....</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="GitHub notifications abused to impersonate Y Combinator for crypto theft" data-summary="A massive phishing campaign targeted GitHub users with cryptocurrency drainers, delivered via fake invitations to the Y Combinator (YC) W2026 program. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/github-notifications-abused-to-impersonate-y-combinator-for-crypto-theft/" target="_blank" rel="noopener">GitHub notifications abused to impersonate Y Combinator for crypto theft</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-09-24T12:37:31.000Z">September 24, 2025 - 12:37 PM</time>
-            <span class="badge-new">NEW</span>
-          </div>
-          <p class="news-summary">A massive phishing campaign targeted GitHub users with cryptocurrency drainers, delivered via fake invitations to the Y Combinator (YC) W2026 program. [...]...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="How One Bad Password Ended a 158-Year-Old Business" data-summary="Most businesses don't make it past their fifth birthday - studies show that roughly 50% of small businesses fail within the first five years. So when KNP Logistics Group (formerly Knights of Old) cele...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/09/how-one-bad-password-ended-158-year-old.html" target="_blank" rel="noopener">How One Bad Password Ended a 158-Year-Old Business</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-09-24T11:58:00.000Z">September 24, 2025 - 11:58 AM</time>
-            
-          </div>
-          <p class="news-summary">Most businesses don't make it past their fifth birthday - studies show that roughly 50% of small businesses fail within the first five years. So when KNP Logistics Group (formerly Knights of Old) cele...</p>
-        </article>
-        <article class="news-item" data-source="Krebs on Security" data-host="krebsonsecurity.com" data-title="Feds Tie ‘Scattered Spider’ Duo to $115M in Ransoms" data-summary="U.S. prosecutors last week levied criminal hacking charges against 19-year-old U.K. national Thalha Jubair for allegedly being a core member of Scattered Spider, a prolific cybercrime group blamed for...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Krebs on Security</span>
-            <span class="chip">krebsonsecurity.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://krebsonsecurity.com/2025/09/feds-tie-scattered-spider-duo-to-115m-in-ransoms/" target="_blank" rel="noopener">Feds Tie ‘Scattered Spider’ Duo to $115M in Ransoms</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-09-24T11:48:31.000Z">September 24, 2025 - 11:48 AM</time>
-            
-          </div>
-          <p class="news-summary">U.S. prosecutors last week levied criminal hacking charges against 19-year-old U.K. national Thalha Jubair for allegedly being a core member of Scattered Spider, a prolific cybercrime group blamed for...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="New YiBackdoor Malware Shares Major Code Overlaps with IcedID and Latrodectus" data-summary="Cybersecurity researchers have disclosed details of a new malware family dubbed YiBackdoor that has been found to share &quot;significant&quot; source code overlaps with IcedID and Latrodectus.
-&quot;The exact conne...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/09/new-yibackdoor-malware-shares-major.html" target="_blank" rel="noopener">New YiBackdoor Malware Shares Major Code Overlaps with IcedID and Latrodectus</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-09-24T11:28:00.000Z">September 24, 2025 - 11:28 AM</time>
-            
-          </div>
-          <p class="news-summary">Cybersecurity researchers have disclosed details of a new malware family dubbed YiBackdoor that has been found to share "significant" source code overlaps with IcedID and Latrodectus.
-"The exact conne...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="iframe Security Exposed: The Blind Spot Fueling Payment Skimmer Attacks" data-summary="Think payment iframes are secure by design? Think again. Sophisticated attackers have quietly evolved malicious overlay techniques to exploit checkout pages and steal credit card data by bypassing the...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/09/iframe-security-exposed-blind-spot.html" target="_blank" rel="noopener">iframe Security Exposed: The Blind Spot Fueling Payment Skimmer Attacks</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-09-24T11:03:00.000Z">September 24, 2025 - 11:03 AM</time>
-            
-          </div>
-          <p class="news-summary">Think payment iframes are secure by design? Think again. Sophisticated attackers have quietly evolved malicious overlay techniques to exploit checkout pages and steal credit card data by bypassing the...</p>
-        </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Npm Package Hides Malware in Steganographic QR Codes" data-summary="The poisoned package, purporting to be a JavaScript utility, threatens the software supply chain with a highly obsfuscated credential stealer....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/application-security/npm-package-malware-stenographic-qr-codes" target="_blank" rel="noopener">Npm Package Hides Malware in Steganographic QR Codes</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-09-24T08:55:37.000Z">September 24, 2025 - 8:55 AM</time>
-            
-          </div>
-          <p class="news-summary">The poisoned package, purporting to be a JavaScript utility, threatens the software supply chain with a highly obsfuscated credential stealer....</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Hackers Exploit Pandoc CVE-2025-51591 to Target AWS IMDS and Steal EC2 IAM Credentials" data-summary="Cloud security company Wiz has revealed that it uncovered in-the-wild exploitation of a security flaw in a Linux utility called Pandoc as part of attacks designed to infiltrate Amazon Web Services (AW...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/09/hackers-exploit-pandoc-cve-2025-51591.html" target="_blank" rel="noopener">Hackers Exploit Pandoc CVE-2025-51591 to Target AWS IMDS and Steal EC2 IAM Credentials</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-09-24T07:15:00.000Z">September 24, 2025 - 7:15 AM</time>
-            
-          </div>
-          <p class="news-summary">Cloud security company Wiz has revealed that it uncovered in-the-wild exploitation of a security flaw in a Linux utility called Pandoc as part of attacks designed to infiltrate Amazon Web Services (AW...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="State-Sponsored Hackers Exploiting Libraesva Email Security Gateway Vulnerability" data-summary="Libraesva has released a security update to address a vulnerability in its Email Security Gateway (ESG) solution that it said has been exploited by state-sponsored threat actors.
-The vulnerability, tr...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/09/state-sponsored-hackers-exploiting.html" target="_blank" rel="noopener">State-Sponsored Hackers Exploiting Libraesva Email Security Gateway Vulnerability</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-09-24T06:24:00.000Z">September 24, 2025 - 6:24 AM</time>
-            
-          </div>
-          <p class="news-summary">Libraesva has released a security update to address a vulnerability in its Email Security Gateway (ESG) solution that it said has been exploited by state-sponsored threat actors.
-The vulnerability, tr...</p>
-        </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Chinese APT Uses OSS &amp; PoCs to Spy on Other Countries" data-summary="&quot;RedNovember&quot; is both lazy and punctual: always quick to do its homework on new vulnerabilities, but always getting the answers from cyber defenders....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/chinese-apt-oss-pocs-spy-countries" target="_blank" rel="noopener">Chinese APT Uses OSS &amp; PoCs to Spy on Other Countries</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-09-24T01:00:00.000Z">September 24, 2025 - 1:00 AM</time>
-            
-          </div>
-          <p class="news-summary">"RedNovember" is both lazy and punctual: always quick to do its homework on new vulnerabilities, but always getting the answers from cyber defenders....</p>
         </article>
     </div>
   </main>
@@ -501,7 +513,7 @@ The vulnerability, tr...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-09-25T12:12:03.737Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-09-25T13:15:46.394Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
