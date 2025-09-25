@@ -367,7 +367,15 @@ async function fetchVirusTotalCampaigns(source) {
       return bt - at;
     });
 
-    const take = sorted.slice(0, opts.campaignsFetchLimit);
+    let take = sorted.slice(0, opts.campaignsFetchLimit);
+    // Strict GUI alignment: in 'created' mode, require a full set with creation_date
+    if (globalSortMode === 'created') {
+      const valid = take.filter(c => c && c.attributes && typeof c.attributes.creation_date === 'number');
+      if (valid.length < opts.campaignsFetchLimit) {
+        return [];
+      }
+      take = valid;
+    }
 
     const items = take.map(c => {
       const attrs = c.attributes || {};
