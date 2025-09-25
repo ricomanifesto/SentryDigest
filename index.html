@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option>
+          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-09-25T20:17:05.845Z">9/25/2025, 8:17:05 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-09-25T20:39:21.753Z">9/25/2025, 8:39:21 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -98,10 +98,22 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/events/-dark-reading-virtual-event-know-your-enemy-how-cybercriminals-and-nation-state-hackers-operate" target="_blank" rel="noopener">[Dark Reading Virtual Event] Know Your Enemy: How cybercriminals and nation-state hackers operate</a></h2>
           <div class="news-meta">
-            <time datetime="2025-09-25T20:17:04.432Z">September 25, 2025 - 8:17 PM</time>
+            <time datetime="2025-09-25T20:39:19.945Z">September 25, 2025 - 8:39 PM</time>
             <span class="badge-new">NEW</span>
           </div>
           
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Unofficial Postmark MCP npm silently stole users' emails" data-summary="A npm package copying the official 'postmark-mcp' project on GitHub turned bad with the latest update that added a single line of code to exfiltrate all its users' email communication. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/unofficial-postmark-mcp-npm-silently-stole-users-emails/" target="_blank" rel="noopener">Unofficial Postmark MCP npm silently stole users' emails</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-09-25T20:23:34.000Z">September 25, 2025 - 8:23 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A npm package copying the official 'postmark-mcp' project on GitHub turned bad with the latest update that added a single line of code to exfiltrate all its users' email communication. [...]...</p>
         </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Chinese APT Drops 'Brickstorm' Backdoors on Edge Devices" data-summary="The China-linked cyber-espionage group UNC5221 is compromising network appliances that cannot run traditional EDR agents to deploy new versions of the &quot;Brickstorm&quot; backdoor....">
           <div class="chips">
@@ -369,7 +381,7 @@ The crates, named fast...</p>
           <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/scattered-spider-surrenders-shutdown" target="_blank" rel="noopener">The Fall of Scattered Spider? Teen Member Surrenders Amid Group's Shutdown Claims</a></h2>
           <div class="news-meta">
             <time datetime="2025-09-24T20:21:31.000Z">September 24, 2025 - 8:21 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The cybercrime group continues to gain attention despite its apparent shutdown last week....</p>
         </article>
@@ -420,18 +432,6 @@ The crates, named fast...</p>
             
           </div>
           <p class="news-summary">Kali Linux has released version 2025.3, the third version of 2025, featuring ten new tools, Nexmon support, and NetHunter improvements. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Cisco warns of IOS zero-day vulnerability exploited in attacks" data-summary="Cisco has released security updates to address a high-severity zero-day vulnerability in Cisco IOS and IOS XE Software that is currently being exploited in attacks. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cisco-warns-of-ios-zero-day-vulnerability-exploited-in-attacks/" target="_blank" rel="noopener">Cisco warns of IOS zero-day vulnerability exploited in attacks</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-09-24T16:52:50.000Z">September 24, 2025 - 4:52 PM</time>
-            
-          </div>
-          <p class="news-summary">Cisco has released security updates to address a high-severity zero-day vulnerability in Cisco IOS and IOS XE Software that is currently being exploited in attacks. [...]...</p>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Chinese Hackers RedNovember Target Global Governments Using Pantegana and Cobalt Strike" data-summary="A suspected cyber espionage activity cluster that was previously found targeting global government and private sector organizations spanning Africa, Asia, North America, South America, and Oceania has...">
           <div class="chips">
@@ -513,7 +513,7 @@ The crates, named fast...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-09-25T20:17:05.845Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-09-25T20:39:21.753Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
