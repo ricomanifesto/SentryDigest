@@ -278,131 +278,47 @@ async function fetchVirusTotalCampaigns(source) {
 
   const opts = Object.assign({
     campaignsFetchLimit: 30,
-    daysWindow: 3,
     // Optional explicit endpoint override, e.g. "/intelligence/campaigns"
     campaignsEndpoint: null,
-    // Try to order server-side by these fields (first that works)
-    orderByCandidates: ['-last_seen', '-last_modification_date', '-creation_date'],
-    // Choose which date to use when filtering/sorting client-side
-    dateFieldPriority: ['last_seen', 'last_modification_date', 'creation_date', 'first_seen'],
     // Pagination safety controls
-    maxPages: 3,
-    // If window filter yields zero, fall back to returning top N recent items
-    fallbackToTopNWhenEmpty: true,
-    // Align with GUI list
-    onlyPublic: false,
-    onlyOriginGti: true
+    maxPages: 3
   }, source.options || {});
-
-  const createdAfterEpoch = Math.floor(Date.now() / 1000) - (Number(opts.daysWindow) * 24 * 60 * 60);
+  
+  // Treat VT like a normal feed: no days window or curation
 
   try {
-    // Helper to compute preferred date from attributes
-    const pickDate = (attrs) => {
-      if (globalSortMode === 'created') {
-        return (typeof attrs.creation_date === 'number') ? attrs.creation_date : null;
-      }
-      for (const key of opts.dateFieldPriority) {
-        if (typeof attrs[key] === 'number') return attrs[key];
-      }
-      return null;
-    };
-
-    // Fetch pages until we either pass window threshold or hit page limit
+    const pickDate = (attrs) => (typeof (attrs && attrs.creation_date) === 'number') ? attrs.creation_date : null;
     const collected = [];
-    let pages = 0;
-    let next = null;
-    let endpoint = opts.campaignsEndpoint || '/collections';
-    let filterExpr = 'collection_type:campaign';
-    if (opts.onlyPublic) filterExpr += ' AND private:false';
-    if (opts.onlyOriginGti) filterExpr += ' AND origin:"Google Threat Intelligence"';
-    const baseParams = opts.campaignsEndpoint ? { limit: opts.campaignsFetchLimit } : { limit: opts.campaignsFetchLimit, filter: filterExpr };
-
-    const primaryOrder = (globalSortMode === 'created') ? '-creation_date' : '-last_seen';
-    const orderParamsList = [{ order: primaryOrder }].concat((opts.orderByCandidates || []).map(order => ({ order })));
-
-    for (const maybeOrder of orderParamsList) {
-      pages = 0; next = null; collected.length = 0;
-      do {
-        const params = Object.assign({}, baseParams, maybeOrder || {}, next ? { cursor: next } : {});
-        let resp;
-        try {
-          resp = await http.get(endpoint, { params });
-        } catch (e) {
-          // If explicit endpoint fails, bail to next order or approach
-          break;
-        }
-        const data = (resp.data && resp.data.data) || [];
-        const meta = (resp.data && resp.data.meta) || {};
-        for (const c of data) {
-          const attrs = c.attributes || {};
-          const ts = pickDate(attrs);
-          if (typeof ts === 'number') {
-            collected.push(c);
-          }
-        }
-        next = meta.next || null;
-        pages += 1;
-      } while (next && pages < Number(opts.maxPages));
-
-      if (collected.length > 0) break; // got some data with a given order param
-    }
-
-    // Sort all collected by chosen timestamp
-    const sortedAll = collected.sort((a, b) => {
-      const at = pickDate(a.attributes || {}) || 0;
-      const bt = pickDate(b.attributes || {}) || 0;
-      return bt - at;
-    });
-    // In 'created' mode, ignore window to match GUI top-created list; else filter by window
-    const filtered = (globalSortMode === 'created') ? sortedAll : sortedAll.filter(c => {
-      const attrs = c.attributes || {};
-      const ts = pickDate(attrs);
-      return typeof ts === 'number' && ts >= createdAfterEpoch;
-    });
-    // If none match the time window and fallback enabled, take top recent by preferred date
-    const sorted = (filtered.length > 0 ? filtered : (opts.fallbackToTopNWhenEmpty ? sortedAll : [])).sort((a, b) => {
-      const at = pickDate(a.attributes || {}) || 0;
-      const bt = pickDate(b.attributes || {}) || 0;
-      return bt - at;
-    });
-
-    let take = sorted.slice(0, opts.campaignsFetchLimit);
-    // Strict GUI alignment: in 'created' mode, require a full set with creation_date
-    if (globalSortMode === 'created') {
-      const valid = take.filter(c => c && c.attributes && typeof c.attributes.creation_date === 'number');
-      if (valid.length < opts.campaignsFetchLimit) {
-        return [];
-      }
-      take = valid;
-    }
-
-    const items = take.map(c => {
+    let pages = 0; let next = null;
+    const endpoint = opts.campaignsEndpoint || '/collections';
+    const baseParams = opts.campaignsEndpoint
+      ? { limit: Math.max(opts.campaignsFetchLimit, 50) }
+      : { limit: Math.max(opts.campaignsFetchLimit, 50), filter: 'collection_type:campaign' };
+    do {
+      const params = Object.assign({}, baseParams, { order: '-creation_date' }, next ? { cursor: next } : {});
+      const resp = await http.get(endpoint, { params });
+      const data = (resp.data && resp.data.data) || [];
+      const meta = (resp.data && resp.data.meta) || {};
+      for (const c of data) { if (pickDate(c.attributes) != null) collected.push(c); }
+      next = meta.next || null; pages += 1;
+    } while (next && pages < Number(opts.maxPages));
+    const sorted = collected.sort((a, b) => (pickDate(b.attributes) || 0) - (pickDate(a.attributes) || 0));
+    const take = sorted.slice(0, opts.campaignsFetchLimit);
+    return take.map(c => {
       const attrs = c.attributes || {};
       const id = c.id;
       const name = attrs.name || id;
       const ts = pickDate(attrs);
-      const date = ts ? new Date(ts * 1000) : new Date();
-      const description = attrs.description || attrs.summary || '';
-      const linkPrimary = `https://www.virustotal.com/gui/collection/${encodeURIComponent(id)}`;
-      const linkFallback = `https://www.virustotal.com/gui/search/campaign%3A${encodeURIComponent(name)}`;
       return {
         title: `Campaign: ${name}`,
-        link: linkPrimary,
-        date,
+        link: `https://www.virustotal.com/gui/collection/${encodeURIComponent(id)}`,
+        date: ts ? new Date(ts * 1000) : new Date(),
         source: source.name || 'VirusTotal TI',
-        summary: [
-          ts ? `${globalSortMode === 'created' ? 'Created' : 'Date'}: ${moment(new Date(ts * 1000)).format('YYYY-MM-DD')}` : null,
-          description ? description : null
-        ].filter(Boolean).join(' • '),
-        _vt_fallback_link: linkFallback
+        summary: [ ts ? `Created: ${moment(new Date(ts * 1000)).format('YYYY-MM-DD')}` : null, attrs.description || attrs.summary || '' ].filter(Boolean).join(' • ')
       };
     });
-
-    return items;
   } catch (error) {
-    const status = error.response && error.response.status;
-    console.error(`VirusTotal campaigns fetch error${status ? ` (status ${status})` : ''}:`, error.message);
+    console.error('VirusTotal campaigns fetch error:', error.message);
     return [];
   }
 }
@@ -429,13 +345,7 @@ async function fetchAllNews() {
   // Sort by date, newest first
   allNews.sort((a, b) => b.date - a.date);
 
-  // Pin VirusTotal campaigns at top while preserving internal order
-  const vtSource = 'VirusTotal TI';
-  const vt = allNews.filter(i => i.source === vtSource);
-  if (vt.length > 0) {
-    const rest = allNews.filter(i => i.source !== vtSource);
-    allNews = [...vt, ...rest];
-  }
+  // Treat VT like RSS: no pinning
   
   // Enforce per-source minimum inclusion if configured
   const maxItems = config.settings.maxNewsItems || 30;
