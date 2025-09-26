@@ -46,25 +46,7 @@ Define sources in `config/news-sources.json`:
 
 Workflow rebuilds on config changes. Set `maxNewsItems` to control count.
 
-### VirusTotal TI (Enterprise) integration
-
-Add a campaigns source in `config/news-sources.json`:
-
-```json
-{
-  "name": "VirusTotal TI",
-  "type": "virustotal",
-  "mode": "campaigns",
-  "enabled": true,
-  "options": {
-    "campaignsFetchLimit": 30,
-    "daysWindow": 14,
-    "campaignsEndpoint": null
-  }
-}
-```
-
-API docs: https://gtidocs.virustotal.com/reference/api-responses
+ 
 
 ## Automation
 
