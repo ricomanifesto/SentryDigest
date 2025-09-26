@@ -83,7 +83,7 @@ try {
 
 // Get sources from config
 const sources = config.sources.filter(source => source.enabled);
-const globalSortMode = (config.settings && config.settings.sortMode) || 'recent'; // 'recent' or 'created'
+// Use simple date-based sort across all sources
 
 // Function to fetch RSS feed content
 async function fetchRSSFeed(source) {
@@ -328,10 +328,6 @@ async function fetchAllNews() {
   const allNewsPromises = sources.map(source => {
     if (source.type === 'rss') {
       return fetchRSSFeed(source);
-    } else if (source.type === 'virustotal' && (source.mode === 'threat_actor_campaigns' || source.mode === 'threat-actor-campaigns')) {
-      return fetchVirusTotalThreatActorCampaigns(source);
-    } else if (source.type === 'virustotal' && (source.mode === 'campaigns')) {
-      return fetchVirusTotalCampaigns(source);
     }
     // Add other types of fetching if needed (e.g., web scraping for non-RSS sources)
     return Promise.resolve([]);
@@ -342,38 +338,10 @@ async function fetchAllNews() {
   // Flatten the array of arrays into a single array
   let allNews = allNewsArrays.flat();
   
-  // Sort by date, newest first
+  // Sort by date and cap to max
   allNews.sort((a, b) => b.date - a.date);
-
-  // Treat VT like RSS: no pinning
-  
-  // Enforce per-source minimum inclusion if configured
   const maxItems = config.settings.maxNewsItems || 30;
-  const sourceMin = (config.settings && config.settings.sourceMinItems) || {};
-  const picked = [];
-  const used = new Set();
-  const bySource = allNews.reduce((acc, item) => {
-    const key = item.source || 'unknown';
-    (acc[key] = acc[key] || []).push(item);
-    return acc;
-  }, {});
-  // For each source with a minimum, take that many newest items first
-  for (const [src, min] of Object.entries(sourceMin)) {
-    const arr = (bySource[src] || []).slice(0, Math.max(0, Number(min)));
-    for (const it of arr) {
-      const key = `${it.source}|${it.link}`;
-      if (!used.has(key) && picked.length < maxItems) {
-        picked.push(it); used.add(key);
-      }
-    }
-  }
-  // Fill the rest with remaining newest items
-  for (const it of allNews) {
-    const key = `${it.source}|${it.link}`;
-    if (picked.length >= maxItems) break;
-    if (!used.has(key)) { picked.push(it); used.add(key); }
-  }
-  allNews = picked;
+  allNews = allNews.slice(0, maxItems);
   
   return allNews;
 }

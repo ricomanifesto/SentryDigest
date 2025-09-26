@@ -15,7 +15,7 @@ Cybersecurity news aggregator. Pulls multiple RSS sources into one dashboard. Up
 - Threatpost
 - Bleeping Computer
 - Dark Reading
-- Optional: VirusTotal TI (Threat Actor campaigns)
+ 
 
 ## Setup
 
