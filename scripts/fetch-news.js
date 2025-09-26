@@ -1,7 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const axios = require('axios');
-const cheerio = require('cheerio');
 const Parser = require('rss-parser');
 const moment = require('moment');
 
@@ -102,6 +100,7 @@ async function fetchRSSFeed(source) {
   }
 }
 
+/* VT integration removed
 // Function to fetch latest Threat Actor campaigns from VirusTotal TI (Enterprise)
 async function fetchVirusTotalThreatActorCampaigns(source) {
   const apiKey = process.env.VIRUSTOTAL_API_KEY || process.env.VT_API_KEY;
@@ -323,6 +322,7 @@ async function fetchVirusTotalCampaigns(source) {
   }
 }
 
+*/
 // Function to fetch news from all sources
 async function fetchAllNews() {
   const allNewsPromises = sources.map(source => {
