@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-10-03T06:32:59.274Z">10/3/2025, 6:32:59 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-10-03T09:22:41.351Z">10/3/2025, 9:22:41 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -98,10 +98,22 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/events/-dark-reading-virtual-event-know-your-enemy-how-cybercriminals-and-nation-state-hackers-operate" target="_blank" rel="noopener">[Dark Reading Virtual Event] Know Your Enemy: How cybercriminals and nation-state hackers operate</a></h2>
           <div class="news-meta">
-            <time datetime="2025-10-03T06:32:59.250Z">October 3, 2025 - 6:32 AM</time>
+            <time datetime="2025-10-03T09:22:41.240Z">October 3, 2025 - 9:22 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="CISA Flags Meteobridge CVE-2025-4008 Flaw as Actively Exploited in the Wild" data-summary="The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Thursday added a high-severity security flaw impacting Smartbedded Meteobridge to its Known Exploited Vulnerabilities (KEV) catalog,...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/cisa-flags-meteobridge-cve-2025-4008.html" target="_blank" rel="noopener">CISA Flags Meteobridge CVE-2025-4008 Flaw as Actively Exploited in the Wild</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-03T08:23:00.000Z">October 3, 2025 - 8:23 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Thursday added a high-severity security flaw impacting Smartbedded Meteobridge to its Known Exploited Vulnerabilities (KEV) catalog,...</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft Outlook stops displaying inline SVG images used in attacks" data-summary="Microsoft says Outlook for Web and the new Outlook for Windows will no longer display risky inline SVG images that are being used in attacks. [...]...">
           <div class="chips">
@@ -347,7 +359,7 @@ Slovak...</p>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/android-spyware-uae-spyware" target="_blank" rel="noopener">Android Spyware in the UAE Masquerades as ... Spyware</a></h2>
           <div class="news-meta">
             <time datetime="2025-10-02T09:00:00.000Z">October 2, 2025 - 9:00 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">In a clever, messed-up twist on brand impersonation, attackers are passing off their spyware as a notorious UAE government surveillance app....</p>
         </article>
@@ -447,18 +459,6 @@ Slovak...</p>
           </div>
           <p class="news-summary">A new Android banking and remote access trojan (RAT) dubbed Klopatra disguised as an IPTV and VPN app has infected more than 3,000 devices across Europe. [...]...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="New WireTap Attack Extracts Intel SGX ECDSA Key via DDR4 Memory-Bus Interposer" data-summary="In yet another piece of research, academics from Georgia Institute of Technology and Purdue University have demonstrated that the security guarantees offered by Intel's Software Guard eXtensions (SGX)...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/new-wiretap-attack-extracts-intel-sgx.html" target="_blank" rel="noopener">New WireTap Attack Extracts Intel SGX ECDSA Key via DDR4 Memory-Bus Interposer</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-01T17:20:00.000Z">October 1, 2025 - 5:20 PM</time>
-            
-          </div>
-          <p class="news-summary">In yet another piece of research, academics from Georgia Institute of Technology and Purdue University have demonstrated that the security guarantees offered by Intel's Software Guard eXtensions (SGX)...</p>
-        </article>
     </div>
   </main>
   
@@ -503,7 +503,7 @@ Slovak...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-03T06:32:59.274Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-03T09:22:41.351Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
