@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-10-06T06:34:55.705Z">10/6/2025, 6:34:55 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-10-06T09:26:51.434Z">10/6/2025, 9:26:51 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -98,10 +98,24 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/events/-dark-reading-virtual-event-know-your-enemy-how-cybercriminals-and-nation-state-hackers-operate" target="_blank" rel="noopener">[Dark Reading Virtual Event] Know Your Enemy: How cybercriminals and nation-state hackers operate</a></h2>
           <div class="news-meta">
-            <time datetime="2025-10-06T06:34:55.399Z">October 6, 2025 - 6:34 AM</time>
+            <time datetime="2025-10-06T09:26:50.921Z">October 6, 2025 - 9:26 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Zimbra Zero-Day Exploited to Target Brazilian Military via Malicious ICS Files" data-summary="A now patched security vulnerability in Zimbra Collaboration was exploited as a zero-day earlier this year in cyber attacks targeting the Brazilian military.
+Tracked as CVE-2025-27915 (CVSS score: 5.4...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/zimbra-zero-day-exploited-to-target.html" target="_blank" rel="noopener">Zimbra Zero-Day Exploited to Target Brazilian Military via Malicious ICS Files</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-06T06:01:00.000Z">October 6, 2025 - 6:01 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A now patched security vulnerability in Zimbra Collaboration was exploited as a zero-day earlier this year in cyber attacks targeting the Brazilian military.
+Tracked as CVE-2025-27915 (CVSS score: 5.4...</p>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Oracle Rushes Patch for CVE-2025-61882 After Cl0p Exploited It in Data Theft Attacks" data-summary="Oracle has released an emergency update to address a critical security flaw in its E-Business Suite that it said has been exploited in the recent wave of Cl0p data theft attacks.
 The vulnerability, tr...">
@@ -449,18 +463,6 @@ Cyb...</p>
           </div>
           <p class="news-summary">With nearly 47,000 CVEs expected by the end of the year, organizations must balance comprehensive vulnerability management with strategic cyber insurance policy selection to effectively navigate this ...</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="For One NFL Team, Tackling Cyber Threats Is Basic Defense" data-summary="The NFL's cyberattack surface is expanding at an unprecedented rate. To find out more, we spoke with a cyber-defense coordinator from the Cleveland Browns....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/for-one-nfl-team-tackling-cyber-threats-basic-defense" target="_blank" rel="noopener">For One NFL Team, Tackling Cyber Threats Is Basic Defense</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-02T16:31:10.000Z">October 2, 2025 - 4:31 PM</time>
-            
-          </div>
-          <p class="news-summary">The NFL's cyberattack surface is expanding at an unprecedented rate. To find out more, we spoke with a cyber-defense coordinator from the Cleveland Browns....</p>
-        </article>
     </div>
   </main>
   
@@ -505,7 +507,7 @@ Cyb...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-06T06:34:55.705Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-06T09:26:51.434Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
