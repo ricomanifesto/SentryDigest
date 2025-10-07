@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-10-07T03:32:18.443Z">10/7/2025, 3:32:18 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-10-07T06:33:55.663Z">10/7/2025, 6:33:55 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Oracle EBS Under Fire as Cl0p Exploits CVE-2025-61882 in Real-World Attacks" data-summary="CrowdStrike on Monday said it's attributing the exploitation of a recently disclosed security flaw in Oracle E-Business Suite with moderate confidence to a threat actor it tracks as Graceful Spider (a...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/oracle-ebs-under-fire-as-cl0p-exploits.html" target="_blank" rel="noopener">Oracle EBS Under Fire as Cl0p Exploits CVE-2025-61882 in Real-World Attacks</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-07T05:12:00.000Z">October 7, 2025 - 5:12 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">CrowdStrike on Monday said it's attributing the exploitation of a recently disclosed security flaw in Oracle E-Business Suite with moderate confidence to a threat actor it tracks as Graceful Spider (a...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Red Hat data breach escalates as ShinyHunters joins extortion" data-summary="Enterprise software giant Red Hat is now being extorted by the ShinyHunters gang, with samples of stolen customer engagement reports (CERs) leaked on their data leak site. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -299,8 +311,8 @@ This recap cuts through the noise to share ...</p>
           </div>
           <p class="news-summary">In the era of rapidly advancing artificial intelligence (AI) and cloud technologies, organizations are increasingly implementing security measures to protect sensitive data and ensure regulatory compl...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Oracle Rushes Patch for CVE-2025-61882 After Cl0p Exploited It in Data Theft Attacks" data-summary="Oracle has released an emergency update to address a critical security flaw in its E-Business Suite that it said has been exploited in the recent wave of Cl0p data theft attacks.
-The vulnerability, tr...">
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Oracle Rushes Patch for CVE-2025-61882 After Cl0p Exploited It in Data Theft Attacks" data-summary="Oracle has released an emergency update to address a critical security flaw in its E-Business Suite software that it said has been exploited in the recent wave of Cl0p data theft attacks.
+The vulnerab...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
@@ -310,8 +322,8 @@ The vulnerability, tr...">
             <time datetime="2025-10-06T11:37:00.000Z">October 6, 2025 - 11:37 AM</time>
             <span class="badge-new">NEW</span>
           </div>
-          <p class="news-summary">Oracle has released an emergency update to address a critical security flaw in its E-Business Suite that it said has been exploited in the recent wave of Cl0p data theft attacks.
-The vulnerability, tr...</p>
+          <p class="news-summary">Oracle has released an emergency update to address a critical security flaw in its E-Business Suite software that it said has been exploited in the recent wave of Cl0p data theft attacks.
+The vulnerab...</p>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Chinese Cybercrime Group Runs Global SEO Fraud Ring Using Compromised IIS Servers" data-summary="Cybersecurity researchers have shed light on a Chinese-speaking cybercrime group codenamed UAT-8099 that has been attributed to search engine optimization (SEO) fraud and theft of high-value credentia...">
           <div class="chips">
@@ -346,7 +358,7 @@ Tracked as CVE-2025-27915 (CVSS score: 5.4...">
           <h2 class="news-title"><a href="https://thehackernews.com/2025/10/zimbra-zero-day-exploited-to-target.html" target="_blank" rel="noopener">Zimbra Zero-Day Exploited to Target Brazilian Military via Malicious ICS Files</a></h2>
           <div class="news-meta">
             <time datetime="2025-10-06T06:01:00.000Z">October 6, 2025 - 6:01 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A now patched security vulnerability in Zimbra Collaboration was exploited as a zero-day earlier this year in cyber attacks targeting the Brazilian military.
 Tracked as CVE-2025-27915 (CVSS score: 5.4...</p>
@@ -451,18 +463,6 @@ That's according to findings from Infoblox, which found the threat act...">
           <p class="news-summary">A threat actor named Detour Dog has been outed as powering campaigns distributing an information stealer known as Strela Stealer.
 That's according to findings from Infoblox, which found the threat act...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Rhadamanthys Stealer Evolves: Adds Device Fingerprinting, PNG Steganography Payloads" data-summary="The threat actor behind Rhadamanthys has also advertised two other tools called Elysium Proxy Bot and Crypt Service on their website, even as the flagship information stealer has been updated to suppo...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/rhadamanthys-stealer-evolves-adds.html" target="_blank" rel="noopener">Rhadamanthys Stealer Evolves: Adds Device Fingerprinting, PNG Steganography Payloads</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-03T15:58:00.000Z">October 3, 2025 - 3:58 PM</time>
-            
-          </div>
-          <p class="news-summary">The threat actor behind Rhadamanthys has also advertised two other tools called Elysium Proxy Bot and Crypt Service on their website, even as the flagship information stealer has been updated to suppo...</p>
-        </article>
     </div>
   </main>
   
@@ -507,7 +507,7 @@ That's according to findings from Infoblox, which found the threat act...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-07T03:32:18.443Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-07T06:33:55.663Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
