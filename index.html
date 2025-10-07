@@ -87,10 +87,38 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-10-07T06:33:55.663Z">10/7/2025, 6:33:55 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-10-07T09:24:37.474Z">10/7/2025, 9:24:37 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="13-Year Redis Flaw Exposed: CVSS 10.0 Vulnerability Lets Attackers Run Code Remotely" data-summary="Redis has disclosed details of a maximum-severity security flaw in its in-memory database software that could result in remote code execution under certain circumstances.
+The vulnerability, tracked as...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/13-year-redis-flaw-exposed-cvss-100.html" target="_blank" rel="noopener">13-Year Redis Flaw Exposed: CVSS 10.0 Vulnerability Lets Attackers Run Code Remotely</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-07T08:33:00.000Z">October 7, 2025 - 8:33 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Redis has disclosed details of a maximum-severity security flaw in its in-memory database software that could result in remote code execution under certain circumstances.
+The vulnerability, tracked as...</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Microsoft Links Storm-1175 to GoAnywhere Exploit Deploying Medusa Ransomware" data-summary="Microsoft on Monday attributed a threat actor it tracks as Storm-1175 to the exploitation of a critical security flaw in Fortra GoAnywhere software to facilitate the deployment of Medusa ransomware.
+T...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/microsoft-links-storm-1175-to.html" target="_blank" rel="noopener">Microsoft Links Storm-1175 to GoAnywhere Exploit Deploying Medusa Ransomware</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-07T08:15:00.000Z">October 7, 2025 - 8:15 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Microsoft on Monday attributed a threat actor it tracks as Storm-1175 to the exploitation of a critical security flaw in Fortra GoAnywhere software to facilitate the deployment of Medusa ransomware.
+T...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Oracle EBS Under Fire as Cl0p Exploits CVE-2025-61882 in Real-World Attacks" data-summary="CrowdStrike on Monday said it's attributing the exploitation of a recently disclosed security flaw in Oracle E-Business Suite with moderate confidence to a threat actor it tracks as Graceful Spider (a...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
@@ -437,32 +465,6 @@ The company said it observed a nearly 500% ...</p>
           </div>
           <p class="news-summary">After claiming it would shut down, the cybercriminal collective reemerged and threatened to publish the stolen data of Salesforce customers by Oct. 10 if its demands are not met....</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Dutch Authorities Arrest Two Teens for Alleged Pro-Russian Espionage" data-summary="Dutch Prime Minister Dick Schoof described the incident as part of a broader pattern of Russian hybrid attacks against Europe....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/dutch-authorities-arrest-teens-pro-russian-espionage" target="_blank" rel="noopener">Dutch Authorities Arrest Two Teens for Alleged Pro-Russian Espionage</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-03T19:07:18.000Z">October 3, 2025 - 7:07 PM</time>
-            
-          </div>
-          <p class="news-summary">Dutch Prime Minister Dick Schoof described the incident as part of a broader pattern of Russian hybrid attacks against Europe....</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Detour Dog Caught Running DNS-Powered Malware Factory for Strela Stealer" data-summary="A threat actor named Detour Dog has been outed as powering campaigns distributing an information stealer known as Strela Stealer.
-That's according to findings from Infoblox, which found the threat act...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/detour-dog-caught-running-dns-powered.html" target="_blank" rel="noopener">Detour Dog Caught Running DNS-Powered Malware Factory for Strela Stealer</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-03T18:11:00.000Z">October 3, 2025 - 6:11 PM</time>
-            
-          </div>
-          <p class="news-summary">A threat actor named Detour Dog has been outed as powering campaigns distributing an information stealer known as Strela Stealer.
-That's according to findings from Infoblox, which found the threat act...</p>
-        </article>
     </div>
   </main>
   
@@ -507,7 +509,7 @@ That's according to findings from Infoblox, which found the threat act...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-07T06:33:55.663Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-07T09:24:37.474Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
