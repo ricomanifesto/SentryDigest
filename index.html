@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,34 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-10-10T06:34:17.003Z">10/10/2025, 6:34:17 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-10-10T09:24:58.957Z">10/10/2025, 9:24:58 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="FBI takes down BreachForums portal used for Salesforce extortion" data-summary="The FBI has seized last night all domains for the BreachForums hacking forum operated by the ShinyHunters group mostly as a portal for leaking corporate data stolen in attacks from ransomware and exto...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/fbi-takes-down-breachforums-portal-used-for-salesforce-extortion/" target="_blank" rel="noopener">FBI takes down BreachForums portal used for Salesforce extortion</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-10T08:24:16.000Z">October 10, 2025 - 8:24 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The FBI has seized last night all domains for the BreachForums hacking forum operated by the ShinyHunters group mostly as a portal for leaking corporate data stolen in attacks from ransomware and exto...</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="CL0P-Linked Hackers Breach Dozens of Organizations Through Oracle Software Flaw" data-summary="Dozens of organizations may have been impacted following the zero-day exploitation of a security flaw in Oracle's E-Business Suite (EBS) software since August 9, 2025, Google Threat Intelligence Group...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/cl0p-linked-hackers-breach-dozens-of.html" target="_blank" rel="noopener">CL0P-Linked Hackers Breach Dozens of Organizations Through Oracle Software Flaw</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-10T06:41:00.000Z">October 10, 2025 - 6:41 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Dozens of organizations may have been impacted following the zero-day exploitation of a security flaw in Oracle's E-Business Suite (EBS) software since August 9, 2025, Google Threat Intelligence Group...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="New Android spyware ClayRat imitates WhatsApp, TikTok, YouTube" data-summary="A new Android spyware called ClayRat is luring potential victims by posing as popular apps and services like WhatsApp, Google Photos, TikTok, and YouTube. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -343,7 +367,7 @@ Most companies in 2025 r...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2025/10/from-phishing-to-malware-ai-becomes.html" target="_blank" rel="noopener">From Phishing to Malware: AI Becomes Russia's New Cyber Weapon in War on Ukraine</a></h2>
           <div class="news-meta">
             <time datetime="2025-10-09T09:10:00.000Z">October 9, 2025 - 9:10 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Russian hackers' adoption of artificial intelligence (AI) in cyber attacks against Ukraine has reached a new level in the first half of 2025 (H1 2025), the country's State Service for Special Communic...</p>
         </article>
@@ -355,7 +379,7 @@ Most companies in 2025 r...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2025/10/critical-exploit-lets-hackers-bypass.html" target="_blank" rel="noopener">Critical Exploit Lets Hackers Bypass Authentication in WordPress Service Finder Theme</a></h2>
           <div class="news-meta">
             <time datetime="2025-10-09T06:57:00.000Z">October 9, 2025 - 6:57 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Threat actors are actively exploiting a critical security flaw impacting the Service Finder WordPress theme that makes it possible to gain unauthorized access to any account, including administrators,...</p>
         </article>
@@ -419,18 +443,6 @@ Most companies in 2025 r...</p>
           </div>
           <p class="news-summary">A new variant of the FileFix social engineering attack uses cache smuggling to secretly download a malicious ZIP archive onto a victim's system and bypassing security software. [...]...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Qilin ransomware claims Asahi brewery attack, leaks data" data-summary="The Qilin ransomware group has claimed responsibility for the attack at Japanese beer maker Asahi, adding the company to its extortion page on the dark web yesterday. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/qilin-ransomware-claims-asahi-brewery-attack-leaks-data/" target="_blank" rel="noopener">Qilin ransomware claims Asahi brewery attack, leaks data</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-08T18:42:22.000Z">October 8, 2025 - 6:42 PM</time>
-            
-          </div>
-          <p class="news-summary">The Qilin ransomware group has claimed responsibility for the attack at Japanese beer maker Asahi, adding the company to its extortion page on the dark web yesterday. [...]...</p>
-        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Framelink Figma MCP Server Opens Orgs to Agentic AI Compromise" data-summary="Patch now: A bug (CVE-2025-53967) in a third-party option for connecting Figma to agentic AI can lead to remote code execution (RCE)....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -442,20 +454,6 @@ Most companies in 2025 r...</p>
             
           </div>
           <p class="news-summary">Patch now: A bug (CVE-2025-53967) in a third-party option for connecting Figma to agentic AI can lead to remote code execution (RCE)....</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Hackers Exploit WordPress Sites to Power Next-Gen ClickFix Phishing Attacks" data-summary="Cybersecurity researchers are calling attention to a nefarious campaign targeting WordPress sites to make malicious JavaScript injections that are designed to redirect users to sketchy sites.
-&quot;Site vi...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/hackers-exploit-wordpress-themes-to.html" target="_blank" rel="noopener">Hackers Exploit WordPress Sites to Power Next-Gen ClickFix Phishing Attacks</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-08T16:43:00.000Z">October 8, 2025 - 4:43 PM</time>
-            
-          </div>
-          <p class="news-summary">Cybersecurity researchers are calling attention to a nefarious campaign targeting WordPress sites to make malicious JavaScript injections that are designed to redirect users to sketchy sites.
-"Site vi...</p>
         </article>
     </div>
   </main>
@@ -501,7 +499,7 @@ Most companies in 2025 r...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-10T06:34:17.003Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-10T09:24:58.957Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
