@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-10-11T18:27:15.287Z">10/11/2025, 6:27:15 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-10-11T21:18:04.620Z">10/11/2025, 9:18:04 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -137,7 +137,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/windows-11-23h2-home-and-pro-reach-end-of-support-in-30-days/" target="_blank" rel="noopener">Windows 11 23H2 Home and Pro reach end of support in 30 days</a></h2>
           <div class="news-meta">
             <time datetime="2025-10-10T19:34:13.000Z">October 10, 2025 - 7:34 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Microsoft has reminded customers again today that systems running Home and Pro editions of Windows 11 23H2 will stop receiving security updates next month. [...]...</p>
         </article>
@@ -149,7 +149,7 @@
           <h2 class="news-title"><a href="https://www.darkreading.com/endpoint-security/rondodox-botnet-exploit-edge-vulns" target="_blank" rel="noopener">RondoDox Botnet: an 'Exploit Shotgun' for Edge Vulns</a></h2>
           <div class="news-meta">
             <time datetime="2025-10-10T19:22:57.000Z">October 10, 2025 - 7:22 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">RondoDox takes a hit-and-run, shotgun approach to exploiting bugs in consumer edge devices around the world....</p>
         </article>
@@ -161,7 +161,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hackers-exploiting-zero-day-in-gladinet-file-sharing-software/" target="_blank" rel="noopener">Hackers exploiting zero-day in Gladinet file sharing software</a></h2>
           <div class="news-meta">
             <time datetime="2025-10-10T19:08:12.000Z">October 10, 2025 - 7:08 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Threat actors are exploiting a zero-day vulnerability (CVE-2025-11371) in Gladinet CentreStack and Triofox products, which allows a local attacker to access system files without authentication. [...]...</p>
         </article>
@@ -503,7 +503,7 @@ The zero-day vulnerability, track...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-11T18:27:15.287Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-11T21:18:04.620Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
