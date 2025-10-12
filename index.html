@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-10-11T21:18:04.620Z">10/11/2025, 9:18:04 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-10-12T01:50:24.115Z">10/12/2025, 1:50:24 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -125,7 +125,7 @@
           <h2 class="news-title"><a href="https://www.darkreading.com/identity-access-management-security/1password-addresses-critical-ai-browser-agent-security-gap" target="_blank" rel="noopener">1Password Addresses Critical AI Browser Agent Security Gap</a></h2>
           <div class="news-meta">
             <time datetime="2025-10-10T21:27:30.000Z">October 10, 2025 - 9:27 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The security company looks to tackle new authentication challenges that could lead to credential leakage, as enterprises increasingly leverage AI browser agents....</p>
         </article>
@@ -503,7 +503,7 @@ The zero-day vulnerability, track...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-11T21:18:04.620Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-12T01:50:24.115Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
