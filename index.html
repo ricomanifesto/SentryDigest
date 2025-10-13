@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-10-13T18:09:29.114Z">10/13/2025, 6:09:29 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-10-13T21:06:12.125Z">10/13/2025, 9:06:12 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="SimonMed says 1.2 million patients impacted in January data breach" data-summary="U.S. medical imaging provider SimonMed Imaging is notifying more than 1.2 million individuals of a data breach that exposed their sensitive information. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/simonmed-says-12-million-patients-impacted-in-january-data-breach/" target="_blank" rel="noopener">SimonMed says 1.2 million patients impacted in January data breach</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-13T20:12:04.000Z">October 13, 2025 - 8:12 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">U.S. medical imaging provider SimonMed Imaging is notifying more than 1.2 million individuals of a data breach that exposed their sensitive information. [...]...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Massive multi-country botnet targets RDP services in the US" data-summary="A large-scale botnet is targeting Remote Desktop Protocol (RDP) services in the United States from more than 100,000 IP addresses. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -411,18 +423,6 @@ The vulnerability, tracked as...</p>
           </div>
           <p class="news-summary">Ransomware gangs continue to set their sights on the manufacturing industry, but companies are taking steps to protect themselves, starting with implementing timely patch management protocols....</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Cybersecurity For Dummies, 3rd Edition eBook FREE for a Limited Time" data-summary="In today's hyper-connected world, cyber threats are more sophisticated and frequent than ever - ransomware, data breaches, and social engineering scams, targeting everyone from individuals to Fortune ...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cybersecurity-for-dummies-3rd-edition-ebook-free-for-a-limited-time/" target="_blank" rel="noopener">Cybersecurity For Dummies, 3rd Edition eBook FREE for a Limited Time</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-10T18:11:25.000Z">October 10, 2025 - 6:11 PM</time>
-            
-          </div>
-          <p class="news-summary">In today's hyper-connected world, cyber threats are more sophisticated and frequent than ever - ransomware, data breaches, and social engineering scams, targeting everyone from individuals to Fortune ...</p>
-        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Feds Shutter ShinyHunters Salesforce Extortion Site" data-summary="The group warned that law-enforcement crackdowns are imminent in the wake of the takedown, but its extortion threats against Salesforce victims remain active....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -503,7 +503,7 @@ The vulnerability, tracked as...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-13T18:09:29.114Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-13T21:06:12.125Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
