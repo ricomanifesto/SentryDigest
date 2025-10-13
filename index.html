@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-10-13T06:11:12.659Z">10/13/2025, 6:11:12 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-10-13T09:09:04.918Z">10/13/2025, 9:09:04 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Astaroth Banking Trojan Abuses GitHub to Remain Operational After Takedowns" data-summary="Cybersecurity researchers are calling attention to a new campaign that delivers the Astaroth banking trojan that employs GitHub as a backbone for its operations to stay resilient in the face of infras...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/astaroth-banking-trojan-abuses-github.html" target="_blank" rel="noopener">Astaroth Banking Trojan Abuses GitHub to Remain Operational After Takedowns</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-13T06:52:00.000Z">October 13, 2025 - 6:52 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Cybersecurity researchers are calling attention to a new campaign that delivers the Astaroth banking trojan that employs GitHub as a backbone for its operations to stay resilient in the face of infras...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="New Rust-Based Malware &quot;ChaosBot&quot; Uses Discord Channels to Control Victims' PCs" data-summary="Cybersecurity researchers have disclosed details of a new Rust-based backdoor called ChaosBot that can allow operators to conduct reconnaissance and execute arbitrary commands on compromised hosts.
 &quot;T...">
           <div class="chips">
@@ -451,18 +463,6 @@ The zero-day vulnerability, track...</p>
           </div>
           <p class="news-summary">The FBI has seized last night all domains for the BreachForums hacking forum operated by the ShinyHunters group mostly as a portal for leaking corporate data stolen in attacks from ransomware and exto...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="CL0P-Linked Hackers Breach Dozens of Organizations Through Oracle Software Flaw" data-summary="Dozens of organizations may have been impacted following the zero-day exploitation of a security flaw in Oracle's E-Business Suite (EBS) software since August 9, 2025, Google Threat Intelligence Group...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/cl0p-linked-hackers-breach-dozens-of.html" target="_blank" rel="noopener">CL0P-Linked Hackers Breach Dozens of Organizations Through Oracle Software Flaw</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-10T06:41:00.000Z">October 10, 2025 - 6:41 AM</time>
-            
-          </div>
-          <p class="news-summary">Dozens of organizations may have been impacted following the zero-day exploitation of a security flaw in Oracle's E-Business Suite (EBS) software since August 9, 2025, Google Threat Intelligence Group...</p>
-        </article>
     </div>
   </main>
   
@@ -507,7 +507,7 @@ The zero-day vulnerability, track...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-13T06:11:12.659Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-13T09:09:04.918Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
