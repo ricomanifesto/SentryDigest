@@ -87,10 +87,24 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-10-13T03:25:39.640Z">10/13/2025, 3:25:39 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-10-13T06:11:12.659Z">10/13/2025, 6:11:12 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="New Rust-Based Malware &quot;ChaosBot&quot; Uses Discord Channels to Control Victims' PCs" data-summary="Cybersecurity researchers have disclosed details of a new Rust-based backdoor called ChaosBot that can allow operators to conduct reconnaissance and execute arbitrary commands on compromised hosts.
+&quot;T...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/new-rust-based-malware-chaosbot-hijacks.html" target="_blank" rel="noopener">New Rust-Based Malware "ChaosBot" Uses Discord Channels to Control Victims' PCs</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-13T05:12:00.000Z">October 13, 2025 - 5:12 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Cybersecurity researchers have disclosed details of a new Rust-based backdoor called ChaosBot that can allow operators to conduct reconnaissance and execute arbitrary commands on compromised hosts.
+"T...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="New Oracle E-Business Suite Bug Could Let Hackers Access Data Without Login" data-summary="Oracle on Saturday issued a security alert warning of a fresh security flaw impacting its E-Business Suite that it said could allow unauthorized access to sensitive data.
 The vulnerability, tracked as...">
           <div class="chips">
@@ -449,18 +463,6 @@ The zero-day vulnerability, track...</p>
           </div>
           <p class="news-summary">Dozens of organizations may have been impacted following the zero-day exploitation of a security flaw in Oracle's E-Business Suite (EBS) software since August 9, 2025, Google Threat Intelligence Group...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="New Android spyware ClayRat imitates WhatsApp, TikTok, YouTube" data-summary="A new Android spyware called ClayRat is luring potential victims by posing as popular apps and services like WhatsApp, Google Photos, TikTok, and YouTube. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/new-android-spyware-clayrat-imitates-whatsapp-tiktok-youtube/" target="_blank" rel="noopener">New Android spyware ClayRat imitates WhatsApp, TikTok, YouTube</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-09T21:06:31.000Z">October 9, 2025 - 9:06 PM</time>
-            
-          </div>
-          <p class="news-summary">A new Android spyware called ClayRat is luring potential victims by posing as popular apps and services like WhatsApp, Google Photos, TikTok, and YouTube. [...]...</p>
-        </article>
     </div>
   </main>
   
@@ -505,7 +507,7 @@ The zero-day vulnerability, track...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-13T03:25:39.640Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-13T06:11:12.659Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
