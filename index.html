@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
+          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,58 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-10-14T18:10:06.680Z">10/14/2025, 6:10:06 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-10-14T21:06:17.544Z">10/14/2025, 9:06:17 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Pixnapping Attack Lets Attackers Steal 2FA on Android" data-summary="The proof-of-concept exploit allows an attacker to steal sensitive data from Gmail, Google Accounts, Google Authenticator, Google Maps, Signal, and Venmo....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/pixnapping-attack-attackers-2fa-android" target="_blank" rel="noopener">Pixnapping Attack Lets Attackers Steal 2FA on Android</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-14T20:27:10.000Z">October 14, 2025 - 8:27 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The proof-of-concept exploit allows an attacker to steal sensitive data from Gmail, Google Accounts, Google Authenticator, Google Maps, Signal, and Venmo....</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Final Windows 10 Patch Tuesday update rolls out as support ends" data-summary="In what marks the end of an era, Microsoft has released the Windows 10 KB5066791 cumulative update, the final free update for the operating system as it reaches the end of its support lifecycle. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/final-windows-10-patch-tuesday-update-rolls-out-as-support-ends/" target="_blank" rel="noopener">Final Windows 10 Patch Tuesday update rolls out as support ends</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-14T19:07:49.000Z">October 14, 2025 - 7:07 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">In what marks the end of an era, Microsoft has released the Windows 10 KB5066791 cumulative update, the final free update for the operating system as it reaches the end of its support lifecycle. [...]...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="New Android Pixnapping attack steals MFA codes pixel-by-pixel" data-summary="A new side-channel attack called Pixnapping enables a malicious Android app with no permissions to extract sensitive data by stealing pixels displayed by applications or websites, and reconstructing t...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/new-android-pixnapping-attack-steals-mfa-codes-pixel-by-pixel/" target="_blank" rel="noopener">New Android Pixnapping attack steals MFA codes pixel-by-pixel</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-14T18:46:47.000Z">October 14, 2025 - 6:46 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A new side-channel attack called Pixnapping enables a malicious Android app with no permissions to extract sensitive data by stealing pixels displayed by applications or websites, and reconstructing t...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft: Exchange 2016 and 2019 have reached end of support" data-summary="Microsoft has reminded that Exchange Server 2016 and 2019 reached the end of support and advised IT administrators to upgrade servers to Exchange Server SE or migrate to Exchange Online. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-exchange-2016-and-2019-have-reached-end-of-support/" target="_blank" rel="noopener">Microsoft: Exchange 2016 and 2019 have reached end of support</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-14T18:26:16.000Z">October 14, 2025 - 6:26 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Microsoft has reminded that Exchange Server 2016 and 2019 reached the end of support and advised IT administrators to upgrade servers to Exchange Server SE or migrate to Exchange Online. [...]...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft October 2025 Patch Tuesday fixes 6 zero-days, 172 flaws" data-summary="Today is Microsoft's October 2025 Patch Tuesday, which includes security updates for 172 flaws, including six zero-day vulnerabilities. Get patching! [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -299,54 +347,6 @@ The...</p>
           </div>
           <p class="news-summary">Microsoft is restricting access to Internet Explorer mode in Edge browser after learning that hackers are leveraging zero-day exploits in the Chakra JavaScript engine for access to target devices. [.....</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="SimonMed says 1.2 million patients impacted in January data breach" data-summary="U.S. medical imaging provider SimonMed Imaging is notifying more than 1.2 million individuals of a data breach that exposed their sensitive information. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/simonmed-says-12-million-patients-impacted-in-january-data-breach/" target="_blank" rel="noopener">SimonMed says 1.2 million patients impacted in January data breach</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-13T20:12:04.000Z">October 13, 2025 - 8:12 PM</time>
-            <span class="badge-new">NEW</span>
-          </div>
-          <p class="news-summary">U.S. medical imaging provider SimonMed Imaging is notifying more than 1.2 million individuals of a data breach that exposed their sensitive information. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Massive multi-country botnet targets RDP services in the US" data-summary="A large-scale botnet is targeting Remote Desktop Protocol (RDP) services in the United States from more than 100,000 IP addresses. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/massive-multi-country-botnet-targets-rdp-services-in-the-us/" target="_blank" rel="noopener">Massive multi-country botnet targets RDP services in the US</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-13T18:05:56.000Z">October 13, 2025 - 6:05 PM</time>
-            
-          </div>
-          <p class="news-summary">A large-scale botnet is targeting Remote Desktop Protocol (RDP) services in the United States from more than 100,000 IP addresses. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="SonicWall VPN accounts breached using stolen creds in widespread attacks" data-summary="Researchers warn that threat actors have compromised more than a hundred SonicWall SSLVPN accounts in a large-scale campaign using stolen, valid credentials. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/sonicwall-vpn-accounts-breached-using-stolen-creds-in-widespread-attacks/" target="_blank" rel="noopener">SonicWall VPN accounts breached using stolen creds in widespread attacks</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-13T15:58:45.000Z">October 13, 2025 - 3:58 PM</time>
-            
-          </div>
-          <p class="news-summary">Researchers warn that threat actors have compromised more than a hundred SonicWall SSLVPN accounts in a large-scale campaign using stolen, valid credentials. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft investigates outage affecting Microsoft 365 apps" data-summary="Microsoft is investigating an ongoing incident that is preventing some customers from accessing Microsoft 365 applications. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-investigates-outage-affecting-microsoft-365-apps/" target="_blank" rel="noopener">Microsoft investigates outage affecting Microsoft 365 apps</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-13T15:58:17.000Z">October 13, 2025 - 3:58 PM</time>
-            
-          </div>
-          <p class="news-summary">Microsoft is investigating an ongoing incident that is preventing some customers from accessing Microsoft 365 applications. [...]...</p>
-        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Financial, Other Industries Urged to Prepare for Quantum Computers" data-summary="Despite daunting technical challenges, a quantum computer capable of breaking public-key encryption systems may only be a decade or two off....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -503,7 +503,7 @@ The activity, described as akin to an "exploit sh...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-14T18:10:06.680Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-14T21:06:17.544Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
