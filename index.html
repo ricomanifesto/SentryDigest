@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-10-13T21:06:12.125Z">10/13/2025, 9:06:12 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-10-14T00:28:18.455Z">10/14/2025, 12:28:18 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft restricts IE mode access in Edge after zero-day attacks" data-summary="Microsoft is restricting access to Internet Explorer mode in Edge browser after learning that hackers are leveraging zero-day exploits in the Chakra JavaScript engine for access to target devices. [.....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/microsoft-restricts-ie-mode-access-in-edge-after-zero-day-attacks/" target="_blank" rel="noopener">Microsoft restricts IE mode access in Edge after zero-day attacks</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-13T21:51:47.000Z">October 13, 2025 - 9:51 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Microsoft is restricting access to Internet Explorer mode in Edge browser after learning that hackers are leveraging zero-day exploits in the Chakra JavaScript engine for access to target devices. [.....</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="SimonMed says 1.2 million patients impacted in January data breach" data-summary="U.S. medical imaging provider SimonMed Imaging is notifying more than 1.2 million individuals of a data breach that exposed their sensitive information. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -399,18 +411,6 @@ The vulnerability, tracked as...</p>
           </div>
           <p class="news-summary">RondoDox takes a hit-and-run, shotgun approach to exploiting bugs in consumer edge devices around the world....</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Hackers exploiting zero-day in Gladinet file sharing software" data-summary="Threat actors are exploiting a zero-day vulnerability (CVE-2025-11371) in Gladinet CentreStack and Triofox products, which allows a local attacker to access system files without authentication. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hackers-exploiting-zero-day-in-gladinet-file-sharing-software/" target="_blank" rel="noopener">Hackers exploiting zero-day in Gladinet file sharing software</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-10T19:08:12.000Z">October 10, 2025 - 7:08 PM</time>
-            
-          </div>
-          <p class="news-summary">Threat actors are exploiting a zero-day vulnerability (CVE-2025-11371) in Gladinet CentreStack and Triofox products, which allows a local attacker to access system files without authentication. [...]...</p>
-        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="The Fight Against Ransomware Heats Up on the Factory Floor" data-summary="Ransomware gangs continue to set their sights on the manufacturing industry, but companies are taking steps to protect themselves, starting with implementing timely patch management protocols....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -503,7 +503,7 @@ The vulnerability, tracked as...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-13T21:06:12.125Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-14T00:28:18.455Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
