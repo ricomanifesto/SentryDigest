@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Krebs on Security">Krebs on Security</option><option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,58 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-10-14T21:06:17.544Z">10/14/2025, 9:06:17 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-10-15T00:30:11.678Z">10/15/2025, 12:30:11 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Krebs on Security" data-host="krebsonsecurity.com" data-title="Patch Tuesday, October 2025 ‘End of 10’ Edition" data-summary="Microsoft today released software updates to plug a whopping 172 security holes in its Windows operating systems, including at least three vulnerabilities that are already being actively exploited. Oc...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Krebs on Security</span>
+            <span class="chip">krebsonsecurity.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://krebsonsecurity.com/2025/10/patch-tuesday-october-2025-end-of-10-edition/" target="_blank" rel="noopener">Patch Tuesday, October 2025 ‘End of 10’ Edition</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-14T22:57:38.000Z">October 14, 2025 - 10:57 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Microsoft today released software updates to plug a whopping 172 security holes in its Windows operating systems, including at least three vulnerabilities that are already being actively exploited. Oc...</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Microsoft Drops Terrifyingly Large October Patch Update" data-summary="October 2025's enormous Patch Tuesday offers plenty of nightmares for admins, including actively exploited zero-days and insidious high-severity privilege-escalation bugs — and it spells curtains for ...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/microsoft-october-patch-update" target="_blank" rel="noopener">Microsoft Drops Terrifyingly Large October Patch Update</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-14T21:53:11.000Z">October 14, 2025 - 9:53 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">October 2025's enormous Patch Tuesday offers plenty of nightmares for admins, including actively exploited zero-days and insidious high-severity privilege-escalation bugs — and it spells curtains for ...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Malicious crypto-stealing VSCode extensions resurface on OpenVSX" data-summary="A threat actor called TigerJack is constantly targeting developers with malicious extensions published on Microsoft's Visual Code (VSCode) marketplace and OpenVSX registry to steal cryptocurrency and ...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/malicious-crypto-stealing-vscode-extensions-resurface-on-openvsx/" target="_blank" rel="noopener">Malicious crypto-stealing VSCode extensions resurface on OpenVSX</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-14T21:35:12.000Z">October 14, 2025 - 9:35 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A threat actor called TigerJack is constantly targeting developers with malicious extensions published on Microsoft's Visual Code (VSCode) marketplace and OpenVSX registry to steal cryptocurrency and ...</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="China's Flax Typhoon Turns Geo-Mapping Server into a Backdoor" data-summary="Chinese APT threat actors compromised an organization's ArcGIS server, modifying the widely used geospatial mapping software for stealth access....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/application-security/chinas-flax-typhoon-geo-mapping-server-backdoor" target="_blank" rel="noopener">China's Flax Typhoon Turns Geo-Mapping Server into a Backdoor</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-14T21:12:14.000Z">October 14, 2025 - 9:12 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Chinese APT threat actors compromised an organization's ArcGIS server, modifying the widely used geospatial mapping software for stealth access....</p>
+        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Pixnapping Attack Lets Attackers Steal 2FA on Android" data-summary="The proof-of-concept exploit allows an attacker to steal sensitive data from Gmail, Google Accounts, Google Authenticator, Google Maps, Signal, and Venmo....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -335,18 +383,6 @@ The...">
           <p class="news-summary">Cybersecurity researchers have shed light on a previously undocumented threat actor called TA585 that has been observed delivering an off-the-shelf malware called MonsterV2 via phishing campaigns.
 The...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft restricts IE mode access in Edge after zero-day attacks" data-summary="Microsoft is restricting access to Internet Explorer mode in Edge browser after learning that hackers are leveraging zero-day exploits in the Chakra JavaScript engine for access to target devices. [.....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/microsoft-restricts-ie-mode-access-in-edge-after-zero-day-attacks/" target="_blank" rel="noopener">Microsoft restricts IE mode access in Edge after zero-day attacks</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-13T21:51:47.000Z">October 13, 2025 - 9:51 PM</time>
-            <span class="badge-new">NEW</span>
-          </div>
-          <p class="news-summary">Microsoft is restricting access to Internet Explorer mode in Edge browser after learning that hackers are leveraging zero-day exploits in the Chakra JavaScript engine for access to target devices. [.....</p>
-        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Financial, Other Industries Urged to Prepare for Quantum Computers" data-summary="Despite daunting technical challenges, a quantum computer capable of breaking public-key encryption systems may only be a decade or two off....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -421,44 +457,6 @@ The activity, described as akin to an &quot;exploit sh...">
           <p class="news-summary">Malware campaigns distributing the RondoDox botnet have expanded their targeting focus to exploit more than 50 vulnerabilities across over 30 vendors.
 The activity, described as akin to an "exploit sh...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Microsoft Locks Down IE Mode After Hackers Turned Legacy Feature Into Backdoor" data-summary="Microsoft said it has revamped the Internet Explorer (IE) mode in its Edge browser after receiving &quot;credible reports&quot; in August 2025 that unknown threat actors were abusing the backward compatibility ...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/microsoft-locks-down-ie-mode-after.html" target="_blank" rel="noopener">Microsoft Locks Down IE Mode After Hackers Turned Legacy Feature Into Backdoor</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-13T09:54:00.000Z">October 13, 2025 - 9:54 AM</time>
-            
-          </div>
-          <p class="news-summary">Microsoft said it has revamped the Internet Explorer (IE) mode in its Edge browser after receiving "credible reports" in August 2025 that unknown threat actors were abusing the backward compatibility ...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Astaroth Banking Trojan Abuses GitHub to Remain Operational After Takedowns" data-summary="Cybersecurity researchers are calling attention to a new campaign that delivers the Astaroth banking trojan that employs GitHub as a backbone for its operations to stay resilient in the face of infras...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/astaroth-banking-trojan-abuses-github.html" target="_blank" rel="noopener">Astaroth Banking Trojan Abuses GitHub to Remain Operational After Takedowns</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-13T06:52:00.000Z">October 13, 2025 - 6:52 AM</time>
-            
-          </div>
-          <p class="news-summary">Cybersecurity researchers are calling attention to a new campaign that delivers the Astaroth banking trojan that employs GitHub as a backbone for its operations to stay resilient in the face of infras...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="New Rust-Based Malware &quot;ChaosBot&quot; Uses Discord Channels to Control Victims' PCs" data-summary="Cybersecurity researchers have disclosed details of a new Rust-based backdoor called ChaosBot that can allow operators to conduct reconnaissance and execute arbitrary commands on compromised hosts.
-&quot;T...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/new-rust-based-malware-chaosbot-hijacks.html" target="_blank" rel="noopener">New Rust-Based Malware "ChaosBot" Uses Discord Channels to Control Victims' PCs</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-13T05:12:00.000Z">October 13, 2025 - 5:12 AM</time>
-            
-          </div>
-          <p class="news-summary">Cybersecurity researchers have disclosed details of a new Rust-based backdoor called ChaosBot that can allow operators to conduct reconnaissance and execute arbitrary commands on compromised hosts.
-"T...</p>
-        </article>
     </div>
   </main>
   
@@ -502,8 +500,8 @@ The activity, described as akin to an "exploit sh...</p>
           if (show) visible++;
         });
         const total = 30;
-        const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-14T21:06:17.544Z').toLocaleString());
+        const srcCount = 4;
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-15T00:30:11.678Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
