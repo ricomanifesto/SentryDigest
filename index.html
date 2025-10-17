@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,24 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-10-17T06:10:14.579Z">10/17/2025, 6:10:14 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-10-17T09:08:19.909Z">10/17/2025, 9:08:19 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Microsoft Revokes 200 Fraudulent Certificates Used in Rhysida Ransomware Campaign" data-summary="Microsoft on Thursday disclosed that it revoked more than 200 certificates used by a threat actor it tracks as Vanilla Tempest to fraudulently sign malicious binaries in ransomware attacks.
+The certif...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/microsoft-revokes-200-fraudulent.html" target="_blank" rel="noopener">Microsoft Revokes 200 Fraudulent Certificates Used in Rhysida Ransomware Campaign</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-17T06:03:00.000Z">October 17, 2025 - 6:03 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Microsoft on Thursday disclosed that it revoked more than 200 certificates used by a threat actor it tracks as Vanilla Tempest to fraudulently sign malicious binaries in ransomware attacks.
+The certif...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Windows 11 updates break localhost (127.0.0.1) HTTP/2 connections" data-summary="Microsoft's October Windows 11 updates have broken the &quot;localhost&quot; functionality, making applications that connect back to 127.0.0.1 over HTTP/2 no longer function properly. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -443,18 +457,6 @@ Security Operations Centers (SOCs) are under unprecedented pressure. According t
           </div>
           <p class="news-summary">U.S. cybersecurity company F5 on Wednesday disclosed that unidentified threat actors broke into its systems and stole files containing some of BIG-IP's source code and information related to undisclos...</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Harvard University Breached in Oracle Zero-Day Attack" data-summary="The Clop ransomware group claimed responsibility for stealing the university's data as part of a broader campaign against Oracle customers....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/harvard-breached-oracle-zero-day-attack" target="_blank" rel="noopener">Harvard University Breached in Oracle Zero-Day Attack</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-15T15:13:56.000Z">October 15, 2025 - 3:13 PM</time>
-            
-          </div>
-          <p class="news-summary">The Clop ransomware group claimed responsibility for stealing the university's data as part of a broader campaign against Oracle customers....</p>
-        </article>
     </div>
   </main>
   
@@ -499,7 +501,7 @@ Security Operations Centers (SOCs) are under unprecedented pressure. According t
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-17T06:10:14.579Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-17T09:08:19.909Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
