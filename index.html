@@ -87,10 +87,24 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-10-18T09:06:39.392Z">10/18/2025, 9:06:39 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-10-18T12:11:04.716Z">10/18/2025, 12:11:04 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="New .NET CAPI Backdoor Targets Russian Auto and E-Commerce Firms via Phishing ZIPs" data-summary="Cybersecurity researchers have shed light on a new campaign that has likely targeted the Russian automobile and e-commerce sectors with a previously undocumented .NET malware dubbed CAPI Backdoor.
+Acc...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/new-net-capi-backdoor-targets-russian.html" target="_blank" rel="noopener">New .NET CAPI Backdoor Targets Russian Auto and E-Commerce Firms via Phishing ZIPs</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-18T11:41:00.000Z">October 18, 2025 - 11:41 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Cybersecurity researchers have shed light on a new campaign that has likely targeted the Russian automobile and e-commerce sectors with a previously undocumented .NET malware dubbed CAPI Backdoor.
+Acc...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Silver Fox Expands Winos 4.0 Attacks to Japan and Malaysia via HoldingHands RAT" data-summary="The threat actors behind a malware family known as Winos 4.0 (aka ValleyRAT) have expanded their targeting footprint from China and Taiwan to target Japan and Malaysia with another remote access troja...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
@@ -255,7 +269,7 @@
           <h2 class="news-title"><a href="https://krebsonsecurity.com/2025/10/email-bombs-exploit-lax-authentication-in-zendesk/" target="_blank" rel="noopener">Email Bombs Exploit Lax Authentication in Zendesk</a></h2>
           <div class="news-meta">
             <time datetime="2025-10-17T11:26:27.000Z">October 17, 2025 - 11:26 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Cybercriminals are abusing a widespread lack of authentication in the customer service platform Zendesk to flood targeted email inboxes with menacing messages that come from hundreds of Zendesk corpor...</p>
         </article>
@@ -267,7 +281,7 @@
           <h2 class="news-title"><a href="https://thehackernews.com/2025/10/identity-security-your-first-and-last.html" target="_blank" rel="noopener">Identity Security: Your First and Last Line of Defense</a></h2>
           <div class="news-meta">
             <time datetime="2025-10-17T11:00:00.000Z">October 17, 2025 - 11:00 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The danger isn’t that AI agents have bad days — it’s that they never do. They execute faithfully, even when what they’re executing is a mistake. A single misstep in logic or access can turn flawless a...</p>
         </article>
@@ -280,7 +294,7 @@ The vulnerabi...">
           <h2 class="news-title"><a href="https://thehackernews.com/2025/10/researchers-uncover-watchguard-vpn-bug.html" target="_blank" rel="noopener">Researchers Uncover WatchGuard VPN Bug That Could Let Attackers Take Over Devices</a></h2>
           <div class="news-meta">
             <time datetime="2025-10-17T09:25:00.000Z">October 17, 2025 - 9:25 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Cybersecurity researchers have disclosed details of a recently patched critical security flaw in WatchGuard Fireware that could allow unauthenticated attackers to execute arbitrary code.
 The vulnerabi...</p>
@@ -447,18 +461,6 @@ Security Operations Centers (SOCs) are under unprecedented pressure. According t
           <p class="news-summary">Scaling the SOC with AI - Why now? 
 Security Operations Centers (SOCs) are under unprecedented pressure. According to SACR’s AI-SOC Market Landscape 2025, the average organization now faces around 960...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Hackers Deploy Linux Rootkits via Cisco SNMP Flaw in 'Zero Disco' Attacks" data-summary="Cybersecurity researchers have disclosed details of a new campaign that exploited a recently disclosed security flaw impacting Cisco IOS Software and IOS XE Software to deploy Linux rootkits on older,...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/hackers-deploy-linux-rootkits-via-cisco.html" target="_blank" rel="noopener">Hackers Deploy Linux Rootkits via Cisco SNMP Flaw in 'Zero Disco' Attacks</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-16T11:38:00.000Z">October 16, 2025 - 11:38 AM</time>
-            
-          </div>
-          <p class="news-summary">Cybersecurity researchers have disclosed details of a new campaign that exploited a recently disclosed security flaw impacting Cisco IOS Software and IOS XE Software to deploy Linux rootkits on older,...</p>
-        </article>
     </div>
   </main>
   
@@ -503,7 +505,7 @@ Security Operations Centers (SOCs) are under unprecedented pressure. According t
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-18T09:06:39.392Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-18T12:11:04.716Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
