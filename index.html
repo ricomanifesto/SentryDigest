@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="Krebs on Security">Krebs on Security</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option><option value="Krebs on Security">Krebs on Security</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,34 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-10-19T18:08:22.784Z">10/19/2025, 6:08:22 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-10-19T21:06:12.934Z">10/19/2025, 9:06:12 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="TikTok videos continue to push infostealers in ClickFix attacks" data-summary="Cybercriminals are using TikTok videos disguised as free activation guides for popular software like Windows, Spotify, and Netflix to spread information-stealing malware. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/tiktok-videos-continue-to-push-infostealers-in-clickfix-attacks/" target="_blank" rel="noopener">TikTok videos continue to push infostealers in ClickFix attacks</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-19T18:28:25.000Z">October 19, 2025 - 6:28 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Cybercriminals are using TikTok videos disguised as free activation guides for popular software like Windows, Spotify, and Netflix to spread information-stealing malware. [...]...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Experian fined $3.2 million for mass-collecting personal data" data-summary="Experian Netherlands has been fined EUR 2.7 million ($3.2 million) for multiple violations of the General Data Protection Regulation (GDPR) [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/legal/experian-fined-32-million-for-mass-collecting-personal-data/" target="_blank" rel="noopener">Experian fined $3.2 million for mass-collecting personal data</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-19T14:24:36.000Z">October 19, 2025 - 2:24 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Experian Netherlands has been fined EUR 2.7 million ($3.2 million) for multiple violations of the General Data Protection Regulation (GDPR) [...]...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Europol Dismantles SIM Farm Network Powering 49 Million Fake Accounts Worldwide" data-summary="Europol on Friday announced the disruption of a sophisticated cybercrime-as-a-service (CaaS) platform that operated a SIM farm and enabled its customers to carry out a broad spectrum of crimes ranging...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
@@ -361,18 +385,6 @@ The certif...">
           <p class="news-summary">Microsoft on Thursday disclosed that it revoked more than 200 certificates used by a threat actor it tracks as Vanilla Tempest to fraudulently sign malicious binaries in ransomware attacks.
 The certif...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Windows 11 updates break localhost (127.0.0.1) HTTP/2 connections" data-summary="Microsoft's October Windows 11 updates have broken the &quot;localhost&quot; functionality, making applications that connect back to 127.0.0.1 over HTTP/2 no longer function properly. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/windows-11-updates-break-localhost-127001-http-2-connections/" target="_blank" rel="noopener">Windows 11 updates break localhost (127.0.0.1) HTTP/2 connections</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-16T22:25:46.000Z">October 16, 2025 - 10:25 PM</time>
-            
-          </div>
-          <p class="news-summary">Microsoft's October Windows 11 updates have broken the "localhost" functionality, making applications that connect back to 127.0.0.1 over HTTP/2 no longer function properly. [...]...</p>
-        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Cyberattackers Target LastPass, Top Password Managers" data-summary="Be aware: a rash of phishing campaigns are leveraging the anxiety and trust employees have in password vaults securing all of their credentials....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -396,30 +408,6 @@ The certif...</p>
             
           </div>
           <p class="news-summary">Researchers discovered more than 550 unique secrets exposed in Visual Studio Code marketplaces, prompting Microsoft to bolster security measures....</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Auction giant Sotheby’s says data breach exposed financial information" data-summary="Major international auction house Sotheby's is notifying individuals of a data breach incident on its systems where threat actors stole sensitive information, including financial details. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/auction-giant-sothebys-says-data-breach-exposed-financial-information/" target="_blank" rel="noopener">Auction giant Sotheby’s says data breach exposed financial information</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-16T19:24:13.000Z">October 16, 2025 - 7:24 PM</time>
-            
-          </div>
-          <p class="news-summary">Major international auction house Sotheby's is notifying individuals of a data breach incident on its systems where threat actors stole sensitive information, including financial details. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Have I Been Pwned: Prosper data breach impacts 17.6 million accounts" data-summary="Hackers stole the personal information of over 17.6 million people after breaching the systems of financial services company Prosper. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/have-i-been-pwned-warns-of-prosper-data-breach-impacting-176-million-accounts/" target="_blank" rel="noopener">Have I Been Pwned: Prosper data breach impacts 17.6 million accounts</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-16T19:19:49.000Z">October 16, 2025 - 7:19 PM</time>
-            
-          </div>
-          <p class="news-summary">Hackers stole the personal information of over 17.6 million people after breaching the systems of financial services company Prosper. [...]...</p>
         </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="China Hackers Test AI-Optimized Attack Chains in Taiwan" data-summary="AI might help some threat actors in certain respects, but one group is proving that its use for cyberattacks has its limits....">
           <div class="chips">
@@ -456,6 +444,20 @@ The certif...</p>
             
           </div>
           <p class="news-summary">A financially motivated threat actor codenamed UNC5142 has been observed abusing blockchain smart contracts as a way to facilitate the distribution of information stealers, such as Atomic (AMOS), Lumm...</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="LinkPro Linux Rootkit Uses eBPF to Hide and Activates via Magic TCP Packets" data-summary="An investigation into the compromise of an Amazon Web Services (AWS)-hosted infrastructure has led to the discovery of a new GNU/Linux rootkit dubbed LinkPro, according to findings from Synacktiv.
+&quot;Th...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/linkpro-linux-rootkit-uses-ebpf-to-hide.html" target="_blank" rel="noopener">LinkPro Linux Rootkit Uses eBPF to Hide and Activates via Magic TCP Packets</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-16T14:28:00.000Z">October 16, 2025 - 2:28 PM</time>
+            
+          </div>
+          <p class="news-summary">An investigation into the compromise of an Amazon Web Services (AWS)-hosted infrastructure has led to the discovery of a new GNU/Linux rootkit dubbed LinkPro, according to findings from Synacktiv.
+"Th...</p>
         </article>
     </div>
   </main>
@@ -501,7 +503,7 @@ The certif...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-19T18:08:22.784Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-19T21:06:12.934Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
