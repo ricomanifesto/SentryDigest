@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,48 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-10-21T06:10:56.459Z">10/21/2025, 6:10:56 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-10-21T09:08:18.323Z">10/21/2025, 9:08:18 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Windows 11 KB5070773 emergency update fixes Windows Recovery issues" data-summary="Microsoft has released an emergency update to fix the Windows Recovery Environment (WinRE), which became unusable on systems with USB mice and keyboards after installing the October 2025 security upda...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-fixes-usb-issue-that-made-windows-recovery-unusable/" target="_blank" rel="noopener">Windows 11 KB5070773 emergency update fixes Windows Recovery issues</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-21T09:01:44.000Z">October 21, 2025 - 9:01 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Microsoft has released an emergency update to fix the Windows Recovery Environment (WinRE), which became unusable on systems with USB mice and keyboards after installing the October 2025 security upda...</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Google Identifies Three New Russian Malware Families Created by COLDRIVER Hackers" data-summary="A new malware attributed to the Russia-linked hacking group known as COLDRIVER has undergone numerous developmental iterations since May 2025, suggesting an increased &quot;operations tempo&quot; from the threa...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/google-identifies-three-new-russian.html" target="_blank" rel="noopener">Google Identifies Three New Russian Malware Families Created by COLDRIVER Hackers</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-21T07:29:00.000Z">October 21, 2025 - 7:29 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A new malware attributed to the Russia-linked hacking group known as COLDRIVER has undergone numerous developmental iterations since May 2025, suggesting an increased "operations tempo" from the threa...</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Hackers Used Snappybee Malware and Citrix Flaw to Breach European Telecom Network" data-summary="A European telecommunications organization is said to have been targeted by a threat actor that aligns with a China-nexus cyber espionage group known as Salt Typhoon.
+The organization, per Darktrace, ...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/hackers-used-snappybee-malware-and.html" target="_blank" rel="noopener">Hackers Used Snappybee Malware and Citrix Flaw to Breach European Telecom Network</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-21T07:23:00.000Z">October 21, 2025 - 7:23 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A European telecommunications organization is said to have been targeted by a threat actor that aligns with a China-nexus cyber espionage group known as Salt Typhoon.
+The organization, per Darktrace, ...</p>
+        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="ColdRiver Drops Fresh Malware on Targets" data-summary="The Russia-backed threat actor's latest cyber spying campaign is a classic example of how quickly sophisticated hacking groups can pivot when exposed....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -331,7 +369,7 @@ The 131 s...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/technology/aws-outage-crashes-amazon-prime-video-fortnite-perplexity-and-more/" target="_blank" rel="noopener">AWS outage crashes Amazon, Prime Video, Fortnite, Perplexity and more</a></h2>
           <div class="news-meta">
             <time datetime="2025-10-20T08:24:25.000Z">October 20, 2025 - 8:24 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">AWS outage has taken down millions of websites, including Amazon.com, Prime Video, Perplexity AI, Canva and more. [...]...</p>
         </article>
@@ -383,18 +421,6 @@ The 131 s...</p>
           </div>
           <p class="news-summary">Europol on Friday announced the disruption of a sophisticated cybercrime-as-a-service (CaaS) platform that operated a SIM farm and enabled its customers to carry out a broad spectrum of crimes ranging...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="OpenAI confirms GPT-6 is not shipping in 2025" data-summary="OpenAI is not planning to ship GPT-6 this year, but that doesn't necessarily mean the company will not release new models. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/openai-confirms-gpt-6-is-not-shipping-in-2025/" target="_blank" rel="noopener">OpenAI confirms GPT-6 is not shipping in 2025</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-18T21:51:29.000Z">October 18, 2025 - 9:51 PM</time>
-            
-          </div>
-          <p class="news-summary">OpenAI is not planning to ship GPT-6 this year, but that doesn't necessarily mean the company will not release new models. [...]...</p>
-        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="New .NET CAPI Backdoor Targets Russian Auto and E-Commerce Firms via Phishing ZIPs" data-summary="Cybersecurity researchers have shed light on a new campaign that has likely targeted the Russian automobile and e-commerce sectors with a previously undocumented .NET malware dubbed CAPI Backdoor.
 Acc...">
           <div class="chips">
@@ -432,30 +458,6 @@ Acc...</p>
             
           </div>
           <p class="news-summary">The threat actors behind a malware family known as Winos 4.0 (aka ValleyRAT) have expanded their targeting footprint from China and Taiwan to target Japan and Malaysia with another remote access troja...</p>
-        </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Microsoft Disrupts Ransomware Campaign Abusing Azure Certificates" data-summary="Microsoft revoked more than 200 digital certificates that threat actors used to sign fake Teams binaries that set the stage for Rhysida ransomware attacks....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/microsoft-disrupts-ransomware-abusing-azure-certificates" target="_blank" rel="noopener">Microsoft Disrupts Ransomware Campaign Abusing Azure Certificates</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-17T18:00:45.000Z">October 17, 2025 - 6:00 PM</time>
-            
-          </div>
-          <p class="news-summary">Microsoft revoked more than 200 digital certificates that threat actors used to sign fake Teams binaries that set the stage for Rhysida ransomware attacks....</p>
-        </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="AI Agent Security: Whose Responsibility Is It?" data-summary="The shared responsibility model of data security, familiar from cloud deployments, is key to agentic services, but cybersecurity teams and corporate users often struggle with awareness and managing th...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/ai-agent-security-awareness-responsibility" target="_blank" rel="noopener">AI Agent Security: Whose Responsibility Is It?</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-17T16:23:40.000Z">October 17, 2025 - 4:23 PM</time>
-            
-          </div>
-          <p class="news-summary">The shared responsibility model of data security, familiar from cloud deployments, is key to agentic services, but cybersecurity teams and corporate users often struggle with awareness and managing th...</p>
         </article>
     </div>
   </main>
@@ -501,7 +503,7 @@ Acc...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-21T06:10:56.459Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-21T09:08:18.323Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
