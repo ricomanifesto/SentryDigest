@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Krebs on Security">Krebs on Security</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Krebs on Security">Krebs on Security</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-10-23T06:10:53.068Z">10/23/2025, 6:10:53 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-10-23T09:08:20.201Z">10/23/2025, 9:08:20 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="“Jingle Thief” Hackers Exploit Cloud Infrastructure to Steal Millions in Gift Cards" data-summary="Cybersecurity researchers have shed light on a cybercriminal group called Jingle Thief that has been observed targeting cloud environments associated with organizations in the retail and consumer serv...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/jingle-thief-hackers-exploit-cloud.html" target="_blank" rel="noopener">“Jingle Thief” Hackers Exploit Cloud Infrastructure to Steal Millions in Gift Cards</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-23T07:52:00.000Z">October 23, 2025 - 7:52 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Cybersecurity researchers have shed light on a cybercriminal group called Jingle Thief that has been observed targeting cloud environments associated with organizations in the retail and consumer serv...</p>
+        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Mideast, African Hackers Target Gov'ts, Banks, Small Retailers" data-summary="In the hotly political Middle East, you'd expect hacktivism and disruption of services. But retail attacks?...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -402,7 +414,7 @@ The cyber es...">
           <h2 class="news-title"><a href="https://thehackernews.com/2025/10/researchers-identify-passiveneuron-apt.html" target="_blank" rel="noopener">Researchers Identify PassiveNeuron APT Using Neursite and NeuralExecutor Malware</a></h2>
           <div class="news-meta">
             <time datetime="2025-10-22T08:58:00.000Z">October 22, 2025 - 8:58 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Government, financial, and industrial organizations located in Asia, Africa, and Latin America are the target of a new campaign dubbed PassiveNeuron, according to findings from Kaspersky.
 The cyber es...</p>
@@ -415,7 +427,7 @@ The cyber es...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2025/10/tarmageddon-flaw-in-async-tar-rust.html" target="_blank" rel="noopener">TARmageddon Flaw in Async-Tar Rust Library Could Enable Remote Code Execution</a></h2>
           <div class="news-meta">
             <time datetime="2025-10-22T07:05:00.000Z">October 22, 2025 - 7:05 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Cybersecurity researchers have disclosed details of a high-severity flaw impacting the popular async-tar Rust library and its forks, including tokio-tar, that could result in remote code execution und...</p>
         </article>
@@ -444,18 +456,6 @@ The vulnerabilities in ...</p>
             
           </div>
           <p class="news-summary">After a particularly gruesome murder, South Korea issues "code black" travel ban for several regions in Cambodia, while other nations urge more raids....</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Vidar Stealer 2.0 adds multi-threaded data theft, better evasion" data-summary="The operators of Vidar Stealer, one of the most successful malware-as-a-service (MaaS) operations of the past decade, have released a new major version to reflect massive improvements in the malware. ...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/vidar-stealer-20-adds-multi-threaded-data-theft-better-evasion/" target="_blank" rel="noopener">Vidar Stealer 2.0 adds multi-threaded data theft, better evasion</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-21T22:26:02.000Z">October 21, 2025 - 10:26 PM</time>
-            
-          </div>
-          <p class="news-summary">The operators of Vidar Stealer, one of the most successful malware-as-a-service (MaaS) operations of the past decade, have released a new major version to reflect massive improvements in the malware. ...</p>
         </article>
     </div>
   </main>
@@ -501,7 +501,7 @@ The vulnerabilities in ...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-23T06:10:53.068Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-23T09:08:20.201Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
