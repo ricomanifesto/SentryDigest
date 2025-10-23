@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-10-23T00:29:45.373Z">10/23/2025, 12:29:45 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-10-23T03:22:28.441Z">10/23/2025, 3:22:28 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -385,6 +385,18 @@ The vulnerabilities in ...">
           <p class="news-summary">TP-Link has released security updates to address four security flaws impacting Omada gateway devices, including two critical bugs that could result in arbitrary code execution.
 The vulnerabilities in ...</p>
         </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Asian Nations Ramp Up Pressure on Cybercrime 'Scam Factories'" data-summary="After a particularly gruesome murder, South Korea issues &quot;code black&quot; travel ban for several regions in Cambodia, while other nations urge more raids....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/asian-nations-ramp-up-legal-attacks-cybercrime-factories" target="_blank" rel="noopener">Asian Nations Ramp Up Pressure on Cybercrime 'Scam Factories'</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-22T01:00:00.000Z">October 22, 2025 - 1:00 AM</time>
+            
+          </div>
+          <p class="news-summary">After a particularly gruesome murder, South Korea issues "code black" travel ban for several regions in Cambodia, while other nations urge more raids....</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Vidar Stealer 2.0 adds multi-threaded data theft, better evasion" data-summary="The operators of Vidar Stealer, one of the most successful malware-as-a-service (MaaS) operations of the past decade, have released a new major version to reflect massive improvements in the malware. ...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -445,20 +457,6 @@ The vulnerabilities in ...</p>
           </div>
           <p class="news-summary">The latest releases of Cursor and Windsurf integrated development environments are vulnerable to more than 94 known and patched security issues in the Chromium browser and the V8 JavaScript engine. [....</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Meta Rolls Out New Tools to Protect WhatsApp and Messenger Users from Scams" data-summary="Meta on Tuesday said it's launching new tools to protect Messenger and WhatsApp users from potential scams.
-To that end, the company said it's introducing new warnings on WhatsApp when users attempt t...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/meta-rolls-out-new-tools-to-protect.html" target="_blank" rel="noopener">Meta Rolls Out New Tools to Protect WhatsApp and Messenger Users from Scams</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-21T15:03:00.000Z">October 21, 2025 - 3:03 PM</time>
-            
-          </div>
-          <p class="news-summary">Meta on Tuesday said it's launching new tools to protect Messenger and WhatsApp users from potential scams.
-To that end, the company said it's introducing new warnings on WhatsApp when users attempt t...</p>
-        </article>
     </div>
   </main>
   
@@ -503,7 +501,7 @@ To that end, the company said it's introducing new warnings on WhatsApp when use
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-23T00:29:45.373Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-23T03:22:28.441Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
