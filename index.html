@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,34 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-10-24T09:08:34.790Z">10/24/2025, 9:08:34 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-10-24T12:13:21.906Z">10/24/2025, 12:13:21 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="The Cybersecurity Perception Gap: Why Executives and Practitioners See Risk Differently" data-summary="Does your organization suffer from a cybersecurity perception gap? Findings from the Bitdefender 2025 Cybersecurity Assessment suggest the answer is probably “yes” — and many leaders may not even real...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/the-cybersecurity-perception-gap-why.html" target="_blank" rel="noopener">The Cybersecurity Perception Gap: Why Executives and Practitioners See Risk Differently</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-24T11:00:00.000Z">October 24, 2025 - 11:00 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Does your organization suffer from a cybersecurity perception gap? Findings from the Bitdefender 2025 Cybersecurity Assessment suggest the answer is probably “yes” — and many leaders may not even real...</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="3,000 YouTube Videos Exposed as Malware Traps in Massive Ghost Network Operation" data-summary="A malicious network of YouTube accounts has been observed publishing and promoting videos that lead to malware downloads, essentially abusing the popularity and trust associated with the video hosting...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/3000-youtube-videos-exposed-as-malware.html" target="_blank" rel="noopener">3,000 YouTube Videos Exposed as Malware Traps in Massive Ghost Network Operation</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-24T10:00:00.000Z">October 24, 2025 - 10:00 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A malicious network of YouTube accounts has been observed publishing and promoting videos that lead to malware downloads, essentially abusing the popularity and trust associated with the video hosting...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Windows Server emergency patches fix WSUS bug with PoC exploit" data-summary="Microsoft has released out-of-band (OOB) security updates to patch a critical-severity Windows Server Update Service (WSUS) vulnerability with publicly available proof-of-concept exploit code. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -280,7 +304,7 @@ Because while everyone e...">
           <h2 class="news-title"><a href="https://thehackernews.com/2025/10/secure-ai-at-scale-and-speed-learn.html" target="_blank" rel="noopener">Secure AI at Scale and Speed — Learn the Framework in this Free Webinar</a></h2>
           <div class="news-meta">
             <time datetime="2025-10-23T11:55:00.000Z">October 23, 2025 - 11:55 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">AI is everywhere—and your company wants in. Faster products, smarter systems, fewer bottlenecks. But if you're in security, that excitement often comes with a sinking feeling.
 Because while everyone e...</p>
@@ -293,7 +317,7 @@ Because while everyone e...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2025/10/threatsday-bulletin-176m-crypto-fine.html" target="_blank" rel="noopener">ThreatsDay Bulletin: $176M Crypto Fine, Hacking Formula 1, Chromium Vulns, AI Hijack & More</a></h2>
           <div class="news-meta">
             <time datetime="2025-10-23T11:30:00.000Z">October 23, 2025 - 11:30 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Criminals don’t need to be clever all the time; they just follow the easiest path in: trick users, exploit stale components, or abuse trusted systems like OAuth and package registries. If your stack o...</p>
         </article>
@@ -306,7 +330,7 @@ For decades, ...">
           <h2 class="news-title"><a href="https://thehackernews.com/2025/10/why-organizations-are-abandoning-static.html" target="_blank" rel="noopener">Why Organizations Are Abandoning Static Secrets for Managed Identities</a></h2>
           <div class="news-meta">
             <time datetime="2025-10-23T11:00:00.000Z">October 23, 2025 - 11:00 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">As machine identities explode across cloud environments, enterprises report dramatic productivity gains from eliminating static credentials. And only legacy systems remain the weak link.
 For decades, ...</p>
@@ -431,30 +455,6 @@ For decades, ...</p>
           </div>
           <p class="news-summary">Hardcoded credentials, access tokens, and API keys are ending up in the darnedest places, prompting a call for organizations to stop over-privileging secrets....</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Pwn2Own Day 2: Hackers exploit 22 zero-days for $267.500" data-summary="Security researchers collected $267,500 in cash after exploiting 22​​​​​​​ unique zero-day vulnerabilities during the second day of the Pwn2Own Ireland 2025 hacking competition. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/samsung-galaxy-s25-hacked-on-day-two-of-pwn2own-ireland-2025/" target="_blank" rel="noopener">Pwn2Own Day 2: Hackers exploit 22 zero-days for $267.500</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-22T18:52:53.000Z">October 22, 2025 - 6:52 PM</time>
-            
-          </div>
-          <p class="news-summary">Security researchers collected $267,500 in cash after exploiting 22​​​​​​​ unique zero-day vulnerabilities during the second day of the Pwn2Own Ireland 2025 hacking competition. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Hackers exploiting critical &quot;SessionReaper&quot; flaw in Adobe Magento" data-summary="Hackers are actively exploiting the critical SessionReaper vulnerability (CVE-2025-54236) in Adobe Commerce (formerly Magento) platforms, with hundreds of attempts recorded. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hackers-exploiting-critical-sessionreaper-flaw-in-adobe-magento/" target="_blank" rel="noopener">Hackers exploiting critical "SessionReaper" flaw in Adobe Magento</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-22T18:41:37.000Z">October 22, 2025 - 6:41 PM</time>
-            
-          </div>
-          <p class="news-summary">Hackers are actively exploiting the critical SessionReaper vulnerability (CVE-2025-54236) in Adobe Commerce (formerly Magento) platforms, with hundreds of attempts recorded. [...]...</p>
-        </article>
     </div>
   </main>
   
@@ -499,7 +499,7 @@ For decades, ...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-24T09:08:34.790Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-24T12:13:21.906Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
