@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option><option value="Krebs on Security">Krebs on Security</option>
+          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Krebs on Security">Krebs on Security</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-10-24T00:27:35.540Z">10/24/2025, 12:27:35 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-10-24T03:20:43.469Z">10/24/2025, 3:20:43 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="US Crypto Bust Offers Hope in Battle Against Cybercrime Syndicates" data-summary="A $14 billion seizure by US investigators presents a warning for cybercriminals' reliance on bitcoin but is still a positive development for the cryptocurrency industry....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/us-crypto-bust-hope-battle-against-cybercrime-syndicates" target="_blank" rel="noopener">US Crypto Bust Offers Hope in Battle Against Cybercrime Syndicates</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-24T02:00:00.000Z">October 24, 2025 - 2:00 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A $14 billion seizure by US investigators presents a warning for cybercriminals' reliance on bitcoin but is still a positive development for the cryptocurrency industry....</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Toys “R” Us Canada warns customers' info leaked in data breach" data-summary="Toys &quot;R&quot; Us Canada has sent notices of a data breach to customers informing them of a security incident where threat actors leaked customer records they had previously stolen from its systems. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -443,18 +455,6 @@ For decades, ...</p>
           </div>
           <p class="news-summary">A high-severity vulnerability in the now-abandoned async-tar Rust library and its forks can be exploited to gain remote code execution on systems running unpatched software. [...]...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Iran-Linked MuddyWater Targets 100+ Organisations in Global Espionage Campaign" data-summary="The Iranian nation-state group known as MuddyWater has been attributed to a new campaign that has leveraged a compromised email account to distribute a backdoor called Phoenix to various organizations...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/iran-linked-muddywater-targets-100.html" target="_blank" rel="noopener">Iran-Linked MuddyWater Targets 100+ Organisations in Global Espionage Campaign</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-22T17:21:00.000Z">October 22, 2025 - 5:21 PM</time>
-            
-          </div>
-          <p class="news-summary">The Iranian nation-state group known as MuddyWater has been attributed to a new campaign that has leveraged a compromised email account to distribute a backdoor called Phoenix to various organizations...</p>
-        </article>
     </div>
   </main>
   
@@ -499,7 +499,7 @@ For decades, ...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-24T00:27:35.540Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-24T03:20:43.469Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
