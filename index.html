@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-10-25T15:06:02.497Z">10/25/2025, 3:06:02 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-10-25T18:08:22.036Z">10/25/2025, 6:08:22 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="New CoPhish attack steals OAuth tokens via Copilot Studio agents" data-summary="A new phishing technique dubbed 'CoPhish' weaponizes Microsoft Copilot Studio agents to deliver fraudulent OAuth consent requests via legitimate and trusted Microsoft domains. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/new-cophish-attack-steals-oauth-tokens-via-copilot-studio-agents/" target="_blank" rel="noopener">New CoPhish attack steals OAuth tokens via Copilot Studio agents</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-25T16:16:00.000Z">October 25, 2025 - 4:16 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A new phishing technique dubbed 'CoPhish' weaponizes Microsoft Copilot Studio agents to deliver fraudulent OAuth consent requests via legitimate and trusted Microsoft domains. [...]...</p>
+        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Microsoft Issues Emergency Patch for Critical Windows Server Bug" data-summary="Microsoft initially fixed CVE-2025-59287 in the WSUS update mechanism in the October 2025 Patch Tuesday release, but the company has now issued a second, out-of-band update for the flaw, which is unde...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -135,7 +147,7 @@
           <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/cisa-layoffs-weaken-civilian-cyber-defense" target="_blank" rel="noopener">How CISA Layoffs Weaken Civilian Cyber Defense</a></h2>
           <div class="news-meta">
             <time datetime="2025-10-24T17:41:33.000Z">October 24, 2025 - 5:41 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Cyber teams need to get to work backfilling diminishing federal resources, according to Alexander Garcia-Tobar, who shares clear steps on a path forward for protecting enterprises with less CISA help....</p>
         </article>
@@ -147,7 +159,7 @@
           <h2 class="news-title"><a href="https://thehackernews.com/2025/10/microsoft-issues-emergency-patch-for.html" target="_blank" rel="noopener">Newly Patched Critical Microsoft WSUS Flaw Comes Under Active Exploitation</a></h2>
           <div class="news-meta">
             <time datetime="2025-10-24T16:30:00.000Z">October 24, 2025 - 4:30 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Microsoft on Thursday released out-of-band security updates to patch a critical-severity Windows Server Update Service (WSUS) vulnerability with a proof-of-concept (Poc) exploit publicly available and...</p>
         </article>
@@ -159,7 +171,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hackers-now-exploiting-critical-windows-server-wsus-flaw-in-attacks/" target="_blank" rel="noopener">Critical WSUS flaw in Windows Server now exploited in attacks</a></h2>
           <div class="news-meta">
             <time datetime="2025-10-24T16:28:14.000Z">October 24, 2025 - 4:28 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Attackers are now exploiting a critical-severity Windows Server Update Service (WSUS) vulnerability, which already has publicly available proof-of-concept exploit code. [...]...</p>
         </article>
@@ -171,7 +183,7 @@
           <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/shutdown-increase-us-government-cyberattacks" target="_blank" rel="noopener">Shutdown Sparks 85% Increase in US Government Cyberattacks</a></h2>
           <div class="news-meta">
             <time datetime="2025-10-24T16:23:19.000Z">October 24, 2025 - 4:23 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Attackers are pouncing on financially strapped US government agencies and furloughed employees. And the effects of this period might be felt for a long time hereafter....</p>
         </article>
@@ -183,7 +195,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/technology/amazon-this-weeks-aws-outage-caused-by-major-dns-failure/" target="_blank" rel="noopener">Amazon: This week’s AWS outage caused by major DNS failure</a></h2>
           <div class="news-meta">
             <time datetime="2025-10-24T15:33:58.000Z">October 24, 2025 - 3:33 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Amazon says a major DNS failure was behind a massive AWS (Amazon Web Services) outage that took down many websites and online services on Monday. [...]...</p>
         </article>
@@ -369,30 +381,6 @@ The activity, observ...</p>
           </div>
           <p class="news-summary">Today, Microsoft introduced Mico, a new and more personal avatar for the AI-powered Copilot digital assistant, which the company describes as human-centered. [...]...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="CISA warns of Lanscope Endpoint Manager flaw exploited in attacks" data-summary="The Cybersecurity & Infrastructure Security Agency (CISA) is warning that hackers are exploiting a critical vulnerability in the Motex Landscope Endpoint Manager. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cisa-warns-of-lanscope-endpoint-manager-flaw-exploited-in-attacks/" target="_blank" rel="noopener">CISA warns of Lanscope Endpoint Manager flaw exploited in attacks</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-23T16:24:06.000Z">October 23, 2025 - 4:24 PM</time>
-            
-          </div>
-          <p class="news-summary">The Cybersecurity & Infrastructure Security Agency (CISA) is warning that hackers are exploiting a critical vulnerability in the Motex Landscope Endpoint Manager. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft disables File Explorer preview for downloads to block attacks" data-summary="Microsoft says that the File Explorer (formerly Windows Explorer) now automatically blocks previews for files downloaded from the Internet to block credential theft attacks via malicious documents. [....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-disables-preview-pane-for-downloads-to-block-ntlm-theft-attacks/" target="_blank" rel="noopener">Microsoft disables File Explorer preview for downloads to block attacks</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-23T15:57:41.000Z">October 23, 2025 - 3:57 PM</time>
-            
-          </div>
-          <p class="news-summary">Microsoft says that the File Explorer (formerly Windows Explorer) now automatically blocks previews for files downloaded from the Internet to block credential theft attacks via malicious documents. [....</p>
-        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="North Korean Hackers Lure Defense Engineers With Fake Jobs to Steal Drone Secrets" data-summary="Threat actors with ties to North Korea have been attributed to a new wave of attacks targeting European companies active in the defense industry as part of a long-running campaign known as Operation D...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
@@ -457,6 +445,18 @@ For decades, ...</p>
           </div>
           <p class="news-summary">Cybersecurity researchers have shed light on a cybercriminal group called Jingle Thief that has been observed targeting cloud environments associated with organizations in the retail and consumer serv...</p>
         </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Mideast, African Hackers Target Gov'ts, Banks, Small Retailers" data-summary="In the hotly political Middle East, you'd expect hacktivism and disruption of services. But retail attacks?...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-analytics/mea-hackers-govts-finance-smb-retailers" target="_blank" rel="noopener">Mideast, African Hackers Target Gov'ts, Banks, Small Retailers</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-23T06:00:00.000Z">October 23, 2025 - 6:00 AM</time>
+            
+          </div>
+          <p class="news-summary">In the hotly political Middle East, you'd expect hacktivism and disruption of services. But retail attacks?...</p>
+        </article>
     </div>
   </main>
   
@@ -501,7 +501,7 @@ For decades, ...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-25T15:06:02.497Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-25T18:08:22.036Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
