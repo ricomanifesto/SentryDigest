@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-10-25T18:08:22.036Z">10/25/2025, 6:08:22 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-10-25T21:06:12.235Z">10/25/2025, 9:06:12 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -111,7 +111,7 @@
           <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/microsoft-emergency-patch-windows-server-bug" target="_blank" rel="noopener">Microsoft Issues Emergency Patch for Critical Windows Server Bug</a></h2>
           <div class="news-meta">
             <time datetime="2025-10-24T19:34:00.000Z">October 24, 2025 - 7:34 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Microsoft initially fixed CVE-2025-59287 in the WSUS update mechanism in the October 2025 Patch Tuesday release, but the company has now issued a second, out-of-band update for the flaw, which is unde...</p>
         </article>
@@ -123,7 +123,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hackers-launch-mass-attacks-exploiting-outdated-wordpress-plugins/" target="_blank" rel="noopener">Hackers launch mass attacks exploiting outdated WordPress plugins</a></h2>
           <div class="news-meta">
             <time datetime="2025-10-24T19:28:42.000Z">October 24, 2025 - 7:28 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A widespread exploitation campaign is targeting WordPress websites with GutenKit and Hunk Companion plugins vulnerable to critical-severity, old security issues that can be used to achieve remote code...</p>
         </article>
@@ -135,7 +135,7 @@
           <h2 class="news-title"><a href="https://thehackernews.com/2025/10/smishing-triad-linked-to-194000.html" target="_blank" rel="noopener">Smishing Triad Linked to 194,000 Malicious Domains in Global Phishing Operation</a></h2>
           <div class="news-meta">
             <time datetime="2025-10-24T18:35:00.000Z">October 24, 2025 - 6:35 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The threat actors behind a large-scale, ongoing smishing campaign have been attributed to more than 194,000 malicious domains since January 1, 2024, targeting a broad range of services across the worl...</p>
         </article>
@@ -501,7 +501,7 @@ For decades, ...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-25T18:08:22.036Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-25T21:06:12.235Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
