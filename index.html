@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Krebs on Security">Krebs on Security</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-10-29T00:31:18.722Z">10/29/2025, 12:31:18 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-10-29T03:28:56.629Z">10/29/2025, 3:28:56 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Krebs on Security" data-host="krebsonsecurity.com" data-title="Aisuru Botnet Shifts from DDoS to Residential Proxies" data-summary="Aisuru, the botnet responsible for a series of record-smashing distributed denial-of-service (DDoS) attacks this year, recently was overhauled to support a more low-key, lucrative and sustainable busi...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Krebs on Security</span>
+            <span class="chip">krebsonsecurity.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://krebsonsecurity.com/2025/10/aisuru-botnet-shifts-from-ddos-to-residential-proxies/" target="_blank" rel="noopener">Aisuru Botnet Shifts from DDoS to Residential Proxies</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-29T00:51:05.000Z">October 29, 2025 - 12:51 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Aisuru, the botnet responsible for a series of record-smashing distributed denial-of-service (DDoS) attacks this year, recently was overhauled to support a more low-key, lucrative and sustainable busi...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Windows 11 KB5067036 update rolls out Administrator Protection feature" data-summary="​​Microsoft has released the KB5067036 preview cumulative update for Windows 11 24H2 and 25H2, which begins the rollout of the Administrator Protection cybersecurity feature and an updated Start Menu....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -443,18 +455,6 @@ If you’re the first security or IT hire at a fast-growing startup, you’ve li
           </div>
           <p class="news-summary">Social media platform X is urging users who have enrolled for two-factor authentication (2FA) using passkeys and hardware security keys like Yubikeys to re-enroll their key to ensure continued access ...</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Qilin Targets Windows Hosts With Linux-Based Ransomware" data-summary="The attack by the one of the most impactful RaaS groups active today demonstrates an evasion strategy that can stump defenses not equipped to detect cross-platform threats....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/qilin-targets-windows-hosts-linux-based-ransomware" target="_blank" rel="noopener">Qilin Targets Windows Hosts With Linux-Based Ransomware</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-27T15:18:34.000Z">October 27, 2025 - 3:18 PM</time>
-            
-          </div>
-          <p class="news-summary">The attack by the one of the most impactful RaaS groups active today demonstrates an evasion strategy that can stump defenses not equipped to detect cross-platform threats....</p>
-        </article>
     </div>
   </main>
   
@@ -498,8 +498,8 @@ If you’re the first security or IT hire at a fast-growing startup, you’ve li
           if (show) visible++;
         });
         const total = 30;
-        const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-29T00:31:18.722Z').toLocaleString());
+        const srcCount = 4;
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-29T03:28:56.629Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
