@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="Krebs on Security">Krebs on Security</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option><option value="Krebs on Security">Krebs on Security</option><option value="Bleeping Computer">Bleeping Computer</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-10-29T06:11:08.508Z">10/29/2025, 6:11:08 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-10-29T09:07:53.918Z">10/29/2025, 9:07:53 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Active Exploits Hit Dassault and XWiki — CISA Confirms Critical Flaws Under Attack" data-summary="Threat actors are actively exploiting multiple security flaws impacting Dassault Systèmes DELMIA Apriso and XWiki, according to alerts issued by the U.S. Cybersecurity and Infrastructure Security Agen...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/active-exploits-hit-dassault-and-xwiki.html" target="_blank" rel="noopener">Active Exploits Hit Dassault and XWiki — CISA Confirms Critical Flaws Under Attack</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-29T07:44:00.000Z">October 29, 2025 - 7:44 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Threat actors are actively exploiting multiple security flaws impacting Dassault Systèmes DELMIA Apriso and XWiki, according to alerts issued by the U.S. Cybersecurity and Infrastructure Security Agen...</p>
+        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Cybersecurity Firms See Surge in AI-Powered Attacks Across Africa" data-summary="Africa becomes a proving ground for AI-driven phishing, deepfakes, and impersonation, with attackers testing techniques against governments and enterprises....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -379,7 +391,7 @@ If you’re the first security or IT hire at a fast-growing startup, you’ve li
           <h2 class="news-title"><a href="https://thehackernews.com/2025/10/chrome-zero-day-exploited-to-deliver.html" target="_blank" rel="noopener">Chrome Zero-Day Exploited to Deliver Italian Memento Labs' LeetAgent Spyware</a></h2>
           <div class="news-meta">
             <time datetime="2025-10-28T08:22:00.000Z">October 28, 2025 - 8:22 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The zero-day exploitation of a now-patched security flaw in Google Chrome led to the distribution of an espionage-related tool from Italian information technology and services provider Memento Labs, a...</p>
         </article>
@@ -443,18 +455,6 @@ If you’re the first security or IT hire at a fast-growing startup, you’ve li
           </div>
           <p class="news-summary">AI's explosive growth has lifted cybersecurity to the top of the board's agenda. Here's how CISOs can seize the moment, according to Diana Kelley....</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Attackers Sell Turnkey Remote Access Trojan 'Atroposia'" data-summary="Atroposia, a new RAT malware, offers low-level cybercriminal affiliates the ability to utilize sophisticated stealth and persistence capabilities....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/attackers-sell-turnkey-remote-access-trojan-atroposia" target="_blank" rel="noopener">Attackers Sell Turnkey Remote Access Trojan 'Atroposia'</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-27T19:10:22.000Z">October 27, 2025 - 7:10 PM</time>
-            
-          </div>
-          <p class="news-summary">Atroposia, a new RAT malware, offers low-level cybercriminal affiliates the ability to utilize sophisticated stealth and persistence capabilities....</p>
-        </article>
     </div>
   </main>
   
@@ -499,7 +499,7 @@ If you’re the first security or IT hire at a fast-growing startup, you’ve li
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-29T06:11:08.508Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-29T09:07:53.918Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
