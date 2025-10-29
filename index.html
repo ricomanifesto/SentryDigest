@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Krebs on Security">Krebs on Security</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Dark Reading">Dark Reading</option><option value="Krebs on Security">Krebs on Security</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-10-29T03:28:56.629Z">10/29/2025, 3:28:56 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-10-29T06:11:08.508Z">10/29/2025, 6:11:08 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Cybersecurity Firms See Surge in AI-Powered Attacks Across Africa" data-summary="Africa becomes a proving ground for AI-driven phishing, deepfakes, and impersonation, with attackers testing techniques against governments and enterprises....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/cybersecurity-firms-see-surge-in-ai-powered-attacks-across-africa" target="_blank" rel="noopener">Cybersecurity Firms See Surge in AI-Powered Attacks Across Africa</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-29T06:00:00.000Z">October 29, 2025 - 6:00 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Africa becomes a proving ground for AI-driven phishing, deepfakes, and impersonation, with attackers testing techniques against governments and enterprises....</p>
+        </article>
         <article class="news-item" data-source="Krebs on Security" data-host="krebsonsecurity.com" data-title="Aisuru Botnet Shifts from DDoS to Residential Proxies" data-summary="Aisuru, the botnet responsible for a series of record-smashing distributed denial-of-service (DDoS) attacks this year, recently was overhauled to support a more low-key, lucrative and sustainable busi...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Krebs on Security</span>
@@ -379,7 +391,7 @@ If you’re the first security or IT hire at a fast-growing startup, you’ve li
           <h2 class="news-title"><a href="https://thehackernews.com/2025/10/sidewinder-adopts-new-clickonce-based.html" target="_blank" rel="noopener">SideWinder Adopts New ClickOnce-Based Attack Chain Targeting South Asian Diplomats</a></h2>
           <div class="news-meta">
             <time datetime="2025-10-28T04:01:00.000Z">October 28, 2025 - 4:01 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A European embassy located in the Indian capital of New Delhi, as well as multiple organizations in Sri Lanka, Pakistan, and Bangladesh, have emerged as the target of a new campaign orchestrated by a ...</p>
         </article>
@@ -443,18 +455,6 @@ If you’re the first security or IT hire at a fast-growing startup, you’ve li
           </div>
           <p class="news-summary">Atroposia, a new RAT malware, offers low-level cybercriminal affiliates the ability to utilize sophisticated stealth and persistence capabilities....</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="X Warns Users With Security Keys to Re-Enroll Before November 10 to Avoid Lockouts" data-summary="Social media platform X is urging users who have enrolled for two-factor authentication (2FA) using passkeys and hardware security keys like Yubikeys to re-enroll their key to ensure continued access ...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/x-warns-users-with-security-keys-to-re.html" target="_blank" rel="noopener">X Warns Users With Security Keys to Re-Enroll Before November 10 to Avoid Lockouts</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-27T16:12:00.000Z">October 27, 2025 - 4:12 PM</time>
-            
-          </div>
-          <p class="news-summary">Social media platform X is urging users who have enrolled for two-factor authentication (2FA) using passkeys and hardware security keys like Yubikeys to re-enroll their key to ensure continued access ...</p>
-        </article>
     </div>
   </main>
   
@@ -499,7 +499,7 @@ If you’re the first security or IT hire at a fast-growing startup, you’ve li
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-29T03:28:56.629Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-29T06:11:08.508Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
