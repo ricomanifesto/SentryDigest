@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-10-31T03:26:19.662Z">10/31/2025, 3:26:19 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-10-31T06:10:34.923Z">10/31/2025, 6:10:34 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="A New Security Layer for macOS Takes Aim at Admin Errors Before Hackers Do" data-summary="A design firm is editing a new campaign video on a MacBook Pro. The creative director opens a collaboration app that quietly requests microphone and camera permissions. MacOS is supposed to flag that,...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/10/a-new-security-layer-for-macos-takes.html" target="_blank" rel="noopener">A New Security Layer for macOS Takes Aim at Admin Errors Before Hackers Do</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-10-31T03:37:00.000Z">October 31, 2025 - 3:37 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A design firm is editing a new campaign video on a MacBook Pro. The creative director opens a collaboration app that quietly requests microphone and camera permissions. MacOS is supposed to flag that,...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="OpenAI confirms GPT-5 is now better at handling mental and emotional distress" data-summary="OpenAI confirmed that it shipped an update on October 5, which allows GPT-5 to better handle sensitive conversations, especially when a user is experiencing emotional or mental distress. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -335,7 +347,7 @@ That line set the tone for this year’s Picus Breach and Simulation (BAS) Summi
           <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/data-leak-students-iran-mois-training-academy" target="_blank" rel="noopener">Data Leak Outs Hacker Students of Iran's MOIS Training Academy</a></h2>
           <div class="news-meta">
             <time datetime="2025-10-30T06:00:00.000Z">October 30, 2025 - 6:00 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Ravin Academy, a school for the Iranian state hackers of tomorrow, has itself, ironically, been hacked....</p>
         </article>
@@ -451,18 +463,6 @@ That line set the tone for this year’s Picus Breach and Simulation (BAS) Summi
           <p class="news-summary">Cybersecurity researchers have flagged a new security issue in agentic web browsers like OpenAI ChatGPT Atlas that exposes underlying artificial intelligence (AI) models to context poisoning attacks.
 ...</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="From Power Users to Protective Stewards: How to Tune Security Training for Specialized Employees" data-summary="The best security training programs build strong security culture by focusing on high-risk groups, including developers, executives, and finance pros....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/power-users-protective-stewards-how-tune-security-training-specialized-employees" target="_blank" rel="noopener">From Power Users to Protective Stewards: How to Tune Security Training for Specialized Employees</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-29T12:03:17.000Z">October 29, 2025 - 12:03 PM</time>
-            
-          </div>
-          <p class="news-summary">The best security training programs build strong security culture by focusing on high-risk groups, including developers, executives, and finance pros....</p>
-        </article>
     </div>
   </main>
   
@@ -507,7 +507,7 @@ That line set the tone for this year’s Picus Breach and Simulation (BAS) Summi
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-31T03:26:19.662Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-10-31T06:10:34.923Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
