@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-11-02T12:10:36.415Z">11/2/2025, 12:10:36 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-11-02T15:06:08.179Z">11/2/2025, 3:06:08 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -123,7 +123,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/china-linked-hackers-exploited-lanscope-flaw-as-a-zero-day-in-attacks/" target="_blank" rel="noopener">China-linked hackers exploited Lanscope flaw as a zero-day in attacks</a></h2>
           <div class="news-meta">
             <time datetime="2025-11-01T14:16:26.000Z">November 1, 2025 - 2:16 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">China-linked cyber-espionage actors tracked as 'Bronze Butler' (Tick) exploited a Motex Lanscope Endpoint Manager vulnerability as a zero-day to deploy an updated version of their Gokcpdoor malware. [...</p>
         </article>
@@ -135,7 +135,7 @@
           <h2 class="news-title"><a href="https://thehackernews.com/2025/11/asd-warns-of-ongoing-badcandy-attacks.html" target="_blank" rel="noopener">ASD Warns of Ongoing BADCANDY Attacks Exploiting Cisco IOS XE Vulnerability</a></h2>
           <div class="news-meta">
             <time datetime="2025-11-01T13:43:00.000Z">November 1, 2025 - 1:43 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The Australian Signals Directorate (ASD) has issued a bulletin about ongoing cyber attacks targeting unpatched Cisco IOS XE devices in the country with a previously undocumented implant known as BADCA...</p>
         </article>
@@ -499,7 +499,7 @@ The vulnerability, tracked as CVE-2025-...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-11-02T12:10:36.415Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-11-02T15:06:08.179Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
