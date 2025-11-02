@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-11-02T15:06:08.179Z">11/2/2025, 3:06:08 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-11-02T18:08:30.975Z">11/2/2025, 6:08:30 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -99,7 +99,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/google/google-confirms-ai-search-will-have-ads-but-they-may-look-different/" target="_blank" rel="noopener">Google confirms AI search will have ads, but they may look different</a></h2>
           <div class="news-meta">
             <time datetime="2025-11-01T16:56:00.000Z">November 1, 2025 - 4:56 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Google Ads are not going anywhere. Eventually, AI Search results on Google and likely other properties will have ads. [...]...</p>
         </article>
@@ -111,7 +111,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/windows-11-build-262207051-released-with-ask-copilot-feature/" target="_blank" rel="noopener">Windows 11 Build 26220.7051 released with “Ask Copilot” feature</a></h2>
           <div class="news-meta">
             <time datetime="2025-11-01T16:17:22.000Z">November 1, 2025 - 4:17 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Windows 11 Build 26220.7051 is now rolling out to testers in the Windows Insider Program, and there are at least three new features, including Ask Copilot in the taskbar. [...]...</p>
         </article>
@@ -499,7 +499,7 @@ The vulnerability, tracked as CVE-2025-...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-11-02T15:06:08.179Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-11-02T18:08:30.975Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
