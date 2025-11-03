@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Krebs on Security">Krebs on Security</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="Krebs on Security">Krebs on Security</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-11-02T21:05:58.101Z">11/2/2025, 9:05:58 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-11-03T00:32:03.146Z">11/3/2025, 12:32:03 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Penn hacker claims to have stolen 1.2 million donor records in data breach" data-summary="A hacker has taken responsibility for last week's University of Pennsylvania &quot;We got hacked&quot; email incident, saying it was a far more extensive breach that exposed data on 1.2 million donors and inter...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/university-of-pennsylvania-hacker-claims-1.2-million-donor-data-breach/" target="_blank" rel="noopener">Penn hacker claims to have stolen 1.2 million donor records in data breach</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-11-02T22:07:14.000Z">November 2, 2025 - 10:07 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A hacker has taken responsibility for last week's University of Pennsylvania "We got hacked" email incident, saying it was a far more extensive breach that exposed data on 1.2 million donors and inter...</p>
+        </article>
         <article class="news-item" data-source="Krebs on Security" data-host="krebsonsecurity.com" data-title="Alleged Jabber Zeus Coder ‘MrICQ’ in U.S. Custody" data-summary="A Ukrainian man indicted in 2012 for conspiring with a prolific hacking group to steal tens of millions of dollars from U.S. businesses was arrested in Italy and is now in custody in the United States...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Krebs on Security</span>
@@ -102,6 +114,30 @@
             <span class="badge-new">NEW</span>
           </div>
           <p class="news-summary">A Ukrainian man indicted in 2012 for conspiring with a prolific hacking group to steal tens of millions of dollars from U.S. businesses was arrested in Italy and is now in custody in the United States...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Open VSX rotates access tokens used in supply-chain malware attack" data-summary="The Open VSX registry rotated access tokens after they were accidentally leaked by developers in public repositories and allowed threat actors to publish malicious extensions in an attempted supply-ch...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/open-vsx-rotates-tokens-used-in-supply-chain-malware-attack/" target="_blank" rel="noopener">Open VSX rotates access tokens used in supply-chain malware attack</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-11-02T15:09:19.000Z">November 2, 2025 - 3:09 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The Open VSX registry rotated access tokens after they were accidentally leaked by developers in public repositories and allowed threat actors to publish malicious extensions in an attempted supply-ch...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="OpenAI is going Meta route, as it considers memory-based ads on ChatGPT" data-summary="OpenAI is planning to introduce ads on ChatGPT, as it continues to struggle with revenue from paid users. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/openai-is-going-meta-route-as-it-considers-memory-based-ads-on-chatgpt/" target="_blank" rel="noopener">OpenAI is going Meta route, as it considers memory-based ads on ChatGPT</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-11-01T20:00:00.000Z">November 1, 2025 - 8:00 PM</time>
+            
+          </div>
+          <p class="news-summary">OpenAI is planning to introduce ads on ChatGPT, as it continues to struggle with revenue from paid users. [...]...</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Google confirms AI search will have ads, but they may look different" data-summary="Google Ads are not going anywhere. Eventually, AI Search results on Google and likely other properties will have ads. [...]...">
           <div class="chips">
@@ -311,18 +347,6 @@ The vulnerability, tracked as CVE-2025-...</p>
           </div>
           <p class="news-summary">CISA confirmed on Thursday that a high-severity privilege escalation flaw in the Linux kernel is now being exploited in ransomware attacks. [...]...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Google says Search AI Mode will know everything about you" data-summary="Google wants 'AI mode' on Search to be as personal as possible, and it'll soon tap into services like Gmail or Drive to know more about you. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/google/google-says-search-ai-mode-will-know-everything-about-you/" target="_blank" rel="noopener">Google says Search AI Mode will know everything about you</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-31T11:55:49.000Z">October 31, 2025 - 11:55 AM</time>
-            
-          </div>
-          <p class="news-summary">Google wants 'AI mode' on Search to be as personal as possible, and it'll soon tap into services like Gmail or Drive to know more about you. [...]...</p>
-        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="The MSP Cybersecurity Readiness Guide: Turning Security into Growth" data-summary="MSPs are facing rising client expectations for strong cybersecurity and compliance outcomes, while threats grow more complex and regulatory demands evolve. Meanwhile, clients are increasingly seeking ...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
@@ -334,30 +358,6 @@ The vulnerability, tracked as CVE-2025-...</p>
             
           </div>
           <p class="news-summary">MSPs are facing rising client expectations for strong cybersecurity and compliance outcomes, while threats grow more complex and regulatory demands evolve. Meanwhile, clients are increasingly seeking ...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Windows zero-day actively exploited to spy on European diplomats" data-summary="A China-linked hacking group is exploiting a Windows zero-day in attacks targeting European diplomats in Hungary, Belgium, and other European nations. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/chinese-hackers-exploit-windows-zero-day-to-spy-on-european-diplomats/" target="_blank" rel="noopener">Windows zero-day actively exploited to spy on European diplomats</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-31T11:29:29.000Z">October 31, 2025 - 11:29 AM</time>
-            
-          </div>
-          <p class="news-summary">A China-linked hacking group is exploiting a Windows zero-day in attacks targeting European diplomats in Hungary, Belgium, and other European nations. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Ukrainian extradited from Ireland on Conti ransomware charges" data-summary="A Ukrainian national believed to be a member of the Conti ransomware operation has been extradited to the United States and faces charges that could get him 25 years in prison. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/ukrainian-extradited-from-ireland-on-conti-ransomware-charges/" target="_blank" rel="noopener">Ukrainian extradited from Ireland on Conti ransomware charges</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-10-31T09:40:17.000Z">October 31, 2025 - 9:40 AM</time>
-            
-          </div>
-          <p class="news-summary">A Ukrainian national believed to be a member of the Conti ransomware operation has been extradited to the United States and faces charges that could get him 25 years in prison. [...]...</p>
         </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Dark Reading Confidential: Cyber's Role in the Rapid Rise of Digital Authoritarianism" data-summary="Dark Reading Confidential Episode 11: Enterprise cyber teams are in prime position to push back against our current &quot;Golden Age of Surveillance,&quot; according to our guests Ronald Deibert from Citizen La...">
           <div class="chips">
@@ -499,7 +499,7 @@ The vulnerability, tracked as CVE-2025-...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-11-02T21:05:58.101Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-11-03T00:32:03.146Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
