@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="Krebs on Security">Krebs on Security</option>
+          <option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,60 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-11-04T12:13:13.768Z">11/4/2025, 12:13:13 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-11-04T15:07:52.330Z">11/4/2025, 3:07:52 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="SesameOp Backdoor Uses OpenAI API for Covert C2" data-summary="Malware used in a months-long attack demonstrates how bad actors are misusing generative AI services in unique and stealthy ways....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/sesameop-backdoor-openai-api-covert-c2" target="_blank" rel="noopener">SesameOp Backdoor Uses OpenAI API for Covert C2</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-11-04T14:41:11.000Z">November 4, 2025 - 2:41 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Malware used in a months-long attack demonstrates how bad actors are misusing generative AI services in unique and stealthy ways....</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Microsoft Teams Bugs Let Attackers Impersonate Colleagues and Edit Messages Unnoticed" data-summary="Cybersecurity researchers have disclosed details of four security flaws in Microsoft Teams that could have exposed users to serious impersonation and social engineering attacks.
+The vulnerabilities &quot;a...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/11/microsoft-teams-bugs-let-attackers.html" target="_blank" rel="noopener">Microsoft Teams Bugs Let Attackers Impersonate Colleagues and Edit Messages Unnoticed</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-11-04T14:00:00.000Z">November 4, 2025 - 2:00 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Cybersecurity researchers have disclosed details of four security flaws in Microsoft Teams that could have exposed users to serious impersonation and social engineering attacks.
+The vulnerabilities "a...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Russian hackers abuse Hyper-V to hide malware in Linux VMs" data-summary="The Russian hacker group Curly COMrades is abusing Microsoft Hyper-V in Windows to bypass endpoint detection and response solutions by creating a hidden Alpine Linux-based virtual machine to run malwa...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/russian-hackers-abuse-hyper-v-to-hide-malware-in-linux-vms/" target="_blank" rel="noopener">Russian hackers abuse Hyper-V to hide malware in Linux VMs</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-11-04T14:00:00.000Z">November 4, 2025 - 2:00 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The Russian hacker group Curly COMrades is abusing Microsoft Hyper-V in Windows to bypass endpoint detection and response solutions by creating a hidden Alpine Linux-based virtual machine to run malwa...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Windows 10 update bug triggers incorrect end-of-support alerts" data-summary="​Microsoft says the October 2025 updates trigger incorrect end-of-support warnings on Windows 10 systems with active security coverage or still under active support. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/windows-10-update-bug-triggers-incorrect-end-of-support-alerts/" target="_blank" rel="noopener">Windows 10 update bug triggers incorrect end-of-support alerts</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-11-04T13:31:05.000Z">November 4, 2025 - 1:31 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">​Microsoft says the October 2025 updates trigger incorrect end-of-support warnings on Windows 10 systems with active security coverage or still under active support. [...]...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Ransomware Defense Using the Wazuh Open Source Platform" data-summary="Ransomware is malicious software designed to block access to a computer system or encrypt data until a ransom is paid. This cyberattack is one of the most prevalent and damaging threats in the digital...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
@@ -299,7 +349,7 @@ According to Secure Annex's John Tuckner, the extension...</p>
           <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/physical-convergence-electrical-grid-cybersecurity" target="_blank" rel="noopener">Let's Get Physical: A New Convergence for Electrical Grid Security</a></h2>
           <div class="news-meta">
             <time datetime="2025-11-03T14:00:00.000Z">November 3, 2025 - 2:00 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The power grid is being attacked online and IRL. Increasingly, regulators and industry experts agree: Security teams need to focus on both cyber and physical threats, together....</p>
         </article>
@@ -311,7 +361,7 @@ According to Secure Annex's John Tuckner, the extension...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2025/11/cybercriminals-exploit-remote.html" target="_blank" rel="noopener">Cybercriminals Exploit Remote Monitoring Tools to Infiltrate Logistics and Freight Networks</a></h2>
           <div class="news-meta">
             <time datetime="2025-11-03T13:18:00.000Z">November 3, 2025 - 1:18 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Bad actors are increasingly training their sights on trucking and logistics companies with an aim to infect them with remote monitoring and management (RMM) software for financial gain and ultimately ...</p>
         </article>
@@ -323,7 +373,7 @@ According to Secure Annex's John Tuckner, the extension...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2025/11/weekly-recap-lazarus-hits-web3-intelamd.html" target="_blank" rel="noopener">⚡ Weekly Recap: Lazarus Hits Web3, Intel/AMD TEEs Cracked, Dark Web Leak Tool & More</a></h2>
           <div class="news-meta">
             <time datetime="2025-11-03T12:56:00.000Z">November 3, 2025 - 12:56 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Cyberattacks are getting smarter and harder to stop. This week, hackers used sneaky tools, tricked trusted systems, and quickly took advantage of new security problems—some just hours after being foun...</p>
         </article>
@@ -413,54 +463,6 @@ According to CYFI...</p>
           </div>
           <p class="news-summary">A hacker has taken responsibility for last week's University of Pennsylvania "We got hacked" email incident, saying it was a far more extensive breach that exposed data on 1.2 million donors and inter...</p>
         </article>
-        <article class="news-item" data-source="Krebs on Security" data-host="krebsonsecurity.com" data-title="Alleged Jabber Zeus Coder ‘MrICQ’ in U.S. Custody" data-summary="A Ukrainian man indicted in 2012 for conspiring with a prolific hacking group to steal tens of millions of dollars from U.S. businesses was arrested in Italy and is now in custody in the United States...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Krebs on Security</span>
-            <span class="chip">krebsonsecurity.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://krebsonsecurity.com/2025/11/alleged-jabber-zeus-coder-mricq-in-u-s-custody/" target="_blank" rel="noopener">Alleged Jabber Zeus Coder ‘MrICQ’ in U.S. Custody</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-11-02T20:37:24.000Z">November 2, 2025 - 8:37 PM</time>
-            
-          </div>
-          <p class="news-summary">A Ukrainian man indicted in 2012 for conspiring with a prolific hacking group to steal tens of millions of dollars from U.S. businesses was arrested in Italy and is now in custody in the United States...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Open VSX rotates access tokens used in supply-chain malware attack" data-summary="The Open VSX registry rotated access tokens after they were accidentally leaked by developers in public repositories and allowed threat actors to publish malicious extensions in an attempted supply-ch...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/open-vsx-rotates-tokens-used-in-supply-chain-malware-attack/" target="_blank" rel="noopener">Open VSX rotates access tokens used in supply-chain malware attack</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-11-02T15:09:19.000Z">November 2, 2025 - 3:09 PM</time>
-            
-          </div>
-          <p class="news-summary">The Open VSX registry rotated access tokens after they were accidentally leaked by developers in public repositories and allowed threat actors to publish malicious extensions in an attempted supply-ch...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="OpenAI is going Meta route, as it considers memory-based ads on ChatGPT" data-summary="OpenAI is planning to introduce ads on ChatGPT, as it continues to struggle with revenue from paid users. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/openai-is-going-meta-route-as-it-considers-memory-based-ads-on-chatgpt/" target="_blank" rel="noopener">OpenAI is going Meta route, as it considers memory-based ads on ChatGPT</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-11-01T20:00:00.000Z">November 1, 2025 - 8:00 PM</time>
-            
-          </div>
-          <p class="news-summary">OpenAI is planning to introduce ads on ChatGPT, as it continues to struggle with revenue from paid users. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Google confirms AI search will have ads, but they may look different" data-summary="Google Ads are not going anywhere. Eventually, AI Search results on Google and likely other properties will have ads. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/google/google-confirms-ai-search-will-have-ads-but-they-may-look-different/" target="_blank" rel="noopener">Google confirms AI search will have ads, but they may look different</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-11-01T16:56:00.000Z">November 1, 2025 - 4:56 PM</time>
-            
-          </div>
-          <p class="news-summary">Google Ads are not going anywhere. Eventually, AI Search results on Google and likely other properties will have ads. [...]...</p>
-        </article>
     </div>
   </main>
   
@@ -504,8 +506,8 @@ According to CYFI...</p>
           if (show) visible++;
         });
         const total = 30;
-        const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-11-04T12:13:13.768Z').toLocaleString());
+        const srcCount = 3;
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-11-04T15:07:52.330Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
