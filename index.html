@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-11-05T00:31:26.401Z">11/5/2025, 12:31:26 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-11-05T03:26:52.453Z">11/5/2025, 3:26:52 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Kimsuky Debuts HTTPTroy Backdoor Against South Korea Users" data-summary="The well-known North Korean threat group continues to improve the obfuscation and anti-analysis features of its attack toolchain....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/kimsuky-httptroy-backdoor-south-korea-users" target="_blank" rel="noopener">Kimsuky Debuts HTTPTroy Backdoor Against South Korea Users</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-11-05T02:00:00.000Z">November 5, 2025 - 2:00 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The well-known North Korean threat group continues to improve the obfuscation and anti-analysis features of its attack toolchain....</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Hackers exploit WordPress plugin Post SMTP to hijack admin accounts" data-summary="Threat actors are actively exploiting a critical vulnerability in the Post SMTP plugin installed on more than 400,000 WordPress sites, to take complete control by hijacking administrator accounts. [.....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -451,18 +463,6 @@ According to Secure Annex's John Tuckner, the extension...</p>
           </div>
           <p class="news-summary">The power grid is being attacked online and IRL. Increasingly, regulators and industry experts agree: Security teams need to focus on both cyber and physical threats, together....</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Cybercriminals Exploit Remote Monitoring Tools to Infiltrate Logistics and Freight Networks" data-summary="Bad actors are increasingly training their sights on trucking and logistics companies with an aim to infect them with remote monitoring and management (RMM) software for financial gain and ultimately ...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/11/cybercriminals-exploit-remote.html" target="_blank" rel="noopener">Cybercriminals Exploit Remote Monitoring Tools to Infiltrate Logistics and Freight Networks</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-11-03T13:18:00.000Z">November 3, 2025 - 1:18 PM</time>
-            
-          </div>
-          <p class="news-summary">Bad actors are increasingly training their sights on trucking and logistics companies with an aim to infect them with remote monitoring and management (RMM) software for financial gain and ultimately ...</p>
-        </article>
     </div>
   </main>
   
@@ -507,7 +507,7 @@ According to Secure Annex's John Tuckner, the extension...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-11-05T00:31:26.401Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-11-05T03:26:52.453Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
