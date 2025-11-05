@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,58 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-11-04T21:07:02.509Z">11/4/2025, 9:07:02 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-11-05T00:31:26.401Z">11/5/2025, 12:31:26 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Hackers exploit WordPress plugin Post SMTP to hijack admin accounts" data-summary="Threat actors are actively exploiting a critical vulnerability in the Post SMTP plugin installed on more than 400,000 WordPress sites, to take complete control by hijacking administrator accounts. [.....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hackers-exploit-wordpress-plugin-post-smtp-to-hijack-admin-accounts/" target="_blank" rel="noopener">Hackers exploit WordPress plugin Post SMTP to hijack admin accounts</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-11-04T21:46:50.000Z">November 4, 2025 - 9:46 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Threat actors are actively exploiting a critical vulnerability in the Post SMTP plugin installed on more than 400,000 WordPress sites, to take complete control by hijacking administrator accounts. [.....</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Pro-Russian Hackers Use Linux VMs to Hide in Windows" data-summary="A threat actor known as &quot;Curly COMrades&quot; is using Linux VMs to remain undetected in Windows environments while conducting Russia-aligned activities....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/endpoint-security/pro-russian-hackers-linux-vms-hide-windows" target="_blank" rel="noopener">Pro-Russian Hackers Use Linux VMs to Hide in Windows</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-11-04T21:32:44.000Z">November 4, 2025 - 9:32 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A threat actor known as "Curly COMrades" is using Linux VMs to remain undetected in Windows environments while conducting Russia-aligned activities....</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Apache OpenOffice disputes data breach claims by ransomware gang" data-summary="The Apache Software Foundation disputes claims that its OpenOffice project suffered an Akira ransomware attack, after the threat actors claimed to have stolen 23 GB of corporate documents. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/apache-openoffice-disputes-data-breach-claims-by-ransomware-gang/" target="_blank" rel="noopener">Apache OpenOffice disputes data breach claims by ransomware gang</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-11-04T21:18:43.000Z">November 4, 2025 - 9:18 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The Apache Software Foundation disputes claims that its OpenOffice project suffered an Akira ransomware attack, after the threat actors claimed to have stolen 23 GB of corporate documents. [...]...</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Europe Sees Increase in Ransomware, Extortion Attacks" data-summary="European organizations face an escalating cyber threat landscape as attackers leverage geopolitical tensions and AI-enhanced social engineering for attacks....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/europe-increase-ransomware-extortion" target="_blank" rel="noopener">Europe Sees Increase in Ransomware, Extortion Attacks</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-11-04T21:15:42.000Z">November 4, 2025 - 9:15 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">European organizations face an escalating cyber threat landscape as attackers leverage geopolitical tensions and AI-enhanced social engineering for attacks....</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Malicious Android apps on Google Play downloaded 42 million times" data-summary="Hundreds of malicious Android apps on Google Play were downloaded more than 40 million times between June 2024 and May 2025, notes a report from cloud security company Zscaler. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -337,7 +385,7 @@ Ryan...</p>
           <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/android-malware-mutes-alerts-drains-crypto-wallets" target="_blank" rel="noopener">Android Malware Mutes Alerts, Drains Crypto Wallets</a></h2>
           <div class="news-meta">
             <time datetime="2025-11-03T22:19:13.000Z">November 3, 2025 - 10:19 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Android/BankBot-YNRK is currently targeting users in Indonesia by masquerading as legitimate applications....</p>
         </article>
@@ -349,7 +397,7 @@ Ryan...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/cryptocurrency/hacker-steals-over-120-million-from-balancer-defi-crypto-protocol/" target="_blank" rel="noopener">Hacker steals over $120 million from Balancer DeFi crypto protocol</a></h2>
           <div class="news-meta">
             <time datetime="2025-11-03T21:53:35.000Z">November 3, 2025 - 9:53 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The Balancer Protocol announced that hackers had targeted its v2 pools, with losses reportedly estimated to be more than $128 million. [...]...</p>
         </article>
@@ -377,18 +425,6 @@ Ryan...</p>
           </div>
           <p class="news-summary">In a new cyber threat campaign, attackers are using remote monitoring and management tools to actually steal physical cargo out of the trucking and freight supply chain....</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft: SesameOp malware abuses OpenAI Assistants API in attacks" data-summary="Microsoft security researchers have discovered a new backdoor malware that uses the OpenAI Assistants API as a covert command-and-control channel. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/microsoft-sesameop-malware-abuses-openai-assistants-api-in-attacks/" target="_blank" rel="noopener">Microsoft: SesameOp malware abuses OpenAI Assistants API in attacks</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-11-03T18:35:15.000Z">November 3, 2025 - 6:35 PM</time>
-            
-          </div>
-          <p class="news-summary">Microsoft security researchers have discovered a new backdoor malware that uses the OpenAI Assistants API as a covert command-and-control channel. [...]...</p>
-        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Malicious VSX Extension &quot;SleepyDuck&quot; Uses Ethereum to Keep Its Command Server Alive" data-summary="Cybersecurity researchers have flagged a new malicious extension in the Open VSX registry that harbors a remote access trojan called SleepyDuck.
 According to Secure Annex's John Tuckner, the extension...">
           <div class="chips">
@@ -402,18 +438,6 @@ According to Secure Annex's John Tuckner, the extension...">
           </div>
           <p class="news-summary">Cybersecurity researchers have flagged a new malicious extension in the Open VSX registry that harbors a remote access trojan called SleepyDuck.
 According to Secure Annex's John Tuckner, the extension...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="US cybersecurity experts indicted for BlackCat ransomware attacks" data-summary="Three former employees of cybersecurity incident response companies DigitalMint and Sygnia have been indicted for allegedly hacking the networks of five U.S. companies in BlackCat (ALPHV) ransomware a...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/us-cybersecurity-experts-indicted-for-blackcat-ransomware-attacks/" target="_blank" rel="noopener">US cybersecurity experts indicted for BlackCat ransomware attacks</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-11-03T17:15:39.000Z">November 3, 2025 - 5:15 PM</time>
-            
-          </div>
-          <p class="news-summary">Three former employees of cybersecurity incident response companies DigitalMint and Sygnia have been indicted for allegedly hacking the networks of five U.S. companies in BlackCat (ALPHV) ransomware a...</p>
         </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Let's Get Physical: A New Convergence for Electrical Grid Security" data-summary="The power grid is being attacked online and IRL. Increasingly, regulators and industry experts agree: Security teams need to focus on both cyber and physical threats, together....">
           <div class="chips">
@@ -438,30 +462,6 @@ According to Secure Annex's John Tuckner, the extension...</p>
             
           </div>
           <p class="news-summary">Bad actors are increasingly training their sights on trucking and logistics companies with an aim to infect them with remote monitoring and management (RMM) software for financial gain and ultimately ...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="⚡ Weekly Recap: Lazarus Hits Web3, Intel/AMD TEEs Cracked, Dark Web Leak Tool & More" data-summary="Cyberattacks are getting smarter and harder to stop. This week, hackers used sneaky tools, tricked trusted systems, and quickly took advantage of new security problems—some just hours after being foun...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/11/weekly-recap-lazarus-hits-web3-intelamd.html" target="_blank" rel="noopener">⚡ Weekly Recap: Lazarus Hits Web3, Intel/AMD TEEs Cracked, Dark Web Leak Tool & More</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-11-03T12:56:00.000Z">November 3, 2025 - 12:56 PM</time>
-            
-          </div>
-          <p class="news-summary">Cyberattacks are getting smarter and harder to stop. This week, hackers used sneaky tools, tricked trusted systems, and quickly took advantage of new security problems—some just hours after being foun...</p>
-        </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="AI Developed Code: 5 Critical Security Checkpoints for Human Oversight" data-summary="To write secure code with LLMs developers must have the skills to use AI as a collaborative assistant rather than an autonomous tool, Madou argues....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/application-security/ai-code-security-checkpoints" target="_blank" rel="noopener">AI Developed Code: 5 Critical Security Checkpoints for Human Oversight</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-11-03T12:00:00.000Z">November 3, 2025 - 12:00 PM</time>
-            
-          </div>
-          <p class="news-summary">To write secure code with LLMs developers must have the skills to use AI as a collaborative assistant rather than an autonomous tool, Madou argues....</p>
         </article>
     </div>
   </main>
@@ -507,7 +507,7 @@ According to Secure Annex's John Tuckner, the extension...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-11-04T21:07:02.509Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-11-05T00:31:26.401Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
