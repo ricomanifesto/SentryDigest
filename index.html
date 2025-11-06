@@ -87,10 +87,24 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-11-06T06:11:02.114Z">11/6/2025, 6:11:02 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-11-06T09:08:18.778Z">11/6/2025, 9:08:18 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Hackers Weaponize Windows Hyper-V to Hide Linux VM and Evade EDR Detection" data-summary="The threat actor known as Curly COMrades has been observed exploiting virtualization technologies as a way to bypass security solutions and execute custom malware.
+According to a new report from Bitde...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/11/hackers-weaponize-windows-hyper-v-to.html" target="_blank" rel="noopener">Hackers Weaponize Windows Hyper-V to Hide Linux VM and Evade EDR Detection</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-11-06T07:22:00.000Z">November 6, 2025 - 7:22 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The threat actor known as Curly COMrades has been observed exploiting virtualization technologies as a way to bypass security solutions and execute custom malware.
+According to a new report from Bitde...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="SonicWall Confirms State-Sponsored Hackers Behind September Cloud Backup Breach" data-summary="SonicWall has formally implicated state-sponsored threat actors as behind the September security breach that led to the unauthorized exposure of firewall configuration backup files.
 &quot;The malicious act...">
           <div class="chips">
@@ -415,7 +429,7 @@ Android phones, such as the Samsung Galaxy, unlock new ways of working. But, as 
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-october-windows-updates-trigger-bitlocker-recovery/" target="_blank" rel="noopener">Microsoft: October Windows updates trigger BitLocker recovery</a></h2>
           <div class="news-meta">
             <time datetime="2025-11-05T08:56:22.000Z">November 5, 2025 - 8:56 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Microsoft has warned that some systems may boot into BitLocker recovery after installing the October 2025 Windows security updates. [...]...</p>
         </article>
@@ -427,7 +441,7 @@ Android phones, such as the Samsung Galaxy, unlock new ways of working. But, as 
           <h2 class="news-title"><a href="https://thehackernews.com/2025/11/cisa-adds-gladinet-and-cwp-flaws-to-kev.html" target="_blank" rel="noopener">CISA Adds Gladinet and CWP Flaws to KEV Catalog Amid Active Exploitation Evidence</a></h2>
           <div class="news-meta">
             <time datetime="2025-11-05T06:12:00.000Z">November 5, 2025 - 6:12 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Tuesday added two security flaws impacting Gladinet and Control Web Panel (CWP) to its Known Exploited Vulnerabilities (KEV) catalog...</p>
         </article>
@@ -442,18 +456,6 @@ Android phones, such as the Samsung Galaxy, unlock new ways of working. But, as 
             
           </div>
           <p class="news-summary">The well-known North Korean threat group continues to improve the obfuscation and anti-analysis features of its attack toolchain....</p>
-        </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="AI App Spending Report: Where Are the Security Tools?" data-summary="An analysis of startup firms' spending on AI applications finds the top categories to be productivity and content-generation. Security? Not so much....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/ai-app-spending-report-where-are-the-security-tools" target="_blank" rel="noopener">AI App Spending Report: Where Are the Security Tools?</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-11-04T21:59:44.000Z">November 4, 2025 - 9:59 PM</time>
-            
-          </div>
-          <p class="news-summary">An analysis of startup firms' spending on AI applications finds the top categories to be productivity and content-generation. Security? Not so much....</p>
         </article>
     </div>
   </main>
@@ -499,7 +501,7 @@ Android phones, such as the Samsung Galaxy, unlock new ways of working. But, as 
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-11-06T06:11:02.114Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-11-06T09:08:18.778Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
