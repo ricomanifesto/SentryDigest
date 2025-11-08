@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-11-08T12:10:39.672Z">11/8/2025, 12:10:39 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-11-08T15:06:15.096Z">11/8/2025, 3:06:15 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Microsoft Uncovers 'Whisper Leak' Attack That Identifies AI Chat Topics in Encrypted Traffic" data-summary="Microsoft has disclosed details of a novel side-channel attack targeting remote language models that could enable a passive adversary with capabilities to observe network traffic to glean details abou...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/11/microsoft-uncovers-whisper-leak-attack.html" target="_blank" rel="noopener">Microsoft Uncovers 'Whisper Leak' Attack That Identifies AI Chat Topics in Encrypted Traffic</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-11-08T14:29:00.000Z">November 8, 2025 - 2:29 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Microsoft has disclosed details of a novel side-channel attack targeting remote language models that could enable a passive adversary with capabilities to observe network traffic to glean details abou...</p>
+        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="'Landfall' Malware Targeted Samsung Galaxy Users" data-summary="The tool let its operators secretly record conversations, track device locations, capture photos, collect contacts, and perform other surveillance on compromised devices....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -221,7 +233,7 @@ The ac...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/id-verification-laws-are-fueling-the-next-wave-of-breaches/" target="_blank" rel="noopener">ID verification laws are fueling the next wave of breaches</a></h2>
           <div class="news-meta">
             <time datetime="2025-11-07T15:05:15.000Z">November 7, 2025 - 3:05 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">ID laws are forcing companies to store massive amounts of sensitive data, turning compliance into a security risk. Acronis explains how integrated backup and cybersecurity platforms help MSPs reduce c...</p>
         </article>
@@ -233,7 +245,7 @@ The ac...</p>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/ai-agents-going-rogue" target="_blank" rel="noopener">AI Agents Are Going Rogue: Here's How to Rein Them In</a></h2>
           <div class="news-meta">
             <time datetime="2025-11-07T15:00:00.000Z">November 7, 2025 - 3:00 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Human-centered identity frameworks are incorrectly being applied to AI agents, creating the potential for catastrophe at machine speed, Poghosyan argues....</p>
         </article>
@@ -245,7 +257,7 @@ The ac...</p>
           <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/ai-security-agents-get-personas-make-them-more-appealing" target="_blank" rel="noopener">AI Security Agents Get Persona Makeovers</a></h2>
           <div class="news-meta">
             <time datetime="2025-11-07T14:29:08.000Z">November 7, 2025 - 2:29 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">New synthetic security staffers promise to bring artificial intelligence comfortably into the security operations center, but they will require governance to protect security....</p>
         </article>
@@ -257,7 +269,7 @@ The ac...</p>
           <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/ollama-nvidia-flaws-ai-infrastructure-risk" target="_blank" rel="noopener">Ollama, Nvidia Flaws Put AI Infrastructure at Risk</a></h2>
           <div class="news-meta">
             <time datetime="2025-11-07T14:00:00.000Z">November 7, 2025 - 2:00 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Security researchers discovered multiple vulnerabilities in AI infrastructure products, including one capable of remote code execution....</p>
         </article>
@@ -269,7 +281,7 @@ The ac...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/leak-confirms-google-gemini-3-pro-and-nano-banana-2-could-launch-soon/" target="_blank" rel="noopener">Leak confirms Google Gemini 3 Pro and Nano Banana 2 could launch soon</a></h2>
           <div class="news-meta">
             <time datetime="2025-11-07T13:06:11.000Z">November 7, 2025 - 1:06 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Google is planning to ship two new models. One is Gemini 3, which is optimised for coding and regular use, and the second is Nano Banano 2 for generating realistic images. [...]...</p>
         </article>
@@ -445,22 +457,6 @@ The campaign, detected in May 2...</p>
           </div>
           <p class="news-summary">Cisco has released security updates to patch a critical vulnerability in the Unified Contact Center Express (UCCX) software, which could enable attackers to execute commands with root privileges. [......</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="From Tabletop to Turnkey: Building Cyber Resilience in Financial Services" data-summary="Introduction
-Financial institutions are facing a new reality: cyber-resilience has passed from being a best practice, to an operational necessity, to a prescriptive regulatory requirement.
-Crisis mana...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/11/from-tabletop-to-turnkey-building-cyber.html" target="_blank" rel="noopener">From Tabletop to Turnkey: Building Cyber Resilience in Financial Services</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-11-06T11:59:00.000Z">November 6, 2025 - 11:59 AM</time>
-            
-          </div>
-          <p class="news-summary">Introduction
-Financial institutions are facing a new reality: cyber-resilience has passed from being a best practice, to an operational necessity, to a prescriptive regulatory requirement.
-Crisis mana...</p>
-        </article>
     </div>
   </main>
   
@@ -505,7 +501,7 @@ Crisis mana...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-11-08T12:10:39.672Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-11-08T15:06:15.096Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
