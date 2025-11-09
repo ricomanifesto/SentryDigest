@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
+          <option value="Krebs on Security">Krebs on Security</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-11-09T18:09:10.492Z">11/9/2025, 6:09:10 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-11-09T21:05:59.676Z">11/9/2025, 9:05:59 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Krebs on Security" data-host="krebsonsecurity.com" data-title="Drilling Down on Uncle Sam’s Proposed TP-Link Ban" data-summary="The U.S. government is reportedly preparing to ban the sale of wireless routers and other networking gear from TP-Link Systems, a tech company that currently enjoys an estimated 50% market share among...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Krebs on Security</span>
+            <span class="chip">krebsonsecurity.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://krebsonsecurity.com/2025/11/drilling-down-on-uncle-sams-proposed-tp-link-ban/" target="_blank" rel="noopener">Drilling Down on Uncle Sam’s Proposed TP-Link Ban</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-11-09T18:14:40.000Z">November 9, 2025 - 6:14 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The U.S. government is reportedly preparing to ban the sale of wireless routers and other networking gear from TP-Link Systems, a tech company that currently enjoys an estimated 50% market share among...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="NAKIVO Introduces v11.1 with Upgraded Disaster Recovery and MSP Features" data-summary="NAKIVO Backup & Replication v11.1 expands disaster recovery with real-time replication, enhanced Proxmox VE support, and granular physical backups. The update adds MSP Direct Connect for secure client...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -445,18 +457,6 @@ The campaign, detected in May 2...">
           <p class="news-summary">A previously unknown threat activity cluster has been observed impersonating Slovak cybersecurity company ESET as part of phishing attacks targeting Ukrainian entities.
 The campaign, detected in May 2...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Cisco Warns of New Firewall Attack Exploiting CVE-2025-20333 and CVE-2025-20362" data-summary="Cisco on Wednesday disclosed that it became aware of a new attack variant that's designed to target devices running Cisco Secure Firewall Adaptive Security Appliance (ASA) Software and Cisco Secure Fi...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/11/cisco-warns-of-new-firewall-attack.html" target="_blank" rel="noopener">Cisco Warns of New Firewall Attack Exploiting CVE-2025-20333 and CVE-2025-20362</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-11-06T14:58:00.000Z">November 6, 2025 - 2:58 PM</time>
-            
-          </div>
-          <p class="news-summary">Cisco on Wednesday disclosed that it became aware of a new attack variant that's designed to target devices running Cisco Secure Firewall Adaptive Security Appliance (ASA) Software and Cisco Secure Fi...</p>
-        </article>
     </div>
   </main>
   
@@ -500,8 +500,8 @@ The campaign, detected in May 2...</p>
           if (show) visible++;
         });
         const total = 30;
-        const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-11-09T18:09:10.492Z').toLocaleString());
+        const srcCount = 4;
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-11-09T21:05:59.676Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
