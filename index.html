@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Krebs on Security">Krebs on Security</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="Krebs on Security">Krebs on Security</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-11-09T21:05:59.676Z">11/9/2025, 9:05:59 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-11-10T00:32:51.012Z">11/10/2025, 12:32:51 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="How to use the new Windows 11 Start menu, now rolling out" data-summary="The Windows Start menu is getting its first major redesign since 2021 and will be rolled out to everyone with the November 11 Patch Tuesday update. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/how-to-use-the-new-windows-11-start-menu-now-rolling-out/" target="_blank" rel="noopener">How to use the new Windows 11 Start menu, now rolling out</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-11-09T23:28:57.000Z">November 9, 2025 - 11:28 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The Windows Start menu is getting its first major redesign since 2021 and will be rolled out to everyone with the November 11 Patch Tuesday update. [...]...</p>
+        </article>
         <article class="news-item" data-source="Krebs on Security" data-host="krebsonsecurity.com" data-title="Drilling Down on Uncle Sam’s Proposed TP-Link Ban" data-summary="The U.S. government is reportedly preparing to ban the sale of wireless routers and other networking gear from TP-Link Systems, a tech company that currently enjoys an estimated 50% market share among...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Krebs on Security</span>
@@ -147,7 +159,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/openai-plans-to-release-gpt-51-gpt-51-reasoning-and-gpt-51-pro/" target="_blank" rel="noopener">OpenAI plans to release GPT-5.1, GPT-5.1 Reasoning, and GPT-5.1 Pro</a></h2>
           <div class="news-meta">
             <time datetime="2025-11-08T22:29:44.000Z">November 8, 2025 - 10:29 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">OpenAI is preparing the GPT-5.1 family for public rollout. This includes GPT-5.1 (base), GPT-5.1 Reasoning, and GPT-5.1 Pro for those who pay a $200 monthly subscription. [...]...</p>
         </article>
@@ -357,18 +369,6 @@ The ac...</p>
           </div>
           <p class="news-summary">Security researchers discovered multiple vulnerabilities in AI infrastructure products, including one capable of remote code execution....</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Leak confirms Google Gemini 3 Pro and Nano Banana 2 could launch soon" data-summary="Google is planning to ship two new models. One is Gemini 3, which is optimised for coding and regular use, and the second is Nano Banano 2 for generating realistic images. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/leak-confirms-google-gemini-3-pro-and-nano-banana-2-could-launch-soon/" target="_blank" rel="noopener">Leak confirms Google Gemini 3 Pro and Nano Banana 2 could launch soon</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-11-07T13:06:11.000Z">November 7, 2025 - 1:06 PM</time>
-            
-          </div>
-          <p class="news-summary">Google is planning to ship two new models. One is Gemini 3, which is optimised for coding and regular use, and the second is Nano Banano 2 for generating realistic images. [...]...</p>
-        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Hidden Logic Bombs in Malware-Laced NuGet Packages Set to Detonate Years After Installation" data-summary="A set of nine malicious NuGet packages has been identified as capable of dropping time-delayed payloads to sabotage database operations and corrupt industrial control systems.
 According to software su...">
           <div class="chips">
@@ -501,7 +501,7 @@ The campaign, detected in May 2...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-11-09T21:05:59.676Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-11-10T00:32:51.012Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
