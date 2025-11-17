@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="Krebs on Security">Krebs on Security</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option><option value="Krebs on Security">Krebs on Security</option><option value="Bleeping Computer">Bleeping Computer</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-11-17T06:11:44.199Z">11/17/2025, 6:11:44 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-11-17T09:10:23.822Z">11/17/2025, 9:10:23 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -98,7 +98,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/events/dark-reading-virtual-event-cybersecurity-outlook-2026" target="_blank" rel="noopener">[Dark Reading Virtual Event] Cybersecurity Outlook 2026</a></h2>
           <div class="news-meta">
-            <time datetime="2025-11-17T06:11:44.164Z">November 17, 2025 - 6:11 AM</time>
+            <time datetime="2025-11-17T09:10:23.672Z">November 17, 2025 - 9:10 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           
@@ -110,10 +110,22 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/events/dark-reading-online-events" target="_blank" rel="noopener">Explore Our Online Events</a></h2>
           <div class="news-meta">
-            <time datetime="2025-11-17T06:11:44.164Z">November 17, 2025 - 6:11 AM</time>
+            <time datetime="2025-11-17T09:10:23.672Z">November 17, 2025 - 9:10 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Rust Adoption Drives Android Memory Safety Bugs Below 20% for First Time" data-summary="Google has disclosed that the company's continued adoption of the Rust programming language in Android has resulted in the number of memory safety vulnerabilities falling below 20% of total vulnerabil...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/11/rust-adoption-drives-android-memory.html" target="_blank" rel="noopener">Rust Adoption Drives Android Memory Safety Bugs Below 20% for First Time</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-11-17T06:02:00.000Z">November 17, 2025 - 6:02 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Google has disclosed that the company's continued adoption of the Rust programming language in Android has resulted in the number of memory safety vulnerabilities falling below 20% of total vulnerabil...</p>
         </article>
         <article class="news-item" data-source="Krebs on Security" data-host="krebsonsecurity.com" data-title="Microsoft Patch Tuesday, November 2025 Edition" data-summary="Microsoft this week pushed security updates to fix more than 60 vulnerabilities in its Windows operating systems and supported software, including at least one zero-day bug that is already being explo...">
           <div class="chips">
@@ -449,18 +461,6 @@ The vulnerab...</p>
           </div>
           <p class="news-summary">Cybersecurity researchers are sounding the alert about an authentication bypass vulnerability in Fortinet Fortiweb Web Application Firewall (WAF) that could allow an attacker to take over admin accoun...</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="How CISOs Can Best Work With CEOs and the Board: Lessons From the Field" data-summary="To build an effective relationship with the CEO and board, CISOs must translate technical risks into business terms and position cybersecurity as a strategic business enabler rather than just a busine...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/how-cisos-can-best-work-with-ceos-and-the-board-lessons-from-the-field" target="_blank" rel="noopener">How CISOs Can Best Work With CEOs and the Board: Lessons From the Field</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-11-13T23:40:55.000Z">November 13, 2025 - 11:40 PM</time>
-            
-          </div>
-          <p class="news-summary">To build an effective relationship with the CEO and board, CISOs must translate technical risks into business terms and position cybersecurity as a strategic business enabler rather than just a busine...</p>
-        </article>
     </div>
   </main>
   
@@ -505,7 +505,7 @@ The vulnerab...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-11-17T06:11:44.199Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-11-17T09:10:23.822Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
