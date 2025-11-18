@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-11-18T12:12:58.051Z">11/18/2025, 12:12:58 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-11-18T15:08:21.820Z">11/18/2025, 3:08:21 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -98,7 +98,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/events/dark-reading-virtual-event-cybersecurity-outlook-2026" target="_blank" rel="noopener">[Dark Reading Virtual Event] Cybersecurity Outlook 2026</a></h2>
           <div class="news-meta">
-            <time datetime="2025-11-18T12:12:58.025Z">November 18, 2025 - 12:12 PM</time>
+            <time datetime="2025-11-18T15:08:21.820Z">November 18, 2025 - 3:08 PM</time>
             <span class="badge-new">NEW</span>
           </div>
           
@@ -110,10 +110,22 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/events/dark-reading-online-events" target="_blank" rel="noopener">Explore Our Online Events</a></h2>
           <div class="news-meta">
-            <time datetime="2025-11-18T12:12:58.025Z">November 18, 2025 - 12:12 PM</time>
+            <time datetime="2025-11-18T15:08:21.820Z">November 18, 2025 - 3:08 PM</time>
             <span class="badge-new">NEW</span>
           </div>
           
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Cloudflare hit by outage affecting global network services" data-summary="Cloudflare is investigating an outage affecting its global network services, with users encountering &quot;internal server error&quot; messages when attempting to access affected websites and online platforms. ...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/technology/cloudflare-hit-by-outage-affecting-global-network-services/" target="_blank" rel="noopener">Cloudflare hit by outage affecting global network services</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-11-18T12:24:59.000Z">November 18, 2025 - 12:24 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Cloudflare is investigating an outage affecting its global network services, with users encountering "internal server error" messages when attempting to access affected websites and online platforms. ...</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Google fixes new Chrome zero-day flaw exploited in attacks" data-summary="Google has released an emergency security update to fix the seventh Chrome zero-day vulnerability exploited in attacks this year. [...]...">
           <div class="chips">
@@ -303,7 +315,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-windows-bug-blocks-microsoft-365-desktop-app-installs/" target="_blank" rel="noopener">Microsoft: Windows bug blocks Microsoft 365 desktop app installs</a></h2>
           <div class="news-meta">
             <time datetime="2025-11-17T14:54:31.000Z">November 17, 2025 - 2:54 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">​Microsoft is working to resolve a known issue preventing users from installing the Microsoft 365 desktop apps on Windows devices. [...]...</p>
         </article>
@@ -318,18 +330,6 @@
             
           </div>
           <p class="news-summary">Microsoft this week pushed security updates to fix more than 60 vulnerabilities in its Windows operating systems and supported software, including at least one zero-day bug that is already being explo...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Google to flag Android apps with excessive battery use on the Play Store" data-summary="Google will start taking action on Android apps in the official Google Play store that have high background activity and cause excessive battery draining. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/google-to-flag-android-apps-with-excessive-battery-use-on-the-play-store/" target="_blank" rel="noopener">Google to flag Android apps with excessive battery use on the Play Store</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-11-16T15:15:25.000Z">November 16, 2025 - 3:15 PM</time>
-            
-          </div>
-          <p class="news-summary">Google will start taking action on Android apps in the official Google Play store that have high background activity and cause excessive battery draining. [...]...</p>
         </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Akira RaaS Targets Nutanix VMs, Threatens Critical Orgs" data-summary="The Akira ransomware group has been experimenting with new tools, bugs, and attack surfaces, with demonstrated success in significant sectors....">
           <div class="chips">
@@ -495,7 +495,7 @@
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-11-18T12:12:58.051Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-11-18T15:08:21.820Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
