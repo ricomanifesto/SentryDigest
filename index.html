@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-11-28T18:09:44.197Z">11/28/2025, 6:09:44 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-11-28T21:06:04.191Z">11/28/2025, 9:06:04 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Man behind in-flight Evil Twin WiFi attacks gets 7 years in prison" data-summary="A 44-year-old man was sentenced to seven years and four months in prison for operating an &quot;evil twin&quot; WiFi network to steal the data of unsuspecting travelers at various airports across Australia. [.....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/man-behind-in-flight-evil-twin-wifi-attacks-gets-7-years-in-prison/" target="_blank" rel="noopener">Man behind in-flight Evil Twin WiFi attacks gets 7 years in prison</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-11-28T18:25:28.000Z">November 28, 2025 - 6:25 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A 44-year-old man was sentenced to seven years and four months in prison for operating an "evil twin" WiFi network to steal the data of unsuspecting travelers at various airports across Australia. [.....</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft: Windows updates make password login option invisible" data-summary="Microsoft warned users that Windows 11 updates released since August may cause the password sign-in option to disappear from the lock screen options, even though the button remains functional. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -188,7 +200,7 @@ As of October 202...">
           <h2 class="news-title"><a href="https://thehackernews.com/2025/11/bloody-wolf-expands-java-based.html" target="_blank" rel="noopener">Bloody Wolf Expands Java-based NetSupport RAT Attacks in Kyrgyzstan and Uzbekistan</a></h2>
           <div class="news-meta">
             <time datetime="2025-11-27T18:13:00.000Z">November 27, 2025 - 6:13 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The threat actor known as Bloody Wolf has been attributed to a cyber attack campaign that has targeted Kyrgyzstan since at least June 2025 with the goal of delivering NetSupport RAT.
 As of October 202...</p>
@@ -345,18 +357,6 @@ The Socket Research Team said it identified...">
           <p class="news-summary">The second wave of the Shai-Hulud supply chain attack has spilled over to the Maven ecosystem after compromising more than 830 packages in the npm registry.
 The Socket Research Team said it identified...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Multiple London councils' IT systems disrupted by cyberattack" data-summary="The Royal Borough of Kensington and Chelsea (RBKC) and the Westminster City Council (WCC) announced that they are experiencing service disruptions following a cybersecurity issue. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/multiple-london-councils-it-systems-disrupted-by-cyberattack/" target="_blank" rel="noopener">Multiple London councils' IT systems disrupted by cyberattack</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-11-26T17:26:11.000Z">November 26, 2025 - 5:26 PM</time>
-            
-          </div>
-          <p class="news-summary">The Royal Borough of Kensington and Chelsea (RBKC) and the Westminster City Council (WCC) announced that they are experiencing service disruptions following a cybersecurity issue. [...]...</p>
-        </article>
         <article class="news-item" data-source="Krebs on Security" data-host="krebsonsecurity.com" data-title="Meet Rey, the Admin of ‘Scattered Lapsus$ Hunters’" data-summary="A prolific cybercriminal group that calls itself &quot;Scattered LAPSUS$ Hunters&quot; made headlines regularly this year by stealing data from and publicly mass extorting dozens of major corporations. But the ...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Krebs on Security</span>
@@ -511,7 +511,7 @@ The Socket Research Team said it identified...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-11-28T18:09:44.197Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-11-28T21:06:04.191Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
