@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-11-29T09:07:11.924Z">11/29/2025, 9:07:11 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-11-29T12:11:12.843Z">11/29/2025, 12:11:12 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Leak confirms OpenAI is preparing ads on ChatGPT for public roll out" data-summary="OpenAI is now internally testing 'ads' inside ChatGPT that could redefine the web economy. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/leak-confirms-openai-is-preparing-ads-on-chatgpt-for-public-roll-out/" target="_blank" rel="noopener">Leak confirms OpenAI is preparing ads on ChatGPT for public roll out</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-11-29T11:31:22.000Z">November 29, 2025 - 11:31 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">OpenAI is now internally testing 'ads' inside ChatGPT that could redefine the web economy. [...]...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Man behind in-flight Evil Twin WiFi attacks gets 7 years in prison" data-summary="A 44-year-old man was sentenced to seven years and four months in prison for operating an &quot;evil twin&quot; WiFi network to steal the data of unsuspecting travelers at various airports across Australia. [.....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -173,7 +185,7 @@ According to Socket, these packages ...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2025/11/why-organizations-are-turning-to-rpam.html" target="_blank" rel="noopener">Why Organizations Are Turning to RPAM</a></h2>
           <div class="news-meta">
             <time datetime="2025-11-28T11:09:00.000Z">November 28, 2025 - 11:09 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">As IT environments become increasingly distributed and organizations adopt hybrid and remote work at scale, traditional perimeter-based security models and on-premises Privileged Access Management (PA...</p>
         </article>
@@ -455,20 +467,6 @@ The Socket Research Team said it identified...</p>
           </div>
           <p class="news-summary">Cybersecurity researchers have discovered a new malicious extension on the Chrome Web Store that's capable of injecting a stealthy Solana transfer into a swap transaction and transferring the funds to...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="RomCom Uses SocGholish Fake Update Attacks to Deliver Mythic Agent Malware" data-summary="The threat actors behind a malware family known as RomCom targeted a U.S.-based civil engineering company via a JavaScript loader dubbed SocGholish to deliver the Mythic Agent.
-&quot;This is the first time...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/11/romcom-uses-socgholish-fake-update.html" target="_blank" rel="noopener">RomCom Uses SocGholish Fake Update Attacks to Deliver Mythic Agent Malware</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-11-26T08:28:00.000Z">November 26, 2025 - 8:28 AM</time>
-            
-          </div>
-          <p class="news-summary">The threat actors behind a malware family known as RomCom targeted a U.S.-based civil engineering company via a JavaScript loader dubbed SocGholish to deliver the Mythic Agent.
-"This is the first time...</p>
-        </article>
     </div>
   </main>
   
@@ -513,7 +511,7 @@ The Socket Research Team said it identified...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-11-29T09:07:11.924Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-11-29T12:11:12.843Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
