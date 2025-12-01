@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-12-01T03:39:48.646Z">12/1/2025, 3:39:48 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-12-01T06:12:08.791Z">12/1/2025, 6:12:08 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Tomiris Shifts to Public-Service Implants for Stealthier C2 in Attacks on Government Targets" data-summary="The threat actor known as Tomiris has been attributed to attacks targeting foreign ministries, intergovernmental organizations, and government entities in Russia with an aim to establish remote access...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/12/tomiris-shifts-to-public-service.html" target="_blank" rel="noopener">Tomiris Shifts to Public-Service Implants for Stealthier C2 in Attacks on Government Targets</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-12-01T05:07:00.000Z">December 1, 2025 - 5:07 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The threat actor known as Tomiris has been attributed to attacks targeting foreign ministries, intergovernmental organizations, and government entities in Russia with an aim to establish remote access...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="CISA Adds Actively Exploited XSS Bug CVE-2021-26829 in OpenPLC ScadaBR to KEV" data-summary="The U.S. Cybersecurity and Infrastructure Security Agency (CISA) has updated its Known Exploited Vulnerabilities (KEV) catalog to include a security flaw impacting OpenPLC ScadaBR, citing evidence of ...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
@@ -455,18 +467,6 @@ The Socket Research Team said it identified...</p>
           <p class="news-summary">South Korea's financial sector has been targeted by what has been described as a sophisticated supply chain attack that led to the deployment of Qilin ransomware.
 "This operation combined the capabili...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="When Your $2M Security Detection Fails: Can your SOC Save You?" data-summary="Enterprises today are expected to have at least 6-8 detection tools, as detection is considered a standard investment and the first line of defense. Yet security leaders struggle to justify dedicating...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/11/when-your-2m-security-detection-fails.html" target="_blank" rel="noopener">When Your $2M Security Detection Fails: Can your SOC Save You?</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-11-26T11:55:00.000Z">November 26, 2025 - 11:55 AM</time>
-            
-          </div>
-          <p class="news-summary">Enterprises today are expected to have at least 6-8 detection tools, as detection is considered a standard investment and the first line of defense. Yet security leaders struggle to justify dedicating...</p>
-        </article>
     </div>
   </main>
   
@@ -511,7 +511,7 @@ The Socket Research Team said it identified...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-01T03:39:48.646Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-01T06:12:08.791Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
