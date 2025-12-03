@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-12-03T00:31:11.929Z">12/3/2025, 12:31:11 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-12-03T03:30:51.996Z">12/3/2025, 3:30:51 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="China Researches Ways to Disrupt Satellite Internet" data-summary="While satellite constellations — such as Starlink — are resilient, 2,000 drones could cut communications to a region the size of Taiwan, researchers find....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/china-researches-ways-disrupt-satellite-internet" target="_blank" rel="noopener">China Researches Ways to Disrupt Satellite Internet</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-12-03T02:00:00.000Z">December 3, 2025 - 2:00 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">While satellite constellations — such as Starlink — are resilient, 2,000 drones could cut communications to a region the size of Taiwan, researchers find....</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Korea arrests suspects selling intimate videos from hacked IP cameras" data-summary="The Korean National Police have arrested four individuals suspected of hacking over 120,000 IP cameras across the country and then selling stolen footage to a foreign adult site. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -285,12 +297,12 @@ The package in question is eslint-plugin-unicorn-ts...</p>
           </div>
           <p class="news-summary">Microsoft has confirmed that the KB5070311 preview update is triggering bright white flashes when launching the File Explorer in dark mode on Windows 11 systems. [...]...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Iran-Linked Hackers Hits Israeli Sectors with New MuddyViper Backdoor in Targeted Attacks" data-summary="Israeli entities spanning academia, engineering, local government, manufacturing, technology, transportation, and utilities sectors have emerged as the target of a new set of attacks undertaken by Ira...">
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Iran-Linked Hackers Hit Israeli Sectors with New MuddyViper Backdoor in Targeted Attacks" data-summary="Israeli entities spanning academia, engineering, local government, manufacturing, technology, transportation, and utilities sectors have emerged as the target of a new set of attacks undertaken by Ira...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
           </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/12/iran-linked-hackers-hits-israeli_2.html" target="_blank" rel="noopener">Iran-Linked Hackers Hits Israeli Sectors with New MuddyViper Backdoor in Targeted Attacks</a></h2>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/12/iran-linked-hackers-hits-israeli_2.html" target="_blank" rel="noopener">Iran-Linked Hackers Hit Israeli Sectors with New MuddyViper Backdoor in Targeted Attacks</a></h2>
           <div class="news-meta">
             <time datetime="2025-12-02T13:37:00.000Z">December 2, 2025 - 1:37 PM</time>
             <span class="badge-new">NEW</span>
@@ -451,18 +463,6 @@ For the last two decades, whether you used Chrome, Edge, or Firefox, the fundame
           <p class="news-summary">The AI browser wars are coming to a desktop near you, and you need to start worrying about their security challenges.
 For the last two decades, whether you used Chrome, Edge, or Firefox, the fundament...</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Shai-hulud 2.0 Variant Threatens Cloud Ecosystem" data-summary="The latest attack from the self-replicating npm-package poisoning worm can also steal credentials and secrets from AWS, Google Cloud Platform, and Azure....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/shai-hulud-variant-cloud-ecosystem" target="_blank" rel="noopener">Shai-hulud 2.0 Variant Threatens Cloud Ecosystem</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-12-01T11:10:12.000Z">December 1, 2025 - 11:10 AM</time>
-            
-          </div>
-          <p class="news-summary">The latest attack from the self-replicating npm-package poisoning worm can also steal credentials and secrets from AWS, Google Cloud Platform, and Azure....</p>
-        </article>
     </div>
   </main>
   
@@ -507,7 +507,7 @@ For the last two decades, whether you used Chrome, Edge, or Firefox, the fundame
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-03T00:31:11.929Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-03T03:30:51.996Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
