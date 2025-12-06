@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Krebs on Security">Krebs on Security</option>
+          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-12-06T03:25:43.695Z">12/6/2025, 3:25:43 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-12-06T06:09:55.145Z">12/6/2025, 6:09:55 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -98,7 +98,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/events/gisec-global" target="_blank" rel="noopener">GISEC GLOBAL 2026 – The Middle East &amp; Africa’s Largest Cybersecurity Event</a></h2>
           <div class="news-meta">
-            <time datetime="2025-12-06T03:25:43.534Z">December 6, 2025 - 3:25 AM</time>
+            <time datetime="2025-12-06T06:09:54.521Z">December 6, 2025 - 6:09 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           
@@ -332,7 +332,7 @@ The vulnerab...">
           <h2 class="news-title"><a href="https://thehackernews.com/2025/12/jpcert-confirms-active-command.html" target="_blank" rel="noopener">JPCERT Confirms Active Command Injection Attacks on Array AG Gateways</a></h2>
           <div class="news-meta">
             <time datetime="2025-12-05T05:40:00.000Z">December 5, 2025 - 5:40 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A command injection vulnerability in Array Networks AG Series secure access gateways has been exploited in the wild since August 2025, according to an alert issued by JPCERT/CC this week.
 The vulnerab...</p>
@@ -360,18 +360,6 @@ The vulnerab...</p>
             
           </div>
           <p class="news-summary">Threat actors have been exploiting a command injection vulnerability in Array AG Series VPN devices to plant webshells and create rogue users. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Krebs on Security" data-host="krebsonsecurity.com" data-title="SMS Phishers Pivot to Points, Taxes, Fake Retailers" data-summary="China-based phishing groups blamed for non-stop scam SMS messages about a supposed wayward package or unpaid toll fee are promoting a new offering, just in time for the holiday shopping season: Phishi...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Krebs on Security</span>
-            <span class="chip">krebsonsecurity.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://krebsonsecurity.com/2025/12/sms-phishers-pivot-to-points-taxes-fake-retailers/" target="_blank" rel="noopener">SMS Phishers Pivot to Points, Taxes, Fake Retailers</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-12-04T23:02:34.000Z">December 4, 2025 - 11:02 PM</time>
-            
-          </div>
-          <p class="news-summary">China-based phishing groups blamed for non-stop scam SMS messages about a supposed wayward package or unpaid toll fee are promoting a new offering, just in time for the holiday shopping season: Phishi...</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="NCSC's ‘Proactive Notifications’ warns orgs of flaws in exposed devices" data-summary="The UK's National Cyber Security Center (NCSC) announced the testing phase of a new service called Proactive Notifications, designed to inform organizations in the country of vulnerabilities present i...">
           <div class="chips">
@@ -459,6 +447,18 @@ The search engine optimization (...">
           <p class="news-summary">The threat actor known as Silver Fox has been spotted orchestrating a false flag operation to mimic a Russian threat group in attacks targeting organizations in China.
 The search engine optimization (...</p>
         </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="ServiceNow's Acquisition of NHI Provider Veza Strengthens Governance Portfolio" data-summary="The deal, believed to be valued at $1 billion, will bring nonhuman identity access control of agents and machines to ServiceNow's offerings, including its new AI Control Tower....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/servicenow-acquire-nhi-provider-veza-strengthen-governance-portfolio" target="_blank" rel="noopener">ServiceNow's Acquisition of NHI Provider Veza Strengthens Governance Portfolio</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-12-04T15:29:11.000Z">December 4, 2025 - 3:29 PM</time>
+            
+          </div>
+          <p class="news-summary">The deal, believed to be valued at $1 billion, will bring nonhuman identity access control of agents and machines to ServiceNow's offerings, including its new AI Control Tower....</p>
+        </article>
     </div>
   </main>
   
@@ -502,8 +502,8 @@ The search engine optimization (...</p>
           if (show) visible++;
         });
         const total = 30;
-        const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-06T03:25:43.695Z').toLocaleString());
+        const srcCount = 3;
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-06T06:09:55.145Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
