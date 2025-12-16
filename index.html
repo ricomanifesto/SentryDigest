@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-12-16T00:33:09.117Z">12/16/2025, 12:33:09 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-12-16T03:35:30.506Z">12/16/2025, 3:35:30 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -98,10 +98,22 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/events/gisec-global" target="_blank" rel="noopener">GISEC GLOBAL 2026 – The Middle East &amp; Africa’s Largest Cybersecurity Event</a></h2>
           <div class="news-meta">
-            <time datetime="2025-12-16T00:33:08.940Z">December 16, 2025 - 12:33 AM</time>
+            <time datetime="2025-12-16T03:35:29.870Z">December 16, 2025 - 3:35 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="SoundCloud confirms breach after member data stolen, VPN access disrupted" data-summary="Audio streaming platform SoundCloud has confirmed that outages and VPN connection issues over the past few days were caused by a security breach in which threat actors stole a database containing user...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/soundcloud-confirms-breach-after-member-data-stolen-vpn-access-disrupted/" target="_blank" rel="noopener">SoundCloud confirms breach after member data stolen, VPN access disrupted</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-12-16T00:38:47.000Z">December 16, 2025 - 12:38 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Audio streaming platform SoundCloud has confirmed that outages and VPN connection issues over the past few days were caused by a security breach in which threat actors stole a database containing user...</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Google is shutting down its dark web report feature in January" data-summary="Google is discontinuing its &quot;dark web report&quot; security tool, stating that it wants to focus on other tools it believes are more helpful. [...]...">
           <div class="chips">
@@ -357,18 +369,6 @@ A threat group dubbed ShadyPanda spe...</p>
           </div>
           <p class="news-summary">An email scam is abusing abusing PayPal's "Subscriptions" billing feature to send legitimate PayPal emails that contain fake purchase notifications embedded in the Customer service URL field. [...]...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="CyberVolk’s ransomware debut stumbles on cryptography weakness" data-summary="The pro-Russia hacktivist group CyberVolk launched a ransomware-as-a-service (RaaS) called VolkLocker that suffered from serious implementation flaws, allowing victims to potentially decrypt files for...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cybervolks-ransomware-debut-stumbles-on-cryptography-weakness/" target="_blank" rel="noopener">CyberVolk’s ransomware debut stumbles on cryptography weakness</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-12-13T15:11:21.000Z">December 13, 2025 - 3:11 PM</time>
-            
-          </div>
-          <p class="news-summary">The pro-Russia hacktivist group CyberVolk launched a ransomware-as-a-service (RaaS) called VolkLocker that suffered from serious implementation flaws, allowing victims to potentially decrypt files for...</p>
-        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="CISA Adds Actively Exploited Sierra Wireless Router Flaw Enabling RCE Attacks" data-summary="The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Friday added a high-severity flaw impacting Sierra Wireless AirLink ALEOS routers to its Known Exploited Vulnerabilities (KEV) catal...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
@@ -497,7 +497,7 @@ A threat group dubbed ShadyPanda spe...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-16T00:33:09.117Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-16T03:35:30.506Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
