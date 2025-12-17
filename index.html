@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-12-17T06:11:32.353Z">12/17/2025, 6:11:32 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-12-17T09:10:58.244Z">12/17/2025, 9:10:58 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -98,10 +98,22 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/events/gisec-global" target="_blank" rel="noopener">GISEC GLOBAL 2026 – The Middle East &amp; Africa’s Largest Cybersecurity Event</a></h2>
           <div class="news-meta">
-            <time datetime="2025-12-17T06:11:32.049Z">December 17, 2025 - 6:11 AM</time>
+            <time datetime="2025-12-17T09:10:57.959Z">December 17, 2025 - 9:10 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Afripol Focuses on Regional Cyber Challenges, Deepening Cooperation" data-summary="Rapid digitization, uneven cybersecurity know-how, and growing cybercriminal syndicates in the region have challenged law enforcement and prosecutors....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/afripol-focuses-regional-cyber-challenges-deepening-cooperation" target="_blank" rel="noopener">Afripol Focuses on Regional Cyber Challenges, Deepening Cooperation</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-12-17T07:00:00.000Z">December 17, 2025 - 7:00 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Rapid digitization, uneven cybersecurity know-how, and growing cybercriminal syndicates in the region have challenged law enforcement and prosecutors....</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Cellik Android malware builds malicious versions from Google Play apps" data-summary="A new Android malware-as-a-service (MaaS) named Cellik is being advertised on underground cybercrime forums offering a robust set of capabilities that include the option to embed it in any app availab...">
           <div class="chips">
@@ -347,7 +359,7 @@ Cybersecurity company Arctic Wolf said it observed activ...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2025/12/react2shell-vulnerability-actively.html" target="_blank" rel="noopener">React2Shell Vulnerability Actively Exploited to Deploy Linux Backdoors</a></h2>
           <div class="news-meta">
             <time datetime="2025-12-16T08:21:00.000Z">December 16, 2025 - 8:21 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The security vulnerability known as React2Shell is being exploited by threat actors to deliver malware families like KSwapDoor and ZnDoor, according to findings from Palo Alto Networks Unit 42 and NTT...</p>
         </article>
@@ -447,18 +459,6 @@ Cybersecurity company Arctic Wolf said it observed activ...</p>
           </div>
           <p class="news-summary">Etay Mayor, a cybersecurity strategist and professor, shares his journey, insights, and advice on breaking into the diverse and ever-evolving field of cybersecurity....</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Featured Chrome Browser Extension Caught Intercepting Millions of Users' AI Chats" data-summary="A Google Chrome extension with a &quot;Featured&quot; badge and six million users has been observed silently gathering every prompt entered by users into artificial intelligence (AI)-powered chatbots like OpenA...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/12/featured-chrome-browser-extension.html" target="_blank" rel="noopener">Featured Chrome Browser Extension Caught Intercepting Millions of Users' AI Chats</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-12-15T17:46:00.000Z">December 15, 2025 - 5:46 PM</time>
-            
-          </div>
-          <p class="news-summary">A Google Chrome extension with a "Featured" badge and six million users has been observed silently gathering every prompt entered by users into artificial intelligence (AI)-powered chatbots like OpenA...</p>
-        </article>
     </div>
   </main>
   
@@ -503,7 +503,7 @@ Cybersecurity company Arctic Wolf said it observed activ...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-17T06:11:32.353Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-17T09:10:58.244Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
