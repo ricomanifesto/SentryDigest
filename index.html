@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-12-18T06:11:44.738Z">12/18/2025, 6:11:44 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-12-18T09:10:57.599Z">12/18/2025, 9:10:57 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Kimsuky Spreads DocSwap Android Malware via QR Phishing Posing as Delivery App" data-summary="The North Korean threat actor known as Kimsuky has been linked to a new campaign that distributes a new variant of Android malware called DocSwap via QR codes hosted on phishing sites mimicking Seoul-...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/12/kimsuky-spreads-docswap-android-malware.html" target="_blank" rel="noopener">Kimsuky Spreads DocSwap Android Malware via QR Phishing Posing as Delivery App</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-12-18T07:43:00.000Z">December 18, 2025 - 7:43 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The North Korean threat actor known as Kimsuky has been linked to a new campaign that distributes a new variant of Android malware called DocSwap via QR codes hosted on phishing sites mimicking Seoul-...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="CISA Flags Critical ASUS Live Update Flaw After Evidence of Active Exploitation" data-summary="The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Wednesday added a critical flaw impacting ASUS Live Update to its Known Exploited Vulnerabilities (KEV) catalog, citing evidence of ...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
@@ -357,7 +369,7 @@ The Russian cybersecurity vendor sai...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2025/12/ghostposter-malware-found-in-17-firefox.html" target="_blank" rel="noopener">GhostPoster Malware Found in 17 Firefox Add-ons with 50,000+ Downloads</a></h2>
           <div class="news-meta">
             <time datetime="2025-12-17T08:14:00.000Z">December 17, 2025 - 8:14 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A new campaign named GhostPoster has leveraged logo files associated with 17 Mozilla Firefox browser add-ons to embed malicious JavaScript code designed to hijack affiliate links, inject tracking code...</p>
         </article>
@@ -369,7 +381,7 @@ The Russian cybersecurity vendor sai...</p>
           <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/afripol-focuses-regional-cyber-challenges-deepening-cooperation" target="_blank" rel="noopener">Afripol Focuses on Regional Cyber Challenges, Deepening Cooperation</a></h2>
           <div class="news-meta">
             <time datetime="2025-12-17T07:00:00.000Z">December 17, 2025 - 7:00 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Rapid digitization, uneven cybersecurity know-how, and growing cybercriminal syndicates in the region have challenged law enforcement and prosecutors....</p>
         </article>
@@ -445,18 +457,6 @@ The Russian cybersecurity vendor sai...</p>
           </div>
           <p class="news-summary">The Amazon Threat Intelligence team has disrupted active operations attributed to hackers working for the Russian foreign military intelligence agency, the GRU, who targeted customers' cloud infrastru...</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Russia Hits Critical Orgs Via Misconfigured Edge Devices" data-summary="Amazon detailed a long-running campaign by Russia against critical infrastructure organizations, particularly in the energy sector....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/endpoint-security/russian-apt-attacking-critical-orgs-around-world" target="_blank" rel="noopener">Russia Hits Critical Orgs Via Misconfigured Edge Devices</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-12-16T20:03:15.000Z">December 16, 2025 - 8:03 PM</time>
-            
-          </div>
-          <p class="news-summary">Amazon detailed a long-running campaign by Russia against critical infrastructure organizations, particularly in the energy sector....</p>
-        </article>
     </div>
   </main>
   
@@ -501,7 +501,7 @@ The Russian cybersecurity vendor sai...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-18T06:11:44.738Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-18T09:10:57.599Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
