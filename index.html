@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,34 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-12-18T18:11:07.684Z">12/18/2025, 6:11:07 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-12-18T21:07:33.137Z">12/18/2025, 9:07:33 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="University of Sydney suffers data breach exposing student and staff info" data-summary="Hackers gained access to an online coding repository belonging to the University of Sydney and stole files with personal information of staff and students. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/university-of-sydney-suffers-data-breach-exposing-student-and-staff-info/" target="_blank" rel="noopener">University of Sydney suffers data breach exposing student and staff info</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-12-18T20:22:58.000Z">December 18, 2025 - 8:22 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Hackers gained access to an online coding repository belonging to the University of Sydney and stole files with personal information of staff and students. [...]...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Clop ransomware targets Gladinet CentreStack in data theft attacks" data-summary="The Clop ransomware gang is targeting Internet-exposed Gladinet CentreStack file servers in a new data theft extortion campaign. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/clop-ransomware-targets-gladinet-centrestack-servers-for-extortion/" target="_blank" rel="noopener">Clop ransomware targets Gladinet CentreStack in data theft attacks</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-12-18T20:16:55.000Z">December 18, 2025 - 8:16 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The Clop ransomware gang is targeting Internet-exposed Gladinet CentreStack file servers in a new data theft extortion campaign. [...]...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="China-Aligned Threat Group Uses Windows Group Policy to Deploy Espionage Malware" data-summary="A previously undocumented China-aligned threat cluster dubbed LongNosedGoblin has been attributed to a series of cyber attacks targeting governmental entities in Southeast Asia and Japan.
 The end goal...">
           <div class="chips">
@@ -359,6 +383,18 @@ The critical vulnerability, a...</p>
           </div>
           <p class="news-summary">The future of cybersecurity means defending everywhere. Securing IoT, cloud, and remote work requires a unified edge-to-cloud strategy. (First in a three-part series.)...</p>
         </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="'Fake Proof' and AI Slop Hobble Defenders" data-summary="In the React2Shell saga, nonworking and trivial proof-of-concept exploits led to confusion and perhaps a false sense of security. Can the onslaught of PoCs be tamed?...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/application-security/fake-proof-ai-slop-hobble-defenders" target="_blank" rel="noopener">'Fake Proof' and AI Slop Hobble Defenders</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-12-17T20:58:31.000Z">December 17, 2025 - 8:58 PM</time>
+            
+          </div>
+          <p class="news-summary">In the React2Shell saga, nonworking and trivial proof-of-concept exploits led to confusion and perhaps a false sense of security. Can the onslaught of PoCs be tamed?...</p>
+        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="The Future of Quantum-Safe Networks Depends on Interoperable Standards" data-summary="As quantum computing advances, secure, interoperable standards will be critical to making quantum key distribution (QKD) practical, trusted, and future-proof....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -367,7 +403,7 @@ The critical vulnerability, a...</p>
           <h2 class="news-title"><a href="https://www.darkreading.com/endpoint-security/securing-future-building-quantum-safe-networks-today" target="_blank" rel="noopener">The Future of Quantum-Safe Networks Depends on Interoperable Standards</a></h2>
           <div class="news-meta">
             <time datetime="2025-12-17T20:46:43.000Z">December 17, 2025 - 8:46 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">As quantum computing advances, secure, interoperable standards will be critical to making quantum key distribution (QKD) practical, trusted, and future-proof....</p>
         </article>
@@ -379,21 +415,9 @@ The critical vulnerability, a...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/whatsapp-device-linking-abused-in-account-hijacking-attacks/" target="_blank" rel="noopener">WhatsApp device linking abused in account hijacking attacks</a></h2>
           <div class="news-meta">
             <time datetime="2025-12-17T19:14:30.000Z">December 17, 2025 - 7:14 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Threat actors are abusing the legitimate device-linking feature to hijack WhatsApp accounts via pairing codes in a campaign dubbed GhostPairing. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Cisco warns of unpatched AsyncOS zero-day exploited in attacks" data-summary="​Cisco warned customers today of an unpatched, maximum-severity Cisco AsyncOS zero-day actively exploited in attacks targeting Secure Email Gateway (SEG) and Secure Email and Web Manager (SEWM) applia...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cisco-warns-of-unpatched-asyncos-zero-day-exploited-in-attacks/" target="_blank" rel="noopener">Cisco warns of unpatched AsyncOS zero-day exploited in attacks</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-12-17T18:45:36.000Z">December 17, 2025 - 6:45 PM</time>
-            <span class="badge-new">NEW</span>
-          </div>
-          <p class="news-summary">​Cisco warned customers today of an unpatched, maximum-severity Cisco AsyncOS zero-day actively exploited in attacks targeting Secure Email Gateway (SEG) and Secure Email and Web Manager (SEWM) applia...</p>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="SonicWall Fixes Actively Exploited CVE-2025-40602 in SMA 100 Appliances" data-summary="SonicWall has rolled out fixes to address a security flaw in Secure Mobile Access (SMA) 100 series appliances that it said has been actively exploited in the wild.
 The vulnerability, tracked as CVE-20...">
@@ -404,7 +428,7 @@ The vulnerability, tracked as CVE-20...">
           <h2 class="news-title"><a href="https://thehackernews.com/2025/12/sonicwall-fixes-actively-exploited-cve.html" target="_blank" rel="noopener">SonicWall Fixes Actively Exploited CVE-2025-40602 in SMA 100 Appliances</a></h2>
           <div class="news-meta">
             <time datetime="2025-12-17T18:17:00.000Z">December 17, 2025 - 6:17 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">SonicWall has rolled out fixes to address a security flaw in Secure Mobile Access (SMA) 100 series appliances that it said has been actively exploited in the wild.
 The vulnerability, tracked as CVE-20...</p>
@@ -421,18 +445,6 @@ The vulnerability, tracked as CVE-20...</p>
           </div>
           <p class="news-summary">A new distributed denial-of-service (DDoS) botnet known as Kimwolf has enlisted a massive army of no less than 1.8 million infected devices comprising Android-based TVs, set-top boxes, and tablets, an...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Sonicwall warns of new SMA1000 zero-day exploited in attacks" data-summary="SonicWall warned customers today to patch a vulnerability in the SonicWall SMA1000 Appliance Management Console (AMC) that was chained in zero-day attacks to escalate privileges. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/sonicwall-warns-of-new-sma1000-zero-day-exploited-in-attacks/" target="_blank" rel="noopener">Sonicwall warns of new SMA1000 zero-day exploited in attacks</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-12-17T17:44:18.000Z">December 17, 2025 - 5:44 PM</time>
-            
-          </div>
-          <p class="news-summary">SonicWall warned customers today to patch a vulnerability in the SonicWall SMA1000 Appliance Management Console (AMC) that was chained in zero-day attacks to escalate privileges. [...]...</p>
-        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Attackers Use Stolen AWS Credentials in Cryptomining Campaign" data-summary="Threat actors wielding stolen AWS Identity and Access Management (IAM) credentials leverage Amazon EC and EC2 infrastructure across multiple customer environments....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -444,18 +456,6 @@ The vulnerability, tracked as CVE-20...</p>
             
           </div>
           <p class="news-summary">Threat actors wielding stolen AWS Identity and Access Management (IAM) credentials leverage Amazon EC and EC2 infrastructure across multiple customer environments....</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Critical React2Shell flaw exploited in ransomware attacks" data-summary="A ransomware gang exploited the critical React2Shell vulnerability (CVE-2025-55182) to gain initial access to corporate networks and deployed the file-encrypting malware less than a minute later. [......">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/critical-react2shell-flaw-exploited-in-ransomware-attacks/" target="_blank" rel="noopener">Critical React2Shell flaw exploited in ransomware attacks</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-12-17T16:09:51.000Z">December 17, 2025 - 4:09 PM</time>
-            
-          </div>
-          <p class="news-summary">A ransomware gang exploited the critical React2Shell vulnerability (CVE-2025-55182) to gain initial access to corporate networks and deployed the file-encrypting malware less than a minute later. [......</p>
         </article>
     </div>
   </main>
@@ -501,7 +501,7 @@ The vulnerability, tracked as CVE-20...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-18T18:11:07.684Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-18T21:07:33.137Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
