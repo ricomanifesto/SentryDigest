@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-12-19T06:11:15.634Z">12/19/2025, 6:11:15 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-12-19T09:09:29.410Z">12/19/2025, 9:09:29 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="New UEFI Flaw Enables Early-Boot DMA Attacks on ASRock, ASUS, GIGABYTE, MSI Motherboards" data-summary="Certain motherboard models from vendors like ASRock, ASUSTeK Computer, GIGABYTE, and MSI are affected by a security vulnerability that leaves them susceptible to early-boot direct memory access (DMA) ...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/12/new-uefi-flaw-enables-early-boot-dma.html" target="_blank" rel="noopener">New UEFI Flaw Enables Early-Boot DMA Attacks on ASRock, ASUS, GIGABYTE, MSI Motherboards</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-12-19T08:25:00.000Z">December 19, 2025 - 8:25 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Certain motherboard models from vendors like ASRock, ASUSTeK Computer, GIGABYTE, and MSI are affected by a security vulnerability that leaves them susceptible to early-boot direct memory access (DMA) ...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Windows 10 OOB update released to fix Message Queuing (MSMQ) issues" data-summary="This month's extended security update for Windows 11 broke Message Queuing (MSMQ), which is typically used by enterprises to manage background tasks. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -295,7 +307,7 @@ The critical vulnerability, a...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2025/12/kimsuky-spreads-docswap-android-malware.html" target="_blank" rel="noopener">Kimsuky Spreads DocSwap Android Malware via QR Phishing Posing as Delivery App</a></h2>
           <div class="news-meta">
             <time datetime="2025-12-18T07:43:00.000Z">December 18, 2025 - 7:43 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The North Korean threat actor known as Kimsuky has been linked to a new campaign that distributes a new variant of Android malware called DocSwap via QR codes hosted on phishing sites mimicking Seoul-...</p>
         </article>
@@ -443,20 +455,6 @@ The critical vulnerability, a...</p>
           </div>
           <p class="news-summary">Threat actors are abusing the legitimate device-linking feature to hijack WhatsApp accounts via pairing codes in a campaign dubbed GhostPairing. [...]...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="SonicWall Fixes Actively Exploited CVE-2025-40602 in SMA 100 Appliances" data-summary="SonicWall has rolled out fixes to address a security flaw in Secure Mobile Access (SMA) 100 series appliances that it said has been actively exploited in the wild.
-The vulnerability, tracked as CVE-20...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/12/sonicwall-fixes-actively-exploited-cve.html" target="_blank" rel="noopener">SonicWall Fixes Actively Exploited CVE-2025-40602 in SMA 100 Appliances</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-12-17T18:17:00.000Z">December 17, 2025 - 6:17 PM</time>
-            
-          </div>
-          <p class="news-summary">SonicWall has rolled out fixes to address a security flaw in Secure Mobile Access (SMA) 100 series appliances that it said has been actively exploited in the wild.
-The vulnerability, tracked as CVE-20...</p>
-        </article>
     </div>
   </main>
   
@@ -501,7 +499,7 @@ The vulnerability, tracked as CVE-20...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-19T06:11:15.634Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-19T09:09:29.410Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
