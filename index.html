@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option><option value="Krebs on Security">Krebs on Security</option>
+          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Krebs on Security">Krebs on Security</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,58 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-12-19T18:10:33.702Z">12/19/2025, 6:10:33 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-12-19T21:06:53.426Z">12/19/2025, 9:06:53 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Cisco VPNs, Email Services Hit in Separate Threat Campaigns" data-summary="The company suffered one sophisticated five-alarm campaign and one messy spray-and-pray attack, mere days apart....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/endpoint-security/cisco-vpns-email-services-threat-campaigns" target="_blank" rel="noopener">Cisco VPNs, Email Services Hit in Separate Threat Campaigns</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-12-19T20:05:38.000Z">December 19, 2025 - 8:05 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The company suffered one sophisticated five-alarm campaign and one messy spray-and-pray attack, mere days apart....</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft confirms Teams is down and messages are delayed" data-summary="Microsoft Teams is experiencing issues, with thousands reporting problems sending messages, including delays. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-confirms-teams-is-down-and-messages-are-delayed/" target="_blank" rel="noopener">Microsoft confirms Teams is down and messages are delayed</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-12-19T20:04:28.000Z">December 19, 2025 - 8:04 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Microsoft Teams is experiencing issues, with thousands reporting problems sending messages, including delays. [...]...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Nigeria arrests dev of Microsoft 365 'Raccoon0365' phishing platform" data-summary="The Nigerian police have arrested three individuals linked to targeted Microsoft 365 cyberattacks via Raccoon0365 phishing-as-a-service. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/nigeria-arrests-dev-of-microsoft-365-raccoon0365-phishing-platform/" target="_blank" rel="noopener">Nigeria arrests dev of Microsoft 365 'Raccoon0365' phishing platform</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-12-19T19:05:32.000Z">December 19, 2025 - 7:05 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The Nigerian police have arrested three individuals linked to targeted Microsoft 365 cyberattacks via Raccoon0365 phishing-as-a-service. [...]...</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Russia-Linked Hackers Use Microsoft 365 Device Code Phishing for Account Takeovers" data-summary="A suspected Russia-aligned group has been attributed to a phishing campaign that employs device code authentication workflows to steal victims' Microsoft 365 credentials and conduct account takeover a...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/12/russia-linked-hackers-use-microsoft-365.html" target="_blank" rel="noopener">Russia-Linked Hackers Use Microsoft 365 Device Code Phishing for Account Takeovers</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-12-19T17:54:00.000Z">December 19, 2025 - 5:54 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A suspected Russia-aligned group has been attributed to a phishing campaign that employs device code authentication workflows to steal victims' Microsoft 365 credentials and conduct account takeover a...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft 365 accounts targeted in wave of OAuth phishing attacks" data-summary="Multiple threat actors are compromising Microsoft 365 accounts in phishing attacks that leverage the OAuth device code authorization mechanism. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -317,7 +365,7 @@ Tracked as CVE-2025-14733 (CVSS score: 9.3), the vulnerability h...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/university-of-sydney-suffers-data-breach-exposing-student-and-staff-info/" target="_blank" rel="noopener">University of Sydney suffers data breach exposing student and staff info</a></h2>
           <div class="news-meta">
             <time datetime="2025-12-18T20:22:58.000Z">December 18, 2025 - 8:22 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Hackers gained access to an online coding repository belonging to the University of Sydney and stole files with personal information of staff and students. [...]...</p>
         </article>
@@ -329,7 +377,7 @@ Tracked as CVE-2025-14733 (CVSS score: 9.3), the vulnerability h...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/clop-ransomware-targets-gladinet-centrestack-servers-for-extortion/" target="_blank" rel="noopener">Clop ransomware targets Gladinet CentreStack in data theft attacks</a></h2>
           <div class="news-meta">
             <time datetime="2025-12-18T20:16:55.000Z">December 18, 2025 - 8:16 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The Clop ransomware gang is targeting Internet-exposed Gladinet CentreStack file servers in a new data theft extortion campaign. [...]...</p>
         </article>
@@ -358,30 +406,6 @@ The end goal...</p>
             
           </div>
           <p class="news-summary">An automated campaign is targeting multiple VPN platforms, with credential-based attacks being observed on Palo Alto Networks GlobalProtect and Cisco SSL VPN. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="US seizes E-Note crypto exchange for laundering ransomware payments" data-summary="Law enforcement has seized the servers and domains of the E-Note cryptocurrency exchange, allegedly used by cybercriminal groups to launder more than $70 million. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/us-seizes-e-note-crypto-exchange-for-laundering-ransomware-payments/" target="_blank" rel="noopener">US seizes E-Note crypto exchange for laundering ransomware payments</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-12-18T16:13:03.000Z">December 18, 2025 - 4:13 PM</time>
-            
-          </div>
-          <p class="news-summary">Law enforcement has seized the servers and domains of the E-Note cryptocurrency exchange, allegedly used by cybercriminal groups to launder more than $70 million. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="NIS2 compliance: How to get passwords and MFA right" data-summary="NIS2 puts identity and access controls under the spotlight, with weak passwords and poor authentication now a compliance risk. Specops Software explains how to align password policies and MFA with NIS...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/nis2-compliance-how-to-get-passwords-and-mfa-right/" target="_blank" rel="noopener">NIS2 compliance: How to get passwords and MFA right</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-12-18T15:01:11.000Z">December 18, 2025 - 3:01 PM</time>
-            
-          </div>
-          <p class="news-summary">NIS2 puts identity and access controls under the spotlight, with weak passwords and poor authentication now a compliance risk. Specops Software explains how to align password policies and MFA with NIS...</p>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="HPE OneView Flaw Rated CVSS 10.0 Allows Unauthenticated Remote Code Execution" data-summary="Hewlett Packard Enterprise (HPE) has resolved a maximum-severity security flaw in OneView Software that, if successfully exploited, could result in remote code execution.
 The critical vulnerability, a...">
@@ -433,30 +457,6 @@ The critical vulnerability, a...</p>
           </div>
           <p class="news-summary">"Prince of Persia" has rewritten the rules of persistence with advanced operational security and cryptographic communication with its command-and-control server....</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="The Case for Dynamic AI-SaaS Security as Copilots Scale" data-summary="Within the past year, artificial intelligence copilots and agents have quietly permeated the SaaS applications businesses use every day. Tools like Zoom, Slack, Microsoft 365, Salesforce, and ServiceN...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/12/the-case-for-dynamic-ai-saas-security.html" target="_blank" rel="noopener">The Case for Dynamic AI-SaaS Security as Copilots Scale</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-12-18T11:30:00.000Z">December 18, 2025 - 11:30 AM</time>
-            
-          </div>
-          <p class="news-summary">Within the past year, artificial intelligence copilots and agents have quietly permeated the SaaS applications businesses use every day. Tools like Zoom, Slack, Microsoft 365, Salesforce, and ServiceN...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Kimsuky Spreads DocSwap Android Malware via QR Phishing Posing as Delivery App" data-summary="The North Korean threat actor known as Kimsuky has been linked to a new campaign that distributes a new variant of Android malware called DocSwap via QR codes hosted on phishing sites mimicking Seoul-...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/12/kimsuky-spreads-docswap-android-malware.html" target="_blank" rel="noopener">Kimsuky Spreads DocSwap Android Malware via QR Phishing Posing as Delivery App</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-12-18T07:43:00.000Z">December 18, 2025 - 7:43 AM</time>
-            
-          </div>
-          <p class="news-summary">The North Korean threat actor known as Kimsuky has been linked to a new campaign that distributes a new variant of Android malware called DocSwap via QR codes hosted on phishing sites mimicking Seoul-...</p>
-        </article>
     </div>
   </main>
   
@@ -501,7 +501,7 @@ The critical vulnerability, a...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-19T18:10:33.702Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-19T21:06:53.426Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
