@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-12-20T00:30:53.031Z">12/20/2025, 12:30:53 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-12-20T03:29:23.791Z">12/20/2025, 3:29:23 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -341,7 +341,7 @@ Tracked as CVE-2025-14733 (CVSS score: 9.3), the vulnerability h...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/windows-10-oob-update-released-to-fix-message-queuing-msmq-issues/" target="_blank" rel="noopener">Windows 10 OOB update released to fix Message Queuing (MSMQ) issues</a></h2>
           <div class="news-meta">
             <time datetime="2025-12-19T01:15:19.000Z">December 19, 2025 - 1:15 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">This month's extended security update for Windows 11 broke Message Queuing (MSMQ), which is typically used by enterprises to manage background tasks. [...]...</p>
         </article>
@@ -501,7 +501,7 @@ The critical vulnerability, a...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-20T00:30:53.031Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-20T03:29:23.791Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
