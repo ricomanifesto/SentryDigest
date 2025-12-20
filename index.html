@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-12-20T06:10:14.410Z">12/20/2025, 6:10:14 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-12-20T09:07:25.375Z">12/20/2025, 9:07:25 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -329,7 +329,7 @@ Tracked as CVE-2025-14733 (CVSS score: 9.3), the vulnerability h...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2025/12/new-uefi-flaw-enables-early-boot-dma.html" target="_blank" rel="noopener">New UEFI Flaw Enables Early-Boot DMA Attacks on ASRock, ASUS, GIGABYTE, MSI Motherboards</a></h2>
           <div class="news-meta">
             <time datetime="2025-12-19T08:25:00.000Z">December 19, 2025 - 8:25 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Certain motherboard models from vendors like ASRock, ASUSTeK Computer, GIGABYTE, and MSI are affected by a security vulnerability that leaves them susceptible to early-boot direct memory access (DMA) ...</p>
         </article>
@@ -501,7 +501,7 @@ The critical vulnerability, a...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-20T06:10:14.410Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-20T09:07:25.375Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
