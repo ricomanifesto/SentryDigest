@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-12-22T03:37:17.902Z">12/22/2025, 3:37:17 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-12-22T06:12:15.677Z">12/22/2025, 6:12:15 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -99,7 +99,7 @@
           <h2 class="news-title"><a href="https://thehackernews.com/2025/12/iranian-infy-apt-resurfaces-with-new.html" target="_blank" rel="noopener">Iranian Infy APT Resurfaces with New Malware Activity After Years of Silence</a></h2>
           <div class="news-meta">
             <time datetime="2025-12-21T04:22:00.000Z">December 21, 2025 - 4:22 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Threat hunters have discerned new activity associated with an Iranian threat actor known as Infy (aka Prince of Persia), nearly five years after the hacking group was observed targeting victims in Swe...</p>
         </article>
@@ -503,7 +503,7 @@ The critical vulnerability, a...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-22T03:37:17.902Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-22T06:12:15.677Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
