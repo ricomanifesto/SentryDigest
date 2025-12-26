@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-12-25T21:06:48.147Z">12/25/2025, 9:06:48 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-12-26T00:32:58.247Z">12/26/2025, 12:32:58 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="ChatGPT’s new formatting blocks make its UI look more like a task tool" data-summary="OpenAI has quietly rolled out 'formatting blocks,' which tweak GPT's layout to match the UI of the task it is supposed to execute. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/chatgpts-new-formatting-blocks-make-its-ui-look-more-like-a-task-tool/" target="_blank" rel="noopener">ChatGPT’s new formatting blocks make its UI look more like a task tool</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-12-25T22:39:19.000Z">December 25, 2025 - 10:39 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">OpenAI has quietly rolled out 'formatting blocks,' which tweak GPT's layout to match the UI of the task it is supposed to execute. [...]...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Google will finally allow you to change your @gmail.com address" data-summary="Google will finally allow you to change your @gmail address or create a new alias, according to a new support document. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -161,7 +173,7 @@ The vulnerability in question is CVE-2020-12812 (CVS...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/openai-is-reportedly-testing-claude-like-skills-for-chatgpt/" target="_blank" rel="noopener">OpenAI is reportedly testing Claude-like Skills for ChatGPT</a></h2>
           <div class="news-meta">
             <time datetime="2025-12-24T22:31:28.000Z">December 24, 2025 - 10:31 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">OpenAI is testing a new ChatGPT feature called "Skills," which will be similar to Claude's feature, also called Skills. [...]...</p>
         </article>
@@ -383,18 +395,6 @@ Th...</p>
           </div>
           <p class="news-summary">Microsoft Teams will automatically enable messaging safety features by default in January to strengthen defenses against content tagged as malicious. [...]...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Cyberattack knocks offline France's postal, banking services" data-summary="The French national postal service's online services were knocked offline by &quot;a major network incident&quot; on Monday, disrupting digital banking and other services for millions. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cyberattack-knocks-offline-frances-postal-banking-services/" target="_blank" rel="noopener">Cyberattack knocks offline France's postal, banking services</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-12-23T12:26:44.000Z">December 23, 2025 - 12:26 PM</time>
-            
-          </div>
-          <p class="news-summary">The French national postal service's online services were knocked offline by "a major network incident" on Monday, disrupting digital banking and other services for millions. [...]...</p>
-        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="INTERPOL Arrests 574 in Africa; Ukrainian Ransomware Affiliate Pleads Guilty" data-summary="A law enforcement operation coordinated by INTERPOL has led to the recovery of $3 million and the arrest of 574 suspects by authorities from 19 countries, amidst a continued crackdown on cybercrime ne...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
@@ -503,7 +503,7 @@ To that end, the agency h...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-25T21:06:48.147Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-26T00:32:58.247Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
