@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-12-26T18:10:36.858Z">12/26/2025, 6:10:36 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-12-26T21:06:25.968Z">12/26/2025, 9:06:25 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Fake GrubHub emails promise tenfold return on sent cryptocurrency" data-summary="Grubhub users received fraudulent messages, apparently from a company email address, promising a tenfold bitcoin payout in return for a transfer to a specified wallet. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/fake-grubhub-emails-promise-tenfold-return-on-sent-cryptocurrency/" target="_blank" rel="noopener">Fake GrubHub emails promise tenfold return on sent cryptocurrency</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-12-26T20:22:28.000Z">December 26, 2025 - 8:22 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Grubhub users received fraudulent messages, apparently from a company email address, promising a tenfold bitcoin payout in return for a transfer to a specified wallet. [...]...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Trust Wallet Chrome Extension Breach Caused $7 Million Crypto Loss via Malicious Code" data-summary="Trust Wallet is urging users to update its Google Chrome extension to the latest version following what it described as a &quot;security incident&quot; that led to the loss of approximately $7 million.
 The issu...">
           <div class="chips">
@@ -445,18 +457,6 @@ Th...</p>
           </div>
           <p class="news-summary">Interpol said law enforcement across 19 countries made 574 arrests and recovered $3 million, against a backdrop of spiraling cybercrime in the region, including business email compromise, digital exto...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Two Chrome Extensions Caught Secretly Stealing Credentials from Over 170 Sites" data-summary="Cybersecurity researchers have discovered two malicious Google Chrome extensions with the same name and published by the same developer that come with capabilities to intercept traffic and capture use...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/12/two-chrome-extensions-caught-secretly.html" target="_blank" rel="noopener">Two Chrome Extensions Caught Secretly Stealing Credentials from Over 170 Sites</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-12-23T14:42:00.000Z">December 23, 2025 - 2:42 PM</time>
-            
-          </div>
-          <p class="news-summary">Cybersecurity researchers have discovered two malicious Google Chrome extensions with the same name and published by the same developer that come with capabilities to intercept traffic and capture use...</p>
-        </article>
     </div>
   </main>
   
@@ -501,7 +501,7 @@ Th...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-26T18:10:36.858Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-26T21:06:25.968Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
