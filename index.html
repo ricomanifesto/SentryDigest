@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-12-27T18:09:40.139Z">12/27/2025, 6:09:40 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-12-27T21:06:14.920Z">12/27/2025, 9:06:14 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -125,7 +125,7 @@ The vulnerability, tracked as CVE-2025-14847 (CVSS score: 8.7), ha...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/fake-grubhub-emails-promise-tenfold-return-on-sent-cryptocurrency/" target="_blank" rel="noopener">Fake Grubhub emails promise tenfold return on sent cryptocurrency</a></h2>
           <div class="news-meta">
             <time datetime="2025-12-26T20:22:28.000Z">December 26, 2025 - 8:22 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Grubhub users received fraudulent messages, apparently from a company email address, promising a tenfold bitcoin payout in return for a transfer to a specified wallet. [...]...</p>
         </article>
@@ -503,7 +503,7 @@ Th...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-27T18:09:40.139Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-27T21:06:14.920Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
