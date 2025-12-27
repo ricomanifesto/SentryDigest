@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-12-27T12:11:27.389Z">12/27/2025, 12:11:27 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-12-27T15:07:11.564Z">12/27/2025, 3:07:11 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -163,7 +163,7 @@ The issu...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2025/12/china-linked-evasive-panda-ran-dns.html" target="_blank" rel="noopener">China-Linked Evasive Panda Ran DNS Poisoning Campaign to Deliver MgBot Malware</a></h2>
           <div class="news-meta">
             <time datetime="2025-12-26T14:44:00.000Z">December 26, 2025 - 2:44 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A China-linked advanced persistent threat (APT) group has been attributed to a highly-targeted cyber espionage campaign in which the adversary poisoned Domain Name System (DNS) requests to deliver its...</p>
         </article>
@@ -175,7 +175,7 @@ The issu...</p>
           <h2 class="news-title"><a href="https://www.darkreading.com/application-security/coders-adopt-ai-agents-security-pitfalls-lurk-2026" target="_blank" rel="noopener">As More Coders Adopt AI Agents, Security Pitfalls Lurk in 2026</a></h2>
           <div class="news-meta">
             <time datetime="2025-12-26T13:04:07.000Z">December 26, 2025 - 1:04 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Developers are leaning more heavily on AI for code generation, but in 2026, the development pipeline and security need to be prioritized....</p>
         </article>
@@ -423,18 +423,6 @@ Th...</p>
           </div>
           <p class="news-summary">Healthcare cyberattacks are on the rise, but industry organizations say the proposed changes to the security rules fall short of what's needed....</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft rolls out hardware-accelerated BitLocker in Windows 11" data-summary="Microsoft is rolling out hardware-accelerated BitLocker in Windows 11 to address growing performance and security concerns by leveraging the capabilities of system-on-a-chip and CPU. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/microsoft-rolls-out-hardware-accelerated-bitlocker-in-windows-11/" target="_blank" rel="noopener">Microsoft rolls out hardware-accelerated BitLocker in Windows 11</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-12-23T20:03:34.000Z">December 23, 2025 - 8:03 PM</time>
-            
-          </div>
-          <p class="news-summary">Microsoft is rolling out hardware-accelerated BitLocker in Windows 11 to address growing performance and security concerns by leveraging the capabilities of system-on-a-chip and CPU. [...]...</p>
-        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="ServiceNow Buys Armis for $7.75B, Boosts 'AI Control Tower'" data-summary="Its latest cybersecurity acquisition will help further ServiceNow's plans for autonomous cybersecurity, and building a security stack to proactively manage AI....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -458,6 +446,18 @@ Th...</p>
             
           </div>
           <p class="news-summary">The tech giant has been beset by a deluge of state-sponsored North Korean operatives, showcasing the sheer scale of the IT worker scam problem....</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Sprawling 'Operation Sentinel' Neutralizes African Cybercrime Syndicates" data-summary="Interpol said law enforcement across 19 countries made 574 arrests and recovered $3 million, against a backdrop of spiraling cybercrime in the region, including business email compromise, digital exto...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/operation-sentinel-african-cybercrime-syndicates" target="_blank" rel="noopener">Sprawling 'Operation Sentinel' Neutralizes African Cybercrime Syndicates</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-12-23T17:16:35.000Z">December 23, 2025 - 5:16 PM</time>
+            
+          </div>
+          <p class="news-summary">Interpol said law enforcement across 19 countries made 574 arrests and recovered $3 million, against a backdrop of spiraling cybercrime in the region, including business email compromise, digital exto...</p>
         </article>
     </div>
   </main>
@@ -503,7 +503,7 @@ Th...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-27T12:11:27.389Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-27T15:07:11.564Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
