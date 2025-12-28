@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-12-28T18:09:58.067Z">12/28/2025, 6:09:58 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-12-28T21:06:34.350Z">12/28/2025, 9:06:34 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Exploited MongoBleed flaw leaks MongoDB secrets, 87K servers exposed" data-summary="A severe vulnerability affecting multiple MongoDB versions, dubbed MongoBleed (CVE-2025-14847), is being actively exploited in the wild, with over 80,000 potentially vulnerable servers exposed on the ...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/exploited-mongobleed-flaw-leaks-mongodb-secrets-87k-servers-exposed/" target="_blank" rel="noopener">Exploited MongoBleed flaw leaks MongoDB secrets, 87K servers exposed</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-12-28T20:38:15.000Z">December 28, 2025 - 8:38 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A severe vulnerability affecting multiple MongoDB versions, dubbed MongoBleed (CVE-2025-14847), is being actively exploited in the wild, with over 80,000 potentially vulnerable servers exposed on the ...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Hacker claims to leak WIRED database with 2.3 million records" data-summary="A hacker claims to have breached Condé Nast and leaked an alleged WIRED database containing more than 2.3 million subscriber records, while also warning that they plan to release up to 40 million addi...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -349,18 +361,6 @@ The vulnerability in question is CVE-2020-12812 (CVS...</p>
           </div>
           <p class="news-summary">Cybersecurity researchers have discovered a new variant of a macOS information stealer called MacSync that's delivered by means of a digitally signed, notarized Swift application masquerading as a mes...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft Teams to let admins block external users via Defender portal" data-summary="Microsoft announced that security administrators will soon be able to block external users from sending messages, calls, or meeting invitations to members of their organization via Teams. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-teams-to-let-admins-block-external-users-via-defender-portal/" target="_blank" rel="noopener">Microsoft Teams to let admins block external users via Defender portal</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-12-24T16:22:44.000Z">December 24, 2025 - 4:22 PM</time>
-            
-          </div>
-          <p class="news-summary">Microsoft announced that security administrators will soon be able to block external users from sending messages, calls, or meeting invitations to members of their organization via Teams. [...]...</p>
-        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Nomani Investment Scam Surges 62% Using AI Deepfake Ads on Social Media" data-summary="The fraudulent investment scheme known as Nomani has witnessed an increase by 62%, according to data from ESET, as campaigns distributing the threat have also expanded beyond Facebook to include other...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
@@ -503,7 +503,7 @@ Th...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-28T18:09:58.067Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-28T21:06:34.350Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
