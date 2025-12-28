@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-12-28T09:07:38.246Z">12/28/2025, 9:07:38 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2025-12-28T12:12:38.365Z">12/28/2025, 12:12:38 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -111,7 +111,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/openais-chatgpt-ads-will-allegedly-prioritize-sponsored-content-in-answers/" target="_blank" rel="noopener">OpenAI's ChatGPT ads will allegedly prioritize sponsored content in answers</a></h2>
           <div class="news-meta">
             <time datetime="2025-12-27T09:46:54.000Z">December 27, 2025 - 9:46 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">OpenAI is reportedly mulling a new form of ads on ChatGPT called "sponsored content," which could influence your buying decisions. [...]...</p>
         </article>
@@ -503,7 +503,7 @@ Th...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-28T09:07:38.246Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-28T12:12:38.365Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
