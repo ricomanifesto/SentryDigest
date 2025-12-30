@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="Krebs on Security">Krebs on Security</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Krebs on Security">Krebs on Security</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-12-30T06:11:28.593Z">12/30/2025, 6:11:28 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-12-30T09:10:27.662Z">12/30/2025, 9:10:27 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Mustang Panda Uses Signed Kernel-Mode Rootkit to Load TONESHELL Backdoor" data-summary="The Chinese hacking group known as Mustang Panda has leveraged a previously undocumented kernel-mode rootkit driver to deliver a new variant of backdoor dubbed TONESHELL in a cyber attack detected in ...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/12/mustang-panda-uses-signed-kernel-driver.html" target="_blank" rel="noopener">Mustang Panda Uses Signed Kernel-Mode Rootkit to Load TONESHELL Backdoor</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-12-30T08:35:00.000Z">December 30, 2025 - 8:35 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The Chinese hacking group known as Mustang Panda has leveraged a previously undocumented kernel-mode rootkit driver to deliver a new variant of backdoor dubbed TONESHELL in a cyber attack detected in ...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Chinese state hackers use rootkit to hide ToneShell malware activity" data-summary="A new sample of the ToneShell backdoor, typically seen in Chinese cyberespionage campaigns, has been delivered through a kernel-mode loader in attacks against government organizations. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -305,7 +317,7 @@ The vulnerability...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2025/12/traditional-security-frameworks-leave.html" target="_blank" rel="noopener">Traditional Security Frameworks Leave Organizations Exposed to AI-Specific Attack Vectors</a></h2>
           <div class="news-meta">
             <time datetime="2025-12-29T06:34:00.000Z">December 29, 2025 - 6:34 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">In December 2024, the popular Ultralytics AI library was compromised, installing malicious code that hijacked system resources for cryptocurrency mining. In August 2025, malicious Nx packages leaked 2...</p>
         </article>
@@ -445,20 +457,6 @@ The issu...</p>
           </div>
           <p class="news-summary">The encrypted vault backups stolen from the 2022 LastPass data breach have enabled bad actors to take advantage of weak master passwords to crack them open and drain cryptocurrency assets as recently ...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Fortinet Warns of Active Exploitation of FortiOS SSL VPN 2FA Bypass Vulnerability" data-summary="Fortinet on Wednesday said it observed &quot;recent abuse&quot; of a five-year-old security flaw in FortiOS SSL VPN in the wild under certain configurations.
-The vulnerability in question is CVE-2020-12812 (CVS...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/12/fortinet-warns-of-active-exploitation.html" target="_blank" rel="noopener">Fortinet Warns of Active Exploitation of FortiOS SSL VPN 2FA Bypass Vulnerability</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-12-25T08:22:00.000Z">December 25, 2025 - 8:22 AM</time>
-            
-          </div>
-          <p class="news-summary">Fortinet on Wednesday said it observed "recent abuse" of a five-year-old security flaw in FortiOS SSL VPN in the wild under certain configurations.
-The vulnerability in question is CVE-2020-12812 (CVS...</p>
-        </article>
     </div>
   </main>
   
@@ -503,7 +501,7 @@ The vulnerability in question is CVE-2020-12812 (CVS...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-30T06:11:28.593Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-30T09:10:27.662Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
