@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="Krebs on Security">Krebs on Security</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option><option value="Krebs on Security">Krebs on Security</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-12-30T21:07:01.471Z">12/30/2025, 9:07:01 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2025-12-31T00:33:31.382Z">12/31/2025, 12:33:31 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="New ErrTraffic service enables ClickFix attacks via fake browser glitches" data-summary="A new cybercrime tool called ErrTraffic allows threat actors to automate ClickFix attacks by generating 'fake glitches' on compromised websites to lure users into downloading payloads or following mal...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/new-errtraffic-service-enables-clickfix-attacks-via-fake-browser-glitches/" target="_blank" rel="noopener">New ErrTraffic service enables ClickFix attacks via fake browser glitches</a></h2>
+          <div class="news-meta">
+            <time datetime="2025-12-30T21:08:28.000Z">December 30, 2025 - 9:08 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A new cybercrime tool called ErrTraffic allows threat actors to automate ClickFix attacks by generating 'fake glitches' on compromised websites to lure users into downloading payloads or following mal...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="CSA Issues Alert on Critical SmarterMail Bug Allowing Remote Code Execution" data-summary="The Cyber Security Agency of Singapore (CSA) has issued a bulletin warning of a maximum-severity security flaw in SmarterTools SmarterMail email software that could be exploited to achieve remote code...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
@@ -209,7 +221,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/chinese-state-hackers-use-rootkit-to-hide-toneshell-malware-activity/" target="_blank" rel="noopener">Chinese state hackers use rootkit to hide ToneShell malware activity</a></h2>
           <div class="news-meta">
             <time datetime="2025-12-30T00:08:42.000Z">December 30, 2025 - 12:08 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A new sample of the ToneShell backdoor, typically seen in Chinese cyberespionage campaigns, has been delivered through a kernel-mode loader in attacks against government organizations. [...]...</p>
         </article>
@@ -221,7 +233,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/coupang-to-split-117-billion-among-337-million-data-breach-victims/" target="_blank" rel="noopener">Coupang to split $1.17 billion among 33.7 million data breach victims</a></h2>
           <div class="news-meta">
             <time datetime="2025-12-29T22:27:01.000Z">December 29, 2025 - 10:27 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Coupang, the largest retailer in South Korea, announced $1.17 billion (1.685 trillion Won) total compensation for the 33.7 million customers whose information was exposed in the data breach discovered...</p>
         </article>
@@ -344,18 +356,6 @@
             
           </div>
           <p class="news-summary">Last week’s cyber news in 2025 was not about one big incident. It was about many small cracks opening at the same time. Tools people trust every day behave in unexpected ways. Old flaws resurfaced. Ne...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Korean Air data breach exposes data of thousands of employees" data-summary="Korean Air experienced a data breach affecting thousands of employees after Korean Air Catering & Duty-Free (KC&D), its in-flight catering supplier and former subsidiary, was recently hacked. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/korean-air-data-breach-exposes-data-of-thousands-of-employees/" target="_blank" rel="noopener">Korean Air data breach exposes data of thousands of employees</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-12-29T13:08:45.000Z">December 29, 2025 - 1:08 PM</time>
-            
-          </div>
-          <p class="news-summary">Korean Air experienced a data breach affecting thousands of employees after Korean Air Catering & Duty-Free (KC&D), its in-flight catering supplier and former subsidiary, was recently hacked. [...]...</p>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="MongoDB Vulnerability CVE-2025-14847 Under Active Exploitation Worldwide" data-summary="A recently disclosed security vulnerability in MongoDB has come under active exploitation in the wild, with over 87,000 potentially susceptible instances identified across the world.
 The vulnerability...">
@@ -503,7 +503,7 @@ The issu...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-30T21:07:01.471Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2025-12-31T00:33:31.382Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
