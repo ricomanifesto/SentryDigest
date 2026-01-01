@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="Krebs on Security">Krebs on Security</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option><option value="Krebs on Security">Krebs on Security</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,34 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-01-01T18:10:55.899Z">1/1/2026, 6:10:55 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-01-01T21:07:15.663Z">1/1/2026, 9:07:15 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="OpenAI is offering $20 ChatGPT Plus for free to some users" data-summary="If you're already subscribed to ChatGPT Plus, which costs $20, you can request OpenAI to cancel your subscription, and it may offer one month of free usage. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/openai-is-offering-20-chatgpt-plus-for-free-to-some-users/" target="_blank" rel="noopener">OpenAI is offering $20 ChatGPT Plus for free to some users</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-01T19:18:54.000Z">January 1, 2026 - 7:18 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">If you're already subscribed to ChatGPT Plus, which costs $20, you can request OpenAI to cancel your subscription, and it may offer one month of free usage. [...]...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="The biggest cybersecurity and cyberattack stories of 2025" data-summary="2025 was a big year for cybersecurity, with cyberattacks, data breaches, threat groups reaching new notoriety levels, and, of course, zero-day flaws exploited in breaches. Some stories, though, were m...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/the-biggest-cybersecurity-and-cyberattack-stories-of-2025/" target="_blank" rel="noopener">The biggest cybersecurity and cyberattack stories of 2025</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-01T16:15:26.000Z">January 1, 2026 - 4:15 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">2025 was a big year for cybersecurity, with cyberattacks, data breaches, threat groups reaching new notoriety levels, and, of course, zero-day flaws exploited in breaches. Some stories, though, were m...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="ThreatsDay Bulletin: GhostAd Drain, macOS Attacks, Proxy Botnets, Cloud Exploits, and 12+ Stories" data-summary="The first ThreatsDay Bulletin of 2026 lands on a day that already feels symbolic — new year, new breaches, new tricks. If the past twelve months taught defenders anything, it’s that threat actors don’...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
@@ -102,6 +126,18 @@
             <span class="badge-new">NEW</span>
           </div>
           <p class="news-summary">The first ThreatsDay Bulletin of 2026 lands on a day that already feels symbolic — new year, new breaches, new tricks. If the past twelve months taught defenders anything, it’s that threat actors don’...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="New GlassWorm malware wave targets Macs with trojanized crypto wallets" data-summary="A fourth wave of the &quot;GlassWorm&quot; campaign is targeting macOS developers with malicious VSCode/OpenVSX extensions that deliver trojanized versions of crypto wallet applications. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/new-glassworm-malware-wave-targets-macs-with-trojanized-crypto-wallets/" target="_blank" rel="noopener">New GlassWorm malware wave targets Macs with trojanized crypto wallets</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-01T15:18:23.000Z">January 1, 2026 - 3:18 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A fourth wave of the "GlassWorm" campaign is targeting macOS developers with malicious VSCode/OpenVSX extensions that deliver trojanized versions of crypto wallet applications. [...]...</p>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="RondoDox Botnet Exploits Critical React2Shell Flaw to Hijack IoT Devices and Web Servers" data-summary="Cybersecurity researchers have disclosed details of a persistent nine-month-long campaign that has targeted Internet of Things (IoT) devices and web applications to enroll them into a botnet known as ...">
           <div class="chips">
@@ -349,30 +385,6 @@ The npm pack...</p>
           </div>
           <p class="news-summary">A newly discovered campaign, which researchers call Zoom Stealer, is affecting 2.2 million Chrome, Firefox, and Microsoft Edge users through 18 extensions that collect online meeting-related data like...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="US cybersecurity experts plead guilty to BlackCat ransomware attacks" data-summary="Two former employees of cybersecurity incident response companies Sygnia and DigitalMint have pleaded guilty to targeting U.S. companies in BlackCat (ALPHV) ransomware attacks in 2023. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/us-cybersecurity-experts-plead-guilty-to-blackcat-alphv-ransomware-attacks/" target="_blank" rel="noopener">US cybersecurity experts plead guilty to BlackCat ransomware attacks</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-12-30T15:25:17.000Z">December 30, 2025 - 3:25 PM</time>
-            
-          </div>
-          <p class="news-summary">Two former employees of cybersecurity incident response companies Sygnia and DigitalMint have pleaded guilty to targeting U.S. companies in BlackCat (ALPHV) ransomware attacks in 2023. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="CISA orders feds to patch MongoBleed flaw exploited in attacks" data-summary="CISA ordered U.S. federal agencies to patch an actively exploited MongoDB vulnerability (MongoBleed) that can be exploited to steal credentials, API keys, and other sensitive data. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cisa-orders-federal-agencies-to-patch-mongobleed-flaw-actively-exploited-in-attacks/" target="_blank" rel="noopener">CISA orders feds to patch MongoBleed flaw exploited in attacks</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-12-30T14:40:13.000Z">December 30, 2025 - 2:40 PM</time>
-            
-          </div>
-          <p class="news-summary">CISA ordered U.S. federal agencies to patch an actively exploited MongoDB vulnerability (MongoBleed) that can be exploited to steal credentials, API keys, and other sensitive data. [...]...</p>
-        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Cybersecurity Predictions 2026: An AI Arms Race and Malware Autonomy" data-summary="The year ahead will see an intensified AI-driven cybersecurity arms race, with attackers leveraging autonomous malware and advanced AI technologies to outpace defenders, while security teams adopt inc...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -435,18 +447,6 @@ The npm pack...</p>
           </div>
           <p class="news-summary">The Chinese hacking group known as Mustang Panda has leveraged a previously undocumented kernel-mode rootkit driver to deliver a new variant of backdoor dubbed TONESHELL in a cyber attack detected in ...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Chinese state hackers use rootkit to hide ToneShell malware activity" data-summary="A new sample of the ToneShell backdoor, typically seen in Chinese cyberespionage campaigns, has been delivered through a kernel-mode loader in attacks against government organizations. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/chinese-state-hackers-use-rootkit-to-hide-toneshell-malware-activity/" target="_blank" rel="noopener">Chinese state hackers use rootkit to hide ToneShell malware activity</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-12-30T00:08:42.000Z">December 30, 2025 - 12:08 AM</time>
-            
-          </div>
-          <p class="news-summary">A new sample of the ToneShell backdoor, typically seen in Chinese cyberespionage campaigns, has been delivered through a kernel-mode loader in attacks against government organizations. [...]...</p>
-        </article>
         <article class="news-item" data-source="Krebs on Security" data-host="krebsonsecurity.com" data-title="Happy 16th Birthday, KrebsOnSecurity.com!" data-summary="KrebsOnSecurity.com celebrates its 16th anniversary today! A huge &quot;thank you&quot; to all of our readers -- newcomers, long-timers and drive-by critics alike. Your engagement this past year here has been t...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Krebs on Security</span>
@@ -503,7 +503,7 @@ The npm pack...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-01T18:10:55.899Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-01T21:07:15.663Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
