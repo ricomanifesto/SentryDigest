@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-01-01T03:39:37.132Z">1/1/2026, 3:39:37 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-01-01T06:12:00.974Z">1/1/2026, 6:12:00 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -199,13 +199,13 @@
           </div>
           <p class="news-summary">Concerns about an economic bubble bursting, along with doubts regarding return on investment, suggest the tide may be turning for the artificial intelligence industry....</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="IBM Warns of Critical API Connect Bug Allowing Remote Authentication Bypass" data-summary="IBM has disclosed details of a critical security flaw in API Connect that could allow attackers to gain remote access to the application.
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Critical CVSS 9.8 Flaw Found in IBM API Connect Authentication System" data-summary="IBM has disclosed details of a critical security flaw in API Connect that could allow attackers to gain remote access to the application.
 The vulnerability, tracked as CVE-2025-13915, is rated 9.8 out...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
           </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2025/12/ibm-warns-of-critical-api-connect-bug.html" target="_blank" rel="noopener">IBM Warns of Critical API Connect Bug Allowing Remote Authentication Bypass</a></h2>
+          <h2 class="news-title"><a href="https://thehackernews.com/2025/12/ibm-warns-of-critical-api-connect-bug.html" target="_blank" rel="noopener">Critical CVSS 9.8 Flaw Found in IBM API Connect Authentication System</a></h2>
           <div class="news-meta">
             <time datetime="2025-12-31T13:37:00.000Z">December 31, 2025 - 1:37 PM</time>
             <span class="badge-new">NEW</span>
@@ -259,7 +259,7 @@ The npm pack...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2025/12/us-treasury-lifts-sanctions-on-three.html" target="_blank" rel="noopener">U.S. Treasury Lifts Sanctions on Three Individuals Linked to Intellexa and Predator Spyware</a></h2>
           <div class="news-meta">
             <time datetime="2025-12-31T05:17:00.000Z">December 31, 2025 - 5:17 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The U.S. Department of the Treasury's Office of Foreign Assets Control (OFAC) on Tuesday removed three individuals linked to the Intellexa Consortium, the holding company behind a commercial spyware k...</p>
         </article>
@@ -501,7 +501,7 @@ The npm pack...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-01T03:39:37.132Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-01T06:12:00.974Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
