@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-01-02T18:10:51.499Z">1/2/2026, 6:10:51 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-01-02T21:06:11.547Z">1/2/2026, 9:06:11 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Covenant Health says May data breach impacted nearly 478,000 patients" data-summary="The Covenant Health organization has revised to nearly 500,000 the number of individuals affected by a data breach discovered last May. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/covenant-health-says-may-data-breach-impacted-nearly-478-000-patients/" target="_blank" rel="noopener">Covenant Health says May data breach impacted nearly 478,000 patients</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-02T19:00:42.000Z">January 2, 2026 - 7:00 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The Covenant Health organization has revised to nearly 500,000 the number of individuals affected by a data breach discovered last May. [...]...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Cryptocurrency theft attacks traced to 2022 LastPass breach" data-summary="Blockchain investigation firm TRM Labs says ongoing cryptocurrency thefts have been traced to the 2022 LastPass breach, with attackers draining wallets years after encrypted vaults were stolen and lau...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -221,7 +233,7 @@ Security teams deploy ASM, asset inventories grow, alerts start flowing, and das
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/openai-is-offering-20-chatgpt-plus-for-free-to-some-users/" target="_blank" rel="noopener">OpenAI is offering $20 ChatGPT Plus for free to some users</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-01T19:18:54.000Z">January 1, 2026 - 7:18 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">If you're already subscribed to ChatGPT Plus, which costs $20, you can request OpenAI to cancel your subscription, and it may offer one month of free usage. [...]...</p>
         </article>
@@ -423,18 +435,6 @@ The npm pack...">
           <p class="news-summary">Cybersecurity researchers have disclosed details of what appears to be a new strain of Shai Hulud on the npm registry with slight modifications from the previous wave observed last month.
 The npm pack...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="IBM warns of critical API Connect auth bypass vulnerability" data-summary="IBM urged customers to patch a critical authentication bypass vulnerability in its API Connect enterprise platform that could allow attackers to access apps remotely. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/ibm-warns-of-critical-api-connect-auth-bypass-vulnerability/" target="_blank" rel="noopener">IBM warns of critical API Connect auth bypass vulnerability</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-12-31T10:34:38.000Z">December 31, 2025 - 10:34 AM</time>
-            
-          </div>
-          <p class="news-summary">IBM urged customers to patch a critical authentication bypass vulnerability in its API Connect enterprise platform that could allow attackers to access apps remotely. [...]...</p>
-        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="U.S. Treasury Lifts Sanctions on Three Individuals Linked to Intellexa and Predator Spyware" data-summary="The U.S. Department of the Treasury's Office of Foreign Assets Control (OFAC) on Tuesday removed three individuals linked to the Intellexa Consortium, the holding company behind a commercial spyware k...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
@@ -503,7 +503,7 @@ The npm pack...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-02T18:10:51.499Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-02T21:06:11.547Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
