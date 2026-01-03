@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-01-03T18:09:40.724Z">1/3/2026, 6:09:40 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-01-03T21:06:25.605Z">1/3/2026, 9:06:25 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="ShinyHunters claims Resecurity hack, firm says it’s a honeypot" data-summary="The ShinyHunters hacking group claims it breached the systems of cybersecurity firm Resecurity and stole internal data, while Resecurity says the attackers only accessed a deliberately deployed honeyp...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/shinyhunters-claims-resecurity-hack-firm-says-its-a-honeypot/" target="_blank" rel="noopener">ShinyHunters claims Resecurity hack, firm says it’s a honeypot</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-03T20:34:22.000Z">January 3, 2026 - 8:34 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The ShinyHunters hacking group claims it breached the systems of cybersecurity firm Resecurity and stole internal data, while Resecurity says the attackers only accessed a deliberately deployed honeyp...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Covenant Health says May data breach impacted nearly 478,000 patients" data-summary="The Covenant Health organization has revised to nearly 500,000 the number of individuals affected by a data breach discovered last May. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -99,7 +111,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/covenant-health-says-may-data-breach-impacted-nearly-478-000-patients/" target="_blank" rel="noopener">Covenant Health says May data breach impacted nearly 478,000 patients</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-02T19:00:42.000Z">January 2, 2026 - 7:00 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The Covenant Health organization has revised to nearly 500,000 the number of individuals affected by a data breach discovered last May. [...]...</p>
         </article>
@@ -359,18 +371,6 @@ Feature overload, excessive background processes, and fragmented workflows can s
           </div>
           <p class="news-summary">The decentralized intellectual property platform Unleash Protocol has lost around $3.9 million worth of cryptocurrency after someone executed an unauthorized contract upgrade that allowed asset withdr...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="RondoDox botnet exploits React2Shell flaw to breach Next.js servers" data-summary="The RondoDox botnet has been observed exploiting the critical React2Shell flaw (CVE-2025-55182) to infect vulnerable Next.js servers with malware and cryptominers. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/rondodox-botnet-exploits-react2shell-flaw-to-breach-nextjs-servers/" target="_blank" rel="noopener">RondoDox botnet exploits React2Shell flaw to breach Next.js servers</a></h2>
-          <div class="news-meta">
-            <time datetime="2025-12-31T14:58:51.000Z">December 31, 2025 - 2:58 PM</time>
-            
-          </div>
-          <p class="news-summary">The RondoDox botnet has been observed exploiting the critical React2Shell flaw (CVE-2025-55182) to infect vulnerable Next.js servers with malware and cryptominers. [...]...</p>
-        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="When the Cloud Rains on Everyone's IoT Parade" data-summary="What happens to all of those always-connected devices when the cloud goes down? Disruptions to sleep, school, and smart homes, just to name a few issues....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -503,7 +503,7 @@ The npm pack...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-03T18:09:40.724Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-03T21:06:25.605Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
