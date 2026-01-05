@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="Krebs on Security">Krebs on Security</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,24 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-01-05T06:14:51.527Z">1/5/2026, 6:14:51 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-01-05T09:13:38.925Z">1/5/2026, 9:13:38 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="New VVS Stealer Malware Targets Discord Accounts via Obfuscated Python Code" data-summary="Cybersecurity researchers have disclosed details of a new Python-based information stealer called VVS Stealer (also styled as VVS $tealer) that's capable of harvesting Discord credentials and tokens.
+...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/01/new-vvs-stealer-malware-targets-discord.html" target="_blank" rel="noopener">New VVS Stealer Malware Targets Discord Accounts via Obfuscated Python Code</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-05T07:48:00.000Z">January 5, 2026 - 7:48 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Cybersecurity researchers have disclosed details of a new Python-based information stealer called VVS Stealer (also styled as VVS $tealer) that's capable of harvesting Discord credentials and tokens.
+...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Hackers claim to hack Resecurity, firm says it was a honeypot" data-summary="The ShinyHunters hacking group claims it breached the systems of cybersecurity firm Resecurity and stole internal data, while Resecurity says the attackers only accessed a deliberately deployed honeyp...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -150,18 +164,6 @@
             
           </div>
           <p class="news-summary">Google is testing a new image AI model called "Nano Banana 2 Flash," and it's going to be as good as the Gemini 3 Pro Nano Banana, but it'll be cheaper. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Krebs on Security" data-host="krebsonsecurity.com" data-title="The Kimwolf Botnet is Stalking Your Local Network" data-summary="The story you are reading is a series of scoops nestled inside a far more urgent Internet-wide security advisory. The vulnerability at issue has been exploited for months already, and it's time for a ...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Krebs on Security</span>
-            <span class="chip">krebsonsecurity.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://krebsonsecurity.com/2026/01/the-kimwolf-botnet-is-stalking-your-local-network/" target="_blank" rel="noopener">The Kimwolf Botnet is Stalking Your Local Network</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-02T14:20:10.000Z">January 2, 2026 - 2:20 PM</time>
-            
-          </div>
-          <p class="news-summary">The story you are reading is a series of scoops nestled inside a far more urgent Internet-wide security advisory. The vulnerability at issue has been exploited for months already, and it's time for a ...</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Trust Wallet links $8.5 million crypto theft to Shai-Hulud NPM attack" data-summary="Trust Wallet believes the compromise of its web browser to steal roughly $8.5 million from over 2,500 crypto wallets is likely related to an &quot;industry-wide&quot; Sha1-Hulud attack in November. [...]...">
           <div class="chips">
@@ -502,8 +504,8 @@ The npm pack...</p>
           if (show) visible++;
         });
         const total = 30;
-        const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-05T06:14:51.527Z').toLocaleString());
+        const srcCount = 3;
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-05T09:13:38.925Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
