@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-01-06T06:12:25.025Z">1/6/2026, 6:12:25 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-01-06T09:10:46.116Z">1/6/2026, 9:10:46 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -102,6 +102,18 @@
             <span class="badge-new">NEW</span>
           </div>
           <p class="news-summary">A new critical security vulnerability has been disclosed in n8n, an open-source workflow automation platform, that could enable an authenticated attacker to execute arbitrary system commands on the un...</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Critical AdonisJS Bodyparser Flaw (CVSS 9.2) Enables Arbitrary File Write on Servers" data-summary="Users of the &quot;@adonisjs/bodyparser&quot; npm package are being advised to update to the latest version following the disclosure of a critical security vulnerability that, if successfully exploited, could a...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/01/critical-adonisjs-bodyparser-flaw-cvss.html" target="_blank" rel="noopener">Critical AdonisJS Bodyparser Flaw (CVSS 9.2) Enables Arbitrary File Write on Servers</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-06T03:30:00.000Z">January 6, 2026 - 3:30 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Users of the "@adonisjs/bodyparser" npm package are being advised to update to the latest version following the disclosure of a critical security vulnerability that, if successfully exploited, could a...</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Cloud file-sharing sites targeted for corporate data theft attacks" data-summary="A threat actor known as Zestix has been offering to corporate data stolen from dozens of companies likely after breaching their ShareFile, Nextcloud, and OwnCloud instances. [...]...">
           <div class="chips">
@@ -300,7 +312,7 @@ Cybersecurity is being reshaped by forces that extend beyond individual threats 
           <h2 class="news-title"><a href="https://thehackernews.com/2026/01/new-vvs-stealer-malware-targets-discord.html" target="_blank" rel="noopener">New VVS Stealer Malware Targets Discord Accounts via Obfuscated Python Code</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-05T07:48:00.000Z">January 5, 2026 - 7:48 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Cybersecurity researchers have disclosed details of a new Python-based information stealer called VVS Stealer (also styled as VVS $tealer) that's capable of harvesting Discord credentials and tokens.
 ...</p>
@@ -451,18 +463,6 @@ Security teams deploy ASM, asset inventories grow, alerts start flowing, and das
           </div>
           <p class="news-summary">The first ThreatsDay Bulletin of 2026 lands on a day that already feels symbolic — new year, new breaches, new tricks. If the past twelve months taught defenders anything, it’s that threat actors don’...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="RondoDox Botnet Exploits Critical React2Shell Flaw to Hijack IoT Devices and Web Servers" data-summary="Cybersecurity researchers have disclosed details of a persistent nine-month-long campaign that has targeted Internet of Things (IoT) devices and web applications to enroll them into a botnet known as ...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/01/rondodox-botnet-exploits-critical.html" target="_blank" rel="noopener">RondoDox Botnet Exploits Critical React2Shell Flaw to Hijack IoT Devices and Web Servers</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-01T09:19:00.000Z">January 1, 2026 - 9:19 AM</time>
-            
-          </div>
-          <p class="news-summary">Cybersecurity researchers have disclosed details of a persistent nine-month-long campaign that has targeted Internet of Things (IoT) devices and web applications to enroll them into a botnet known as ...</p>
-        </article>
     </div>
   </main>
   
@@ -507,7 +507,7 @@ Security teams deploy ASM, asset inventories grow, alerts start flowing, and das
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-06T06:12:25.025Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-06T09:10:46.116Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
