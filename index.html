@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,34 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-01-08T18:10:03.969Z">1/8/2026, 6:10:03 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-01-08T21:08:01.744Z">1/8/2026, 9:08:01 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Cisco switches hit by reboot loops due to DNS client bug" data-summary="Multiple Cisco switch models are suddenly experiencing reboot loops after logging fatal DNS client errors, according to reports seen by BleepingComputer. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cisco-switches-hit-by-reboot-loops-due-to-dns-client-bug/" target="_blank" rel="noopener">Cisco switches hit by reboot loops due to DNS client bug</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-08T20:40:26.000Z">January 8, 2026 - 8:40 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Multiple Cisco switch models are suddenly experiencing reboot loops after logging fatal DNS client errors, according to reports seen by BleepingComputer. [...]...</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="ChatGPT's Memory Feature Supercharges Prompt Injection" data-summary="The &quot;ZombieAgent&quot; exploit makes use of ChatGPT's long-term memory and advanced capabilities....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/endpoint-security/chatgpt-memory-feature-prompt-injection" target="_blank" rel="noopener">ChatGPT's Memory Feature Supercharges Prompt Injection</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-08T20:23:34.000Z">January 8, 2026 - 8:23 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The "ZombieAgent" exploit makes use of ChatGPT's long-term memory and advanced capabilities....</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="WhatsApp Worm Spreads Astaroth Banking Trojan Across Brazil via Contact Auto-Messaging" data-summary="Cybersecurity researchers have disclosed details of a new campaign that uses WhatsApp as a distribution vector for a Windows banking trojan called Astaroth in attacks targeting Brazil.
 The campaign ha...">
           <div class="chips">
@@ -105,17 +129,17 @@ The campaign ha...">
           <p class="news-summary">Cybersecurity researchers have disclosed details of a new campaign that uses WhatsApp as a distribution vector for a Windows banking trojan called Astaroth in attacks targeting Brazil.
 The campaign ha...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Texas court blocks Samsung from collecting smart TV viewing data" data-summary="The State of Texas has obtained a temporary restraining order (TRO) against Samsung that prohibits the South Korean company from collecting audio and visual data about what Texas consumers are watchin...">
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Texas court blocks Samsung from tracking TV viewing, then vacates order" data-summary="The State of Texas obtained a short-lived, temporary restraining order (TRO) against Samsung that prohibited the South Korean company from collecting audio and visual data about what Texas consumers a...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
           </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/texas-court-blocks-samsung-from-collecting-smart-tv-viewing-data/" target="_blank" rel="noopener">Texas court blocks Samsung from collecting smart TV viewing data</a></h2>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/texas-court-blocks-samsung-from-tracking-tv-viewing-then-vacates-order/" target="_blank" rel="noopener">Texas court blocks Samsung from tracking TV viewing, then vacates order</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-08T16:47:24.000Z">January 8, 2026 - 4:47 PM</time>
             <span class="badge-new">NEW</span>
           </div>
-          <p class="news-summary">The State of Texas has obtained a temporary restraining order (TRO) against Samsung that prohibits the South Korean company from collecting audio and visual data about what Texas consumers are watchin...</p>
+          <p class="news-summary">The State of Texas obtained a short-lived, temporary restraining order (TRO) against Samsung that prohibited the South Korean company from collecting audio and visual data about what Texas consumers a...</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Six for 2026: The cyber threats you can’t ignore" data-summary="Cybersecurity threats in 2026 are accelerating, driven by AI, automation, and more effective social engineering. Corelight outlines six emerging attack trends and explains how network visibility can h...">
           <div class="chips">
@@ -128,6 +152,18 @@ The campaign ha...</p>
             <span class="badge-new">NEW</span>
           </div>
           <p class="news-summary">Cybersecurity threats in 2026 are accelerating, driven by AI, automation, and more effective social engineering. Corelight outlines six emerging attack trends and explains how network visibility can h...</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Here's What Cloud Security's Future Holds for the Year Ahead" data-summary="Here are the top cloud security trends I'm seeing in my crystal ball for the New Year — particularly arming us for AI adoption....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cloud-security/heres-cloud-security-holds-year-ahead" target="_blank" rel="noopener">Here's What Cloud Security's Future Holds for the Year Ahead</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-08T15:00:00.000Z">January 8, 2026 - 3:00 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Here are the top cloud security trends I'm seeing in my crystal ball for the New Year — particularly arming us for AI adoption....</p>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="China-Linked UAT-7290 Targets Telecoms with Linux Malware and ORB Nodes" data-summary="A China-nexus threat actor known as UAT-7290 has been attributed to espionage-focused intrusions against entities in South Asia and Southeastern Europe.
 The activity cluster, which has been active sin...">
@@ -351,7 +387,7 @@ To that ...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/chatgpt-is-losing-market-share-as-google-gemini-gains-ground/" target="_blank" rel="noopener">ChatGPT is losing market share as Google Gemini gains ground</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-07T20:58:02.000Z">January 7, 2026 - 8:58 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">New data suggests that ChatGPT is losing its market share to Gemini on the web. It's unclear if Gemini is also gaining ground in the mobile space. [...]...</p>
         </article>
@@ -366,18 +402,6 @@ To that ...</p>
             
           </div>
           <p class="news-summary">Logitech's Options+ and G Hub apps on macOS stopped working after their code-signing certificate expired, leaving users unable to launch them on Apple systems. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Max severity Ni8mare flaw lets hackers hijack n8n servers" data-summary="A maximum severity vulnerability dubbed &quot;Ni8mare&quot; allows remote, unauthenticated attackers to take control over locally deployed instances of the N8N workflow automation platform. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/max-severity-ni8mare-flaw-lets-hackers-hijack-n8n-servers/" target="_blank" rel="noopener">Max severity Ni8mare flaw lets hackers hijack n8n servers</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-07T17:41:10.000Z">January 7, 2026 - 5:41 PM</time>
-            
-          </div>
-          <p class="news-summary">A maximum severity vulnerability dubbed "Ni8mare" allows remote, unauthenticated attackers to take control over locally deployed instances of the N8N workflow automation platform. [...]...</p>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Webinar: Learn How AI-Powered Zero Trust Detects Attacks with No Files or Indicators" data-summary="Security teams are still catching malware. The problem is what they're not catching.
 More attacks today don't arrive as files. They don't drop binaries. They don't trigger classic alerts. Instead, the...">
@@ -404,18 +428,6 @@ More attacks today don't arrive as files. They don't drop binaries. They don't t
             
           </div>
           <p class="news-summary">A cybercrime gang known as Black Cat has been attributed to a search engine optimization (SEO) poisoning campaign that employs fraudulent sites advertising popular software to trick users into downloa...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft: Classic Outlook bug prevents opening encrypted emails" data-summary="Microsoft has confirmed a known issue that prevents recipients from opening encrypted emails in classic Outlook. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-classic-outlook-bug-prevents-opening-encrypted-emails/" target="_blank" rel="noopener">Microsoft: Classic Outlook bug prevents opening encrypted emails</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-07T16:30:24.000Z">January 7, 2026 - 4:30 PM</time>
-            
-          </div>
-          <p class="news-summary">Microsoft has confirmed a known issue that prevents recipients from opening encrypted emails in classic Outlook. [...]...</p>
         </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Cyberattacks Likely Part of Military Operation in Venezuela" data-summary="Cyber's role in the US raid on Venezuela remains a question, though President Trump alluded to &quot;certain expertise&quot; in shutting down the power grid in Caracas....">
           <div class="chips">
@@ -452,18 +464,6 @@ More attacks today don't arrive as files. They don't drop binaries. They don't t
             
           </div>
           <p class="news-summary">Cybersecurity researchers have disclosed details of yet another maximum-severity security flaw in n8n, a popular workflow automation platform, that allows an unauthenticated remote attacker to gain co...</p>
-        </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Lack of MFA Is Common Thread in Vast Cloud Credential Heist" data-summary="An emerging threat actor that goes by &quot;Zestix&quot; used an assortment of infostealers to obtain credentials and breach file-sharing instances of approximately 50 enterprises....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cloud-security/lack-mfa-common-thread-vast-cloud-credential-heist" target="_blank" rel="noopener">Lack of MFA Is Common Thread in Vast Cloud Credential Heist</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-07T12:35:46.000Z">January 7, 2026 - 12:35 PM</time>
-            
-          </div>
-          <p class="news-summary">An emerging threat actor that goes by "Zestix" used an assortment of infostealers to obtain credentials and breach file-sharing instances of approximately 50 enterprises....</p>
         </article>
     </div>
   </main>
@@ -509,7 +509,7 @@ More attacks today don't arrive as files. They don't drop binaries. They don't t
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-08T18:10:03.969Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-08T21:08:01.744Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
