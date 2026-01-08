@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-01-08T00:33:56.825Z">1/8/2026, 12:33:56 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-01-08T03:36:14.647Z">1/8/2026, 3:36:14 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -407,7 +407,7 @@ The vulnerability, tracked as CVE-2026-0625 (CVSS score: 9.3), concerns a...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/openai-is-reportedly-getting-ready-to-test-ads-in-chatgpt/" target="_blank" rel="noopener">OpenAI is reportedly getting ready to test ads in ChatGPT</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-07T01:30:00.000Z">January 7, 2026 - 1:30 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Multiple reports suggest that OpenAI is going ahead with its plans to add ads to ChatGPT, but the experiment will be initially limited to its employees. [...]...</p>
         </article>
@@ -503,7 +503,7 @@ The vulnerability, tracked as CVE-2026-0625 (CVSS score: 9.3), concerns a...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-08T00:33:56.825Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-08T03:36:14.647Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
