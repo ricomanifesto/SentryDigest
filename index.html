@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-01-09T03:36:24.773Z">1/9/2026, 3:36:24 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-01-09T06:12:17.104Z">1/9/2026, 6:12:17 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="CISA retires 10 emergency cyber orders in rare bulk closure" data-summary="The U.S. Cybersecurity and Infrastructure Security Agency (CISA) has retired 10 Emergency Directives issued between 2019 and 2024, saying that the required actions have been completed or are now cover...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cisa-retires-10-emergency-cyber-orders-in-rare-bulk-closure/" target="_blank" rel="noopener">CISA retires 10 emergency cyber orders in rare bulk closure</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-09T03:46:07.000Z">January 9, 2026 - 3:46 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The U.S. Cybersecurity and Infrastructure Security Agency (CISA) has retired 10 Emergency Directives issued between 2019 and 2024, saying that the required actions have been completed or are now cover...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Gmail's new AI Inbox uses Gemini, but Google says it won’t train AI on user emails" data-summary="Google says it's rolling out a new feature called 'AI Inbox,' which summarizes all your emails, but the company promises it won't train its models on your emails. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -411,21 +423,9 @@ To that ...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/01/cisa-flags-microsoft-office-and-hpe.html" target="_blank" rel="noopener">CISA Flags Microsoft Office and HPE OneView Bugs as Actively Exploited</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-08T04:52:00.000Z">January 8, 2026 - 4:52 AM</time>
-            <span class="badge-new">NEW</span>
-          </div>
-          <p class="news-summary">The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Wednesday added two security flaws impacting Microsoft Office and Hewlett Packard Enterprise (HPE) OneView to its Known Exploited Vu...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="OpenAI says ChatGPT won't use your health information to train its models" data-summary="OpenAI is rolling out ChatGPT Health, which is a dedicated space for health conversations. Amidst privacy concerns, OpenAI said it won't use your health data. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/openai-says-chatgpt-wont-use-your-health-information-to-train-its-models/" target="_blank" rel="noopener">OpenAI says ChatGPT won't use your health information to train its models</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-07T23:28:45.000Z">January 7, 2026 - 11:28 PM</time>
             
           </div>
-          <p class="news-summary">OpenAI is rolling out ChatGPT Health, which is a dedicated space for health conversations. Amidst privacy concerns, OpenAI said it won't use your health data. [...]...</p>
+          <p class="news-summary">The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Wednesday added two security flaws impacting Microsoft Office and Hewlett Packard Enterprise (HPE) OneView to its Known Exploited Vu...</p>
         </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Attackers Exploit Zero-Day in End-of-Life D-Link Routers" data-summary="Hackers are attacking a critical zero-day flaw in unsupported D-Link DSL routers to run arbitrary commands....">
           <div class="chips">
@@ -509,7 +509,7 @@ More attacks today don't arrive as files. They don't drop binaries. They don't t
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-09T03:36:24.773Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-09T06:12:17.104Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
