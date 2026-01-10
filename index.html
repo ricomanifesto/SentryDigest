@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="Krebs on Security">Krebs on Security</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option><option value="Krebs on Security">Krebs on Security</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-01-10T15:07:15.070Z">1/10/2026, 3:07:15 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-01-10T18:09:57.569Z">1/10/2026, 6:09:57 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Spain arrests 34 suspects linked to Black Axe cyber crime" data-summary="Authorities in Spain have arrested 34 individuals allegedly part of a criminal network involved in cyber fraud and believed to be connected to the Black Axe group responsible for illicit activities ac...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/spain-arrests-34-suspects-linked-to-black-axe-cyber-crime/" target="_blank" rel="noopener">Spain arrests 34 suspects linked to Black Axe cyber crime</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-10T15:17:46.000Z">January 10, 2026 - 3:17 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Authorities in Spain have arrested 34 individuals allegedly part of a criminal network involved in cyber fraud and believed to be connected to the Black Axe group responsible for illicit activities ac...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="MuddyWater Launches RustyWater RAT via Spear-Phishing Across Middle East Sectors" data-summary="The Iranian threat actor known as MuddyWater has been attributed to a spear-phishing campaign targeting diplomatic, maritime, financial, and telecom entities in the Middle East with a Rust-based impla...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
@@ -197,7 +209,7 @@ As part of an operation conducted by the Spanis...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/01/chinese-linked-hackers-exploit-vmware.html" target="_blank" rel="noopener">China-Linked Hackers Exploit VMware ESXi Zero-Days to Escape Virtual Machines</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-09T17:43:00.000Z">January 9, 2026 - 5:43 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Chinese-speaking threat actors are suspected to have leveraged a compromised SonicWall VPN appliance as an initial access vector to deploy a VMware ESXi exploit that may have been developed as far bac...</p>
         </article>
@@ -209,7 +221,7 @@ As part of an operation conducted by the Spanis...</p>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/illicit-crypto-economy-surges-nation-states" target="_blank" rel="noopener">Illicit Crypto Economy Surges as Nation-States Join in the Fray</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-09T16:56:15.000Z">January 9, 2026 - 4:56 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Cybercriminal cryptocurrency transactions totaled billions in 2025, with activity from sanctioned countries like Russia and Iran causing the largest jump....</p>
         </article>
@@ -221,7 +233,7 @@ As part of an operation conducted by the Spanis...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/illinois-department-of-human-services-data-breach-affects-700k-people/" target="_blank" rel="noopener">Illinois Department of Human Services data breach affects 700K people</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-09T15:37:41.000Z">January 9, 2026 - 3:37 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The Illinois Department of Human Services (IDHS), one of Illinois' largest state agencies, accidentally exposed the personal and health data of nearly 700,000 residents due to incorrect privacy settin...</p>
         </article>
@@ -233,7 +245,7 @@ As part of an operation conducted by the Spanis...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/01/russian-apt28-runs-credential-stealing.html" target="_blank" rel="noopener">Russian APT28 Runs Credential-Stealing Campaign Targeting Energy and Policy Organizations</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-09T15:28:00.000Z">January 9, 2026 - 3:28 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Russian state-sponsored threat actors have been linked to a fresh set of credential harvesting attacks targeting individuals associated with a Turkish energy and nuclear research agency, as well as st...</p>
         </article>
@@ -395,30 +407,6 @@ The list of the directives now con...</p>
           </div>
           <p class="news-summary">Our first story of 2026 revealed how a destructive new botnet called Kimwolf rapidly grew to infect more than two million devices by mass-compromising a vast number of unofficial Android TV streaming ...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="FBI warns about Kimsuky hackers using QR codes to phish U.S. orgs" data-summary="The North Korean state-sponsored hacker group Kimsuki is using malicious QR codes in spearphishing campaigns that target U.S. organizations, the Federal Bureau of Investigation warns in a flash alert....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/fbi-warns-about-kimsuky-hackers-using-qr-codes-to-phish-us-orgs/" target="_blank" rel="noopener">FBI warns about Kimsuky hackers using QR codes to phish U.S. orgs</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-08T22:57:05.000Z">January 8, 2026 - 10:57 PM</time>
-            
-          </div>
-          <p class="news-summary">The North Korean state-sponsored hacker group Kimsuki is using malicious QR codes in spearphishing campaigns that target U.S. organizations, the Federal Bureau of Investigation warns in a flash alert....</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="xAI teases major Grok upgrade, hints at Grok Code CLI" data-summary="Elon Musk-backed xAI has been missing in action for a while now, but today, Musk teased a major upgrade for Grok alongside new products. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/xai-teases-major-grok-upgrade-hints-at-grok-code-cli/" target="_blank" rel="noopener">xAI teases major Grok upgrade, hints at Grok Code CLI</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-08T22:43:00.000Z">January 8, 2026 - 10:43 PM</time>
-            
-          </div>
-          <p class="news-summary">Elon Musk-backed xAI has been missing in action for a while now, but today, Musk teased a major upgrade for Grok alongside new products. [...]...</p>
-        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Maximum Severity HPE OneView Flaw Exploited in the Wild" data-summary="Exploitation of CVE-2025-37164 can enable remote code execution on HPE's IT infrastructure management platform, leading to devastating consequences....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -454,6 +442,20 @@ The list of the directives now con...</p>
             
           </div>
           <p class="news-summary">The "ZombieAgent" exploit makes use of ChatGPT's long-term memory and advanced capabilities....</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="WhatsApp Worm Spreads Astaroth Banking Trojan Across Brazil via Contact Auto-Messaging" data-summary="Cybersecurity researchers have disclosed details of a new campaign that uses WhatsApp as a distribution vector for a Windows banking trojan called Astaroth in attacks targeting Brazil.
+The campaign ha...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/01/whatsapp-worm-spreads-astaroth-banking.html" target="_blank" rel="noopener">WhatsApp Worm Spreads Astaroth Banking Trojan Across Brazil via Contact Auto-Messaging</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-08T17:10:00.000Z">January 8, 2026 - 5:10 PM</time>
+            
+          </div>
+          <p class="news-summary">Cybersecurity researchers have disclosed details of a new campaign that uses WhatsApp as a distribution vector for a Windows banking trojan called Astaroth in attacks targeting Brazil.
+The campaign ha...</p>
         </article>
     </div>
   </main>
@@ -499,7 +501,7 @@ The list of the directives now con...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-10T15:07:15.070Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-10T18:09:57.569Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
