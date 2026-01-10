@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-01-10T18:09:57.569Z">1/10/2026, 6:09:57 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-01-10T21:06:18.532Z">1/10/2026, 9:06:18 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="BreachForums hacking forum database leaked, exposing 324,000 accounts" data-summary="The latest incarnation of the notorious BreachForums hacking forum has suffered a data breach, with its user database table leaked online. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/breachforums-hacking-forum-database-leaked-exposing-324-000-accounts/" target="_blank" rel="noopener">BreachForums hacking forum database leaked, exposing 324,000 accounts</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-10T18:17:31.000Z">January 10, 2026 - 6:17 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The latest incarnation of the notorious BreachForums hacking forum has suffered a data breach, with its user database table leaked online. [...]...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Spain arrests 34 suspects linked to Black Axe cyber crime" data-summary="Authorities in Spain have arrested 34 individuals allegedly part of a criminal network involved in cyber fraud and believed to be connected to the Black Axe group responsible for illicit activities ac...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -185,7 +197,7 @@ As part of an operation conducted by the Spanis...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-may-soon-allow-it-admins-to-uninstall-copilot-on-managed-devices/" target="_blank" rel="noopener">Microsoft may soon allow IT admins to uninstall Copilot</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-09T20:34:22.000Z">January 9, 2026 - 8:34 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Microsoft is testing a new policy that allows IT administrators to uninstall the AI-powered Copilot digital assistant on managed devices. [...]...</p>
         </article>
@@ -197,7 +209,7 @@ As part of an operation conducted by the Spanis...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hackers-target-misconfigured-proxies-to-access-paid-llm-services/" target="_blank" rel="noopener">Hackers target misconfigured proxies to access paid LLM services</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-09T19:56:49.000Z">January 9, 2026 - 7:56 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Threat actors are systematically hunting for misconfigured proxy servers that could provide access to commercial large language model (LLM) services. [...]...</p>
         </article>
@@ -371,18 +383,6 @@ The list of the directives now con...</p>
           </div>
           <p class="news-summary">Google says it's rolling out a new feature called 'AI Inbox,' which summarizes all your emails, but the company promises it won't train its models on your emails. [...]...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="New China-linked hackers breach telcos using edge device exploits" data-summary="A sophisticated threat actor that uses Linux-based malware to target telecommunications providers has recently broadened its operations to include organizations in Southeastern Europe. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/new-china-linked-hackers-breach-telcos-using-edge-device-exploits/" target="_blank" rel="noopener">New China-linked hackers breach telcos using edge device exploits</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-08T23:39:12.000Z">January 8, 2026 - 11:39 PM</time>
-            
-          </div>
-          <p class="news-summary">A sophisticated threat actor that uses Linux-based malware to target telecommunications providers has recently broadened its operations to include organizations in Southeastern Europe. [...]...</p>
-        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="CrowdStrike to Buy SGNL to Expand Identity Security Capabilities" data-summary="The CrowdStrike-SGNL deal underscores how identity security has become a critical component of enterprise cybersecurity as companies add cloud services and deploy AI-driven tools....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -501,7 +501,7 @@ The campaign ha...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-10T18:09:57.569Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-10T21:06:18.532Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
