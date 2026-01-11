@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option><option value="Krebs on Security">Krebs on Security</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-01-11T09:07:49.928Z">1/11/2026, 9:07:49 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-01-11T12:12:25.559Z">1/11/2026, 12:12:25 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -135,7 +135,7 @@
           <h2 class="news-title"><a href="https://thehackernews.com/2026/01/muddywater-launches-rustywater-rat-via.html" target="_blank" rel="noopener">MuddyWater Launches RustyWater RAT via Spear-Phishing Across Middle East Sectors</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-10T10:35:00.000Z">January 10, 2026 - 10:35 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The Iranian threat actor known as MuddyWater has been attributed to a spear-phishing campaign targeting diplomatic, maritime, financial, and telecom entities in the Middle East with a Rust-based impla...</p>
         </article>
@@ -147,7 +147,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/ireland-recalls-almost-13-000-passports-over-missing-irl-code/" target="_blank" rel="noopener">Ireland recalls almost 13,000 passports over missing 'IRL' code</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-10T10:27:38.000Z">January 10, 2026 - 10:27 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Ireland's Department of Foreign Affairs has recalled nearly 13,000 passports after a software update caused a printing defect. The printing error makes the documents non-compliant with international t...</p>
         </article>
@@ -395,6 +395,18 @@ The list of the directives now con...</p>
           </div>
           <p class="news-summary">The CrowdStrike-SGNL deal underscores how identity security has become a critical component of enterprise cybersecurity as companies add cloud services and deploy AI-driven tools....</p>
         </article>
+        <article class="news-item" data-source="Krebs on Security" data-host="krebsonsecurity.com" data-title="Who Benefited from the Aisuru and Kimwolf Botnets?" data-summary="Our first story of 2026 revealed how a destructive new botnet called Kimwolf rapidly grew to infect more than two million devices by mass-compromising a vast number of unofficial Android TV streaming ...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Krebs on Security</span>
+            <span class="chip">krebsonsecurity.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://krebsonsecurity.com/2026/01/who-benefited-from-the-aisuru-and-kimwolf-botnets/" target="_blank" rel="noopener">Who Benefited from the Aisuru and Kimwolf Botnets?</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-08T23:23:43.000Z">January 8, 2026 - 11:23 PM</time>
+            
+          </div>
+          <p class="news-summary">Our first story of 2026 revealed how a destructive new botnet called Kimwolf rapidly grew to infect more than two million devices by mass-compromising a vast number of unofficial Android TV streaming ...</p>
+        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Maximum Severity HPE OneView Flaw Exploited in the Wild" data-summary="Exploitation of CVE-2025-37164 can enable remote code execution on HPE's IT infrastructure management platform, leading to devastating consequences....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -445,18 +457,6 @@ The campaign ha...">
           <p class="news-summary">Cybersecurity researchers have disclosed details of a new campaign that uses WhatsApp as a distribution vector for a Windows banking trojan called Astaroth in attacks targeting Brazil.
 The campaign ha...</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Here's What Cloud Security's Future Holds for the Year Ahead" data-summary="Here are the top cloud security trends I'm seeing in my crystal ball for the New Year — particularly arming us for AI adoption....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cloud-security/heres-cloud-security-holds-year-ahead" target="_blank" rel="noopener">Here's What Cloud Security's Future Holds for the Year Ahead</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-08T15:00:00.000Z">January 8, 2026 - 3:00 PM</time>
-            
-          </div>
-          <p class="news-summary">Here are the top cloud security trends I'm seeing in my crystal ball for the New Year — particularly arming us for AI adoption....</p>
-        </article>
     </div>
   </main>
   
@@ -500,8 +500,8 @@ The campaign ha...</p>
           if (show) visible++;
         });
         const total = 30;
-        const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-11T09:07:49.928Z').toLocaleString());
+        const srcCount = 4;
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-11T12:12:25.559Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
