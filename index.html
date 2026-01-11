@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-01-10T21:06:18.532Z">1/10/2026, 9:06:18 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-01-11T00:37:31.598Z">1/11/2026, 12:37:31 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft is retiring 'Send to Kindle' in Word" data-summary="Microsoft is retiring a feature that allowed you to send your documents to Kindle straight from Microsoft Word. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-is-retiring-send-to-kindle-in-word/" target="_blank" rel="noopener">Microsoft is retiring 'Send to Kindle' in Word</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-11T00:29:10.000Z">January 11, 2026 - 12:29 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Microsoft is retiring a feature that allowed you to send your documents to Kindle straight from Microsoft Word. [...]...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="BreachForums hacking forum database leaked, exposing 324,000 accounts" data-summary="The latest incarnation of the notorious BreachForums hacking forum has suffered a data breach, with its user database table leaked online. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -161,7 +173,7 @@ As part of an operation conducted by the Spanis...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/anthropic-viral-claude-banned-and-reported-to-authorities-message-isnt-real/" target="_blank" rel="noopener">Anthropic: Viral Claude “Banned and reported to authorities” message isn’t real</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-10T00:06:26.000Z">January 10, 2026 - 12:06 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Anthropic has denied reports of banning legitimate accounts, after a viral post on X claimed the creator of Claude had banned a user. [...]...</p>
         </article>
@@ -173,7 +185,7 @@ As part of an operation conducted by the Spanis...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/chatgpt-tests-a-new-feature-to-find-jobs-improve-your-resume-and-more/" target="_blank" rel="noopener">ChatGPT tests a new feature to find jobs, improve your resume, and more</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-09T23:23:08.000Z">January 9, 2026 - 11:23 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">OpenAI is testing "Jobs," a new feature that could help you explore roles, improve your resume, and plan your career. This feature is being tested after ChatGPT gained support for the Health dashboard...</p>
         </article>
@@ -185,7 +197,7 @@ As part of an operation conducted by the Spanis...</p>
           <h2 class="news-title"><a href="https://www.darkreading.com/remote-workforce/deepfake-fraud-tools-lag-expectations" target="_blank" rel="noopener">Deepfake Fraud Tools Are Lagging Behind Expectations</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-09T22:08:25.000Z">January 9, 2026 - 10:08 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Deepfakes are becoming more realistic and more popular. Luckily, defenders are still ahead in the arms race....</p>
         </article>
@@ -371,18 +383,6 @@ The list of the directives now con...</p>
           </div>
           <p class="news-summary">The U.S. Cybersecurity and Infrastructure Security Agency (CISA) has retired 10 Emergency Directives issued between 2019 and 2024, saying that the required actions have been completed or are now cover...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Gmail's new AI Inbox uses Gemini, but Google says it won’t train AI on user emails" data-summary="Google says it's rolling out a new feature called 'AI Inbox,' which summarizes all your emails, but the company promises it won't train its models on your emails. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/google/gmails-new-ai-inbox-uses-gemini-but-google-says-it-wont-train-ai-on-user-emails/" target="_blank" rel="noopener">Gmail's new AI Inbox uses Gemini, but Google says it won’t train AI on user emails</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-08T23:46:30.000Z">January 8, 2026 - 11:46 PM</time>
-            
-          </div>
-          <p class="news-summary">Google says it's rolling out a new feature called 'AI Inbox,' which summarizes all your emails, but the company promises it won't train its models on your emails. [...]...</p>
-        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="CrowdStrike to Buy SGNL to Expand Identity Security Capabilities" data-summary="The CrowdStrike-SGNL deal underscores how identity security has become a critical component of enterprise cybersecurity as companies add cloud services and deploy AI-driven tools....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -501,7 +501,7 @@ The campaign ha...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-10T21:06:18.532Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-11T00:37:31.598Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
