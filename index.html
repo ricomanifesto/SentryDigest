@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-01-12T09:13:42.790Z">1/12/2026, 9:13:42 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-01-12T12:14:11.301Z">1/12/2026, 12:14:11 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -102,6 +102,20 @@
             <span class="badge-new">NEW</span>
           </div>
           <p class="news-summary">Anthropic is bringing Claude for healthcare, following a similar move by OpenAI for ChatGPT. [...]...</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Anthropic Launches Claude AI for Healthcare with Secure Health Record Access" data-summary="Anthropic has become the latest Artificial intelligence (AI) company to announce a new suite of features that allows users of its Claude platform to better understand their health information.
+Under a...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/01/anthropic-launches-claude-ai-for.html" target="_blank" rel="noopener">Anthropic Launches Claude AI for Healthcare with Secure Health Record Access</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-12T08:37:00.000Z">January 12, 2026 - 8:37 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Anthropic has become the latest Artificial intelligence (AI) company to announce a new suite of features that allows users of its Claude platform to better understand their health information.
+Under a...</p>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Researchers Uncover Service Providers Fueling Industrial-Scale Pig Butchering Fraud" data-summary="Cybersecurity researchers have shed light on two service providers that supply online criminal networks with the necessary tools and infrastructure to fuel the pig butchering-as-a-service (PBaaS) econ...">
           <div class="chips">
@@ -443,18 +457,6 @@ The list of the directives now con...</p>
           </div>
           <p class="news-summary">Threat actors ripped off a legitimate AI-powered Chrome extension in order to harvest ChatGPT and DeepSeek data before sending it to a C2 server....</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="ChatGPT's Memory Feature Supercharges Prompt Injection" data-summary="The &quot;ZombieAgent&quot; exploit makes use of ChatGPT's long-term memory and advanced capabilities....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/endpoint-security/chatgpt-memory-feature-prompt-injection" target="_blank" rel="noopener">ChatGPT's Memory Feature Supercharges Prompt Injection</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-08T20:23:34.000Z">January 8, 2026 - 8:23 PM</time>
-            
-          </div>
-          <p class="news-summary">The "ZombieAgent" exploit makes use of ChatGPT's long-term memory and advanced capabilities....</p>
-        </article>
     </div>
   </main>
   
@@ -499,7 +501,7 @@ The list of the directives now con...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-12T09:13:42.790Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-12T12:14:11.301Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
