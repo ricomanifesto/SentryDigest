@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,34 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 2 sources • Last updated <time datetime="2026-01-14T03:38:43.276Z">1/14/2026, 3:38:43 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-01-14T06:12:22.195Z">1/14/2026, 6:12:22 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Taiwan Endures Greater Cyber Pressure From China" data-summary="Chinese cyberattacks on Taiwan's critical infrastructure — including energy utilities and hospitals — rose 6% in 2025, averaging 2.63 million attacks a day....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/taiwan-sees-greater-cyber-pressure-from-china" target="_blank" rel="noopener">Taiwan Endures Greater Cyber Pressure From China</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-14T02:00:00.000Z">January 14, 2026 - 2:00 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Chinese cyberattacks on Taiwan's critical infrastructure — including energy utilities and hospitals — rose 6% in 2025, averaging 2.63 million attacks a day....</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="CISO Succession Crisis Highlights How Turnover Amplifies Security Risks" data-summary="When cybersecurity leadership turns over too fast, risk does not reset. It compounds....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/ciso-succession-crisis-highlights-turnover-amplifies-security-risks" target="_blank" rel="noopener">CISO Succession Crisis Highlights How Turnover Amplifies Security Risks</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-13T23:45:27.000Z">January 13, 2026 - 11:45 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">When cybersecurity leadership turns over too fast, risk does not reset. It compounds....</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Ukraine's army targeted in new charity-themed malware campaign" data-summary="Officials of Ukraine's Defense Forces were targeted in a charity-themed campaign between October and December 2025 that delivered backdoor malware called PluggyApe. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -114,6 +138,30 @@
             <span class="badge-new">NEW</span>
           </div>
           <p class="news-summary">A newly discovered advanced cloud-native Linux malware framework named VoidLink focuses on cloud environments, providing attackers with custom loaders, implants, rootkits, and plugins designed for mod...</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="'Most Severe AI Vulnerability to Date' Hits ServiceNow" data-summary="ServiceNow tacked agentic AI onto a largely unguarded legacy chatbot, exposing customers' data and connected systems....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/remote-workforce/ai-vulnerability-servicenow" target="_blank" rel="noopener">'Most Severe AI Vulnerability to Date' Hits ServiceNow</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-13T21:44:48.000Z">January 13, 2026 - 9:44 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">ServiceNow tacked agentic AI onto a largely unguarded legacy chatbot, exposing customers' data and connected systems....</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Microsoft Starts 2026 With a Bang: A Freshly Exploited Zero-Day" data-summary="The vendor's first Patch Tuesday of the year also contains fixes for 112 CVEs, nearly double the amount from last month....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/application-security/microsofts-starts-2026-bang-zero-day" target="_blank" rel="noopener">Microsoft Starts 2026 With a Bang: A Freshly Exploited Zero-Day</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-13T21:11:37.000Z">January 13, 2026 - 9:11 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The vendor's first Patch Tuesday of the year also contains fixes for 112 CVEs, nearly double the amount from last month....</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Central Maine Healthcare breach exposed data of over 145,000 people" data-summary="A data breach last year at Central Maine Healthcare (CMH) exposed sensitive information of more than 145,000 individuals. [...]...">
           <div class="chips">
@@ -199,6 +247,18 @@
           </div>
           <p class="news-summary">Google has confirmed a software bug that is preventing volume buttons from working correctly on Android devices with accessibility features enabled. [...]...</p>
         </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Shadow#Reactor Uses Text Files to Deliver Remcos RAT" data-summary="Attackers use a sophisticated delivery mechanism of text-only files for RAT deployment, showcasing a clever way to bypass defensive tools and rely on the target's own utilities....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/endpoint-security/shadow-reactor-uses-text-files-to-deliver-remcos-rat" target="_blank" rel="noopener">Shadow#Reactor Uses Text Files to Deliver Remcos RAT</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-13T17:46:57.000Z">January 13, 2026 - 5:46 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Attackers use a sophisticated delivery mechanism of text-only files for RAT deployment, showcasing a clever way to bypass defensive tools and rely on the target's own utilities....</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Long-Running Web Skimming Campaign Steals Credit Cards From Online Checkout Pages" data-summary="Cybersecurity researchers have discovered a major web skimming campaign that has been active since January 2022, targeting several major payment networks like American Express, Diners Club, Discover, ...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
@@ -246,6 +306,18 @@
             <span class="badge-new">NEW</span>
           </div>
           <p class="news-summary">Scammers are flooding LinkedIn posts with fake "reply" comments that appear to come from the platform, warning of bogus policy violations and urging users to click external links. Some even abuse Link...</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Attackers Abuse Python, Cloudflare to Deliver AsyncRAT" data-summary="The phishing campaign shows how attackers continue to weaponize legitimate cloud services and open source tools to evade detection and gain trust....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/endpoint-security/attackers-abuse-python-cloudflare-deliver-asyncrat" target="_blank" rel="noopener">Attackers Abuse Python, Cloudflare to Deliver AsyncRAT</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-13T14:58:48.000Z">January 13, 2026 - 2:58 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The phishing campaign shows how attackers continue to weaponize legitimate cloud services and open source tools to evade detection and gain trust....</p>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="[Webinar] Securing Agentic AI: From MCPs and Tool Access to Shadow API Key Sprawl" data-summary="AI agents are no longer just writing code. They are executing it.
 Tools like Copilot, Claude Code, and Codex can now build, test, and deploy software end-to-end in minutes. That speed is reshaping eng...">
@@ -347,117 +419,41 @@ The security industry loves talking about "new" threats. AI-powered attacks. Qua
           </div>
           <p class="news-summary">The Amsterdam Court of Appeal sentenced a 44-year-old Dutch national to seven years in prison for multiple crimes, including computer hacking and attempted extortion. [...]...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="n8n Supply Chain Attack Abuses Community Nodes to Steal OAuth Tokens" data-summary="Threat actors have been observed uploading a set of eight packages on the npm registry that masqueraded as integrations targeting the n8n workflow automation platform to steal developers' OAuth creden...">
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="BreachForums Breached, Exposing 324K Cybercriminals" data-summary="A massive data dump reveals real identities and details of administrators and members of the notorious hacker forum....">
           <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
           </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/01/n8n-supply-chain-attack-abuses.html" target="_blank" rel="noopener">n8n Supply Chain Attack Abuses Community Nodes to Steal OAuth Tokens</a></h2>
+          <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/breachforums-breached-exposing-324k-cybercriminals" target="_blank" rel="noopener">BreachForums Breached, Exposing 324K Cybercriminals</a></h2>
           <div class="news-meta">
-            <time datetime="2026-01-12T16:39:00.000Z">January 12, 2026 - 4:39 PM</time>
+            <time datetime="2026-01-12T22:01:37.000Z">January 12, 2026 - 10:01 PM</time>
             
           </div>
-          <p class="news-summary">Threat actors have been observed uploading a set of eight packages on the npm registry that masqueraded as integrations targeting the n8n workflow automation platform to steal developers' OAuth creden...</p>
+          <p class="news-summary">A massive data dump reveals real identities and details of administrators and members of the notorious hacker forum....</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="⚡ Weekly Recap: AI Automation Exploits, Telecom Espionage, Prompt Poaching & More" data-summary="This week made one thing clear: small oversights can spiral fast. Tools meant to save time and reduce friction turned into easy entry points once basic safeguards were ignored. Attackers didn’t need n...">
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Multipurpose GoBruteforcer Botnet Targets 50K+ Linux Servers" data-summary="Researchers detailed a souped-up version of the GoBruteforcer botnet that preys on servers with weak credentials and AI-generated configurations....">
           <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
           </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/01/weekly-recap-ai-automation-exploits.html" target="_blank" rel="noopener">⚡ Weekly Recap: AI Automation Exploits, Telecom Espionage, Prompt Poaching & More</a></h2>
+          <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/gobruteforcer-botnet-targets-50k-plus-linux-servers" target="_blank" rel="noopener">Multipurpose GoBruteforcer Botnet Targets 50K+ Linux Servers</a></h2>
           <div class="news-meta">
-            <time datetime="2026-01-12T13:41:00.000Z">January 12, 2026 - 1:41 PM</time>
+            <time datetime="2026-01-12T21:19:49.000Z">January 12, 2026 - 9:19 PM</time>
             
           </div>
-          <p class="news-summary">This week made one thing clear: small oversights can spiral fast. Tools meant to save time and reduce friction turned into easy entry points once basic safeguards were ignored. Attackers didn’t need n...</p>
+          <p class="news-summary">Researchers detailed a souped-up version of the GoBruteforcer botnet that preys on servers with weak credentials and AI-generated configurations....</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="GoBruteforcer Botnet Targets Crypto Project Databases by Exploiting Weak Credentials" data-summary="A new wave of GoBruteforcer attacks has targeted databases of cryptocurrency and blockchain projects to co-opt them into a botnet that's capable of brute-forcing user passwords for services such as FT...">
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Navigating Privacy and Cybersecurity Laws in 2026 Will Prove Difficult" data-summary="No matter what new laws or regulations make the cut for 2026, it's clear that compliance challenges will persist and federal legislation will be limited....">
           <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
           </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/01/gobruteforcer-botnet-targets-crypto.html" target="_blank" rel="noopener">GoBruteforcer Botnet Targets Crypto Project Databases by Exploiting Weak Credentials</a></h2>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/navigating-privacy-and-cybersecurity-laws-in-2026-will-prove-difficult" target="_blank" rel="noopener">Navigating Privacy and Cybersecurity Laws in 2026 Will Prove Difficult</a></h2>
           <div class="news-meta">
-            <time datetime="2026-01-12T10:48:00.000Z">January 12, 2026 - 10:48 AM</time>
+            <time datetime="2026-01-12T20:14:57.000Z">January 12, 2026 - 8:14 PM</time>
             
           </div>
-          <p class="news-summary">A new wave of GoBruteforcer attacks has targeted databases of cryptocurrency and blockchain projects to co-opt them into a botnet that's capable of brute-forcing user passwords for services such as FT...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Anthropic Launches Claude AI for Healthcare with Secure Health Record Access" data-summary="Anthropic has become the latest Artificial intelligence (AI) company to announce a new suite of features that allows users of its Claude platform to better understand their health information.
-Under a...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/01/anthropic-launches-claude-ai-for.html" target="_blank" rel="noopener">Anthropic Launches Claude AI for Healthcare with Secure Health Record Access</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-12T08:37:00.000Z">January 12, 2026 - 8:37 AM</time>
-            
-          </div>
-          <p class="news-summary">Anthropic has become the latest Artificial intelligence (AI) company to announce a new suite of features that allows users of its Claude platform to better understand their health information.
-Under a...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Researchers Uncover Service Providers Fueling Industrial-Scale Pig Butchering Fraud" data-summary="Cybersecurity researchers have shed light on two service providers that supply online criminal networks with the necessary tools and infrastructure to fuel the pig butchering-as-a-service (PBaaS) econ...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/01/researchers-uncover-service-providers.html" target="_blank" rel="noopener">Researchers Uncover Service Providers Fueling Industrial-Scale Pig Butchering Fraud</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-12T07:34:00.000Z">January 12, 2026 - 7:34 AM</time>
-            
-          </div>
-          <p class="news-summary">Cybersecurity researchers have shed light on two service providers that supply online criminal networks with the necessary tools and infrastructure to fuel the pig butchering-as-a-service (PBaaS) econ...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="MuddyWater Launches RustyWater RAT via Spear-Phishing Across Middle East Sectors" data-summary="The Iranian threat actor known as MuddyWater has been attributed to a spear-phishing campaign targeting diplomatic, maritime, financial, and telecom entities in the Middle East with a Rust-based impla...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/01/muddywater-launches-rustywater-rat-via.html" target="_blank" rel="noopener">MuddyWater Launches RustyWater RAT via Spear-Phishing Across Middle East Sectors</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-10T10:35:00.000Z">January 10, 2026 - 10:35 AM</time>
-            
-          </div>
-          <p class="news-summary">The Iranian threat actor known as MuddyWater has been attributed to a spear-phishing campaign targeting diplomatic, maritime, financial, and telecom entities in the Middle East with a Rust-based impla...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Europol Arrests 34 Black Axe Members in Spain Over €5.9M Fraud and Organized Crime" data-summary="Europol on Friday announced the arrest of 34 individuals in Spain who are alleged to be part of an international criminal organization called Black Axe.
-As part of an operation conducted by the Spanis...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/01/europol-arrests-34-black-axe-members-in.html" target="_blank" rel="noopener">Europol Arrests 34 Black Axe Members in Spain Over €5.9M Fraud and Organized Crime</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-10T08:59:00.000Z">January 10, 2026 - 8:59 AM</time>
-            
-          </div>
-          <p class="news-summary">Europol on Friday announced the arrest of 34 individuals in Spain who are alleged to be part of an international criminal organization called Black Axe.
-As part of an operation conducted by the Spanis...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="China-Linked Hackers Exploit VMware ESXi Zero-Days to Escape Virtual Machines" data-summary="Chinese-speaking threat actors are suspected to have leveraged a compromised SonicWall VPN appliance as an initial access vector to deploy a VMware ESXi exploit that may have been developed as far bac...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/01/chinese-linked-hackers-exploit-vmware.html" target="_blank" rel="noopener">China-Linked Hackers Exploit VMware ESXi Zero-Days to Escape Virtual Machines</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-09T17:43:00.000Z">January 9, 2026 - 5:43 PM</time>
-            
-          </div>
-          <p class="news-summary">Chinese-speaking threat actors are suspected to have leveraged a compromised SonicWall VPN appliance as an initial access vector to deploy a VMware ESXi exploit that may have been developed as far bac...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Russian APT28 Runs Credential-Stealing Campaign Targeting Energy and Policy Organizations" data-summary="Russian state-sponsored threat actors have been linked to a fresh set of credential harvesting attacks targeting individuals associated with a Turkish energy and nuclear research agency, as well as st...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/01/russian-apt28-runs-credential-stealing.html" target="_blank" rel="noopener">Russian APT28 Runs Credential-Stealing Campaign Targeting Energy and Policy Organizations</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-09T15:28:00.000Z">January 9, 2026 - 3:28 PM</time>
-            
-          </div>
-          <p class="news-summary">Russian state-sponsored threat actors have been linked to a fresh set of credential harvesting attacks targeting individuals associated with a Turkish energy and nuclear research agency, as well as st...</p>
+          <p class="news-summary">No matter what new laws or regulations make the cut for 2026, it's clear that compliance challenges will persist and federal legislation will be limited....</p>
         </article>
     </div>
   </main>
@@ -502,8 +498,8 @@ As part of an operation conducted by the Spanis...</p>
           if (show) visible++;
         });
         const total = 30;
-        const srcCount = 2;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-14T03:38:43.276Z').toLocaleString());
+        const srcCount = 3;
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-14T06:12:22.195Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
