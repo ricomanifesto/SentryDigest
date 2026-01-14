@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,58 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-01-13T21:08:08.612Z">1/13/2026, 9:08:08 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-01-14T00:34:43.018Z">1/14/2026, 12:34:43 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Ukraine's army targeted in new charity-themed malware campaign" data-summary="Officials of Ukraine's Defense Forces were targeted in a charity-themed campaign between October and December 2025 that delivered backdoor malware called PluggyApe. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/ukraines-army-targeted-in-new-charity-themed-malware-campaign/" target="_blank" rel="noopener">Ukraine's army targeted in new charity-themed malware campaign</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-13T23:03:55.000Z">January 13, 2026 - 11:03 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Officials of Ukraine's Defense Forces were targeted in a charity-themed campaign between October and December 2025 that delivered backdoor malware called PluggyApe. [...]...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="New VoidLink malware framework targets Linux cloud servers" data-summary="A newly discovered advanced cloud-native Linux malware framework named VoidLink focuses on cloud environments, providing attackers with custom loaders, implants, rootkits, and plugins designed for mod...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/new-voidlink-malware-framework-targets-linux-cloud-servers/" target="_blank" rel="noopener">New VoidLink malware framework targets Linux cloud servers</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-13T22:12:20.000Z">January 13, 2026 - 10:12 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A newly discovered advanced cloud-native Linux malware framework named VoidLink focuses on cloud environments, providing attackers with custom loaders, implants, rootkits, and plugins designed for mod...</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="'Most Severe AI Vulnerability to Date' Hits ServiceNow" data-summary="ServiceNow tacked agentic AI onto a largely unguarded legacy chatbot, exposing customers' data and connected systems....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/remote-workforce/ai-vulnerability-servicenow" target="_blank" rel="noopener">'Most Severe AI Vulnerability to Date' Hits ServiceNow</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-13T21:44:48.000Z">January 13, 2026 - 9:44 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">ServiceNow tacked agentic AI onto a largely unguarded legacy chatbot, exposing customers' data and connected systems....</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Microsoft Starts 2026 With a Bang: A Freshly Exploited Zero-Day" data-summary="The vendor's first Patch Tuesday of the year also contains fixes for 112 CVEs, nearly double the amount from last month....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/application-security/microsofts-starts-2026-bang-zero-day" target="_blank" rel="noopener">Microsoft Starts 2026 With a Bang: A Freshly Exploited Zero-Day</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-13T21:11:37.000Z">January 13, 2026 - 9:11 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The vendor's first Patch Tuesday of the year also contains fixes for 112 CVEs, nearly double the amount from last month....</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Central Maine Healthcare breach exposed data of over 145,000 people" data-summary="A data breach last year at Central Maine Healthcare (CMH) exposed sensitive information of more than 145,000 individuals. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -174,6 +222,18 @@
             <span class="badge-new">NEW</span>
           </div>
           <p class="news-summary">Google has confirmed a software bug that is preventing volume buttons from working correctly on Android devices with accessibility features enabled. [...]...</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Shadow#Reactor Uses Text Files to Deliver Remcos RAT" data-summary="Attackers use a sophisticated delivery mechanism of text-only files for RAT deployment, showcasing a clever way to bypass defensive tools and rely on the target's own utilities....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/endpoint-security/shadow-reactor-uses-text-files-to-deliver-remcos-rat" target="_blank" rel="noopener">Shadow#Reactor Uses Text Files to Deliver Remcos RAT</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-13T17:46:57.000Z">January 13, 2026 - 5:46 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Attackers use a sophisticated delivery mechanism of text-only files for RAT deployment, showcasing a clever way to bypass defensive tools and rely on the target's own utilities....</p>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Long-Running Web Skimming Campaign Steals Credit Cards From Online Checkout Pages" data-summary="Cybersecurity researchers have discovered a major web skimming campaign that has been active since January 2022, targeting several major payment networks like American Express, Diners Club, Discover, ...">
           <div class="chips">
@@ -331,7 +391,7 @@ The security industry loves talking about "new" threats. AI-powered attacks. Qua
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hacker-gets-seven-years-for-breaching-rotterdam-and-antwerp-ports/" target="_blank" rel="noopener">Hacker gets seven years for breaching Rotterdam and Antwerp ports</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-12T23:06:47.000Z">January 12, 2026 - 11:06 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The Amsterdam Court of Appeal sentenced a 44-year-old Dutch national to seven years in prison for multiple crimes, including computer hacking and attempted extortion. [...]...</p>
         </article>
@@ -343,7 +403,7 @@ The security industry loves talking about "new" threats. AI-powered attacks. Qua
           <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/breachforums-breached-exposing-324k-cybercriminals" target="_blank" rel="noopener">BreachForums Breached, Exposing 324K Cybercriminals</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-12T22:01:37.000Z">January 12, 2026 - 10:01 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A massive data dump reveals real identities and details of administrators and members of the notorious hacker forum....</p>
         </article>
@@ -355,21 +415,9 @@ The security industry loves talking about "new" threats. AI-powered attacks. Qua
           <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/gobruteforcer-botnet-targets-50k-plus-linux-servers" target="_blank" rel="noopener">Multipurpose GoBruteforcer Botnet Targets 50K+ Linux Servers</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-12T21:19:49.000Z">January 12, 2026 - 9:19 PM</time>
-            <span class="badge-new">NEW</span>
-          </div>
-          <p class="news-summary">Researchers detailed a souped-up version of the GoBruteforcer botnet that preys on servers with weak credentials and AI-generated configurations....</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Facebook login thieves now using browser-in-browser trick" data-summary="Hackers over the past six months have relied increasingly more on the browser-in-the-browser (BitB) method to trick users into providing Facebook account credentials. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/facebook-login-thieves-now-using-browser-in-browser-trick/" target="_blank" rel="noopener">Facebook login thieves now using browser-in-browser trick</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-12T21:05:43.000Z">January 12, 2026 - 9:05 PM</time>
             
           </div>
-          <p class="news-summary">Hackers over the past six months have relied increasingly more on the browser-in-the-browser (BitB) method to trick users into providing Facebook account credentials. [...]...</p>
+          <p class="news-summary">Researchers detailed a souped-up version of the GoBruteforcer botnet that preys on servers with weak credentials and AI-generated configurations....</p>
         </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Navigating Privacy and Cybersecurity Laws in 2026 Will Prove Difficult" data-summary="No matter what new laws or regulations make the cut for 2026, it's clear that compliance challenges will persist and federal legislation will be limited....">
           <div class="chips">
@@ -382,18 +430,6 @@ The security industry loves talking about "new" threats. AI-powered attacks. Qua
             
           </div>
           <p class="news-summary">No matter what new laws or regulations make the cut for 2026, it's clear that compliance challenges will persist and federal legislation will be limited....</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="CISA orders feds to patch Gogs RCE flaw exploited in zero-day attacks" data-summary="CISA has ordered government agencies to secure their systems against a high-severity Gogs vulnerability that was exploited in zero-day attacks. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cisa-orders-feds-to-patch-gogs-rce-flaw-exploited-in-zero-day-attacks/" target="_blank" rel="noopener">CISA orders feds to patch Gogs RCE flaw exploited in zero-day attacks</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-12T20:09:16.000Z">January 12, 2026 - 8:09 PM</time>
-            
-          </div>
-          <p class="news-summary">CISA has ordered government agencies to secure their systems against a high-severity Gogs vulnerability that was exploited in zero-day attacks. [...]...</p>
         </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="FBI Flags Quishing Attacks From North Korean APT" data-summary="A state-sponsored threat group tracked as &quot;Kimsuky&quot; sent QR-code-filled phishing emails to US and foreign government agencies, NGOs, and academic institutions....">
           <div class="chips">
@@ -418,42 +454,6 @@ The security industry loves talking about "new" threats. AI-powered attacks. Qua
             
           </div>
           
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="n8n Supply Chain Attack Abuses Community Nodes to Steal OAuth Tokens" data-summary="Threat actors have been observed uploading a set of eight packages on the npm registry that masqueraded as integrations targeting the n8n workflow automation platform to steal developers' OAuth creden...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/01/n8n-supply-chain-attack-abuses.html" target="_blank" rel="noopener">n8n Supply Chain Attack Abuses Community Nodes to Steal OAuth Tokens</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-12T16:39:00.000Z">January 12, 2026 - 4:39 PM</time>
-            
-          </div>
-          <p class="news-summary">Threat actors have been observed uploading a set of eight packages on the npm registry that masqueraded as integrations targeting the n8n workflow automation platform to steal developers' OAuth creden...</p>
-        </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="2 Separate Campaigns Probe Corporate LLMs for Secrets" data-summary="A total of 91,403 sessions targeted public LLM endpoints to find leaks in organizations' use of AI and map an expanding attack surface....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/endpoint-security/separate-campaigns-target-exposed-llm-services" target="_blank" rel="noopener">2 Separate Campaigns Probe Corporate LLMs for Secrets</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-12T15:37:14.000Z">January 12, 2026 - 3:37 PM</time>
-            
-          </div>
-          <p class="news-summary">A total of 91,403 sessions targeted public LLM endpoints to find leaks in organizations' use of AI and map an expanding attack surface....</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="⚡ Weekly Recap: AI Automation Exploits, Telecom Espionage, Prompt Poaching & More" data-summary="This week made one thing clear: small oversights can spiral fast. Tools meant to save time and reduce friction turned into easy entry points once basic safeguards were ignored. Attackers didn’t need n...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/01/weekly-recap-ai-automation-exploits.html" target="_blank" rel="noopener">⚡ Weekly Recap: AI Automation Exploits, Telecom Espionage, Prompt Poaching & More</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-12T13:41:00.000Z">January 12, 2026 - 1:41 PM</time>
-            
-          </div>
-          <p class="news-summary">This week made one thing clear: small oversights can spiral fast. Tools meant to save time and reduce friction turned into easy entry points once basic safeguards were ignored. Attackers didn’t need n...</p>
         </article>
     </div>
   </main>
@@ -499,7 +499,7 @@ The security industry loves talking about "new" threats. AI-powered attacks. Qua
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-13T21:08:08.612Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-14T00:34:43.018Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
