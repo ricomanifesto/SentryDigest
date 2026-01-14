@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="Krebs on Security">Krebs on Security</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option><option value="Krebs on Security">Krebs on Security</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,58 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-01-14T15:09:54.686Z">1/14/2026, 3:09:54 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-01-14T18:11:52.173Z">1/14/2026, 6:11:52 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft updates Windows DLL that triggered security alerts" data-summary="Microsoft has resolved a known issue that was causing security applications to incorrectly flag a core Windows component, the company said in a service alert posted this week. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-updates-windows-dll-that-triggered-security-alerts/" target="_blank" rel="noopener">Microsoft updates Windows DLL that triggered security alerts</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-14T16:44:09.000Z">January 14, 2026 - 4:44 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Microsoft has resolved a known issue that was causing security applications to incorrectly flag a core Windows component, the company said in a service alert posted this week. [...]...</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="'VoidLink' Malware Poses Advanced Threat to Linux Systems" data-summary="Researchers discovered a modular, &quot;cloud-first&quot; framework that is feature-rich and designed to maintain stealthy, long-term access to Linux environments....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cloud-security/voidlink-malware-advanced-threat-linux-systems" target="_blank" rel="noopener">'VoidLink' Malware Poses Advanced Threat to Linux Systems</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-14T15:59:49.000Z">January 14, 2026 - 3:59 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Researchers discovered a modular, "cloud-first" framework that is feature-rich and designed to maintain stealthy, long-term access to Linux environments....</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="AI Agents Are Becoming Privilege Escalation Paths" data-summary="AI agents have quickly moved from experimental tools to core components of daily workflows across security, engineering, IT, and operations. What began as individual productivity aids, like personal c...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/01/ai-agents-are-becoming-privilege.html" target="_blank" rel="noopener">AI Agents Are Becoming Privilege Escalation Paths</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-14T15:07:00.000Z">January 14, 2026 - 3:07 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">AI agents have quickly moved from experimental tools to core components of daily workflows across security, engineering, IT, and operations. What began as individual productivity aids, like personal c...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="ConsentFix debrief: Insights from the new OAuth phishing attack" data-summary="ConsentFix is an OAuth phishing technique abusing browser-based authorization flows to hijack Microsoft accounts. Push Security shares new insights from continued tracking, community research, and evo...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/consentfix-debrief-insights-from-the-new-oauth-phishing-attack/" target="_blank" rel="noopener">ConsentFix debrief: Insights from the new OAuth phishing attack</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-14T15:01:11.000Z">January 14, 2026 - 3:01 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">ConsentFix is an OAuth phishing technique abusing browser-based authorization flows to hijack Microsoft accounts. Push Security shares new insights from continued tracking, community research, and evo...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Hackers Exploit c-ares DLL Side-Loading to Bypass Security and Deploy Malware" data-summary="Security experts have disclosed details of an active malware campaign that's exploiting a DLL side-loading vulnerability in a legitimate binary associated with the open-source c-ares library to bypass...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
@@ -103,12 +151,12 @@
           </div>
           <p class="news-summary">Security experts have disclosed details of an active malware campaign that's exploiting a DLL side-loading vulnerability in a legitimate binary associated with the open-source c-ares library to bypass...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Reprompt attack let hackers hijack Microsoft Copilot sessions" data-summary="Researchers identified an attack method dubbed &quot;Reprompt&quot; that could allow attackers to infiltrate a user's Microsoft Copilot session and issue commands to exfiltrate sensitive data. [...]...">
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Reprompt attack hijacked Microsoft Copilot sessions for data theft" data-summary="Researchers identified an attack method dubbed &quot;Reprompt&quot; that could allow attackers to infiltrate a user's Microsoft Copilot session and issue commands to exfiltrate sensitive data. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
           </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/reprompt-attack-let-hackers-hijack-microsoft-copilot-sessions/" target="_blank" rel="noopener">Reprompt attack let hackers hijack Microsoft Copilot sessions</a></h2>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/reprompt-attack-let-hackers-hijack-microsoft-copilot-sessions/" target="_blank" rel="noopener">Reprompt attack hijacked Microsoft Copilot sessions for data theft</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-14T14:00:00.000Z">January 14, 2026 - 2:00 PM</time>
             <span class="badge-new">NEW</span>
@@ -375,30 +423,6 @@ The...</p>
           </div>
           <p class="news-summary">Microsoft has released the KB5073724 extended security update to fix the Patch Tuesday security updates, including 3 zero-days and a fix for expiring Secure Boot certificates. [...]...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Windows 11 KB5074109 & KB5073455 cumulative updates released" data-summary="Microsoft has released Windows 11 KB5074109 and KB5073455  cumulative updates for versions 25H2/24H2 and 23H2 to fix security vulnerabilities, bugs, and add new features. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/windows-11-kb5074109-and-kb5073455-cumulative-updates-released/" target="_blank" rel="noopener">Windows 11 KB5074109 & KB5073455 cumulative updates released</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-13T18:53:24.000Z">January 13, 2026 - 6:53 PM</time>
-            <span class="badge-new">NEW</span>
-          </div>
-          <p class="news-summary">Microsoft has released Windows 11 KB5074109 and KB5073455  cumulative updates for versions 25H2/24H2 and 23H2 to fix security vulnerabilities, bugs, and add new features. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft January 2026 Patch Tuesday fixes 3 zero-days, 114 flaws" data-summary="Today is Microsoft's January 2026 Patch Tuesday with security updates for 114 flaws, including one actively exploited and two publicly disclosed zero-day vulnerabilities. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-january-2026-patch-tuesday-fixes-3-zero-days-114-flaws/" target="_blank" rel="noopener">Microsoft January 2026 Patch Tuesday fixes 3 zero-days, 114 flaws</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-13T18:34:08.000Z">January 13, 2026 - 6:34 PM</time>
-            <span class="badge-new">NEW</span>
-          </div>
-          <p class="news-summary">Today is Microsoft's January 2026 Patch Tuesday with security updates for 114 flaws, including one actively exploited and two publicly disclosed zero-day vulnerabilities. [...]...</p>
-        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Shadow#Reactor Uses Text Files to Deliver Remcos RAT" data-summary="Attackers use a sophisticated delivery mechanism of text-only files for RAT deployment, showcasing a clever way to bypass defensive tools and rely on the target's own utilities....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -407,7 +431,7 @@ The...</p>
           <h2 class="news-title"><a href="https://www.darkreading.com/endpoint-security/shadow-reactor-uses-text-files-to-deliver-remcos-rat" target="_blank" rel="noopener">Shadow#Reactor Uses Text Files to Deliver Remcos RAT</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-13T17:46:57.000Z">January 13, 2026 - 5:46 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Attackers use a sophisticated delivery mechanism of text-only files for RAT deployment, showcasing a clever way to bypass defensive tools and rely on the target's own utilities....</p>
         </article>
@@ -419,7 +443,7 @@ The...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/01/long-running-web-skimming-campaign.html" target="_blank" rel="noopener">Long-Running Web Skimming Campaign Steals Credit Cards From Online Checkout Pages</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-13T17:30:00.000Z">January 13, 2026 - 5:30 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Cybersecurity researchers have discovered a major web skimming campaign that has been active since January 2022, targeting several major payment networks like American Express, Diners Club, Discover, ...</p>
         </article>
@@ -431,35 +455,9 @@ The...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/01/malicious-chrome-extension-steals-mexc.html" target="_blank" rel="noopener">Malicious Chrome Extension Steals MEXC API Keys by Masquerading as Trading Tool</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-13T17:22:00.000Z">January 13, 2026 - 5:22 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Cybersecurity researchers have disclosed details of a malicious Google Chrome extension that's capable of stealing API keys associated with MEXC, a centralized cryptocurrency exchange (CEX) available ...</p>
-        </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Attackers Abuse Python, Cloudflare to Deliver AsyncRAT" data-summary="The phishing campaign shows how attackers continue to weaponize legitimate cloud services and open source tools to evade detection and gain trust....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/endpoint-security/attackers-abuse-python-cloudflare-deliver-asyncrat" target="_blank" rel="noopener">Attackers Abuse Python, Cloudflare to Deliver AsyncRAT</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-13T14:58:48.000Z">January 13, 2026 - 2:58 PM</time>
-            
-          </div>
-          <p class="news-summary">The phishing campaign shows how attackers continue to weaponize legitimate cloud services and open source tools to evade detection and gain trust....</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="[Webinar] Securing Agentic AI: From MCPs and Tool Access to Shadow API Key Sprawl" data-summary="AI agents are no longer just writing code. They are executing it.
-Tools like Copilot, Claude Code, and Codex can now build, test, and deploy software end-to-end in minutes. That speed is reshaping eng...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/01/webinar-t-from-mcps-and-tool-access-to.html" target="_blank" rel="noopener">[Webinar] Securing Agentic AI: From MCPs and Tool Access to Shadow API Key Sprawl</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-13T13:44:00.000Z">January 13, 2026 - 1:44 PM</time>
-            
-          </div>
-          <p class="news-summary">AI agents are no longer just writing code. They are executing it.
-Tools like Copilot, Claude Code, and Codex can now build, test, and deploy software end-to-end in minutes. That speed is reshaping eng...</p>
         </article>
     </div>
   </main>
@@ -505,7 +503,7 @@ Tools like Copilot, Claude Code, and Codex can now build, test, and deploy softw
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-14T15:09:54.686Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-14T18:11:52.173Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
