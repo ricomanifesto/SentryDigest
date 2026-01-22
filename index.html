@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-01-22T04:11:39.818Z">1/22/2026, 4:11:39 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-01-22T06:42:05.751Z">1/22/2026, 6:42:05 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -98,10 +98,22 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/events/rsac-2026-conference" target="_blank" rel="noopener">Secure Your Spot at RSAC 2026 Conference</a></h2>
           <div class="news-meta">
-            <time datetime="2026-01-22T04:11:39.529Z">January 22, 2026 - 4:11 AM</time>
+            <time datetime="2026-01-22T06:42:05.454Z">January 22, 2026 - 6:42 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Cisco Fixes Actively Exploited Zero-Day CVE-2026-20045 in Unified CM and Webex" data-summary="Cisco has released fresh patches to address what it described as a &quot;critical&quot; security vulnerability impacting multiple Unified Communications (CM) products and Webex Calling Dedicated Instance that i...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/01/cisco-fixes-actively-exploited-zero-day.html" target="_blank" rel="noopener">Cisco Fixes Actively Exploited Zero-Day CVE-2026-20045 in Unified CM and Webex</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-22T04:06:00.000Z">January 22, 2026 - 4:06 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Cisco has released fresh patches to address what it described as a "critical" security vulnerability impacting multiple Unified Communications (CM) products and Webex Calling Dedicated Instance that i...</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Zendesk ticket systems hijacked in massive global spam wave" data-summary="People worldwide are being targeted by a massive spam wave originating from unsecured Zendesk support systems, with victims reporting receiving hundreds of emails with strange and sometimes alarming s...">
           <div class="chips">
@@ -382,7 +394,7 @@ The campaign, which ...">
           <h2 class="news-title"><a href="https://thehackernews.com/2026/01/lastpass-warns-of-fake-maintenance.html" target="_blank" rel="noopener">LastPass Warns of Fake Maintenance Messages Targeting Users’ Master Passwords</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-21T06:40:00.000Z">January 21, 2026 - 6:40 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">LastPass is alerting users to a new active phishing campaign that's impersonating the password management service, which aims to trick users into giving up their master passwords.
 The campaign, which ...</p>
@@ -396,7 +408,7 @@ The vulnerability, tracked ...">
           <h2 class="news-title"><a href="https://thehackernews.com/2026/01/certcc-warns-binary-parser-bug-allows.html" target="_blank" rel="noopener">CERT/CC Warns binary-parser Bug Allows Node.js Privilege-Level Code Execution</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-21T06:04:00.000Z">January 21, 2026 - 6:04 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A security vulnerability has been disclosed in the popular binary-parser npm library that, if successfully exploited, could result in the execution of arbitrary JavaScript.
 The vulnerability, tracked ...</p>
@@ -449,18 +461,6 @@ The vulnerability, tracked ...</p>
           </div>
           <p class="news-summary">The attack consists of a NexShield malicious browser extension, a social engineering technique to crash the browser, and a Python-based RAT....</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Mass Spam Attacks Leverage Zendesk Instances" data-summary="The CRM vendor advised ignoring or deleting suspicious emails and said the attacks were not tied to any breach or software vulnerability....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/mass-spam-attacks-zendesk-instances" target="_blank" rel="noopener">Mass Spam Attacks Leverage Zendesk Instances</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-20T20:18:30.000Z">January 20, 2026 - 8:18 PM</time>
-            
-          </div>
-          <p class="news-summary">The CRM vendor advised ignoring or deleting suspicious emails and said the attacks were not tied to any breach or software vulnerability....</p>
-        </article>
     </div>
   </main>
   
@@ -505,7 +505,7 @@ The vulnerability, tracked ...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-22T04:11:39.818Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-22T06:42:05.751Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
