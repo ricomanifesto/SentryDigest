@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-01-30T04:43:50.369Z">1/30/2026, 4:43:50 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-01-30T06:57:04.573Z">1/30/2026, 6:57:04 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Two Ivanti EPMM Zero-Day RCE Flaws Actively Exploited, Security Updates Released" data-summary="Ivanti has rolled out security updates to address two security flaws impacting Ivanti Endpoint Manager Mobile (EPMM) that have been exploited in zero-day attacks, one of which has been added by the U....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/01/two-ivanti-epmm-zero-day-rce-flaws.html" target="_blank" rel="noopener">Two Ivanti EPMM Zero-Day RCE Flaws Actively Exploited, Security Updates Released</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-01-30T04:43:00.000Z">January 30, 2026 - 4:43 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Ivanti has rolled out security updates to address two security flaws impacting Ivanti Endpoint Manager Mobile (EPMM) that have been exploited in zero-day attacks, one of which has been added by the U....</p>
+        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Chinese APTs Hacking Asian Orgs With High-End Malware" data-summary="Advanced persistent threat (APT) groups have deployed new cyber weapons against a variety of targets, highlighting the increasing threats to the region....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -441,18 +453,6 @@ To that end, the company ...</p>
           </div>
           <p class="news-summary">Security researchers are warning of insecure deployments in enterprise environments of the Moltbot (formerly Clawdbot) AI assistant, which can lead to leaking API keys, OAuth tokens, conversation hist...</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Consumers Reluctant to Shop at Stores That Don't Take Security Seriously" data-summary="The retail sector must adapt as consumers become more cybersecurity-conscious. Increased attack transparency is a good place to start....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/consumers-reluctant-to-shop-at-stores-hit-by-cyberattacks" target="_blank" rel="noopener">Consumers Reluctant to Shop at Stores That Don't Take Security Seriously</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-28T20:24:40.000Z">January 28, 2026 - 8:24 PM</time>
-            
-          </div>
-          <p class="news-summary">The retail sector must adapt as consumers become more cybersecurity-conscious. Increased attack transparency is a good place to start....</p>
-        </article>
     </div>
   </main>
   
@@ -497,7 +497,7 @@ To that end, the company ...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-30T04:43:50.369Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-01-30T06:57:04.573Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
