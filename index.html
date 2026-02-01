@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-01T13:01:08.223Z">2/1/2026, 1:01:08 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-01T15:30:34.855Z">2/1/2026, 3:30:34 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="New Apple privacy feature limits location tracking on iPhones, iPads" data-summary="Apple is introducing a new privacy feature that lets users limit the precision of location data shared with cellular networks on some iPhone and iPad models. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/apple/new-apple-privacy-feature-limits-location-tracking-on-iphones-ipads/" target="_blank" rel="noopener">New Apple privacy feature limits location tracking on iPhones, iPads</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-02-01T15:20:40.000Z">February 1, 2026 - 3:20 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Apple is introducing a new privacy feature that lets users limit the precision of location data shared with cellular networks on some iPhone and iPad models. [...]...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="OpenAI says you can trust ChatGPT answers, as it kicks off ads rollout preparation" data-summary="OpenAI previously confirmed that it's testing ads in ChatGPT for free and $8 Go accounts, and now we're seeing early signs of that rollout, at least on Android. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -147,7 +159,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/mandiant-details-how-shinyhunters-abuse-sso-to-steal-cloud-data/" target="_blank" rel="noopener">Mandiant details how ShinyHunters abuse SSO to steal cloud data</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-31T15:02:12.000Z">January 31, 2026 - 3:02 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Mandiant says a wave of recent ShinyHunters SaaS data-theft attacks is being fueled by targeted voice phishing (vishing) attacks and company-branded phishing sites that steal single sign-on (SSO) cred...</p>
         </article>
@@ -159,7 +171,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/researcher-reveals-evidence-of-private-instagram-profiles-leaking-photos/" target="_blank" rel="noopener">Researcher reveals evidence of private Instagram profiles leaking photos</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-31T14:27:12.000Z">January 31, 2026 - 2:27 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A researcher has released detailed evidence showing some Instagram private accounts exposed photo links to unauthenticated visitors. The issue was later fixed, but Meta closed the report as not applic...</p>
         </article>
@@ -449,18 +461,6 @@ The vulnerability, tracked as CVE-...</p>
           </div>
           <p class="news-summary">A new Android malware campaign is using the Hugging Face platform as a repository for thousands of variations of an APK payload that collects credentials for popular financial and payment services. [....</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Ivanti warns of two EPMM flaws exploited in zero-day attacks" data-summary="Ivanti has disclosed two critical vulnerabilities in Ivanti Endpoint Manager Mobile (EPMM), tracked as CVE-2026-1281 and CVE-2026-1340, that were exploited in zero-day attacks. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/ivanti-warns-of-two-epmm-flaws-exploited-in-zero-day-attacks/" target="_blank" rel="noopener">Ivanti warns of two EPMM flaws exploited in zero-day attacks</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-29T22:07:33.000Z">January 29, 2026 - 10:07 PM</time>
-            
-          </div>
-          <p class="news-summary">Ivanti has disclosed two critical vulnerabilities in Ivanti Endpoint Manager Mobile (EPMM), tracked as CVE-2026-1281 and CVE-2026-1340, that were exploited in zero-day attacks. [...]...</p>
-        </article>
     </div>
   </main>
   
@@ -505,7 +505,7 @@ The vulnerability, tracked as CVE-...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-01T13:01:08.223Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-01T15:30:34.855Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
