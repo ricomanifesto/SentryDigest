@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-01T15:30:34.855Z">2/1/2026, 3:30:34 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-01T18:42:04.708Z">2/1/2026, 6:42:04 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Exposed MongoDB instances still targeted in data extortion attacks" data-summary="A threat actor is targeting exposed MongoDB instances in automated data extortion attacks demanding low ransoms from owners to restore the data. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/exposed-mongodb-instances-still-targeted-in-data-extortion-attacks/" target="_blank" rel="noopener">Exposed MongoDB instances still targeted in data extortion attacks</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-02-01T16:27:00.000Z">February 1, 2026 - 4:27 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A threat actor is targeting exposed MongoDB instances in automated data extortion attacks demanding low ransoms from owners to restore the data. [...]...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="New Apple privacy feature limits location tracking on iPhones, iPads" data-summary="Apple is introducing a new privacy feature that lets users limit the precision of location data shared with cellular networks on some iPhone and iPad models. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -135,7 +147,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/us-convicts-ex-google-engineer-for-sending-ai-tech-data-to-china/" target="_blank" rel="noopener">U.S. convicts ex-Google engineer for sending AI tech data to China</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-31T17:33:42.000Z">January 31, 2026 - 5:33 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A U.S. federal jury has convicted Linwei Ding, a former software engineer at Google, for stealing AI supercomputer data from his employer and secretly sharing it with Chinese tech firms. [...]...</p>
         </article>
@@ -147,7 +159,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cloud-storage-payment-scam-floods-inboxes-with-fake-renewals/" target="_blank" rel="noopener">Cloud storage payment scam floods inboxes with fake renewals</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-31T16:21:32.000Z">January 31, 2026 - 4:21 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Over the past few months, a large-scale cloud storage subscription scam campaign has been targeting users worldwide with repeated emails falsely warning recipients that their photos, files, and accoun...</p>
         </article>
@@ -449,18 +461,6 @@ The vulnerability, tracked as CVE-...</p>
           </div>
           <p class="news-summary">Federal agencies will no longer be required to solicit software attestations that they comply with NIST's Secure Software Development Framework (SSDF). What that means long term is unclear....</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Hugging Face abused to spread thousands of Android malware variants" data-summary="A new Android malware campaign is using the Hugging Face platform as a repository for thousands of variations of an APK payload that collects credentials for popular financial and payment services. [....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hugging-face-abused-to-spread-thousands-of-android-malware-variants/" target="_blank" rel="noopener">Hugging Face abused to spread thousands of Android malware variants</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-29T22:08:19.000Z">January 29, 2026 - 10:08 PM</time>
-            
-          </div>
-          <p class="news-summary">A new Android malware campaign is using the Hugging Face platform as a repository for thousands of variations of an APK payload that collects credentials for popular financial and payment services. [....</p>
-        </article>
     </div>
   </main>
   
@@ -505,7 +505,7 @@ The vulnerability, tracked as CVE-...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-01T15:30:34.855Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-01T18:42:04.708Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
