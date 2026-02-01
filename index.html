@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-01T09:36:45.584Z">2/1/2026, 9:36:45 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-01T13:01:08.223Z">2/1/2026, 1:01:08 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -171,7 +171,7 @@
           <h2 class="news-title"><a href="https://thehackernews.com/2026/01/iran-linked-redkitten-cyber-campaign.html" target="_blank" rel="noopener">Iran-Linked RedKitten Cyber Campaign Targets Human Rights NGOs and Activists</a></h2>
           <div class="news-meta">
             <time datetime="2026-01-31T12:02:00.000Z">January 31, 2026 - 12:02 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A Farsi-speaking threat actor aligned with Iranian state interests is suspected to be behind a new campaign targeting non-governmental organizations and individuals involved in documenting recent huma...</p>
         </article>
@@ -505,7 +505,7 @@ The vulnerability, tracked as CVE-...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-01T09:36:45.584Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-01T13:01:08.223Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
