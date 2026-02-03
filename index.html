@@ -87,10 +87,24 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-02-03T06:23:45.469Z">2/3/2026, 6:23:45 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-02-03T09:18:12.288Z">2/3/2026, 9:18:12 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Mozilla Adds One-Click Option to Disable Generative AI Features in Firefox" data-summary="Mozilla on Monday announced a new controls section in its Firefox desktop browser settings that allows users to completely turn off generative artificial intelligence (GenAI) features.
+&quot;It provides a ...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/02/mozilla-adds-one-click-option-to.html" target="_blank" rel="noopener">Mozilla Adds One-Click Option to Disable Generative AI Features in Firefox</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-02-03T05:39:00.000Z">February 3, 2026 - 5:39 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Mozilla on Monday announced a new controls section in its Firefox desktop browser settings that allows users to completely turn off generative artificial intelligence (GenAI) features.
+"It provides a ...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Notepad++ Hosting Breach Attributed to China-Linked Lotus Blossom Hacking Group" data-summary="A China-linked threat actor known as Lotus Blossom has been attributed with medium confidence to the recently discovered compromise of the infrastructure hosting Notepad++.
 The attack enabled the stat...">
           <div class="chips">
@@ -362,7 +376,7 @@ Sometimes a singl...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/02/notepad-official-update-mechanism.html" target="_blank" rel="noopener">Notepad++ Official Update Mechanism Hijacked to Deliver Malware to Select Users</a></h2>
           <div class="news-meta">
             <time datetime="2026-02-02T08:55:00.000Z">February 2, 2026 - 8:55 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The maintainer of Notepad++ has revealed that state-sponsored attackers hijacked the utility's update mechanism to redirect update traffic to malicious servers instead.
 "The attack involved [an] infra...</p>
@@ -451,18 +465,6 @@ Sometimes a singl...</p>
           </div>
           <p class="news-summary">A U.S. federal jury has convicted Linwei Ding, a former software engineer at Google, for stealing AI supercomputer data from his employer and secretly sharing it with Chinese tech firms. [...]...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Iran-Linked RedKitten Cyber Campaign Targets Human Rights NGOs and Activists" data-summary="A Farsi-speaking threat actor aligned with Iranian state interests is suspected to be behind a new campaign targeting non-governmental organizations and individuals involved in documenting recent huma...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/01/iran-linked-redkitten-cyber-campaign.html" target="_blank" rel="noopener">Iran-Linked RedKitten Cyber Campaign Targets Human Rights NGOs and Activists</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-01-31T12:02:00.000Z">January 31, 2026 - 12:02 PM</time>
-            
-          </div>
-          <p class="news-summary">A Farsi-speaking threat actor aligned with Iranian state interests is suspected to be behind a new campaign targeting non-governmental organizations and individuals involved in documenting recent huma...</p>
-        </article>
     </div>
   </main>
   
@@ -507,7 +509,7 @@ Sometimes a singl...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-03T06:23:45.469Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-03T09:18:12.288Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
