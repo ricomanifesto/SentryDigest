@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-05T18:23:46.381Z">2/5/2026, 6:23:46 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-05T21:11:36.997Z">2/5/2026, 9:11:36 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Ransomware gang uses ISPsystem VMs for stealthy payload delivery" data-summary="Ransomware operators are hosting and delivering malicious payloads at scale by abusing virtual machines (VMs) provisioned by ISPsystem, a legitimate virtual infrastructure management provider. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/ransomware-gang-uses-ispsystem-vms-for-stealthy-payload-delivery/" target="_blank" rel="noopener">Ransomware gang uses ISPsystem VMs for stealthy payload delivery</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-02-05T20:57:11.000Z">February 5, 2026 - 8:57 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Ransomware operators are hosting and delivering malicious payloads at scale by abusing virtual machines (VMs) provisioned by ISPsystem, a legitimate virtual infrastructure management provider. [...]...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft to shut down Exchange Online EWS in April 2027" data-summary="Microsoft announced today that the Exchange Web Services (EWS) API for Exchange Online will be shut down in April 2027, after nearly 20 years. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -333,7 +345,7 @@ The flaw,...</p>
           <h2 class="news-title"><a href="https://www.darkreading.com/application-security/attackers-use-screensavers-drop-malware-rmm-tools" target="_blank" rel="noopener">Attackers Use Windows Screensavers to Drop Malware, RMM Tools</a></h2>
           <div class="news-meta">
             <time datetime="2026-02-04T21:06:28.000Z">February 4, 2026 - 9:06 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">By tapping the unusual .scr file type, attackers leverage "executables that don't always receive executable-level controls," one researcher noted....</p>
         </article>
@@ -447,18 +459,6 @@ Check Poin...</p>
           </div>
           <p class="news-summary">Dark Reading has something new hitting the newsstand: a content section purpose-built for Latin American readers, featuring news, analysis, features, and multimedia....</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Big Breach or Smooth Sailing? Mexican Gov't Faces Leak Allegations" data-summary="A hacktivist group claims a 2.3-terabyte data breach exposes the information of 36 million Mexicans, but no sensitive accounts are at risk, says government....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/big-breach-or-nada-de-nada-mexican-govt-faces-leak-allegations" target="_blank" rel="noopener">Big Breach or Smooth Sailing? Mexican Gov't Faces Leak Allegations</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-02-04T13:00:00.000Z">February 4, 2026 - 1:00 PM</time>
-            
-          </div>
-          <p class="news-summary">A hacktivist group claims a 2.3-terabyte data breach exposes the information of 36 million Mexicans, but no sensitive accounts are at risk, says government....</p>
-        </article>
     </div>
   </main>
   
@@ -503,7 +503,7 @@ Check Poin...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-05T18:23:46.381Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-05T21:11:36.997Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
