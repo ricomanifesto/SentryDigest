@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,36 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-05T03:51:00.902Z">2/5/2026, 3:51:00 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-05T06:27:06.270Z">2/5/2026, 6:27:06 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Critical n8n Flaw CVE-2026-25049 Enables System Command Execution via Malicious Workflows" data-summary="A new, critical security vulnerability has been disclosed in the n8n workflow automation platform that, if successfully exploited, could result in the execution of arbitrary system commands.
+The flaw,...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/02/critical-n8n-flaw-cve-2026-25049.html" target="_blank" rel="noopener">Critical n8n Flaw CVE-2026-25049 Enables System Command Execution via Malicious Workflows</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-02-05T06:16:00.000Z">February 5, 2026 - 6:16 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A new, critical security vulnerability has been disclosed in the n8n workflow automation platform that, if successfully exploited, could result in the execution of arbitrary system commands.
+The flaw,...</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Malicious NGINX Configurations Enable Large-Scale Web Traffic Hijacking Campaign" data-summary="Cybersecurity researchers have disclosed details of an active web traffic hijacking campaign that has targeted NGINX installations and management panels like Baota (BT) in an attempt to route it throu...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/02/hackers-exploit-react2shell-to-hijack.html" target="_blank" rel="noopener">Malicious NGINX Configurations Enable Large-Scale Web Traffic Hijacking Campaign</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-02-05T04:56:00.000Z">February 5, 2026 - 4:56 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Cybersecurity researchers have disclosed details of an active web traffic hijacking campaign that has targeted NGINX installations and management panels like Baota (BT) in an attempt to route it throu...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Hackers compromise NGINX servers to redirect user traffic" data-summary="A threat actor is compromising NGINX servers in a campaign that hijacks user traffic and reroutes it through the attacker's backend infrastructure. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -357,7 +383,7 @@ Identity and access management ...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/02/eclipse-foundation-mandates-pre-publish.html" target="_blank" rel="noopener">Eclipse Foundation Mandates Pre-Publish Security Checks for Open VSX Extensions</a></h2>
           <div class="news-meta">
             <time datetime="2026-02-04T06:26:00.000Z">February 4, 2026 - 6:26 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The Eclipse Foundation, which maintains the Open VSX Registry, has announced plans to enforce security checks before Microsoft Visual Studio Code (VS Code) extensions are published to the open-source ...</p>
         </article>
@@ -369,7 +395,7 @@ Identity and access management ...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/02/cisa-adds-actively-exploited-solarwinds.html" target="_blank" rel="noopener">CISA Adds Actively Exploited SolarWinds Web Help Desk RCE to KEV Catalog</a></h2>
           <div class="news-meta">
             <time datetime="2026-02-04T05:50:00.000Z">February 4, 2026 - 5:50 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Tuesday added a critical security flaw impacting SolarWinds Web Help Desk (WHD) to its Known Exploited Vulnerabilities (KEV) catalog...</p>
         </article>
@@ -433,30 +459,6 @@ Identity and access management ...</p>
           </div>
           <p class="news-summary">A coordinated reconnaissance campaign targeting Citrix NetScaler infrastructure over the past week used tens of thousands of residential proxies to discover login panels. [...]...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="CISA flags critical SolarWinds RCE flaw as exploited in attacks" data-summary="CISA has flagged a critical SolarWinds Web Help Desk vulnerability as actively exploited in attacks and ordered federal agencies to patch their systems within three days. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cisa-flags-critical-solarwinds-rce-flaw-as-actively-exploited/" target="_blank" rel="noopener">CISA flags critical SolarWinds RCE flaw as exploited in attacks</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-02-03T19:37:00.000Z">February 3, 2026 - 7:37 PM</time>
-            
-          </div>
-          <p class="news-summary">CISA has flagged a critical SolarWinds Web Help Desk vulnerability as actively exploited in attacks and ordered federal agencies to patch their systems within three days. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="AI May Supplant Pen Testers, But Oversight &amp; Trust Are Not There Yet" data-summary="Crowdsourced bug bounties and pen-testing firms see AI agents stealing the low-hanging vulnerabilities from their human counterparts. Oversight remains key....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/ai-supplant-pen-testers-oversight-trust-not-there-yet" target="_blank" rel="noopener">AI May Supplant Pen Testers, But Oversight &amp; Trust Are Not There Yet</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-02-03T18:03:46.000Z">February 3, 2026 - 6:03 PM</time>
-            
-          </div>
-          <p class="news-summary">Crowdsourced bug bounties and pen-testing firms see AI agents stealing the low-hanging vulnerabilities from their human counterparts. Oversight remains key....</p>
-        </article>
     </div>
   </main>
   
@@ -501,7 +503,7 @@ Identity and access management ...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-05T03:51:00.902Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-05T06:27:06.270Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
