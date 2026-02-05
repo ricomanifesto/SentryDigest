@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
+          <option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-05T06:27:06.270Z">2/5/2026, 6:27:06 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-05T09:21:31.890Z">2/5/2026, 9:21:31 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Protests Don't Impede Iranian Spying on Expats, Syrians, Israelis" data-summary="Iranian threat actors have been stealing credentials from people of interest across the Middle East, using spear-phishing and social engineering....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/iran-spies-expats-syrians-israelis" target="_blank" rel="noopener">Protests Don't Impede Iranian Spying on Expats, Syrians, Israelis</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-02-05T07:00:00.000Z">February 5, 2026 - 7:00 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Iranian threat actors have been stealing credentials from people of interest across the Middle East, using spear-phishing and social engineering....</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Critical n8n Flaw CVE-2026-25049 Enables System Command Execution via Malicious Workflows" data-summary="A new, critical security vulnerability has been disclosed in the n8n workflow automation platform that, if successfully exploited, could result in the execution of arbitrary system commands.
 The flaw,...">
           <div class="chips">
@@ -371,7 +383,7 @@ Identity and access management ...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/02/microsoft-warns-python-infostealers.html" target="_blank" rel="noopener">Microsoft Warns Python Infostealers Target macOS via Fake Ads and Installers</a></h2>
           <div class="news-meta">
             <time datetime="2026-02-04T07:42:00.000Z">February 4, 2026 - 7:42 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Microsoft has warned that information-stealing attacks are "rapidly expanding" beyond Windows to target Apple macOS environments by leveraging cross-platform languages like Python and abusing trusted ...</p>
         </article>
@@ -447,18 +459,6 @@ Identity and access management ...</p>
           </div>
           <p class="news-summary">The self-replicating malware has poisoned a fresh set of Open VSX software components, leaving potential downstream victims with infostealer infections....</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Wave of Citrix NetScaler scans use thousands of residential proxies" data-summary="A coordinated reconnaissance campaign targeting Citrix NetScaler infrastructure over the past week used tens of thousands of residential proxies to discover login panels. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/wave-of-citrix-netscaler-scans-use-thousands-of-residential-proxies/" target="_blank" rel="noopener">Wave of Citrix NetScaler scans use thousands of residential proxies</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-02-03T20:25:40.000Z">February 3, 2026 - 8:25 PM</time>
-            
-          </div>
-          <p class="news-summary">A coordinated reconnaissance campaign targeting Citrix NetScaler infrastructure over the past week used tens of thousands of residential proxies to discover login panels. [...]...</p>
-        </article>
     </div>
   </main>
   
@@ -503,7 +503,7 @@ Identity and access management ...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-05T06:27:06.270Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-05T09:21:31.890Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
