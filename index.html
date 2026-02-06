@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-06T03:51:00.513Z">2/6/2026, 3:51:00 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-06T06:24:43.390Z">2/6/2026, 6:24:43 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Claude Opus 4.6 Finds 500+ High-Severity Flaws Across Major Open-Source Libraries" data-summary="Artificial intelligence (AI) company Anthropic revealed that its latest large language model (LLM), Claude Opus 4.6, has found more than 500 previously unknown high-severity security flaws in open-sou...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/02/claude-opus-46-finds-500-high-severity.html" target="_blank" rel="noopener">Claude Opus 4.6 Finds 500+ High-Severity Flaws Across Major Open-Source Libraries</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-02-06T05:49:00.000Z">February 6, 2026 - 5:49 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Artificial intelligence (AI) company Anthropic revealed that its latest large language model (LLM), Claude Opus 4.6, has found more than 500 previously unknown high-severity security flaws in open-sou...</p>
+        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="EnCase Driver Weaponized as EDR Killers Persist" data-summary="The forensic tool's driver was signed with a digital certificate that expired years ago, but major security gaps allowed Windows to load it....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -308,7 +320,7 @@ The flaw,...">
           <h2 class="news-title"><a href="https://thehackernews.com/2026/02/critical-n8n-flaw-cve-2026-25049.html" target="_blank" rel="noopener">Critical n8n Flaw CVE-2026-25049 Enables System Command Execution via Malicious Workflows</a></h2>
           <div class="news-meta">
             <time datetime="2026-02-05T06:16:00.000Z">February 5, 2026 - 6:16 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A new, critical security vulnerability has been disclosed in the n8n workflow automation platform that, if successfully exploited, could result in the execution of arbitrary system commands.
 The flaw,...</p>
@@ -321,7 +333,7 @@ The flaw,...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/02/hackers-exploit-react2shell-to-hijack.html" target="_blank" rel="noopener">Malicious NGINX Configurations Enable Large-Scale Web Traffic Hijacking Campaign</a></h2>
           <div class="news-meta">
             <time datetime="2026-02-05T04:56:00.000Z">February 5, 2026 - 4:56 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Cybersecurity researchers have disclosed details of an active web traffic hijacking campaign that has targeted NGINX installations and management panels like Baota (BT) in an attempt to route it throu...</p>
         </article>
@@ -445,18 +457,6 @@ The flaw,...</p>
           </div>
           <p class="news-summary">Leaked non-human identities like API keys and tokens are becoming a major breach driver in cloud environments. Flare shows how exposed machine credentials quietly grant attackers long-term access to e...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="EDR killer tool uses signed kernel driver from forensic software" data-summary="Hackers are abusing a legitimate but long-revoked EnCase kernel driver in an EDR killer that can detect 59 security tools in attempts to deactivate them. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/edr-killer-tool-uses-signed-kernel-driver-from-forensic-software/" target="_blank" rel="noopener">EDR killer tool uses signed kernel driver from forensic software</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-02-04T14:17:45.000Z">February 4, 2026 - 2:17 PM</time>
-            
-          </div>
-          <p class="news-summary">Hackers are abusing a legitimate but long-revoked EnCase kernel driver in an EDR killer that can detect 59 security tools in attempts to deactivate them. [...]...</p>
-        </article>
     </div>
   </main>
   
@@ -501,7 +501,7 @@ The flaw,...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-06T03:51:00.513Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-06T06:24:43.390Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
