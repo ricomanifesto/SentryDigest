@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-07T18:12:06.043Z">2/7/2026, 6:12:06 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-07T21:10:23.303Z">2/7/2026, 9:10:23 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -135,7 +135,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/germany-warns-of-signal-account-hijacking-targeting-senior-figures/" target="_blank" rel="noopener">Germany warns of Signal account hijacking targeting senior figures</a></h2>
           <div class="news-meta">
             <time datetime="2026-02-06T20:00:33.000Z">February 6, 2026 - 8:00 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Germany's domestic intelligence agency is warning of suspected state-sponsored threat actors targeting high-ranking individuals in phishing attacks via messaging apps like Signal. [...]...</p>
         </article>
@@ -147,7 +147,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/dknife-linux-toolkit-hijacks-router-traffic-to-spy-deliver-malware/" target="_blank" rel="noopener">DKnife Linux toolkit hijacks router traffic to spy, deliver malware</a></h2>
           <div class="news-meta">
             <time datetime="2026-02-06T18:35:11.000Z">February 6, 2026 - 6:35 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A newly discovered toolkit called DKnife has been used since 2019 to hijack traffic at the edge-device level and deliver malware in espionage campaigns. [...]...</p>
         </article>
@@ -499,7 +499,7 @@ Cloudf...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-07T18:12:06.043Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-07T21:10:23.303Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
