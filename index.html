@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-07T09:12:17.567Z">2/7/2026, 9:12:17 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-07T12:13:58.943Z">2/7/2026, 12:13:58 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Payments platform BridgePay confirms ransomware attack behind outage" data-summary="A major U.S. payment gateway and solutions provider says a ransomware attack has knocked key systems offline, triggering a widespread outage affecting multiple services. The incident began on Friday a...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/payments-platform-bridgepay-confirms-ransomware-attack-behind-outage/" target="_blank" rel="noopener">Payments platform BridgePay confirms ransomware attack behind outage</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-02-07T09:47:10.000Z">February 7, 2026 - 9:47 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A major U.S. payment gateway and solutions provider says a ransomware attack has knocked key systems offline, triggering a widespread outage affecting multiple services. The incident began on Friday a...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Germany warns of Signal account hijacking targeting senior figures" data-summary="Germany's domestic intelligence agency is warning of suspected state-sponsored threat actors targeting high-ranking individuals in phishing attacks via messaging apps like Signal. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -233,7 +245,7 @@ The...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/02/asian-state-backed-group-tgr-sta-1030.html" target="_blank" rel="noopener">Asian State-Backed Group TGR-STA-1030 Breaches 70 Government, Infrastructure Entities</a></h2>
           <div class="news-meta">
             <time datetime="2026-02-06T12:07:00.000Z">February 6, 2026 - 12:07 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A previously undocumented cyber espionage group operating from Asia broke into the networks of at least 70 government and critical infrastructure organizations across 37 countries over the past year, ...</p>
         </article>
@@ -245,7 +257,7 @@ The...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/02/how-samsung-knox-helps-stop-your-network-security-breach.html" target="_blank" rel="noopener">How Samsung Knox Helps Stop Your Network Security Breach</a></h2>
           <div class="news-meta">
             <time datetime="2026-02-06T10:30:00.000Z">February 6, 2026 - 10:30 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">As you know, enterprise network security has undergone significant evolution over the past decade. Firewalls have become more intelligent, threat detection methods have advanced, and access controls a...</p>
         </article>
@@ -257,7 +269,7 @@ The...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/flickr-discloses-potential-data-breach-exposing-users-names-emails/" target="_blank" rel="noopener">Flickr discloses potential data breach exposing users' names, emails</a></h2>
           <div class="news-meta">
             <time datetime="2026-02-06T09:43:10.000Z">February 6, 2026 - 9:43 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Photo-sharing platform Flickr is notifying users of a potential data breach after a vulnerability at a third-party email service provider exposed their real names, email addresses, IP addresses, and a...</p>
         </article>
@@ -445,18 +457,6 @@ Researchers tracked intrusions that start in ordinary places: ...">
           <p class="news-summary">This week didn’t produce one big headline. It produced many small signals — the kind that quietly shape what attacks will look like next.
 Researchers tracked intrusions that start in ordinary places: ...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Newsletter platform Substack notifies users of data breach" data-summary="Newsletter platform Substack is notifying users of a data breach after attackers stole their email addresses and phone numbers in October 2025. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/newsletter-platform-substack-notifies-users-of-data-breach/" target="_blank" rel="noopener">Newsletter platform Substack notifies users of data breach</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-02-05T12:54:48.000Z">February 5, 2026 - 12:54 PM</time>
-            
-          </div>
-          <p class="news-summary">Newsletter platform Substack is notifying users of a data breach after attackers stole their email addresses and phone numbers in October 2025. [...]...</p>
-        </article>
     </div>
   </main>
   
@@ -501,7 +501,7 @@ Researchers tracked intrusions that start in ordinary places: ...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-07T09:12:17.567Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-07T12:13:58.943Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
