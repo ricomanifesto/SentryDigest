@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-07T15:09:30.791Z">2/7/2026, 3:09:30 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-07T18:12:06.043Z">2/7/2026, 6:12:06 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="State actor targets 155 countries in 'Shadow Campaigns' espionage op" data-summary="A new state-aligned cyberespionage threat group tracked as TGR-STA-1030/UNC6619, has conducted a global-scale operation dubbed the &quot;Shadow Campaigns,&quot; where it targeted government infrastructure in 15...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/state-actor-targets-155-countries-in-shadow-campaigns-espionage-op/" target="_blank" rel="noopener">State actor targets 155 countries in 'Shadow Campaigns' espionage op</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-02-07T15:09:46.000Z">February 7, 2026 - 3:09 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A new state-aligned cyberespionage threat group tracked as TGR-STA-1030/UNC6619, has conducted a global-scale operation dubbed the "Shadow Campaigns," where it targeted government infrastructure in 15...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="German Agencies Warn of Signal Phishing Targeting Politicians, Military, Journalists" data-summary="Germany's Federal Office for the Protection of the Constitution (aka Bundesamt für Verfassungsschutz or BfV) and Federal Office for Information Security (BSI) have issued a joint advisory warning of a...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
@@ -147,7 +159,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cisa-warns-of-smartermail-rce-flaw-used-in-ransomware-attacks/" target="_blank" rel="noopener">CISA warns of SmarterMail RCE flaw used in ransomware attacks</a></h2>
           <div class="news-meta">
             <time datetime="2026-02-06T17:16:03.000Z">February 6, 2026 - 5:16 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The Cybersecurity & Infrastructure Security Agency (CISA) in the U.S. has issued a warning about CVE-2026-24423, an unauthenticated remote code execution (RCE) flaw in SmarterMail that is used in rans...</p>
         </article>
@@ -159,7 +171,7 @@
           <h2 class="news-title"><a href="https://www.darkreading.com/cloud-security/encrypt-it-already-pushes-big-tech-e2e-encryption" target="_blank" rel="noopener">'Encrypt It Already' Campaign Pushes Big Tech to Prioritize E2E Encryption</a></h2>
           <div class="news-meta">
             <time datetime="2026-02-06T16:34:41.000Z">February 6, 2026 - 4:34 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The Electronic Frontier Foundation is urging major technology companies to follow through on their promises to implement end-to-end encryption (E2E) by default across their services, as privacy concer...</p>
         </article>
@@ -171,7 +183,7 @@
           <h2 class="news-title"><a href="https://www.darkreading.com/application-security/shai-hulud-hidden-cost-supply-chain-attacks" target="_blank" rel="noopener">Shai-hulud: The Hidden Cost of Supply Chain Attacks</a></h2>
           <div class="news-meta">
             <time datetime="2026-02-06T16:25:14.000Z">February 6, 2026 - 4:25 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Recent supply chain attacks involving self-propagating worms have spread far, but the damage and long-term impact is hard to quantify....</p>
         </article>
@@ -183,7 +195,7 @@
           <h2 class="news-title"><a href="https://www.darkreading.com/application-security/openclaw-insecurities-safe-usage-difficult" target="_blank" rel="noopener">OpenClaw's Gregarious Insecurities Make Safe Usage Difficult</a></h2>
           <div class="news-meta">
             <time datetime="2026-02-06T15:42:15.000Z">February 6, 2026 - 3:42 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Malicious "skills" and persnickety configuration settings are just some of the issues that security researchers have found when installing — and removing — the OpenClaw AI assistant....</p>
         </article>
@@ -431,18 +443,6 @@ Cloudf...</p>
           </div>
           <p class="news-summary">Conpet, Romania's national oil pipeline operator, has disclosed that a cyberattack disrupted its business systems and took down the company's website on Tuesday. [...]...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="When cloud logs fall short, the network tells the truth " data-summary="Cloud logs can be inconsistent or incomplete, creating blind spots as environments scale and change. Corelight shows how network-level telemetry provides reliable visibility when cloud logs fall short...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/when-cloud-logs-fall-short-the-network-tells-the-truth/" target="_blank" rel="noopener">When cloud logs fall short, the network tells the truth </a></h2>
-          <div class="news-meta">
-            <time datetime="2026-02-05T15:00:10.000Z">February 5, 2026 - 3:00 PM</time>
-            
-          </div>
-          <p class="news-summary">Cloud logs can be inconsistent or incomplete, creating blind spots as environments scale and change. Corelight shows how network-level telemetry provides reliable visibility when cloud logs fall short...</p>
-        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Cyber Success Trifecta: Education, Certifications &amp; Experience" data-summary="Col. Georgeo Xavier Pulikkathara, CISO at iMerit, discusses the importance of fundamentals, continuous learning, and human ingenuity in the face of AI-driven cybersecurity evolution....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -499,7 +499,7 @@ Cloudf...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-07T15:09:30.791Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-07T18:12:06.043Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
