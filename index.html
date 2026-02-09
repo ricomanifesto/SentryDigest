@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-09T06:32:24.591Z">2/9/2026, 6:32:24 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-09T09:27:32.462Z">2/9/2026, 9:27:32 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="BeyondTrust Fixes Critical Pre-Auth RCE Vulnerability in Remote Support and PRA" data-summary="BeyondTrust has released updates to address a critical security flaw impacting Remote Support (RS) and Privileged Remote Access (PRA) products that, if successfully exploited, could result in remote c...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/02/beyondtrust-fixes-critical-pre-auth-rce.html" target="_blank" rel="noopener">BeyondTrust Fixes Critical Pre-Auth RCE Vulnerability in Remote Support and PRA</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-02-09T08:03:00.000Z">February 9, 2026 - 8:03 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">BeyondTrust has released updates to address a critical security flaw impacting Remote Support (RS) and Privileged Remote Access (PRA) products that, if successfully exploited, could result in remote c...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="New tool blocks imposter attacks disguised as safe commands" data-summary="A new open-source and cross-platform tool called Tirith can detect homoglyph attacks over command-line environments by analyzing URLs in typed commands and stopping their execution.  [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -111,7 +123,7 @@
           <h2 class="news-title"><a href="https://thehackernews.com/2026/02/openclaw-integrates-virustotal-scanning.html" target="_blank" rel="noopener">OpenClaw Integrates VirusTotal Scanning to Detect Malicious ClawHub Skills</a></h2>
           <div class="news-meta">
             <time datetime="2026-02-08T07:32:00.000Z">February 8, 2026 - 7:32 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">OpenClaw (formerly Moltbot and Clawdbot) has announced that it's partnering with Google-owned VirusTotal to scan skills that are being uploaded to ClawHub, its skill marketplace, as part of broader ef...</p>
         </article>
@@ -443,18 +455,6 @@ Cloudf...">
           <p class="news-summary">The distributed denial-of-service (DDoS) botnet known as AISURU/Kimwolf has been attributed to a record-setting attack that peaked at 31.4 Terabits per second (Tbps) and lasted only 35 seconds.
 Cloudf...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Italian university La Sapienza goes offline after cyberattack" data-summary="Rome's &quot;La Sapienza&quot; university has been targeted by a cyberattack that impacted its IT systems and caused widespread operational disruptions at the educational institute. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/italian-university-la-sapienza-goes-offline-after-cyberattack/" target="_blank" rel="noopener">Italian university La Sapienza goes offline after cyberattack</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-02-05T17:02:45.000Z">February 5, 2026 - 5:02 PM</time>
-            
-          </div>
-          <p class="news-summary">Rome's "La Sapienza" university has been targeted by a cyberattack that impacted its IT systems and caused widespread operational disruptions at the educational institute. [...]...</p>
-        </article>
     </div>
   </main>
   
@@ -499,7 +499,7 @@ Cloudf...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-09T06:32:24.591Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-09T09:27:32.462Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
