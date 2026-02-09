@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
+          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,58 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-09T18:24:56.045Z">2/9/2026, 6:24:56 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-09T21:17:54.411Z">2/9/2026, 9:17:54 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="[Dark Reading Virtual Event] Shields Up: Key Technologies Reshaping Cybersecurity Defenses" data-summary="">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/events/shields-up-key-technologies-reshaping-cybersecurity-defenses" target="_blank" rel="noopener">[Dark Reading Virtual Event] Shields Up: Key Technologies Reshaping Cybersecurity Defenses</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-02-09T21:17:54.263Z">February 9, 2026 - 9:17 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Hackers exploit SolarWinds WHD flaws to deploy DFIR tool in attacks" data-summary="Hackers are now exploiting SolarWinds Web Help Desk (WHD) vulnerabilities to gain code execution rights on exposed systems and deploy legitimate tools, including the Velociraptor forensics tools, for ...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/threat-actors-exploit-solarwinds-wdh-flaws-to-deploy-velociraptor/" target="_blank" rel="noopener">Hackers exploit SolarWinds WHD flaws to deploy DFIR tool in attacks</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-02-09T20:28:15.000Z">February 9, 2026 - 8:28 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Hackers are now exploiting SolarWinds Web Help Desk (WHD) vulnerabilities to gain code execution rights on exposed systems and deploy legitimate tools, including the Velociraptor forensics tools, for ...</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Black Basta Bundles BYOVD With Ransomware Payload" data-summary="Researchers discovered a newly disclosed vulnerable driver embedded in Black Basta's ransomware, illustrating the increasing popularity of the defense-evasion technique....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/black-basta-bundles-byovd-ransomware-payload" target="_blank" rel="noopener">Black Basta Bundles BYOVD With Ransomware Payload</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-02-09T20:14:22.000Z">February 9, 2026 - 8:14 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Researchers discovered a newly disclosed vulnerable driver embedded in Black Basta's ransomware, illustrating the increasing popularity of the defense-evasion technique....</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Hackers breach SmarterTools network using flaw in its own software" data-summary="SmarterTools confirmed last week that the Warlock ransomware gang breached its network after compromising an email system, but did not impact business applications or account data. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hackers-breach-smartertools-network-using-flaw-in-its-own-software/" target="_blank" rel="noopener">Hackers breach SmarterTools network using flaw in its own software</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-02-09T19:08:58.000Z">February 9, 2026 - 7:08 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">SmarterTools confirmed last week that the Warlock ransomware gang breached its network after compromising an email system, but did not impact business applications or account data. [...]...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="China-Linked UNC3886 Targets Singapore Telecom Sector in Cyber Espionage Campaign" data-summary="The Cyber Security Agency (CSA) of Singapore on Monday revealed that the China-nexus cyber espionage group known as UNC3886 targeted its telecommunications sector.
 &quot;UNC3886 had launched a deliberate, ...">
           <div class="chips">
@@ -411,54 +459,6 @@ The...</p>
           </div>
           <p class="news-summary">The European Commission said today that TikTok is facing a fine because its addictive features, including infinite scroll, autoplay, push notifications, and personalized recommendation systems, are br...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="CISA Orders Removal of Unsupported Edge Devices to Reduce Federal Network Risk" data-summary="The U.S. Cybersecurity and Infrastructure Security Agency (CISA) has ordered Federal Civilian Executive Branch (FCEB) agencies to strengthen asset lifecycle management for edge network devices and rem...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/02/cisa-orders-removal-of-unsupported-edge.html" target="_blank" rel="noopener">CISA Orders Removal of Unsupported Edge Devices to Reduce Federal Network Risk</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-02-06T13:43:00.000Z">February 6, 2026 - 1:43 PM</time>
-            
-          </div>
-          <p class="news-summary">The U.S. Cybersecurity and Infrastructure Security Agency (CISA) has ordered Federal Civilian Executive Branch (FCEB) agencies to strengthen asset lifecycle management for edge network devices and rem...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Man pleads guilty to hacking nearly 600 women’s Snapchat accounts" data-summary="An Illinois man pleaded guilty to hacking nearly 600 women's Snapchat accounts to steal nude photos that he kept, sold, or traded online, including accounts he compromised at the request of a former u...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/man-pleads-guilty-to-hacking-nearly-600-womens-snapchat-accounts/" target="_blank" rel="noopener">Man pleads guilty to hacking nearly 600 women’s Snapchat accounts</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-02-06T12:34:30.000Z">February 6, 2026 - 12:34 PM</time>
-            
-          </div>
-          <p class="news-summary">An Illinois man pleaded guilty to hacking nearly 600 women's Snapchat accounts to steal nude photos that he kept, sold, or traded online, including accounts he compromised at the request of a former u...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Asian State-Backed Group TGR-STA-1030 Breaches 70 Government, Infrastructure Entities" data-summary="A previously undocumented cyber espionage group operating from Asia broke into the networks of at least 70 government and critical infrastructure organizations across 37 countries over the past year, ...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/02/asian-state-backed-group-tgr-sta-1030.html" target="_blank" rel="noopener">Asian State-Backed Group TGR-STA-1030 Breaches 70 Government, Infrastructure Entities</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-02-06T12:07:00.000Z">February 6, 2026 - 12:07 PM</time>
-            
-          </div>
-          <p class="news-summary">A previously undocumented cyber espionage group operating from Asia broke into the networks of at least 70 government and critical infrastructure organizations across 37 countries over the past year, ...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="How Samsung Knox Helps Stop Your Network Security Breach" data-summary="As you know, enterprise network security has undergone significant evolution over the past decade. Firewalls have become more intelligent, threat detection methods have advanced, and access controls a...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/02/how-samsung-knox-helps-stop-your-network-security-breach.html" target="_blank" rel="noopener">How Samsung Knox Helps Stop Your Network Security Breach</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-02-06T10:30:00.000Z">February 6, 2026 - 10:30 AM</time>
-            
-          </div>
-          <p class="news-summary">As you know, enterprise network security has undergone significant evolution over the past decade. Firewalls have become more intelligent, threat detection methods have advanced, and access controls a...</p>
-        </article>
     </div>
   </main>
   
@@ -503,7 +503,7 @@ The...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-09T18:24:56.045Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-09T21:17:54.411Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
