@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-10T04:01:00.945Z">2/10/2026, 4:01:00 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-10T06:32:50.438Z">2/10/2026, 6:32:50 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -98,10 +98,24 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/events/shields-up-key-technologies-reshaping-cybersecurity-defenses" target="_blank" rel="noopener">[Virtual Event] Shields Up: Key Technologies Reshaping Cybersecurity Defenses</a></h2>
           <div class="news-meta">
-            <time datetime="2026-02-10T04:01:00.579Z">February 10, 2026 - 4:01 AM</time>
+            <time datetime="2026-02-10T06:32:50.292Z">February 10, 2026 - 6:32 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Fortinet Patches Critical SQLi Flaw Enabling Unauthenticated Code Execution" data-summary="Fortinet has released security updates to address a critical flaw impacting FortiClientEMS that could lead to the execution of arbitrary code on susceptible systems.
+The vulnerability, tracked as CVE-...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/02/fortinet-patches-critical-sqli-flaw.html" target="_blank" rel="noopener">Fortinet Patches Critical SQLi Flaw Enabling Unauthenticated Code Execution</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-02-10T04:38:00.000Z">February 10, 2026 - 4:38 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Fortinet has released security updates to address a critical flaw impacting FortiClientEMS that could lead to the execution of arbitrary code on susceptible systems.
+The vulnerability, tracked as CVE-...</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Chinese cyberspies breach Singapore's four largest telcos" data-summary="The Chinese threat actor tracked as UNC3886 breached Singapore's four largest telecommunication service providers, Singtel, StarHub, M1, and Simba, at least once last year. [...]...">
           <div class="chips">
@@ -445,18 +459,6 @@ The ac...</p>
           </div>
           <p class="news-summary">Recent supply chain attacks involving self-propagating worms have spread far, but the damage and long-term impact is hard to quantify....</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="OpenClaw's Gregarious Insecurities Make Safe Usage Difficult" data-summary="Malicious &quot;skills&quot; and persnickety configuration settings are just some of the issues that security researchers have found when installing — and removing — the OpenClaw AI assistant....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/application-security/openclaw-insecurities-safe-usage-difficult" target="_blank" rel="noopener">OpenClaw's Gregarious Insecurities Make Safe Usage Difficult</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-02-06T15:42:15.000Z">February 6, 2026 - 3:42 PM</time>
-            
-          </div>
-          <p class="news-summary">Malicious "skills" and persnickety configuration settings are just some of the issues that security researchers have found when installing — and removing — the OpenClaw AI assistant....</p>
-        </article>
     </div>
   </main>
   
@@ -501,7 +503,7 @@ The ac...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-10T04:01:00.945Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-10T06:32:50.438Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
