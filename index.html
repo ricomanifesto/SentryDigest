@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Krebs on Security">Krebs on Security</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-02-11T00:46:31.756Z">2/11/2026, 12:46:31 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-11T04:00:23.005Z">2/11/2026, 4:00:23 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -98,10 +98,22 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/events/shields-up-key-technologies-reshaping-cybersecurity-defenses" target="_blank" rel="noopener">[Virtual Event] Shields Up: Key Technologies Reshaping Cybersecurity Defenses</a></h2>
           <div class="news-meta">
-            <time datetime="2026-02-11T00:46:31.719Z">February 11, 2026 - 12:46 AM</time>
+            <time datetime="2026-02-11T04:00:22.491Z">February 11, 2026 - 4:00 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft releases Windows 11 26H1 for select and upcoming CPUs" data-summary="Microsoft has announced Windows 11 26H1, but it's not for existing PCs. Instead, it will ship on devices with Snapdragon X2 processors and possibly other rumored ARM chips.w [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-releases-windows-11-26h1-for-select-and-upcoming-cpus/" target="_blank" rel="noopener">Microsoft releases Windows 11 26H1 for select and upcoming CPUs</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-02-11T02:06:42.000Z">February 11, 2026 - 2:06 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Microsoft has announced Windows 11 26H1, but it's not for existing PCs. Instead, it will ship on devices with Snapdragon X2 processors and possibly other rumored ARM chips.w [...]...</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="New Linux botnet SSHStalker uses old-school IRC for C2 comms" data-summary="A newly documented Linux botnet named SSHStalker is using the IRC (Internet Relay Chat) communication protocol for command-and-control (C2) operations. [...]...">
           <div class="chips">
@@ -138,18 +150,6 @@
             <span class="badge-new">NEW</span>
           </div>
           <p class="news-summary">Organizations that have exposed their instances of Web Help Desk to the public Internet have inadvertently made them prime targets for attackers....</p>
-        </article>
-        <article class="news-item" data-source="Krebs on Security" data-host="krebsonsecurity.com" data-title="Patch Tuesday, February 2026 Edition" data-summary="Microsoft today released updates to fix more than 50 security holes in its Windows operating systems and other software, including patches for a whopping six &quot;zero-day&quot; vulnerabilities that attackers ...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Krebs on Security</span>
-            <span class="chip">krebsonsecurity.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://krebsonsecurity.com/2026/02/patch-tuesday-february-2026-edition/" target="_blank" rel="noopener">Patch Tuesday, February 2026 Edition</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-02-10T21:49:53.000Z">February 10, 2026 - 9:49 PM</time>
-            <span class="badge-new">NEW</span>
-          </div>
-          <p class="news-summary">Microsoft today released updates to fix more than 50 security holes in its Windows operating systems and other software, including patches for a whopping six "zero-day" vulnerabilities that attackers ...</p>
         </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="In Bypassing MFA, ZeroDayRAT Is 'Textbook Stalkerware'" data-summary="With access to SIM, location data, and a preview of recent SMSes, attackers have everything they need for account takeover or targeted social engineering....">
           <div class="chips">
@@ -500,8 +500,8 @@ The incident took place on January 29, 2026, wh...</p>
           if (show) visible++;
         });
         const total = 30;
-        const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-11T00:46:31.756Z').toLocaleString());
+        const srcCount = 3;
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-11T04:00:23.005Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
