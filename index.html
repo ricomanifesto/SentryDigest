@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-16T09:25:46.425Z">2/16/2026, 9:25:46 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-16T12:21:05.484Z">2/16/2026, 12:21:05 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -98,10 +98,22 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/events/shields-up-key-technologies-reshaping-cybersecurity-defenses" target="_blank" rel="noopener">[Virtual Event] Shields Up: Key Technologies Reshaping Cybersecurity Defenses</a></h2>
           <div class="news-meta">
-            <time datetime="2026-02-16T09:25:46.424Z">February 16, 2026 - 9:25 AM</time>
+            <time datetime="2026-02-16T12:21:05.483Z">February 16, 2026 - 12:21 PM</time>
             <span class="badge-new">NEW</span>
           </div>
           
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="New ZeroDayRAT Mobile Spyware Enables Real-Time Surveillance and Data Theft" data-summary="Cybersecurity researchers have disclosed details of a new mobile spyware platform dubbed ZeroDayRAT that's being advertised on Telegram as a way to grab sensitive data and facilitate real-time surveil...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/02/new-zerodayrat-mobile-spyware-enables.html" target="_blank" rel="noopener">New ZeroDayRAT Mobile Spyware Enables Real-Time Surveillance and Data Theft</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-02-16T10:24:00.000Z">February 16, 2026 - 10:24 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Cybersecurity researchers have disclosed details of a new mobile spyware platform dubbed ZeroDayRAT that's being advertised on Telegram as a way to grab sensitive data and facilitate real-time surveil...</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Google patches first Chrome zero-day exploited in attacks this year" data-summary="Google has released emergency updates to fix a high-severity Chrome vulnerability exploited in zero-day attacks, marking the first such security flaw patched since the start of the year. [...]...">
           <div class="chips">
@@ -447,18 +459,6 @@ The extension, named CL S...</p>
           </div>
           <p class="news-summary">It's time to phase out the "patch and pray" approach, eliminate needless public interfaces, and enforce authentication controls, one expert says....</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Booz Allen Announces General Availability of Vellox Reverser to Automate Malware Defense" data-summary="The AI-powered product delivers expert-grade malware analysis and reverse engineering in minutes....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/endpoint-security/booz-allen-announces-general-availability-vellox-reverser" target="_blank" rel="noopener">Booz Allen Announces General Availability of Vellox Reverser to Automate Malware Defense</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-02-12T21:23:06.000Z">February 12, 2026 - 9:23 PM</time>
-            
-          </div>
-          <p class="news-summary">The AI-powered product delivers expert-grade malware analysis and reverse engineering in minutes....</p>
-        </article>
     </div>
   </main>
   
@@ -503,7 +503,7 @@ The extension, named CL S...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-16T09:25:46.425Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-16T12:21:05.484Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
