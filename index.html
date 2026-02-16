@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-16T03:55:56.239Z">2/16/2026, 3:55:56 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-16T06:32:05.088Z">2/16/2026, 6:32:05 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -98,10 +98,22 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/events/shields-up-key-technologies-reshaping-cybersecurity-defenses" target="_blank" rel="noopener">[Virtual Event] Shields Up: Key Technologies Reshaping Cybersecurity Defenses</a></h2>
           <div class="news-meta">
-            <time datetime="2026-02-16T03:55:55.979Z">February 16, 2026 - 3:55 AM</time>
+            <time datetime="2026-02-16T06:32:04.879Z">February 16, 2026 - 6:32 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Canada Goose investigating as hackers leak 600K customer records" data-summary="ShinyHunters, a well-known data extortion group, claims to have stolen more than 600,000 Canada Goose customer records containing personal and payment-related data. Canada Goose told BleepingComputer ...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/canada-goose-investigating-as-hackers-leak-600k-customer-records/" target="_blank" rel="noopener">Canada Goose investigating as hackers leak 600K customer records</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-02-16T04:45:32.000Z">February 16, 2026 - 4:45 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">ShinyHunters, a well-known data extortion group, claims to have stolen more than 600,000 Canada Goose customer records containing personal and payment-related data. Canada Goose told BleepingComputer ...</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="New ClickFix attack abuses nslookup to retrieve PowerShell payload via DNS" data-summary="Threat actors are now abusing DNS queries as part of ClickFix social engineering attacks to deliver malware, making this the first known use of DNS as a channel in these campaigns. [...]...">
           <div class="chips">
@@ -421,18 +433,6 @@ The extension, named CL S...</p>
           </div>
           <p class="news-summary">Bitwarden has launched a new system called 'Cupid Vault' that allows users to safely share passwords with trusted email addresses. [...]...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Critical BeyondTrust RCE flaw now exploited in attacks, patch now" data-summary="A critical pre-authentication remote code execution vulnerability in BeyondTrust Remote Support and Privileged Remote Access appliances is now being exploited in attacks after a PoC was published onli...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/critical-beyondtrust-rce-flaw-now-exploited-in-attacks-patch-now/" target="_blank" rel="noopener">Critical BeyondTrust RCE flaw now exploited in attacks, patch now</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-02-12T21:34:12.000Z">February 12, 2026 - 9:34 PM</time>
-            
-          </div>
-          <p class="news-summary">A critical pre-authentication remote code execution vulnerability in BeyondTrust Remote Support and Privileged Remote Access appliances is now being exploited in attacks after a PoC was published onli...</p>
-        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Booz Allen Announces General Availability of Vellox Reverser to Automate Malware Defense" data-summary="The AI-powered product delivers expert-grade malware analysis and reverse engineering in minutes....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -501,7 +501,7 @@ The extension, named CL S...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-16T03:55:56.239Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-16T06:32:05.088Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
