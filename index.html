@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-02-22T15:09:21.614Z">2/22/2026, 3:09:21 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-02-22T18:12:53.120Z">2/22/2026, 6:12:53 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -98,10 +98,22 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/events/shields-up-key-technologies-reshaping-cybersecurity-defenses" target="_blank" rel="noopener">[Virtual Event] Shields Up: Key Technologies Reshaping Cybersecurity Defenses</a></h2>
           <div class="news-meta">
-            <time datetime="2026-02-22T15:09:12.422Z">February 22, 2026 - 3:09 PM</time>
+            <time datetime="2026-02-22T18:12:52.794Z">February 22, 2026 - 6:12 PM</time>
             <span class="badge-new">NEW</span>
           </div>
           
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Arkanix Stealer pops up as short-lived AI info-stealer experiment" data-summary="An information-stealing malware operation named Arkanix Stealer, promoted on multiple dark web forums towards the end of 2025, was likely developed as an AI-assisted experiment. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/arkanix-stealer-pops-up-as-short-lived-ai-info-stealer-experiment/" target="_blank" rel="noopener">Arkanix Stealer pops up as short-lived AI info-stealer experiment</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-02-22T15:33:26.000Z">February 22, 2026 - 3:33 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">An information-stealing malware operation named Arkanix Stealer, promoted on multiple dark web forums towards the end of 2025, was likely developed as an AI-assisted experiment. [...]...</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Predator spyware hooks iOS SpringBoard to hide mic, camera activity" data-summary="Intellexa's Predator spyware can hide iOS recording indicators while secretly streaming camera and microphone feeds to its operators. [...]...">
           <div class="chips">
@@ -111,7 +123,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/predator-spyware-hooks-ios-springboard-to-hide-mic-camera-activity/" target="_blank" rel="noopener">Predator spyware hooks iOS SpringBoard to hide mic, camera activity</a></h2>
           <div class="news-meta">
             <time datetime="2026-02-21T16:13:24.000Z">February 21, 2026 - 4:13 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Intellexa's Predator spyware can hide iOS recording indicators while secretly streaming camera and microphone feeds to its operators. [...]...</p>
         </article>
@@ -447,18 +459,6 @@ The agency said 1,900 ATM ...</p>
           </div>
           <p class="news-summary">Researchers have discovered the first known Android malware to use generative AI in its execution flow, using Google's Gemini model to adapt its persistence across different devices. [...]...</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Supply Chain Attack Secretly Installs OpenClaw for Cline Users" data-summary="The malicious version of Cline's npm package — 2.3.0 — was downloaded more than 4,000 times before it was removed....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/application-security/supply-chain-attack-openclaw-cline-users" target="_blank" rel="noopener">Supply Chain Attack Secretly Installs OpenClaw for Cline Users</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-02-19T22:33:59.000Z">February 19, 2026 - 10:33 PM</time>
-            
-          </div>
-          <p class="news-summary">The malicious version of Cline's npm package — 2.3.0 — was downloaded more than 4,000 times before it was removed....</p>
-        </article>
     </div>
   </main>
   
@@ -503,7 +503,7 @@ The agency said 1,900 ATM ...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-22T15:09:21.614Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-22T18:12:53.120Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
