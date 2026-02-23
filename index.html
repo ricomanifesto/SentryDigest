@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Krebs on Security">Krebs on Security</option>
+          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-02-23T00:42:00.866Z">2/23/2026, 12:42:00 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-23T03:54:54.336Z">2/23/2026, 3:54:54 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -98,7 +98,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/events/shields-up-key-technologies-reshaping-cybersecurity-defenses" target="_blank" rel="noopener">[Virtual Event] Shields Up: Key Technologies Reshaping Cybersecurity Defenses</a></h2>
           <div class="news-meta">
-            <time datetime="2026-02-23T00:42:00.864Z">February 23, 2026 - 12:42 AM</time>
+            <time datetime="2026-02-23T03:54:45.816Z">February 23, 2026 - 3:54 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           
@@ -200,18 +200,6 @@ The capabi...</p>
             
           </div>
           <p class="news-summary">Researchers say threat actors wielded the sophisticated — and unfortunately named — toolkit to target high-value networks for React2Shell exploitation....</p>
-        </article>
-        <article class="news-item" data-source="Krebs on Security" data-host="krebsonsecurity.com" data-title="‘Starkiller’ Phishing Service Proxies Real Login Pages, MFA" data-summary="Most phishing websites are little more than static copies of login pages for popular online destinations, and they are often quickly taken down by anti-abuse activists and security firms. But a stealt...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Krebs on Security</span>
-            <span class="chip">krebsonsecurity.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://krebsonsecurity.com/2026/02/starkiller-phishing-service-proxies-real-login-pages-mfa/" target="_blank" rel="noopener">‘Starkiller’ Phishing Service Proxies Real Login Pages, MFA</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-02-20T20:00:30.000Z">February 20, 2026 - 8:00 PM</time>
-            
-          </div>
-          <p class="news-summary">Most phishing websites are little more than static copies of login pages for popular online destinations, and they are often quickly taken down by anti-abuse activists and security firms. But a stealt...</p>
         </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="'God-Like' Attack Machines: AI Agents Ignore Security Policies" data-summary="Microsoft Copilot recently summarized and leaked user emails; but any AI agent will go above and beyond to complete assigned tasks, even breaking through their carefully designed guardrails....">
           <div class="chips">
@@ -459,6 +447,18 @@ The agency said 1,900 ATM ...</p>
           </div>
           <p class="news-summary">Researchers have discovered the first known Android malware to use generative AI in its execution flow, using Google's Gemini model to adapt its persistence across different devices. [...]...</p>
         </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Supply Chain Attack Secretly Installs OpenClaw for Cline Users" data-summary="The malicious version of Cline's npm package — 2.3.0 — was downloaded more than 4,000 times before it was removed....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/application-security/supply-chain-attack-openclaw-cline-users" target="_blank" rel="noopener">Supply Chain Attack Secretly Installs OpenClaw for Cline Users</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-02-19T22:33:59.000Z">February 19, 2026 - 10:33 PM</time>
+            
+          </div>
+          <p class="news-summary">The malicious version of Cline's npm package — 2.3.0 — was downloaded more than 4,000 times before it was removed....</p>
+        </article>
     </div>
   </main>
   
@@ -502,8 +502,8 @@ The agency said 1,900 ATM ...</p>
           if (show) visible++;
         });
         const total = 30;
-        const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-23T00:42:00.866Z').toLocaleString());
+        const srcCount = 3;
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-23T03:54:54.336Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
