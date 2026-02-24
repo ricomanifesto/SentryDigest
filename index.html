@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,58 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-24T12:22:06.351Z">2/24/2026, 12:22:06 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-24T15:25:23.446Z">2/24/2026, 3:25:23 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Identity-First AI Security: Why CISOs Must Add Intent to the Equation" data-summary="AI agents now provision infrastructure and approve actions, but many inherit over-scoped privileges without proper governance. Token Security explains why CISOs must treat agents as identities and add...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/identity-first-ai-security-why-cisos-must-add-intent-to-the-equation/" target="_blank" rel="noopener">Identity-First AI Security: Why CISOs Must Add Intent to the Equation</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-02-24T15:02:12.000Z">February 24, 2026 - 3:02 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">AI agents now provision infrastructure and approve actions, but many inherit over-scoped privileges without proper governance. Token Security explains why CISOs must treat agents as identities and add...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="UK fines Reddit $19 million for using children’s data unlawfully" data-summary="The UK Information Commissioner's Office (ICO) has fined Reddit £14.47 million (over $19.5 million) for collecting and using the personal information of children under 13 without adequate safeguards. ...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/uk-fines-reddit-19-million-for-using-childrens-data-unlawfully/" target="_blank" rel="noopener">UK fines Reddit $19 million for using children’s data unlawfully</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-02-24T14:54:24.000Z">February 24, 2026 - 2:54 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The UK Information Commissioner's Office (ICO) has fined Reddit £14.47 million (over $19.5 million) for collecting and using the personal information of children under 13 without adequate safeguards. ...</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="As Cybersecurity Firms Chase AI, VC Market Skyrockets" data-summary="Investments in cybersecurity startups took off in 2025 as venture capital firms focused not just on AI-native tech but on talent as well....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-analytics/cybersecurity-firms-chase-ai-vc-market-skyrockets" target="_blank" rel="noopener">As Cybersecurity Firms Chase AI, VC Market Skyrockets</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-02-24T13:04:04.000Z">February 24, 2026 - 1:04 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Investments in cybersecurity startups took off in 2025 as venture capital firms focused not just on AI-native tech but on talent as well....</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Critical SolarWinds Serv-U flaws offer root access to servers" data-summary="SolarWinds has patched four critical Serv-U remote code execution vulnerabilities that could grant attackers root access to unpatched servers. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/critical-solarwinds-serv-u-flaws-offer-root-access-to-servers/" target="_blank" rel="noopener">Critical SolarWinds Serv-U flaws offer root access to servers</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-02-24T13:00:45.000Z">February 24, 2026 - 1:00 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">SolarWinds has patched four critical Serv-U remote code execution vulnerabilities that could grant attackers root access to unpatched servers. [...]...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Identity Prioritization isn't a Backlog Problem - It's a Risk Math Problem" data-summary="Most identity programs still prioritize work the way they prioritize IT tickets: by volume, loudness, or “what failed a control check.” That approach breaks the moment your environment stops being mos...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
@@ -186,6 +234,18 @@
             <span class="badge-new">NEW</span>
           </div>
           <p class="news-summary">The attacks cost banks more than $20 million in losses last year, as criminals used many of the same tools and tactics they have wielded for more than a decade....</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="More Than Dashboards: AI Decisions Must Be Provable" data-summary="AI systems have to be able to show a record of what happened and how....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/more-dashboards-ai-decisions-provable" target="_blank" rel="noopener">More Than Dashboards: AI Decisions Must Be Provable</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-02-23T22:18:18.000Z">February 23, 2026 - 10:18 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">AI systems have to be able to show a record of what happened and how....</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Spain arrests suspected hacktivists for DDoSing govt sites" data-summary="Spanish authorities have arrested four alleged members of a hacktivist group believed to have carried out cyberattacks targeting government ministries, political parties, and various public institutio...">
           <div class="chips">
@@ -295,7 +355,7 @@ The activity, per S2 Grupo's LAB52 thre...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/when-identity-isnt-the-weak-link-access-still-is/" target="_blank" rel="noopener">When identity isn’t the weak link, access still is</a></h2>
           <div class="news-meta">
             <time datetime="2026-02-23T15:00:10.000Z">February 23, 2026 - 3:00 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Stolen tokens and compromised devices let attackers reuse trust without breaking authentication. Specops Software explains why identity alone isn't enough and how continuous device verification streng...</p>
         </article>
@@ -307,7 +367,7 @@ The activity, per S2 Grupo's LAB52 thre...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/02/weekly-recap-double-tap-skimmers.html" target="_blank" rel="noopener">⚡ Weekly Recap: Double-Tap Skimmers, PromptSpy AI, 30Tbps DDoS, Docker Malware & More</a></h2>
           <div class="news-meta">
             <time datetime="2026-02-23T13:00:00.000Z">February 23, 2026 - 1:00 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Security news rarely moves in a straight line. This week, it feels more like a series of sharp turns, some happening quietly in the background, others playing out in public view. The details are diffe...</p>
         </article>
@@ -395,68 +455,6 @@ The activity, per S2 Grupo's LAB52 thre...</p>
           </div>
           <p class="news-summary">A Russian-speaking, financially motivated threat actor has been observed taking advantage of commercial generative artificial intelligence (AI) services to compromise over 600 FortiGate devices locate...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Amazon: AI-assisted hacker breached 600 Fortinet firewalls in 5 weeks" data-summary="Amazon is warning that a Russian-speaking hacker used multiple generative AI services as part of a campaign that breached more than 600 FortiGate firewalls across 55 countries in five weeks. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/amazon-ai-assisted-hacker-breached-600-fortigate-firewalls-in-5-weeks/" target="_blank" rel="noopener">Amazon: AI-assisted hacker breached 600 Fortinet firewalls in 5 weeks</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-02-21T13:50:58.000Z">February 21, 2026 - 1:50 PM</time>
-            
-          </div>
-          <p class="news-summary">Amazon is warning that a Russian-speaking hacker used multiple generative AI services as part of a campaign that breached more than 600 FortiGate firewalls across 55 countries in five weeks. [...]...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Anthropic Launches Claude Code Security for AI-Powered Vulnerability Scanning" data-summary="Artificial intelligence (AI) company Anthropic has begun to roll out a new security feature for Claude Code that can scan a user's software codebase for vulnerabilities and suggest patches.
-The capabi...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/02/anthropic-launches-claude-code-security.html" target="_blank" rel="noopener">Anthropic Launches Claude Code Security for AI-Powered Vulnerability Scanning</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-02-21T07:58:00.000Z">February 21, 2026 - 7:58 AM</time>
-            
-          </div>
-          <p class="news-summary">Artificial intelligence (AI) company Anthropic has begun to roll out a new security feature for Claude Code that can scan a user's software codebase for vulnerabilities and suggest patches.
-The capabi...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="CISA Adds Two Actively Exploited Roundcube Flaws to KEV Catalog" data-summary="The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Friday added two security flaws impacting Roundcube webmail software to its Known Exploited Vulnerabilities (KEV) catalog, citing ev...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/02/cisa-adds-two-actively-exploited.html" target="_blank" rel="noopener">CISA Adds Two Actively Exploited Roundcube Flaws to KEV Catalog</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-02-21T07:21:00.000Z">February 21, 2026 - 7:21 AM</time>
-            
-          </div>
-          <p class="news-summary">The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Friday added two security flaws impacting Roundcube webmail software to its Known Exploited Vulnerabilities (KEV) catalog, citing ev...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="EC-Council Expands AI Certification Portfolio to Strengthen U.S. AI Workforce Readiness and Security" data-summary="With $5.5 trillion in global AI risk exposure and 700,000 U.S. workers needing reskilling, four new AI certifications and Certified CISO v4 help close the gap between AI adoption and workforce readine...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/02/ec-council-expands-ai-certification.html" target="_blank" rel="noopener">EC-Council Expands AI Certification Portfolio to Strengthen U.S. AI Workforce Readiness and Security</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-02-21T04:30:00.000Z">February 21, 2026 - 4:30 AM</time>
-            
-          </div>
-          <p class="news-summary">With $5.5 trillion in global AI risk exposure and 700,000 U.S. workers needing reskilling, four new AI certifications and Certified CISO v4 help close the gap between AI adoption and workforce readine...</p>
-        </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Attackers Use New Tool to Scan for React2Shell Exposure" data-summary="Researchers say threat actors wielded the sophisticated — and unfortunately named — toolkit to target high-value networks for React2Shell exploitation....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/application-security/attackers-new-tool-scan-react2shell-exposure" target="_blank" rel="noopener">Attackers Use New Tool to Scan for React2Shell Exposure</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-02-20T21:07:07.000Z">February 20, 2026 - 9:07 PM</time>
-            
-          </div>
-          <p class="news-summary">Researchers say threat actors wielded the sophisticated — and unfortunately named — toolkit to target high-value networks for React2Shell exploitation....</p>
-        </article>
     </div>
   </main>
   
@@ -501,7 +499,7 @@ The capabi...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-24T12:22:06.351Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-24T15:25:23.446Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
