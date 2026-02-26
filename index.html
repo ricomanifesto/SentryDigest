@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-26T03:51:39.032Z">2/26/2026, 3:51:39 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-26T06:28:09.010Z">2/26/2026, 6:28:09 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Cisco SD-WAN Zero-Day CVE-2026-20127 Exploited Since 2023 for Admin Access" data-summary="A newly disclosed maximum-severity security flaw in Cisco Catalyst SD-WAN Controller (formerly vSmart) and Catalyst SD-WAN Manager (formerly vManage) has come under active exploitation in the wild as ...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/02/cisco-sd-wan-zero-day-cve-2026-20127.html" target="_blank" rel="noopener">Cisco SD-WAN Zero-Day CVE-2026-20127 Exploited Since 2023 for Admin Access</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-02-26T06:13:00.000Z">February 26, 2026 - 6:13 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A newly disclosed maximum-severity security flaw in Cisco Catalyst SD-WAN Controller (formerly vSmart) and Catalyst SD-WAN Manager (formerly vManage) has come under active exploitation in the wild as ...</p>
+        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Chinese Police Use ChatGPT to Smear Japan PM Takaichi" data-summary="A Chinese keyboard warrior inadvertently leaked information about politically motivated influence operations through a ChatGPT account....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -421,7 +433,7 @@ The vulnerabilities...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/02/cisa-confirms-active-exploitation-of.html" target="_blank" rel="noopener">CISA Confirms Active Exploitation of FileZen CVE-2026-25108 Vulnerability</a></h2>
           <div class="news-meta">
             <time datetime="2026-02-25T05:23:00.000Z">February 25, 2026 - 5:23 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Tuesday added a recently disclosed vulnerability in FileZen to its Known Exploited Vulnerabilities (KEV) catalog, citing evidence of...</p>
         </article>
@@ -448,18 +460,6 @@ The vulnerabilities...</p>
             
           </div>
           <p class="news-summary">Wynn Resorts has confirmed that a hacker stole employee data from its systems after the company was listed on the ShinyHunters extortion gang's data leak site. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="1Campaign platform helps malicious Google ads evade detection" data-summary="A newly identified cybercrime service known as 1Campaign is enabling threat actors to run malicious Google Ads that remain online for extended periods while evading scrutiny from security researchers....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/1campaign-platform-helps-malicious-google-ads-evade-detection/" target="_blank" rel="noopener">1Campaign platform helps malicious Google ads evade detection</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-02-24T21:45:05.000Z">February 24, 2026 - 9:45 PM</time>
-            
-          </div>
-          <p class="news-summary">A newly identified cybercrime service known as 1Campaign is enabling threat actors to run malicious Google Ads that remain online for extended periods while evading scrutiny from security researchers....</p>
         </article>
     </div>
   </main>
@@ -505,7 +505,7 @@ The vulnerabilities...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-26T03:51:39.032Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-26T06:28:09.010Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
