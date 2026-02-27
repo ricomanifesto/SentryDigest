@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,24 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-27T06:24:26.614Z">2/27/2026, 6:24:26 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-02-27T09:19:36.314Z">2/27/2026, 9:19:36 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Meta Files Lawsuits Against Brazil, China, Vietnam Advertisers Over Celeb-Bait Scams" data-summary="Meta on Thursday said it's taking legal action to tackle scams on its platforms by filing lawsuits against what it calls deceptive advertisers based in Brazil, China, and Vietnam.
+As part of the effor...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/02/meta-files-lawsuits-against-brazil.html" target="_blank" rel="noopener">Meta Files Lawsuits Against Brazil, China, Vietnam Advertisers Over Celeb-Bait Scams</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-02-27T07:56:00.000Z">February 27, 2026 - 7:56 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Meta on Thursday said it's taking legal action to tackle scams on its platforms by filing lawsuits against what it calls deceptive advertisers based in Brazil, China, and Vietnam.
+As part of the effor...</p>
+        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Marquis v. SonicWall Lawsuit Ups the Breach Blame Game" data-summary="When a company gets breached through a third-party security vendor, who should bear responsibility? For one FinTech company, the answer is the firewall provider....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -445,20 +459,6 @@ Digital evolution is unstoppable, and though the pace may vary, things tend to f
           </div>
           <p class="news-summary">Marquis Software Solutions has filed a lawsuit against SonicWall, accusing the cybersecurity company of gross negligence and misrepresentation that allegedly led to a ransomware attack disrupting oper...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="SLH Offers $500–$1,000 Per Call to Recruit Women for IT Help Desk Vishing Attacks" data-summary="The notorious cybercrime collective known as Scattered LAPSUS$ Hunters (SLH) has been observed offering financial incentives to recruit women to pull off social engineering attacks.
-The idea is to hir...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/02/slh-offers-5001000-per-call-to-recruit.html" target="_blank" rel="noopener">SLH Offers $500–$1,000 Per Call to Recruit Women for IT Help Desk Vishing Attacks</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-02-25T15:06:00.000Z">February 25, 2026 - 3:06 PM</time>
-            
-          </div>
-          <p class="news-summary">The notorious cybercrime collective known as Scattered LAPSUS$ Hunters (SLH) has been observed offering financial incentives to recruit women to pull off social engineering attacks.
-The idea is to hir...</p>
-        </article>
     </div>
   </main>
   
@@ -503,7 +503,7 @@ The idea is to hir...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-27T06:24:26.614Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-02-27T09:19:36.314Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
