@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-03-01T15:08:01.944Z">3/1/2026, 3:08:01 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-03-01T18:11:37.065Z">3/1/2026, 6:11:37 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Samsung TVs to stop collecting Texans’ data without express consent" data-summary="Samsung and the State of Texas have reached a settlement agreement over the alleged unlawful collection of content-viewing information through its smart TVs [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/samsung-tvs-to-stop-collecting-texans-data-without-express-consent/" target="_blank" rel="noopener">Samsung TVs to stop collecting Texans’ data without express consent</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-01T15:23:34.000Z">March 1, 2026 - 3:23 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Samsung and the State of Texas have reached a settlement agreement over the alleged unlawful collection of content-viewing information through its smart TVs [...]...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="QuickLens Chrome extension steals crypto, shows ClickFix attack" data-summary="A Chrome extension named &quot;QuickLens - Search Screen with Google Lens&quot; has been removed from the Chrome Web Store after it was compromised to push malware and attempt to steal crypto from thousands of ...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -111,7 +123,7 @@
           <h2 class="news-title"><a href="https://thehackernews.com/2026/02/clawjacked-flaw-lets-malicious-sites.html" target="_blank" rel="noopener">ClawJacked Flaw Lets Malicious Sites Hijack Local OpenClaw AI Agents via WebSocket</a></h2>
           <div class="news-meta">
             <time datetime="2026-02-28T17:21:00.000Z">February 28, 2026 - 5:21 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">OpenClaw has fixed a high-severity security issue that, if successfully exploited, could have allowed a malicious website to connect to a locally running artificial intelligence (AI) agent and take ov...</p>
         </article>
@@ -123,7 +135,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/48m-in-crypto-stolen-after-korean-tax-agency-exposes-wallet-seed/" target="_blank" rel="noopener">$4.8M in crypto stolen after Korean tax agency exposes wallet seed</a></h2>
           <div class="news-meta">
             <time datetime="2026-02-28T15:17:23.000Z">February 28, 2026 - 3:17 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">South Korea's National Tax Service accidentally exposed the mnemonic recovery phrase of a seized cryptocurrency wallet in an official press release, allowing hackers to steal 6.4 billion won ($4.8M) w...</p>
         </article>
@@ -449,18 +461,6 @@ As part of the effor...</p>
           </div>
           <p class="news-summary">A critical vulnerability in the Junos OS Evolved network operating system running on PTX Series routers from Juniper Networks could allow an unauthenticated attacker to execute code remotely with root...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Olympique Marseille confirms 'attempted' cyberattack after data leak" data-summary="French professional football club Olympique de Marseille has confirmed a cyberattack after a threat actor claimed on Monday that it breached the club's systems earlier this month. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/olympique-marseille-football-club-confirms-cyberattack-after-data-leak/" target="_blank" rel="noopener">Olympique Marseille confirms 'attempted' cyberattack after data leak</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-02-26T16:11:30.000Z">February 26, 2026 - 4:11 PM</time>
-            
-          </div>
-          <p class="news-summary">French professional football club Olympique de Marseille has confirmed a cyberattack after a threat actor claimed on Monday that it breached the club's systems earlier this month. [...]...</p>
-        </article>
     </div>
   </main>
   
@@ -505,7 +505,7 @@ As part of the effor...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-01T15:08:01.944Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-01T18:11:37.065Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
