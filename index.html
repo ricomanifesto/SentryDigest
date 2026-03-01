@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-03-01T09:11:04.019Z">3/1/2026, 9:11:04 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-03-01T12:14:19.159Z">3/1/2026, 12:14:19 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -135,7 +135,7 @@
           <h2 class="news-title"><a href="https://krebsonsecurity.com/2026/02/who-is-the-kimwolf-botmaster-dort/" target="_blank" rel="noopener">Who is the Kimwolf Botmaster “Dort”?</a></h2>
           <div class="news-meta">
             <time datetime="2026-02-28T12:01:57.000Z">February 28, 2026 - 12:01 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">In early January 2026, KrebsOnSecurity revealed how a security researcher disclosed a vulnerability that was used to assemble Kimwolf, the world's largest and most disruptive botnet. Since then, the p...</p>
         </article>
@@ -147,7 +147,7 @@
           <h2 class="news-title"><a href="https://thehackernews.com/2026/02/thousands-of-public-google-cloud-api.html" target="_blank" rel="noopener">Thousands of Public Google Cloud API Keys Exposed with Gemini Access After API Enablement</a></h2>
           <div class="news-meta">
             <time datetime="2026-02-28T09:56:00.000Z">February 28, 2026 - 9:56 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">New research has found that Google Cloud API keys, typically designated as project identifiers for billing purposes, could be abused to authenticate to sensitive Gemini endpoints and access private da...</p>
         </article>
@@ -505,7 +505,7 @@ As part of the effor...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-01T09:11:04.019Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-01T12:14:19.159Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
