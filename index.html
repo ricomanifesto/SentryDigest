@@ -87,10 +87,34 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-03-02T18:19:52.761Z">3/2/2026, 6:19:52 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-03-02T21:14:44.747Z">3/2/2026, 9:14:44 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Fake Google Security site uses PWA app to steal credentials, MFA codes" data-summary="A phishing campaign is using a fake Google Account security page to deliver a web-based app capable of stealing one-time passcodes, harvesting cryptocurrency wallet addresses, and proxying attacker tr...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/fake-google-security-site-uses-pwa-app-to-steal-credentials-mfa-codes/" target="_blank" rel="noopener">Fake Google Security site uses PWA app to steal credentials, MFA codes</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-02T20:23:41.000Z">March 2, 2026 - 8:23 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A phishing campaign is using a fake Google Account security page to deliver a web-based app capable of stealing one-time passcodes, harvesting cryptocurrency wallet addresses, and proxying attacker tr...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Alabama man pleads guilty to hacking, extorting hundreds of women" data-summary="A 22-year-old Alabama man pleaded guilty to extortion, cyberstalking, and computer fraud charges after hijacking the social media accounts of hundreds of young women (including minors). [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/alabama-man-pleads-guilty-to-hacking-extorting-hundreds-of-women/" target="_blank" rel="noopener">Alabama man pleads guilty to hacking, extorting hundreds of women</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-02T18:54:34.000Z">March 2, 2026 - 6:54 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A 22-year-old Alabama man pleaded guilty to extortion, cyberstalking, and computer fraud charges after hijacking the social media accounts of hundreds of young women (including minors). [...]...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Florida woman imprisoned for massive Microsoft license fraud scheme" data-summary="A Florida woman was sentenced to 22 months in prison for running a massive years-long scheme to traffic thousands of stolen Microsoft Certificate of Authenticity (COA) labels. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -437,32 +461,6 @@ The confis...</p>
           </div>
           <p class="news-summary">It's become a standard practice for organizations to disclose the bare minimum about a data breach, or worse — not disclose the incident at all....</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="CISA warns that RESURGE malware can be dormant on Ivanti devices" data-summary="The U.S. Cybersecurity and Infrastructure Security Agency (CISA) has released new details about RESURGE, a malicious implant used in zero-day attacks exploiting CVE-2025-0282 to breach Ivanti Connect ...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cisa-warns-that-resurge-malware-can-be-dormant-on-ivanti-devices/" target="_blank" rel="noopener">CISA warns that RESURGE malware can be dormant on Ivanti devices</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-02-27T15:57:04.000Z">February 27, 2026 - 3:57 PM</time>
-            
-          </div>
-          <p class="news-summary">The U.S. Cybersecurity and Infrastructure Security Agency (CISA) has released new details about RESURGE, a malicious implant used in zero-day attacks exploiting CVE-2025-0282 to breach Ivanti Connect ...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Malicious Go Crypto Module Steals Passwords, Deploys Rekoobe Backdoor" data-summary="Cybersecurity researchers have disclosed details of a malicious Go module that's designed to harvest passwords, create persistent access via SSH, and deliver a Linux backdoor named Rekoobe.
-The Go mod...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/02/malicious-go-crypto-module-steals.html" target="_blank" rel="noopener">Malicious Go Crypto Module Steals Passwords, Deploys Rekoobe Backdoor</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-02-27T15:33:00.000Z">February 27, 2026 - 3:33 PM</time>
-            
-          </div>
-          <p class="news-summary">Cybersecurity researchers have disclosed details of a malicious Go module that's designed to harvest passwords, create persistent access via SSH, and deliver a Linux backdoor named Rekoobe.
-The Go mod...</p>
-        </article>
     </div>
   </main>
   
@@ -507,7 +505,7 @@ The Go mod...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-02T18:19:52.761Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-02T21:14:44.747Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
