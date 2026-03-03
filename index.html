@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-03-03T00:41:36.053Z">3/3/2026, 12:41:36 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-03-03T03:51:02.457Z">3/3/2026, 3:51:02 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -114,6 +114,18 @@
             <span class="badge-new">NEW</span>
           </div>
           <p class="news-summary">The now-patched flaw is the latest in a growing string of security issues associated with the viral AI tool, which has seen rapid adoption among developers....</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="The Tug-of-War Over Firewall Backlogs in the AI-Driven Development Era" data-summary="Speed and security are historically clashing priorities, but with AI and automation, it's increasingly important that application developers and security teams get on the same page....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cloud-security/tug-of-war-firewall-backlogs-ai-driven-development" target="_blank" rel="noopener">The Tug-of-War Over Firewall Backlogs in the AI-Driven Development Era</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-02T21:32:04.000Z">March 2, 2026 - 9:32 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Speed and security are historically clashing priorities, but with AI and automation, it's increasingly important that application developers and security teams get on the same page....</p>
         </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="30 Alleged Members of 'The Com' Arrested in Project Compass" data-summary="The global law enforcement crackdown, which began in January 2025, also identified nearly 180 members of the notorious cybercriminal collective....">
           <div class="chips">
@@ -447,18 +459,6 @@ The vulnerabili...</p>
           </div>
           <p class="news-summary">North Korean hackers are deploying newly uncovered tools to move data between internet-connected and air-gapped systems, spread via removable drives, and conduct covert surveillance. [...]...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Europol-led crackdown on The Com hackers leads to 30 arrests" data-summary="A yearlong Europol-coordinated operation dubbed &quot;Project Compass&quot; has led to 30 arrests and 179 suspects being tied to &quot;The Com,&quot; an online cybercrime collective that targets children and teenagers. [...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/police-crackdown-on-the-com-cybercrime-gang-leads-to-30-arrests/" target="_blank" rel="noopener">Europol-led crackdown on The Com hackers leads to 30 arrests</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-02-27T18:20:15.000Z">February 27, 2026 - 6:20 PM</time>
-            
-          </div>
-          <p class="news-summary">A yearlong Europol-coordinated operation dubbed "Project Compass" has led to 30 arrests and 179 suspects being tied to "The Com," an online cybercrime collective that targets children and teenagers. [...</p>
-        </article>
     </div>
   </main>
   
@@ -503,7 +503,7 @@ The vulnerabili...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-03T00:41:36.053Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-03T03:51:02.457Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
