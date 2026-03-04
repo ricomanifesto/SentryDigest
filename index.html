@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-04T03:49:43.572Z">3/4/2026, 3:49:43 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-04T06:22:04.780Z">3/4/2026, 6:22:04 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -102,6 +102,18 @@
             <span class="badge-new">NEW</span>
           </div>
           <p class="news-summary">Dark Reading Confidential Episode 15: Interpol relied on Will Thomas and team to help break up a sprawling cybercrime ring, leading to the arrest of 574 suspects, the recovery of more than $3 million,...</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="CISA Adds Actively Exploited VMware Aria Operations Flaw CVE-2026-22719 to KEV Catalog" data-summary="The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Tuesday added a recently disclosed security flaw impacting Broadcom VMware Aria Operations to its Known Exploited Vulnerabilities (K...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/03/cisa-adds-actively-exploited-vmware.html" target="_blank" rel="noopener">CISA Adds Actively Exploited VMware Aria Operations Flaw CVE-2026-22719 to KEV Catalog</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-04T04:35:00.000Z">March 4, 2026 - 4:35 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Tuesday added a recently disclosed security flaw impacting Broadcom VMware Aria Operations to its Known Exploited Vulnerabilities (K...</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="CISA flags VMware Aria Operations RCE flaw as exploited in attacks" data-summary="The U.S. Cybersecurity and Infrastructure Security Agency (CISA) has added a VMware Aria Operations vulnerability tracked as CVE-2026-22719 to its Known Exploited Vulnerabilities catalog, flagging the...">
           <div class="chips">
@@ -449,18 +461,6 @@ The act...</p>
           </div>
           <p class="news-summary">The global law enforcement crackdown, which began in January 2025, also identified nearly 180 members of the notorious cybercriminal collective....</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Fake Google Security site uses PWA app to steal credentials, MFA codes" data-summary="A phishing campaign is using a fake Google Account security page to deliver a web-based app capable of stealing one-time passcodes, harvesting cryptocurrency wallet addresses, and proxying attacker tr...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/fake-google-security-site-uses-pwa-app-to-steal-credentials-mfa-codes/" target="_blank" rel="noopener">Fake Google Security site uses PWA app to steal credentials, MFA codes</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-02T20:23:41.000Z">March 2, 2026 - 8:23 PM</time>
-            
-          </div>
-          <p class="news-summary">A phishing campaign is using a fake Google Account security page to deliver a web-based app capable of stealing one-time passcodes, harvesting cryptocurrency wallet addresses, and proxying attacker tr...</p>
-        </article>
     </div>
   </main>
   
@@ -505,7 +505,7 @@ The act...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-04T03:49:43.572Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-04T06:22:04.780Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
