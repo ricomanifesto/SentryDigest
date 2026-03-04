@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-04T06:22:04.780Z">3/4/2026, 6:22:04 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-04T09:18:46.644Z">3/4/2026, 9:18:46 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -102,6 +102,18 @@
             <span class="badge-new">NEW</span>
           </div>
           <p class="news-summary">Dark Reading Confidential Episode 15: Interpol relied on Will Thomas and team to help break up a sprawling cybercrime ring, leading to the arrest of 574 suspects, the recovery of more than $3 million,...</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="APT41-Linked Silver Dragon Targets Governments Using Cobalt Strike and Google Drive C2" data-summary="Cybersecurity researchers have disclosed details of an advanced persistent threat (APT) group dubbed Silver Dragon that has been linked to cyber attacks targeting entities in Europe and Southeast Asia...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/03/apt41-linked-silver-dragon-targets.html" target="_blank" rel="noopener">APT41-Linked Silver Dragon Targets Governments Using Cobalt Strike and Google Drive C2</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-04T08:14:00.000Z">March 4, 2026 - 8:14 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Cybersecurity researchers have disclosed details of an advanced persistent threat (APT) group dubbed Silver Dragon that has been linked to cyber attacks targeting entities in Europe and Southeast Asia...</p>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="CISA Adds Actively Exploited VMware Aria Operations Flaw CVE-2026-22719 to KEV Catalog" data-summary="The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Tuesday added a recently disclosed security flaw impacting Broadcom VMware Aria Operations to its Known Exploited Vulnerabilities (K...">
           <div class="chips">
@@ -381,7 +393,7 @@ The activi...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/google-patches-android-zero-day-actively-exploited-in-attacks/" target="_blank" rel="noopener">Android gets patches for Qualcomm zero-day exploited in attacks</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-03T08:19:53.000Z">March 3, 2026 - 8:19 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Google has released security updates to patch 129 Android security vulnerabilities, including an actively exploited zero-day flaw in a Qualcomm display component. [...]...</p>
         </article>
@@ -394,7 +406,7 @@ The vulnerability in question is CVE-2...">
           <h2 class="news-title"><a href="https://thehackernews.com/2026/03/google-confirms-cve-2026-21385-in.html" target="_blank" rel="noopener">Google Confirms CVE-2026-21385 in Qualcomm Android Component Exploited</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-03T07:08:00.000Z">March 3, 2026 - 7:08 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Google on Monday disclosed that a high-severity security flaw impacting an open-source Qualcomm component used in Android devices has been exploited in the wild.
 The vulnerability in question is CVE-2...</p>
@@ -408,7 +420,7 @@ The act...">
           <h2 class="news-title"><a href="https://thehackernews.com/2026/03/sloppylemming-targets-pakistan-and.html" target="_blank" rel="noopener">SloppyLemming Targets Pakistan and Bangladesh Governments Using Dual Malware Chains</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-03T06:53:00.000Z">March 3, 2026 - 6:53 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The threat activity cluster known as SloppyLemming has been attributed to a fresh set of attacks targeting government entities and critical infrastructure operators in Pakistan and Bangladesh.
 The act...</p>
@@ -448,18 +460,6 @@ The act...</p>
             
           </div>
           <p class="news-summary">Speed and security are historically clashing priorities, but with AI and automation, it's increasingly important that application developers and security teams get on the same page....</p>
-        </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="30 Alleged Members of 'The Com' Arrested in Project Compass" data-summary="The global law enforcement crackdown, which began in January 2025, also identified nearly 180 members of the notorious cybercriminal collective....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/30-alleged-members-the-com-arrested-project-compass" target="_blank" rel="noopener">30 Alleged Members of 'The Com' Arrested in Project Compass</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-02T20:32:09.000Z">March 2, 2026 - 8:32 PM</time>
-            
-          </div>
-          <p class="news-summary">The global law enforcement crackdown, which began in January 2025, also identified nearly 180 members of the notorious cybercriminal collective....</p>
         </article>
     </div>
   </main>
@@ -505,7 +505,7 @@ The act...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-04T06:22:04.780Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-04T09:18:46.644Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
