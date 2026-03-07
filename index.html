@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-07T18:11:00.652Z">3/7/2026, 6:11:00 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-07T21:07:47.713Z">3/7/2026, 9:07:47 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -151,7 +151,7 @@ Of these, 14 have been classified as high, seven have ...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cognizant-trizetto-breach-exposes-health-data-of-34-million-patients/" target="_blank" rel="noopener">Cognizant TriZetto breach exposes health data of 3.4 million patients</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-06T19:50:21.000Z">March 6, 2026 - 7:50 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">TriZetto Provider Solutions, a healthcare IT company that develops software and services used by health insurers and healthcare providers, has suffered a data breach that exposed the sensitive informa...</p>
         </article>
@@ -503,7 +503,7 @@ Risk-based cybersecurity is the foundation of that model. Wh...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-07T18:11:00.652Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-07T21:07:47.713Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
