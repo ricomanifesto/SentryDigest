@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-08T15:08:41.906Z">3/8/2026, 3:08:41 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-08T18:11:31.770Z">3/8/2026, 6:11:31 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="EU court adviser says banks must immediately refund phishing victims" data-summary="Athanasios Rantos, the Advocate General of the Court of Justice of the EU (CJEU), has issued a formal opinion suggesting that banks must immediately refund account holders affected by unauthorized tra...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/legal/eu-court-adviser-says-banks-must-immediately-refund-phishing-victims/" target="_blank" rel="noopener">EU court adviser says banks must immediately refund phishing victims</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-08T15:25:37.000Z">March 8, 2026 - 3:25 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Athanasios Rantos, the Advocate General of the Court of Justice of the EU (CJEU), has issued a formal opinion suggesting that banks must immediately refund account holders affected by unauthorized tra...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Hackers abuse .arpa DNS and ipv6 to evade phishing defenses" data-summary="Threat actors are abusing the special-use &quot;.arpa&quot; domain and IPv6 reverse DNS in phishing campaigns that more easily evade domain reputation checks and email security gateways. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -112,7 +124,7 @@ The feature is avail...">
           <h2 class="news-title"><a href="https://thehackernews.com/2026/03/openai-codex-security-scanned-12.html" target="_blank" rel="noopener">OpenAI Codex Security Scanned 1.2 Million Commits and Found 10,561 High-Severity Issues</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-07T16:28:00.000Z">March 7, 2026 - 4:28 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">OpenAI on Friday began rolling out Codex Security, an artificial intelligence (AI)-powered security agent that's designed to find, validate, and propose fixes for vulnerabilities.
 The feature is avail...</p>
@@ -125,7 +137,7 @@ The feature is avail...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/termite-ransomware-breaches-linked-to-clickfix-castlerat-attacks/" target="_blank" rel="noopener">Termite ransomware breaches linked to ClickFix CastleRAT attacks</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-07T16:14:32.000Z">March 7, 2026 - 4:14 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Ransomware threat actors tracked as Velvet Tempest are using the ClickFix technique and legitimate Windows utilities to deploy the DonutLoader malware and the CastleRAT backdoor. [...]...</p>
         </article>
@@ -137,7 +149,7 @@ The feature is avail...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/microsoft-hackers-abusing-ai-at-every-stage-of-cyberattacks/" target="_blank" rel="noopener">Microsoft: Hackers abusing AI at every stage of cyberattacks</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-07T15:15:25.000Z">March 7, 2026 - 3:15 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Microsoft says threat actors are increasingly using artificial intelligence in their operations to accelerate attacks, scale malicious activity, and lower technical barriers across all aspects of a cy...</p>
         </article>
@@ -447,18 +459,6 @@ Risk-based cybersecurity is the foundation of that model. Wh...</p>
           </div>
           <p class="news-summary">The Wikimedia Foundation suffered a security incident today after a self-propagating JavaScript worm began vandalizing pages and modifying user scripts across multiple wikis. [...]...</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Cisco Drops 48 New Firewall Vulnerabilities, 2 Critical" data-summary="Edge bugs are so fetch, and Cisco just patched 50 new ones, including some heavy hitters with 10 out of 10 scores on the CVSS scale....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/cisco-48-firewall-vulnerabilities-2-critical" target="_blank" rel="noopener">Cisco Drops 48 New Firewall Vulnerabilities, 2 Critical</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-05T20:11:15.000Z">March 5, 2026 - 8:11 PM</time>
-            
-          </div>
-          <p class="news-summary">Edge bugs are so fetch, and Cisco just patched 50 new ones, including some heavy hitters with 10 out of 10 scores on the CVSS scale....</p>
-        </article>
     </div>
   </main>
   
@@ -503,7 +503,7 @@ Risk-based cybersecurity is the foundation of that model. Wh...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-08T15:08:41.906Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-08T18:11:31.770Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
