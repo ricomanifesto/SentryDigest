@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option><option value="Krebs on Security">Krebs on Security</option>
+          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Krebs on Security">Krebs on Security</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,60 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-03-09T18:22:53.057Z">3/9/2026, 6:22:53 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-03-09T21:13:00.398Z">3/9/2026, 9:13:00 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="'InstallFix' Attacks Spread Fake Claude Code Sites" data-summary="A fresh cyberattack campaign blends malvertising with a ClickFix-style technique that highlights risky behavior with AI coding assistants and command-line interfaces....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cloud-security/installfix-attacks-fake-claude-code" target="_blank" rel="noopener">'InstallFix' Attacks Spread Fake Claude Code Sites</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-09T20:42:25.000Z">March 9, 2026 - 8:42 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A fresh cyberattack campaign blends malvertising with a ClickFix-style technique that highlights risky behavior with AI coding assistants and command-line interfaces....</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Are We Ready for Auto Remediation With Agentic AI?" data-summary="With the rapid innovations in AI, we are entering an exciting era of automated risk remediation. Learn about security team readiness to leverage agentic AI for threat and exposure management....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/application-security/auto-remediation-agentic-ai" target="_blank" rel="noopener">Are We Ready for Auto Remediation With Agentic AI?</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-09T20:13:01.000Z">March 9, 2026 - 8:13 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">With the rapid innovations in AI, we are entering an exciting era of automated risk remediation. Learn about security team readiness to leverage agentic AI for threat and exposure management....</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Ericsson US discloses data breach after service provider hack" data-summary="Ericsson Inc., the U.S. subsidiary of Swedish networking and telecommunications giant Ericsson, says attackers have stolen data belonging to an undisclosed number of employees and customers after hack...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/ericsson-us-discloses-data-breach-after-service-provider-hack/" target="_blank" rel="noopener">Ericsson US discloses data breach after service provider hack</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-09T19:07:50.000Z">March 9, 2026 - 7:07 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Ericsson Inc., the U.S. subsidiary of Swedish networking and telecommunications giant Ericsson, says attackers have stolen data belonging to an undisclosed number of employees and customers after hack...</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Malicious npm Package Posing as OpenClaw Installer Deploys RAT, Steals macOS Credentials" data-summary="Cybersecurity researchers have discovered a malicious npm package that masquerades as an OpenClaw installer to deploy a remote access trojan (RAT) and steal sensitive data from compromised hosts.
+The ...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/03/malicious-npm-package-posing-as.html" target="_blank" rel="noopener">Malicious npm Package Posing as OpenClaw Installer Deploys RAT, Steals macOS Credentials</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-09T18:31:00.000Z">March 9, 2026 - 6:31 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Cybersecurity researchers have discovered a malicious npm package that masquerades as an OpenClaw installer to deploy a remote access trojan (RAT) and steal sensitive data from compromised hosts.
+The ...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft Teams will tag third-party bots trying to join meetings" data-summary="Microsoft says Teams will soon automatically tag third-party bots in lobbies, allowing organizers to control whether they can join meetings. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -413,54 +463,6 @@ T...</p>
           </div>
           <p class="news-summary">Threat actors are employing a new variation of the ClickFix social engineering technique called InstallFix to convince users into running malicious commands under the pretext of installing legitimate ...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Multi-Stage VOID#GEIST Malware Delivering XWorm, AsyncRAT, and Xeno RAT" data-summary="Cybersecurity researchers have disclosed details of a multi-stage malware campaign that uses batch scripts as a pathway to deliver various encrypted remote access trojan (RATs) payloads that correspon...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/03/multi-stage-voidgeist-malware.html" target="_blank" rel="noopener">Multi-Stage VOID#GEIST Malware Delivering XWorm, AsyncRAT, and Xeno RAT</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-06T14:33:00.000Z">March 6, 2026 - 2:33 PM</time>
-            
-          </div>
-          <p class="news-summary">Cybersecurity researchers have disclosed details of a multi-stage malware campaign that uses batch scripts as a pathway to deliver various encrypted remote access trojan (RATs) payloads that correspon...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft 365 Backup to add file-level restore for faster recovery" data-summary="Microsoft will soon begin rolling out a significant upgrade to Microsoft 365 Backup to speed up recovery by allowing administrators to restore individual files and folders. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-365-backup-to-add-file-level-restore-for-faster-recovery/" target="_blank" rel="noopener">Microsoft 365 Backup to add file-level restore for faster recovery</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-06T14:21:09.000Z">March 6, 2026 - 2:21 PM</time>
-            
-          </div>
-          <p class="news-summary">Microsoft will soon begin rolling out a significant upgrade to Microsoft 365 Backup to speed up recovery by allowing administrators to restore individual files and folders. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Iran's Cyber-Kinetic War Doctrine Takes Shape" data-summary="Iran has been hacking IP cameras to plan missile strikes against its enemies, and mounting other attacks on physical assets, showing how cyber and kinetic warfare are fast becoming one and the same....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/iran-cyber-kinetic-war-doctrine" target="_blank" rel="noopener">Iran's Cyber-Kinetic War Doctrine Takes Shape</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-06T14:01:11.000Z">March 6, 2026 - 2:01 PM</time>
-            
-          </div>
-          <p class="news-summary">Iran has been hacking IP cameras to plan missile strikes against its enemies, and mounting other attacks on physical assets, showing how cyber and kinetic warfare are fast becoming one and the same....</p>
-        </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Cyberattack on Mexico's Gov't Agencies Highlight AI Threat" data-summary="Using Anthropic's Claude, OpenAI's ChatGPT, and a detailed playbook prompt, a handful of cyberattackers reportedly gained access to government agencies and its citizens' data....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/application-security/cyberattack-mexico-government-ai-threat" target="_blank" rel="noopener">Cyberattack on Mexico's Gov't Agencies Highlight AI Threat</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-06T13:37:31.000Z">March 6, 2026 - 1:37 PM</time>
-            
-          </div>
-          <p class="news-summary">Using Anthropic's Claude, OpenAI's ChatGPT, and a detailed playbook prompt, a handful of cyberattackers reportedly gained access to government agencies and its citizens' data....</p>
-        </article>
     </div>
   </main>
   
@@ -505,7 +507,7 @@ T...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-09T18:22:53.057Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-09T21:13:00.398Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
