@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-03-11T06:24:10.789Z">3/11/2026, 6:24:10 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-03-11T09:20:07.557Z">3/11/2026, 9:20:07 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="UNC6426 Exploits nx npm Supply-Chain Attack to Gain AWS Admin Access in 72 Hours" data-summary="A threat actor known as UNC6426 leveraged keys stolen following the supply chain compromise of the nx npm package last year to completely breach a victim's cloud environment within a span of 72 hours....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/03/unc6426-exploits-nx-npm-supply-chain.html" target="_blank" rel="noopener">UNC6426 Exploits nx npm Supply-Chain Attack to Gain AWS Admin Access in 72 Hours</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-11T07:31:00.000Z">March 11, 2026 - 7:31 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A threat actor known as UNC6426 leveraged keys stolen following the supply chain compromise of the nx npm package last year to completely breach a victim's cloud environment within a span of 72 hours....</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Five Malicious Rust Crates and AI Bot Exploit CI/CD Pipelines to Steal Developer Secrets" data-summary="Cybersecurity researchers have discovered five malicious Rust crates that masquerade as time-related utilities to transmit .env file data to the threat actors.
 The Rust packages, published to crates.i...">
           <div class="chips">
@@ -417,7 +429,7 @@ The malware, first detected i...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/03/threat-actors-mass-scan-salesforce.html" target="_blank" rel="noopener">Threat Actors Mass-Scan Salesforce Experience Cloud via Modified AuraInspector Tool</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-10T07:17:00.000Z">March 10, 2026 - 7:17 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Salesforce has warned of an increase in threat actor activity that's aimed at exploiting misconfigurations in publicly accessible Experience Cloud sites by making use of a customized version of an ope...</p>
         </article>
@@ -446,18 +458,6 @@ Th...</p>
             
           </div>
           <p class="news-summary">Hackers contacted employees at financial and healthcare organizations over Microsoft Teams to trick them into granting remote access through Quick Assist and deploy a new piece of malware called A0Bac...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Google: Cloud attacks exploit flaws more than weak credentials" data-summary="Hackers are increasingly exploiting newly disclosed vulnerabilities in third-party software to gain initial access to cloud environments, with the window for attacks shrinking from weeks to just days....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/google-cloud-attacks-exploit-flaws-more-than-weak-credentials/" target="_blank" rel="noopener">Google: Cloud attacks exploit flaws more than weak credentials</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-09T21:45:34.000Z">March 9, 2026 - 9:45 PM</time>
-            
-          </div>
-          <p class="news-summary">Hackers are increasingly exploiting newly disclosed vulnerabilities in third-party software to gain initial access to cloud environments, with the window for attacks shrinking from weeks to just days....</p>
         </article>
     </div>
   </main>
@@ -503,7 +503,7 @@ Th...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-11T06:24:10.789Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-11T09:20:07.557Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
