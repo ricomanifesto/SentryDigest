@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-03-11T21:13:08.365Z">3/11/2026, 9:13:08 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-03-12T00:34:29.714Z">3/12/2026, 12:34:29 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="INC Ransomware Group Holds Healthcare Hostage in Oceania" data-summary="Government agencies, emergency clinics, and others in Australia, New Zealand, and Tonga have had serious run-ins with the prolific ransomware outfit....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/inc-ransomware-healthcare-oceania" target="_blank" rel="noopener">INC Ransomware Group Holds Healthcare Hostage in Oceania</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-11T22:00:00.000Z">March 11, 2026 - 10:00 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Government agencies, emergency clinics, and others in Australia, New Zealand, and Tonga have had serious run-ins with the prolific ransomware outfit....</p>
+        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Xygeni GitHub Action Compromised Via Tag Poison" data-summary="Attackers operated an active C2 implant for up to a week and compromised AppSec vendor Xygeni's xygeni/xygeni-action in that time....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -337,7 +349,7 @@ The Rust packages, published to crates.i...</p>
           <h2 class="news-title"><a href="https://krebsonsecurity.com/2026/03/microsoft-patch-tuesday-march-2026-edition/" target="_blank" rel="noopener">Microsoft Patch Tuesday, March 2026 Edition</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-11T00:32:51.000Z">March 11, 2026 - 12:32 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Microsoft Corp. today pushed security updates to fix at least 77 vulnerabilities in its Windows operating systems and other software. There are no pressing "zero-day" flaws this month (compared to Feb...</p>
         </article>
@@ -349,7 +361,7 @@ The Rust packages, published to crates.i...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/new-blacksanta-edr-killer-spotted-targeting-hr-departments/" target="_blank" rel="noopener">New ‘BlackSanta’ EDR killer spotted targeting HR departments</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-10T22:57:54.000Z">March 10, 2026 - 10:57 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">For more than a year, a Russian-speaking threat actor targeted human resource (HR) departments with malware that delivers a new EDR killer named BlackSanta. [...]...</p>
         </article>
@@ -361,7 +373,7 @@ The Rust packages, published to crates.i...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/new-beatbanker-android-malware-poses-as-starlink-app-to-hijack-devices/" target="_blank" rel="noopener">New BeatBanker Android malware poses as Starlink app to hijack devices</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-10T21:27:59.000Z">March 10, 2026 - 9:27 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A new Android malware named BeatBanker can hijack devices and tricks users into installing it by posing as a Starlink app on websites masquerading as the official Google Play Store. [...]...</p>
         </article>
@@ -449,20 +461,6 @@ The Rust packages, published to crates.i...</p>
           </div>
           <p class="news-summary">Hewlett Packard Enterprise (HPE) has patched multiple security vulnerabilities in the Aruba Networking AOS-CX operating system, including several authentication and code execution issues. [...]...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="FortiGate Devices Exploited to Breach Networks and Steal Service Account Credentials" data-summary="Cybersecurity researchers are calling attention to a new campaign where threat actors are abusing FortiGate Next-Generation Firewall (NGFW) appliances as entry points to breach victim networks. 
-The a...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/03/fortigate-devices-exploited-to-breach.html" target="_blank" rel="noopener">FortiGate Devices Exploited to Breach Networks and Steal Service Account Credentials</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-10T16:21:00.000Z">March 10, 2026 - 4:21 PM</time>
-            
-          </div>
-          <p class="news-summary">Cybersecurity researchers are calling attention to a new campaign where threat actors are abusing FortiGate Next-Generation Firewall (NGFW) appliances as entry points to breach victim networks. 
-The a...</p>
-        </article>
     </div>
   </main>
   
@@ -507,7 +505,7 @@ The a...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-11T21:13:08.365Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-12T00:34:29.714Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
