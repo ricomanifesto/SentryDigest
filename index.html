@@ -87,10 +87,24 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-03-12T06:25:14.013Z">3/12/2026, 6:25:14 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-03-12T09:20:47.400Z">3/12/2026, 9:20:47 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Six Android Malware Families Target Pix Payments, Banking Apps, and Crypto Wallets" data-summary="Cybersecurity researchers have discovered half-a-dozen new Android malware families that come with capabilities to steal data from compromised devices and conduct financial fraud.
+The Android malware ...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/03/six-android-malware-families-target-pix.html" target="_blank" rel="noopener">Six Android Malware Families Target Pix Payments, Banking Apps, and Crypto Wallets</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-12T07:56:00.000Z">March 12, 2026 - 7:56 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Cybersecurity researchers have discovered half-a-dozen new Android malware families that come with capabilities to steal data from compromised devices and conduct financial fraud.
+The Android malware ...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="CISA Flags Actively Exploited n8n RCE Bug as 24,700 Instances Remain Exposed" data-summary="The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Wednesday added a critical security flaw impacting n8n to its Known Exploited Vulnerabilities (KEV) catalog, based on evidence of ac...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
@@ -298,7 +312,7 @@ Of these, eight are rat...">
           <h2 class="news-title"><a href="https://thehackernews.com/2026/03/microsoft-patches-84-flaws-in-march.html" target="_blank" rel="noopener">Microsoft Patches 84 Flaws in March Patch Tuesday, Including Two Public Zero-Days</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-11T09:15:00.000Z">March 11, 2026 - 9:15 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Microsoft on Tuesday released patches for a set of 84 new security vulnerabilities affecting various software components, including two that have been listed as publicly known.
 Of these, eight are rat...</p>
@@ -311,7 +325,7 @@ Of these, eight are rat...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/03/unc6426-exploits-nx-npm-supply-chain.html" target="_blank" rel="noopener">UNC6426 Exploits nx npm Supply-Chain Attack to Gain AWS Admin Access in 72 Hours</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-11T07:31:00.000Z">March 11, 2026 - 7:31 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A threat actor known as UNC6426 leveraged keys stolen following the supply chain compromise of the nx npm package last year to completely breach a victim's cloud environment within a span of 72 hours....</p>
         </article>
@@ -449,18 +463,6 @@ The Rust packages, published to crates.i...</p>
           </div>
           <p class="news-summary">Today is Microsoft's March 2026 Patch Tuesday with security updates for 79 flaws, including 2 publicly disclosed zero-day vulnerabilities. [...]...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Windows 11 KB5079473 & KB5078883 cumulative updates released" data-summary="Microsoft has released Windows 11 KB5079473 and KB5078883 cumulative updates for versions 25H2/24H2 and 23H2 to fix security vulnerabilities, bugs, and add new features. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/windows-11-kb5079473-and-kb5078883-cumulative-updates-released/" target="_blank" rel="noopener">Windows 11 KB5079473 & KB5078883 cumulative updates released</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-10T17:41:41.000Z">March 10, 2026 - 5:41 PM</time>
-            
-          </div>
-          <p class="news-summary">Microsoft has released Windows 11 KB5079473 and KB5078883 cumulative updates for versions 25H2/24H2 and 23H2 to fix security vulnerabilities, bugs, and add new features. [...]...</p>
-        </article>
     </div>
   </main>
   
@@ -505,7 +507,7 @@ The Rust packages, published to crates.i...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-12T06:25:14.013Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-12T09:20:47.400Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
