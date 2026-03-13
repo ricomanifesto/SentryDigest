@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,36 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-13T09:18:20.837Z">3/13/2026, 9:18:20 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-13T12:19:10.992Z">3/13/2026, 12:19:10 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Google Fixes Two Chrome Zero-Days Exploited in the Wild Affecting Skia and V8" data-summary="Google on Thursday released security updates for its Chrome web browser to address two high-severity vulnerabilities that it said have been exploited in the wild.
+The list of vulnerabilities is as fol...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/03/google-fixes-two-chrome-zero-days.html" target="_blank" rel="noopener">Google Fixes Two Chrome Zero-Days Exploited in the Wild Affecting Skia and V8</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-13T09:17:00.000Z">March 13, 2026 - 9:17 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Google on Thursday released security updates for its Chrome web browser to address two high-severity vulnerabilities that it said have been exploited in the wild.
+The list of vulnerabilities is as fol...</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Nine CrackArmor Flaws in Linux AppArmor Enable Root Escalation, Bypass Container Isolation" data-summary="Cybersecurity researchers have disclosed multiple security vulnerabilities within the Linux kernel's AppArmor module that could be exploited by unprivileged users to circumvent kernel protections, esc...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/03/nine-crackarmor-flaws-in-linux-apparmor.html" target="_blank" rel="noopener">Nine CrackArmor Flaws in Linux AppArmor Enable Root Escalation, Bypass Container Isolation</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-13T08:18:00.000Z">March 13, 2026 - 8:18 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Cybersecurity researchers have disclosed multiple security vulnerabilities within the Linux kernel's AppArmor module that could be exploited by unprivileged users to circumvent kernel protections, esc...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Starbucks discloses data breach affecting hundreds of employees" data-summary="Starbucks has disclosed a data breach affecting hundreds of employees after threat actors gained access to their Starbucks Partner Central accounts. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -355,7 +381,7 @@ The vulner...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/us-charges-another-ransomware-negotiator-linked-to-blackcat-attacks/" target="_blank" rel="noopener">US charges another ransomware negotiator linked to BlackCat attacks</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-12T11:31:57.000Z">March 12, 2026 - 11:31 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The U.S. Department of Justice charged another former DigitalMint employee for his involvement in an insider scheme in which ransomware negotiators secretly partnered with the BlackCat (ALPHV) ransomw...</p>
         </article>
@@ -367,7 +393,7 @@ The vulner...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/03/attackers-dont-just-send-phishing.html" target="_blank" rel="noopener">Attackers Don't Just Send Phishing Emails. They Weaponize Your SOC's Workload</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-12T11:30:00.000Z">March 12, 2026 - 11:30 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The most dangerous phishing campaigns aren’t just designed to fool employees. Many are designed to exhaust the analysts investigating them. When a phishing investigation takes 12 hours instead of five...</p>
         </article>
@@ -380,7 +406,7 @@ The vulnerability, tracked a...">
           <h2 class="news-title"><a href="https://thehackernews.com/2026/03/apple-issues-security-updates-for-older.html" target="_blank" rel="noopener">Apple Issues Security Updates for Older iOS Devices Targeted by Coruna WebKit Exploit</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-12T09:58:00.000Z">March 12, 2026 - 9:58 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Apple on Wednesday backported fixes for a security flaw in iOS, iPadOS, and macOS Sonoma to older versions after it was found to be used as part of the Coruna exploit kit.
 The vulnerability, tracked a...</p>
@@ -435,30 +461,6 @@ The Android malware ...</p>
           </div>
           <p class="news-summary">Attackers operated an active C2 implant for up to a week and compromised AppSec vendor Xygeni's xygeni/xygeni-action in that time....</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="WhatsApp introduces parent-managed accounts for pre-teens" data-summary="WhatsApp has begun rolling out parent-managed accounts for pre-teens, allowing parents and guardians to decide who can contact them and which groups they can join. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/whatsapp-introduces-parent-managed-accounts-for-pre-teens/" target="_blank" rel="noopener">WhatsApp introduces parent-managed accounts for pre-teens</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-11T20:06:39.000Z">March 11, 2026 - 8:06 PM</time>
-            
-          </div>
-          <p class="news-summary">WhatsApp has begun rolling out parent-managed accounts for pre-teens, allowing parents and guardians to decide who can contact them and which groups they can join. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="SQLi flaw in Elementor Ally plugin impacts 250k+ WordPress sites" data-summary="An SQL injection vulnerability in Ally, a WordPress plugin from Elementor for web accessibility and usability with more than 400,000 installations, could be exploited to steal sensitive data without a...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/sqli-flaw-in-elementor-ally-plugin-impacts-250k-plus-wordpress-sites/" target="_blank" rel="noopener">SQLi flaw in Elementor Ally plugin impacts 250k+ WordPress sites</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-11T19:38:14.000Z">March 11, 2026 - 7:38 PM</time>
-            
-          </div>
-          <p class="news-summary">An SQL injection vulnerability in Ally, a WordPress plugin from Elementor for web accessibility and usability with more than 400,000 installations, could be exploited to steal sensitive data without a...</p>
-        </article>
     </div>
   </main>
   
@@ -503,7 +505,7 @@ The Android malware ...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-13T09:18:20.837Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-13T12:19:10.992Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
