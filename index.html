@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-14T18:13:48.271Z">3/14/2026, 6:13:48 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-14T21:10:35.012Z">3/14/2026, 9:10:35 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -149,7 +149,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/fbi-seeks-victims-of-steam-games-used-to-spread-malware/" target="_blank" rel="noopener">FBI seeks victims of Steam games used to spread malware</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-13T20:52:31.000Z">March 13, 2026 - 8:52 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The FBI is asking gamers who installed Steam titles containing malware to provide information as part of an ongoing investigation into eight malicious games uploaded to the gaming platform. [...]...</p>
         </article>
@@ -161,7 +161,7 @@
           <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/fake-pocs-risks-cisco-sd-wan" target="_blank" rel="noopener">Fake PoCs, Misunderstood Risks Cause Cisco SD-WAN Chaos</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-13T19:19:38.000Z">March 13, 2026 - 7:19 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The excitement around Cisco's latest SD-WAN bugs has inspired some light fraud, misunderstandings, and overlooked risks....</p>
         </article>
@@ -507,7 +507,7 @@ The vulner...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-14T18:13:48.271Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-14T21:10:35.012Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
