@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-15T15:11:51.720Z">3/15/2026, 3:11:51 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-15T18:14:01.430Z">3/15/2026, 6:14:01 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -123,7 +123,7 @@
           <h2 class="news-title"><a href="https://thehackernews.com/2026/03/openclaw-ai-agent-flaws-could-enable.html" target="_blank" rel="noopener">OpenClaw AI Agent Flaws Could Enable Prompt Injection and Data Exfiltration</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-14T16:17:00.000Z">March 14, 2026 - 4:17 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">China's National Computer Network Emergency Response Technical Team (CNCERT) has issued a warning about the security stemming from the use of OpenClaw (formerly Clawdbot and Moltbot), an open-source a...</p>
         </article>
@@ -507,7 +507,7 @@ The vulner...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-15T15:11:51.720Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-15T18:14:01.430Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
