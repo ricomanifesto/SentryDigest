@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-15T12:16:55.541Z">3/15/2026, 12:16:55 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-15T15:11:51.720Z">3/15/2026, 3:11:51 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Betterleaks, a new open-source secrets scanner to replace Gitleaks" data-summary="A new open-source tool called Betterleaks can scan directories, files, and git repositories and identify valid secrets using default or customized rules. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/betterleaks-a-new-open-source-secrets-scanner-to-replace-gitleaks/" target="_blank" rel="noopener">Betterleaks, a new open-source secrets scanner to replace Gitleaks</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-15T14:17:23.000Z">March 15, 2026 - 2:17 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A new open-source tool called Betterleaks can scan directories, files, and git repositories and identify valid secrets using default or customized rules. [...]...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft releases Windows 11 OOB hotpatch to fix RRAS RCE flaw" data-summary="Microsoft has released an out-of-band (OOB) update to fix a security vulnerabilities affecting Windows 11 Enterprise devices that receive hotpatch updates instead of the regular Patch Tuesday cumulati...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -123,7 +135,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/appsflyer-web-sdk-used-to-spread-crypto-stealer-javascript-code/" target="_blank" rel="noopener">AppsFlyer Web SDK hijacked to spread crypto-stealing JavaScript code</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-14T14:36:42.000Z">March 14, 2026 - 2:36 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The AppsFlyer Web SDK was temporarily hijacked this week with malicious code used to steal cryptocurrency in a supply-chain attack. [...]...</p>
         </article>
@@ -136,7 +148,7 @@
           <h2 class="news-title"><a href="https://thehackernews.com/2026/03/glassworm-supply-chain-attack-abuses-72.html" target="_blank" rel="noopener">GlassWorm Supply-Chain Attack Abuses 72 Open VSX Extensions to Target Developers</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-14T12:55:00.000Z">March 14, 2026 - 12:55 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Cybersecurity researchers have flagged a new iteration of the GlassWorm campaign that they say represents a "significant escalation" in how it propagates through the Open VSX registry.
 "Instead of req...</p>
@@ -451,18 +463,6 @@ The vulner...</p>
           </div>
           <p class="news-summary">Organizations have to prepare to ensure they have cryptography in place in the post-quantum world....</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Canadian retail giant Loblaw notifies customers of data breach" data-summary="Still, out of an abundance of caution, Loblaw says it has automatically logged out all customers from their accounts. Account holders who need to access the company's digital services will have to log...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/canadian-retail-giant-loblaw-notifies-customers-of-data-breach/" target="_blank" rel="noopener">Canadian retail giant Loblaw notifies customers of data breach</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-12T21:32:21.000Z">March 12, 2026 - 9:32 PM</time>
-            
-          </div>
-          <p class="news-summary">Still, out of an abundance of caution, Loblaw says it has automatically logged out all customers from their accounts. Account holders who need to access the company's digital services will have to log...</p>
-        </article>
     </div>
   </main>
   
@@ -507,7 +507,7 @@ The vulner...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-15T12:16:55.541Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-15T15:11:51.720Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
