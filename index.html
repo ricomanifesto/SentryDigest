@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
+          <option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,60 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-16T18:27:05.936Z">3/16/2026, 6:27:05 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-16T21:17:38.213Z">3/16/2026, 9:17:38 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="GlassWorm Malware Evolves to Hide in Dependencies" data-summary="Researchers have identified dozens of malicious GlassWorm extensions that come with new evasion techniques....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/application-security/glassworm-malware-evolves-hide-dependencies" target="_blank" rel="noopener">GlassWorm Malware Evolves to Hide in Dependencies</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-16T20:30:04.000Z">March 16, 2026 - 8:30 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Researchers have identified dozens of malicious GlassWorm extensions that come with new evasion techniques....</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Inside Olympic Cybersecurity: Lessons From Paris 2024 to Milan Cortina 2026" data-summary="Discover how Franz Regul, former CISO for the Paris 2024 Olympics, tackled unique cybersecurity challenges to protect the Olympics from evolving threats....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/olympic-cybersecurity-paris-2024-milan-2026" target="_blank" rel="noopener">Inside Olympic Cybersecurity: Lessons From Paris 2024 to Milan Cortina 2026</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-16T20:28:19.000Z">March 16, 2026 - 8:28 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Discover how Franz Regul, former CISO for the Paris 2024 Olympics, tackled unique cybersecurity challenges to protect the Olympics from evolving threats....</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="GlassWorm Attack Uses Stolen GitHub Tokens to Force-Push Malware Into Python Repos" data-summary="The GlassWorm malware campaign is being used to fuel an ongoing attack that leverages the stolen GitHub tokens to inject malware into hundreds of Python repositories.
+&quot;The attack targets Python projec...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/03/glassworm-attack-uses-stolen-github.html" target="_blank" rel="noopener">GlassWorm Attack Uses Stolen GitHub Tokens to Force-Push Malware Into Python Repos</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-16T19:37:00.000Z">March 16, 2026 - 7:37 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The GlassWorm malware campaign is being used to fuel an ongoing attack that leverages the stolen GitHub tokens to inject malware into hundreds of Python repositories.
+"The attack targets Python projec...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Stryker attack wiped tens of thousands of devices, no malware needed" data-summary="Last week's cyberattack on medical technology giant Stryker was limited to its internal Microsoft environment and remotely wiped tens of thousands of employee devices. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/stryker-attack-wiped-tens-of-thousands-of-devices-no-malware-needed/" target="_blank" rel="noopener">Stryker attack wiped tens of thousands of devices, no malware needed</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-16T19:17:20.000Z">March 16, 2026 - 7:17 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Last week's cyberattack on medical technology giant Stryker was limited to its internal Microsoft environment and remotely wiped tens of thousands of employee devices. [...]...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="CISA flags Wing FTP Server flaw as actively exploited in attacks" data-summary="CISA warned U.S. government agencies to secure their Wing FTP Server instances against an actively exploited vulnerability that may be chained in remote code execution attacks. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -417,56 +467,6 @@ Palo Alto Networks Unit 42...</p>
           </div>
           <p class="news-summary">​Microsoft is investigating several issues causing email synchronization and connection problems when using the classic Outlook desktop client. [...]...</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Will AI Save Consumers From Smartphone-Based Phishing Attacks?" data-summary="Sophisticated phishing attacks are bypassing on-device protections with troubling frequency, making it more critical than ever for users to protect themselves from potential threats, new research from...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/mobile-security/will-ai-save-consumers-smartphone-phishing-attacks" target="_blank" rel="noopener">Will AI Save Consumers From Smartphone-Based Phishing Attacks?</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-13T15:57:47.000Z">March 13, 2026 - 3:57 PM</time>
-            
-          </div>
-          <p class="news-summary">Sophisticated phishing attacks are bypassing on-device protections with troubling frequency, making it more critical than ever for users to protect themselves from potential threats, new research from...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="INTERPOL Dismantles 45,000 Malicious IPs, Arrests 94 in Global Cybercrime" data-summary="INTERPOL on Friday announced the takedown of 45,000 malicious IP addresses and servers used in connection with phishing, malware, and ransomware campaigns, as part of the agency's ongoing efforts to d...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/03/interpol-dismantles-45000-malicious-ips.html" target="_blank" rel="noopener">INTERPOL Dismantles 45,000 Malicious IPs, Arrests 94 in Global Cybercrime</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-13T15:20:00.000Z">March 13, 2026 - 3:20 PM</time>
-            
-          </div>
-          <p class="news-summary">INTERPOL on Friday announced the takedown of 45,000 malicious IP addresses and servers used in connection with phishing, malware, and ransomware campaigns, as part of the agency's ongoing efforts to d...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="From VMware to what’s next: Protecting data during hypervisor migration" data-summary="Hypervisor migrations can introduce hidden risks that threaten data availability and recovery. Acronis explains why verified backups and cross-platform recovery are essential during VMware transitions...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/from-vmware-to-whats-next-protecting-data-during-hypervisor-migration/" target="_blank" rel="noopener">From VMware to what’s next: Protecting data during hypervisor migration</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-13T14:15:25.000Z">March 13, 2026 - 2:15 PM</time>
-            
-          </div>
-          <p class="news-summary">Hypervisor migrations can introduce hidden risks that threaten data availability and recovery. Acronis explains why verified backups and cross-platform recovery are essential during VMware transitions...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Storm-2561 Spreads Trojan VPN Clients via SEO Poisoning to Steal Credentials" data-summary="Microsoft has disclosed details of a credential theft campaign that employs fake virtual private network (VPN) clients distributed through search engine optimization (SEO) poisoning techniques.
-&quot;The c...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/03/storm-2561-spreads-trojan-vpn-clients.html" target="_blank" rel="noopener">Storm-2561 Spreads Trojan VPN Clients via SEO Poisoning to Steal Credentials</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-13T13:38:00.000Z">March 13, 2026 - 1:38 PM</time>
-            
-          </div>
-          <p class="news-summary">Microsoft has disclosed details of a credential theft campaign that employs fake virtual private network (VPN) clients distributed through search engine optimization (SEO) poisoning techniques.
-"The c...</p>
-        </article>
     </div>
   </main>
   
@@ -511,7 +511,7 @@ Palo Alto Networks Unit 42...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-16T18:27:05.936Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-16T21:17:38.213Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
