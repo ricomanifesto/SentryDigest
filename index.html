@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-15T21:11:00.469Z">3/15/2026, 9:11:00 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-16T00:46:51.281Z">3/16/2026, 12:46:51 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="OpenAI says ChatGPT ads are not rolling out globally for now" data-summary="OpenAI told BleepingComputer that ChatGPT ads on Free and Go plans are not yet rolling out outside the United States, even though some users noticed references to ads in the updated privacy policy. [....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/openai-says-chatgpt-ads-are-not-rolling-out-globally-for-now/" target="_blank" rel="noopener">OpenAI says ChatGPT ads are not rolling out globally for now</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-15T23:13:28.000Z">March 15, 2026 - 11:13 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">OpenAI told BleepingComputer that ChatGPT ads on Free and Go plans are not yet rolling out outside the United States, even though some users noticed references to ads in the updated privacy policy. [....</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Betterleaks, a new open-source secrets scanner to replace Gitleaks" data-summary="A new open-source tool called Betterleaks can scan directories, files, and git repositories and identify valid secrets using default or customized rules. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -111,7 +123,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-releases-windows-11-oob-hotpatch-to-fix-rras-rce-flaw/" target="_blank" rel="noopener">Microsoft releases Windows 11 OOB hotpatch to fix RRAS RCE flaw</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-14T21:48:14.000Z">March 14, 2026 - 9:48 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Microsoft has released an out-of-band (OOB) update to fix a security vulnerabilities affecting Windows 11 Enterprise devices that receive hotpatch updates instead of the regular Patch Tuesday cumulati...</p>
         </article>
@@ -451,18 +463,6 @@ The vulner...">
           <p class="news-summary">Veeam has released security updates to address multiple critical vulnerabilities in its Backup & Replication software that, if successfully exploited, could result in remote code execution.
 The vulner...</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Why Post-Quantum Cryptography Can't Wait" data-summary="Organizations have to prepare to ensure they have cryptography in place in the post-quantum world....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/why-post-quantum-cryptography-cant-wait" target="_blank" rel="noopener">Why Post-Quantum Cryptography Can't Wait</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-12T21:45:25.000Z">March 12, 2026 - 9:45 PM</time>
-            
-          </div>
-          <p class="news-summary">Organizations have to prepare to ensure they have cryptography in place in the post-quantum world....</p>
-        </article>
     </div>
   </main>
   
@@ -507,7 +507,7 @@ The vulner...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-15T21:11:00.469Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-16T00:46:51.281Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
