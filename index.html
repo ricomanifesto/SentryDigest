@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-18T00:42:32.923Z">3/18/2026, 12:42:32 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-18T03:55:31.005Z">3/18/2026, 3:55:31 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Apple pushes first Background Security Improvements update to fix WebKit flaw" data-summary="Apple has released its first Background Security Improvements update to fix a WebKit flaw tracked as CVE-2026-20643 on iPhones, iPads, and Macs without requiring a full operating system upgrade. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/apple-pushes-first-background-security-improvements-update-to-fix-webkit-flaw/" target="_blank" rel="noopener">Apple pushes first Background Security Improvements update to fix WebKit flaw</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-18T01:06:31.000Z">March 18, 2026 - 1:06 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Apple has released its first Background Security Improvements update to fix a WebKit flaw tracked as CVE-2026-20643 on iPhones, iPads, and Macs without requiring a full operating system upgrade. [...]...</p>
+        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="More Attackers Are Logging In, Not Breaking In" data-summary="Credential theft soared in the second half of 2025, thanks in part to the industrialization of infostealer malware and AI-enabled social engineering....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -319,7 +331,7 @@ The use of ClickFix, where users are tr...</p>
           <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/china-nexus-hackers-southeast-asian-military-orgs" target="_blank" rel="noopener">China-Nexus Hackers Skulk in Southeast Asian Military Orgs for Years</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-17T01:00:00.000Z">March 17, 2026 - 1:00 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Researchers uncovered an extensive cyber espionage campaign that used novel backdoors and familiar evasion techniques to maintain persistent access to regional targets....</p>
         </article>
@@ -447,18 +459,6 @@ This week has that energy. Fresh messes, old problems getting sharper, an...</p>
           </div>
           <p class="news-summary">Shadow AI is quietly spreading across SaaS environments as employees adopt new AI tools without IT oversight. Nudge Security explains how security teams can discover AI apps, monitor usage, and govern...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft pulls Samsung app blocking Windows C: drive from Store" data-summary="​Microsoft has removed the Samsung Galaxy Connect app from the Microsoft Store because it was causing issues on specific Samsung Galaxy Book 4 and desktop models running Windows 11. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-pulls-samsung-app-blocking-windows-c-drive-from-store/" target="_blank" rel="noopener">Microsoft pulls Samsung app blocking Windows C: drive from Store</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-16T13:14:32.000Z">March 16, 2026 - 1:14 PM</time>
-            
-          </div>
-          <p class="news-summary">​Microsoft has removed the Samsung Galaxy Connect app from the Microsoft Store because it was causing issues on specific Samsung Galaxy Book 4 and desktop models running Windows 11. [...]...</p>
-        </article>
     </div>
   </main>
   
@@ -503,7 +503,7 @@ This week has that energy. Fresh messes, old problems getting sharper, an...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-18T00:42:32.923Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-18T03:55:31.005Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
