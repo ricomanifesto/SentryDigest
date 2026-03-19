@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,46 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-18T21:15:49.785Z">3/18/2026, 9:15:49 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-19T00:43:01.237Z">3/19/2026, 12:43:01 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Aura confirms data breach exposing 900,000 marketing contacts" data-summary="Identity protection company Aura has confirmed that an unauthorized party gained access to nearly 900,000 customer records containing names and email addresses. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/aura-confirms-data-breach-exposing-900-000-marketing-contacts/" target="_blank" rel="noopener">Aura confirms data breach exposing 900,000 marketing contacts</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-18T22:56:50.000Z">March 18, 2026 - 10:56 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Identity protection company Aura has confirmed that an unauthorized party gained access to nearly 900,000 customer records containing names and email addresses. [...]...</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="C2 Implant 'SnappyClient' Targets Crypto Wallets" data-summary="In addition to enabling remote access, the malware supports a wide range of capabilities, including data theft and spying....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/new-c2-implant-snappyclient-targets-crypto-wallets" target="_blank" rel="noopener">C2 Implant 'SnappyClient' Targets Crypto Wallets</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-18T21:49:02.000Z">March 18, 2026 - 9:49 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">In addition to enabling remote access, the malware supports a wide range of capabilities, including data theft and spying....</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="DarkSword: iPhone Exploit Kit Serves Spies &amp; Thieves Alike" data-summary="A sophisticated iOS exploit chain leverages multiple zero-day vulnerabilities and is targeting users in Saudi Arabia, Turkey, Malaysia, and Ukraine....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/darksword-iphone-exploit-spies-thieves" target="_blank" rel="noopener">DarkSword: iPhone Exploit Kit Serves Spies &amp; Thieves Alike</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-18T21:15:38.000Z">March 18, 2026 - 9:15 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A sophisticated iOS exploit chain leverages multiple zero-day vulnerabilities and is targeting users in Saudi Arabia, Turkey, Malaysia, and Ukraine....</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="CISA orders feds to patch Zimbra XSS flaw exploited in attacks" data-summary="CISA has ordered U.S. government agencies to secure their servers against an actively exploited vulnerability in the Zimbra Collaboration Suite (ZCS). [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -333,7 +369,7 @@ The vulnerability, tracked as CVE-2026-20643 (CV...</p>
           <h2 class="news-title"><a href="https://www.darkreading.com/identity-access-management-security/more-attackers-logging-in-not-breaking-in" target="_blank" rel="noopener">More Attackers Are Logging In, Not Breaking In</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-17T22:04:46.000Z">March 17, 2026 - 10:04 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Credential theft soared in the second half of 2025, thanks in part to the industrialization of infostealer malware and AI-enabled social engineering....</p>
         </article>
@@ -345,7 +381,7 @@ The vulnerability, tracked as CVE-2026-20643 (CV...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/glassworm-malware-hits-400-plus-code-repos-on-github-npm-vscode-openvsx/" target="_blank" rel="noopener">GlassWorm malware hits 400+ code repos on GitHub, npm, VSCode, OpenVSX</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-17T21:42:54.000Z">March 17, 2026 - 9:42 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The GlassWorm supply-chain campaign has returned with a new, coordinated attack that targeted hundreds of packages, repositories, and extensions on GitHub, npm, and VSCode/OpenVSX extensions. [...]...</p>
         </article>
@@ -357,7 +393,7 @@ The vulnerability, tracked as CVE-2026-20643 (CV...</p>
           <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/clear-communication-missing-link-cybersecurity-success" target="_blank" rel="noopener">Clear Communication: The Missing Link in Cybersecurity Success</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-17T21:42:46.000Z">March 17, 2026 - 9:42 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">When technical expertise meets clear communication, cybersecurity teams thrive. Learn how to foster trust and collaboration across diverse working groups....</p>
         </article>
@@ -369,7 +405,7 @@ The vulnerability, tracked as CVE-2026-20643 (CV...</p>
           <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/less-lucrative-ransomware-market-makes-attackers-alter-methods" target="_blank" rel="noopener">Less Lucrative Ransomware Market Makes Attackers Alter Methods</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-17T21:41:12.000Z">March 17, 2026 - 9:41 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Ransomware actors are ditching Cobalt Strike in favor of native Windows tools, as payment rates hit record lows and data theft surges....</p>
         </article>
@@ -423,44 +459,6 @@ I...</p>
           </div>
           <p class="news-summary">In a recent attack, the group showcased stealthier cross-network activity, thanks to its use of a new BYOVD technique and other tools....</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="LeakNet Ransomware Uses ClickFix via Hacked Sites, Deploys Deno In-Memory Loader" data-summary="The ransomware operation known as LeakNet has adopted the ClickFix social engineering tactic delivered through compromised websites as an initial access method.
-The use of ClickFix, where users are tr...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/03/leaknet-ransomware-uses-clickfix-via.html" target="_blank" rel="noopener">LeakNet Ransomware Uses ClickFix via Hacked Sites, Deploys Deno In-Memory Loader</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-17T14:34:00.000Z">March 17, 2026 - 2:34 PM</time>
-            
-          </div>
-          <p class="news-summary">The ransomware operation known as LeakNet has adopted the ClickFix social engineering tactic delivered through compromised websites as an initial access method.
-The use of ClickFix, where users are tr...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Top 5 Things CISOs Need to Do Today to Secure AI Agents" data-summary="AI agents are autonomous actors with real access to data and systems, not just copilots. Token Security explains why identity-based access control is critical to prevent misuse and data exposure. [......">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/top-5-things-cisos-need-to-do-today-to-secure-ai-agents/" target="_blank" rel="noopener">Top 5 Things CISOs Need to Do Today to Secure AI Agents</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-17T14:02:12.000Z">March 17, 2026 - 2:02 PM</time>
-            
-          </div>
-          <p class="news-summary">AI agents are autonomous actors with real access to data and systems, not just copilots. Token Security explains why identity-based access control is critical to prevent misuse and data exposure. [......</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="New font-rendering trick hides malicious commands from AI tools" data-summary="A new font-rendering attack causes AI assistants to miss malicious commands shown on webpages by hiding them in seemingly harmless HTML. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/new-font-rendering-trick-hides-malicious-commands-from-ai-tools/" target="_blank" rel="noopener">New font-rendering trick hides malicious commands from AI tools</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-17T13:59:12.000Z">March 17, 2026 - 1:59 PM</time>
-            
-          </div>
-          <p class="news-summary">A new font-rendering attack causes AI assistants to miss malicious commands shown on webpages by hiding them in seemingly harmless HTML. [...]...</p>
-        </article>
     </div>
   </main>
   
@@ -505,7 +503,7 @@ The use of ClickFix, where users are tr...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-18T21:15:49.785Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-19T00:43:01.237Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
