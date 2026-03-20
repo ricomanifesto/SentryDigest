@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option><option value="Krebs on Security">Krebs on Security</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option><option value="Krebs on Security">Krebs on Security</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,60 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-03-20T18:18:59.083Z">3/20/2026, 6:18:59 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-03-20T21:11:58.306Z">3/20/2026, 9:11:58 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="FBI links Signal phishing attacks to Russian intelligence services" data-summary="The FBI has issued a public service announcement warning that Russian intelligence-linked threat actors are actively targeting users of encrypted messaging apps such as Signal and WhatsApp in phishing...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/fbi-links-signal-phishing-attacks-to-russian-intelligence-services/" target="_blank" rel="noopener">FBI links Signal phishing attacks to Russian intelligence services</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-20T20:45:52.000Z">March 20, 2026 - 8:45 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The FBI has issued a public service announcement warning that Russian intelligence-linked threat actors are actively targeting users of encrypted messaging apps such as Signal and WhatsApp in phishing...</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Patch Now: Oracle's Fusion Middleware Has Critical RCE Flaw" data-summary="Attackers can execute arbitrary code without authentication if Oracle's Identity or Web Services Managers are exposed to the Web....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/patch-oracle-fusion-middleware-rce-flaw" target="_blank" rel="noopener">Patch Now: Oracle's Fusion Middleware Has Critical RCE Flaw</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-20T19:30:19.000Z">March 20, 2026 - 7:30 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Attackers can execute arbitrary code without authentication if Oracle's Identity or Web Services Managers are exposed to the Web....</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Oracle pushes emergency fix for critical Identity Manager RCE flaw" data-summary="Oracle has released an out-of-band security update to fix a critical unauthenticated remote code execution vulnerability in Identity Manager and Web Services Manager tracked as CVE-2026-21992. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/oracle-pushes-emergency-fix-for-critical-identity-manager-rce-flaw/" target="_blank" rel="noopener">Oracle pushes emergency fix for critical Identity Manager RCE flaw</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-20T18:48:47.000Z">March 20, 2026 - 6:48 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Oracle has released an out-of-band security update to fix a critical unauthenticated remote code execution vulnerability in Identity Manager and Web Services Manager tracked as CVE-2026-21992. [...]...</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Trivy Security Scanner GitHub Actions Breached, 75 Tags Hijacked to Steal CI/CD Secrets" data-summary="Trivy, a popular open-source vulnerability scanner maintained by Aqua Security, was compromised a second time within the span of a month to deliver malware that stole sensitive CI/CD secrets.
+The late...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/03/trivy-security-scanner-github-actions.html" target="_blank" rel="noopener">Trivy Security Scanner GitHub Actions Breached, 75 Tags Hijacked to Steal CI/CD Secrets</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-20T17:47:00.000Z">March 20, 2026 - 5:47 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Trivy, a popular open-source vulnerability scanner maintained by Aqua Security, was compromised a second time within the span of a month to deliver malware that stole sensitive CI/CD secrets.
+The late...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Police take down 373,000 fake CSAM sites in Operation Alice" data-summary="An international law enforcement action called Operation Alice has shut down over 373,000 dark web sites that offered fake CSAM packages. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -102,6 +152,18 @@
             <span class="badge-new">NEW</span>
           </div>
           <p class="news-summary">An international law enforcement action called Operation Alice has shut down over 373,000 dark web sites that offered fake CSAM packages. [...]...</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Cyber OpSec Fail: Beast Gang Exposes Ransomware Server" data-summary="Files on a central cloud server used by the ransomware group highlight a systematic, aggressive attack on network backups as a key TTP....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/opsec-beast-gang-exposes-ransomware-server" target="_blank" rel="noopener">Cyber OpSec Fail: Beast Gang Exposes Ransomware Server</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-20T16:31:33.000Z">March 20, 2026 - 4:31 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Files on a central cloud server used by the ransomware group highlight a systematic, aggressive attack on network backups as a key TTP....</p>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Critical Langflow Flaw CVE-2026-33017 Triggers Attacks within 20 Hours of Disclosure" data-summary="A critical security flaw impacting Langflow has come under active exploitation within 20 hours of public disclosure, highlighting the speed at which threat actors weaponize newly published vulnerabili...">
           <div class="chips">
@@ -295,7 +357,7 @@ Thes...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/navia-discloses-data-breach-impacting-27-million-people/" target="_blank" rel="noopener">Navia discloses data breach impacting 2.7 million people</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-19T20:43:54.000Z">March 19, 2026 - 8:43 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Navia Benefit Solutions, Inc. (Navia) is informing nearly 2.7 million individuals of a data breach that exposed their sensitive information to attackers. [...]...</p>
         </article>
@@ -307,7 +369,7 @@ Thes...</p>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/with-government-role-uncertain-businesses-unite-to-combat-fraud" target="_blank" rel="noopener">With Government's Role Uncertain, Businesses Unite to Combat Fraud</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-19T20:43:01.000Z">March 19, 2026 - 8:43 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Major industry leaders agree to share information and collaborate to boost defenses in the wake of distressing online scams....</p>
         </article>
@@ -319,7 +381,7 @@ Thes...</p>
           <h2 class="news-title"><a href="https://www.darkreading.com/cloud-security/native-launches-security-control-plane-multicloud" target="_blank" rel="noopener">Native Launches With Security Control Plane for Multicloud</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-19T20:08:11.000Z">March 19, 2026 - 8:08 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The cloud security startup's platform translates and enforces security policies across AWS, Azure, Google Cloud, and Oracle using provider-native controls....</p>
         </article>
@@ -331,7 +393,7 @@ Thes...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/new-polyshell-flaw-allows-unauthenticated-rce-on-magento-e-stores/" target="_blank" rel="noopener">New ‘PolyShell’ flaw allows unauthenticated RCE on Magento e-stores</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-19T20:01:03.000Z">March 19, 2026 - 8:01 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A newly disclosed vulnerability dubbed 'PolyShell' affects all Magento Open Source and Adobe Commerce stable version 2 installations, allowing unauthenticated code execution and account takeover. [......</p>
         </article>
@@ -344,7 +406,7 @@ Thes...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/03/speagle-malware-hijacks-cobra-docguard.html" target="_blank" rel="noopener">Speagle Malware Hijacks Cobra DocGuard to Steal Data via Compromised Servers</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-19T19:16:00.000Z">March 19, 2026 - 7:16 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Cybersecurity researchers have flagged a new malware dubbed Speagle that hijacks the functionality and infrastructure of a legitimate program called Cobra DocGuard.
 "Speagle is designed to surreptitio...</p>
@@ -357,7 +419,7 @@ Thes...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/03/54-edr-killers-use-byovd-to-exploit-34.html" target="_blank" rel="noopener">54 EDR Killers Use BYOVD to Exploit 35 Signed Vulnerable Drivers and Disable Security</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-19T18:52:00.000Z">March 19, 2026 - 6:52 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A new analysis of endpoint detection and response (EDR) killers has revealed that 54 of them leverage a technique known as bring your own vulnerable driver (BYOVD) by abusing a total of 35 vulnerable ...</p>
         </article>
@@ -369,7 +431,7 @@ Thes...</p>
           <h2 class="news-title"><a href="https://www.darkreading.com/cloud-security/post-quantum-web-could-be-safer-faster" target="_blank" rel="noopener">Post-Quantum Web Could be Safer, Faster</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-19T18:19:43.000Z">March 19, 2026 - 6:19 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Major providers are testing a quantum-safe version of HTTPS that shrinks certificates to one-tenth their previous size, decreasing latency and adding transparency....</p>
         </article>
@@ -396,68 +458,6 @@ Thes...</p>
             
           </div>
           <p class="news-summary">The FBI has seized two websites used by the Handala hacktivist group after the threat actors conducted a destructive cyberattack on medical technology giant Stryker that wiped approximately 80,000 dev...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Russian hackers exploit Zimbra flaw in Ukrainian govt attacks" data-summary="Hackers part of APT28, a state-backed threat group linked to Russia's military intelligence service (GRU), are exploiting a Zimbra Collaboration Suite (ZCS) vulnerability in attacks targeting Ukrainia...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/russian-apt28-military-hackers-exploit-zimbra-flaw-in-ukrainian-govt-attacks/" target="_blank" rel="noopener">Russian hackers exploit Zimbra flaw in Ukrainian govt attacks</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-19T14:55:50.000Z">March 19, 2026 - 2:55 PM</time>
-            
-          </div>
-          <p class="news-summary">Hackers part of APT28, a state-backed threat group linked to Russia's military intelligence service (GRU), are exploiting a Zimbra Collaboration Suite (ZCS) vulnerability in attacks targeting Ukrainia...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="ThreatsDay Bulletin: FortiGate RaaS, Citrix Exploits, MCP Abuse, LiveChat Phish & More" data-summary="ThreatsDay Bulletin is back on The Hacker News, and this week feels off in a familiar way. Nothing loud, nothing breaking everything at once. Just a lot of small things that shouldn’t work anymore but...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/03/threatsday-bulletin-fortigate-raas.html" target="_blank" rel="noopener">ThreatsDay Bulletin: FortiGate RaaS, Citrix Exploits, MCP Abuse, LiveChat Phish & More</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-19T14:25:00.000Z">March 19, 2026 - 2:25 PM</time>
-            
-          </div>
-          <p class="news-summary">ThreatsDay Bulletin is back on The Hacker News, and this week feels off in a familiar way. Nothing loud, nothing breaking everything at once. Just a lot of small things that shouldn’t work anymore but...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="7 Ways to Prevent Privilege Escalation via Password Resets" data-summary="Password resets are often weaker than login security, making them a prime target for privilege escalation. Specops Software explains how attackers abuse reset workflows and how to secure them. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/7-ways-to-prevent-privilege-escalation-via-password-resets/" target="_blank" rel="noopener">7 Ways to Prevent Privilege Escalation via Password Resets</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-19T14:00:10.000Z">March 19, 2026 - 2:00 PM</time>
-            
-          </div>
-          <p class="news-summary">Password resets are often weaker than login security, making them a prime target for privilege escalation. Specops Software explains how attackers abuse reset workflows and how to secure them. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Max severity Ubiquiti UniFi flaw may allow account takeover" data-summary="Ubiquiti has patched two vulnerabilities in the UniFi Network Application, including a maximum-severity flaw that may allow attackers to take over user accounts. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/ubiquiti-warns-of-unifi-flaw-that-may-enable-account-takeover/" target="_blank" rel="noopener">Max severity Ubiquiti UniFi flaw may allow account takeover</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-19T13:00:22.000Z">March 19, 2026 - 1:00 PM</time>
-            
-          </div>
-          <p class="news-summary">Ubiquiti has patched two vulnerabilities in the UniFi Network Application, including a maximum-severity flaw that may allow attackers to take over user accounts. [...]...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="New Perseus Android Banking Malware Monitors Notes Apps to Extract Sensitive Data" data-summary="Cybersecurity researchers have disclosed a new Android malware family called Perseus that's being actively distributed in the wild with an aim to conduct device takeover (DTO) and financial fraud.
-Per...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/03/new-perseus-android-banking-malware.html" target="_blank" rel="noopener">New Perseus Android Banking Malware Monitors Notes Apps to Extract Sensitive Data</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-19T12:43:00.000Z">March 19, 2026 - 12:43 PM</time>
-            
-          </div>
-          <p class="news-summary">Cybersecurity researchers have disclosed a new Android malware family called Perseus that's being actively distributed in the wild with an aim to conduct device takeover (DTO) and financial fraud.
-Per...</p>
         </article>
     </div>
   </main>
@@ -503,7 +503,7 @@ Per...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-20T18:18:59.083Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-20T21:11:58.306Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
