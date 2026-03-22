@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-03-22T15:10:06.254Z">3/22/2026, 3:10:06 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-03-22T18:13:29.952Z">3/22/2026, 6:13:29 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -111,7 +111,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/trivy-vulnerability-scanner-breach-pushed-infostealer-via-github-actions/" target="_blank" rel="noopener">Trivy vulnerability scanner breach pushed infostealer via GitHub Actions</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-21T17:30:41.000Z">March 21, 2026 - 5:30 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The Trivy vulnerability scanner was compromised in a supply-chain attack by threat actors known as TeamPCP, which distributed credential-stealing malware through official releases and GitHub Actions. ...</p>
         </article>
@@ -503,7 +503,7 @@ Thes...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-22T15:10:06.254Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-22T18:13:29.952Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
