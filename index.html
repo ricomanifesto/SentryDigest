@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-03-22T12:15:24.631Z">3/22/2026, 12:15:24 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-03-22T15:10:06.254Z">3/22/2026, 3:10:06 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="VoidStealer malware steals Chrome master key via debugger trick" data-summary="An information stealer called VoidStealer uses a new approach to bypass Chrome's Application-Bound Encryption (ABE) and extract the master key for decrypting sensitive data stored in the browser. [......">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/voidstealer-malware-steals-chrome-master-key-via-debugger-trick/" target="_blank" rel="noopener">VoidStealer malware steals Chrome master key via debugger trick</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-22T14:32:46.000Z">March 22, 2026 - 2:32 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">An information stealer called VoidStealer uses a new approach to bypass Chrome's Application-Bound Encryption (ABE) and extract the master key for decrypting sensitive data stored in the browser. [......</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Trivy vulnerability scanner breach pushed infostealer via GitHub Actions" data-summary="The Trivy vulnerability scanner was compromised in a supply-chain attack by threat actors known as TeamPCP, which distributed credential-stealing malware through official releases and GitHub Actions. ...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -111,7 +123,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/google-adds-advanced-flow-for-safe-apk-sideloading-on-android/" target="_blank" rel="noopener">Google adds ‘Advanced Flow’ for safe APK sideloading on Android</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-21T14:18:23.000Z">March 21, 2026 - 2:18 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Google has announced a new mechanism in Android called Advanced Flow that will allow sideloading APKs from unverified developers for power users in a more secure way. [...]...</p>
         </article>
@@ -123,7 +135,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/microsoft-azure-monitor-alerts-abused-in-callback-phishing-campaigns/" target="_blank" rel="noopener">Microsoft Azure Monitor alerts abused for callback phishing attacks</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-21T14:09:19.000Z">March 21, 2026 - 2:09 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Microsoft Azure Monitor alerts are being abused to send callback phishing emails that impersonate warnings from the Microsoft Security Team about unauthorized charges on your account. [...]...</p>
         </article>
@@ -135,7 +147,7 @@
           <h2 class="news-title"><a href="https://thehackernews.com/2026/03/fbi-warns-russian-hackers-target-signal.html" target="_blank" rel="noopener">FBI Warns Russian Hackers Target Signal, WhatsApp in Mass Phishing Attacks</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-21T13:17:00.000Z">March 21, 2026 - 1:17 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Threat actors affiliated with Russian Intelligence Services are conducting phishing campaigns to compromise commercial messaging applications (CMAs) like WhatsApp and Signal to seize control of accoun...</p>
         </article>
@@ -447,18 +459,6 @@ Thes...</p>
           </div>
           <p class="news-summary">Navia Benefit Solutions, Inc. (Navia) is informing nearly 2.7 million individuals of a data breach that exposed their sensitive information to attackers. [...]...</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="With Government's Role Uncertain, Businesses Unite to Combat Fraud" data-summary="Major industry leaders agree to share information and collaborate to boost defenses in the wake of distressing online scams....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/with-government-role-uncertain-businesses-unite-to-combat-fraud" target="_blank" rel="noopener">With Government's Role Uncertain, Businesses Unite to Combat Fraud</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-19T20:43:01.000Z">March 19, 2026 - 8:43 PM</time>
-            
-          </div>
-          <p class="news-summary">Major industry leaders agree to share information and collaborate to boost defenses in the wake of distressing online scams....</p>
-        </article>
     </div>
   </main>
   
@@ -503,7 +503,7 @@ Thes...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-22T12:15:24.631Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-22T15:10:06.254Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
