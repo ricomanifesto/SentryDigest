@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-25T03:52:23.648Z">3/25/2026, 3:52:23 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-25T06:30:53.591Z">3/25/2026, 6:30:53 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Iran Hacktivists Make Noise but Have Little Impact on War" data-summary="Iran-aligned groups are trying to make their mark in the Gulf, but the results have fallen short of remarkable....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/iran-hacktivists-impact-on-war" target="_blank" rel="noopener">Iran Hacktivists Make Noise but Have Little Impact on War</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-25T05:00:00.000Z">March 25, 2026 - 5:00 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Iran-aligned groups are trying to make their mark in the Gulf, but the results have fallen short of remarkable....</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="PTC warns of imminent threat from critical Windchill, FlexPLM RCE bug" data-summary="PTC Inc. is warning of a critical vulnerability in Windchill and FlexPLM, widely used product lifecycle management (PLM) solutions, that could allow remote code execution. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -379,7 +391,7 @@ The activity is being tracked by ReversingLabs as the...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/03/citrix-urges-patching-critical.html" target="_blank" rel="noopener">Citrix Urges Patching Critical NetScaler Flaw Allowing Unauthenticated Data Leaks</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-24T05:59:00.000Z">March 24, 2026 - 5:59 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Citrix has released security updates to address two vulnerabilities in NetScaler ADC and NetScaler Gateway, including a critical flaw that could be exploited to leak sensitive data from the applicatio...</p>
         </article>
@@ -443,18 +455,6 @@ The activity is being tracked by ReversingLabs as the...</p>
           </div>
           <p class="news-summary">A threat actor used the open source security tool to deploy an infostealer into CI/CD workflows and steal cloud credentials, SSH keys, tokens, and other sensitive secrets....</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Ransomware's New Era: Moving at AI Speed" data-summary="Threat actors bypass security tools and use AI to launch faster ransomware attacks that exploit valid credentials and target data....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/endpoint-security/ransomware-new-era-moving-ai-speed" target="_blank" rel="noopener">Ransomware's New Era: Moving at AI Speed</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-23T21:40:37.000Z">March 23, 2026 - 9:40 PM</time>
-            
-          </div>
-          <p class="news-summary">Threat actors bypass security tools and use AI to launch faster ransomware attacks that exploit valid credentials and target data....</p>
-        </article>
     </div>
   </main>
   
@@ -499,7 +499,7 @@ The activity is being tracked by ReversingLabs as the...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-25T03:52:23.648Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-25T06:30:53.591Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
