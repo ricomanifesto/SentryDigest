@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,24 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-26T06:33:29.489Z">3/26/2026, 6:33:29 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-26T09:27:27.755Z">3/26/2026, 9:27:27 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="WebRTC Skimmer Bypasses CSP to Steal Payment Data from E-Commerce Sites" data-summary="Cybersecurity researchers have discovered a new payment skimmer that uses WebRTC data channels as a means to receive payloads and exfiltrate data, effectively bypassing security controls.
+&quot;Instead of ...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/03/webrtc-skimmer-bypasses-csp-to-steal.html" target="_blank" rel="noopener">WebRTC Skimmer Bypasses CSP to Steal Payment Data from E-Commerce Sites</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-26T06:53:00.000Z">March 26, 2026 - 6:53 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Cybersecurity researchers have discovered a new payment skimmer that uses WebRTC data channels as a means to receive payloads and exfiltrate data, effectively bypassing security controls.
+"Instead of ...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="GitHub adds AI-powered bug detection to expand security coverage" data-summary="GitHub is adopting AI-based scanning for its Code Security tool to expand vulnerability detections beyond the CodeQL static analysis and cover more languages and frameworks. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -355,7 +369,7 @@ Ilya Ang...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/russian-man-sentenced-for-operating-botnet-used-in-ransomware-attacks/" target="_blank" rel="noopener">Manager of botnet used in ransomware attacks gets 2 years in prison</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-25T08:47:29.000Z">March 25, 2026 - 8:47 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A Russian national has been sentenced to two years in prison after admitting that the phishing botnet he managed was used to launch BitPaymer ransomware attacks against 72 U.S. companies. [...]...</p>
         </article>
@@ -368,7 +382,7 @@ The ac...">
           <h2 class="news-title"><a href="https://thehackernews.com/2026/03/fcc-bans-new-foreign-made-routers-over.html" target="_blank" rel="noopener">FCC Bans New Foreign-Made Routers Over Supply Chain and Cyber Risk Concerns</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-25T07:11:00.000Z">March 25, 2026 - 7:11 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The U.S. Federal Communications Commission (FCC) said on Monday that it was banning the import of new, foreign-made consumer routers, citing "unacceptable" risks to cyber and national security.
 The ac...</p>
@@ -445,18 +459,6 @@ The ac...</p>
           </div>
           <p class="news-summary">Security vendors have spent years building up defenses around the endpoint, but one researcher says AI coding tools have brought the walls down....</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="FCC bans new routers made outside the USA over security risks" data-summary="The Federal Communications Commission has updated its Covered List to include all consumer routers made in foreign countries, banning the sale of new models in the U.S. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/fcc-bans-new-routers-made-outside-the-usa-over-security-risks/" target="_blank" rel="noopener">FCC bans new routers made outside the USA over security risks</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-24T20:41:30.000Z">March 24, 2026 - 8:41 PM</time>
-            
-          </div>
-          <p class="news-summary">The Federal Communications Commission has updated its Covered List to include all consumer routers made in foreign countries, banning the sale of new models in the U.S. [...]...</p>
-        </article>
     </div>
   </main>
   
@@ -501,7 +503,7 @@ The ac...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-26T06:33:29.489Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-26T09:27:27.755Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
