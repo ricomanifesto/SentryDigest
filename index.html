@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,46 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-27T06:34:41.187Z">3/27/2026, 6:34:41 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-27T09:23:49.518Z">3/27/2026, 9:23:49 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Windows 11 KB5079391 update rolls out Smart App Control improvements" data-summary="​Microsoft has released the KB5079391 preview cumulative update for Windows 11 24H2 and 25H2, which includes 29 changes, such as Smart App Control and Display improvements. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/windows-11-kb5079391-update-rolls-out-smart-app-control-improvements/" target="_blank" rel="noopener">Windows 11 KB5079391 update rolls out Smart App Control improvements</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-27T09:20:59.000Z">March 27, 2026 - 9:20 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">​Microsoft has released the KB5079391 preview cumulative update for Windows 11 24H2 and 25H2, which includes 29 changes, such as Smart App Control and Display improvements. [...]...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Dutch Police discloses security breach after phishing attack" data-summary="The Dutch National Police (Politie) says a security breach resulting from a successful phishing attack has had a limited impact and hasn't affected citizens' data. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/dutch-police-discloses-security-breach-after-phishing-attack/" target="_blank" rel="noopener">Dutch Police discloses security breach after phishing attack</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-27T08:20:11.000Z">March 27, 2026 - 8:20 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The Dutch National Police (Politie) says a security breach resulting from a successful phishing attack has had a limited impact and hasn't affected citizens' data. [...]...</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="LangChain, LangGraph Flaws Expose Files, Secrets, Databases in Widely Used AI Frameworks" data-summary="Cybersecurity researchers have disclosed three security vulnerabilities impacting LangChain and LangGraph that, if successfully exploited, could expose filesystem data, environment secrets, and conver...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/03/langchain-langgraph-flaws-expose-files.html" target="_blank" rel="noopener">LangChain, LangGraph Flaws Expose Files, Secrets, Databases in Widely Used AI Frameworks</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-27T08:07:00.000Z">March 27, 2026 - 8:07 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Cybersecurity researchers have disclosed three security vulnerabilities impacting LangChain and LangGraph that, if successfully exploited, could expose filesystem data, environment secrets, and conver...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Ajax football club hack exposed fan data, enabled ticket hijack" data-summary="Dutch professional football club Ajax Amsterdam (AFC Ajax) disclosed that a hacker exploited vulnerabilities in its IT systems and accessed data belonging to a few hundred people. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -358,7 +394,7 @@ The fl...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/03/webrtc-skimmer-bypasses-csp-to-steal.html" target="_blank" rel="noopener">WebRTC Skimmer Bypasses CSP to Steal Payment Data from E-Commerce Sites</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-26T06:53:00.000Z">March 26, 2026 - 6:53 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Cybersecurity researchers have discovered a new payment skimmer that uses WebRTC data channels as a means to receive payloads and exfiltrate data, effectively bypassing security controls.
 "Instead of ...</p>
@@ -423,44 +459,6 @@ The fl...</p>
           </div>
           <p class="news-summary">A new info-stealing malware called Torg Grabber is stealing sensitive data from 850 browser extensions, more than 700 of them for cryptocurrency wallets. [...]...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="LeakBase Admin Arrested in Russia Over Massive Stolen Credential Marketplace" data-summary="The alleged administrator of the LeakBase cybercrime forum has been arrested by Russian law enforcement authorities, state media reported Thursday.
-According to TASS and MVD Media, a news website link...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/03/leakbase-admin-arrested-in-russia-over.html" target="_blank" rel="noopener">LeakBase Admin Arrested in Russia Over Massive Stolen Credential Marketplace</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-25T17:35:00.000Z">March 25, 2026 - 5:35 PM</time>
-            
-          </div>
-          <p class="news-summary">The alleged administrator of the LeakBase cybercrime forum has been arrested by Russian law enforcement authorities, state media reported Thursday.
-According to TASS and MVD Media, a news website link...</p>
-        </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Blame Game: Why Public Cyber Attribution Carries Risks" data-summary="Publicly accusing an entity of a cyberattack could have negative consequences that organizations should consider before taking the plunge....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/blame-game-public-cyber-attribution-risks" target="_blank" rel="noopener">Blame Game: Why Public Cyber Attribution Carries Risks</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-25T16:03:29.000Z">March 25, 2026 - 4:03 PM</time>
-            
-          </div>
-          <p class="news-summary">Publicly accusing an entity of a cyberattack could have negative consequences that organizations should consider before taking the plunge....</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Citrix urges admins to patch NetScaler flaws as soon as possible" data-summary="Citrix has patched two NetScaler ADC and NetScaler Gateway vulnerabilities, one of which is very similar to the CitrixBleed and CitrixBleed2 flaws exploited in zero-day attacks in recent years. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/citrix-urges-admins-to-patch-netscaler-flaws-as-soon-as-possible/" target="_blank" rel="noopener">Citrix urges admins to patch NetScaler flaws as soon as possible</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-25T15:52:10.000Z">March 25, 2026 - 3:52 PM</time>
-            
-          </div>
-          <p class="news-summary">Citrix has patched two NetScaler ADC and NetScaler Gateway vulnerabilities, one of which is very similar to the CitrixBleed and CitrixBleed2 flaws exploited in zero-day attacks in recent years. [...]...</p>
-        </article>
     </div>
   </main>
   
@@ -505,7 +503,7 @@ According to TASS and MVD Media, a news website link...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-27T06:34:41.187Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-27T09:23:49.518Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
