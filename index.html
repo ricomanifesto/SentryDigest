@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-29T12:17:35.015Z">3/29/2026, 12:17:35 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-29T15:12:51.075Z">3/29/2026, 3:12:51 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="File read flaw in Smart Slider plugin impacts 500K WordPress sites" data-summary="A vulnerability in the Smart Slider 3 WordPress plugin, active on more than 800,000 websites, can be exploited to allow subscriber-level users access to arbitrary files on the server. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/file-read-flaw-in-smart-slider-plugin-impacts-500k-wordpress-sites/" target="_blank" rel="noopener">File read flaw in Smart Slider plugin impacts 500K WordPress sites</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-29T14:38:25.000Z">March 29, 2026 - 2:38 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A vulnerability in the Smart Slider 3 WordPress plugin, active on more than 800,000 websites, can be exploited to allow subscriber-level users access to arbitrary files on the server. [...]...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Iran-Linked Hackers Breach FBI Director’s Personal Email, Hit Stryker With Wiper Attack" data-summary="Threat actors with ties to Iran successfully broke into the personal email account of Kash Patel, the director of the U.S. Federal Bureau of Investigation (FBI), and leaked a cache of photos and other...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
@@ -111,7 +123,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/new-infinity-stealer-malware-grabs-macos-data-via-clickfix-lures/" target="_blank" rel="noopener">New Infinity Stealer malware grabs macOS data via ClickFix lures</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-28T14:35:10.000Z">March 28, 2026 - 2:35 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A new info-stealing malware named Infinity Stealer is targeting macOS systems with a Python payload packaged as an executable using the open-source Nuitka compiler. [...]...</p>
         </article>
@@ -451,20 +463,6 @@ Introduction: O...</p>
           </div>
           <p class="news-summary">Threats actors pounced on the code injection vulnerability within hours of its disclosure, demonstrating that organizations have little time to address critical bugs....</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="China-Linked Red Menshen Uses Stealthy BPFDoor Implants to Spy via Telecom Networks" data-summary="A long-term and ongoing campaign attributed to a China-nexus threat actor has embedded itself in telecom networks to conduct espionage against government networks.
-The strategic positioning activity, ...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/03/china-linked-red-menshen-uses-stealthy.html" target="_blank" rel="noopener">China-Linked Red Menshen Uses Stealthy BPFDoor Implants to Spy via Telecom Networks</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-26T17:40:00.000Z">March 26, 2026 - 5:40 PM</time>
-            
-          </div>
-          <p class="news-summary">A long-term and ongoing campaign attributed to a China-nexus threat actor has embedded itself in telecom networks to conduct espionage against government networks.
-The strategic positioning activity, ...</p>
-        </article>
     </div>
   </main>
   
@@ -509,7 +507,7 @@ The strategic positioning activity, ...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-29T12:17:35.015Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-29T15:12:51.075Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
