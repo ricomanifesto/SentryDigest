@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-29T15:12:51.075Z">3/29/2026, 3:12:51 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-29T18:15:22.789Z">3/29/2026, 6:15:22 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -111,7 +111,7 @@
           <h2 class="news-title"><a href="https://thehackernews.com/2026/03/iran-linked-hackers-breach-fbi.html" target="_blank" rel="noopener">Iran-Linked Hackers Breach FBI Director’s Personal Email, Hit Stryker With Wiper Attack</a></h2>
           <div class="news-meta">
             <time datetime="2026-03-28T15:40:00.000Z">March 28, 2026 - 3:40 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Threat actors with ties to Iran successfully broke into the personal email account of Kash Patel, the director of the U.S. Federal Bureau of Investigation (FBI), and leaked a cache of photos and other...</p>
         </article>
@@ -507,7 +507,7 @@ Introduction: O...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-29T15:12:51.075Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-29T18:15:22.789Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
