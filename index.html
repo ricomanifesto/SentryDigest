@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-29T18:15:22.789Z">3/29/2026, 6:15:22 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-29T21:12:44.672Z">3/29/2026, 9:12:44 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="FBI confirms hack of Director Patel's personal email inbox" data-summary="The Handala hackers associated with Iran have breached the personal email account of FBI Director Kash Patel and published photos and documents. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/fbi-confirms-hack-of-director-patels-personal-email-inbox/" target="_blank" rel="noopener">FBI confirms hack of Director Patel's personal email inbox</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-29T21:09:50.000Z">March 29, 2026 - 9:09 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The Handala hackers associated with Iran have breached the personal email account of FBI Director Kash Patel and published photos and documents. [...]...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="File read flaw in Smart Slider plugin impacts 500K WordPress sites" data-summary="A vulnerability in the Smart Slider 3 WordPress plugin, active on more than 800,000 websites, can be exploited to allow subscriber-level users access to arbitrary files on the server. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -451,18 +463,6 @@ Introduction: O...</p>
           </div>
           <p class="news-summary">The Cybersecurity and Infrastructure Security Agency (CISA) is warning that hackers are actively exploiting a critical vulnerability identified as CVE-2026-33017, which affects the Langflow framework ...</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Critical Flaw in Langflow AI Platform Under Attack" data-summary="Threats actors pounced on the code injection vulnerability within hours of its disclosure, demonstrating that organizations have little time to address critical bugs....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/critical-flaw-langflow-ai-platform-under-attack" target="_blank" rel="noopener">Critical Flaw in Langflow AI Platform Under Attack</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-26T19:14:05.000Z">March 26, 2026 - 7:14 PM</time>
-            
-          </div>
-          <p class="news-summary">Threats actors pounced on the code injection vulnerability within hours of its disclosure, demonstrating that organizations have little time to address critical bugs....</p>
-        </article>
     </div>
   </main>
   
@@ -507,7 +507,7 @@ Introduction: O...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-29T18:15:22.789Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-29T21:12:44.672Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
