@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-30T04:05:43.070Z">3/30/2026, 4:05:43 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-03-30T06:46:39.314Z">3/30/2026, 6:46:39 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="European Commission confirms data breach after Europa.eu hack" data-summary="The European Commission has confirmed a data breach after its Europa.eu web platform was hacked in a cyberattack claimed by the ShinyHunters extortion gang. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/european-commission-confirms-data-breach-after-europaeu-hack/" target="_blank" rel="noopener">European Commission confirms data breach after Europa.eu hack</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-03-30T06:42:58.000Z">March 30, 2026 - 6:42 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The European Commission has confirmed a data breach after its Europa.eu web platform was hacked in a cyberattack claimed by the ShinyHunters extortion gang. [...]...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="FBI confirms hack of Director Patel's personal email inbox" data-summary="The Handala hackers associated with Iran have breached the personal email account of FBI Director Kash Patel and published photos and documents. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -451,18 +463,6 @@ Introduction: O...</p>
           </div>
           <p class="news-summary">More than a decade since the 2015 Jeep hack, the cybersecurity of vehicles remains of the utmost importance....</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="CISA: New Langflow flaw actively exploited to hijack AI workflows" data-summary="The Cybersecurity and Infrastructure Security Agency (CISA) is warning that hackers are actively exploiting a critical vulnerability identified as CVE-2026-33017, which affects the Langflow framework ...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cisa-new-langflow-flaw-actively-exploited-to-hijack-ai-workflows/" target="_blank" rel="noopener">CISA: New Langflow flaw actively exploited to hijack AI workflows</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-03-26T19:17:43.000Z">March 26, 2026 - 7:17 PM</time>
-            
-          </div>
-          <p class="news-summary">The Cybersecurity and Infrastructure Security Agency (CISA) is warning that hackers are actively exploiting a critical vulnerability identified as CVE-2026-33017, which affects the Langflow framework ...</p>
-        </article>
     </div>
   </main>
   
@@ -507,7 +507,7 @@ Introduction: O...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-30T04:05:43.070Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-03-30T06:46:39.314Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
