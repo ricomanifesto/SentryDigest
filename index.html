@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-04T18:15:15.532Z">4/4/2026, 6:15:15 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-04T21:12:41.242Z">4/4/2026, 9:12:41 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -98,10 +98,22 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/events/black-hat-usa" target="_blank" rel="noopener">Black Hat USA</a></h2>
           <div class="news-meta">
-            <time datetime="2026-04-04T18:15:15.319Z">April 4, 2026 - 6:15 PM</time>
+            <time datetime="2026-04-04T21:12:40.800Z">April 4, 2026 - 9:12 PM</time>
             <span class="badge-new">NEW</span>
           </div>
           
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Axios npm hack used fake Teams error fix to hijack maintainer account" data-summary="The maintainers of the popular Axios HTTP client have published a detailed post-mortem describing how one of its developers was targeted by a social engineering campaign believed to have been conducte...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/axios-npm-hack-used-fake-teams-error-fix-to-hijack-maintainer-account/" target="_blank" rel="noopener">Axios npm hack used fake Teams error fix to hijack maintainer account</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-04T20:30:42.000Z">April 4, 2026 - 8:30 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The maintainers of the popular Axios HTTP client have published a detailed post-mortem describing how one of its developers was targeted by a social engineering campaign believed to have been conducte...</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Device code phishing attacks surge 37x as new kits spread online" data-summary="Device code phishing attacks that abuse the OAuth 2.0 Device Authorization Grant flow to hijack accounts have surged more than 37 times this year. [...]...">
           <div class="chips">
@@ -123,7 +135,7 @@
           <h2 class="news-title"><a href="https://www.darkreading.com/data-privacy/inconsistent-privacy-labels-not-enough" target="_blank" rel="noopener">Inconsistent Privacy Labels Don't Tell Users What They Are Getting</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-03T21:05:07.000Z">April 3, 2026 - 9:05 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Data privacy labels are a great idea for mobile apps, but the current versions just aren't good enough....</p>
         </article>
@@ -135,7 +147,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/linkedin-secretly-scans-for-6-000-plus-chrome-extensions-collects-data/" target="_blank" rel="noopener">LinkedIn secretly scans for 6,000+ Chrome extensions, collects data</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-03T20:40:22.000Z">April 3, 2026 - 8:40 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A new report dubbed "BrowserGate" warns that Microsoft's LinkedIn is using hidden JavaScript scripts on its website to scan visitors' browsers for installed extensions and collect device data. [...]...</p>
         </article>
@@ -443,18 +455,6 @@ The campaign has bee...</p>
           </div>
           <p class="news-summary">The Drift Protocol lost at least $280 million after a threat actor took control of its Security Council administrative powers in a planned, sophisticated operation. [...]...</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="RSAC 2026: AI Dominates, But Community Remains Key to Security" data-summary="As AI took center stage at this year's conference, experts debated automation, oversight and the evolving role of human intelligence in cybersecurity — despite the US government's notable absence....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/rsac-2026-ai-dominates-community" target="_blank" rel="noopener">RSAC 2026: AI Dominates, But Community Remains Key to Security</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-02T15:56:32.000Z">April 2, 2026 - 3:56 PM</time>
-            
-          </div>
-          <p class="news-summary">As AI took center stage at this year's conference, experts debated automation, oversight and the evolving role of human intelligence in cybersecurity — despite the US government's notable absence....</p>
-        </article>
     </div>
   </main>
   
@@ -499,7 +499,7 @@ The campaign has bee...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-04T18:15:15.532Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-04T21:12:41.242Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
