@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option>
+          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-05T12:18:18.585Z">4/5/2026, 12:18:18 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-05T15:14:04.529Z">4/5/2026, 3:14:04 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -98,10 +98,22 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/events/black-hat-usa" target="_blank" rel="noopener">Black Hat USA</a></h2>
           <div class="news-meta">
-            <time datetime="2026-04-05T12:18:18.350Z">April 5, 2026 - 12:18 PM</time>
+            <time datetime="2026-04-05T15:14:04.330Z">April 5, 2026 - 3:14 PM</time>
             <span class="badge-new">NEW</span>
           </div>
           
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Hackers exploit React2Shell in automated credential theft campaign" data-summary="Hackers are running a large-scale campaign to steal credentials in an automated way after exploiting React2Shell (CVE-2025-55182) in vulnerable Next.js apps. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hackers-exploit-react2shell-in-automated-credential-theft-campaign/" target="_blank" rel="noopener">Hackers exploit React2Shell in automated credential theft campaign</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-05T14:17:23.000Z">April 5, 2026 - 2:17 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Hackers are running a large-scale campaign to steal credentials in an automated way after exploiting React2Shell (CVE-2025-55182) in vulnerable Next.js apps. [...]...</p>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="36 Malicious npm Packages Exploited Redis, PostgreSQL to Deploy Persistent Implants" data-summary="Cybersecurity researchers have discovered 36 malicious packages in the npm registry that are disguised as Strapi CMS plugins but come with different payloads to facilitate Redis and PostgreSQL exploit...">
           <div class="chips">
@@ -149,7 +161,7 @@ The vulnerability, tracked as CVE-2026-35616 (CVSS score: ...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/device-code-phishing-attacks-surge-37x-as-new-kits-spread-online/" target="_blank" rel="noopener">Device code phishing attacks surge 37x as new kits spread online</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-04T14:17:38.000Z">April 4, 2026 - 2:17 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Device code phishing attacks that abuse the OAuth 2.0 Device Authorization Grant flow to hijack accounts have surged more than 37 times this year. [...]...</p>
         </article>
@@ -445,18 +457,6 @@ The campaign has bee...</p>
           </div>
           <p class="news-summary">The company's 8-K filing notes "unauthorized access" and that it has activated business continuity plans and taken some systems offline....</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Hackers Exploit CVE-2025-55182 to Breach 766 Next.js Hosts, Steal Credentials" data-summary="A large-scale credential harvesting operation has been observed exploiting the React2Shell vulnerability as an initial infection vector to steal database credentials, SSH private keys, Amazon Web Serv...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/hackers-exploit-cve-2025-55182-to.html" target="_blank" rel="noopener">Hackers Exploit CVE-2025-55182 to Breach 766 Next.js Hosts, Steal Credentials</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-02T19:30:00.000Z">April 2, 2026 - 7:30 PM</time>
-            
-          </div>
-          <p class="news-summary">A large-scale credential harvesting operation has been observed exploiting the React2Shell vulnerability as an initial infection vector to steal database credentials, SSH private keys, Amazon Web Serv...</p>
-        </article>
     </div>
   </main>
   
@@ -501,7 +501,7 @@ The campaign has bee...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-05T12:18:18.585Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-05T15:14:04.529Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
