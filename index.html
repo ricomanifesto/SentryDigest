@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Dark Reading">Dark Reading</option><option value="Krebs on Security">Krebs on Security</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-06T00:48:31.207Z">4/6/2026, 12:48:31 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-04-06T04:05:17.869Z">4/6/2026, 4:05:17 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -98,10 +98,22 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/events/black-hat-usa" target="_blank" rel="noopener">Black Hat USA</a></h2>
           <div class="news-meta">
-            <time datetime="2026-04-06T00:48:30.540Z">April 6, 2026 - 12:48 AM</time>
+            <time datetime="2026-04-06T04:05:17.273Z">April 6, 2026 - 4:05 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           
+        </article>
+        <article class="news-item" data-source="Krebs on Security" data-host="krebsonsecurity.com" data-title="Germany Doxes “UNKN,” Head of RU Ransomware Gangs REvil, GandCrab" data-summary="An elusive hacker who went by the handle &quot;UNKN&quot; and ran the early Russian ransomware groups GandCrab and REvil now has a name and a face. Authorities in Germany say 31-year-old Russian Daniil Maksimov...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Krebs on Security</span>
+            <span class="chip">krebsonsecurity.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://krebsonsecurity.com/2026/04/germany-doxes-unkn-head-of-ru-ransomware-gangs-revil-gandcrab/" target="_blank" rel="noopener">Germany Doxes “UNKN,” Head of RU Ransomware Gangs REvil, GandCrab</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-06T02:07:17.000Z">April 6, 2026 - 2:07 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">An elusive hacker who went by the handle "UNKN" and ran the early Russian ransomware groups GandCrab and REvil now has a name and a face. Authorities in Germany say 31-year-old Russian Daniil Maksimov...</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Traffic violation scams switch to QR codes in new phishing texts" data-summary="Scammers are sending fake &quot;Notice of Default&quot; traffic violation text messages impersonating state courts across the U.S., pressuring recipients to scan a QR code that leads to a phishing site demandin...">
           <div class="chips">
@@ -445,18 +457,6 @@ The campaign has bee...</p>
           </div>
           <p class="news-summary">Starting this week, Microsoft has begun force-upgrading unmanaged devices running Windows 11 24H2 Home and Pro editions to Windows 11 25H2. [...]...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="CERT-EU: European Commission hack exposes data of 30 EU entities" data-summary="The European Union's Cybersecurity Service (CERT-EU) has attributed the European Commission cloud hack to the TeamPCP threat group, saying the resulting breach exposed the data of at least 29 other Un...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cert-eu-european-commission-hack-exposes-data-of-30-eu-entities/" target="_blank" rel="noopener">CERT-EU: European Commission hack exposes data of 30 EU entities</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-03T06:33:34.000Z">April 3, 2026 - 6:33 AM</time>
-            
-          </div>
-          <p class="news-summary">The European Union's Cybersecurity Service (CERT-EU) has attributed the European Commission cloud hack to the TeamPCP threat group, saying the resulting breach exposed the data of at least 29 other Un...</p>
-        </article>
     </div>
   </main>
   
@@ -500,8 +500,8 @@ The campaign has bee...</p>
           if (show) visible++;
         });
         const total = 30;
-        const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-06T00:48:31.207Z').toLocaleString());
+        const srcCount = 4;
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-06T04:05:17.869Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
