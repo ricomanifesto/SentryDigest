@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-04-07T06:39:18.271Z">4/7/2026, 6:39:18 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-04-07T09:31:09.050Z">4/7/2026, 9:31:09 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -98,10 +98,22 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/events/black-hat-usa" target="_blank" rel="noopener">Black Hat USA</a></h2>
           <div class="news-meta">
-            <time datetime="2026-04-07T06:39:17.691Z">April 7, 2026 - 6:39 AM</time>
+            <time datetime="2026-04-07T09:31:08.958Z">April 7, 2026 - 9:31 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="China-Linked Storm-1175 Exploits Zero-Days to Rapidly Deploy Medusa Ransomware" data-summary="A China-based threat actor known for deploying Medusa ransomware has been linked to the weaponization of a combination of zero-day and N-day vulnerabilities to orchestrate &quot;high-velocity&quot; attacks and ...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/china-linked-storm-1175-exploits-zero.html" target="_blank" rel="noopener">China-Linked Storm-1175 Exploits Zero-Days to Rapidly Deploy Medusa Ransomware</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-07T06:35:00.000Z">April 7, 2026 - 6:35 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A China-based threat actor known for deploying Medusa ransomware has been linked to the weaponization of a combination of zero-day and N-day vulnerabilities to orchestrate "high-velocity" attacks and ...</p>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Flowise AI Agent Builder Under Active CVSS 10.0 RCE Exploitation; 12,000+ Instances Exposed" data-summary="Threat actors are exploiting a maximum-severity security flaw in Flowise, an open-source artificial intelligence (AI) platform, according to new findings from VulnCheck.
 The vulnerability in question ...">
@@ -381,7 +393,7 @@ One ...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/04/bka-identifies-revil-leaders-behind-130.html" target="_blank" rel="noopener">BKA Identifies REvil Leaders Behind 130 German Ransomware Attacks</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-06T06:59:00.000Z">April 6, 2026 - 6:59 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Germany's Federal Criminal Police Office (aka BKA or the Bundeskriminalamt) has unmasked the real identities of two of the key figures associated with the now-defunct REvil (aka Sodinokibi) ransomware...</p>
         </article>
@@ -445,18 +457,6 @@ One ...</p>
           </div>
           <p class="news-summary">Hackers are running a large-scale campaign to steal credentials in an automated way after exploiting React2Shell (CVE-2025-55182) in vulnerable Next.js apps. [...]...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="36 Malicious npm Packages Exploited Redis, PostgreSQL to Deploy Persistent Implants" data-summary="Cybersecurity researchers have discovered 36 malicious packages in the npm registry that are disguised as Strapi CMS plugins but come with different payloads to facilitate Redis and PostgreSQL exploit...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/36-malicious-npm-packages-exploited.html" target="_blank" rel="noopener">36 Malicious npm Packages Exploited Redis, PostgreSQL to Deploy Persistent Implants</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-05T05:07:00.000Z">April 5, 2026 - 5:07 AM</time>
-            
-          </div>
-          <p class="news-summary">Cybersecurity researchers have discovered 36 malicious packages in the npm registry that are disguised as Strapi CMS plugins but come with different payloads to facilitate Redis and PostgreSQL exploit...</p>
-        </article>
     </div>
   </main>
   
@@ -501,7 +501,7 @@ One ...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-07T06:39:18.271Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-07T09:31:09.050Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
