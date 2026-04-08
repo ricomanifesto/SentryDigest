@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Krebs on Security">Krebs on Security</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Krebs on Security">Krebs on Security</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-04-08T04:01:40.458Z">4/8/2026, 4:01:40 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-04-08T06:40:53.546Z">4/8/2026, 6:40:53 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -98,10 +98,22 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/events/black-hat-usa" target="_blank" rel="noopener">Black Hat USA</a></h2>
           <div class="news-meta">
-            <time datetime="2026-04-08T04:01:39.856Z">April 8, 2026 - 4:01 AM</time>
+            <time datetime="2026-04-08T06:40:52.696Z">April 8, 2026 - 6:40 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Iran-Linked Hackers Disrupt U.S. Critical Infrastructure by Targeting Internet-Exposed PLCs" data-summary="Iran-affiliated cyber actors are targeting internet-facing operational technology (OT) devices across critical infrastructures in the U.S., including programmable logic controllers (PLCs), cybersecuri...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/iran-linked-hackers-disrupt-us-critical.html" target="_blank" rel="noopener">Iran-Linked Hackers Disrupt U.S. Critical Infrastructure by Targeting Internet-Exposed PLCs</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-08T04:23:00.000Z">April 8, 2026 - 4:23 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Iran-affiliated cyber actors are targeting internet-facing operational technology (OT) devices across critical infrastructures in the U.S., including programmable logic controllers (PLCs), cybersecuri...</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Hackers exploit critical flaw in Ninja Forms WordPress plugin" data-summary="A critical vulnerability in the Ninja Forms File Uploads premium add-on for WordPress allows uploading arbitrary files without authentication, which can lead to remote code execution. [...]...">
           <div class="chips">
@@ -357,7 +369,7 @@ The vulnerability, tracke...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/04/china-linked-storm-1175-exploits-zero.html" target="_blank" rel="noopener">China-Linked Storm-1175 Exploits Zero-Days to Rapidly Deploy Medusa Ransomware</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-07T06:35:00.000Z">April 7, 2026 - 6:35 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A China-based threat actor known for deploying Medusa ransomware has been linked to the weaponization of a combination of zero-day and N-day vulnerabilities to orchestrate "high-velocity" attacks and ...</p>
         </article>
@@ -370,7 +382,7 @@ The vulnerability in question ...">
           <h2 class="news-title"><a href="https://thehackernews.com/2026/04/flowise-ai-agent-builder-under-active.html" target="_blank" rel="noopener">Flowise AI Agent Builder Under Active CVSS 10.0 RCE Exploitation; 12,000+ Instances Exposed</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-07T05:56:00.000Z">April 7, 2026 - 5:56 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Threat actors are exploiting a maximum-severity security flaw in Flowise, an open-source artificial intelligence (AI) platform, according to new findings from VulnCheck.
 The vulnerability in question ...</p>
@@ -447,18 +459,6 @@ The vulnerability in question ...</p>
           </div>
           <p class="news-summary">Exploit code has been released for an unpatched Windows privilege escalation flaw reported privately to Microsoft, allowing attackers to gain SYSTEM or elevated administrator permissions. [...]...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft fixes Classic Outlook bug causing email delivery issues" data-summary="Microsoft has resolved a known issue that was preventing some Classic Outlook users from sending emails via Outlook.com. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-fixes-classic-outlook-bug-causing-email-delivery-issues/" target="_blank" rel="noopener">Microsoft fixes Classic Outlook bug causing email delivery issues</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-06T19:19:24.000Z">April 6, 2026 - 7:19 PM</time>
-            
-          </div>
-          <p class="news-summary">Microsoft has resolved a known issue that was preventing some Classic Outlook users from sending emails via Outlook.com. [...]...</p>
-        </article>
     </div>
   </main>
   
@@ -503,7 +503,7 @@ The vulnerability in question ...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-08T04:01:40.458Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-08T06:40:53.546Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
