@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-04-09T00:39:07.718Z">4/9/2026, 12:39:07 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-04-09T04:00:20.285Z">4/9/2026, 4:00:20 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -98,10 +98,22 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/events/black-hat-usa" target="_blank" rel="noopener">Black Hat USA</a></h2>
           <div class="news-meta">
-            <time datetime="2026-04-09T00:39:06.990Z">April 9, 2026 - 12:39 AM</time>
+            <time datetime="2026-04-09T04:00:19.761Z">April 9, 2026 - 4:00 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Russia's Forest Blizzard Nabs Rafts of Logins Via SOHO Routers" data-summary="Heard of fileless malware? How about malwareless cyber espionage? Russia's APT28 is spying on global organizations by modifying just one DNS setting in vulnerable routers....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/russia-forest-blizzard-logins-soho-routers" target="_blank" rel="noopener">Russia's Forest Blizzard Nabs Rafts of Logins Via SOHO Routers</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-09T01:00:00.000Z">April 9, 2026 - 1:00 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Heard of fileless malware? How about malwareless cyber espionage? Russia's APT28 is spying on global organizations by modifying just one DNS setting in vulnerable routers....</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Hackers use pixel-large SVG trick to hide credit card stealer" data-summary="A massive campaign impacting nearly 100 online stores using the Magento e-commerce platform hides credit card-stealing code in a pixel-sized Scalable Vector Graphics (SVG) image. [...]...">
           <div class="chips">
@@ -447,18 +459,6 @@ Enterprise IAM is approaching a breaking point. As organizations scale, identit
           </div>
           <p class="news-summary">Hackers linked to Russia's military intelligence units are using known flaws in older Internet routers to mass harvest authentication tokens from Microsoft Office users, security experts warned today....</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Max severity Flowise RCE vulnerability now exploited in attacks" data-summary="Hackers are exploiting a maximum-severity vulnerability, tracked as CVE-2025-59528, in the open-source platform Flowise for building custom LLM apps and agentic systems to execute arbitrary code. [......">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/max-severity-flowise-rce-vulnerability-now-exploited-in-attacks/" target="_blank" rel="noopener">Max severity Flowise RCE vulnerability now exploited in attacks</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-07T17:02:05.000Z">April 7, 2026 - 5:02 PM</time>
-            
-          </div>
-          <p class="news-summary">Hackers are exploiting a maximum-severity vulnerability, tracked as CVE-2025-59528, in the open-source platform Flowise for building custom LLM apps and agentic systems to execute arbitrary code. [......</p>
-        </article>
     </div>
   </main>
   
@@ -503,7 +503,7 @@ Enterprise IAM is approaching a breaking point. As organizations scale, identit
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-09T00:39:07.718Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-09T04:00:20.285Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
