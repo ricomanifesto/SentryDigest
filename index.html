@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-11T00:44:42.960Z">4/11/2026, 12:44:42 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-11T03:53:47.481Z">4/11/2026, 3:53:47 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="ChatGPT rolls out new $100 Pro subscription to challenge Claude" data-summary="OpenAI has rolled out a new Pro subscription that costs $100 and is in line with Claude's pricing, which also has a $100 subscription, in addition to the $200 Max monthly plan. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/chatgpt-rolls-out-new-100-pro-subscription-to-challenge-claude/" target="_blank" rel="noopener">ChatGPT rolls out new $100 Pro subscription to challenge Claude</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-11T02:08:16.000Z">April 11, 2026 - 2:08 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">OpenAI has rolled out a new Pro subscription that costs $100 and is in line with Claude's pricing, which also has a $100 subscription, in addition to the $200 Max monthly plan. [...]...</p>
+        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Hims Breach Exposes the Most Sensitive Kinds of PHI" data-summary="Threat actors breached the telehealth brand, and now they may know who's bald, overweight, and impotent. What could they do with that information?...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -449,18 +461,6 @@ This one's got some range — old vulnerabilities getting new life, a few "why 
           </div>
           <p class="news-summary">Threat actors often signal their intentions before launching attacks, from dark web chatter to access-broker listings and credential requests. Join our upcoming webinar with Flare Systems to learn how...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="The Hidden Security Risks of Shadow AI in Enterprises" data-summary="As AI tools become more accessible, employees are adopting them without formal approval from IT and security teams. While these tools may boost productivity, automate tasks, or fill gaps in existing w...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/the-hidden-security-risks-of-shadow-ai.html" target="_blank" rel="noopener">The Hidden Security Risks of Shadow AI in Enterprises</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-09T11:31:00.000Z">April 9, 2026 - 11:31 AM</time>
-            
-          </div>
-          <p class="news-summary">As AI tools become more accessible, employees are adopting them without formal approval from IT and security teams. While these tools may boost productivity, automate tasks, or fill gaps in existing w...</p>
-        </article>
     </div>
   </main>
   
@@ -505,7 +505,7 @@ This one's got some range — old vulnerabilities getting new life, a few "why 
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-11T00:44:42.960Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-11T03:53:47.481Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
