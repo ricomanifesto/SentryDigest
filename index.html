@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-11T15:14:36.519Z">4/11/2026, 3:14:36 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-11T18:16:29.413Z">4/11/2026, 6:16:29 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -159,7 +159,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/nearly-4-000-us-industrial-devices-exposed-to-iranian-cyberattacks/" target="_blank" rel="noopener">Nearly 4,000 US industrial devices exposed to Iranian cyberattacks</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-10T15:52:45.000Z">April 10, 2026 - 3:52 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The attack surface targeted by Iranian-linked hackers in cyberattacks against U.S. critical infrastructure networks includes thousands of Internet-exposed programmable logic controllers (PLCs) manufac...</p>
         </article>
@@ -171,7 +171,7 @@
           <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/finra-launches-financial-intelligence-fusion-center" target="_blank" rel="noopener">FINRA Launches Financial Intelligence Fusion Center to Combat Cybersecurity and Fraud Threats</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-10T15:52:28.000Z">April 10, 2026 - 3:52 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           
         </article>
@@ -503,7 +503,7 @@ The incident impacts Smart Slider 3 P...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-11T15:14:36.519Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-11T18:16:29.413Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
