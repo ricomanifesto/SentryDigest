@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-12T12:19:50.790Z">4/12/2026, 12:19:50 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-12T15:17:41.435Z">4/12/2026, 3:17:41 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Critical Marimo pre-auth RCE flaw now under active exploitation" data-summary="A critical pre-authentication remote code execution (RCE) vulnerability in Marimo is now under active exploitation, leveraged for credential theft. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/critical-marimo-pre-auth-rce-flaw-now-under-active-exploitation/" target="_blank" rel="noopener">Critical Marimo pre-auth RCE flaw now under active exploitation</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-12T14:20:31.000Z">April 12, 2026 - 2:20 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A critical pre-authentication remote code execution (RCE) vulnerability in Marimo is now under active exploitation, leveraged for credential theft. [...]...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="CPUID Breach Distributes STX RAT via Trojanized CPU-Z and HWMonitor Downloads" data-summary="Unknown threat actors compromised CPUID (&quot;cpuid[.]com&quot;), a website that hosts popular hardware monitoring tools like CPU-Z, HWMonitor, HWMonitor Pro, and PerfMonitor, for less than 24 hours to serve m...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
@@ -125,7 +137,7 @@ The vulnerability, assigned the CVE identifier CVE-2026-3462...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/police-identifies-20-000-victims-in-international-crypto-fraud-crackdown/" target="_blank" rel="noopener">Over 20,000 crypto fraud victims identified in international crackdown</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-11T14:20:40.000Z">April 11, 2026 - 2:20 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">An international law enforcement action led by the U.K.'s National Crime Agency (NCA) has identified over 20,000 victims of cryptocurrency fraud across Canada, the United Kingdom, and the United State...</p>
         </article>
@@ -449,18 +461,6 @@ The incident impacts Smart Slider 3 P...</p>
           </div>
           <p class="news-summary">Details have emerged about a now-patched security vulnerability in a widely used third-party Android software development kit (SDK) called EngageLab SDK that could have put millions of cryptocurrency ...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="UAT-10362 Targets Taiwanese NGOs with LucidRook Malware in Spear-Phishing Campaigns" data-summary="A previously undocumented threat cluster dubbed UAT-10362 has been attributed to spear-phishing campaigns targeting Taiwanese non-governmental organizations (NGOs) and suspected universities to deploy...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/uat-10362-targets-taiwanese-ngos-with.html" target="_blank" rel="noopener">UAT-10362 Targets Taiwanese NGOs with LucidRook Malware in Spear-Phishing Campaigns</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-09T16:23:00.000Z">April 9, 2026 - 4:23 PM</time>
-            
-          </div>
-          <p class="news-summary">A previously undocumented threat cluster dubbed UAT-10362 has been attributed to spear-phishing campaigns targeting Taiwanese non-governmental organizations (NGOs) and suspected universities to deploy...</p>
-        </article>
     </div>
   </main>
   
@@ -505,7 +505,7 @@ The incident impacts Smart Slider 3 P...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-12T12:19:50.790Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-12T15:17:41.435Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
