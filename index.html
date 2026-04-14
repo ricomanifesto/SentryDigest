@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-14T06:46:10.344Z">4/14/2026, 6:46:10 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-14T09:39:00.244Z">4/14/2026, 9:39:00 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="108 Malicious Chrome Extensions Steal Google and Telegram Data, Affecting 20,000 Users" data-summary="Cybersecurity researchers have discovered a new campaign in which a cluster of 108 Google Chrome extensions has been found to communicate with the same command-and-control (C2) infrastructure with the...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/108-malicious-chrome-extensions-steal.html" target="_blank" rel="noopener">108 Malicious Chrome Extensions Steal Google and Telegram Data, Affecting 20,000 Users</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-14T08:35:00.000Z">April 14, 2026 - 8:35 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Cybersecurity researchers have discovered a new campaign in which a cluster of 108 Google Chrome extensions has been found to communicate with the same command-and-control (C2) infrastructure with the...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="ShowDoc RCE Flaw CVE-2025-0520 Actively Exploited on Unpatched Servers" data-summary="A critical security vulnerability impacting ShowDoc, a document management and collaboration service popular in China, has come under active exploitation in the wild.
 The vulnerability in question is ...">
           <div class="chips">
@@ -319,7 +331,7 @@ A modified version of BX RAT, JanelaRAT is kno...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/04/north-koreas-apt37-uses-facebook-social.html" target="_blank" rel="noopener">North Korea's APT37 Uses Facebook Social Engineering to Deliver RokRAT Malware</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-13T09:15:00.000Z">April 13, 2026 - 9:15 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The North Korean hacking group tracked as APT37 (aka ScarCruft) has been attributed to a fresh multi-stage, social engineering campaign in which threat actors approached targets on Facebook and added ...</p>
         </article>
@@ -332,7 +344,7 @@ A modified version of BX RAT, JanelaRAT is kno...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/04/openai-revokes-macos-app-certificate.html" target="_blank" rel="noopener">OpenAI Revokes macOS App Certificate After Malicious Axios Supply Chain Incident</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-13T06:50:00.000Z">April 13, 2026 - 6:50 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">OpenAI revealed a GitHub Actions workflow used to sign its macOS apps led to the download of the malicious Axios library on March 31, but noted that no user data or internal system was compromised.
 "O...</p>
@@ -447,18 +459,6 @@ The vulnerability, assigned the CVE identifier CVE-2026-3462...</p>
           </div>
           <p class="news-summary">The attack surface targeted by Iranian-linked hackers in cyberattacks against U.S. critical infrastructure networks includes thousands of Internet-exposed programmable logic controllers (PLCs) manufac...</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="FINRA Launches Financial Intelligence Fusion Center to Combat Cybersecurity and Fraud Threats" data-summary="">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/finra-launches-financial-intelligence-fusion-center" target="_blank" rel="noopener">FINRA Launches Financial Intelligence Fusion Center to Combat Cybersecurity and Fraud Threats</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-10T15:52:28.000Z">April 10, 2026 - 3:52 PM</time>
-            
-          </div>
-          
-        </article>
     </div>
   </main>
   
@@ -503,7 +503,7 @@ The vulnerability, assigned the CVE identifier CVE-2026-3462...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-14T06:46:10.344Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-14T09:39:00.244Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
