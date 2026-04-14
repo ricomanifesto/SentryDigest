@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,36 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-14T04:05:31.891Z">4/14/2026, 4:05:31 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-14T06:46:10.344Z">4/14/2026, 6:46:10 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="ShowDoc RCE Flaw CVE-2025-0520 Actively Exploited on Unpatched Servers" data-summary="A critical security vulnerability impacting ShowDoc, a document management and collaboration service popular in China, has come under active exploitation in the wild.
+The vulnerability in question is ...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/showdoc-rce-flaw-cve-2025-0520-actively.html" target="_blank" rel="noopener">ShowDoc RCE Flaw CVE-2025-0520 Actively Exploited on Unpatched Servers</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-14T05:50:00.000Z">April 14, 2026 - 5:50 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A critical security vulnerability impacting ShowDoc, a document management and collaboration service popular in China, has come under active exploitation in the wild.
+The vulnerability in question is ...</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="CISA Adds 6 Known Exploited Flaws in Fortinet, Microsoft, and Adobe Software" data-summary="The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Monday added half a dozen security flaws to its Known Exploited Vulnerabilities (KEV) catalog, citing evidence of active exploitatio...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/cisa-adds-6-known-exploited-flaws-in.html" target="_blank" rel="noopener">CISA Adds 6 Known Exploited Flaws in Fortinet, Microsoft, and Adobe Software</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-14T05:39:00.000Z">April 14, 2026 - 5:39 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Monday added half a dozen security flaws to its Known Exploited Vulnerabilities (KEV) catalog, citing evidence of active exploitatio...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="European Gym giant Basic-Fit data breach affects 1 million members" data-summary="Dutch fitness giant Basic-Fit announced that hackers breached its systems and gained access to information belonging to a million of its customers. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -433,30 +459,6 @@ The vulnerability, assigned the CVE identifier CVE-2026-3462...</p>
           </div>
           
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Orange Business Reimagines Enterprise Voice Communications With Trust and AI" data-summary="">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/endpoint-security/orange-business-enterprise-voice-comms" target="_blank" rel="noopener">Orange Business Reimagines Enterprise Voice Communications With Trust and AI</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-10T15:05:14.000Z">April 10, 2026 - 3:05 PM</time>
-            
-          </div>
-          
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Analysis of one billion CISA KEV remediation records exposes limits of human-scale security" data-summary="Analysis of 1 billion CISA KEV remediation records reveal a breaking point for human-scale security. Qualys shows most critical flaws are exploited before defenders can patch them. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/analysis-of-one-billion-cisa-kev-remediation-records-exposes-limits-of-human-scale-security/" target="_blank" rel="noopener">Analysis of one billion CISA KEV remediation records exposes limits of human-scale security</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-10T14:01:11.000Z">April 10, 2026 - 2:01 PM</time>
-            
-          </div>
-          <p class="news-summary">Analysis of 1 billion CISA KEV remediation records reveal a breaking point for human-scale security. Qualys shows most critical flaws are exploited before defenders can patch them. [...]...</p>
-        </article>
     </div>
   </main>
   
@@ -501,7 +503,7 @@ The vulnerability, assigned the CVE identifier CVE-2026-3462...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-14T04:05:31.891Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-14T06:46:10.344Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
