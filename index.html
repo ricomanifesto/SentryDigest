@@ -87,10 +87,24 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-04-15T06:46:22.606Z">4/15/2026, 6:46:22 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-04-15T09:38:41.949Z">4/15/2026, 9:38:41 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Microsoft Issues Patches for SharePoint Zero-Day and 168 Other New Vulnerabilities" data-summary="Microsoft on Tuesday released updates to address a record 169 security flaws across its product portfolio, including one vulnerability that has been actively exploited in the wild.
+Of these 169 vulner...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/microsoft-issues-patches-for-sharepoint.html" target="_blank" rel="noopener">Microsoft Issues Patches for SharePoint Zero-Day and 168 Other New Vulnerabilities</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-15T08:40:00.000Z">April 15, 2026 - 8:40 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Microsoft on Tuesday released updates to address a record 169 security flaws across its product portfolio, including one vulnerability that has been actively exploited in the wild.
+Of these 169 vulner...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="OpenAI Launches GPT-5.4-Cyber with Expanded Access for Security Teams" data-summary="OpenAI on Tuesday unveiled GPT-5.4-Cyber, a variant of its latest flagship model, GPT‑5.4, that's specifically optimized for defensive cybersecurity use cases, days after rival Anthropic unveiled its ...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
@@ -353,7 +367,7 @@ The vulnerabilities...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/04/108-malicious-chrome-extensions-steal.html" target="_blank" rel="noopener">108 Malicious Chrome Extensions Steal Google and Telegram Data, Affecting 20,000 Users</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-14T08:35:00.000Z">April 14, 2026 - 8:35 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Cybersecurity researchers have discovered a new campaign in which a cluster of 108 Google Chrome extensions has been found to communicate with the same command-and-control (C2) infrastructure with the...</p>
         </article>
@@ -443,18 +457,6 @@ The vulnerability in question is ...</p>
           </div>
           <p class="news-summary">Rockstar Games has suffered a data breach linked to a recent security incident at Anodot, with the ShinyHunters extortion gang now leaking the stolen data on its data leak site. [...]...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Critical flaw in wolfSSL library enables forged certificate use" data-summary="A critical vulnerability in the wolfSSL SSL/TLS library can weaken security via improper verification of the hash algorithm or its size when checking Elliptic Curve Digital Signature Algorithm (ECDSA)...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/critical-flaw-in-wolfssl-library-enables-forged-certificate-use/" target="_blank" rel="noopener">Critical flaw in wolfSSL library enables forged certificate use</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-13T19:56:03.000Z">April 13, 2026 - 7:56 PM</time>
-            
-          </div>
-          <p class="news-summary">A critical vulnerability in the wolfSSL SSL/TLS library can weaken security via improper verification of the hash algorithm or its size when checking Elliptic Curve Digital Signature Algorithm (ECDSA)...</p>
-        </article>
     </div>
   </main>
   
@@ -499,7 +501,7 @@ The vulnerability in question is ...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-15T06:46:22.606Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-15T09:38:41.949Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
