@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option><option value="Krebs on Security">Krebs on Security</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option><option value="Krebs on Security">Krebs on Security</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,34 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-04-15T18:31:59.003Z">4/15/2026, 6:31:59 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-04-15T21:23:03.343Z">4/15/2026, 9:23:03 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="WordPress plugin suite hacked to push malware to thousands of sites" data-summary="More than 30 WordPress plugins in the EssentialPlugin package have been compromised with malicious code that allows unauthorized access to websites running them. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/wordpress-plugin-suite-hacked-to-push-malware-to-thousands-of-sites/" target="_blank" rel="noopener">WordPress plugin suite hacked to push malware to thousands of sites</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-15T20:33:50.000Z">April 15, 2026 - 8:33 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">More than 30 WordPress plugins in the EssentialPlugin package have been compromised with malicious code that allows unauthorized access to websites running them. [...]...</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Navigating the Unique Security Risks of Asia's Digital Supply Chain" data-summary="Regulatory differences, interconnected digital ecosystems, and the rise of AI have created a complex supply chain Asian organizations must wrangle....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cloud-security/navigating-unique-security-risks-asias-digital-supply-chain" target="_blank" rel="noopener">Navigating the Unique Security Risks of Asia's Digital Supply Chain</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-15T19:30:47.000Z">April 15, 2026 - 7:30 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Regulatory differences, interconnected digital ecosystems, and the rise of AI have created a complex supply chain Asian organizations must wrangle....</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Signed software abused to deploy antivirus-killing scripts" data-summary="A digitally signed adware tool has deployed payloads running with SYSTEM privileges that disabled antivirus protections on thousands of endpoints, some in the educational, utilities, government, and h...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -333,7 +357,7 @@ Of these 169 vulner...</p>
           <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/privilege-elevation-dominates-microsoft-patch-update" target="_blank" rel="noopener">Privilege Elevation Dominates Massive Microsoft Patch Update</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-14T21:22:07.000Z">April 14, 2026 - 9:22 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Elevation-of-privilege bugs accounted for more than half of the 165 vulnerabilities patched, with two zero-days in that mix....</p>
         </article>
@@ -345,7 +369,7 @@ Of these 169 vulner...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/over-100-chrome-extensions-in-web-store-target-users-accounts-and-data/" target="_blank" rel="noopener">Over 100 Chrome Web Store extensions steal user accounts, data</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-14T20:33:00.000Z">April 14, 2026 - 8:33 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">More than 100 malicious extensions in the official Chrome Web Store are attempting to steal Google OAuth2 Bearer tokens, deploy backdoors, and carry out ad fraud. [...]...</p>
         </article>
@@ -357,7 +381,7 @@ Of these 169 vulner...</p>
           <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/edr-killer-ecosystem-expansion-requires-stronger-byovd-defenses" target="_blank" rel="noopener">EDR-Killer Ecosystem Expansion Requires Stronger BYOVD Defenses</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-14T20:20:34.000Z">April 14, 2026 - 8:20 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Stopping EDR killers, which employ bring-your-own-vulnerable-driver (BYOVD) attack techniques, is difficult, but not impossible....</p>
         </article>
@@ -433,32 +457,6 @@ Of these 169 vulner...</p>
           </div>
           <p class="news-summary">In an educational game called "Capture the Narrative," students created bots to sway a fictional election, simulating influence in real-world political scenarios....</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="New PHP Composer Flaws Enable Arbitrary Command Execution — Patches Released" data-summary="Two high-severity security vulnerabilities have been disclosed in Composer, a package manager for PHP, that, if successfully exploited, could result in arbitrary command execution.
-The vulnerabilities...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/new-php-composer-flaws-enable-arbitrary.html" target="_blank" rel="noopener">New PHP Composer Flaws Enable Arbitrary Command Execution — Patches Released</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-14T15:57:00.000Z">April 14, 2026 - 3:57 PM</time>
-            
-          </div>
-          <p class="news-summary">Two high-severity security vulnerabilities have been disclosed in Composer, a package manager for PHP, that, if successfully exploited, could result in arbitrary command execution.
-The vulnerabilities...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft rolls out fast-track to reinstate Windows hardware dev accounts" data-summary="Microsoft has rolled out a fast-track process to help developers regain access to accounts recently suspended from its Windows Hardware Program, following widespread complaints that they were locked o...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-rolls-out-fast-track-to-reinstate-windows-hardware-dev-accounts/" target="_blank" rel="noopener">Microsoft rolls out fast-track to reinstate Windows hardware dev accounts</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-14T15:53:50.000Z">April 14, 2026 - 3:53 PM</time>
-            
-          </div>
-          <p class="news-summary">Microsoft has rolled out a fast-track process to help developers regain access to accounts recently suspended from its Windows Hardware Program, following widespread complaints that they were locked o...</p>
-        </article>
     </div>
   </main>
   
@@ -503,7 +501,7 @@ The vulnerabilities...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-15T18:31:59.003Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-15T21:23:03.343Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
