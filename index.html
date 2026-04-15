@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Krebs on Security">Krebs on Security</option><option value="The Hacker News">The Hacker News</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Krebs on Security">Krebs on Security</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-04-15T04:05:25.499Z">4/15/2026, 4:05:25 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-04-15T06:46:22.606Z">4/15/2026, 6:46:22 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="OpenAI Launches GPT-5.4-Cyber with Expanded Access for Security Teams" data-summary="OpenAI on Tuesday unveiled GPT-5.4-Cyber, a variant of its latest flagship model, GPT‑5.4, that's specifically optimized for defensive cybersecurity use cases, days after rival Anthropic unveiled its ...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/openai-launches-gpt-54-cyber-with.html" target="_blank" rel="noopener">OpenAI Launches GPT-5.4-Cyber with Expanded Access for Security Teams</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-15T04:30:00.000Z">April 15, 2026 - 4:30 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">OpenAI on Tuesday unveiled GPT-5.4-Cyber, a variant of its latest flagship model, GPT‑5.4, that's specifically optimized for defensive cybersecurity use cases, days after rival Anthropic unveiled its ...</p>
+        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Microsoft Bets $10 Billion to Boost Japan's AI, Cybersecurity" data-summary="The deal aims to accelerate AI adoption, train workers, and develop cybersecurity partnerships — the latest move by a hyperscaler to compete for sovereign AI and data centers....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -354,7 +366,7 @@ The vulnerability in question is ...">
           <h2 class="news-title"><a href="https://thehackernews.com/2026/04/showdoc-rce-flaw-cve-2025-0520-actively.html" target="_blank" rel="noopener">ShowDoc RCE Flaw CVE-2025-0520 Actively Exploited on Unpatched Servers</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-14T05:50:00.000Z">April 14, 2026 - 5:50 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A critical security vulnerability impacting ShowDoc, a document management and collaboration service popular in China, has come under active exploitation in the wild.
 The vulnerability in question is ...</p>
@@ -367,7 +379,7 @@ The vulnerability in question is ...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/04/cisa-adds-6-known-exploited-flaws-in.html" target="_blank" rel="noopener">CISA Adds 6 Known Exploited Flaws in Fortinet, Microsoft, and Adobe Software</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-14T05:39:00.000Z">April 14, 2026 - 5:39 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Monday added half a dozen security flaws to its Known Exploited Vulnerabilities (KEV) catalog, citing evidence of active exploitatio...</p>
         </article>
@@ -443,18 +455,6 @@ The vulnerability in question is ...</p>
           </div>
           <p class="news-summary">A critical vulnerability in the wolfSSL SSL/TLS library can weaken security via improper verification of the hash algorithm or its size when checking Elliptic Curve Digital Signature Algorithm (ECDSA)...</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Empty Attestations: OT Lacks the Tools for Cryptographic Readiness" data-summary="OT asset owners are being asked by regulators to attest to their post-quantum cryptographic readiness without the appropriate tooling, resulting in paperwork dressed up to look like genuine security....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/ics-ot-security/ot-lacks-tools-cryptographic-readiness" target="_blank" rel="noopener">Empty Attestations: OT Lacks the Tools for Cryptographic Readiness</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-13T19:10:55.000Z">April 13, 2026 - 7:10 PM</time>
-            
-          </div>
-          <p class="news-summary">OT asset owners are being asked by regulators to attest to their post-quantum cryptographic readiness without the appropriate tooling, resulting in paperwork dressed up to look like genuine security....</p>
-        </article>
     </div>
   </main>
   
@@ -499,7 +499,7 @@ The vulnerability in question is ...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-15T04:05:25.499Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-15T06:46:22.606Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
