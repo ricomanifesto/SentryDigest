@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,34 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-17T09:38:10.219Z">4/17/2026, 9:38:10 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-17T12:29:47.016Z">4/17/2026, 12:29:47 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Google Blocks 8.3B Policy-Violating Ads in 2025, Launches Android 17 Privacy Overhaul" data-summary="Google this week announced a new set of Play policy updates to strengthen user privacy and protect businesses against fraud, even as it revealed it blocked or removed over 8.3 billion ads globally and...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/google-blocks-83b-policy-violating-ads.html" target="_blank" rel="noopener">Google Blocks 8.3B Policy-Violating Ads in 2025, Launches Android 17 Privacy Overhaul</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-17T10:47:00.000Z">April 17, 2026 - 10:47 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Google this week announced a new set of Play policy updates to strengthen user privacy and protect businesses against fraud, even as it revealed it blocked or removed over 8.3 billion ads globally and...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="CISA flags Apache ActiveMQ flaw as actively exploited in attacks" data-summary="CISA warned that attackers are now exploiting a high-severity Apache ActiveMQ vulnerability, which was patched earlier this month after going undetected for 13 years. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cisa-flags-apache-activemq-flaw-as-actively-exploited-in-attacks/" target="_blank" rel="noopener">CISA flags Apache ActiveMQ flaw as actively exploited in attacks</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-17T09:30:15.000Z">April 17, 2026 - 9:30 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">CISA warned that attackers are now exploiting a high-severity Apache ActiveMQ vulnerability, which was patched earlier this month after going undetected for 13 years. [...]...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft: Some Windows servers enter reboot loops after April patches" data-summary="Microsoft warns that some Windows domain controllers are entering restart loops after installing the April 2026 security updates. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -329,7 +353,7 @@ To tha...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cisco-says-critical-webex-services-flaw-requires-customer-action/" target="_blank" rel="noopener">Cisco says critical Webex Services flaw requires customer action</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-16T12:01:42.000Z">April 16, 2026 - 12:01 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Cisco has released security updates to patch four critical vulnerabilities, including a fixed improper certificate validation flaw in the company's cloud-based Webex Services platform that requires fu...</p>
         </article>
@@ -342,7 +366,7 @@ For every emp...">
           <h2 class="news-title"><a href="https://thehackernews.com/2026/04/webinar-find-and-eliminate-orphaned-non.html" target="_blank" rel="noopener">[Webinar] Find and Eliminate Orphaned Non-Human Identities in Your Environment</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-16T11:55:00.000Z">April 16, 2026 - 11:55 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">In 2024, compromised service accounts and forgotten API keys were behind 68% of cloud breaches. Not phishing. Not weak passwords. Unmanaged non-human identities that nobody was watching.
 For every emp...</p>
@@ -355,7 +379,7 @@ For every emp...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/04/cisco-patches-four-critical-identity.html" target="_blank" rel="noopener">Cisco Patches Four Critical Identity Services, Webex Flaws Enabling Code Execution</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-16T11:27:00.000Z">April 16, 2026 - 11:27 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Cisco has announced patches to address four critical security flaws impacting Identity Services and Webex Services that could result in arbitrary code execution and allow an attacker to impersonate an...</p>
         </article>
@@ -367,21 +391,9 @@ For every emp...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/data-breach-at-edtech-giant-mcgraw-hill-affects-135-million-accounts/" target="_blank" rel="noopener">Data breach at edtech giant McGraw Hill affects 13.5 million accounts</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-16T10:35:09.000Z">April 16, 2026 - 10:35 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The ShinyHunters extortion group has leaked data from 13.5 million McGraw Hill user accounts, stolen after breaching the company's Salesforce environment earlier this month. [...]...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Hidden Passenger? How Taboola Routes Logged-In Banking Sessions to Temu" data-summary="A bank approved a Taboola pixel. That pixel quietly redirected logged-in users to a Temu tracking endpoint. This occurred without the bank’s knowledge, without user consent, and without a single secur...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/hidden-passenger-how-taboola-routes.html" target="_blank" rel="noopener">Hidden Passenger? How Taboola Routes Logged-In Banking Sessions to Temu</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-16T10:30:00.000Z">April 16, 2026 - 10:30 AM</time>
-            <span class="badge-new">NEW</span>
-          </div>
-          <p class="news-summary">A bank approved a Taboola pixel. That pixel quietly redirected logged-in users to a Temu tracking endpoint. This occurred without the bank’s knowledge, without user consent, and without a single secur...</p>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Obsidian Plugin Abuse Delivers PHANTOMPULSE RAT in Targeted Finance, Crypto Attacks" data-summary="A &quot;novel&quot; social engineering campaign has been observed abusing Obsidian, a cross-platform note-taking application, as an initial access vector to distribute a previously undocumented Windows remote a...">
           <div class="chips">
@@ -391,7 +403,7 @@ For every emp...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/04/obsidian-plugin-abuse-delivers.html" target="_blank" rel="noopener">Obsidian Plugin Abuse Delivers PHANTOMPULSE RAT in Targeted Finance, Crypto Attacks</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-16T10:20:00.000Z">April 16, 2026 - 10:20 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A "novel" social engineering campaign has been observed abusing Obsidian, a cross-platform note-taking application, as an initial access vector to distribute a previously undocumented Windows remote a...</p>
         </article>
@@ -443,18 +455,6 @@ For every emp...</p>
           </div>
           <p class="news-summary">While enterprises breaches make more headlines, smaller incidents tend to be under-reported, if at all, allowing campaigns to last longer with less disruption....</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Critical Nginx UI auth bypass flaw now actively exploited in the wild" data-summary="A critical vulnerability in Nginx UI with Model Context Protocol (MCP) support is now being exploited in the wild for full server takeover without authentication. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/critical-nginx-ui-auth-bypass-flaw-now-actively-exploited-in-the-wild/" target="_blank" rel="noopener">Critical Nginx UI auth bypass flaw now actively exploited in the wild</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-15T22:35:09.000Z">April 15, 2026 - 10:35 PM</time>
-            
-          </div>
-          <p class="news-summary">A critical vulnerability in Nginx UI with Model Context Protocol (MCP) support is now being exploited in the wild for full server takeover without authentication. [...]...</p>
-        </article>
     </div>
   </main>
   
@@ -499,7 +499,7 @@ For every emp...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-17T09:38:10.219Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-17T12:29:47.016Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
