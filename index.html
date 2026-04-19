@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-19T12:19:53.665Z">4/19/2026, 12:19:53 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-19T15:18:34.961Z">4/19/2026, 3:18:34 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="NIST to stop rating non-priority flaws due to volume increase" data-summary="The National Institute of Standards and Technology will stop assigning severity scores to lower-priority vulnerabilities due to the growing workload from rising submission volumes. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/nist-to-stop-rating-non-priority-flaws-due-to-volume-increase/" target="_blank" rel="noopener">NIST to stop rating non-priority flaws due to volume increase</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-19T14:17:43.000Z">April 19, 2026 - 2:17 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The National Institute of Standards and Technology will stop assigning severity scores to lower-priority vulnerabilities due to the growing workload from rising submission volumes. [...]...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Critical flaw in Protobuf library enables JavaScript code execution" data-summary="Proof-of-concept exploit code has been published for a critical remote code execution flaw in protobuf.js, a widely used JavaScript implementation of Google's Protocol Buffers. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -99,7 +111,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/critical-flaw-in-protobuf-library-enables-javascript-code-execution/" target="_blank" rel="noopener">Critical flaw in Protobuf library enables JavaScript code execution</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-18T15:09:44.000Z">April 18, 2026 - 3:09 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Proof-of-concept exploit code has been published for a critical remote code execution flaw in protobuf.js, a widely used JavaScript implementation of Google's Protocol Buffers. [...]...</p>
         </article>
@@ -111,7 +123,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-teams-right-click-paste-broken-by-edge-update-bug/" target="_blank" rel="noopener">Microsoft Teams right-click paste broken by Edge update bug</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-18T14:11:21.000Z">April 18, 2026 - 2:11 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Microsoft is warning that a recent Microsoft Edge browser update introduced a bug that breaks right-click paste in chats in the Microsoft Teams desktop client. [...]...</p>
         </article>
@@ -123,7 +135,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/nakivo-v112-ransomware-defense-faster-replication-vsphere-9-and-proxmox-ve-90-support/" target="_blank" rel="noopener">NAKIVO v11.2: Ransomware Defense, Faster Replication, vSphere 9, and Proxmox VE 9.0 Support</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-18T13:45:54.000Z">April 18, 2026 - 1:45 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">NAKIVO Inc. announced the general availability of NAKIVO Backup & Replication v11.2, focused on fast, reliable, and proactive data protection. [...]...</p>
         </article>
@@ -445,18 +457,6 @@ To tha...</p>
           </div>
           <p class="news-summary">A benign looking update Dragon Boss pushed out in March 2025 established persistence via scheduled tasks and arranged for future payloads to be excluded from Windows Defender....</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Newly Discovered PowMix Botnet Hits Czech Workers Using Randomized C2 Traffic" data-summary="Cybersecurity researchers have warned of an active malicious campaign that's targeting the workforce in the Czech Republic with a previously undocumented botnet dubbed PowMix since at least December 2...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/newly-discovered-powmix-botnet-hits.html" target="_blank" rel="noopener">Newly Discovered PowMix Botnet Hits Czech Workers Using Randomized C2 Traffic</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-16T17:52:00.000Z">April 16, 2026 - 5:52 PM</time>
-            
-          </div>
-          <p class="news-summary">Cybersecurity researchers have warned of an active malicious campaign that's targeting the workforce in the Czech Republic with a previously undocumented botnet dubbed PowMix since at least December 2...</p>
-        </article>
     </div>
   </main>
   
@@ -501,7 +501,7 @@ To tha...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-19T12:19:53.665Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-19T15:18:34.961Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
