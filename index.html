@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,34 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-20T18:28:07.809Z">4/20/2026, 6:28:07 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-20T21:21:45.475Z">4/20/2026, 9:21:45 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Serial-to-IP Devices Hide Thousands of Old and New Bugs" data-summary="The OT devices that translate machine talk into Internet-speak are riddled with vulnerabilities and more frequently targeted for attacks, researchers say....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/ics-ot-security/serial-ip-devices-thousands-of-bugs" target="_blank" rel="noopener">Serial-to-IP Devices Hide Thousands of Old and New Bugs</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-20T21:00:00.000Z">April 20, 2026 - 9:00 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The OT devices that translate machine talk into Internet-speak are riddled with vulnerabilities and more frequently targeted for attacks, researchers say....</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="The Gentlemen ransomware now uses SystemBC for bot-powered attacks" data-summary="A SystemBC proxy malware botnet of more than 1,570 hosts, believed to be corporate victims, has been discovered following an investigation into a Gentlemen ransomware attack carried out by a gang affi...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/the-gentlemen-ransomware-now-uses-systembc-for-bot-powered-attacks/" target="_blank" rel="noopener">The Gentlemen ransomware now uses SystemBC for bot-powered attacks</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-20T20:02:37.000Z">April 20, 2026 - 8:02 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A SystemBC proxy malware botnet of more than 1,570 hosts, believed to be corporate victims, has been discovered following an investigation into a Gentlemen ransomware attack carried out by a gang affi...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Seiko USA website defaced as hacker claims customer data theft" data-summary="The Seiko USA website was defaced over the weekend, displaying a message from attackers claiming they stole its Shopify customer database and threatening to leak it unless a ransom is paid. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -102,6 +126,20 @@
             <span class="badge-new">NEW</span>
           </div>
           <p class="news-summary">The Seiko USA website was defaced over the weekend, displaying a message from attackers claiming they stole its Shopify customer database and threatening to leak it unless a ransom is paid. [...]...</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="SGLang CVE-2026-5760 (CVSS 9.8) Enables RCE via Malicious GGUF Model Files" data-summary="A critical security vulnerability has been disclosed in SGLang that, if successfully exploited, could result in remote code execution on susceptible systems.
+The vulnerability, tracked as CVE-2026-576...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/sglang-cve-2026-5760-cvss-98-enables.html" target="_blank" rel="noopener">SGLang CVE-2026-5760 (CVSS 9.8) Enables RCE via Malicious GGUF Model Files</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-20T17:14:00.000Z">April 20, 2026 - 5:14 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A critical security vulnerability has been disclosed in SGLang that, if successfully exploited, could result in remote code execution on susceptible systems.
+The vulnerability, tracked as CVE-2026-576...</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft: Teams increasingly abused in helpdesk impersonation attacks" data-summary="Microsoft is warning of threat actors increasingly abusing external Microsoft Teams collaboration and relying on legitimate tools for access and lateral movement on enterprise networks. [...]...">
           <div class="chips">
@@ -399,18 +437,6 @@ For every emp...</p>
           </div>
           <p class="news-summary">In embracing device code phishing, attackers trick victims into handing over account access by using a service's legitimate new-device login flow....</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Grinex exchange blames &quot;Western intelligence&quot; for $13.7M crypto hack" data-summary="Kyrgyzstan-based cryptocurrency exchange Grinex has suspended its operations after suffering a $13.7 million hack attributed to Western intelligence agencies. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/grinex-exchange-blames-western-intelligence-for-137m-crypto-hack/" target="_blank" rel="noopener">Grinex exchange blames "Western intelligence" for $13.7M crypto hack</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-17T15:08:53.000Z">April 17, 2026 - 3:08 PM</time>
-            
-          </div>
-          <p class="news-summary">Kyrgyzstan-based cryptocurrency exchange Grinex has suspended its operations after suffering a $13.7 million hack attributed to Western intelligence agencies. [...]...</p>
-        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Every Old Vulnerability Is Now an AI Vulnerability" data-summary="AI's danger isn't that it's creating new bugs, it's that it's amplifying old ones....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -436,30 +462,6 @@ The activity involves the exploi...">
           </div>
           <p class="news-summary">Huntress is warning that threat actors are exploiting three recently disclosed security flaws in Microsoft Defender to gain elevated privileges in compromised systems.
 The activity involves the exploi...</p>
-        </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Coast Guard's New Cybersecurity Rules Offer Lessons for CISOs" data-summary="The Maritime Transportation Security Act (MTSA) requires plans to protect OT systems, audits by independent third parties, and a hybrid OT-security role....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/coast-guards-cybersecurity-rules-lessons-cisos" target="_blank" rel="noopener">Coast Guard's New Cybersecurity Rules Offer Lessons for CISOs</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-17T13:00:00.000Z">April 17, 2026 - 1:00 PM</time>
-            
-          </div>
-          <p class="news-summary">The Maritime Transportation Security Act (MTSA) requires plans to protect OT systems, audits by independent third parties, and a hybrid OT-security role....</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Google Blocks 8.3B Policy-Violating Ads in 2025, Launches Android 17 Privacy Overhaul" data-summary="Google this week announced a new set of Play policy updates to strengthen user privacy and protect businesses against fraud, even as it revealed it blocked or removed over 8.3 billion ads globally and...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/google-blocks-83b-policy-violating-ads.html" target="_blank" rel="noopener">Google Blocks 8.3B Policy-Violating Ads in 2025, Launches Android 17 Privacy Overhaul</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-17T10:47:00.000Z">April 17, 2026 - 10:47 AM</time>
-            
-          </div>
-          <p class="news-summary">Google this week announced a new set of Play policy updates to strengthen user privacy and protect businesses against fraud, even as it revealed it blocked or removed over 8.3 billion ads globally and...</p>
         </article>
     </div>
   </main>
@@ -505,7 +507,7 @@ The activity involves the exploi...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-20T18:28:07.809Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-20T21:21:45.475Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
