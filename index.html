@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-20T15:35:37.638Z">4/20/2026, 3:35:37 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-20T18:28:07.809Z">4/20/2026, 6:28:07 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Seiko USA website defaced as hacker claims customer data theft" data-summary="The Seiko USA website was defaced over the weekend, displaying a message from attackers claiming they stole its Shopify customer database and threatening to leak it unless a ransom is paid. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/seiko-usa-website-defaced-as-hacker-claims-customer-data-theft/" target="_blank" rel="noopener">Seiko USA website defaced as hacker claims customer data theft</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-20T18:22:31.000Z">April 20, 2026 - 6:22 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The Seiko USA website was defaced over the weekend, displaying a message from attackers claiming they stole its Shopify customer database and threatening to leak it unless a ransom is paid. [...]...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft: Teams increasingly abused in helpdesk impersonation attacks" data-summary="Microsoft is warning of threat actors increasingly abusing external Microsoft Teams collaboration and relying on legitimate tools for access and lateral movement on enterprise networks. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -249,7 +261,7 @@ The incident stemmed from the compromise of ...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/vercel-confirms-breach-as-hackers-claim-to-be-selling-stolen-data/" target="_blank" rel="noopener">Vercel confirms breach as hackers claim to be selling stolen data</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-19T17:32:45.000Z">April 19, 2026 - 5:32 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Cloud development platform Vercel has disclosed a security incident after threat actors claimed to have breached its systems and are attempting to sell stolen data. [...]...</p>
         </article>
@@ -261,7 +273,7 @@ The incident stemmed from the compromise of ...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/apple-account-change-alerts-abused-to-send-phishing-emails/" target="_blank" rel="noopener">Apple account change alerts abused to send phishing emails</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-19T16:03:01.000Z">April 19, 2026 - 4:03 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Apple account change notifications are being abused to send fake iPhone purchase phishing scams within legitimate emails sent from Apple's servers, increasing legitimacy and potentially allowing them ...</p>
         </article>
@@ -411,18 +423,6 @@ For every emp...</p>
           </div>
           <p class="news-summary">AI's danger isn't that it's creating new bugs, it's that it's amplifying old ones....</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Inside an Underground Guide: How Threat Actors Vet Stolen Credit Card Shops" data-summary="In cybercrime markets, trust isn't assumed, it's verified. Flare reveals how underground guides teach actors to evaluate carding shops based on data quality, reputation, and survivability. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/inside-an-underground-guide-how-threat-actors-vet-stolen-credit-card-shops/" target="_blank" rel="noopener">Inside an Underground Guide: How Threat Actors Vet Stolen Credit Card Shops</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-17T14:01:11.000Z">April 17, 2026 - 2:01 PM</time>
-            
-          </div>
-          <p class="news-summary">In cybercrime markets, trust isn't assumed, it's verified. Flare reveals how underground guides teach actors to evaluate carding shops based on data quality, reputation, and survivability. [...]...</p>
-        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Three Microsoft Defender Zero-Days Actively Exploited; Two Still Unpatched" data-summary="Huntress is warning that threat actors are exploiting three recently disclosed security flaws in Microsoft Defender to gain elevated privileges in compromised systems.
 The activity involves the exploi...">
           <div class="chips">
@@ -505,7 +505,7 @@ The activity involves the exploi...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-20T15:35:37.638Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-20T18:28:07.809Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
