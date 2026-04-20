@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,24 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-20T04:10:49.955Z">4/20/2026, 4:10:49 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-20T06:56:24.517Z">4/20/2026, 6:56:24 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Vercel Breach Tied to Context AI Hack Exposes Limited Customer Credentials" data-summary="Web infrastructure provider Vercel has disclosed a security breach that allows bad actors to gain unauthorized access to &quot;certain&quot; internal Vercel systems.
+The incident stemmed from the compromise of ...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/vercel-breach-tied-to-context-ai-hack.html" target="_blank" rel="noopener">Vercel Breach Tied to Context AI Hack Exposes Limited Customer Credentials</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-20T03:35:00.000Z">April 20, 2026 - 3:35 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Web infrastructure provider Vercel has disclosed a security breach that allows bad actors to gain unauthorized access to "certain" internal Vercel systems.
+The incident stemmed from the compromise of ...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Vercel confirms breach as hackers claim to be selling stolen data" data-summary="Cloud development platform Vercel has disclosed a security incident after threat actors claimed to have breached its systems and are attempting to sell stolen data. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -445,18 +459,6 @@ To tha...</p>
           </div>
           <p class="news-summary">Sapphire Sleet uses fake job offers and phony Zoom updates to deliver ClickFix attacks that steal credentials and sensitive data from Macs....</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="'Harmless' Global Adware Transforms Into an AV Killer" data-summary="A benign looking update Dragon Boss pushed out in March 2025 established persistence via scheduled tasks and arranged for future payloads to be excluded from Windows Defender....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/harmless-global-adware-av-killer" target="_blank" rel="noopener">'Harmless' Global Adware Transforms Into an AV Killer</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-16T19:07:26.000Z">April 16, 2026 - 7:07 PM</time>
-            
-          </div>
-          <p class="news-summary">A benign looking update Dragon Boss pushed out in March 2025 established persistence via scheduled tasks and arranged for future payloads to be excluded from Windows Defender....</p>
-        </article>
     </div>
   </main>
   
@@ -501,7 +503,7 @@ To tha...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-20T04:10:49.955Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-20T06:56:24.517Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
