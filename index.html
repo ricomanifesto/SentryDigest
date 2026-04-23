@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-23T15:41:05.296Z">4/23/2026, 3:41:05 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-23T18:33:04.199Z">4/23/2026, 6:33:04 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -102,6 +102,32 @@
             <span class="badge-new">NEW</span>
           </div>
           <p class="news-summary">The threat actor gave itself plenty of options to support command and control, tapping Microsoft Outlook, Slack, Discord, and file.io for online espionage....</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="UNC6692 Impersonates IT Helpdesk via Microsoft Teams to Deploy SNOW Malware" data-summary="A previously undocumented threat activity cluster known as UNC6692 has been observed leveraging social engineering tactics via Microsoft Teams to deploy a custom malware suite on compromised hosts.
+&quot;A...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/unc6692-impersonates-it-helpdesk-via.html" target="_blank" rel="noopener">UNC6692 Impersonates IT Helpdesk via Microsoft Teams to Deploy SNOW Malware</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-23T18:16:00.000Z">April 23, 2026 - 6:16 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A previously undocumented threat activity cluster known as UNC6692 has been observed leveraging social engineering tactics via Microsoft Teams to deploy a custom malware suite on compromised hosts.
+"A...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="New Checkmarx supply-chain breach affects KICS analysis tool" data-summary="Hackers have compromised Docker images, VSCode and Open VSX extensions for the Checkmarx KICS analysis tool to harvest sensitive data from developer environments. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/new-checkmarx-supply-chain-breach-affects-kics-analysis-tool/" target="_blank" rel="noopener">New Checkmarx supply-chain breach affects KICS analysis tool</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-23T16:05:12.000Z">April 23, 2026 - 4:05 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Hackers have compromised Docker images, VSCode and Open VSX extensions for the Checkmarx KICS analysis tool to harvest sensitive data from developer environments. [...]...</p>
         </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Bad Memories Still Haunt AI Agents" data-summary="Cisco found and fixed a significant vulnerability in the way Anthropic handles memories, but experts warn that mishandled memory files will continue threaten AI systems....">
           <div class="chips">
@@ -364,7 +390,7 @@ In an alert published today, software supply chain security company Socket reve.
           <h2 class="news-title"><a href="https://thehackernews.com/2026/04/malicious-kics-docker-images-and-vs.html" target="_blank" rel="noopener">Malicious KICS Docker Images and VS Code Extensions Hit Checkmarx Supply Chain</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-22T17:55:00.000Z">April 22, 2026 - 5:55 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Cybersecurity researchers have warned of malicious images pushed to the official "checkmarx/kics" Docker Hub repository.
 In an alert published today, software supply chain security company Socket reve...</p>
@@ -378,7 +404,7 @@ The supply ...">
           <h2 class="news-title"><a href="https://thehackernews.com/2026/04/self-propagating-supply-chain-worm.html" target="_blank" rel="noopener">Self-Propagating Supply Chain Worm Hijacks npm Packages to Steal Developer Tokens</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-22T17:33:00.000Z">April 22, 2026 - 5:33 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Cybersecurity researchers have flagged a fresh set of packages that have been compromised by bad actors to deliver a self-propagating worm that spreads through stolen developer npm tokens.
 The supply ...</p>
@@ -445,30 +471,6 @@ The supply ...</p>
           </div>
           <p class="news-summary">Fraud operations now operate like call centers, complete with hiring, training, and performance tracking. Flare reveals how cybercriminals manage "Caller-as-a-Service" operations like a professional s...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="New npm supply-chain attack self-spreads to steal auth tokens" data-summary="A new supply chain attack targeting the Node Package Manager (npm) ecosystem is stealing developer credentials and attempting to spread through packages published from compromised accounts. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/new-npm-supply-chain-attack-self-spreads-to-steal-auth-tokens/" target="_blank" rel="noopener">New npm supply-chain attack self-spreads to steal auth tokens</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-22T12:57:42.000Z">April 22, 2026 - 12:57 PM</time>
-            
-          </div>
-          <p class="news-summary">A new supply chain attack targeting the Node Package Manager (npm) ecosystem is stealing developer credentials and attempting to spread through packages published from compromised accounts. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft Teams to get efficiency mode on PCs with limited resources" data-summary="Microsoft is preparing to roll out a new Efficiency Mode for Microsoft Teams for systems with limited CPU and memory resources to improve app responsiveness. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-teams-gets-efficiency-mode-for-hardware-constrained-devices/" target="_blank" rel="noopener">Microsoft Teams to get efficiency mode on PCs with limited resources</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-22T12:24:38.000Z">April 22, 2026 - 12:24 PM</time>
-            
-          </div>
-          <p class="news-summary">Microsoft is preparing to roll out a new Efficiency Mode for Microsoft Teams for systems with limited CPU and memory resources to improve app responsiveness. [...]...</p>
-        </article>
     </div>
   </main>
   
@@ -513,7 +515,7 @@ The supply ...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-23T15:41:05.296Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-23T18:33:04.199Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
