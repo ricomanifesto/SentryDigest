@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-24T00:53:47.308Z">4/24/2026, 12:53:47 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-24T04:09:38.823Z">4/24/2026, 4:09:38 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Tropic Trooper APT Takes Aim at Home Routers, Japanese Targets" data-summary="The Chinese state-sponsored cyber threat is known for moving fast and trying odd attack vectors; now it's branching out in tools, victimology, and TTPs....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/tropic-trooper-apt-takes-aim-home-routers-japanese-targets" target="_blank" rel="noopener">Tropic Trooper APT Takes Aim at Home Routers, Japanese Targets</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-24T01:00:00.000Z">April 24, 2026 - 1:00 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The Chinese state-sponsored cyber threat is known for moving fast and trying odd attack vectors; now it's branching out in tools, victimology, and TTPs....</p>
+        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Chinese APT Abuses Multiple Cloud Tools to Spy on Mongolia" data-summary="The threat actor gave itself plenty of options to support command and control, tapping Microsoft Outlook, Slack, Discord, and file.io for online espionage....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -457,20 +469,6 @@ The supply ...">
           <p class="news-summary">Cybersecurity researchers have flagged a fresh set of packages that have been compromised by bad actors to deliver a self-propagating worm that spreads through stolen developer npm tokens.
 The supply ...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Harvester Deploys Linux GoGra Backdoor in South Asia Using Microsoft Graph API" data-summary="The threat actor known as Harvester has been attributed to a new Linux version of its GoGra backdoor deployed as part of attacks likely targeting entities in South Asia.
-&quot;The malware uses the legitima...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/harvester-deploys-linux-gogra-backdoor.html" target="_blank" rel="noopener">Harvester Deploys Linux GoGra Backdoor in South Asia Using Microsoft Graph API</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-22T15:28:00.000Z">April 22, 2026 - 3:28 PM</time>
-            
-          </div>
-          <p class="news-summary">The threat actor known as Harvester has been attributed to a new Linux version of its GoGra backdoor deployed as part of attacks likely targeting entities in South Asia.
-"The malware uses the legitima...</p>
-        </article>
     </div>
   </main>
   
@@ -515,7 +513,7 @@ The supply ...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-24T00:53:47.308Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-24T04:09:38.823Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
