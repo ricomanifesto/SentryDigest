@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-25T00:48:47.038Z">4/25/2026, 12:48:47 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-25T04:01:56.903Z">4/25/2026, 4:01:56 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -329,7 +329,7 @@ As discussed in our previous article, AI agents are exposing a structural gap in
           <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/tropic-trooper-apt-takes-aim-home-routers-japanese-targets" target="_blank" rel="noopener">Tropic Trooper APT Takes Aim at Home Routers, Japanese Targets</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-24T01:00:00.000Z">April 24, 2026 - 1:00 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The Chinese state-sponsored cyber threat is known for moving fast and trying odd attack vectors; now it's branching out in tools, victimology, and TTPs....</p>
         </article>
@@ -341,7 +341,7 @@ As discussed in our previous article, AI agents are exposing a structural gap in
           <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/chinese-apt-abuses-cloud-tools-spy-mongolia" target="_blank" rel="noopener">Chinese APT Abuses Multiple Cloud Tools to Spy on Mongolia</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-24T01:00:00.000Z">April 24, 2026 - 1:00 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The threat actor gave itself plenty of options to support command and control, tapping Microsoft Outlook, Slack, Discord, and file.io for online espionage....</p>
         </article>
@@ -499,7 +499,7 @@ As discussed in our previous article, AI agents are exposing a structural gap in
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-25T00:48:47.038Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-25T04:01:56.903Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
