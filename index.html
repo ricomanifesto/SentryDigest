@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-25T06:38:57.721Z">4/25/2026, 6:38:57 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-25T09:23:46.342Z">4/25/2026, 9:23:46 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -329,7 +329,7 @@ As discussed in our previous article, AI agents are exposing a structural gap in
           <h2 class="news-title"><a href="https://thehackernews.com/2026/04/lmdeploy-cve-2026-33626-flaw-exploited.html" target="_blank" rel="noopener">LMDeploy CVE-2026-33626 Flaw Exploited Within 13 Hours of Disclosure</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-24T07:24:00.000Z">April 24, 2026 - 7:24 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A high-severity security flaw in LMDeploy, an open-source toolkit for compressing, deploying, and serving LLMs, has come under active exploitation in the wild less than 13 hours after its public discl...</p>
         </article>
@@ -499,7 +499,7 @@ As discussed in our previous article, AI agents are exposing a structural gap in
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-25T06:38:57.721Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-25T09:23:46.342Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
