@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-24T21:21:53.856Z">4/24/2026, 9:21:53 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-25T00:48:47.038Z">4/25/2026, 12:48:47 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="ADT confirms data breach after ShinyHunters leak threat" data-summary="Home security giant ADT has confirmed a data breach after the ShinyHunters extortion group threatened to leak stolen data unless a ransom is paid. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/adt-confirms-data-breach-after-shinyhunters-leak-threat/" target="_blank" rel="noopener">ADT confirms data breach after ShinyHunters leak threat</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-24T22:53:14.000Z">April 24, 2026 - 10:53 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Home security giant ADT has confirmed a data breach after the ShinyHunters extortion group threatened to leak stolen data unless a ransom is paid. [...]...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Firestarter malware survives Cisco firewall updates, security patches" data-summary="Cybersecurity agencies in the U.S. and U.K. are warning about a custom malware called Firestarter persisting on Cisco Firepower and Secure Firewall devices running Adaptive Security Appliance (ASA) or...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -341,7 +353,7 @@ As discussed in our previous article, AI agents are exposing a structural gap in
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hackers-exploit-file-upload-bug-in-breeze-cache-wordpress-plugin/" target="_blank" rel="noopener">Hackers exploit file upload bug in Breeze Cache WordPress plugin</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-23T21:33:45.000Z">April 23, 2026 - 9:33 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Hackers are actively exploiting a critical vulnerability in the Breeze Cache plugin for WordPress that allows uploading arbitrary files on the server without authentication. [...]...</p>
         </article>
@@ -443,18 +455,6 @@ As discussed in our previous article, AI agents are exposing a structural gap in
           </div>
           <p class="news-summary">Password resets are one of the easiest ways for attackers to bypass security controls. Specops Software shows how helpdesk social engineering turns a seemingly legitimate reset request into full accou...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Bitwarden CLI Compromised in Ongoing Checkmarx Supply Chain Campaign" data-summary="Bitwarden CLI, the command-line interface for the password manager Bitwarden, has reportedly been compromised as part of a newly discovered and ongoing Checkmarx supply chain campaign, according to fi...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/bitwarden-cli-compromised-in-ongoing.html" target="_blank" rel="noopener">Bitwarden CLI Compromised in Ongoing Checkmarx Supply Chain Campaign</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-23T13:42:00.000Z">April 23, 2026 - 1:42 PM</time>
-            
-          </div>
-          <p class="news-summary">Bitwarden CLI, the command-line interface for the password manager Bitwarden, has reportedly been compromised as part of a newly discovered and ongoing Checkmarx supply chain campaign, according to fi...</p>
-        </article>
     </div>
   </main>
   
@@ -499,7 +499,7 @@ As discussed in our previous article, AI agents are exposing a structural gap in
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-24T21:21:53.856Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-25T00:48:47.038Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
