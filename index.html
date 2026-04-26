@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-26T12:23:24.164Z">4/26/2026, 12:23:24 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-26T15:19:41.275Z">4/26/2026, 3:19:41 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="American utility firm Itron discloses breach of internal IT network" data-summary="Itron, Inc. has disclosed, via an 8-K filing with the U.S. Securities and Exchange Commission (SEC), a cybersecurity incident in which an unauthorized third party accessed certain internal systems. [....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/american-utility-firm-itron-discloses-breach-of-internal-it-network/" target="_blank" rel="noopener">American utility firm Itron discloses breach of internal IT network</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-26T14:22:34.000Z">April 26, 2026 - 2:22 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Itron, Inc. has disclosed, via an 8-K filing with the U.S. Securities and Exchange Commission (SEC), a cybersecurity incident in which an unauthorized third party accessed certain internal systems. [....</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft rolls out revamped Windows Insider Program" data-summary="Microsoft says it's rolling out a revamped Windows Insider Program experience as part of the broader plans to address performance and reliability concerns affecting Windows 11. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -111,7 +123,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/threat-actor-uses-microsoft-teams-to-deploy-new-snow-malware/" target="_blank" rel="noopener">Threat actor uses Microsoft Teams to deploy new “Snow” malware</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-25T15:07:44.000Z">April 25, 2026 - 3:07 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A threat group tracked as UNC6692 uses social engineering to deploy a new, custom malware suite named 'Snow' which includes a browser extension, a tunneler, and a backdoor. [...]...</p>
         </article>
@@ -441,20 +453,6 @@ As discussed in our previous article, AI agents are exposing a structural gap in
           </div>
           <p class="news-summary">Recently observed Trigona ransomware attacks are using a custom, command-line tool to steal data from compromised environments faster and more efficiently. [...]...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="UNC6692 Impersonates IT Help Desk via Microsoft Teams to Deploy SNOW Malware" data-summary="A previously undocumented threat activity cluster known as UNC6692 has been observed leveraging social engineering tactics via Microsoft Teams to deploy a custom malware suite on compromised hosts.
-&quot;A...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/unc6692-impersonates-it-helpdesk-via.html" target="_blank" rel="noopener">UNC6692 Impersonates IT Help Desk via Microsoft Teams to Deploy SNOW Malware</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-23T18:16:00.000Z">April 23, 2026 - 6:16 PM</time>
-            
-          </div>
-          <p class="news-summary">A previously undocumented threat activity cluster known as UNC6692 has been observed leveraging social engineering tactics via Microsoft Teams to deploy a custom malware suite on compromised hosts.
-"A...</p>
-        </article>
     </div>
   </main>
   
@@ -499,7 +497,7 @@ As discussed in our previous article, AI agents are exposing a structural gap in
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-26T12:23:24.164Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-26T15:19:41.275Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
