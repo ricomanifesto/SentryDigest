@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-26T21:16:33.625Z">4/26/2026, 9:16:33 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-27T00:54:40.138Z">4/27/2026, 12:54:40 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -162,6 +162,18 @@
             
           </div>
           <p class="news-summary">Home security giant ADT has confirmed a data breach after the ShinyHunters extortion group threatened to leak stolen data unless a ransom is paid. [...]...</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Helping Romance Scam Victims Require a Proactive, Empathic Approach" data-summary="People targeted by confidence schemes find getting help is a lonely road. Experts want law enforcement, financial and government institutions to work together and protect them....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/building-teams-to-help-cyber-scam-victims" target="_blank" rel="noopener">Helping Romance Scam Victims Require a Proactive, Empathic Approach</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-24T22:34:13.000Z">April 24, 2026 - 10:34 PM</time>
+            
+          </div>
+          <p class="news-summary">People targeted by confidence schemes find getting help is a lonely road. Experts want law enforcement, financial and government institutions to work together and protect them....</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Firestarter malware survives Cisco firewall updates, security patches" data-summary="Cybersecurity agencies in the U.S. and U.K. are warning about a custom malware called Firestarter persisting on Cisco Firepower and Secure Firewall devices running Adaptive Security Appliance (ASA) or...">
           <div class="chips">
@@ -441,18 +453,6 @@ As discussed in our previous article, AI agents are exposing a structural gap in
           </div>
           <p class="news-summary">The Bitwarden CLI was briefly compromised after attackers uploaded a malicious @bitwarden/cli package to npm containing a credential-stealing payload capable of spreading to other projects. [...]...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Trigona ransomware attacks use custom exfiltration tool to steal data" data-summary="Recently observed Trigona ransomware attacks are using a custom, command-line tool to steal data from compromised environments faster and more efficiently. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/trigona-ransomware-attacks-use-custom-exfiltration-tool-to-steal-data/" target="_blank" rel="noopener">Trigona ransomware attacks use custom exfiltration tool to steal data</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-23T18:59:39.000Z">April 23, 2026 - 6:59 PM</time>
-            
-          </div>
-          <p class="news-summary">Recently observed Trigona ransomware attacks are using a custom, command-line tool to steal data from compromised environments faster and more efficiently. [...]...</p>
-        </article>
     </div>
   </main>
   
@@ -497,7 +497,7 @@ As discussed in our previous article, AI agents are exposing a structural gap in
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-26T21:16:33.625Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-27T00:54:40.138Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
