@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,34 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-27T15:39:49.548Z">4/27/2026, 3:39:49 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-27T18:36:04.606Z">4/27/2026, 6:36:04 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="FTC: Americans lost over $2.1 billion to social media scams in 2025" data-summary="The U.S. Federal Trade Commission (FTC) warned of a massive increase in losses from social media scams since 2020, exceeding $2.1 billion in 2025. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/ftc-americans-lost-over-21-billion-to-social-media-scams-in-2025/" target="_blank" rel="noopener">FTC: Americans lost over $2.1 billion to social media scams in 2025</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-27T16:27:53.000Z">April 27, 2026 - 4:27 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The U.S. Federal Trade Commission (FTC) warned of a massive increase in losses from social media scams since 2020, exceeding $2.1 billion in 2025. [...]...</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Unpatched 'PhantomRPC' Flaw in Windows Enables Privilege Escalation" data-summary="A researcher discovered five different exploit paths that stem from an architectural weakness in how Windows' Remote Procedure Call (RPC) mechanism handles connections to unavailable services....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/unpatched-phantomrpc-flaw-windows-privilege-escalation" target="_blank" rel="noopener">Unpatched 'PhantomRPC' Flaw in Windows Enables Privilege Escalation</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-27T15:31:41.000Z">April 27, 2026 - 3:31 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A researcher discovered five different exploit paths that stem from an architectural weakness in how Windows' Remote Procedure Call (RPC) mechanism handles connections to unavailable services....</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="PyPI package with 1.1M monthly downloads hacked to push infostealer" data-summary="An attacker pushed a malicious version of the popular elementary-data package Python Package Index (PyPI) to steal sensitive developer data and cryptocurrency wallets. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -395,18 +419,6 @@ That's accord...</p>
           </div>
           <p class="news-summary">A new financially motivated hacking group tracked as BlackFile has been linked to a wave of data theft and extortion attacks against retail and hospitality organizations since February 2026. [...]...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft to roll out Entra passkeys on Windows in late April" data-summary="Microsoft will roll out passkey support for phishing-resistant passwordless authentication to Microsoft Entra‑protected resources from Windows devices starting late April. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-to-roll-out-entra-passkeys-on-windows-in-late-april/" target="_blank" rel="noopener">Microsoft to roll out Entra passkeys on Windows in late April</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-24T18:13:55.000Z">April 24, 2026 - 6:13 PM</time>
-            
-          </div>
-          <p class="news-summary">Microsoft will roll out passkey support for phishing-resistant passwordless authentication to Microsoft Entra‑protected resources from Windows devices starting late April. [...]...</p>
-        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="FIRESTARTER Backdoor Hit Federal Cisco Firepower Device, Survives Security Patches" data-summary="The U.S. Cybersecurity and Infrastructure Security Agency (CISA) has revealed that an unnamed federal civilian agency's Cisco Firepower device running Adaptive Security Appliance (ASA) software was co...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
@@ -442,18 +454,6 @@ That's accord...</p>
             
           </div>
           <p class="news-summary">Forgotten integrations, shadow IT, SaaS, and now shadow AI and agents are everywhere, and attackers don't need sophisticated AI models to take advantage....</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="NASA Employees Duped in Chinese Phishing Scheme Targeting U.S. Defense Software" data-summary="The Office of Inspector General (OIG) of the U.S. National Aeronautics and Space Administration (NASA) has revealed how a Chinese national posed as a U.S. researcher as part of a spear-phishing campai...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/nasa-employees-duped-in-chinese.html" target="_blank" rel="noopener">NASA Employees Duped in Chinese Phishing Scheme Targeting U.S. Defense Software</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-24T14:13:00.000Z">April 24, 2026 - 2:13 PM</time>
-            
-          </div>
-          <p class="news-summary">The Office of Inspector General (OIG) of the U.S. National Aeronautics and Space Administration (NASA) has revealed how a Chinese national posed as a U.S. researcher as part of a spear-phishing campai...</p>
         </article>
     </div>
   </main>
@@ -499,7 +499,7 @@ That's accord...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-27T15:39:49.548Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-27T18:36:04.606Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
