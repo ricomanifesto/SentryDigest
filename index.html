@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,24 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-28T15:53:16.897Z">4/28/2026, 3:53:16 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-28T18:40:14.152Z">4/28/2026, 6:40:14 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Brazilian LofyGang Resurfaces After Three Years With Minecraft LofyStealer Campaign" data-summary="A cybercrime group of Brazilian origin has resurfaced after more than three years to orchestrate a campaign that targets Minecraft players with a new stealer called LofyStealer (aka GrabBot).
+&quot;The mal...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/brazilian-lofygang-resurfaces-after.html" target="_blank" rel="noopener">Brazilian LofyGang Resurfaces After Three Years With Minecraft LofyStealer Campaign</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-28T17:39:00.000Z">April 28, 2026 - 5:39 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A cybercrime group of Brazilian origin has resurfaced after more than three years to orchestrate a campaign that targets Minecraft players with a new stealer called LofyStealer (aka GrabBot).
+"The mal...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="US reportedly charges Scattered Spider hacker arrested in Finland" data-summary="A 19-year-old dual United States and Estonian citizen arrested in Finland earlier this month faces federal charges in the U.S. alleging he was a prolific member of the notorious Scattered Spider hacki...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -335,7 +349,7 @@ The vulnerability in que...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/ftc-americans-lost-over-21-billion-to-social-media-scams-in-2025/" target="_blank" rel="noopener">FTC: Americans lost over $2.1 billion to social media scams in 2025</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-27T16:27:53.000Z">April 27, 2026 - 4:27 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The U.S. Federal Trade Commission (FTC) warned of a massive increase in losses from social media scams since 2020, exceeding $2.1 billion in 2025. [...]...</p>
         </article>
@@ -449,18 +463,6 @@ The vulnerability in que...</p>
           </div>
           <p class="news-summary">Some fear frontier LLMs like Claude Mythos and OpenAI's GPT-5.5 will lead to cybersecurity annihilation. Ari Herbert-Voss notes this could be an opportunity....</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Mythos Changed the Math on Vulnerability Discovery. Most Teams Aren't Ready for the Remediation Side" data-summary="Anthropic’s Claude Mythos Preview has dominated security discussions since its April 7 announcement. Early reporting describes a powerful cybersecurity-focused AI system capable of identifying vulnera...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/mythos-changed-math-on-vulnerability.html" target="_blank" rel="noopener">Mythos Changed the Math on Vulnerability Discovery. Most Teams Aren't Ready for the Remediation Side</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-27T11:58:00.000Z">April 27, 2026 - 11:58 AM</time>
-            
-          </div>
-          <p class="news-summary">Anthropic’s Claude Mythos Preview has dominated security discussions since its April 7 announcement. Early reporting describes a powerful cybersecurity-focused AI system capable of identifying vulnera...</p>
-        </article>
     </div>
   </main>
   
@@ -505,7 +507,7 @@ The vulnerability in que...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-28T15:53:16.897Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-28T18:40:14.152Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
