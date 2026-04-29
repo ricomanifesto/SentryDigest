@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,60 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-29T12:43:05.586Z">4/29/2026, 12:43:05 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-04-29T15:44:53.277Z">4/29/2026, 3:44:53 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="New Wave of DPRK Attacks Uses AI-Inserted npm Malware, Fake Firms, and RATs" data-summary="Cybersecurity researchers have discovered malicious code in an npm package after a malicious package as a dependency to the project by Anthropic's Claude Opus large language model (LLM).
+The package i...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/new-wave-of-dprk-attacks-uses-ai.html" target="_blank" rel="noopener">New Wave of DPRK Attacks Uses AI-Inserted npm Malware, Fake Firms, and RATs</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-29T14:43:00.000Z">April 29, 2026 - 2:43 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Cybersecurity researchers have discovered malicious code in an npm package after a malicious package as a dependency to the project by Anthropic's Claude Opus large language model (LLM).
+The package i...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="European police dismantles €50 million crypto investment fraud ring" data-summary="Austrian and Albanian authorities dismantled a criminal ring accused of running a large-scale cryptocurrency investment fraud operation that caused estimated losses of over €50 million ($58.5 million)...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/european-police-dismantles-50-million-crypto-investment-fraud-ring/" target="_blank" rel="noopener">European police dismantles €50 million crypto investment fraud ring</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-29T14:27:36.000Z">April 29, 2026 - 2:27 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Austrian and Albanian authorities dismantled a criminal ring accused of running a large-scale cryptocurrency investment fraud operation that caused estimated losses of over €50 million ($58.5 million)...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Learning from the Vercel breach: Shadow AI & OAuth sprawl" data-summary="A single third-party OAuth integration can become a direct path into your environment. Push explains how the Vercel breach shows a compromised OAuth app can lead to widespread impact across downstream...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/learning-from-the-vercel-breach-shadow-ai-and-oauth-sprawl/" target="_blank" rel="noopener">Learning from the Vercel breach: Shadow AI & OAuth sprawl</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-29T13:05:14.000Z">April 29, 2026 - 1:05 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A single third-party OAuth integration can become a direct path into your environment. Push explains how the Vercel breach shows a compromised OAuth app can lead to widespread impact across downstream...</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Lotus Wiper Attack Targets Venezuelan Energy Firms, Utilities" data-summary="An analysis of the destructive malware reveals sophisticated living-off-the-land (LotL) techniques and detailed strategies for the widespread deletion of data....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/lotus-wiper-attack-targeted-venezuelan-energy-firms-utilities" target="_blank" rel="noopener">Lotus Wiper Attack Targets Venezuelan Energy Firms, Utilities</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-29T13:00:00.000Z">April 29, 2026 - 1:00 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">An analysis of the destructive malware reveals sophisticated living-off-the-land (LotL) techniques and detailed strategies for the widespread deletion of data....</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="GitHub fixes RCE flaw that gave access to millions of private repos" data-summary="In early March, GitHub patched a critical remote code execution vulnerability (CVE-2026-3854) that could have allowed attackers to access millions of private repositories. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -102,6 +152,20 @@
             <span class="badge-new">NEW</span>
           </div>
           <p class="news-summary">In early March, GitHub patched a critical remote code execution vulnerability (CVE-2026-3854) that could have allowed attackers to access millions of private repositories. [...]...</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Webinar: How to Automate Exposure Validation to Match the Speed of AI Attacks" data-summary="In February 2026, researchers uncovered a shift that completely changed the game: threat actors are now using custom AI setups to automate attacks directly into the kill chain.
+We aren't just talking ...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/webinar-how-to-automate-exposure.html" target="_blank" rel="noopener">Webinar: How to Automate Exposure Validation to Match the Speed of AI Attacks</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-04-29T12:02:00.000Z">April 29, 2026 - 12:02 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">In February 2026, researchers uncovered a shift that completely changed the game: threat actors are now using custom AI setups to automate attacks directly into the kill chain.
+We aren't just talking ...</p>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="What to Look for in an Exposure Management Platform (And What Most of Them Get Wrong)" data-summary="Every security team has a version of the same story. The quarter ends with hundreds of vulnerabilities closed. The dashboards are bursting with green. Then someone in a leadership meeting asks: &quot;So, a...">
           <div class="chips">
@@ -213,7 +277,7 @@ The problem affects...</p>
           </div>
           <p class="news-summary">Hackers are targeting sensitive information stored in the LiteLLM open-source large-language model (LLM) gateway by exploiting a critical vulnerability  tracked as CVE-2026-42208. [...]...</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="NSA Chief During Snowden Affair Shares Regrets, Reflections 13 Years Later" data-summary="Chris Inglis was the head civilian in charge at the NSA when the Snowden leak exploded. He gets candid about mistakes the organization made, and what CISOs need to know about spotting potential threat...">
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="NSA Chief During Snowden Affair Shares Regrets, Reflections 13 Years Later" data-summary="Chris Inglis was the head civilian in charge at the NSA when the Snowden leaks exploded. He gets candid about mistakes the organization made, and what CISOs need to know about spotting potential threa...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
@@ -223,7 +287,7 @@ The problem affects...</p>
             <time datetime="2026-04-28T20:38:59.000Z">April 28, 2026 - 8:38 PM</time>
             <span class="badge-new">NEW</span>
           </div>
-          <p class="news-summary">Chris Inglis was the head civilian in charge at the NSA when the Snowden leak exploded. He gets candid about mistakes the organization made, and what CISOs need to know about spotting potential threat...</p>
+          <p class="news-summary">Chris Inglis was the head civilian in charge at the NSA when the Snowden leaks exploded. He gets candid about mistakes the organization made, and what CISOs need to know about spotting potential threa...</p>
         </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Feuding Ransomware Groups Leak Each Other's Data" data-summary="When 0APT and KryBit attacked each other, they exposed infrastructure and operational data, giving defenders rare insight into ransomware operations....">
           <div class="chips">
@@ -295,7 +359,7 @@ The problem affects...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/us-reportedly-charges-scattered-spider-hacker-arrested-in-finland/" target="_blank" rel="noopener">US reportedly charges Scattered Spider hacker arrested in Finland</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-28T15:39:52.000Z">April 28, 2026 - 3:39 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A 19-year-old dual United States and Estonian citizen arrested in Finland earlier this month faces federal charges in the U.S. alleging he was a prolific member of the notorious Scattered Spider hacki...</p>
         </article>
@@ -307,7 +371,7 @@ The problem affects...</p>
           <h2 class="news-title"><a href="https://www.darkreading.com/application-security/fresh-glassworm-vs-code-extensions-supply-chain" target="_blank" rel="noopener">Fresh Wave of GlassWorm VS Code Extensions Slices Through Supply Chain</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-28T14:59:24.000Z">April 28, 2026 - 2:59 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Attackers continue to scale a campaign to seed Open VSX with seemingly benign VS Code extensions that spread self-propagating malware....</p>
         </article>
@@ -319,7 +383,7 @@ The problem affects...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/checkmarx-confirms-lapsus-hackers-leaked-its-stolen-github-data/" target="_blank" rel="noopener">Checkmarx confirms LAPSUS$ hackers leaked its stolen GitHub data</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-28T14:50:40.000Z">April 28, 2026 - 2:50 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Application security company Checkmarx has confirmed that the LAPSUS$ threat group leaked data stolen from its private GitHub repository. [...]...</p>
         </article>
@@ -331,7 +395,7 @@ The problem affects...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/04/vect-20-ransomware-irreversibly.html" target="_blank" rel="noopener">VECT 2.0 Ransomware Irreversibly Destroys Files Over 131KB on Windows, Linux, ESXi</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-28T14:01:00.000Z">April 28, 2026 - 2:01 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Threat hunters are warning that the cybercriminal operation known as VECT 2.0 acts more like a wiper than a ransomware due to a critical flaw in its encryption implementation across Windows, Linux, an...</p>
         </article>
@@ -343,7 +407,7 @@ The problem affects...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-to-deprecate-legacy-tls-in-exchange-online-starting-july/" target="_blank" rel="noopener">Microsoft to deprecate legacy TLS in Exchange Online starting July</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-28T13:18:36.000Z">April 28, 2026 - 1:18 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Microsoft says it will start blocking legacy TLS connections for POP and IMAP email clients in Exchange Online starting in July 2026. [...]...</p>
         </article>
@@ -355,7 +419,7 @@ The problem affects...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/inside-an-opsec-playbook-how-threat-actors-evade-detection/" target="_blank" rel="noopener">Inside an OPSEC Playbook: How Threat Actors Evade Detection</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-28T12:50:58.000Z">April 28, 2026 - 12:50 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Threat actors are now publishing structured OPSEC playbooks to stay undetected. Flare reveals how these guides outline layered infrastructure, identity separation, and long-term evasion strategies. [....</p>
         </article>
@@ -398,70 +462,6 @@ If you’ve been tracking advancements in AI, you know the exploit window, the s
           </div>
           <p class="news-summary">When patching isn’t fast enough, NDR helps contain the next era of threats.
 If you’ve been tracking advancements in AI, you know the exploit window, the short buffer that organizations relied on to pa...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft: New Remote Desktop warnings may display incorrectly" data-summary="Microsoft has confirmed a new issue causing newly introduced Windows security warnings to display incorrectly when opening Remote Desktop (.rdp) files. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-new-remote-desktop-warnings-may-display-incorrectly/" target="_blank" rel="noopener">Microsoft: New Remote Desktop warnings may display incorrectly</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-28T09:51:26.000Z">April 28, 2026 - 9:51 AM</time>
-            
-          </div>
-          <p class="news-summary">Microsoft has confirmed a new issue causing newly introduced Windows security warnings to display incorrectly when opening Remote Desktop (.rdp) files. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft asks iPhone users to reauthenticate after Outlook outage" data-summary="After addressing a widespread outage that affected Outlook.com users worldwide on Monday, Microsoft has asked iPhone users to re-enter their credentials to regain access to their Outlook and Hotmail a...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-asks-iphone-users-to-re-enter-credentials-after-outlook-outage/" target="_blank" rel="noopener">Microsoft asks iPhone users to reauthenticate after Outlook outage</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-28T08:37:12.000Z">April 28, 2026 - 8:37 AM</time>
-            
-          </div>
-          <p class="news-summary">After addressing a widespread outage that affected Outlook.com users worldwide on Monday, Microsoft has asked iPhone users to re-enter their credentials to regain access to their Outlook and Hotmail a...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Chinese Silk Typhoon Hacker Extradited to U.S. Over COVID Research Cyberattacks" data-summary="A Chinese national accused of being a member of the Silk Typhoon hacking group has been extradited to the U.S. from Italy. 
-Xu Zewei, 34, was arrested in July 2025 by Italian authorities for his alleg...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/chinese-silk-typhoon-hacker-extradited.html" target="_blank" rel="noopener">Chinese Silk Typhoon Hacker Extradited to U.S. Over COVID Research Cyberattacks</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-28T07:57:00.000Z">April 28, 2026 - 7:57 AM</time>
-            
-          </div>
-          <p class="news-summary">A Chinese national accused of being a member of the Silk Typhoon hacking group has been extradited to the U.S. from Italy. 
-Xu Zewei, 34, was arrested in July 2025 by Italian authorities for his alleg...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Microsoft Patches Entra ID Role Flaw That Enabled Service Principal Takeover" data-summary="An administrative role meant for artificial intelligence (AI) agents within Microsoft Entra ID could enable privilege escalation and identity takeover attacks, according to new findings from Silverfor...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/microsoft-patches-entra-id-role-flaw.html" target="_blank" rel="noopener">Microsoft Patches Entra ID Role Flaw That Enabled Service Principal Takeover</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-28T06:37:00.000Z">April 28, 2026 - 6:37 AM</time>
-            
-          </div>
-          <p class="news-summary">An administrative role meant for artificial intelligence (AI) agents within Microsoft Entra ID could enable privilege escalation and identity takeover attacks, according to new findings from Silverfor...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Microsoft Confirms Active Exploitation of Windows Shell CVE-2026-32202" data-summary="Microsoft on Monday revised its advisory for a now-patched, high-severity security flaw impacting Windows Shell to acknowledge that it has been actively exploited in the wild.
-The vulnerability in que...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/microsoft-confirms-active-exploitation.html" target="_blank" rel="noopener">Microsoft Confirms Active Exploitation of Windows Shell CVE-2026-32202</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-28T05:50:00.000Z">April 28, 2026 - 5:50 AM</time>
-            
-          </div>
-          <p class="news-summary">Microsoft on Monday revised its advisory for a now-patched, high-severity security flaw impacting Windows Shell to acknowledge that it has been actively exploited in the wild.
-The vulnerability in que...</p>
         </article>
     </div>
   </main>
@@ -507,7 +507,7 @@ The vulnerability in que...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-29T12:43:05.586Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-04-29T15:44:53.277Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
