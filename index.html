@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Krebs on Security">Krebs on Security</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option><option value="Krebs on Security">Krebs on Security</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,34 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-05-01T15:26:12.566Z">5/1/2026, 3:26:12 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-05-01T18:31:14.519Z">5/1/2026, 6:31:14 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="15-year-old detained over French govt agency data breach" data-summary="French authorities have detained a 15-year-old suspected of selling data stolen in a cyberattack on France Titres (ANTS), the country's agency for issuing and managing administrative documents. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/15-year-old-detained-over-french-govt-agency-data-breach/" target="_blank" rel="noopener">15-year-old detained over French govt agency data breach</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-05-01T17:52:06.000Z">May 1, 2026 - 5:52 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">French authorities have detained a 15-year-old suspected of selling data stolen in a cyberattack on France Titres (ANTS), the country's agency for issuing and managing administrative documents. [...]...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Story retracted" data-summary="BleepingComputer initially published a story about a new data breach at Instructure. Shortly after publication, we determined that the information was incorrect and primarily based on outdated details...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/story-retracted/" target="_blank" rel="noopener">Story retracted</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-05-01T16:26:28.000Z">May 1, 2026 - 4:26 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">BleepingComputer initially published a story about a new data breach at Instructure. Shortly after publication, we determined that the information was incorrect and primarily based on outdated details...</p>
+        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="If AI's So Smart, Why Does It Keep Deleting Production Databases?" data-summary="The issue isn't artificial intelligence, but rather an industry adding AI agent integrations into production environments before proper security testing....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -303,7 +327,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/romanian-leader-of-online-swatting-ring-gets-4-years-in-prison/" target="_blank" rel="noopener">Romanian leader of online swatting ring gets 4 years in prison</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-30T17:45:12.000Z">April 30, 2026 - 5:45 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A Romanian national who led an online swatting ring that targeted more than 75 public officials, multiple journalists, and four religious institutions was sentenced to 4 years in federal prison. [...]...</p>
         </article>
@@ -315,7 +339,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/fbi-links-cybercriminals-to-sharp-surge-in-cargo-theft-attacks/" target="_blank" rel="noopener">FBI links cybercriminals to sharp surge in cargo theft attacks</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-30T16:32:18.000Z">April 30, 2026 - 4:32 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The U.S. Federal Bureau of Investigation (FBI) warned the transportation and logistics industry of a sharp rise in cyber-enabled cargo theft, with estimated losses in the United States and Canada reac...</p>
         </article>
@@ -328,7 +352,7 @@ According to Aiki...">
           <h2 class="news-title"><a href="https://thehackernews.com/2026/04/pytorch-lightning-compromised-in-pypi.html" target="_blank" rel="noopener">PyTorch Lightning and Intercom-client Hit in Supply Chain Attacks to Steal Credentials</a></h2>
           <div class="news-meta">
             <time datetime="2026-04-30T16:31:00.000Z">April 30, 2026 - 4:31 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">In yet another software supply chain attack, threat actors have managed to compromise the popular Python package Lightning to push two malicious versions to conduct credential theft.
 According to Aiki...</p>
@@ -429,32 +453,6 @@ According to Aiki...</p>
           </div>
           <p class="news-summary">The critical CVE-2026-41940 authentication bypass vulnerability in cPanel, WHM, and WP Squared is being actively exploited in the wild and has been leveraged in attempts since late February. [...]...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="EtherRAT Distribution Spoofing Administrative Tools via GitHub Facades" data-summary="Intro
-A sophisticated, high-resilience malicious campaign was identified by Atos Threat Research Center (TRC) in March 2026. This operation specifically targets the high-privilege professional account...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/04/etherrat-distribution-spoofing.html" target="_blank" rel="noopener">EtherRAT Distribution Spoofing Administrative Tools via GitHub Facades</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-30T11:30:00.000Z">April 30, 2026 - 11:30 AM</time>
-            
-          </div>
-          <p class="news-summary">Intro
-A sophisticated, high-resilience malicious campaign was identified by Atos Threat Research Center (TRC) in March 2026. This operation specifically targets the high-privilege professional account...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Police dismantles 9 crypto scam centers, arrests 276 suspects" data-summary="A joint international operation involving U.S. and Chinese authorities arrested at least 276 suspects and shut down nine cryptocurrency investment fraud centers. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/police-dismantles-9-crypto-investment-scam-centers-arrests-276-suspects/" target="_blank" rel="noopener">Police dismantles 9 crypto scam centers, arrests 276 suspects</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-30T11:21:02.000Z">April 30, 2026 - 11:21 AM</time>
-            
-          </div>
-          <p class="news-summary">A joint international operation involving U.S. and Chinese authorities arrested at least 276 suspects and shut down nine cryptocurrency investment fraud centers. [...]...</p>
-        </article>
     </div>
   </main>
   
@@ -499,7 +497,7 @@ A sophisticated, high-resilience malicious campaign was identified by Atos Threa
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-01T15:26:12.566Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-01T18:31:14.519Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
