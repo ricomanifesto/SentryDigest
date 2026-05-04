@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-05-03T21:19:56.786Z">5/3/2026, 9:19:56 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-05-04T00:58:06.034Z">5/4/2026, 12:58:06 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Instructure confirms data breach, ShinyHunters claims attack" data-summary="Educational tech giant Instructure has confirmed that data was stolen in a cyberattack, with the ShinyHunters extortion gang claiming responsibility. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/instructure-confirms-data-breach-shinyhunters-claims-attack/" target="_blank" rel="noopener">Instructure confirms data breach, ShinyHunters claims attack</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-05-03T22:16:27.000Z">May 3, 2026 - 10:16 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Educational tech giant Instructure has confirmed that data was stolen in a cyberattack, with the ShinyHunters extortion gang claiming responsibility. [...]...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft Defender wrongly flags DigiCert certs as Trojan:Win32/Cerdigent.A!dha" data-summary="Microsoft Defender is detecting legitimate DigiCert root certificates as Trojan:Win32/Cerdigent.A!dha, resulting in widespread false-positive alerts, and in some cases, removing certificates from Wind...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -135,7 +147,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/critrical-cpanel-flaw-mass-exploited-in-sorry-ransomware-attacks/" target="_blank" rel="noopener">Critrical cPanel flaw mass-exploited in "Sorry" ransomware attacks</a></h2>
           <div class="news-meta">
             <time datetime="2026-05-02T21:54:00.000Z">May 2, 2026 - 9:54 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A new disclosed cPanel flaw tracked as CVE-2026-41940 is being mass-exploited to breach websites and encrypt data in "Sorry" ransomware attacks. [...]...</p>
         </article>
@@ -443,18 +455,6 @@ The activity h...</p>
           </div>
           <p class="news-summary">A new phishing kit named Bluekit offers more than 40 templates targeting popular services and includes basic AI features for generating campaign drafts. [...]...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Romanian leader of online swatting ring gets 4 years in prison" data-summary="A Romanian national who led an online swatting ring that targeted more than 75 public officials, multiple journalists, and four religious institutions was sentenced to 4 years in federal prison. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/romanian-leader-of-online-swatting-ring-gets-4-years-in-prison/" target="_blank" rel="noopener">Romanian leader of online swatting ring gets 4 years in prison</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-30T17:45:12.000Z">April 30, 2026 - 5:45 PM</time>
-            
-          </div>
-          <p class="news-summary">A Romanian national who led an online swatting ring that targeted more than 75 public officials, multiple journalists, and four religious institutions was sentenced to 4 years in federal prison. [...]...</p>
-        </article>
     </div>
   </main>
   
@@ -499,7 +499,7 @@ The activity h...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-03T21:19:56.786Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-04T00:58:06.034Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
