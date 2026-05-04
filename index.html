@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-05-04T04:23:21.136Z">5/4/2026, 4:23:21 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-05-04T07:13:39.181Z">5/4/2026, 7:13:39 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Global Crackdown Arrests 276, Shuts 9 Crypto Scam Centers, Seizes $701M" data-summary="A coordinated international operation involving U.S. and Chinese authorities has arrested at least 276 suspects and shut down nine scam centers used for cryptocurrency investment fraud schemes targeti...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/05/global-crackdown-arrests-276-shuts-9.html" target="_blank" rel="noopener">Global Crackdown Arrests 276, Shuts 9 Crypto Scam Centers, Seizes $701M</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-05-04T05:59:00.000Z">May 4, 2026 - 5:59 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A coordinated international operation involving U.S. and Chinese authorities has arrested at least 276 suspects and shut down nine scam centers used for cryptocurrency investment fraud schemes targeti...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Instructure confirms data breach, ShinyHunters claims attack" data-summary="Educational tech giant Instructure has confirmed that data was stolen in a cyberattack, with the ShinyHunters extortion gang claiming responsibility. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -135,7 +147,7 @@
           <h2 class="news-title"><a href="https://thehackernews.com/2026/05/cisa-adds-actively-exploited-linux-root.html" target="_blank" rel="noopener">CISA Adds Actively Exploited Linux Root Access Bug CVE-2026-31431 to KEV</a></h2>
           <div class="news-meta">
             <time datetime="2026-05-03T06:26:00.000Z">May 3, 2026 - 6:26 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Friday added a recently disclosed security flaw impacting various Linux distributions to its Known Exploited Vulnerabilities (KEV) c...</p>
         </article>
@@ -443,18 +455,6 @@ The activity h...</p>
           </div>
           <p class="news-summary">In this latest installment of the Reporters' Notebook video series, we discuss how the new AI model threatens to completely upend cybersecurity, and what industry leaders are telling the press....</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="New Bluekit phishing service includes an AI assistant, 40 templates" data-summary="A new phishing kit named Bluekit offers more than 40 templates targeting popular services and includes basic AI features for generating campaign drafts. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/new-bluekit-phishing-service-includes-an-ai-assistant-40-templates/" target="_blank" rel="noopener">New Bluekit phishing service includes an AI assistant, 40 templates</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-04-30T18:58:50.000Z">April 30, 2026 - 6:58 PM</time>
-            
-          </div>
-          <p class="news-summary">A new phishing kit named Bluekit offers more than 40 templates targeting popular services and includes basic AI features for generating campaign drafts. [...]...</p>
-        </article>
     </div>
   </main>
   
@@ -499,7 +499,7 @@ The activity h...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-04T04:23:21.136Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-04T07:13:39.181Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
