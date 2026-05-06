@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-05-05T21:27:19.611Z">5/5/2026, 9:27:19 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-05-06T00:53:12.268Z">5/6/2026, 12:53:12 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="New stealthy Quasar Linux malware targets software developers" data-summary="A previously undocumented Linux implant named Quasar Linux (QLNX) is targeting developers' systems with a mix of rootkit, backdoor, and credential-stealing capabilities. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/new-stealthy-quasar-linux-malware-targets-software-developers/" target="_blank" rel="noopener">New stealthy Quasar Linux malware targets software developers</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-05-05T22:01:39.000Z">May 5, 2026 - 10:01 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A previously undocumented Linux implant named Quasar Linux (QLNX) is targeting developers' systems with a mix of rootkit, backdoor, and credential-stealing capabilities. [...]...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Instructure hacker claims data theft from 8,800 schools, universities" data-summary="The hacker behind a breach at education technology giant Instructure claims to have stolen 280 million data records for students and staff from 8,809 colleges, school districts, and online education p...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -369,7 +381,7 @@ The vulnerability (CVE-2...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/weaver-e-cology-critical-bug-exploited-in-attacks-since-march/" target="_blank" rel="noopener">Weaver E-cology critical bug exploited in attacks since March</a></h2>
           <div class="news-meta">
             <time datetime="2026-05-04T22:12:57.000Z">May 4, 2026 - 10:12 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Hackers have been exploiting a critical vulnerability (CVE-2026-22679) in the Weaver E-cology office automation since mid-March to run discovery commands. [...]...</p>
         </article>
@@ -381,7 +393,7 @@ The vulnerability (CVE-2...</p>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/physical-cargo-theft-cybercriminals" target="_blank" rel="noopener">Physical Cargo Theft Gets a Boost From Cybercriminals</a></h2>
           <div class="news-meta">
             <time datetime="2026-05-04T21:38:06.000Z">May 4, 2026 - 9:38 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Cargo theft is no longer about small groups of criminals operating on the ground, but transnational cybercriminal syndicates using access to supply chain systems to reroute goods....</p>
         </article>
@@ -445,20 +457,6 @@ The vulnerability (CVE-2...</p>
           </div>
           <p class="news-summary">A malicious version of the PyTorch Lightning package published on the Python Package Index (PyPI) delivers a credential-stealing payload targeting browsers, environment files, and cloud services. [......</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Progress Patches Critical MOVEit Automation Bug Enabling Authentication Bypass" data-summary="Progress Software has released updates to address two security flaws in MOVEit Automation, including a critical bug that could result in an authentication bypass.
-MOVEit Automation (formerly Central) ...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/05/progress-patches-critical-moveit.html" target="_blank" rel="noopener">Progress Patches Critical MOVEit Automation Bug Enabling Authentication Bypass</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-05-04T16:34:00.000Z">May 4, 2026 - 4:34 PM</time>
-            
-          </div>
-          <p class="news-summary">Progress Software has released updates to address two security flaws in MOVEit Automation, including a critical bug that could result in an authentication bypass.
-MOVEit Automation (formerly Central) ...</p>
-        </article>
     </div>
   </main>
   
@@ -503,7 +501,7 @@ MOVEit Automation (formerly Central) ...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-05T21:27:19.611Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-06T00:53:12.268Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
