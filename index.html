@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-05-06T04:20:10.879Z">5/6/2026, 4:20:10 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-05-06T07:04:58.979Z">5/6/2026, 7:04:58 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Middle East Cyber Battle Field Broadens — Especially in UAE" data-summary="As the war with Iran continues, breach attempts targeting the United Arab Emirates tripled in a few weeks — many targeting critical infrastructure....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/middle-east-cyber-battle-field-broadens-uae" target="_blank" rel="noopener">Middle East Cyber Battle Field Broadens — Especially in UAE</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-05-06T05:30:00.000Z">May 6, 2026 - 5:30 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">As the war with Iran continues, breach attempts targeting the United Arab Emirates tripled in a few weeks — many targeting critical infrastructure....</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="New stealthy Quasar Linux malware targets software developers" data-summary="A previously undocumented Linux implant named Quasar Linux (QLNX) is targeting developers' systems with a mix of rootkit, backdoor, and credential-stealing capabilities. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -369,7 +381,7 @@ The vulnerability (CVE-2...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/05/microsoft-details-phishing-campaign.html" target="_blank" rel="noopener">Microsoft Details Phishing Campaign Targeting 35,000 Users Across 26 Countries</a></h2>
           <div class="news-meta">
             <time datetime="2026-05-05T06:35:00.000Z">May 5, 2026 - 6:35 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Microsoft has disclosed details of a large-scale credential theft campaign that has leveraged a combination of code of conduct-themed lures and legitimate email services to direct users to attacker-co...</p>
         </article>
@@ -445,18 +457,6 @@ The vulnerability (CVE-2...</p>
           </div>
           <p class="news-summary">An active phishing campaign has been observed targeting multiple vectors since at least April 2025 with legitimate Remote Monitoring and Management (RMM) software as a way to establish persistent remo...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Backdoored PyTorch Lightning package drops credential stealer" data-summary="A malicious version of the PyTorch Lightning package published on the Python Package Index (PyPI) delivers a credential-stealing payload targeting browsers, environment files, and cloud services. [......">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/backdoored-pytorch-lightning-package-drops-credential-stealer/" target="_blank" rel="noopener">Backdoored PyTorch Lightning package drops credential stealer</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-05-04T17:15:27.000Z">May 4, 2026 - 5:15 PM</time>
-            
-          </div>
-          <p class="news-summary">A malicious version of the PyTorch Lightning package published on the Python Package Index (PyPI) delivers a credential-stealing payload targeting browsers, environment files, and cloud services. [......</p>
-        </article>
     </div>
   </main>
   
@@ -501,7 +501,7 @@ The vulnerability (CVE-2...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-06T04:20:10.879Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-06T07:04:58.979Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
