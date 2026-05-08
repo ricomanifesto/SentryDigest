@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Krebs on Security">Krebs on Security</option><option value="Dark Reading">Dark Reading</option>
+          <option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Krebs on Security">Krebs on Security</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-05-08T18:38:32.225Z">5/8/2026, 6:38:32 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-05-08T21:27:09.481Z">5/8/2026, 9:27:09 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="ShinyHunters Claims Second Attack Against Instructure" data-summary="The edtech company is struggling to wrest control from its hackers. PII belonging to hundreds of millions of people is on the line....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/shinyhunters-second-attack-instructure" target="_blank" rel="noopener">ShinyHunters Claims Second Attack Against Instructure</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-05-08T20:08:06.000Z">May 8, 2026 - 8:08 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The edtech company is struggling to wrest control from its hackers. PII belonging to hundreds of millions of people is on the line....</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="TCLBANKER Banking Trojan Targets Financial Platforms via WhatsApp and Outlook Worms" data-summary="Threat hunters have flagged a previously undocumented Brazilian banking trojan dubbed TCLBANKER that's capable of targeting 59 banking, fintech, and cryptocurrency platforms.
 The activity is being tra...">
           <div class="chips">
@@ -311,7 +323,7 @@ Dubbed Dirty Frag, it has been described as a successor to Copy Fail (CVE-2026-3
           <h2 class="news-title"><a href="https://www.darkreading.com/cloud-security/teampcp-malware-pcpjack-steals-cloud-secrets" target="_blank" rel="noopener">After Replacing TeamPCP Malware, 'PCPJack' Steals Cloud Secrets</a></h2>
           <div class="news-meta">
             <time datetime="2026-05-07T20:43:30.000Z">May 7, 2026 - 8:43 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">PCPJack makes innovative use of parquet files for stealthy, pre-validated target discovery as it canvasses multiple cloud environments....</p>
         </article>
@@ -323,7 +335,7 @@ Dubbed Dirty Frag, it has been described as a successor to Copy Fail (CVE-2026-3
           <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/cisa-new-leader-tom-parker" target="_blank" rel="noopener">Has CISA Finally Found Its New Leader in Tom Parker?</a></h2>
           <div class="news-meta">
             <time datetime="2026-05-07T19:07:17.000Z">May 7, 2026 - 7:07 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Dark Reading investigates rumors that Tom Parker, a board room "operator" and longtime cyber exec, could be next in line to take over CISA....</p>
         </article>
@@ -427,18 +439,6 @@ The vulnerability in question is...">
           <p class="news-summary">Palo Alto Networks has disclosed that threat actors may have attempted to unsuccessfully exploit a recently disclosed critical security flaw as early as April 9, 2026.
 The vulnerability in question is...</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="AI-Driven Cyberattack on Mexico Couldn't Breach OT Systems" data-summary="The most sophisticated AI-integrated campaign to date hit a brick wall in the form of a SCADA login screen....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/ics-ot-security/worlds-first-ai-driven-cyberattack-couldnt-breach-ot-systems" target="_blank" rel="noopener">AI-Driven Cyberattack on Mexico Couldn't Breach OT Systems</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-05-07T13:00:00.000Z">May 7, 2026 - 1:00 PM</time>
-            
-          </div>
-          <p class="news-summary">The most sophisticated AI-integrated campaign to date hit a brick wall in the form of a SCADA login screen....</p>
-        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="'TrustFall' Convention Exposes Claude Code Execution Risk" data-summary="Malicious repositories can trigger code execution in Claude Code, Cursor CLI, Gemini CLI, and CoPilot CLI with minimal or no user interaction, thanks to skimpy warning dialogs....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -451,17 +451,17 @@ The vulnerability in question is...</p>
           </div>
           <p class="news-summary">Malicious repositories can trigger code execution in Claude Code, Cursor CLI, Gemini CLI, and CoPilot CLI with minimal or no user interaction, thanks to skimpy warning dialogs....</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Crypto gang member gets 6.5 years for role in $230 million heist" data-summary="A 20-year-old California man was sentenced to 78 months in prison for serving as a home invader and money launderer in a criminal ring that stole over $250 million in cryptocurrency. [...]...">
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="AI-Driven Cyberattack on Mexico Couldn't Breach OT Systems" data-summary="The most sophisticated AI-integrated campaign to date hit a brick wall in the form of a SCADA login screen....">
           <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
           </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/crypto-gang-member-gets-65-years-for-role-in-230-million-heist/" target="_blank" rel="noopener">Crypto gang member gets 6.5 years for role in $230 million heist</a></h2>
+          <h2 class="news-title"><a href="https://www.darkreading.com/ics-ot-security/worlds-first-ai-driven-cyberattack-couldnt-breach-ot-systems" target="_blank" rel="noopener">AI-Driven Cyberattack on Mexico Couldn't Breach OT Systems</a></h2>
           <div class="news-meta">
-            <time datetime="2026-05-07T12:11:53.000Z">May 7, 2026 - 12:11 PM</time>
+            <time datetime="2026-05-07T13:00:00.000Z">May 7, 2026 - 1:00 PM</time>
             
           </div>
-          <p class="news-summary">A 20-year-old California man was sentenced to 78 months in prison for serving as a home invader and money launderer in a criminal ring that stole over $250 million in cryptocurrency. [...]...</p>
+          <p class="news-summary">The most sophisticated AI-integrated campaign to date hit a brick wall in the form of a SCADA login screen....</p>
         </article>
     </div>
   </main>
@@ -507,7 +507,7 @@ The vulnerability in question is...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-08T18:38:32.225Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-08T21:27:09.481Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
