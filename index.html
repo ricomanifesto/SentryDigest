@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-05-09T18:26:40.811Z">5/9/2026, 6:26:40 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-05-09T21:20:25.154Z">5/9/2026, 9:20:25 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="JDownloader site hacked to replace installers with Python RAT malware" data-summary="The website for the popular JDownloader download manager was compromised earlier this week to distribute malicious Windows and Linux installers, with the Windows payload found deploying a Python-based...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/jdownloader-site-hacked-to-replace-installers-with-python-rat-malware/" target="_blank" rel="noopener">JDownloader site hacked to replace installers with Python RAT malware</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-05-09T19:27:58.000Z">May 9, 2026 - 7:27 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The website for the popular JDownloader download manager was compromised earlier this week to distribute malicious Windows and Linux installers, with the Windows payload found deploying a Python-based...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Fake OpenAI repository on Hugging Face pushes infostealer malware" data-summary="A malicious Hugging Face repository that reached the platform's trending list impersonated OpenAI's &quot;Privacy Filter&quot; project to deliver information-stealing malware to Windows users. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -125,7 +137,7 @@ The li...</p>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/shinyhunters-second-attack-instructure" target="_blank" rel="noopener">ShinyHunters Claims Second Attack Against Instructure</a></h2>
           <div class="news-meta">
             <time datetime="2026-05-08T20:08:06.000Z">May 8, 2026 - 8:08 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The edtech company is struggling to wrest control from its hackers. PII belonging to hundreds of millions of people is on the line....</p>
         </article>
@@ -439,18 +451,6 @@ The high-severity vulnerability, CVE-2026-6973 (CVSS score: 7.2), ...</p>
           </div>
           <p class="news-summary">Your security controls aren't failing, they're missing where most of today's work actually happens. Keep Aware shows how browser activity like copy/paste and AI prompts bypass traditional protections....</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Americans sentenced for running 'laptop farms' for North Korea" data-summary="Two U.S. nationals were sentenced to 18 months in prison each for operating so-called laptop farms that helped North Korean IT workers fraudulently obtain remote employment at nearly 70 American compa...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/americans-sentenced-for-running-laptop-farms-for-north-korea/" target="_blank" rel="noopener">Americans sentenced for running 'laptop farms' for North Korea</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-05-07T13:45:48.000Z">May 7, 2026 - 1:45 PM</time>
-            
-          </div>
-          <p class="news-summary">Two U.S. nationals were sentenced to 18 months in prison each for operating so-called laptop farms that helped North Korean IT workers fraudulently obtain remote employment at nearly 70 American compa...</p>
-        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="PAN-OS RCE Exploit Under Active Use Enabling Root Access and Espionage" data-summary="Palo Alto Networks has disclosed that threat actors may have attempted to unsuccessfully exploit a recently disclosed critical security flaw as early as April 9, 2026.
 The vulnerability in question is...">
           <div class="chips">
@@ -509,7 +509,7 @@ The vulnerability in question is...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-09T18:26:40.811Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-09T21:20:25.154Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
