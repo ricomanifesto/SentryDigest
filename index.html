@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Krebs on Security">Krebs on Security</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option><option value="Krebs on Security">Krebs on Security</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-05-09T12:27:58.563Z">5/9/2026, 12:27:58 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-05-09T15:24:46.942Z">5/9/2026, 3:24:46 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Fake OpenAI repository on Hugging Face pushes infostealer malware" data-summary="A malicious Hugging Face repository that reached the platform's trending list impersonated OpenAI's &quot;Privacy Filter&quot; project to deliver information-stealing malware to Windows users. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/fake-openai-repository-on-hugging-face-pushes-infostealer-malware/" target="_blank" rel="noopener">Fake OpenAI repository on Hugging Face pushes infostealer malware</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-05-09T14:26:03.000Z">May 9, 2026 - 2:26 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A malicious Hugging Face repository that reached the platform's trending list impersonated OpenAI's "Privacy Filter" project to deliver information-stealing malware to Windows users. [...]...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="cPanel, WHM Release Fixes for Three New Vulnerabilities — Patch Now" data-summary="cPanel has released updates to address three vulnerabilities in cPanel and Web Host Manager (WHM) that could be exploited to achieve privilege escalation, code execution, and denial-of-service.
 The li...">
           <div class="chips">
@@ -151,7 +163,7 @@ The activity is being tra...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/05/fake-call-history-apps-stole-payments.html" target="_blank" rel="noopener">Fake Call History Apps Stole Payments From Users After 7.3 Million Play Store Downloads</a></h2>
           <div class="news-meta">
             <time datetime="2026-05-08T15:08:00.000Z">May 8, 2026 - 3:08 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Cybersecurity researchers have discovered fraudulent apps on the official Google Play Store for Android that falsely claimed to offer access to call histories for any phone number, only to trick users...</p>
         </article>
@@ -163,7 +175,7 @@ The activity is being tra...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/why-more-analysts-wont-solve-your-socs-alert-problem/" target="_blank" rel="noopener">Why More Analysts Won’t Solve Your SOC’s Alert Problem</a></h2>
           <div class="news-meta">
             <time datetime="2026-05-08T14:02:12.000Z">May 8, 2026 - 2:02 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Attackers move faster than overwhelmed SOC teams can realistically investigate alerts. Prophet Security breaks down how AI can help analysts investigate alerts faster and focus on real threats. [...]...</p>
         </article>
@@ -176,7 +188,7 @@ Every major breach you’ve read about lately usually starts the same way: one e
           <h2 class="news-title"><a href="https://thehackernews.com/2026/05/one-click-total-shutdown-patient-zero.html" target="_blank" rel="noopener">One Click, Total Shutdown: The "Patient Zero" Webinar on Killing Stealth Breaches</a></h2>
           <div class="news-meta">
             <time datetime="2026-05-08T14:01:00.000Z">May 8, 2026 - 2:01 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The hardest part of cybersecurity isn't the technology, it’s the people.
 Every major breach you’ve read about lately usually starts the same way: one employee, one clever email, and one "Patient Zero"...</p>
@@ -189,7 +201,7 @@ Every major breach you’ve read about lately usually starts the same way: one e
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/trellix-source-code-breach-claimed-by-ransomhouse-hackers/" target="_blank" rel="noopener">Trellix source code breach claimed by RansomHouse hackers</a></h2>
           <div class="news-meta">
             <time datetime="2026-05-08T13:23:23.000Z">May 8, 2026 - 1:23 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The attack on the Trellix source code repository disclosed last week has been claimed by the RansomHouse threat group, which leaked a small set of images as proof of the intrusion. [...]...</p>
         </article>
@@ -453,18 +465,6 @@ The vulnerability in question is...">
           <p class="news-summary">Palo Alto Networks has disclosed that threat actors may have attempted to unsuccessfully exploit a recently disclosed critical security flaw as early as April 9, 2026.
 The vulnerability in question is...</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="'TrustFall' Convention Exposes Claude Code Execution Risk" data-summary="Malicious repositories can trigger code execution in Claude Code, Cursor CLI, Gemini CLI, and CoPilot CLI with minimal or no user interaction, thanks to skimpy warning dialogs....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/application-security/trustfall-exposes-claude-code-execution-risk" target="_blank" rel="noopener">'TrustFall' Convention Exposes Claude Code Execution Risk</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-05-07T13:00:00.000Z">May 7, 2026 - 1:00 PM</time>
-            
-          </div>
-          <p class="news-summary">Malicious repositories can trigger code execution in Claude Code, Cursor CLI, Gemini CLI, and CoPilot CLI with minimal or no user interaction, thanks to skimpy warning dialogs....</p>
-        </article>
     </div>
   </main>
   
@@ -509,7 +509,7 @@ The vulnerability in question is...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-09T12:27:58.563Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-09T15:24:46.942Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
