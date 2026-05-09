@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-05-09T04:13:12.096Z">5/9/2026, 4:13:12 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-05-09T06:51:32.937Z">5/9/2026, 6:51:32 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -274,7 +274,7 @@ Dubbed Dirty Frag, it has been described as a successor to Copy Fail (CVE-2026-3
           <h2 class="news-title"><a href="https://thehackernews.com/2026/05/linux-kernel-dirty-frag-lpe-exploit.html" target="_blank" rel="noopener">Linux Kernel Dirty Frag LPE Exploit Enables Root Access Across Major Distributions</a></h2>
           <div class="news-meta">
             <time datetime="2026-05-08T05:12:00.000Z">May 8, 2026 - 5:12 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Details have emerged about a new, unpatched local privilege escalation (LPE) vulnerability impacting the Linux kernel.
 Dubbed Dirty Frag, it has been described as a successor to Copy Fail (CVE-2026-31...</p>
@@ -507,7 +507,7 @@ The vulnerability in question is...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-09T04:13:12.096Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-09T06:51:32.937Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
