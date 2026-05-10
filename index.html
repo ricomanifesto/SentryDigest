@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-05-10T15:25:42.683Z">5/10/2026, 3:25:42 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-05-10T18:26:44.253Z">5/10/2026, 6:26:44 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Hackers abuse Google ads, Claude.ai chats to push Mac malware" data-summary="Attackers are abusing Google Ads and legitimate Claude.ai shared chats in an active malvertising campaign. Users searching for &quot;Claude mac download&quot; may come across sponsored search results that list ...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hackers-abuse-google-ads-claudeai-chats-to-push-mac-malware/" target="_blank" rel="noopener">Hackers abuse Google ads, Claude.ai chats to push Mac malware</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-05-10T17:52:15.000Z">May 10, 2026 - 5:52 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Attackers are abusing Google Ads and legitimate Claude.ai shared chats in an active malvertising campaign. Users searching for "Claude mac download" may come across sponsored search results that list ...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Police shut down reboot of Crimenetwork marketplace, arrest admin" data-summary="German authorities have shut down a relaunch version of the criminal marketplace 'Crimenetwork' that generated more than 3.6 million euros, and arrested its operator. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -453,18 +465,6 @@ The high-severity vulnerability, CVE-2026-6973 (CVSS score: 7.2), ...</p>
           </div>
           <p class="news-summary">Cybersecurity researchers have disclosed details of a new credential theft framework dubbed PCPJack that targets exposed cloud infrastructure and ousts any artifacts linked to TeamPCP from the environ...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Ivanti warns of new EPMM flaw exploited in zero-day attacks" data-summary="Ivanti warned customers today to patch a high-severity remote code execution vulnerability in Endpoint Manager Mobile (EPMM) exploited in zero-day attacks. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/ivanti-warns-of-new-epmm-flaw-exploited-in-zero-day-attacks/" target="_blank" rel="noopener">Ivanti warns of new EPMM flaw exploited in zero-day attacks</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-05-07T15:20:51.000Z">May 7, 2026 - 3:20 PM</time>
-            
-          </div>
-          <p class="news-summary">Ivanti warned customers today to patch a high-severity remote code execution vulnerability in Endpoint Manager Mobile (EPMM) exploited in zero-day attacks. [...]...</p>
-        </article>
     </div>
   </main>
   
@@ -509,7 +509,7 @@ The high-severity vulnerability, CVE-2026-6973 (CVSS score: 7.2), ...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-10T15:25:42.683Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-10T18:26:44.253Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
