@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-05-10T07:03:11.022Z">5/10/2026, 7:03:11 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-05-10T09:36:02.973Z">5/10/2026, 9:36:02 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -124,7 +124,7 @@ The li...">
           <h2 class="news-title"><a href="https://thehackernews.com/2026/05/cpanel-whm-patch-3-new-vulnerabilities.html" target="_blank" rel="noopener">cPanel, WHM Release Fixes for Three New Vulnerabilities — Patch Now</a></h2>
           <div class="news-meta">
             <time datetime="2026-05-09T07:16:00.000Z">May 9, 2026 - 7:16 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">cPanel has released updates to address three vulnerabilities in cPanel and Web Host Manager (WHM) that could be exploited to achieve privilege escalation, code execution, and denial-of-service.
 The li...</p>
@@ -509,7 +509,7 @@ The vulnerability in question is...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-10T07:03:11.022Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-10T09:36:02.973Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
