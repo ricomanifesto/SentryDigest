@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-05-12T04:20:42.425Z">5/12/2026, 4:20:42 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-05-12T07:09:29.379Z">5/12/2026, 7:09:29 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="iOS 26.5 Brings Default End-to-End Encrypted RCS Messaging Between iPhone and Android" data-summary="Apple on Monday officially released iOS 26.5 with support for end-to-end encryption (E2EE) to Rich Communication Services (RCS) in beta as part of a &quot;cross-industry effort&quot; to replace traditional SMS ...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/05/ios-265-brings-default-end-to-end.html" target="_blank" rel="noopener">iOS 26.5 Brings Default End-to-End Encrypted RCS Messaging Between iPhone and Android</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-05-12T05:18:00.000Z">May 12, 2026 - 5:18 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Apple on Monday officially released iOS 26.5 with support for end-to-end encryption (E2EE) to Rich Communication Services (RCS) in beta as part of a "cross-industry effort" to replace traditional SMS ...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="GM agrees to $12.75M California settlement over sale of drivers’ data" data-summary="California Attorney General Rob Bonta announced a proposed $12.75 million settlement agreement with General Motors (GM) over allegations that the company violated the California Consumer Privacy Act (...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -321,7 +333,7 @@ Somebody poisoned a trusted download again, somebody else turned cloud servers i
           <h2 class="news-title"><a href="https://thehackernews.com/2026/05/fake-openai-privacy-filter-repo-hits-1.html" target="_blank" rel="noopener">Fake OpenAI Privacy Filter Repo Hits #1 on Hugging Face, Draws 244K Downloads</a></h2>
           <div class="news-meta">
             <time datetime="2026-05-11T07:05:00.000Z">May 11, 2026 - 7:05 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A malicious Hugging Face repository managed to take a spot in the platform's trending list by impersonating OpenAI's Privacy Filter open-weight model to deliver a Rust-based information stealer to Win...</p>
         </article>
@@ -451,18 +463,6 @@ The activity is being tra...</p>
           </div>
           <p class="news-summary">Cybersecurity researchers have discovered fraudulent apps on the official Google Play Store for Android that falsely claimed to offer access to call histories for any phone number, only to trick users...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Why More Analysts Won’t Solve Your SOC’s Alert Problem" data-summary="Attackers move faster than overwhelmed SOC teams can realistically investigate alerts. Prophet Security breaks down how AI can help analysts investigate alerts faster and focus on real threats. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/why-more-analysts-wont-solve-your-socs-alert-problem/" target="_blank" rel="noopener">Why More Analysts Won’t Solve Your SOC’s Alert Problem</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-05-08T14:02:12.000Z">May 8, 2026 - 2:02 PM</time>
-            
-          </div>
-          <p class="news-summary">Attackers move faster than overwhelmed SOC teams can realistically investigate alerts. Prophet Security breaks down how AI can help analysts investigate alerts faster and focus on real threats. [...]...</p>
-        </article>
     </div>
   </main>
   
@@ -507,7 +507,7 @@ The activity is being tra...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-12T04:20:42.425Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-12T07:09:29.379Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
