@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="Krebs on Security">Krebs on Security</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Krebs on Security">Krebs on Security</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,36 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-05-13T07:13:51.543Z">5/13/2026, 7:13:51 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-05-13T09:57:30.667Z">5/13/2026, 9:57:30 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="GemStuffer Abuses 150+ RubyGems to Exfiltrate Scraped U.K. Council Portal Data" data-summary="Cybersecurity researchers are calling attention to a new campaign dubbed GemStuffer that has targeted the RubyGems repository with more than 150 gems that use the registry as a data exfiltration chann...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/05/gemstuffer-abuses-150-rubygems-to.html" target="_blank" rel="noopener">GemStuffer Abuses 150+ RubyGems to Exfiltrate Scraped U.K. Council Portal Data</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-05-13T08:08:54.000Z">May 13, 2026 - 8:08 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Cybersecurity researchers are calling attention to a new campaign dubbed GemStuffer that has targeted the RubyGems repository with more than 150 gems that use the registry as a data exfiltration chann...</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Android Adds Intrusion Logging for Sophisticated Spyware Forensics" data-summary="Google on Tuesday unveiled a new opt-in Android feature called Intrusion Logging for storing forensic logs to better analyze sophisticated spyware attacks.
+Intrusion Logging, available as part of Adva...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/05/android-adds-intrusion-logging-for.html" target="_blank" rel="noopener">Android Adds Intrusion Logging for Sophisticated Spyware Forensics</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-05-13T06:55:42.000Z">May 13, 2026 - 6:55 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Google on Tuesday unveiled a new opt-in Android feature called Intrusion Logging for storing forensic logs to better analyze sophisticated spyware attacks.
+Intrusion Logging, available as part of Adva...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="US govt seeks Instructure testimony on massive Canvas cyberattack" data-summary="The U.S. House Committee on Homeland Security is calling on Instructure executives to testify about two cyberattacks by the ShinyHunters extortion group that targeted the company's Canvas platform, al...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -383,7 +409,7 @@ Security operations teams are drowning in alerts. But the real problem isn't alw
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/instructure-reaches-agreement-with-shinyhunters-to-stop-data-leak/" target="_blank" rel="noopener">Instructure reaches 'agreement' with ShinyHunters to stop data leak</a></h2>
           <div class="news-meta">
             <time datetime="2026-05-12T09:23:56.000Z">May 12, 2026 - 9:23 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Instructure, the edtech giant behind the widely popular Canvas learning management system (LMS), has reached an "agreement" with the ShinyHunters extortion group to prevent the data stolen in a recent...</p>
         </article>
@@ -395,7 +421,7 @@ Security operations teams are drowning in alerts. But the real problem isn't alw
           <h2 class="news-title"><a href="https://thehackernews.com/2026/05/instructure-reaches-ransom-agreement.html" target="_blank" rel="noopener">Instructure Reaches Ransom Agreement with ShinyHunters to Stop 3.65TB Canvas Leak</a></h2>
           <div class="news-meta">
             <time datetime="2026-05-12T07:37:00.000Z">May 12, 2026 - 7:37 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">American educational technology company Instructure, the parent company of Canvas, said it reached an "agreement" with a decentralized cybercrime extortion group after it breached its network and thre...</p>
         </article>
@@ -434,30 +460,6 @@ Security operations teams are drowning in alerts. But the real problem isn't alw
             
           </div>
           <p class="news-summary">California Attorney General Rob Bonta announced a proposed $12.75 million settlement agreement with General Motors (GM) over allegations that the company violated the California Consumer Privacy Act (...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Official CheckMarx Jenkins package compromised with infostealer" data-summary="Checkmarx warned over the weekend that a rogue version of its Jenkins Application Security Testing (AST) plugin had been published on the Jenkins Marketplace. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/official-checkmarx-jenkins-package-compromised-with-infostealer/" target="_blank" rel="noopener">Official CheckMarx Jenkins package compromised with infostealer</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-05-11T22:03:06.000Z">May 11, 2026 - 10:03 PM</time>
-            
-          </div>
-          <p class="news-summary">Checkmarx warned over the weekend that a rogue version of its Jenkins Application Security Testing (AST) plugin had been published on the Jenkins Marketplace. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="FCC Softens Ban on Foreign-Made Routers" data-summary="The Federal Communications Commission eased some restrictions and pushed back deadlines for foreign router manufacturers, but the ban is still in place....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/endpoint-security/fcc-softens-foreign-router-ban" target="_blank" rel="noopener">FCC Softens Ban on Foreign-Made Routers</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-05-11T21:15:48.000Z">May 11, 2026 - 9:15 PM</time>
-            
-          </div>
-          <p class="news-summary">The Federal Communications Commission eased some restrictions and pushed back deadlines for foreign router manufacturers, but the ban is still in place....</p>
         </article>
     </div>
   </main>
@@ -503,7 +505,7 @@ Security operations teams are drowning in alerts. But the real problem isn't alw
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-13T07:13:51.543Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-13T09:57:30.667Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
