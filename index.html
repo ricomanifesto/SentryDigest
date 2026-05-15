@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-05-15T00:59:21.800Z">5/15/2026, 12:59:21 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-05-15T04:27:04.636Z">5/15/2026, 4:27:04 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Taiwan Incident Highlights Cybersecurity Gaps in Rail Systems" data-summary="A Taiwanese student experimenting with software-defined radio technology shut down three bullet trains for nearly an hour, leading to an anti-terrorism response....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/ics-ot-security/taiwan-incident-highlights-cybersecurity-gaps" target="_blank" rel="noopener">Taiwan Incident Highlights Cybersecurity Gaps in Rail Systems</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-05-15T01:00:00.000Z">May 15, 2026 - 1:00 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A Taiwanese student experimenting with software-defined radio technology shut down three bullet trains for nearly an hour, leading to an anti-terrorism response....</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="TeamPCP hackers advertise Mistral AI code repos for sale" data-summary="The TeamPCP hacker group is threatening to leak source code from the Mistral AI project unless a buyer is found for the data. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -449,18 +461,6 @@ The vulnerability, disc...</p>
           </div>
           <p class="news-summary">Threat actors are publishing RubyGems packages that include scrapers targeting public-facing UK government servers, but with no clear objective....</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Tables Turn on 'The Gentlemen' RaaS Gang With Data Leak" data-summary="An OPSEC failure provides a window into what helped the ransomware group rise: a generous affiliate model, opportunistic TTPs, and an effective organizational structure....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/gentlemen-raas-gang-data-leak" target="_blank" rel="noopener">Tables Turn on 'The Gentlemen' RaaS Gang With Data Leak</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-05-13T20:47:46.000Z">May 13, 2026 - 8:47 PM</time>
-            
-          </div>
-          <p class="news-summary">An OPSEC failure provides a window into what helped the ransomware group rise: a generous affiliate model, opportunistic TTPs, and an effective organizational structure....</p>
-        </article>
     </div>
   </main>
   
@@ -505,7 +505,7 @@ The vulnerability, disc...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-15T00:59:21.800Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-15T04:27:04.636Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
