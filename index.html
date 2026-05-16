@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-05-16T12:30:06.510Z">5/16/2026, 12:30:06 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-05-16T15:26:54.987Z">5/16/2026, 3:26:54 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -102,6 +102,18 @@
             <span class="badge-new">NEW</span>
           </div>
           <p class="news-summary">AI agents capable of discovering and exploiting obscure vulnerabilities are emerging alongside developers producing vast amounts of potentially flawed AI-generated code, forcing defenders to adapt acc...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Russian hackers turn Kazuar backdoor into modular P2P botnet" data-summary="The Russian hacker group Secret Blizzard has developed its long-running Kazuar backdoor into a modular peer-to-peer (P2P) botnet designed for long-term persistence, stealth, and data collection. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/russian-hackers-turn-kazuar-backdoor-into-modular-p2p-botnet/" target="_blank" rel="noopener">Russian hackers turn Kazuar backdoor into modular P2P botnet</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-05-16T14:15:37.000Z">May 16, 2026 - 2:15 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The Russian hacker group Secret Blizzard has developed its long-running Kazuar backdoor into a modular peer-to-peer (P2P) botnet designed for long-term persistence, stealth, and data collection. [...]...</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Funnel Builder WordPress plugin bug exploited to steal credit cards" data-summary="A critical vulnerability in the Funnel Builder plugin for WordPress is being actively exploited to inject malicious JavaScript snippets into WooCommerce checkout pages. [...]...">
           <div class="chips">
@@ -179,7 +191,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-edge-to-stop-loading-cleartext-passwords-in-memory-on-startup/" target="_blank" rel="noopener">Microsoft backpedals: Edge to stop loading passwords into memory</a></h2>
           <div class="news-meta">
             <time datetime="2026-05-15T14:49:39.000Z">May 15, 2026 - 2:49 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Microsoft is updating the Edge web browser to ensure it no longer loads saved passwords into process memory in clear text at startup after previously stating it was "by design." [...]...</p>
         </article>
@@ -191,7 +203,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/inside-the-remus-infostealer-session-theft-maas-and-rapid-evolution/" target="_blank" rel="noopener">Inside the REMUS Infostealer: Session Theft, MaaS, and Rapid Evolution</a></h2>
           <div class="news-meta">
             <time datetime="2026-05-15T14:02:12.000Z">May 15, 2026 - 2:02 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Stolen browser sessions and authentication tokens are becoming more valuable than stolen passwords. Flare explains how the REMUS infostealer evolved around session theft and operational scalability. [...</p>
         </article>
@@ -206,7 +218,7 @@
           <h2 class="news-title"><a href="https://thehackernews.com/2026/05/four-openclaw-flaws-enable-data-theft.html" target="_blank" rel="noopener">Four OpenClaw Flaws Enable Data Theft, Privilege Escalation, and Persistence</a></h2>
           <div class="news-meta">
             <time datetime="2026-05-15T13:35:04.000Z">May 15, 2026 - 1:35 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Cybersecurity researchers have disclosed a set of four security flaws in OpenClaw that could be chained to achieve data theft, privilege escalation, and persistence.
 
@@ -461,18 +473,6 @@ This week feels dumb in the worst way — bad links, weak checks, fake help desk
           <p class="news-summary">Everything is still on fire.
 This week feels dumb in the worst way — bad links, weak checks, fake help desks, shady forum posts, and people turning supply chain attacks into some cursed little game fo...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="18-year-old NGINX vulnerability allows DoS, potential RCE" data-summary="An 18-year-old flaw in the NGINX open-source web server, discovered using an autonomous scanning system, can be exploited for denial of service and, under certain conditions, remote code execution. [....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/18-year-old-nginx-vulnerability-allows-dos-potential-rce/" target="_blank" rel="noopener">18-year-old NGINX vulnerability allows DoS, potential RCE</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-05-14T15:43:41.000Z">May 14, 2026 - 3:43 PM</time>
-            
-          </div>
-          <p class="news-summary">An 18-year-old flaw in the NGINX open-source web server, discovered using an autonomous scanning system, can be exploited for denial of service and, under certain conditions, remote code execution. [....</p>
-        </article>
     </div>
   </main>
   
@@ -517,7 +517,7 @@ This week feels dumb in the worst way — bad links, weak checks, fake help desk
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-16T12:30:06.510Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-16T15:26:54.987Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
