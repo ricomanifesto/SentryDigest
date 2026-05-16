@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option>
+          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-05-16T18:26:05.570Z">5/16/2026, 6:26:05 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-05-16T21:21:06.920Z">5/16/2026, 9:21:06 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -102,6 +102,18 @@
             <span class="badge-new">NEW</span>
           </div>
           <p class="news-summary">AI agents capable of discovering and exploiting obscure vulnerabilities are emerging alongside developers producing vast amounts of potentially flawed AI-generated code, forcing defenders to adapt acc...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft rejects critical Azure vulnerability report, no CVE issued" data-summary="A security researcher claims Microsoft quietly fixed an Azure Backup for AKS vulnerability after rejecting his report, and without issuing a CVE. Microsoft disputes the claim, telling BleepingComputer...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/microsoft-rejects-critical-azure-vulnerability-report-no-cve-issued/" target="_blank" rel="noopener">Microsoft rejects critical Azure vulnerability report, no CVE issued</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-05-16T20:55:44.000Z">May 16, 2026 - 8:55 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A security researcher claims Microsoft quietly fixed an Azure Backup for AKS vulnerability after rejecting his report, and without issuing a CVE. Microsoft disputes the claim, telling BleepingComputer...</p>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Funnel Builder Flaw Under Active Exploitation Enables WooCommerce Checkout Skimming" data-summary="A critical security vulnerability impacting the
   Funnel Builder
@@ -143,7 +155,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/funnel-builder-wordpress-plugin-bug-exploited-to-steal-credit-cards/" target="_blank" rel="noopener">Funnel Builder WordPress plugin bug exploited to steal credit cards</a></h2>
           <div class="news-meta">
             <time datetime="2026-05-15T19:30:33.000Z">May 15, 2026 - 7:30 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A critical vulnerability in the Funnel Builder plugin for WordPress is being actively exploited to inject malicious JavaScript snippets into WooCommerce checkout pages. [...]...</p>
         </article>
@@ -467,18 +479,6 @@ According to Socket and StepSecurity, three different ve...">
           <p class="news-summary">Cybersecurity researchers are sounding the alarm about what has been described as "malicious activity" in newly published versions of node-ipc.
 According to Socket and StepSecurity, three different ve...</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="'FrostyNeighbor' APT Carefully Targets Govt Orgs in Poland, Ukraine" data-summary="Attackers uniquely fingerprint victims before delivering spear-phishing payloads aimed at espionage, in the latest campaign from the Belarussian nation-state threat group....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/frostyneighbor-apt-govt-orgs-poland-ukraine" target="_blank" rel="noopener">'FrostyNeighbor' APT Carefully Targets Govt Orgs in Poland, Ukraine</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-05-14T16:59:25.000Z">May 14, 2026 - 4:59 PM</time>
-            
-          </div>
-          <p class="news-summary">Attackers uniquely fingerprint victims before delivering spear-phishing payloads aimed at espionage, in the latest campaign from the Belarussian nation-state threat group....</p>
-        </article>
     </div>
   </main>
   
@@ -523,7 +523,7 @@ According to Socket and StepSecurity, three different ve...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-16T18:26:05.570Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-16T21:21:06.920Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
