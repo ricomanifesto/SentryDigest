@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-05-17T18:28:55.054Z">5/17/2026, 6:28:55 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-05-17T21:22:57.442Z">5/17/2026, 9:22:57 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -155,7 +155,7 @@ The vulnerability, tracked...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/microsoft-rejects-critical-azure-vulnerability-report-no-cve-issued/" target="_blank" rel="noopener">Microsoft rejects critical Azure vulnerability report, no CVE issued</a></h2>
           <div class="news-meta">
             <time datetime="2026-05-16T20:55:44.000Z">May 16, 2026 - 8:55 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A security researcher claims Microsoft quietly fixed an Azure Backup for AKS vulnerability after rejecting his report, and without issuing a CVE. Microsoft disputes the claim, telling BleepingComputer...</p>
         </article>
@@ -527,7 +527,7 @@ The vulnerability, tracked as CVE-202...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-17T18:28:55.054Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-17T21:22:57.442Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
