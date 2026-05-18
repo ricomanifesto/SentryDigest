@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,46 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-05-18T13:26:51.244Z">5/18/2026, 1:26:51 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-05-18T16:11:24.836Z">5/18/2026, 4:11:24 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="⚡ Weekly Recap: Exchange 0-Day, npm Worm, Fake AI Repo, Cisco Exploit and More" data-summary="Monday opens with a trust problem. A mail server flaw is under active use. A network control system was targeted. Trusted packages were poisoned. A fake model page pushed a stealer. Then came the fami...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/05/weekly-recap-exchange-0-day-npm-worm.html" target="_blank" rel="noopener">⚡ Weekly Recap: Exchange 0-Day, npm Worm, Fake AI Repo, Cisco Exploit and More</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-05-18T13:50:17.000Z">May 18, 2026 - 1:50 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Monday opens with a trust problem. A mail server flaw is under active use. A network control system was targeted. Trusted packages were poisoned. A fake model page pushed a stealer. Then came the fami...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Grafana says stolen GitHub token let hackers steal codebase" data-summary="Grafana Labs disclosed that hackers have downloaded its source code after breaching its GitHub environment using a stolen access token. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/grafana-says-stolen-github-token-let-hackers-steal-codebase/" target="_blank" rel="noopener">Grafana says stolen GitHub token let hackers steal codebase</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-05-18T13:46:26.000Z">May 18, 2026 - 1:46 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Grafana Labs disclosed that hackers have downloaded its source code after breaching its GitHub environment using a stolen access token. [...]...</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="How to Reduce Phishing Exposure Before It Turns into Business Disruption" data-summary="What happens when a phishing email looks clean enough to pass through security, but dangerous enough to expose the business after one click? That is the gap many SOCs still struggle with: the attacks ...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/05/how-to-reduce-phishing-exposure-before.html" target="_blank" rel="noopener">How to Reduce Phishing Exposure Before It Turns into Business Disruption</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-05-18T13:00:00.000Z">May 18, 2026 - 1:00 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">What happens when a phishing email looks clean enough to pass through security, but dangerous enough to expose the business after one click? That is the gap many SOCs still struggle with: the attacks ...</p>
+        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="The Boring Stuff is Dangerous Now" data-summary="AI agents capable of discovering and exploiting obscure vulnerabilities are emerging alongside developers producing vast amounts of potentially flawed AI-generated code, forcing defenders to adapt acc...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -249,7 +285,7 @@ According to Broadcom-owned Symantec and Car...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/tycoon2fa-hijacks-microsoft-365-accounts-via-device-code-phishing/" target="_blank" rel="noopener">Tycoon2FA hijacks Microsoft 365 accounts via device-code phishing</a></h2>
           <div class="news-meta">
             <time datetime="2026-05-17T14:43:10.000Z">May 17, 2026 - 2:43 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The Tycoon2FA phishing kit now supports device-code phishing attacks and abuses Trustifi click-tracking URLs to hijack Microsoft 365 accounts. [...]...</p>
         </article>
@@ -451,42 +487,6 @@ The vulnerability, tracked...</p>
 
   The vulnerabilities, collectiv...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft to automatically roll back faulty Windows drivers" data-summary="Microsoft is introducing a new capability that will allow it to remotely roll back problematic Windows drivers delivered through Windows Update. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-to-automatically-roll-back-faulty-windows-drivers/" target="_blank" rel="noopener">Microsoft to automatically roll back faulty Windows drivers</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-05-15T12:29:48.000Z">May 15, 2026 - 12:29 PM</time>
-            
-          </div>
-          <p class="news-summary">Microsoft is introducing a new capability that will allow it to remotely roll back problematic Windows drivers delivered through Windows Update. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Cyber Pioneers Ponder Past as Prologue" data-summary="Robert &quot;RSnake&quot; Hansen, Katie Moussouris, Rich Mogull, Richard Stiennon, and Bruce Schneier reflect on how their favorite columns penned for Dark Reading over the past 20 years have stood the test of ...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/cybersecurity-pioneers-ponder-past-prologue" target="_blank" rel="noopener">Cyber Pioneers Ponder Past as Prologue</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-05-15T12:00:00.000Z">May 15, 2026 - 12:00 PM</time>
-            
-          </div>
-          <p class="news-summary">Robert "RSnake" Hansen, Katie Moussouris, Rich Mogull, Richard Stiennon, and Bruce Schneier reflect on how their favorite columns penned for Dark Reading over the past 20 years have stood the test of ...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="What 45 Days of Watching Your Own Tools Will Tell You About Your Real Attack Surface" data-summary="In Your Biggest Security Risk Isn't Malware — It's What You Already Trust, we made a simple argument: the most dangerous activity inside most organizations no longer looks like an attack. It looks lik...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/05/what-45-days-of-watching-your-own-tools.html" target="_blank" rel="noopener">What 45 Days of Watching Your Own Tools Will Tell You About Your Real Attack Surface</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-05-15T11:00:00.000Z">May 15, 2026 - 11:00 AM</time>
-            
-          </div>
-          <p class="news-summary">In Your Biggest Security Risk Isn't Malware — It's What You Already Trust, we made a simple argument: the most dangerous activity inside most organizations no longer looks like an attack. It looks lik...</p>
-        </article>
     </div>
   </main>
   
@@ -531,7 +531,7 @@ The vulnerability, tracked...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-18T13:26:51.244Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-18T16:11:24.836Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
