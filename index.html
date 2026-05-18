@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,48 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-05-18T16:11:24.836Z">5/18/2026, 4:11:24 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-05-18T18:44:22.305Z">5/18/2026, 6:44:22 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Leaked Shai-Hulud malware fuels new npm infostealer campaign" data-summary="The Shai-Hulud malware leaked last week is now used in new attacks on the Node Package Manager (npm) index, as infected packages emerged over the weekend. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/leaked-shai-hulud-malware-fuels-new-npm-infostealer-campaign/" target="_blank" rel="noopener">Leaked Shai-Hulud malware fuels new npm infostealer campaign</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-05-18T17:28:02.000Z">May 18, 2026 - 5:28 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The Shai-Hulud malware leaked last week is now used in new attacks on the Node Package Manager (npm) index, as infected packages emerged over the weekend. [...]...</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="INTERPOL Operation Ramz Disrupts MENA Cybercrime Networks with 201 Arrests" data-summary="INTERPOL has coordinated a first-of-its-kind cybercrime crackdown across the Middle East and North Africa (MENA) that led to 201 arrests and the identification of an additional 382 suspects.
+The initi...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/05/interpol-operation-ramz-disrupts-mena.html" target="_blank" rel="noopener">INTERPOL Operation Ramz Disrupts MENA Cybercrime Networks with 201 Arrests</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-05-18T17:21:18.000Z">May 18, 2026 - 5:21 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">INTERPOL has coordinated a first-of-its-kind cybercrime crackdown across the Middle East and North Africa (MENA) that led to 201 arrests and the identification of an additional 382 suspects.
+The initi...</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Fuel Tank Breaches Expand Scope of Iran's Cyber Offensive" data-summary="Security experts have long warned that insecure automatic tank gauge (ATG) systems exposed on the Internet can be tampered with by threat actors....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/fuel-tank-breaches-expand-scope-irans-cyber-offensive" target="_blank" rel="noopener">Fuel Tank Breaches Expand Scope of Iran's Cyber Offensive</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-05-18T15:41:55.000Z">May 18, 2026 - 3:41 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Security experts have long warned that insecure automatic tank gauge (ATG) systems exposed on the Internet can be tampered with by threat actors....</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="⚡ Weekly Recap: Exchange 0-Day, npm Worm, Fake AI Repo, Cisco Exploit and More" data-summary="Monday opens with a trust problem. A mail server flaw is under active use. A network control system was targeted. Trusted packages were poisoned. A fake model page pushed a stealer. Then came the fami...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
@@ -445,48 +483,6 @@ The vulnerability, tracked...</p>
           </div>
           <p class="news-summary">Two vulnerabilities in the Avada Builder plugin for WordPress, with an estimated one million active installations, allow hackers to read arbitrary files and extract sensitive information from the data...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft backpedals: Edge to stop loading passwords into memory" data-summary="Microsoft is updating the Edge web browser to ensure it no longer loads saved passwords into process memory in clear text at startup after previously stating it was &quot;by design.&quot; [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-edge-to-stop-loading-cleartext-passwords-in-memory-on-startup/" target="_blank" rel="noopener">Microsoft backpedals: Edge to stop loading passwords into memory</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-05-15T14:49:39.000Z">May 15, 2026 - 2:49 PM</time>
-            
-          </div>
-          <p class="news-summary">Microsoft is updating the Edge web browser to ensure it no longer loads saved passwords into process memory in clear text at startup after previously stating it was "by design." [...]...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Inside the REMUS Infostealer: Session Theft, MaaS, and Rapid Evolution" data-summary="Stolen browser sessions and authentication tokens are becoming more valuable than stolen passwords. Flare explains how the REMUS infostealer evolved around session theft and operational scalability. [...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/inside-the-remus-infostealer-session-theft-maas-and-rapid-evolution/" target="_blank" rel="noopener">Inside the REMUS Infostealer: Session Theft, MaaS, and Rapid Evolution</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-05-15T14:02:12.000Z">May 15, 2026 - 2:02 PM</time>
-            
-          </div>
-          <p class="news-summary">Stolen browser sessions and authentication tokens are becoming more valuable than stolen passwords. Flare explains how the REMUS infostealer evolved around session theft and operational scalability. [...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Four OpenClaw Flaws Enable Data Theft, Privilege Escalation, and Persistence" data-summary="Cybersecurity researchers have disclosed a set of four security flaws in OpenClaw that could be chained to achieve data theft, privilege escalation, and persistence.
-
-
-  The vulnerabilities, collectiv...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/05/four-openclaw-flaws-enable-data-theft.html" target="_blank" rel="noopener">Four OpenClaw Flaws Enable Data Theft, Privilege Escalation, and Persistence</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-05-15T13:35:04.000Z">May 15, 2026 - 1:35 PM</time>
-            
-          </div>
-          <p class="news-summary">Cybersecurity researchers have disclosed a set of four security flaws in OpenClaw that could be chained to achieve data theft, privilege escalation, and persistence.
-
-
-  The vulnerabilities, collectiv...</p>
-        </article>
     </div>
   </main>
   
@@ -531,7 +527,7 @@ The vulnerability, tracked...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-18T16:11:24.836Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-18T18:44:22.305Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
