@@ -87,22 +87,10 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-05-30T18:30:26.223Z">5/30/2026, 6:30:26 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-05-30T21:25:52.272Z">5/30/2026, 9:25:52 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="[An RX Global Event] Infosecurity Europe" data-summary="">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/events/infosecurity-europe" target="_blank" rel="noopener">[An RX Global Event] Infosecurity Europe</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-05-30T18:30:25.673Z">May 30, 2026 - 6:30 PM</time>
-            <span class="badge-new">NEW</span>
-          </div>
-          
-        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Name That Toon Contest" data-summary="">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -110,7 +98,19 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/events/celebrate-20-years-of-dark-reading-name-that-toon-contest" target="_blank" rel="noopener">Name That Toon Contest</a></h2>
           <div class="news-meta">
-            <time datetime="2026-05-30T18:30:25.672Z">May 30, 2026 - 6:30 PM</time>
+            <time datetime="2026-05-30T21:25:51.702Z">May 30, 2026 - 9:25 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="[An RX Global Event] Infosecurity Europe" data-summary="">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/events/infosecurity-europe" target="_blank" rel="noopener">[An RX Global Event] Infosecurity Europe</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-05-30T21:25:51.702Z">May 30, 2026 - 9:25 PM</time>
             <span class="badge-new">NEW</span>
           </div>
           
@@ -163,7 +163,7 @@ The vulnerability, tracked as ...</p>
           <h2 class="news-title"><a href="https://www.darkreading.com/cloud-security/name-that-toon-mark-of-cybersecurity-progress" target="_blank" rel="noopener">Name That Toon: Mark of (Cybersecurity) Progress</a></h2>
           <div class="news-meta">
             <time datetime="2026-05-29T20:22:04.000Z">May 29, 2026 - 8:22 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">As part of Dark Reading's 20th anniversary package, we asked readers for a cybersecurity-related caption that captures their thoughts about the industry's last two decades....</p>
         </article>
@@ -503,7 +503,7 @@ GREYVIBE, per W...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-30T18:30:26.223Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-05-30T21:25:52.272Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
