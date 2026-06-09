@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-09T07:25:58.089Z">6/9/2026, 7:25:58 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-09T10:18:52.889Z">6/9/2026, 10:18:52 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -98,10 +98,22 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/events/celebrate-20-years-of-dark-reading-name-that-toon-contest" target="_blank" rel="noopener">Name That Toon Contest</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-09T07:25:58.088Z">June 9, 2026 - 7:25 AM</time>
+            <time datetime="2026-06-09T10:18:52.756Z">June 9, 2026 - 10:18 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="CISA gives feds 3 days to patch Check Point VPN bug exploited as zero-day" data-summary="CISA has ordered U.S. government agencies to secure their Check Point Remote Access VPN and Mobile Access deployments against a critical vulnerability exploited in zero-day attacks by Qilin ransomware...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cisa-orders-feds-to-patch-check-point-flaw-exploited-by-ransomware-gangs/" target="_blank" rel="noopener">CISA gives feds 3 days to patch Check Point VPN bug exploited as zero-day</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-09T08:18:39.000Z">June 9, 2026 - 8:18 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">CISA has ordered U.S. government agencies to secure their Check Point Remote Access VPN and Mobile Access deployments against a critical vulnerability exploited in zero-day attacks by Qilin ransomware...</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Google patches new Chrome zero-day flaw exploited in the wild" data-summary="Google has released emergency updates to patch another Chrome zero-day vulnerability that has been exploited in the wild, the fifth such flaw patched since the start of the year. [...]...">
           <div class="chips">
@@ -403,7 +415,7 @@ A chatbot ...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/unc3753-used-vishing-and-physical.html" target="_blank" rel="noopener">UNC3753 Used Vishing and Physical Intrusions in U.S. Data Theft Extortion Campaign</a></h2>
           <div class="news-meta">
             <time datetime="2026-06-08T07:39:28.000Z">June 8, 2026 - 7:39 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Cybersecurity researchers have disclosed details of a financially motivated data theft extortion campaign that has targeted dozens of organizations across professional, legal, and financial services i...</p>
         </article>
@@ -455,18 +467,6 @@ A chatbot ...</p>
           </div>
           <p class="news-summary">A new variant of the Gafgyt botnet called C0XMO is targeting DD-WRT router firmware and can move to other device types with various CPU architectures. [...]...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Silent Ransom Group targets law firms with fake IT support calls" data-summary="The Silent Ransom Group extortion gang is actively targeting U.S. law firms and professional services organizations in social engineering attacks that often lead to data theft within hours of initial ...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/silent-ransom-group-targets-law-firms-with-fake-it-support-calls/" target="_blank" rel="noopener">Silent Ransom Group targets law firms with fake IT support calls</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-07T14:09:19.000Z">June 7, 2026 - 2:09 PM</time>
-            
-          </div>
-          <p class="news-summary">The Silent Ransom Group extortion gang is actively targeting U.S. law firms and professional services organizations in social engineering attacks that often lead to data theft within hours of initial ...</p>
-        </article>
     </div>
   </main>
   
@@ -511,7 +511,7 @@ A chatbot ...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-09T07:25:58.089Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-09T10:18:52.889Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
