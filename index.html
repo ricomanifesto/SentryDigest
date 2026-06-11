@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Krebs on Security">Krebs on Security</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,21 +87,33 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-11T19:07:49.249Z">6/11/2026, 7:07:49 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-11T21:45:21.219Z">6/11/2026, 9:45:21 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Name That Toon Contest" data-summary="">
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="ShinyHunters Exploits Oracle PeopleSoft Zero-Day (CVE-2026-35273) to Breach Universities" data-summary="The ShinyHunters extortion crew exploited an unpatched flaw in Oracle PeopleSoft to break into enterprise systems, steal data, and demand payment to keep it private. The campaign hit universities hard...">
           <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
           </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/events/celebrate-20-years-of-dark-reading-name-that-toon-contest" target="_blank" rel="noopener">Name That Toon Contest</a></h2>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/06/shinyhunters-exploits-oracle-peoplesoft.html" target="_blank" rel="noopener">ShinyHunters Exploits Oracle PeopleSoft Zero-Day (CVE-2026-35273) to Breach Universities</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-11T19:07:48.503Z">June 11, 2026 - 7:07 PM</time>
+            <time datetime="2026-06-11T20:29:23.000Z">June 11, 2026 - 8:29 PM</time>
             <span class="badge-new">NEW</span>
           </div>
-          
+          <p class="news-summary">The ShinyHunters extortion crew exploited an unpatched flaw in Oracle PeopleSoft to break into enterprise systems, steal data, and demand payment to keep it private. The campaign hit universities hard...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Oracle mitigates PeopleSoft zero-day exploited in data theft attacks" data-summary="Oracle is warning about a critical PeopleSoft Suite zero-day vulnerability tracked as CVE-2026-35273 that allows unauthenticated remote code execution, with the flaw actively exploited in ShinyHunter ...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/oracle-mitigates-peoplesoft-zero-day-exploited-in-data-theft-attacks/" target="_blank" rel="noopener">Oracle mitigates PeopleSoft zero-day exploited in data theft attacks</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-11T19:39:53.000Z">June 11, 2026 - 7:39 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Oracle is warning about a critical PeopleSoft Suite zero-day vulnerability tracked as CVE-2026-35273 that allows unauthenticated remote code execution, with the flaw actively exploited in ShinyHunter ...</p>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="New Attacks Trick OpenClaw AI Agent Into Running Code and Leaking Secrets" data-summary="Two security teams have shown, in separate research published this week, that OpenClaw, the popular self-hosted AI agent, can be driven to run attacker-controlled code or hand over sensitive data thro...">
           <div class="chips">
@@ -154,18 +166,6 @@
             <span class="badge-new">NEW</span>
           </div>
           <p class="news-summary">Law enforcement has dismantled the “AudiA6” cryptocurrency service allegedly used by ransomware actors and other cybercriminals to launder more than $380 million. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Segmentation Works for OT If Operators Are Paying Attention" data-summary="Operational technology security remains as difficult as ever, with even the best practice recommendation falling short....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/segmentation-works-for-ot-if-operators-are-paying-attention" target="_blank" rel="noopener">Segmentation Works for OT If Operators Are Paying Attention</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-11T14:51:48.000Z">June 11, 2026 - 2:51 PM</time>
-            <span class="badge-new">NEW</span>
-          </div>
-          <p class="news-summary">Operational technology security remains as difficult as ever, with even the best practice recommendation falling short....</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Why AI-driven threats are exposing the limits of MSP security stacks" data-summary="AI-driven attacks are exposing the limits of fragmented MSP security stacks and slow response workflows. Kaseya breaks down why integrated security, automation, and recovery are becoming essential. [....">
           <div class="chips">
@@ -315,18 +315,6 @@ The changes aim to combat...</p>
           </div>
           <p class="news-summary">Attackers are now targeting a recently patched maximum-severity flaw in Ivanti Sentry, enabling them to execute code with root privileges on Internet-exposed secure mobile gateways. [...]...</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Chinese, N. Korean Threat Groups Build on Asia-Pacific Success" data-summary="North Korea's gross domestic product (GDP) has grown, in part because of the nation's state-sponsored cybercrime groups, which target financial firms and other businesses....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/chinese-korean-threat-groups-asia-pacific-success" target="_blank" rel="noopener">Chinese, N. Korean Threat Groups Build on Asia-Pacific Success</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-11T00:01:00.000Z">June 11, 2026 - 12:01 AM</time>
-            <span class="badge-new">NEW</span>
-          </div>
-          <p class="news-summary">North Korea's gross domestic product (GDP) has grown, in part because of the nation's state-sponsored cybercrime groups, which target financial firms and other businesses....</p>
-        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Path traversal flaw in AI dev platform Langflow exploited in attacks" data-summary="Attackers are actively exploiting CVE-2026-5027, a high-severity path traversal vulnerability in the AI development platform Langflow, to write arbitrary files on exposed servers. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -335,21 +323,9 @@ The changes aim to combat...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/path-traversal-flaw-in-ai-dev-platform-langflow-exploited-in-attacks/" target="_blank" rel="noopener">Path traversal flaw in AI dev platform Langflow exploited in attacks</a></h2>
           <div class="news-meta">
             <time datetime="2026-06-10T21:23:44.000Z">June 10, 2026 - 9:23 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Attackers are actively exploiting CVE-2026-5027, a high-severity path traversal vulnerability in the AI development platform Langflow, to write arbitrary files on exposed servers. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="CISA Rewrites Federal Patching Requirements for AI Threat Era" data-summary="The new directive gives federal agencies three days to fix the most dangerous flaws, while less severe issues can be deferred....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/cisa-rewrites-federal-patching-requirements-ai-threat-era" target="_blank" rel="noopener">CISA Rewrites Federal Patching Requirements for AI Threat Era</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-10T21:17:12.000Z">June 10, 2026 - 9:17 PM</time>
-            <span class="badge-new">NEW</span>
-          </div>
-          <p class="news-summary">The new directive gives federal agencies three days to fix the most dangerous flaws, while less severe issues can be deferred....</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="The ‘Miasma’ worm source code briefly leaked on GitHub" data-summary="The Miasma credential-stealing attack framework, which has recently targeted open-source ecosystems through supply-chain attacks, was briefly open-sourced on GitHub. [...]...">
           <div class="chips">
@@ -359,21 +335,9 @@ The changes aim to combat...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/the-miasma-worm-source-code-briefly-leaked-on-github/" target="_blank" rel="noopener">The ‘Miasma’ worm source code briefly leaked on GitHub</a></h2>
           <div class="news-meta">
             <time datetime="2026-06-10T20:27:08.000Z">June 10, 2026 - 8:27 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The Miasma credential-stealing attack framework, which has recently targeted open-source ecosystems through supply-chain attacks, was briefly open-sourced on GitHub. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Bug Bounty Research Triggers ServiceNow Security Alert" data-summary="Security research inadvertently led organizations to believe they were being breached through their ServiceNow instances....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/bug-bounty-research-triggers-servicenow-security-alert" target="_blank" rel="noopener">Bug Bounty Research Triggers ServiceNow Security Alert</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-10T20:07:53.000Z">June 10, 2026 - 8:07 PM</time>
-            <span class="badge-new">NEW</span>
-          </div>
-          <p class="news-summary">Security research inadvertently led organizations to believe they were being breached through their ServiceNow instances....</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="GitHub announces npm security changes to tackle supply-chain attacks" data-summary="GitHub has announced that npm v12, expected next month, will introduce several security-focused changes aimed at blocking supply-chain attacks abusing behaviors triggered by the 'npm install' command....">
           <div class="chips">
@@ -383,21 +347,9 @@ The changes aim to combat...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/github-announces-npm-security-changes-to-tackle-supply-chain-attacks/" target="_blank" rel="noopener">GitHub announces npm security changes to tackle supply-chain attacks</a></h2>
           <div class="news-meta">
             <time datetime="2026-06-10T19:41:44.000Z">June 10, 2026 - 7:41 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">GitHub has announced that npm v12, expected next month, will introduce several security-focused changes aimed at blocking supply-chain attacks abusing behaviors triggered by the 'npm install' command....</p>
-        </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="AI Risk Worries Insurers &amp; Businesses Alike" data-summary="As companies adopt AI, many insurance firms are explicitly excluding AI risks, while others are forging ahead to create the right framework. What risks can firms reasonably manage?...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/ai-risk-worries-insurers-businesses-alike" target="_blank" rel="noopener">AI Risk Worries Insurers &amp; Businesses Alike</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-10T19:34:43.000Z">June 10, 2026 - 7:34 PM</time>
-            <span class="badge-new">NEW</span>
-          </div>
-          <p class="news-summary">As companies adopt AI, many insurance firms are explicitly excluding AI risks, while others are forging ahead to create the right framework. What risks can firms reasonably manage?...</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Oracle PeopleSoft servers hacked in ShinyHunters data theft attacks" data-summary="Oracle PeopleSoft servers are being targeted in ongoing data theft attacks by the ShinyHunters extortion gang, which claims to have stolen data from over 100 organizations. [...]...">
           <div class="chips">
@@ -410,18 +362,6 @@ The changes aim to combat...</p>
             
           </div>
           <p class="news-summary">Oracle PeopleSoft servers are being targeted in ongoing data theft attacks by the ShinyHunters extortion gang, which claims to have stolen data from over 100 organizations. [...]...</p>
-        </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Nightmare-Eclipse Drops Yet Another Microsoft Exploit, RoguePlanet" data-summary="The disgruntled researcher released yet another PoC for a Windows Defender bug that allows for system takeover, showing no signs of abandoning their ongoing feud with Microsoft....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/nightmare-eclipse-microsoft-exploit-rogueplanet" target="_blank" rel="noopener">Nightmare-Eclipse Drops Yet Another Microsoft Exploit, RoguePlanet</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-10T16:31:02.000Z">June 10, 2026 - 4:31 PM</time>
-            
-          </div>
-          <p class="news-summary">The disgruntled researcher released yet another PoC for a Windows Defender bug that allows for system takeover, showing no signs of abandoning their ongoing feud with Microsoft....</p>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="China-Linked JDY Botnet Expands to 1,500+ Devices for Cyber Reconnaissance" data-summary="Cybersecurity researchers have warned of a &quot;resurgence and expansion&quot; of JDY, a covert network associated with China-nexus state-sponsored threat actors.
 
@@ -479,6 +419,70 @@ The security f...</p>
           </div>
           <p class="news-summary">The JDY botnet, a malware network previously associated with Chinese threat actors like Volt Typhoon, has significantly expanded its targeting scope and reconnaissance efforts. [...]...</p>
         </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="CISA Adds Cisco, Chrome, and Arista Flaws to KEV Catalog Amid Active Exploitation" data-summary="The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Tuesday added three new vulnerabilities to its Known Exploited Vulnerabilities (KEV) catalog, following reports of active exploitati...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/06/cisa-adds-cisco-chrome-and-arista-flaws.html" target="_blank" rel="noopener">CISA Adds Cisco, Chrome, and Arista Flaws to KEV Catalog Amid Active Exploitation</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-10T14:44:29.000Z">June 10, 2026 - 2:44 PM</time>
+            
+          </div>
+          <p class="news-summary">The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Tuesday added three new vulnerabilities to its Known Exploited Vulnerabilities (KEV) catalog, following reports of active exploitati...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="The 5 Best Practices for Secure Identity Verification" data-summary="Attackers are increasingly bypassing weak authentication through phishing, MFA fatigue, and service desk social engineering. Specops Software breaks down five best practices for stronger identity veri...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/the-5-best-practices-for-secure-identity-verification/" target="_blank" rel="noopener">The 5 Best Practices for Secure Identity Verification</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-10T14:05:15.000Z">June 10, 2026 - 2:05 PM</time>
+            
+          </div>
+          <p class="news-summary">Attackers are increasingly bypassing weak authentication through phishing, MFA fatigue, and service desk social engineering. Specops Software breaks down five best practices for stronger identity veri...</p>
+        </article>
+        <article class="news-item" data-source="Krebs on Security" data-host="krebsonsecurity.com" data-title="Who Runs the Ransomware Group ‘The Gentlemen?’" data-summary="A cybercrime group known as The Gentlemen has emerged as the second most active ransomware gang by victim count, rapidly attracting a talented pool of hackers through an aggressive recruitment strateg...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Krebs on Security</span>
+            <span class="chip">krebsonsecurity.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://krebsonsecurity.com/2026/06/who-runs-the-ransomware-group-the-gentlemen/" target="_blank" rel="noopener">Who Runs the Ransomware Group ‘The Gentlemen?’</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-10T14:03:44.000Z">June 10, 2026 - 2:03 PM</time>
+            
+          </div>
+          <p class="news-summary">A cybercrime group known as The Gentlemen has emerged as the second most active ransomware gang by victim count, rapidly attracting a talented pool of hackers through an aggressive recruitment strateg...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft patches Exchange Server zero-day exploited in attacks" data-summary="Microsoft has patched an actively exploited Exchange Server vulnerability that allows threat actors to execute arbitrary JavaScript code in cross-site scripting (XSS) attacks targeting Outlook Web Acc...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-patches-exchange-server-zero-day-exploited-in-attacks/" target="_blank" rel="noopener">Microsoft patches Exchange Server zero-day exploited in attacks</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-10T13:44:19.000Z">June 10, 2026 - 1:44 PM</time>
+            
+          </div>
+          <p class="news-summary">Microsoft has patched an actively exploited Exchange Server vulnerability that allows threat actors to execute arbitrary JavaScript code in cross-site scripting (XSS) attacks targeting Outlook Web Acc...</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Your Automated Pentest Looks Clean. See What It Missed in This Expert Webinar" data-summary="Your pentest report looks clean. That might be the problem.
+
+Run automated pentesting long enough, and the new findings start to dry up. By the third or fourth run, fewer issues appear. The report loo...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/06/your-automated-pentest-looks-clean-see.html" target="_blank" rel="noopener">Your Automated Pentest Looks Clean. See What It Missed in This Expert Webinar</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-10T10:27:49.000Z">June 10, 2026 - 10:27 AM</time>
+            
+          </div>
+          <p class="news-summary">Your pentest report looks clean. That might be the problem.
+
+Run automated pentesting long enough, and the new findings start to dry up. By the third or fourth run, fewer issues appear. The report loo...</p>
+        </article>
     </div>
   </main>
   
@@ -523,7 +527,7 @@ The security f...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-11T19:07:49.249Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-11T21:45:21.219Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
