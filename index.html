@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-14T12:49:41.141Z">6/14/2026, 12:49:41 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-14T15:38:17.856Z">6/14/2026, 3:38:17 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -98,10 +98,22 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/events/celebrate-20-years-of-dark-reading-name-that-toon-contest" target="_blank" rel="noopener">Name That Toon Contest</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-14T12:49:40.869Z">June 14, 2026 - 12:49 PM</time>
+            <time datetime="2026-06-14T15:38:17.595Z">June 14, 2026 - 3:38 PM</time>
             <span class="badge-new">NEW</span>
           </div>
           
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="FBI disrupts massive AI-powered phishing service using a million URLs" data-summary="In a coordinated effort, the FBI, working with Google and Black Lotus Labs, has dismantled a massive Chinese phishing-as-a-service operation called Outsider Enterprise with thousands of phishing websi...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/fbi-disrupts-massive-ai-powered-phishing-service-using-a-million-urls/" target="_blank" rel="noopener">FBI disrupts massive AI-powered phishing service using a million URLs</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-14T14:36:23.000Z">June 14, 2026 - 2:36 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">In a coordinated effort, the FBI, working with Google and Black Lotus Labs, has dismantled a massive Chinese phishing-as-a-service operation called Outsider Enterprise with thousands of phishing websi...</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Ex-school district employee jailed for hacks on former employer" data-summary="A former  IT employee at an Iowa school district was sentenced to 21 months in prison after conducting a prolonged cyberattack against the former employer that disrupted classroom operations, deleted ...">
           <div class="chips">
@@ -123,7 +135,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/chinese-hackers-hijack-auth-flow-spy-on-isolated-network-for-a-decade/" target="_blank" rel="noopener">Chinese hackers hijack auth flow, spy on isolated network for a decade</a></h2>
           <div class="news-meta">
             <time datetime="2026-06-13T14:06:42.000Z">June 13, 2026 - 2:06 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Chinese hackers took control of a target organization's authentication stack and maintained persistence for 10 years, with full visibility into the administrative activity. [...]...</p>
         </article>
@@ -137,7 +149,7 @@ The vu...">
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/critical-splunk-enterprise-flaw-lets.html" target="_blank" rel="noopener">Critical Splunk Enterprise Flaw Lets Attackers Run Code Without Authentication</a></h2>
           <div class="news-meta">
             <time datetime="2026-06-13T13:23:03.000Z">June 13, 2026 - 1:23 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Splunk has released security updates to address a critical security flaw in Splunk Enterprise that could be exploited to conduct unauthenticated file operations and even remote code execution.
 
@@ -467,18 +479,6 @@ Europol, in a statement issued Thursday, said the dismantling of ...</p>
           </div>
           <p class="news-summary">The ShinyHunters extortion crew exploited an unpatched flaw in Oracle PeopleSoft to break into enterprise systems, steal data, and demand payment to keep it private. The campaign hit universities hard...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Oracle mitigates PeopleSoft zero-day exploited in data theft attacks" data-summary="Oracle is warning about a critical PeopleSoft Suite zero-day vulnerability tracked as CVE-2026-35273 that allows unauthenticated remote code execution, with the flaw actively exploited in ShinyHunter ...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/oracle-mitigates-peoplesoft-zero-day-exploited-in-data-theft-attacks/" target="_blank" rel="noopener">Oracle mitigates PeopleSoft zero-day exploited in data theft attacks</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-11T19:39:53.000Z">June 11, 2026 - 7:39 PM</time>
-            
-          </div>
-          <p class="news-summary">Oracle is warning about a critical PeopleSoft Suite zero-day vulnerability tracked as CVE-2026-35273 that allows unauthenticated remote code execution, with the flaw actively exploited in ShinyHunter ...</p>
-        </article>
     </div>
   </main>
   
@@ -523,7 +523,7 @@ Europol, in a statement issued Thursday, said the dismantling of ...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-14T12:49:41.141Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-14T15:38:17.856Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
