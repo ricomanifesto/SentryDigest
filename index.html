@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,62 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-15T19:26:15.967Z">6/15/2026, 7:26:15 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-15T21:55:08.565Z">6/15/2026, 9:55:08 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="SimpleHelp bug lets hackers create rogue remote support accounts" data-summary="A vulnerability in the SimpleHelp remote management software allows unauthenticated attackers to create privileged technician accounts on servers using the OpenID Connect (OIDC) authentication protoco...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/simplehelp-bug-lets-hackers-create-rogue-remote-support-accounts/" target="_blank" rel="noopener">SimpleHelp bug lets hackers create rogue remote support accounts</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-15T20:06:52.000Z">June 15, 2026 - 8:06 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A vulnerability in the SimpleHelp remote management software allows unauthenticated attackers to create privileged technician accounts on servers using the OpenID Connect (OIDC) authentication protoco...</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Chinese Hackers Abused Google Workspace Rules to Steal Research and Defense Emails" data-summary="A China-linked espionage group hid inside North American medical, academic, and military research networks for more than a year, quietly stealing sensitive research and defense email.
+
+The way in was ...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/06/chinese-hackers-abused-google-workspace.html" target="_blank" rel="noopener">Chinese Hackers Abused Google Workspace Rules to Steal Research and Defense Emails</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-15T19:44:06.000Z">June 15, 2026 - 7:44 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A China-linked espionage group hid inside North American medical, academic, and military research networks for more than a year, quietly stealing sensitive research and defense email.
+
+The way in was ...</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="North Korean Hackers Are Turning Developer Tools Into Malware Delivery Channels" data-summary="Cybersecurity researchers have flagged two malicious cyber campaigns that exhibit similarities with a persistent North Korean threat cluster known as Contagious Interview (aka Famous Chollima, Hexagon...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/06/north-korean-hackers-are-turning.html" target="_blank" rel="noopener">North Korean Hackers Are Turning Developer Tools Into Malware Delivery Channels</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-15T19:32:52.000Z">June 15, 2026 - 7:32 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Cybersecurity researchers have flagged two malicious cyber campaigns that exhibit similarities with a persistent North Korean threat cluster known as Contagious Interview (aka Famous Chollima, Hexagon...</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Copilot 'SearchLeak' Attack Allows 1-Click Data Theft" data-summary="The critical, three-stage attack is now patched, but it's part of a new group of AI prompt-injection issues that use hidden URLs and other variables....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/application-security/copilot-searchleak-attack-1-click-data-theft" target="_blank" rel="noopener">Copilot 'SearchLeak' Attack Allows 1-Click Data Theft</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-15T19:27:48.000Z">June 15, 2026 - 7:27 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The critical, three-stage attack is now patched, but it's part of a new group of AI prompt-injection issues that use hidden URLs and other variables....</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="OptinMonster WordPress plugin hacked in CDN supply-chain attack" data-summary="WordPress plugins OptinMonster, TrustPulse, and PushEngage have been compromised in a supply-chain attack impacting Awesome Motive-s content distribution network (CDN). [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -431,58 +483,6 @@ The vu...</p>
           </div>
           <p class="news-summary">The US government has ordered Anthropic to block all foreign nationals from accessing Fable 5 and Mythos 5, forcing the company to suspend both models worldwide. Anthropic is complying but disputes th...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="U.S. Orders Anthropic to Suspend Fable 5 and Mythos 5 Access for Foreign Nationals" data-summary="Anthropic said on Friday it will &quot;abruptly disable&quot; its most advanced artificial intelligence (AI) models, Claude Fable 5 and Mythos 5, for all users after the U.S. government ordered it to suspend ac...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/06/us-orders-anthropic-to-suspend-fable-5.html" target="_blank" rel="noopener">U.S. Orders Anthropic to Suspend Fable 5 and Mythos 5 Access for Foreign Nationals</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-13T05:42:50.000Z">June 13, 2026 - 5:42 AM</time>
-            
-          </div>
-          <p class="news-summary">Anthropic said on Friday it will "abruptly disable" its most advanced artificial intelligence (AI) models, Claude Fable 5 and Mythos 5, for all users after the U.S. government ordered it to suspend ac...</p>
-        </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="ShinyHunters Uses Oracle Zero-Day to Rampage Higher Ed" data-summary="A major bug in Oracle's ERP software disproportionately affected American universities, and hackers have capitalized by stealing gobs of data....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/shinyhunters-oracle-zero-day-higher-ed" target="_blank" rel="noopener">ShinyHunters Uses Oracle Zero-Day to Rampage Higher Ed</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-12T20:26:32.000Z">June 12, 2026 - 8:26 PM</time>
-            
-          </div>
-          <p class="news-summary">A major bug in Oracle's ERP software disproportionately affected American universities, and hackers have capitalized by stealing gobs of data....</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Maine disables data breach notification portal after fake disclosures" data-summary="Maine has taken its public data breach reporting portal offline after fraudulent breach disclosures were published on the state's website, prompting a review of procedures to prevent abuse in the futu...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/maine-disables-data-breach-notification-portal-after-fake-disclosures/" target="_blank" rel="noopener">Maine disables data breach notification portal after fake disclosures</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-12T19:33:32.000Z">June 12, 2026 - 7:33 PM</time>
-            
-          </div>
-          <p class="news-summary">Maine has taken its public data breach reporting portal offline after fraudulent breach disclosures were published on the state's website, prompting a review of procedures to prevent abuse in the futu...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Over 400 Arch Linux AUR Packages Hijacked to Deploy Infostealer and eBPF Rootkit" data-summary="Attackers took over more than 400 packages in the Arch User Repository (AUR) this week and rewrote their build scripts to install a credential stealer on any machine that built them.
-
-The malware is a...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/06/over-400-arch-linux-aur-packages.html" target="_blank" rel="noopener">Over 400 Arch Linux AUR Packages Hijacked to Deploy Infostealer and eBPF Rootkit</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-12T19:33:25.000Z">June 12, 2026 - 7:33 PM</time>
-            
-          </div>
-          <p class="news-summary">Attackers took over more than 400 packages in the Arch User Repository (AUR) this week and rewrote their build scripts to install a credential stealer on any machine that built them.
-
-The malware is a...</p>
-        </article>
     </div>
   </main>
   
@@ -527,7 +527,7 @@ The malware is a...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-15T19:26:15.967Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-15T21:55:08.565Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
