@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-15T21:55:08.565Z">6/15/2026, 9:55:08 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-16T01:19:10.383Z">6/16/2026, 1:19:10 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="DOJ seizes CFAKE, SOCFAKE deepfake nude sites under TAKE IT DOWN Act" data-summary="The U.S. Department of Justice announced Friday that it has seized the CFAKE.com and SOCFAKE.com websites, which allegedly hosted nonconsensual AI-generated nude images and videos of women, in what ap...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/doj-seizes-cfake-socfake-deepfake-nude-sites-under-take-it-down-act/" target="_blank" rel="noopener">DOJ seizes CFAKE, SOCFAKE deepfake nude sites under TAKE IT DOWN Act</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-15T21:56:55.000Z">June 15, 2026 - 9:56 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">The U.S. Department of Justice announced Friday that it has seized the CFAKE.com and SOCFAKE.com websites, which allegedly hosted nonconsensual AI-generated nude images and videos of women, in what ap...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="SimpleHelp bug lets hackers create rogue remote support accounts" data-summary="A vulnerability in the SimpleHelp remote management software allows unauthenticated attackers to create privileged technician accounts on servers using the OpenID Connect (OIDC) authentication protoco...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -471,18 +483,6 @@ The vu...">
 
 The vu...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="US Gov asks Anthropic to ban 'foreign national' access to Fable, Mythos" data-summary="The US government has ordered Anthropic to block all foreign nationals from accessing Fable 5 and Mythos 5, forcing the company to suspend both models worldwide. Anthropic is complying but disputes th...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/us-gov-asks-anthropic-to-ban-foreign-national-access-to-fable-mythos/" target="_blank" rel="noopener">US Gov asks Anthropic to ban 'foreign national' access to Fable, Mythos</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-13T10:01:32.000Z">June 13, 2026 - 10:01 AM</time>
-            
-          </div>
-          <p class="news-summary">The US government has ordered Anthropic to block all foreign nationals from accessing Fable 5 and Mythos 5, forcing the company to suspend both models worldwide. Anthropic is complying but disputes th...</p>
-        </article>
     </div>
   </main>
   
@@ -527,7 +527,7 @@ The vu...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-15T21:55:08.565Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-16T01:19:10.383Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
