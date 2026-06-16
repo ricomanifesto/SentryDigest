@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
+          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,46 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-16T13:58:52.466Z">6/16/2026, 1:58:52 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-16T16:36:41.038Z">6/16/2026, 4:36:41 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="'Lorem Ipsum' Malware Pivots to ClickFix Delivery" data-summary="New analysis shows the campaign, which uses compromised WordPress sites, may be linked to the ransomware and data extortion group Vice Society....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/lorem-ipsum-malware-clickfix-delivery" target="_blank" rel="noopener">'Lorem Ipsum' Malware Pivots to ClickFix Delivery</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-16T15:10:48.000Z">June 16, 2026 - 3:10 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">New analysis shows the campaign, which uses compromised WordPress sites, may be linked to the ransomware and data extortion group Vice Society....</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="UK to require ID or face scan before you can make social media accounts" data-summary="Opening a new social media account in the UK will soon mean proving you're over 16 with an ID upload or a facial age scan, under a government ban on under-16s taking effect in spring 2027. Security ex...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/uk-to-require-id-or-face-scan-before-you-can-make-social-media-accounts/" target="_blank" rel="noopener">UK to require ID or face scan before you can make social media accounts</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-16T14:38:49.000Z">June 16, 2026 - 2:38 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Opening a new social media account in the UK will soon mean proving you're over 16 with an ID upload or a facial age scan, under a government ban on under-16s taking effect in spring 2027. Security ex...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="GhostTree Attack Abused Recursive Windows Junctions to Hide Malware" data-summary="GhostTree uses recursive NTFS junctions to generate vast numbers of valid Windows file paths. Varonis explains how the technique could cause Microsoft Defender folder scans to never complete, leaving ...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/ghosttree-attack-abused-recursive-windows-junctions-to-hide-malware/" target="_blank" rel="noopener">GhostTree Attack Abused Recursive Windows Junctions to Hide Malware</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-16T14:17:27.000Z">June 16, 2026 - 2:17 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">GhostTree uses recursive NTFS junctions to generate vast numbers of valid Windows file paths. Varonis explains how the technique could cause Microsoft Defender folder scans to never complete, leaving ...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="FTC warns of record $3.5 billion losses to imposter scams in 2025" data-summary="The U.S. Federal Trade Commission (FTC) warned that Americans lost $3.5 billion to imposter scams in 2025, with reported losses nearly tripling since 2020. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -411,7 +447,7 @@ LiteLLM is a widely...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/fbi-fraudsters-use-couriers-to-steal-money-in-crypto-scams/" target="_blank" rel="noopener">FBI: Fraudsters use couriers to steal money in crypto scams</a></h2>
           <div class="news-meta">
             <time datetime="2026-06-15T15:30:23.000Z">June 15, 2026 - 3:30 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The U.S. Federal Bureau of Investigation (FBI) warned that criminals are using couriers to collect money from victims of cryptocurrency investment scams, also known as pig butchering or romance baitin...</p>
         </article>
@@ -425,7 +461,7 @@ Researchers at Varonis Threat La...">
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/one-click-microsoft-365-copilot-flaw.html" target="_blank" rel="noopener">One-Click Microsoft 365 Copilot Flaw Could Have Let Attackers Steal Emails, Files, and MFA Codes</a></h2>
           <div class="news-meta">
             <time datetime="2026-06-15T15:09:05.000Z">June 15, 2026 - 3:09 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A single click on a trusted Microsoft link could have let an attacker pull emails, calendar details, and indexed files out of Microsoft 365 Copilot Enterprise Search.
 
@@ -439,49 +475,9 @@ Researchers at Varonis Threat La...</p>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/beginning-end-social-engineering" target="_blank" rel="noopener">The Beginning of the End of Social Engineering</a></h2>
           <div class="news-meta">
             <time datetime="2026-06-15T15:08:32.000Z">June 15, 2026 - 3:08 PM</time>
-            <span class="badge-new">NEW</span>
-          </div>
-          <p class="news-summary">AI-native operating systems are shifting the responsibility to stay vigilant against social engineering cyberattacks from the user onto the system itself....</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Vibe coders are gonna vibe code: How CISOs are tackling code sprawl" data-summary="Employees are increasingly building automations, agents, and apps with AI tools outside traditional security oversight. Tines explores how CISOs are handling AI-driven code sprawl, shadow tooling, and...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/vibe-coders-are-gonna-vibe-code-how-cisos-are-tackling-code-sprawl/" target="_blank" rel="noopener">Vibe coders are gonna vibe code: How CISOs are tackling code sprawl</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-15T14:01:11.000Z">June 15, 2026 - 2:01 PM</time>
-            <span class="badge-new">NEW</span>
-          </div>
-          <p class="news-summary">Employees are increasingly building automations, agents, and apps with AI tools outside traditional security oversight. Tines explores how CISOs are handling AI-driven code sprawl, shadow tooling, and...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Chinese hackers breach REDCap servers, steal medical research" data-summary="A China-linked espionage campaign targeted exposed REDCap servers to deploy the InfiniteRed malware and steal sensitive data from a medical institution in North America. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/chinese-hackers-breach-redcap-servers-steal-medical-research/" target="_blank" rel="noopener">Chinese hackers breach REDCap servers, steal medical research</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-15T14:00:00.000Z">June 15, 2026 - 2:00 PM</time>
-            <span class="badge-new">NEW</span>
-          </div>
-          <p class="news-summary">A China-linked espionage campaign targeted exposed REDCap servers to deploy the InfiniteRed malware and steal sensitive data from a medical institution in North America. [...]...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="⚡ Weekly Recap: Chrome 0-Day, UniFi Exploits, macOS Stealers, VPN Flaw and More" data-summary="Stuff broke again. Not in a movie way. An old tool was left exposed. An abandoned package was abused. A deprecated feature was still running in prod.
-
-This week is the same lesson in a new form: phish...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/06/weekly-recap-chrome-0-day-unifi.html" target="_blank" rel="noopener">⚡ Weekly Recap: Chrome 0-Day, UniFi Exploits, macOS Stealers, VPN Flaw and More</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-15T13:49:29.000Z">June 15, 2026 - 1:49 PM</time>
             
           </div>
-          <p class="news-summary">Stuff broke again. Not in a movie way. An old tool was left exposed. An abandoned package was abused. A deprecated feature was still running in prod.
-
-This week is the same lesson in a new form: phish...</p>
+          <p class="news-summary">AI-native operating systems are shifting the responsibility to stay vigilant against social engineering cyberattacks from the user onto the system itself....</p>
         </article>
     </div>
   </main>
@@ -527,7 +523,7 @@ This week is the same lesson in a new form: phish...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-16T13:58:52.466Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-16T16:36:41.038Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
