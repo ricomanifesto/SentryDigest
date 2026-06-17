@@ -6,7 +6,8 @@
   "scripts": {
     "fetch": "node scripts/fetch-news.js",
     "generate-rss": "node scripts/generate-rss.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "validate": "node scripts/validate-artifacts.js",
+    "test": "node --test && npm run validate"
   },
   "keywords": [
     "cybersecurity",

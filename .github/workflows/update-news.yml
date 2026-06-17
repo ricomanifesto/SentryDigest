@@ -30,6 +30,9 @@ jobs:
       
       - name: Generate RSS feed
         run: node scripts/generate-rss.js
+
+      - name: Validate generated artifacts
+        run: npm test
       
       - name: Configure Git
         run: |
