@@ -6,8 +6,9 @@
   "scripts": {
     "fetch": "node scripts/fetch-news.js",
     "generate-rss": "node scripts/generate-rss.js",
+    "syntax": "node scripts/check-js-syntax.js",
     "validate": "node scripts/validate-artifacts.js",
-    "test": "node --test && npm run validate"
+    "test": "node --test && npm run syntax && npm run validate"
   },
   "keywords": [
     "cybersecurity",
