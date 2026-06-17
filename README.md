@@ -29,6 +29,7 @@ Manual run:
 ```bash
 npm run fetch          # Fetch news, generate HTML
 npm run generate-rss    # Generate RSS feed
+npm test               # Validate generated artifacts
 ```
 
 ## Configuration
@@ -63,3 +64,12 @@ Updates trigger [SentryInsight](https://github.com/ricomanifesto/SentryInsight) 
 - `feed.xml` - RSS feed
 - `news-data.json` - Raw data
 - `feed-info.json` - Metadata
+
+## Validation
+
+`npm test` runs the Node test suite and then performs a dependency-free artifact
+validation check. The artifact validator verifies that the source config,
+`news-data.json`, `feed.xml`, `feed-info.json`, and `index.html` have matching
+item counts, valid dates/URLs, enabled source names, and newest-first news
+ordering. The GitHub Actions update workflow runs this check before committing
+generated artifacts or dispatching downstream analysis.
