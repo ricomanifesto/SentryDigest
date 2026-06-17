@@ -67,9 +67,9 @@ Updates trigger [SentryInsight](https://github.com/ricomanifesto/SentryInsight) 
 
 ## Validation
 
-`npm test` runs the Node test suite and then performs a dependency-free artifact
-validation check. The artifact validator verifies that the source config,
-`news-data.json`, `feed.xml`, `feed-info.json`, and `index.html` have matching
-item counts, valid dates/URLs, enabled source names, and newest-first news
-ordering. The GitHub Actions update workflow runs this check before committing
-generated artifacts or dispatching downstream analysis.
+`npm test` runs the Node test suite, checks JavaScript syntax, and then performs
+a dependency-free artifact validation check. The artifact validator verifies
+that the source config, `news-data.json`, `feed.xml`, `feed-info.json`, and
+`index.html` have matching item counts, valid dates/URLs, enabled source names,
+and newest-first news ordering. The GitHub Actions update workflow runs this
+check before committing generated artifacts or dispatching downstream analysis.
