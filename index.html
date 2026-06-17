@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,34 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-17T18:58:09.934Z">6/17/2026, 6:58:09 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-17T21:42:42.441Z">6/17/2026, 9:42:42 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Google to use UK and EU user IP addresses for ad personalization" data-summary="From August 3, 2026, Google will use IP addresses from UK, EEA and Switzerland users for ad measurement and personalization. It lands as the ICO weighs new consent rules, and years after Google itself...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/google-to-use-uk-and-eu-user-ip-addresses-for-ad-personalization/" target="_blank" rel="noopener">Google to use UK and EU user IP addresses for ad personalization</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-17T21:02:42.000Z">June 17, 2026 - 9:02 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">From August 3, 2026, Google will use IP addresses from UK, EEA and Switzerland users for ad measurement and personalization. It lands as the ICO weighs new consent rules, and years after Google itself...</p>
+        </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="INC Ransomware Thrives by Mastering the Basics" data-summary="And one of those basics is focusing on sectors where a ransomware disruption creates immediate pressure to pay up, like with healthcare....">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/inc-ransomware-thrives-by-mastering-the-basics" target="_blank" rel="noopener">INC Ransomware Thrives by Mastering the Basics</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-17T19:46:25.000Z">June 17, 2026 - 7:46 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">And one of those basics is focusing on sectors where a ransomware disruption creates immediate pressure to pay up, like with healthcare....</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Crypto Clipper Campaign Abuses Fake Reviews, AI Narrators, and VirusTotal Comments" data-summary="An unknown threat actor has been observed leveraging paid or promoted posts on legitimate news websites to drum up buzz for their warez, according to new findings from Check Point Research.
 
 The threa...">
@@ -359,7 +383,7 @@ The problem is no longer visibility. It's validation. Security teams must deci..
           <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/sprysocks-windows-variant-kernel-drivers" target="_blank" rel="noopener">SprySOCKS Windows Variant Abuses Kernel Drivers to Evade Detection</a></h2>
           <div class="news-meta">
             <time datetime="2026-06-16T20:11:48.000Z">June 16, 2026 - 8:11 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">FishMonger, a China-nexus threat group, has deployed an undocumented version of the Linux backdoor against government targets in Honduras, Taiwan, Thailand, and Pakistan....</p>
         </article>
@@ -371,7 +395,7 @@ The problem is no longer visibility. It's validation. Security teams must deci..
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/new-rokarolla-android-malware-targets-217-banking-crypto-apps/" target="_blank" rel="noopener">New Rokarolla Android malware targets 217 banking, crypto apps</a></h2>
           <div class="news-meta">
             <time datetime="2026-06-16T20:04:11.000Z">June 16, 2026 - 8:04 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A new Android banking trojan named Rokarolla is targeting 217 banking and cryptocurrency applications using an extensive set of 137 commands. [...]...</p>
         </article>
@@ -383,7 +407,7 @@ The problem is no longer visibility. It's validation. Security teams must deci..
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/google-vertex-ai-sdk-flaw-let-attackers.html" target="_blank" rel="noopener">Google Vertex AI SDK Flaw Let Attackers Hijack Model Uploads via Bucket Squatting</a></h2>
           <div class="news-meta">
             <time datetime="2026-06-16T19:05:41.000Z">June 16, 2026 - 7:05 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A flaw in the Google Cloud Vertex AI SDK for Python let an attacker with no access to a victim's project hijack the victim's machine learning model upload and run code inside Google's serving infrastr...</p>
         </article>
@@ -447,30 +471,6 @@ The problem is no longer visibility. It's validation. Security teams must deci..
           </div>
           <p class="news-summary">Opening a new social media account in the UK will soon mean proving you're over 16 with an ID upload or a facial age scan, under a government ban on under-16s taking effect in spring 2027. Security ex...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="GhostTree Attack Abused Recursive Windows Junctions to Hide Malware" data-summary="GhostTree uses recursive NTFS junctions to generate vast numbers of valid Windows file paths. Varonis explains how the technique could cause Microsoft Defender folder scans to never complete, leaving ...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/ghosttree-attack-abused-recursive-windows-junctions-to-hide-malware/" target="_blank" rel="noopener">GhostTree Attack Abused Recursive Windows Junctions to Hide Malware</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-16T14:17:27.000Z">June 16, 2026 - 2:17 PM</time>
-            
-          </div>
-          <p class="news-summary">GhostTree uses recursive NTFS junctions to generate vast numbers of valid Windows file paths. Varonis explains how the technique could cause Microsoft Defender folder scans to never complete, leaving ...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="FTC warns of record $3.5 billion losses to imposter scams in 2025" data-summary="The U.S. Federal Trade Commission (FTC) warned that Americans lost $3.5 billion to imposter scams in 2025, with reported losses nearly tripling since 2020. [...]...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/ftc-warns-of-record-35-billion-losses-to-imposter-scams-in-2025/" target="_blank" rel="noopener">FTC warns of record $3.5 billion losses to imposter scams in 2025</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-16T13:42:19.000Z">June 16, 2026 - 1:42 PM</time>
-            
-          </div>
-          <p class="news-summary">The U.S. Federal Trade Commission (FTC) warned that Americans lost $3.5 billion to imposter scams in 2025, with reported losses nearly tripling since 2020. [...]...</p>
-        </article>
     </div>
   </main>
   
@@ -515,7 +515,7 @@ The problem is no longer visibility. It's validation. Security teams must deci..
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-17T18:58:09.934Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-17T21:42:42.441Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
