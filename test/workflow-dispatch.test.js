@@ -19,3 +19,17 @@ test('update workflow dispatches the committed artifact SHA downstream', () => {
     2
   );
 });
+
+test('update workflow only stages generated artifacts and config metadata', () => {
+  const workflow = readWorkflow();
+  const generatedFiles = [
+    'index.html',
+    'news-data.json',
+    'feed.xml',
+    'feed-info.json',
+    'config/news-sources.json',
+  ];
+
+  assert.doesNotMatch(workflow, /^\s*git add \.\s*$/m);
+  assert.match(workflow, new RegExp(`^\\s*git add ${generatedFiles.join(' ')}\\s*$`, 'm'));
+});
