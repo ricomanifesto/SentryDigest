@@ -4,6 +4,8 @@ const path = require('node:path');
 const test = require('node:test');
 
 const workflowPath = path.join(__dirname, '../.github/workflows/update-news.yml');
+const gitignorePath = path.join(__dirname, '../.gitignore');
+const lockfilePath = path.join(__dirname, '../package-lock.json');
 
 function readWorkflow() {
   return fs.readFileSync(workflowPath, 'utf8');
@@ -32,4 +34,14 @@ test('update workflow only stages generated artifacts and config metadata', () =
 
   assert.doesNotMatch(workflow, /^\s*git add \.\s*$/m);
   assert.match(workflow, new RegExp(`^\\s*git add ${generatedFiles.join(' ')}\\s*$`, 'm'));
+});
+
+test('update workflow installs dependencies from the lockfile', () => {
+  const workflow = readWorkflow();
+  const gitignore = fs.readFileSync(gitignorePath, 'utf8');
+
+  assert.equal(fs.existsSync(lockfilePath), true);
+  assert.doesNotMatch(gitignore, /^package-lock\.json\s*$/m);
+  assert.doesNotMatch(workflow, /^\s*run: npm install\s*$/m);
+  assert.match(workflow, /^\s*run: npm ci\s*$/m);
 });
