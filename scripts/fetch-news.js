@@ -1,10 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const Parser = require('rss-parser');
-const moment = require('moment');
-
-// Create a new RSS parser instance
-const parser = new Parser();
 
 // Path to the index.html file
 const indexHtmlPath = path.join(__dirname, '../index.html');
@@ -12,6 +7,41 @@ const indexHtmlPath = path.join(__dirname, '../index.html');
 // Load configuration from file
 const configPath = path.join(__dirname, '../config/news-sources.json');
 let config;
+
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function escapeAttribute(value) {
+  return escapeHtml(value).replace(/`/g, '&#96;');
+}
+
+function safeArticleLink(value) {
+  try {
+    const url = new URL(value);
+    if (url.protocol === 'http:' || url.protocol === 'https:') {
+      return url.toString();
+    }
+  } catch {
+    // Invalid feed links render as inert anchors.
+  }
+  return '#';
+}
+
+function formatArticleDate(value) {
+  return new Intl.DateTimeFormat('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+  }).format(new Date(value));
+}
 
 try {
   // Ensure config directory exists
@@ -86,6 +116,8 @@ const sources = config.sources.filter(source => source.enabled);
 // Function to fetch RSS feed content
 async function fetchRSSFeed(source) {
   try {
+    const Parser = require('rss-parser');
+    const parser = new Parser();
     const feed = await parser.parseURL(source.url);
     return feed.items.map(item => ({
       title: item.title,
@@ -132,7 +164,7 @@ function generateHTML(newsItems) {
   const uniqueSources = Array.from(new Set(newsItems.map(n => n.source)));
   const totalItems = newsItems.length;
   const sourceOptions = uniqueSources
-    .map(src => `<option value="${src}">${src}</option>`) 
+    .map(src => `<option value="${escapeAttribute(src)}">${escapeHtml(src)}</option>`)
     .join('');
   const nowIso = new Date().toISOString();
 
@@ -229,23 +261,32 @@ function generateHTML(newsItems) {
 
     <div class="news-container" id="newsContainer">
       ${newsItems.length > 0 ? newsItems.map(item => {
-        const hostname = (() => { try { return new URL(item.link).hostname.replace(/^www\./,''); } catch { return ''; } })();
+        const articleLink = safeArticleLink(item.link);
+        const hostname = (() => { try { return new URL(articleLink).hostname.replace(/^www\./,''); } catch { return ''; } })();
         const isNew = (Date.now() - new Date(item.date).getTime()) < (24 * 60 * 60 * 1000);
-        const dateText = moment(item.date).format('MMMM D, YYYY - h:mm A');
+        const dateText = formatArticleDate(item.date);
         const dateIso = new Date(item.date).toISOString();
-        const sourceAttr = item.source;
+        const safeSource = escapeHtml(item.source);
+        const safeSourceAttr = escapeAttribute(item.source);
+        const safeHost = escapeHtml(hostname);
+        const safeHostAttr = escapeAttribute(hostname);
+        const safeTitle = escapeHtml(item.title);
+        const safeTitleAttr = escapeAttribute(item.title);
+        const safeSummary = escapeHtml(item.summary);
+        const safeSummaryAttr = escapeAttribute(item.summary);
+        const safeLink = escapeAttribute(articleLink);
         return `
-        <article class="news-item" data-source="${sourceAttr}" data-host="${hostname}" data-title="${(item.title||'').replace(/"/g,'&quot;')}" data-summary="${(item.summary||'').replace(/"/g,'&quot;')}">
+        <article class="news-item" data-source="${safeSourceAttr}" data-host="${safeHostAttr}" data-title="${safeTitleAttr}" data-summary="${safeSummaryAttr}">
           <div class="chips">
-            <span class="chip"><span class="dot"></span>${item.source}</span>
-            ${hostname ? `<span class="chip">${hostname}</span>` : ''}
+            <span class="chip"><span class="dot"></span>${safeSource}</span>
+            ${hostname ? `<span class="chip">${safeHost}</span>` : ''}
           </div>
-          <h2 class="news-title"><a href="${item.link}" target="_blank" rel="noopener">${item.title}</a></h2>
+          <h2 class="news-title"><a href="${safeLink}" target="_blank" rel="noopener">${safeTitle}</a></h2>
           <div class="news-meta">
             <time datetime="${dateIso}">${dateText}</time>
             ${isNew ? `<span class="badge-new">NEW</span>` : ''}
           </div>
-          ${item.summary ? `<p class="news-summary">${item.summary}</p>` : ''}
+          ${item.summary ? `<p class="news-summary">${safeSummary}</p>` : ''}
         </article>`;
       }).join('') : `
         <div class="news-item" style="grid-column: 1 / -1; text-align: center;">
@@ -349,4 +390,13 @@ async function main() {
   }
 }
 
-main();
+if (require.main === module) {
+  main();
+}
+
+module.exports = {
+  escapeHtml,
+  formatArticleDate,
+  generateHTML,
+  safeArticleLink,
+};
