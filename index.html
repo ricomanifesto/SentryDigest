@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-18T07:54:04.335Z">6/18/2026, 7:54:04 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-18T10:35:13.172Z">6/18/2026, 10:35:13 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft fixes Windows Server 2016 security update failures" data-summary="Microsoft has fixed a known issue causing the June 2026 security updates to fail on Windows Server 2016 systems that weren&#39;t up to date. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-fixes-windows-server-2016-security-update-failures/" target="_blank" rel="noopener">Microsoft fixes Windows Server 2016 security update failures</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-18T10:14:20.000Z">June 18, 2026 at 10:14 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Microsoft has fixed a known issue causing the June 2026 security updates to fail on Windows Server 2016 systems that weren&#39;t up to date. [...]...</p>
+        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="EU Gets a Head Start in Developing 6G Network Security" data-summary="&quot;Shield-6G&quot; will combine AI threat detection, digital twins, honeypots, and more, to help carriers protect 6G networks against the threats of tomorrow....">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -287,7 +299,7 @@ The problem is no longer visibility. It&#39;s validation. Security teams must de
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/the-top-10-attack-surface-exposures-in.html" target="_blank" rel="noopener">The Top 10 Attack Surface Exposures in 2026</a></h2>
           <div class="news-meta">
             <time datetime="2026-06-17T10:30:00.000Z">June 17, 2026 at 10:30 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Breaches don&#39;t always start with a zero-day. An exposed admin panel can get brute-forced, or credentials reused from a previous attack. But when a vulnerability does drop — like MongoBleed earlier thi...</p>
         </article>
@@ -299,7 +311,7 @@ The problem is no longer visibility. It&#39;s validation. Security teams must de
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cisa-orders-feds-to-patch-max-severity-joomla-plugin-flaw-by-friday/" target="_blank" rel="noopener">CISA orders feds to patch max severity Joomla plugin flaw by Friday</a></h2>
           <div class="news-meta">
             <time datetime="2026-06-17T10:09:24.000Z">June 17, 2026 at 10:09 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The U.S. Cybersecurity and Infrastructure Security Agency (CISA) has ordered federal agencies to patch a maximum-severity flaw in the Widget Factory Joomla Content Editor (JCE) plugin that is being ac...</p>
         </article>
@@ -311,7 +323,7 @@ The problem is no longer visibility. It&#39;s validation. Security teams must de
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-working-on-defender-patch-for-rogueplanet-zero-day/" target="_blank" rel="noopener">Microsoft working on Defender patch for RoguePlanet zero-day</a></h2>
           <div class="news-meta">
             <time datetime="2026-06-17T08:32:29.000Z">June 17, 2026 at 8:32 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Microsoft confirmed that it&#39;s working on a security patch for a Defender zero-day vulnerability named &quot;RoguePlanet,&quot; disclosed one week ago. [...]...</p>
         </article>
@@ -323,7 +335,7 @@ The problem is no longer visibility. It&#39;s validation. Security teams must de
           <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/uk-social-media-ban-privacy-experts-worried" target="_blank" rel="noopener">UK Social Media Ban for Minors Has Privacy Experts Worried</a></h2>
           <div class="news-meta">
             <time datetime="2026-06-17T08:00:00.000Z">June 17, 2026 at 8:00 AM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">The UK will ban adolescents under 16 years old from user-to-user social media platforms, despite age verification issues and privacy concerns....</p>
         </article>
@@ -459,18 +471,6 @@ The problem is no longer visibility. It&#39;s validation. Security teams must de
           </div>
           <p class="news-summary">Cybersecurity researchers have flagged multiple ClickFix campaigns that deliver three malware loaders called BabaDeda Loader, Lorem Ipsum Loader, and Potemkin, per independent reports from Morphisec, ...</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Rokarolla Android Trojan Levels Up to Full Device Control, Persistence" data-summary="The emerging malware, spread via fake TikTok and Chrome downloads, has evolved by combining banking fraud with extensive device surveillance and remote control....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/endpoint-security/rokarolla-android-trojan" target="_blank" rel="noopener">Rokarolla Android Trojan Levels Up to Full Device Control, Persistence</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-16T17:32:32.000Z">June 16, 2026 at 5:32 PM</time>
-            
-          </div>
-          <p class="news-summary">The emerging malware, spread via fake TikTok and Chrome downloads, has evolved by combining banking fraud with extensive device surveillance and remote control....</p>
-        </article>
     </div>
   </main>
   
@@ -515,7 +515,7 @@ The problem is no longer visibility. It&#39;s validation. Security teams must de
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-18T07:54:04.335Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-18T10:35:13.172Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
