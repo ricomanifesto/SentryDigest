@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-18T01:12:45.846Z">6/18/2026, 1:12:45 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-18T04:35:32.179Z">6/18/2026, 4:35:32 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Leak confirms OpenAI is testing a ChatGPT for Science subscription" data-summary="OpenAI appears to be testing a new subscription and experience for science use cases, but it&#39;s unclear if it&#39;ll be available to everyone regardless of their background. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/leak-confirms-openai-is-testing-a-chatgpt-for-science-subscription/" target="_blank" rel="noopener">Leak confirms OpenAI is testing a ChatGPT for Science subscription</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-18T01:30:08.000Z">June 18, 2026 at 1:30 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">OpenAI appears to be testing a new subscription and experience for science use cases, but it&#39;s unclear if it&#39;ll be available to everyone regardless of their background. [...]...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Google to use UK and EU user IP addresses for ad personalization" data-summary="From August 3, 2026, Google will use IP addresses from UK, EEA and Switzerland users for ad measurement and personalization. It lands as the ICO weighs new consent rules, and years after Google itself...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -459,18 +471,6 @@ The problem is no longer visibility. It&#39;s validation. Security teams must de
           </div>
           <p class="news-summary">New analysis shows the campaign, which uses compromised WordPress sites, may be linked to the ransomware and data extortion group Vice Society....</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="UK to require ID or face scan before you can make social media accounts" data-summary="Opening a new social media account in the UK will soon mean proving you&#39;re over 16 with an ID upload or a facial age scan, under a government ban on under-16s taking effect in spring 2027. Security ex...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/uk-to-require-id-or-face-scan-before-you-can-make-social-media-accounts/" target="_blank" rel="noopener">UK to require ID or face scan before you can make social media accounts</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-16T14:38:49.000Z">June 16, 2026 at 2:38 PM</time>
-            
-          </div>
-          <p class="news-summary">Opening a new social media account in the UK will soon mean proving you&#39;re over 16 with an ID upload or a facial age scan, under a government ban on under-16s taking effect in spring 2027. Security ex...</p>
-        </article>
     </div>
   </main>
   
@@ -515,7 +515,7 @@ The problem is no longer visibility. It&#39;s validation. Security teams must de
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-18T01:12:45.846Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-18T04:35:32.179Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
