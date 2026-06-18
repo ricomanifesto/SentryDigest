@@ -1,7 +1,7 @@
 const assert = require('node:assert/strict');
 const test = require('node:test');
 
-const { generateHTML } = require('../scripts/fetch-news');
+const { generateHTML } = require('../scripts/render-news-html');
 
 test('generateHTML escapes feed-controlled article fields', () => {
   const html = generateHTML([
