@@ -46,6 +46,55 @@ function countMatches(text, pattern) {
   return (text.match(pattern) || []).length;
 }
 
+function decodeCodePoint(value, radix) {
+  const codePoint = Number.parseInt(value, radix);
+  if (!Number.isInteger(codePoint) || codePoint < 0 || codePoint > 0x10ffff) {
+    return null;
+  }
+
+  return String.fromCodePoint(codePoint);
+}
+
+function decodeHtmlEntities(value) {
+  return String(value)
+    .replace(/&#x([0-9a-f]+);?/gi, (entity, hex) => decodeCodePoint(hex, 16) ?? entity)
+    .replace(/&#([0-9]+);?/g, (entity, decimal) => decodeCodePoint(decimal, 10) ?? entity)
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&apos;/g, "'")
+    .replace(/&amp;/g, '&');
+}
+
+function isSafeGeneratedArticleHref(value) {
+  const href = decodeHtmlEntities(value).trim();
+  if (href === '#') {
+    return true;
+  }
+
+  try {
+    const url = new URL(href);
+    return url.protocol === 'http:' || url.protocol === 'https:';
+  } catch {
+    return false;
+  }
+}
+
+function extractArticleHrefs(indexHtml) {
+  const hrefs = [];
+  const articlePattern = /<article\b[^>]*class="[^"]*\bnews-item\b[^"]*"[^>]*>[\s\S]*?<\/article>/gi;
+  const hrefPattern = /\bhref\s*=\s*"([^"]*)"/gi;
+  let articleMatch;
+
+  while ((articleMatch = articlePattern.exec(indexHtml)) !== null) {
+    let hrefMatch;
+    while ((hrefMatch = hrefPattern.exec(articleMatch[0])) !== null) {
+      hrefs.push(hrefMatch[1]);
+    }
+  }
+
+  return hrefs;
+}
+
 function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
   const artifacts = {
     config: path.join(repoRoot, 'config/news-sources.json'),
@@ -190,6 +239,12 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
     if (newsData.length > 0 && articleCount !== newsData.length) {
       fail(failures, `index.html renders ${articleCount} article cards, expected ${newsData.length}`);
     }
+
+    extractArticleHrefs(indexHtml).forEach((href) => {
+      if (!isSafeGeneratedArticleHref(href)) {
+        fail(failures, `index.html contains unsafe article href ${decodeHtmlEntities(href)}`);
+      }
+    });
   }
 
   const itemCount = Array.isArray(newsData) ? newsData.length : 0;
@@ -219,5 +274,7 @@ if (require.main === module) {
 }
 
 module.exports = {
+  extractArticleHrefs,
+  isSafeGeneratedArticleHref,
   validateArtifacts,
 };
