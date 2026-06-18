@@ -50,6 +50,7 @@ jobs:
             git commit -m "Update cybersecurity news [automated]"
             git push
             echo "changes_made=true" >> $GITHUB_OUTPUT
+            echo "commit_sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
           fi
       
       # Trigger downstream analysis tools if changes were made
@@ -60,7 +61,7 @@ jobs:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           repository: ricomanifesto/SentryInsight
           event-type: sentrydigest-updated
-          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ steps.commit.outputs.commit_sha }}"}'
 
       - name: Trigger GRC Insight Analysis
         if: steps.commit.outputs.changes_made == 'true'
@@ -69,4 +70,4 @@ jobs:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           repository: ricomanifesto/GRCInsight
           event-type: sentrydigest-updated
-          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ steps.commit.outputs.commit_sha }}"}'
