@@ -152,38 +152,38 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
       const links = new Set();
       const enabledSourceNames = new Set(enabledSources.map((source) => source.name));
 
-      newsData.forEach((item, index) => {
+      newsData.forEach((article, index) => {
         const label = `news-data item ${index + 1}`;
-        if (!item || typeof item !== 'object' || Array.isArray(item)) {
+        if (!article || typeof article !== 'object' || Array.isArray(article)) {
           fail(failures, `${label} must be an object`);
           return;
         }
 
-        if (!item.title || typeof item.title !== 'string') {
+        if (!article.title || typeof article.title !== 'string') {
           fail(failures, `${label} must have a string title`);
         }
-        if (!item.link || !isValidHttpUrl(item.link)) {
+        if (!article.link || !isValidHttpUrl(article.link)) {
           fail(failures, `${label} must have an http(s) link`);
-        } else if (links.has(item.link)) {
-          fail(failures, `${label} duplicates link ${item.link}`);
+        } else if (links.has(article.link)) {
+          fail(failures, `${label} duplicates link ${article.link}`);
         } else {
-          links.add(item.link);
+          links.add(article.link);
         }
-        if (!item.date || !isValidDate(item.date)) {
+        if (!article.date || !isValidDate(article.date)) {
           fail(failures, `${label} must have a valid date`);
         }
-        if (!item.source || typeof item.source !== 'string') {
+        if (!article.source || typeof article.source !== 'string') {
           fail(failures, `${label} must have a string source`);
-        } else if (enabledSourceNames.size > 0 && !enabledSourceNames.has(item.source)) {
-          fail(failures, `${label} source "${item.source}" is not enabled in config`);
+        } else if (enabledSourceNames.size > 0 && !enabledSourceNames.has(article.source)) {
+          fail(failures, `${label} source "${article.source}" is not enabled in config`);
         }
-        if (item.summary !== undefined && typeof item.summary !== 'string') {
+        if (article.summary !== undefined && typeof article.summary !== 'string') {
           fail(failures, `${label} summary must be a string when present`);
         }
 
-        if (index > 0 && isValidDate(item.date) && isValidDate(newsData[index - 1].date)) {
+        if (index > 0 && isValidDate(article.date) && isValidDate(newsData[index - 1].date)) {
           const previous = new Date(newsData[index - 1].date).getTime();
-          const current = new Date(item.date).getTime();
+          const current = new Date(article.date).getTime();
           if (current > previous) {
             fail(failures, `${label} is newer than the previous item; news-data.json must be newest-first`);
           }
