@@ -82,13 +82,13 @@ function isSafeGeneratedArticleHref(value) {
 function extractArticleHrefs(indexHtml) {
   const hrefs = [];
   const articlePattern = /<article\b[^>]*class="[^"]*\bnews-item\b[^"]*"[^>]*>[\s\S]*?<\/article>/gi;
-  const hrefPattern = /\bhref\s*=\s*"([^"]*)"/gi;
+  const hrefPattern = /\bhref\s*=\s*(["'])(.*?)\1/gi;
   let articleMatch;
 
   while ((articleMatch = articlePattern.exec(indexHtml)) !== null) {
     let hrefMatch;
     while ((hrefMatch = hrefPattern.exec(articleMatch[0])) !== null) {
-      hrefs.push(hrefMatch[1]);
+      hrefs.push(hrefMatch[2]);
     }
   }
 

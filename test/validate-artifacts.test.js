@@ -166,6 +166,22 @@ test('validateArtifacts rejects unsafe article links in generated HTML', () => {
   assert.match(result.failures.join('\n'), /index\.html contains unsafe article href javascript:alert\(1\)/);
 });
 
+test('validateArtifacts rejects single-quoted unsafe article links in generated HTML', () => {
+  const repoRoot = createFixture({
+    indexHtml: `<html><body>
+      <h1>SentryDigest</h1>
+      <a href="./feed.xml">RSS</a>
+      <article class="news-item"><a href='javascript:alert(1)'>Unsafe</a></article>
+      <article class="news-item"><a href="https://example.com/older">Older</a></article>
+    </body></html>`,
+  });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(result.failures.join('\n'), /index\.html contains unsafe article href javascript:alert\(1\)/);
+});
+
 test('validateArtifacts reports malformed encoded article hrefs without throwing', () => {
   const repoRoot = createFixture({
     indexHtml: `<html><body>
