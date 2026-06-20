@@ -87,7 +87,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-06-20T18:37:56.141Z">6/20/2026, 6:37:56 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-06-20T21:33:40.721Z">6/20/2026, 9:33:40 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -151,7 +151,7 @@ The vulnerability, tracked as CVE-2026-4020 (CVSS sco...</p>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hackers-exploit-info-disclosure-bug-in-gravity-smtp-wordpress-plugin/" target="_blank" rel="noopener">Hackers exploit info disclosure bug in Gravity SMTP WordPress plugin</a></h2>
           <div class="news-meta">
             <time datetime="2026-06-19T20:25:02.000Z">June 19, 2026 at 8:25 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Threat actors are exploiting an unauthenticated information disclosure vulnerability in the WordPress plugin Gravity SMTP, active on 100,000 sites. [...]...</p>
         </article>
@@ -523,7 +523,7 @@ The vulnerabilities are listed belo...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-20T18:37:56.141Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-20T21:33:40.721Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
