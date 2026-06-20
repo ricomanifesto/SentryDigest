@@ -1,7 +1,24 @@
 const assert = require('node:assert/strict');
 const test = require('node:test');
 
+const { normalizeFeedDate } = require('../scripts/fetch-news');
 const { generateHTML } = require('../scripts/render-news-html');
+
+test('normalizeFeedDate preserves valid feed dates', () => {
+  const date = normalizeFeedDate(
+    'Wed, 17 Jun 2026 18:00:00 GMT',
+    new Date('2026-06-01T00:00:00.000Z'),
+  );
+
+  assert.equal(date.toISOString(), '2026-06-17T18:00:00.000Z');
+});
+
+test('normalizeFeedDate falls back for invalid or missing feed dates', () => {
+  const fallback = new Date('2026-06-17T12:00:00.000Z');
+
+  assert.equal(normalizeFeedDate('not a date', fallback).toISOString(), fallback.toISOString());
+  assert.equal(normalizeFeedDate(undefined, fallback).toISOString(), fallback.toISOString());
+});
 
 test('generateHTML escapes feed-controlled article fields', () => {
   const html = generateHTML([

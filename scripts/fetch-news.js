@@ -79,6 +79,15 @@ try {
 const sources = config.sources.filter(source => source.enabled);
 // Use simple date-based sort across all sources
 
+function normalizeFeedDate(value, fallback = new Date()) {
+  if (!value) {
+    return fallback;
+  }
+
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? fallback : date;
+}
+
 // Function to fetch RSS feed content
 async function fetchRSSFeed(source) {
   try {
@@ -88,7 +97,7 @@ async function fetchRSSFeed(source) {
     return feed.items.map(article => ({
       title: article.title,
       link: article.link,
-      date: article.pubDate ? new Date(article.pubDate) : new Date(),
+      date: normalizeFeedDate(article.pubDate),
       source: source.name,
       summary: article.contentSnippet ? article.contentSnippet.substring(0, 200) + '...' : ''
     }));
@@ -168,4 +177,5 @@ if (require.main === module) {
 module.exports = {
   fetchAllNews,
   fetchRSSFeed,
+  normalizeFeedDate,
 };
