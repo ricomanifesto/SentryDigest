@@ -79,7 +79,7 @@ try {
 const sources = config.sources.filter(source => source.enabled);
 // Use simple date-based sort across all sources
 
-function normalizeFeedDate(value, fallback = new Date()) {
+function normalizeFeedDate(value, fallback = new Date(0)) {
   if (!value) {
     return fallback;
   }

@@ -20,6 +20,10 @@ test('normalizeFeedDate falls back for invalid or missing feed dates', () => {
   assert.equal(normalizeFeedDate(undefined, fallback).toISOString(), fallback.toISOString());
 });
 
+test('normalizeFeedDate uses a stable old default for malformed feed dates', () => {
+  assert.equal(normalizeFeedDate('not a date').toISOString(), '1970-01-01T00:00:00.000Z');
+});
+
 test('generateHTML escapes feed-controlled article fields', () => {
   const html = generateHTML([
     {
