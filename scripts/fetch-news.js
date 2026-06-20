@@ -88,6 +88,19 @@ function normalizeFeedDate(value, fallback = new Date(0)) {
   return Number.isNaN(date.getTime()) ? fallback : date;
 }
 
+function normalizeArticleDate(article) {
+  const candidates = [article.pubDate, article.isoDate, article.date];
+
+  for (const candidate of candidates) {
+    const date = normalizeFeedDate(candidate, null);
+    if (date) {
+      return date;
+    }
+  }
+
+  return normalizeFeedDate(undefined);
+}
+
 // Function to fetch RSS feed content
 async function fetchRSSFeed(source) {
   try {
@@ -97,7 +110,7 @@ async function fetchRSSFeed(source) {
     return feed.items.map(article => ({
       title: article.title,
       link: article.link,
-      date: normalizeFeedDate(article.pubDate),
+      date: normalizeArticleDate(article),
       source: source.name,
       summary: article.contentSnippet ? article.contentSnippet.substring(0, 200) + '...' : ''
     }));
@@ -177,5 +190,6 @@ if (require.main === module) {
 module.exports = {
   fetchAllNews,
   fetchRSSFeed,
+  normalizeArticleDate,
   normalizeFeedDate,
 };
