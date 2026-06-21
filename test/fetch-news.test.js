@@ -33,6 +33,14 @@ test('normalizeArticleDate falls back from malformed pubDate to isoDate', () => 
   assert.equal(date.toISOString(), '2026-06-18T15:30:00.000Z');
 });
 
+test('normalizeArticleDate uses isoDate when pubDate is missing', () => {
+  const date = normalizeArticleDate({
+    isoDate: '2026-06-18T15:45:00.000Z',
+  });
+
+  assert.equal(date.toISOString(), '2026-06-18T15:45:00.000Z');
+});
+
 test('normalizeArticleDate uses parser date before the stable old fallback', () => {
   const date = normalizeArticleDate({
     date: '2026-06-18T16:30:00.000Z',
