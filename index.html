@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-06-21T12:50:05.143Z">6/21/2026, 12:50:05 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-06-21T15:39:41.291Z">6/21/2026, 3:39:41 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="AryStinger botnet infected thousands of D-Link routers worldwide" data-summary="A previously undocumented malware botnet named AryStinger has compromised more than 4,000 outdated routers to turn them into proxies for malicious traffic. [...]...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/arystinger-botnet-infected-thousands-of-d-link-routers-worldwide/" target="_blank" rel="noopener">AryStinger botnet infected thousands of D-Link routers worldwide</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-21T14:14:22.000Z">June 21, 2026 at 2:14 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">A previously undocumented malware botnet named AryStinger has compromised more than 4,000 outdated routers to turn them into proxies for malicious traffic. [...]...</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="New Prinz Eugen ransomware prioritizes recent files for encryption" data-summary="A new ransomware operation named &#39;Prinz Eugen&#39; prioritizes recently modified files for encryption and leaves no ransom note on the system. [...]...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
@@ -99,7 +111,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/new-prinz-eugen-ransomware-prioritizes-recent-files-for-encryption/" target="_blank" rel="noopener">New Prinz Eugen ransomware prioritizes recent files for encryption</a></h2>
           <div class="news-meta">
             <time datetime="2026-06-20T15:23:46.000Z">June 20, 2026 at 3:23 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">A new ransomware operation named &#39;Prinz Eugen&#39; prioritizes recently modified files for encryption and leaves no ransom note on the system. [...]...</p>
         </article>
@@ -111,7 +123,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/microsoft-links-mastra-ai-supply-chain-attack-to-north-korean-hackers/" target="_blank" rel="noopener">Microsoft links Mastra AI supply chain attack to North Korean hackers</a></h2>
           <div class="news-meta">
             <time datetime="2026-06-20T14:09:19.000Z">June 20, 2026 at 2:09 PM</time>
-            <span class="badge-new">NEW</span>
+            
           </div>
           <p class="news-summary">Microsoft has attributed a recent Mastra AI supply chain attack that compromised more than 140 npm packages to the North Korean hacking group Sapphire Sleet, also known as BlueNoroff. [...]...</p>
         </article>
@@ -467,18 +479,6 @@ The vulnerabilities are listed belo...">
 
 The vulnerabilities are listed belo...</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Salesforce Data Thefts Continue via Klue App Compromise" data-summary="Klue&#39;s Battlecards is now the third integrated application that has been compromised to steal customers&#39; Salesforce data, and victims include Huntress, the cybersecurity vendor....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/salesforce-data-thefts-klue-app-compromise" target="_blank" rel="noopener">Salesforce Data Thefts Continue via Klue App Compromise</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-18T16:49:04.000Z">June 18, 2026 at 4:49 PM</time>
-            
-          </div>
-          <p class="news-summary">Klue&#39;s Battlecards is now the third integrated application that has been compromised to steal customers&#39; Salesforce data, and victims include Huntress, the cybersecurity vendor....</p>
-        </article>
     </div>
   </main>
   
@@ -523,7 +523,7 @@ The vulnerabilities are listed belo...</p>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-21T12:50:05.143Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-21T15:39:41.291Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
