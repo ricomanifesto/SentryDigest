@@ -61,7 +61,7 @@ function createFixture(overrides = {}) {
     overrides.feedXml ||
       `<?xml version="1.0" encoding="UTF-8"?><rss><channel>
         <atom:link href="https://ricomanifesto.github.io/SentryDigest/feed.xml" />
-        ${newsData.map((item) => `<item><title>${item.title}</title></item>`).join('\n')}
+        ${newsData.map((item) => `<item><title>${item.title}</title><link>${item.link}</link></item>`).join('\n')}
       </channel></rss>`
   );
   writeText(
@@ -70,7 +70,7 @@ function createFixture(overrides = {}) {
       `<html><body>
         <h1>SentryDigest</h1>
         <a href="./feed.xml">RSS</a>
-        ${newsData.map((item) => `<article class="news-item">${item.title}</article>`).join('\n')}
+        ${newsData.map((item) => `<article class="news-item"><a href="${item.link}">${item.title}</a></article>`).join('\n')}
       </body></html>`
   );
 
@@ -111,6 +111,43 @@ test('validateArtifacts reports every changed downstream artifact mismatch', () 
   );
   assert.match(result.failures.join('\n'), /feed\.xml has 1 items, expected 2/);
   assert.match(result.failures.join('\n'), /index\.html renders 1 article cards, expected 2/);
+});
+
+test('validateArtifacts rejects feed links that drift from news-data', () => {
+  const repoRoot = createFixture({
+    feedXml: `<?xml version="1.0" encoding="UTF-8"?><rss><channel>
+      <atom:link href="https://ricomanifesto.github.io/SentryDigest/feed.xml" />
+      <item><title>Newer item</title><link>https://example.com/wrong-newer</link></item>
+      <item><title>Older item</title><link>https://example.com/older</link></item>
+    </channel></rss>`,
+  });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(
+    result.failures.join('\n'),
+    /feed\.xml item 1 link https:\/\/example\.com\/wrong-newer does not match news-data\.json link https:\/\/example\.com\/newer/
+  );
+});
+
+test('validateArtifacts rejects generated HTML article links that drift from news-data', () => {
+  const repoRoot = createFixture({
+    indexHtml: `<html><body>
+      <h1>SentryDigest</h1>
+      <a href="./feed.xml">RSS</a>
+      <article class="news-item"><a href="https://example.com/wrong-newer">Newer item</a></article>
+      <article class="news-item"><a href="https://example.com/older">Older item</a></article>
+    </body></html>`,
+  });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(
+    result.failures.join('\n'),
+    /index\.html article item 1 href https:\/\/example\.com\/wrong-newer does not match news-data\.json link https:\/\/example\.com\/newer/
+  );
 });
 
 test('validateArtifacts reports missing generated artifacts', () => {

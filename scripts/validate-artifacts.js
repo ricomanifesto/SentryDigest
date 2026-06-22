@@ -95,6 +95,34 @@ function extractArticleHrefs(indexHtml) {
   return hrefs;
 }
 
+function extractFeedItemLinks(feedXml) {
+  const links = [];
+  const itemPattern = /<item\b[^>]*>[\s\S]*?<\/item>/gi;
+  const linkPattern = /<link\b[^>]*>([\s\S]*?)<\/link>/i;
+  let itemMatch;
+
+  while ((itemMatch = itemPattern.exec(feedXml)) !== null) {
+    const linkMatch = linkPattern.exec(itemMatch[0]);
+    links.push(linkMatch ? decodeHtmlEntities(linkMatch[1].trim()) : '');
+  }
+
+  return links;
+}
+
+function assertLinksMatchNewsData(label, actualLinks, newsData, failures, linkLabel = 'link') {
+  if (actualLinks.length !== newsData.length) {
+    fail(failures, `${label} has ${actualLinks.length} article links, expected ${newsData.length}`);
+    return;
+  }
+
+  actualLinks.forEach((actualLink, index) => {
+    const expectedLink = newsData[index].link;
+    if (actualLink !== expectedLink) {
+      fail(failures, `${label} item ${index + 1} ${linkLabel} ${actualLink} does not match news-data.json link ${expectedLink}`);
+    }
+  });
+}
+
 function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
   const artifacts = {
     config: path.join(repoRoot, 'config/news-sources.json'),
@@ -222,6 +250,8 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
       fail(failures, `feed.xml has ${feedItemCount} items, expected ${newsData.length}`);
     }
 
+    assertLinksMatchNewsData('feed.xml', extractFeedItemLinks(feedXml), newsData, failures);
+
     if (!feedXml.includes('https://ricomanifesto.github.io/SentryDigest/feed.xml')) {
       fail(failures, 'feed.xml must advertise the public SentryDigest feed URL');
     }
@@ -245,6 +275,8 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
         fail(failures, `index.html contains unsafe article href ${decodeHtmlEntities(href)}`);
       }
     });
+
+    assertLinksMatchNewsData('index.html article', extractArticleHrefs(indexHtml), newsData, failures, 'href');
   }
 
   const itemCount = Array.isArray(newsData) ? newsData.length : 0;
@@ -274,6 +306,7 @@ if (require.main === module) {
 }
 
 module.exports = {
+  extractFeedItemLinks,
   extractArticleHrefs,
   isSafeGeneratedArticleHref,
   validateArtifacts,
