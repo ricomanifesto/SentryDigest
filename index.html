@@ -87,10 +87,26 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-22T08:16:54.468Z">6/22/2026, 8:16:54 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-22T11:03:41.174Z">6/22/2026, 11:03:41 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Canada’s Spy Agency Used First-of-Its-Kind Warrant to Clean Botnet-Infected Devices" data-summary="Canada&#39;s spy service got a judge&#39;s permission to reach into infected servers, home routers, and IoT gear sitting on Canadian soil and neutralize two foreign-run botnets.
+
+The Federal Court released a ...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/06/canadas-spy-agency-used-first-of-its.html" target="_blank" rel="noopener">Canada’s Spy Agency Used First-of-Its-Kind Warrant to Clean Botnet-Infected Devices</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-22T09:11:37.000Z">June 22, 2026 at 9:11 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Canada&#39;s spy service got a judge&#39;s permission to reach into infected servers, home routers, and IoT gear sitting on Canadian soil and neutralize two foreign-run botnets.
+
+The Federal Court released a ...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="AryStinger Malware Infects 4,300 Legacy Routers to Build Reconnaissance Proxy Network" data-summary="A new malware family is turning forgotten home routers into a distributed reconnaissance and proxy network, not the DDoS botnet these devices usually end up in. QiAnXin&#39;s XLab calls it AryStinger and ...">
           <div class="chips">
             <span class="chip"><span class="dot"></span>The Hacker News</span>
@@ -463,18 +479,6 @@ The vulnerability, tracked as CVE-2025...</p>
           </div>
           <p class="news-summary">Nintendo of America has confirmed to BleepingComputer that threat actors stole survey data from the third-party TinyPulse service used internally, but its systems were not compromised. [...]...</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="FIFA Bug Exposes World Cup Streams to Remote Takeover" data-summary="A hacker could have &quot;Rickrolled&quot; the World Cup — or worse — thanks to FIFA&#39;s unenforced Entra access controls....">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>Dark Reading</span>
-            <span class="chip">darkreading.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/application-security/fifa-bug-world-cup-streams-remote-takeover" target="_blank" rel="noopener">FIFA Bug Exposes World Cup Streams to Remote Takeover</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-18T18:20:07.000Z">June 18, 2026 at 6:20 PM</time>
-            
-          </div>
-          <p class="news-summary">A hacker could have &quot;Rickrolled&quot; the World Cup — or worse — thanks to FIFA&#39;s unenforced Entra access controls....</p>
-        </article>
     </div>
   </main>
   
@@ -519,7 +523,7 @@ The vulnerability, tracked as CVE-2025...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-22T08:16:54.468Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-22T11:03:41.174Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
