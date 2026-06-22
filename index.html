@@ -78,7 +78,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -87,10 +87,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-22T14:07:46.745Z">6/22/2026, 2:07:46 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-22T14:14:03.216Z">6/22/2026, 2:14:03 PM</time></div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="A Glimpse into the “Search Your Target” Market for Stolen Credentials" data-summary="Attackers no longer need to sift through massive credential dumps. They can pay others to do it for them. Flare explores how an emerging underground market searches stolen credential databases for spe...">
+          <div class="chips">
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/a-glimpse-into-the-search-your-target-market-for-stolen-credentials/" target="_blank" rel="noopener">A Glimpse into the “Search Your Target” Market for Stolen Credentials</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-22T14:05:15.000Z">June 22, 2026 at 2:05 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <p class="news-summary">Attackers no longer need to sift through massive credential dumps. They can pay others to do it for them. Flare explores how an emerging underground market searches stolen credential databases for spe...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="New OXLOADER Loader Uses Malicious Google Ads to Deliver CastleStealer" data-summary="Cybersecurity researchers have disclosed details of a new campaign that delivers CastleStealer by means of a previously unreported malware loader dubbed OXLOADER.
 
 According to Elastic Security Labs, ...">
@@ -475,22 +487,6 @@ T...</p>
           </div>
           <p class="news-summary">The U.S. Cybersecurity and Infrastructure Security Agency (CISA) urged Fortinet customers to secure their devices after nearly 74,000 firewall and VPN credentials were exposed in a data leak dubbed &quot;F...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Apple Patches Beats Studio Buds Flaw Letting Nearby Attackers Spy via Microphone" data-summary="Apple has updated its Beats Studio Buds wireless earbuds to patch a high-severity vulnerability that could be exploited by nearby hackers to eavesdrop on users.
-
-The vulnerability, tracked as CVE-2025...">
-          <div class="chips">
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/06/apple-patches-beats-studio-buds-flaw.html" target="_blank" rel="noopener">Apple Patches Beats Studio Buds Flaw Letting Nearby Attackers Spy via Microphone</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-19T06:36:09.000Z">June 19, 2026 at 6:36 AM</time>
-            
-          </div>
-          <p class="news-summary">Apple has updated its Beats Studio Buds wireless earbuds to patch a high-severity vulnerability that could be exploited by nearby hackers to eavesdrop on users.
-
-The vulnerability, tracked as CVE-2025...</p>
-        </article>
     </div>
   </main>
   
@@ -535,7 +531,7 @@ The vulnerability, tracked as CVE-2025...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-22T14:07:46.745Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-22T14:14:03.216Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
