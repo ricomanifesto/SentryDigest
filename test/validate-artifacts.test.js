@@ -150,6 +150,51 @@ test('validateArtifacts rejects generated HTML article links that drift from new
   );
 });
 
+test('validateArtifacts accepts escaped generated HTML article hrefs', () => {
+  const repoRoot = createFixture({
+    newsData: [
+      {
+        title: 'Query item',
+        link: 'https://example.com/article?x=1&y=2',
+        date: '2026-06-17T18:00:00.000Z',
+        source: 'Example Security',
+        summary: 'Story with query params',
+      },
+    ],
+    indexHtml: `<html><body>
+      <h1>SentryDigest</h1>
+      <a href="./feed.xml">RSS</a>
+      <article class="news-item"><a href="https://example.com/article?x=1&amp;y=2">Query item</a></article>
+    </body></html>`,
+  });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, true);
+  assert.deepEqual(result.failures, []);
+});
+
+test('validateArtifacts reports malformed news-data items without throwing during link comparison', () => {
+  const repoRoot = createFixture({
+    newsData: [null],
+    feedXml: `<?xml version="1.0" encoding="UTF-8"?><rss><channel>
+      <atom:link href="https://ricomanifesto.github.io/SentryDigest/feed.xml" />
+      <item><title>Malformed</title><link>https://example.com/malformed</link></item>
+    </channel></rss>`,
+    indexHtml: `<html><body>
+      <h1>SentryDigest</h1>
+      <a href="./feed.xml">RSS</a>
+      <article class="news-item"><a href="https://example.com/malformed">Malformed</a></article>
+    </body></html>`,
+  });
+
+  assert.doesNotThrow(() => validateArtifacts(repoRoot));
+
+  const result = validateArtifacts(repoRoot);
+  assert.equal(result.valid, false);
+  assert.match(result.failures.join('\n'), /news-data item 1 must be an object/);
+});
+
 test('validateArtifacts reports missing generated artifacts', () => {
   const repoRoot = createFixture();
   fs.rmSync(path.join(repoRoot, 'feed.xml'));

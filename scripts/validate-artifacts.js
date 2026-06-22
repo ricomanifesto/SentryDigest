@@ -116,9 +116,15 @@ function assertLinksMatchNewsData(label, actualLinks, newsData, failures, linkLa
   }
 
   actualLinks.forEach((actualLink, index) => {
-    const expectedLink = newsData[index].link;
-    if (actualLink !== expectedLink) {
-      fail(failures, `${label} item ${index + 1} ${linkLabel} ${actualLink} does not match news-data.json link ${expectedLink}`);
+    const article = newsData[index];
+    if (!article || typeof article !== 'object' || Array.isArray(article) || typeof article.link !== 'string') {
+      return;
+    }
+
+    const expectedLink = article.link;
+    const decodedLink = decodeHtmlEntities(actualLink);
+    if (decodedLink !== expectedLink) {
+      fail(failures, `${label} item ${index + 1} ${linkLabel} ${decodedLink} does not match news-data.json link ${expectedLink}`);
     }
   });
 }
