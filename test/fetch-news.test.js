@@ -1,7 +1,66 @@
 const assert = require('node:assert/strict');
 const test = require('node:test');
 
+const {
+  INVALID_FEED_DATE_FALLBACK,
+  normalizeArticleDate,
+  normalizeFeedDate,
+} = require('../scripts/fetch-news');
 const { generateHTML } = require('../scripts/render-news-html');
+
+test('normalizeFeedDate preserves valid feed dates', () => {
+  const date = normalizeFeedDate(
+    'Wed, 17 Jun 2026 18:00:00 GMT',
+    new Date('2026-06-01T00:00:00.000Z'),
+  );
+
+  assert.equal(date.toISOString(), '2026-06-17T18:00:00.000Z');
+});
+
+test('normalizeFeedDate falls back for invalid or missing feed dates', () => {
+  const fallback = new Date('2026-06-17T12:00:00.000Z');
+
+  assert.equal(normalizeFeedDate('not a date', fallback).toISOString(), fallback.toISOString());
+  assert.equal(normalizeFeedDate(undefined, fallback).toISOString(), fallback.toISOString());
+});
+
+test('normalizeFeedDate uses a stable old default for malformed feed dates', () => {
+  assert.equal(normalizeFeedDate('not a date'), INVALID_FEED_DATE_FALLBACK);
+  assert.equal(INVALID_FEED_DATE_FALLBACK.toISOString(), '1970-01-01T00:00:00.000Z');
+});
+
+test('normalizeArticleDate falls back from malformed pubDate to isoDate', () => {
+  const date = normalizeArticleDate({
+    pubDate: 'not a date',
+    isoDate: '2026-06-18T15:30:00.000Z',
+  });
+
+  assert.equal(date.toISOString(), '2026-06-18T15:30:00.000Z');
+});
+
+test('normalizeArticleDate uses the stable old fallback for malformed feed dates', () => {
+  const date = normalizeArticleDate({
+    pubDate: 'not a date',
+  });
+
+  assert.equal(date, INVALID_FEED_DATE_FALLBACK);
+});
+
+test('normalizeArticleDate uses isoDate when pubDate is missing', () => {
+  const date = normalizeArticleDate({
+    isoDate: '2026-06-18T15:45:00.000Z',
+  });
+
+  assert.equal(date.toISOString(), '2026-06-18T15:45:00.000Z');
+});
+
+test('normalizeArticleDate uses parser date before the stable old fallback', () => {
+  const date = normalizeArticleDate({
+    date: '2026-06-18T16:30:00.000Z',
+  });
+
+  assert.equal(date.toISOString(), '2026-06-18T16:30:00.000Z');
+});
 
 test('generateHTML escapes feed-controlled article fields', () => {
   const html = generateHTML([
