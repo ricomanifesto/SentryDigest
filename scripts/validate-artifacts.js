@@ -122,9 +122,8 @@ function assertLinksMatchNewsData(label, actualLinks, newsData, failures, linkLa
     }
 
     const expectedLink = article.link;
-    const decodedLink = decodeHtmlEntities(actualLink);
-    if (decodedLink !== expectedLink) {
-      fail(failures, `${label} item ${index + 1} ${linkLabel} ${decodedLink} does not match news-data.json link ${expectedLink}`);
+    if (actualLink !== expectedLink) {
+      fail(failures, `${label} item ${index + 1} ${linkLabel} ${actualLink} does not match news-data.json link ${expectedLink}`);
     }
   });
 }
@@ -276,13 +275,20 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
       fail(failures, `index.html renders ${articleCount} article cards, expected ${newsData.length}`);
     }
 
-    extractArticleHrefs(indexHtml).forEach((href) => {
+    const articleHrefs = extractArticleHrefs(indexHtml);
+    articleHrefs.forEach((href) => {
       if (!isSafeGeneratedArticleHref(href)) {
         fail(failures, `index.html contains unsafe article href ${decodeHtmlEntities(href)}`);
       }
     });
 
-    assertLinksMatchNewsData('index.html article', extractArticleHrefs(indexHtml), newsData, failures, 'href');
+    assertLinksMatchNewsData(
+      'index.html article',
+      articleHrefs.map(decodeHtmlEntities),
+      newsData,
+      failures,
+      'href'
+    );
   }
 
   const itemCount = Array.isArray(newsData) ? newsData.length : 0;
