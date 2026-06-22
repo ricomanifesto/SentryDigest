@@ -79,6 +79,19 @@ function isSafeGeneratedArticleHref(value) {
   }
 }
 
+function normalizeGeneratedArticleLink(value) {
+  try {
+    const url = new URL(value);
+    if (url.protocol === 'http:' || url.protocol === 'https:') {
+      return url.toString();
+    }
+  } catch {
+    // Unsafe or malformed generated hrefs are reported by the safety check.
+  }
+
+  return value;
+}
+
 function extractArticleHrefs(indexHtml) {
   const hrefs = [];
   const articlePattern = /<article\b[^>]*class="[^"]*\bnews-item\b[^"]*"[^>]*>[\s\S]*?<\/article>/gi;
@@ -93,6 +106,39 @@ function extractArticleHrefs(indexHtml) {
   }
 
   return hrefs;
+}
+
+function extractFeedItemLinks(feedXml) {
+  const links = [];
+  const itemPattern = /<item\b[^>]*>[\s\S]*?<\/item>/gi;
+  const linkPattern = /<link\b[^>]*>([\s\S]*?)<\/link>/i;
+  let itemMatch;
+
+  while ((itemMatch = itemPattern.exec(feedXml)) !== null) {
+    const linkMatch = linkPattern.exec(itemMatch[0]);
+    links.push(linkMatch ? decodeHtmlEntities(linkMatch[1].trim()) : '');
+  }
+
+  return links;
+}
+
+function assertLinksMatchNewsData(label, actualLinks, newsData, failures, linkLabel = 'link') {
+  if (actualLinks.length !== newsData.length) {
+    fail(failures, `${label} has ${actualLinks.length} article links, expected ${newsData.length}`);
+    return;
+  }
+
+  actualLinks.forEach((actualLink, index) => {
+    const article = newsData[index];
+    if (!article || typeof article !== 'object' || Array.isArray(article) || typeof article.link !== 'string') {
+      return;
+    }
+
+    const expectedLink = article.link;
+    if (actualLink !== expectedLink) {
+      fail(failures, `${label} item ${index + 1} ${linkLabel} ${actualLink} does not match news-data.json link ${expectedLink}`);
+    }
+  });
 }
 
 function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
@@ -222,6 +268,8 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
       fail(failures, `feed.xml has ${feedItemCount} items, expected ${newsData.length}`);
     }
 
+    assertLinksMatchNewsData('feed.xml', extractFeedItemLinks(feedXml), newsData, failures);
+
     if (!feedXml.includes('https://ricomanifesto.github.io/SentryDigest/feed.xml')) {
       fail(failures, 'feed.xml must advertise the public SentryDigest feed URL');
     }
@@ -240,11 +288,28 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
       fail(failures, `index.html renders ${articleCount} article cards, expected ${newsData.length}`);
     }
 
-    extractArticleHrefs(indexHtml).forEach((href) => {
+    const articleHrefs = extractArticleHrefs(indexHtml);
+    articleHrefs.forEach((href) => {
       if (!isSafeGeneratedArticleHref(href)) {
         fail(failures, `index.html contains unsafe article href ${decodeHtmlEntities(href)}`);
       }
     });
+
+    const normalizedArticleHrefs = articleHrefs
+      .map(decodeHtmlEntities)
+      .map(normalizeGeneratedArticleLink);
+    const normalizedNewsData = newsData.map((article) => {
+      if (!article || typeof article !== 'object' || Array.isArray(article) || typeof article.link !== 'string') {
+        return article;
+      }
+
+      return {
+        ...article,
+        link: normalizeGeneratedArticleLink(article.link),
+      };
+    });
+
+    assertLinksMatchNewsData('index.html article', normalizedArticleHrefs, normalizedNewsData, failures, 'href');
   }
 
   const itemCount = Array.isArray(newsData) ? newsData.length : 0;
@@ -274,7 +339,9 @@ if (require.main === module) {
 }
 
 module.exports = {
+  extractFeedItemLinks,
   extractArticleHrefs,
   isSafeGeneratedArticleHref,
+  normalizeGeneratedArticleLink,
   validateArtifacts,
 };
