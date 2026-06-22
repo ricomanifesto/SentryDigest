@@ -1,7 +1,11 @@
 const assert = require('node:assert/strict');
 const test = require('node:test');
 
-const { normalizeArticleDate, normalizeFeedDate } = require('../scripts/fetch-news');
+const {
+  INVALID_FEED_DATE_FALLBACK,
+  normalizeArticleDate,
+  normalizeFeedDate,
+} = require('../scripts/fetch-news');
 const { generateHTML } = require('../scripts/render-news-html');
 
 test('normalizeFeedDate preserves valid feed dates', () => {
@@ -21,7 +25,8 @@ test('normalizeFeedDate falls back for invalid or missing feed dates', () => {
 });
 
 test('normalizeFeedDate uses a stable old default for malformed feed dates', () => {
-  assert.equal(normalizeFeedDate('not a date').toISOString(), '1970-01-01T00:00:00.000Z');
+  assert.equal(normalizeFeedDate('not a date'), INVALID_FEED_DATE_FALLBACK);
+  assert.equal(INVALID_FEED_DATE_FALLBACK.toISOString(), '1970-01-01T00:00:00.000Z');
 });
 
 test('normalizeArticleDate falls back from malformed pubDate to isoDate', () => {
@@ -38,7 +43,7 @@ test('normalizeArticleDate uses the stable old fallback for malformed feed dates
     pubDate: 'not a date',
   });
 
-  assert.equal(date.toISOString(), '1970-01-01T00:00:00.000Z');
+  assert.equal(date, INVALID_FEED_DATE_FALLBACK);
 });
 
 test('normalizeArticleDate uses isoDate when pubDate is missing', () => {

@@ -79,26 +79,32 @@ try {
 const sources = config.sources.filter(source => source.enabled);
 // Use simple date-based sort across all sources
 
-function normalizeFeedDate(value, fallback = new Date(0)) {
+const INVALID_FEED_DATE_FALLBACK = new Date('1970-01-01T00:00:00.000Z');
+
+function parseFeedDate(value) {
   if (!value) {
-    return fallback;
+    return null;
   }
 
   const date = new Date(value);
-  return Number.isNaN(date.getTime()) ? fallback : date;
+  return Number.isNaN(date.getTime()) ? null : date;
+}
+
+function normalizeFeedDate(value, fallback = INVALID_FEED_DATE_FALLBACK) {
+  return parseFeedDate(value) || fallback;
 }
 
 function normalizeArticleDate(article) {
   const candidates = [article.pubDate, article.isoDate, article.date];
 
   for (const candidate of candidates) {
-    const date = normalizeFeedDate(candidate, null);
+    const date = parseFeedDate(candidate);
     if (date) {
       return date;
     }
   }
 
-  return normalizeFeedDate(undefined);
+  return INVALID_FEED_DATE_FALLBACK;
 }
 
 // Function to fetch RSS feed content
@@ -190,6 +196,7 @@ if (require.main === module) {
 module.exports = {
   fetchAllNews,
   fetchRSSFeed,
+  INVALID_FEED_DATE_FALLBACK,
   normalizeArticleDate,
   normalizeFeedDate,
 };
