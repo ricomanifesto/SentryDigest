@@ -174,6 +174,30 @@ test('validateArtifacts accepts escaped generated HTML article hrefs', () => {
   assert.deepEqual(result.failures, []);
 });
 
+test('validateArtifacts accepts renderer-normalized generated HTML article hrefs', () => {
+  const repoRoot = createFixture({
+    newsData: [
+      {
+        title: 'Normalized item',
+        link: 'https://example.com',
+        date: '2026-06-17T18:00:00.000Z',
+        source: 'Example Security',
+        summary: 'Story with normalized URL',
+      },
+    ],
+    indexHtml: `<html><body>
+      <h1>SentryDigest</h1>
+      <a href="./feed.xml">RSS</a>
+      <article class="news-item"><a href="https://example.com/">Normalized item</a></article>
+    </body></html>`,
+  });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, true);
+  assert.deepEqual(result.failures, []);
+});
+
 test('validateArtifacts reports malformed news-data items without throwing during link comparison', () => {
   const repoRoot = createFixture({
     newsData: [null],

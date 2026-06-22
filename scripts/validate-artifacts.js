@@ -79,6 +79,19 @@ function isSafeGeneratedArticleHref(value) {
   }
 }
 
+function normalizeGeneratedArticleLink(value) {
+  try {
+    const url = new URL(value);
+    if (url.protocol === 'http:' || url.protocol === 'https:') {
+      return url.toString();
+    }
+  } catch {
+    // Unsafe or malformed generated hrefs are reported by the safety check.
+  }
+
+  return value;
+}
+
 function extractArticleHrefs(indexHtml) {
   const hrefs = [];
   const articlePattern = /<article\b[^>]*class="[^"]*\bnews-item\b[^"]*"[^>]*>[\s\S]*?<\/article>/gi;
@@ -282,13 +295,21 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
       }
     });
 
-    assertLinksMatchNewsData(
-      'index.html article',
-      articleHrefs.map(decodeHtmlEntities),
-      newsData,
-      failures,
-      'href'
-    );
+    const normalizedArticleHrefs = articleHrefs
+      .map(decodeHtmlEntities)
+      .map(normalizeGeneratedArticleLink);
+    const normalizedNewsData = newsData.map((article) => {
+      if (!article || typeof article !== 'object' || Array.isArray(article) || typeof article.link !== 'string') {
+        return article;
+      }
+
+      return {
+        ...article,
+        link: normalizeGeneratedArticleLink(article.link),
+      };
+    });
+
+    assertLinksMatchNewsData('index.html article', normalizedArticleHrefs, normalizedNewsData, failures, 'href');
   }
 
   const itemCount = Array.isArray(newsData) ? newsData.length : 0;
@@ -321,5 +342,6 @@ module.exports = {
   extractFeedItemLinks,
   extractArticleHrefs,
   isSafeGeneratedArticleHref,
+  normalizeGeneratedArticleLink,
   validateArtifacts,
 };
