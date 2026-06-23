@@ -184,6 +184,47 @@ test('deriveArticleFacets does not tag generic exchange incidents as Microsoft',
   assert.deepEqual(facets.tags, ['Data Breach', 'Identity']);
 });
 
+test('deriveArticleFacets does not treat compromised devices as data breaches', () => {
+  const facets = deriveArticleFacets({
+    title: 'Router botnet compromised thousands of outdated devices',
+    link: 'https://example.com/router-botnet',
+    date: new Date('2026-06-17T18:00:00.000Z'),
+    source: 'Example Security',
+    summary: 'The malware turned routers into proxies for malicious traffic.',
+  });
+
+  assert.equal(facets.severity, 'Elevated');
+  assert.deepEqual(facets.tags, ['Malware']);
+  assert.ok(!facets.tags.includes('Data Breach'));
+});
+
+test('deriveArticleFacets does not tag ordinary software packages as supply chain risks', () => {
+  const facets = deriveArticleFacets({
+    title: 'Windows feature update uses a small enablement package',
+    link: 'https://example.com/windows-enablement-package',
+    date: new Date('2026-06-17T18:00:00.000Z'),
+    source: 'Example Security',
+    summary: 'Administrators can upgrade managed devices using the package.',
+  });
+
+  assert.equal(facets.severity, 'Monitor');
+  assert.deepEqual(facets.tags, []);
+  assert.deepEqual(facets.vendors, ['Microsoft']);
+});
+
+test('deriveArticleFacets does not tag ordinary dependency updates as supply chain risks', () => {
+  const facets = deriveArticleFacets({
+    title: 'Application dependency update improves startup time',
+    link: 'https://example.com/dependency-update',
+    date: new Date('2026-06-17T18:00:00.000Z'),
+    source: 'Example Security',
+    summary: 'The release notes describe a routine dependency upgrade.',
+  });
+
+  assert.equal(facets.severity, 'Monitor');
+  assert.deepEqual(facets.tags, []);
+});
+
 test('deriveArticleFacets does not tag Cisco IOS XE advisories as Apple', () => {
   const facets = deriveArticleFacets({
     title: 'Cisco IOS XE advisory warns of exploit attempts',

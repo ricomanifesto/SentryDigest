@@ -27,11 +27,11 @@ const TOPIC_RULES = [
   { label: 'Ransomware', pattern: /\b(ransomware|extortion|encryptor)\b/i },
   { label: 'Vulnerability', pattern: /\b(cve-\d{4}-\d+|vulnerabilities|vulnerability|zero-day|0-day|flaw|patch|patched|critical bug)\b/i },
   { label: 'Exploitation', pattern: /\b(exploit|exploited|exploiting|exploitation|in the wild|active attacks?)\b/i },
-  { label: 'Data Breach', pattern: /\b(data breach|breach|leak|stolen data|exposed data|compromised)\b/i },
+  { label: 'Data Breach', pattern: /\b(data breach|breach|leak|stolen data|stolen credentials|exposed data|credential theft)\b/i },
   { label: 'Identity', pattern: /\b(identity|credential|password|oauth|sso|mfa|phishing)\b/i },
   { label: 'Cloud', pattern: /\b(cloud|aws|azure|gcp|kubernetes|container)\b/i },
   { label: 'Malware', pattern: /\b(malware|trojan|backdoor|loader|spyware|botnet)\b/i },
-  { label: 'Supply Chain', pattern: /\b(supply chain|dependency|package|npm|pypi|github actions?)\b/i },
+  { label: 'Supply Chain', pattern: /\b(supply chain|dependency confusion|dependency hijacking|dependency attack|dependency compromise|malicious packages?|backdoored packages?|compromised packages?|tampered packages?|npm|pypi|github actions?)\b/i },
   { label: 'Compliance', pattern: /\b(compliance|regulator|regulation|privacy|gdpr|sec\b|audit)\b/i },
   { label: 'AI Security', pattern: /\b(ai|llm|machine learning|prompt injection|model)\b/i },
 ];
