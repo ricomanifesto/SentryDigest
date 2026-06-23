@@ -266,7 +266,7 @@ function renderSourceCoverage(newsItems) {
   }
 
   const sourceCountItems = sourceCounts
-    .map(({ source, count }) => `<span class="source-count" data-source="${escapeAttribute(source)}">${escapeHtml(source)} <strong>${count}</strong></span>`)
+    .map(({ source, count }) => `<button class="source-count" type="button" data-source-filter="${escapeAttribute(source)}" aria-pressed="false">${escapeHtml(source)} <strong>${count}</strong></button>`)
     .join('');
 
   return `<section class="source-coverage" aria-label="RSS source coverage">
@@ -512,7 +512,8 @@ function generateHTML(newsItems, options = {}) {
     .source-coverage { align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: flex; flex-wrap: wrap; gap: 10px 12px; margin-top: 12px; padding: 10px 12px; }
     .source-coverage-label { color: var(--muted); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
     .source-counts { display: flex; flex: 1 1 260px; flex-wrap: wrap; gap: 8px; }
-    .source-count { background: var(--chip); border-radius: 999px; color: var(--fg); font-size: 12px; padding: 4px 10px; }
+    .source-count { background: var(--chip); border: 1px solid transparent; border-radius: 999px; color: var(--fg); cursor: pointer; font: inherit; font-size: 12px; padding: 4px 10px; }
+    .source-count:hover, .source-count[aria-pressed="true"] { border-color: var(--accent); }
     .source-count strong { color: var(--accent); margin-left: 4px; }
     .source-coverage a { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
     .source-coverage a:hover { text-decoration: underline; }
@@ -668,6 +669,7 @@ function generateHTML(newsItems, options = {}) {
       const resetFilters = q('#resetFilters');
       const filterInsights = q('#filterInsights');
       const operatorLanes = qa('.operator-lane');
+      const sourceCoverageButtons = qa('[data-source-filter]');
       const stats = q('#stats');
       const cards = qa('.news-item');
       const filterParams = {
@@ -858,6 +860,9 @@ function generateHTML(newsItems, options = {}) {
         const srcCount = ${uniqueSources.length};
         if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('${nowIso}').toLocaleString());
         if (emptyFilteredState) emptyFilteredState.hidden = visible !== 0;
+        sourceCoverageButtons.forEach(function(button){
+          button.setAttribute('aria-pressed', button.getAttribute('data-source-filter') === src ? 'true' : 'false');
+        });
         renderActiveFilters();
         renderFilterInsights(visibleCards);
         updateOperatorLanes(visibleCards);
@@ -866,6 +871,14 @@ function generateHTML(newsItems, options = {}) {
       if (search) search.addEventListener('input', debounce(update, 120));
       [sourceFilter, severityFilter, tagFilter, vendorFilter, ageFilter, handoffFilter].forEach(function(filter){
         if (filter) filter.addEventListener('change', update);
+      });
+      sourceCoverageButtons.forEach(function(button){
+        button.addEventListener('click', function(){
+          if (!sourceFilter) return;
+          const source = button.getAttribute('data-source-filter') || '';
+          sourceFilter.value = sourceFilter.value === source ? '' : source;
+          update();
+        });
       });
       if (resetFilters) resetFilters.addEventListener('click', function(){
         Object.keys(filterControls).forEach(function(key){

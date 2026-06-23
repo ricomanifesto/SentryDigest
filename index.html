@@ -58,7 +58,8 @@
     .source-coverage { align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: flex; flex-wrap: wrap; gap: 10px 12px; margin-top: 12px; padding: 10px 12px; }
     .source-coverage-label { color: var(--muted); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
     .source-counts { display: flex; flex: 1 1 260px; flex-wrap: wrap; gap: 8px; }
-    .source-count { background: var(--chip); border-radius: 999px; color: var(--fg); font-size: 12px; padding: 4px 10px; }
+    .source-count { background: var(--chip); border: 1px solid transparent; border-radius: 999px; color: var(--fg); cursor: pointer; font: inherit; font-size: 12px; padding: 4px 10px; }
+    .source-count:hover, .source-count[aria-pressed="true"] { border-color: var(--accent); }
     .source-count strong { color: var(--accent); margin-left: 4px; }
     .source-coverage a { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
     .source-coverage a:hover { text-decoration: underline; }
@@ -168,11 +169,11 @@
       <div id="activeFilters" class="active-filters" hidden aria-live="polite"></div>
       <button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters</button>
     </div>
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-06-23T22:44:53.697Z">6/23/2026, 10:44:53 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-06-23T22:44:53.763Z">6/23/2026, 10:44:53 PM</time></div>
     <div id="filterInsights" class="filter-insights" aria-live="polite"></div>
     <section class="source-coverage" aria-label="RSS source coverage">
       <div class="source-coverage-label">RSS source coverage</div>
-      <div class="source-counts"><span class="source-count" data-source="Bleeping Computer">Bleeping Computer <strong>15</strong></span><span class="source-count" data-source="The Hacker News">The Hacker News <strong>9</strong></span><span class="source-count" data-source="Dark Reading">Dark Reading <strong>5</strong></span><span class="source-count" data-source="Krebs on Security">Krebs on Security <strong>1</strong></span></div>
+      <div class="source-counts"><button class="source-count" type="button" data-source-filter="Bleeping Computer" aria-pressed="false">Bleeping Computer <strong>15</strong></button><button class="source-count" type="button" data-source-filter="The Hacker News" aria-pressed="false">The Hacker News <strong>9</strong></button><button class="source-count" type="button" data-source-filter="Dark Reading" aria-pressed="false">Dark Reading <strong>5</strong></button><button class="source-count" type="button" data-source-filter="Krebs on Security" aria-pressed="false">Krebs on Security <strong>1</strong></button></div>
       <a href="./feed.xml">RSS feed</a>
     </section>
     <section class="operator-lanes" aria-label="Operator scan lanes">
@@ -900,6 +901,7 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
       const resetFilters = q('#resetFilters');
       const filterInsights = q('#filterInsights');
       const operatorLanes = qa('.operator-lane');
+      const sourceCoverageButtons = qa('[data-source-filter]');
       const stats = q('#stats');
       const cards = qa('.news-item');
       const filterParams = {
@@ -1088,8 +1090,11 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-23T22:44:53.697Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-23T22:44:53.763Z').toLocaleString());
         if (emptyFilteredState) emptyFilteredState.hidden = visible !== 0;
+        sourceCoverageButtons.forEach(function(button){
+          button.setAttribute('aria-pressed', button.getAttribute('data-source-filter') === src ? 'true' : 'false');
+        });
         renderActiveFilters();
         renderFilterInsights(visibleCards);
         updateOperatorLanes(visibleCards);
@@ -1098,6 +1103,14 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
       if (search) search.addEventListener('input', debounce(update, 120));
       [sourceFilter, severityFilter, tagFilter, vendorFilter, ageFilter, handoffFilter].forEach(function(filter){
         if (filter) filter.addEventListener('change', update);
+      });
+      sourceCoverageButtons.forEach(function(button){
+        button.addEventListener('click', function(){
+          if (!sourceFilter) return;
+          const source = button.getAttribute('data-source-filter') || '';
+          sourceFilter.value = sourceFilter.value === source ? '' : source;
+          update();
+        });
       });
       if (resetFilters) resetFilters.addEventListener('click', function(){
         Object.keys(filterControls).forEach(function(key){
