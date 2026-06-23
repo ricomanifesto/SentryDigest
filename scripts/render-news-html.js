@@ -59,6 +59,35 @@ const SOURCE_SIGNAL_RULES = [
   { label: 'Industry media', pattern: /\b(securityweek|bleepingcomputer|the hacker news|dark reading|krebsonsecurity|threatpost|wired|therecord)\b/i },
 ];
 
+const HANDOFF_CUE_RULES = [
+  {
+    label: 'SentryInsight: incident watch',
+    matches: ({ facets, text }) => (
+      facets.severity === 'Critical'
+      || facets.tags.some((tag) => ['Ransomware', 'Data Breach', 'Identity'].includes(tag))
+      || /\b(incident response|intrusion|compromise|stolen credentials?|credential theft)\b/i.test(text)
+    ),
+  },
+  {
+    label: 'SentryInsight: vuln triage',
+    matches: ({ facets, text }) => (
+      facets.tags.some((tag) => ['Vulnerability', 'Exploitation'].includes(tag))
+      || /\bcve-\d{4}-\d+\b/i.test(text)
+    ),
+  },
+  {
+    label: 'SentryInsight: vendor watch',
+    matches: ({ facets }) => facets.vendors.length > 0 || facets.sourceSignal === 'Vendor advisory',
+  },
+  {
+    label: 'GRCInsight: governance watch',
+    matches: ({ facets, text }) => (
+      facets.tags.includes('Compliance')
+      || /\b(grc|governance|compliance|regulator|regulatory|privacy|gdpr|sec\b|filings?|audit)\b/i.test(text)
+    ),
+  },
+];
+
 function matchesRule(text, rule) {
   return rule.pattern.test(text);
 }
@@ -92,6 +121,18 @@ function deriveArticleFacets(article) {
     vendors,
     sourceSignal,
   };
+}
+
+function deriveHandoffCues(article) {
+  const safeLink = safeArticleLink(article.link);
+  const host = safeLink === '#' ? '' : new URL(safeLink).hostname.replace(/^www\./, '');
+  const text = `${article.title || ''} ${article.summary || ''} ${article.source || ''} ${host}`;
+  const facets = deriveArticleFacets(article);
+  const cues = HANDOFF_CUE_RULES
+    .filter((rule) => rule.matches({ article, facets, text }))
+    .map((rule) => rule.label);
+
+  return cues.length > 0 ? cues : ['SentryInsight: monitor'];
 }
 
 function collectFacetFilterOptions(newsItems) {
@@ -180,6 +221,7 @@ function renderSummary(summary, index) {
 function renderArticleCard(article, index = 0) {
   const articleLink = safeArticleLink(article.link);
   const facets = deriveArticleFacets(article);
+  const handoffCues = deriveHandoffCues(article);
   const hostname = (() => {
     try {
       return new URL(articleLink).hostname.replace(/^www\./, '');
@@ -205,15 +247,18 @@ function renderArticleCard(article, index = 0) {
   const safeSourceSignalAttr = escapeAttribute(facets.sourceSignal);
   const safeTagsAttr = escapeAttribute(facets.tags.join(','));
   const safeVendorsAttr = escapeAttribute(facets.vendors.join(','));
+  const safeHandoffCuesAttr = escapeAttribute(handoffCues.join(','));
   const vendorChips = facets.vendors.map((vendor) => `<span class="chip">${escapeHtml(vendor)}</span>`).join('');
   const tagChips = facets.tags.map((tag) => `<span class="chip">${escapeHtml(tag)}</span>`).join('');
+  const handoffCueChips = handoffCues.map((cue) => `<span class="handoff-cue">${escapeHtml(cue)}</span>`).join('');
   const hostChip = hostname ? `\n            <span class="chip">${safeHost}</span>` : '';
   const newBadge = isNew ? `\n            <span class="badge-new">NEW</span>` : '';
   const facetRow = (vendorChips || tagChips) ? `\n          <div class="facet-row">${vendorChips}${tagChips}</div>` : '';
+  const handoffRow = `\n          <div class="handoff-row" aria-label="Downstream handoff cues">${handoffCueChips}</div>`;
   const summary = renderSummary(article.summary, index);
 
   return `
-        <article class="news-item" data-source="${safeSourceAttr}" data-host="${safeHostAttr}" data-title="${safeTitleAttr}" data-summary="${safeSummaryAttr}" data-severity="${safeSeverityAttr}" data-tags="${safeTagsAttr}" data-vendors="${safeVendorsAttr}" data-source-signal="${safeSourceSignalAttr}">
+        <article class="news-item" data-source="${safeSourceAttr}" data-host="${safeHostAttr}" data-title="${safeTitleAttr}" data-summary="${safeSummaryAttr}" data-severity="${safeSeverityAttr}" data-tags="${safeTagsAttr}" data-vendors="${safeVendorsAttr}" data-source-signal="${safeSourceSignalAttr}" data-handoff-cues="${safeHandoffCuesAttr}">
           <div class="chips">
             <span class="severity severity-${safeSeverityClass}">${safeSeverity}</span>
             <span class="chip"><span class="dot"></span>${safeSource}</span>${hostChip}
@@ -222,7 +267,7 @@ function renderArticleCard(article, index = 0) {
           <h2 class="news-title"><a href="${safeLink}" target="_blank" rel="noopener">${safeTitle}</a></h2>
           <div class="news-meta">
             <time datetime="${dateIso}">${dateText}</time>${newBadge}
-          </div>${facetRow}
+          </div>${facetRow}${handoffRow}
           ${summary}
         </article>`;
 }
@@ -314,6 +359,8 @@ function generateHTML(newsItems) {
     [data-theme="dark"] .severity-elevated { background: rgba(245,158,11,0.18); color: #fde68a; }
     [data-theme="dark"] .severity-monitor { background: rgba(14,165,233,0.18); color: #bae6fd; }
     .facet-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .handoff-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .handoff-cue { border: 1px solid var(--card-border); border-radius: 6px; color: var(--muted); display: inline-flex; font-size: 12px; padding: 3px 8px; }
     .news-title { font-size: 1.06rem; margin: 6px 0 8px; }
     .news-title a { color: var(--fg); text-decoration: none; }
     .news-title a:hover { text-decoration: underline; }
@@ -461,6 +508,7 @@ function generateHTML(newsItems) {
 module.exports = {
   collectFacetFilterOptions,
   deriveArticleFacets,
+  deriveHandoffCues,
   escapeHtml,
   formatArticleDate,
   generateHTML,

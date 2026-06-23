@@ -6,7 +6,12 @@ const {
   normalizeArticleDate,
   normalizeFeedDate,
 } = require('../scripts/fetch-news');
-const { collectFacetFilterOptions, deriveArticleFacets, generateHTML } = require('../scripts/render-news-html');
+const {
+  collectFacetFilterOptions,
+  deriveArticleFacets,
+  deriveHandoffCues,
+  generateHTML,
+} = require('../scripts/render-news-html');
 
 test('normalizeFeedDate preserves valid feed dates', () => {
   const date = normalizeFeedDate(
@@ -283,6 +288,23 @@ test('generateHTML renders escaped operator facets on article cards', () => {
   assert.match(html, /<span class="chip">Vulnerability<\/span>/);
 });
 
+test('generateHTML renders escaped downstream handoff cues on article cards', () => {
+  const html = generateHTML([
+    {
+      title: 'Microsoft Exchange zero-day exploited in data breach response',
+      link: 'https://security.example.com/microsoft-exchange-zero-day',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'SecurityWeek',
+      summary: 'SEC filings mention incident response, active exploitation, and stolen credentials.',
+    },
+  ]);
+
+  assert.match(html, /data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage,SentryInsight: vendor watch,GRCInsight: governance watch"/);
+  assert.match(html, /<div class="handoff-row" aria-label="Downstream handoff cues">/);
+  assert.match(html, /<span class="handoff-cue">SentryInsight: incident watch<\/span>/);
+  assert.match(html, /<span class="handoff-cue">GRCInsight: governance watch<\/span>/);
+});
+
 test('collectFacetFilterOptions returns deterministic severity, tag, and vendor options', () => {
   const options = collectFacetFilterOptions([
     {
@@ -304,6 +326,35 @@ test('collectFacetFilterOptions returns deterministic severity, tag, and vendor 
   assert.deepEqual(options.severities, ['Critical', 'Monitor']);
   assert.deepEqual(options.tags, ['AI Security', 'Data Breach', 'Exploitation', 'Ransomware', 'Vulnerability']);
   assert.deepEqual(options.vendors, ['Microsoft']);
+});
+
+test('deriveHandoffCues identifies downstream incident and governance relevance', () => {
+  const cues = deriveHandoffCues({
+    title: 'Microsoft Exchange zero-day exploited in data breach response',
+    link: 'https://security.example.com/microsoft-exchange-zero-day',
+    date: new Date('2026-06-17T18:00:00.000Z'),
+    source: 'SecurityWeek',
+    summary: 'SEC filings mention incident response, active exploitation, and stolen credentials.',
+  });
+
+  assert.deepEqual(cues, [
+    'SentryInsight: incident watch',
+    'SentryInsight: vuln triage',
+    'SentryInsight: vendor watch',
+    'GRCInsight: governance watch',
+  ]);
+});
+
+test('deriveHandoffCues returns a stable monitor cue for low-signal articles', () => {
+  const cues = deriveHandoffCues({
+    title: 'Weekly security podcast roundup',
+    link: 'https://example.com/security-podcast-roundup',
+    date: new Date('2026-06-17T18:00:00.000Z'),
+    source: 'Example Security',
+    summary: 'Researchers discuss general awareness topics.',
+  });
+
+  assert.deepEqual(cues, ['SentryInsight: monitor']);
 });
 
 test('generateHTML renders facet filter controls and empty filtered state', () => {
