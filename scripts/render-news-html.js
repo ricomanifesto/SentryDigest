@@ -651,6 +651,51 @@ function generateHTML(newsItems, options = {}) {
       const emptyFilteredState = q('#emptyFilteredState');
       const stats = q('#stats');
       const cards = qa('.news-item');
+      const filterParams = {
+        search: 'q',
+        sourceFilter: 'source',
+        severityFilter: 'severity',
+        tagFilter: 'tag',
+        vendorFilter: 'vendor',
+        ageFilter: 'age',
+        handoffFilter: 'handoff',
+      };
+      const filterControls = {
+        search,
+        sourceFilter,
+        severityFilter,
+        tagFilter,
+        vendorFilter,
+        ageFilter,
+        handoffFilter,
+      };
+
+      function applyQueryState(){
+        const params = new URLSearchParams(window.location.search);
+        Object.keys(filterParams).forEach(function(key){
+          const control = filterControls[key];
+          if (!control) return;
+          const value = params.get(filterParams[key]);
+          if (value !== null) control.value = value;
+        });
+      }
+
+      function syncQueryState(){
+        if (!window.history || !window.history.replaceState) return;
+        const params = new URLSearchParams(window.location.search);
+        Object.keys(filterParams).forEach(function(key){
+          const control = filterControls[key];
+          const value = control && control.value || '';
+          if (value) {
+            params.set(filterParams[key], value);
+          } else {
+            params.delete(filterParams[key]);
+          }
+        });
+        const nextSearch = params.toString();
+        const nextUrl = window.location.pathname + (nextSearch ? '?' + nextSearch : '') + window.location.hash;
+        window.history.replaceState(null, '', nextUrl);
+      }
 
       function update(){
         const term = (search && search.value || '').toLowerCase().trim();
@@ -677,12 +722,14 @@ function generateHTML(newsItems, options = {}) {
         const srcCount = ${uniqueSources.length};
         if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('${nowIso}').toLocaleString());
         if (emptyFilteredState) emptyFilteredState.hidden = visible !== 0;
+        syncQueryState();
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       [sourceFilter, severityFilter, tagFilter, vendorFilter, ageFilter, handoffFilter].forEach(function(filter){
         if (filter) filter.addEventListener('change', update);
       });
 
+      applyQueryState();
       update();
 
       function debounce(fn, wait){ let t; return function(){ clearTimeout(t); t=setTimeout(fn, wait); } }
