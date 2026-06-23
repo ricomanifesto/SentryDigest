@@ -329,3 +329,40 @@ test('generateHTML renders facet filter controls and empty filtered state', () =
   assert.match(html, /split\(','\)\.filter\(Boolean\)\.includes\(tag\)/);
   assert.match(html, /split\(','\)\.filter\(Boolean\)\.includes\(vendor\)/);
 });
+
+test('generateHTML renders long summaries as accessible expandable content', () => {
+  const longSummary = `${'Security teams should prioritize exposed VPN appliances. '.repeat(6)}<script>alert(1)</script>`;
+  const html = generateHTML([
+    {
+      title: 'VPN exploitation campaign expands',
+      link: 'https://example.com/vpn-exploitation',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'Example Security',
+      summary: longSummary,
+    },
+  ]);
+
+  assert.match(html, /<p class="news-summary summary-preview" id="summary-preview-0">/);
+  assert.match(html, /<p class="news-summary summary-full" id="summary-full-0" hidden>/);
+  assert.match(html, /<button class="summary-toggle" type="button" aria-expanded="false" aria-controls="summary-full-0" data-summary-toggle="0">Show full summary<\/button>/);
+  assert.match(html, /summaryFull\.hidden = expanded/);
+  assert.match(html, /toggle\.setAttribute\('aria-expanded', String\(!expanded\)\)/);
+  assert.doesNotMatch(html, /<script>alert\(1\)<\/script>/);
+  assert.match(html, /&lt;script&gt;alert\(1\)&lt;\/script&gt;/);
+});
+
+test('generateHTML leaves short summaries as plain escaped content', () => {
+  const html = generateHTML([
+    {
+      title: 'Brief advisory',
+      link: 'https://example.com/brief-advisory',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'Example Security',
+      summary: 'Patch exposed systems <quickly>.',
+    },
+  ]);
+
+  assert.match(html, /<p class="news-summary">Patch exposed systems &lt;quickly&gt;\.<\/p>/);
+  assert.doesNotMatch(html, /<button class="summary-toggle"/);
+  assert.doesNotMatch(html, /<p class="news-summary summary-full"/);
+});
