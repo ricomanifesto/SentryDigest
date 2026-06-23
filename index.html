@@ -100,7 +100,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
+          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -120,14 +120,59 @@
       </select>
       <select id="vendorFilter" class="select" aria-label="Filter by affected vendor">
         <option value="">All vendors</option>
-        <option value="Apple">Apple</option><option value="Fortinet">Fortinet</option><option value="GitHub">GitHub</option><option value="Google">Google</option><option value="Microsoft">Microsoft</option><option value="OpenAI">OpenAI</option>
+        <option value="Fortinet">Fortinet</option><option value="GitHub">GitHub</option><option value="Google">Google</option><option value="Microsoft">Microsoft</option><option value="OpenAI">OpenAI</option>
       </select>
     </div>
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-23T10:18:57.511Z">6/23/2026, 10:18:57 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-23T13:08:57.142Z">6/23/2026, 1:08:57 PM</time></div>
     <div id="emptyFilteredState" class="empty-filtered" hidden>No articles match the current filters.</div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="FortiBleed Attackers Turn Firewalls Into Credential Stealers as Heists Persist" data-summary="The threat actors engineered a Golang-based sniffer to target 430,000 FortiGate firewalls and identify 110 million credentials in the ongoing global campaign...." data-severity="Elevated" data-tags="Identity" data-vendors="Fortinet" data-source-signal="Industry media">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+            <span class="chip">Industry media</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/fortibleed-attackers-firewalls-credentials-stealers" target="_blank" rel="noopener">FortiBleed Attackers Turn Firewalls Into Credential Stealers as Heists Persist</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-23T12:34:54.000Z">June 23, 2026 at 12:34 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <div class="facet-row"><span class="chip">Fortinet</span><span class="chip">Identity</span></div>
+          <p class="news-summary">The threat actors engineered a Golang-based sniffer to target 430,000 FortiGate firewalls and identify 110 million credentials in the ongoing global campaign....</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Webinar: Why email security teams are drowning in alerts" data-summary="Phishing, BEC, and account takeover attacks continue to overwhelm security teams with alerts and investigations. This webinar explores how behavioral AI can help automate detection and response workfl..." data-severity="Elevated" data-tags="Identity,AI Security" data-vendors="" data-source-signal="Industry media">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+            <span class="chip">Industry media</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/webinar-why-email-security-teams-are-drowning-in-alerts/" target="_blank" rel="noopener">Webinar: Why email security teams are drowning in alerts</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-23T12:12:20.000Z">June 23, 2026 at 12:12 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <div class="facet-row"><span class="chip">Identity</span><span class="chip">AI Security</span></div>
+          <p class="news-summary">Phishing, BEC, and account takeover attacks continue to overwhelm security teams with alerts and investigations. This webinar explores how behavioral AI can help automate detection and response workfl...</p>
+        </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Agentic AI: The Weapon That No Longer Needs a Warrior" data-summary="Every weapon begins as an extension of the hand that holds it. The spear lengthened the reach of the arm. The bow sent the point flying without the throw. The rifle placed a man&#39;s death a quarter mile..." data-severity="Monitor" data-tags="AI Security" data-vendors="" data-source-signal="Industry media">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+            <span class="chip">Industry media</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/06/agentic-ai-weapon-that-no-longer-needs.html" target="_blank" rel="noopener">Agentic AI: The Weapon That No Longer Needs a Warrior</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-23T11:30:00.000Z">June 23, 2026 at 11:30 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <div class="facet-row"><span class="chip">AI Security</span></div>
+          <p class="news-summary">Every weapon begins as an extension of the hand that holds it. The spear lengthened the reach of the arm. The bow sent the point flying without the throw. The rifle placed a man&#39;s death a quarter mile...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Malicious npm Packages Pose as PostCSS Tools to Deliver Windows RAT" data-summary="Cybersecurity researchers have discovered a set of malicious npm packages that are designed to deliver a Windows-based remote access trojan (RAT).
 
 The list of identified packages, is below -
@@ -211,6 +256,21 @@ The list of identified packages, is below -
           </div>
           <p class="news-summary">The JaredFromSubway Ethereum MEV (Maximal Extractable Value) bot suffered a $15 million loss after an attacker manipulated the opportunity-detection logic by creating fake cryptocurrency trading oppor...</p>
         </article>
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="DifyTap Bugs Let Attackers &#39;Wiretap&#39; AI Chat Histories" data-summary="Four vulnerabilities allow attackers to exploit Dify, a platform for AI application building and management, to silently access and exfiltrate sensitive data...." data-severity="Elevated" data-tags="Vulnerability,Exploitation,AI Security" data-vendors="" data-source-signal="Industry media">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip"><span class="dot"></span>Dark Reading</span>
+            <span class="chip">darkreading.com</span>
+            <span class="chip">Industry media</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/application-security/difytap-bugs-wiretap-ai-chat-histories" target="_blank" rel="noopener">DifyTap Bugs Let Attackers &#39;Wiretap&#39; AI Chat Histories</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-22T21:14:11.000Z">June 22, 2026 at 9:14 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span><span class="chip">AI Security</span></div>
+          <p class="news-summary">Four vulnerabilities allow attackers to exploit Dify, a platform for AI application building and management, to silently access and exfiltrate sensitive data....</p>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="FFmpeg fixes PixelSmash flaw in widely used video decoder" data-summary="A newly disclosed FFmpeg flaw dubbed &#39;PixelSmash&#39; could be exploited for remote code execution on Jellyfin servers under certain conditions, and can also trigger a denial-of-service  condition in appl..." data-severity="Elevated" data-tags="Vulnerability,Exploitation" data-vendors="" data-source-signal="Industry media">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
@@ -290,6 +350,21 @@ The list of identified packages, is below -
           <div class="facet-row"><span class="chip">Microsoft</span><span class="chip">Vulnerability</span><span class="chip">AI Security</span></div>
           <p class="news-summary">A vulnerability chain dubbed AutoJack in Microsoft&#39;s AutoGen Studio interface for prototyping AI agents could let attackers manipulate an agent into executing arbitrary commands on its host system sim...</p>
         </article>
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="29-Year-Old Squid Proxy Bug &#39;Squidbleed&#39; Can Leak Cleartext HTTP Requests" data-summary="A heap over-read in the Squid web proxy can leak another user&#39;s cleartext HTTP request, including any credentials or session tokens it carries, to anyone already allowed to send traffic through the sa..." data-severity="Critical" data-tags="Data Breach,Identity" data-vendors="" data-source-signal="Industry media">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+            <span class="chip">Industry media</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/06/29-year-old-squid-proxy-bug-squidbleed.html" target="_blank" rel="noopener">29-Year-Old Squid Proxy Bug &#39;Squidbleed&#39; Can Leak Cleartext HTTP Requests</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-22T16:29:00.000Z">June 22, 2026 at 4:29 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <div class="facet-row"><span class="chip">Data Breach</span><span class="chip">Identity</span></div>
+          <p class="news-summary">A heap over-read in the Squid web proxy can leak another user&#39;s cleartext HTTP request, including any credentials or session tokens it carries, to anyone already allowed to send traffic through the sa...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Researchers Detail DifyTap Flaws in Dify That Could Expose AI Chats Across Tenants" data-summary="Cybersecurity researchers have disclosed details of four vulnerabilities in Dify, an open-source agentic workflow platform with more than 146,000 GitHub stars, that could allow attackers to stealthily..." data-severity="Elevated" data-tags="Vulnerability,AI Security" data-vendors="GitHub" data-source-signal="Industry media">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
@@ -319,21 +394,6 @@ The list of identified packages, is below -
           </div>
           <div class="facet-row"><span class="chip">GitHub</span></div>
           <p class="news-summary">Attackers are using multiple online channels — including GitHub, YouTube, and VirusTotal — to build an illusion of trust to spread a cross-platform clipboard hijacker....</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="29-Year-Old Squid Proxy Bug &#39;Squidbleed&#39; Can Leak Cleartext HTTP Requests" data-summary="A heap over-read in the Squid web proxy can leak another user&#39;s cleartext HTTP request, including any credentials or session tokens it carries, to anyone already allowed to send traffic through the sa..." data-severity="Critical" data-tags="Data Breach,Identity" data-vendors="" data-source-signal="Industry media">
-          <div class="chips">
-            <span class="severity severity-critical">Critical</span>
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-            <span class="chip">Industry media</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/06/29-year-old-squid-proxy-bug-squidbleed.html" target="_blank" rel="noopener">29-Year-Old Squid Proxy Bug &#39;Squidbleed&#39; Can Leak Cleartext HTTP Requests</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-22T14:29:46.000Z">June 22, 2026 at 2:29 PM</time>
-            <span class="badge-new">NEW</span>
-          </div>
-          <div class="facet-row"><span class="chip">Data Breach</span><span class="chip">Identity</span></div>
-          <p class="news-summary">A heap over-read in the Squid web proxy can leak another user&#39;s cleartext HTTP request, including any credentials or session tokens it carries, to anyone already allowed to send traffic through the sa...</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="A Glimpse into the “Search Your Target” Market for Stolen Credentials" data-summary="Attackers no longer need to sift through massive credential dumps. They can pay others to do it for them. Flare explores how an emerging underground market searches stolen credential databases for spe..." data-severity="Critical" data-tags="Data Breach,Identity" data-vendors="" data-source-signal="Industry media">
           <div class="chips">
@@ -381,7 +441,6 @@ On that date..." data-severity="Monitor" data-tags="" data-vendors="Google" data
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/google-sets-sept-30-deadline-for.html" target="_blank" rel="noopener">Google Sets Sept. 30 Deadline for Android Developer Verification in Four Countries</a></h2>
           <div class="news-meta">
             <time datetime="2026-06-22T12:45:08.000Z">June 22, 2026 at 12:45 PM</time>
-            <span class="badge-new">NEW</span>
           </div>
           <div class="facet-row"><span class="chip">Google</span></div>
           <p class="news-summary">Google has set September 30, 2026, as the day it begins enforcing Android developer verification in the first four countries, and the major device-maker app stores are in from the start.
@@ -398,7 +457,6 @@ On that date...</p>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/stop-your-legacy-infrastructure-from.html" target="_blank" rel="noopener">Stop Your Legacy Infrastructure from Hijacking Your AI Agents</a></h2>
           <div class="news-meta">
             <time datetime="2026-06-22T11:58:00.000Z">June 22, 2026 at 11:58 AM</time>
-            <span class="badge-new">NEW</span>
           </div>
           <div class="facet-row"><span class="chip">AI Security</span></div>
           <p class="news-summary">Earlier this month, I spoke at the Gartner Security &amp; Risk Management Summit about a blind spot most security programs are still not accounting for - how attackers are circumventing AI security progra...</p>
@@ -415,7 +473,6 @@ This week’s threat list looks painfully familiar: abused integrations, fake to
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/weekly-recap-browser-bugs-edr-killers.html" target="_blank" rel="noopener">⚡ Weekly Recap: Browser Bugs, EDR Killers, TV Botnet, OpenBSD Flaw, Android Trojan, and More</a></h2>
           <div class="news-meta">
             <time datetime="2026-06-22T10:55:10.000Z">June 22, 2026 at 10:55 AM</time>
-            <span class="badge-new">NEW</span>
           </div>
           <div class="facet-row"><span class="chip">Google</span><span class="chip">Ransomware</span><span class="chip">Vulnerability</span><span class="chip">Malware</span></div>
           <p class="news-summary">It’s Monday again.
@@ -542,66 +599,6 @@ The vulnerability, tracked as CVE-2026-4020 (CVSS sco...</p>
           <div class="facet-row"><span class="chip">Data Breach</span><span class="chip">Identity</span></div>
           <p class="news-summary">Market intelligence platform Klue has publicly confirmed a recent security incident that allowed threat actors to steal OAuth tokens used to connect to customers&#39; Salesforce environments, as the new &quot;...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Hackers exploit info disclosure bug in Gravity SMTP WordPress plugin" data-summary="Threat actors are exploiting an unauthenticated information disclosure vulnerability in the WordPress plugin Gravity SMTP, active on 100,000 sites. [...]..." data-severity="Elevated" data-tags="Vulnerability,Exploitation" data-vendors="" data-source-signal="Industry media">
-          <div class="chips">
-            <span class="severity severity-elevated">Elevated</span>
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-            <span class="chip">Industry media</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hackers-exploit-info-disclosure-bug-in-gravity-smtp-wordpress-plugin/" target="_blank" rel="noopener">Hackers exploit info disclosure bug in Gravity SMTP WordPress plugin</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-19T20:25:02.000Z">June 19, 2026 at 8:25 PM</time>
-          </div>
-          <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
-          <p class="news-summary">Threat actors are exploiting an unauthenticated information disclosure vulnerability in the WordPress plugin Gravity SMTP, active on 100,000 sites. [...]...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Unpatchable &#39;usbliter8&#39; Exploit Breaks Apple A12 and A13 SecureROM Boot Chain" data-summary="Security researchers at Paradigm Shift have published a working exploit, dubbed usbliter8, that achieves arbitrary code execution inside the SecureROM of Apple&#39;s A12 and A13 chips.
-
-That code is burne..." data-severity="Elevated" data-tags="Exploitation" data-vendors="Apple" data-source-signal="Industry media">
-          <div class="chips">
-            <span class="severity severity-elevated">Elevated</span>
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-            <span class="chip">Industry media</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/06/unpatchable-usbliter8-exploit-breaks.html" target="_blank" rel="noopener">Unpatchable &#39;usbliter8&#39; Exploit Breaks Apple A12 and A13 SecureROM Boot Chain</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-19T18:37:41.000Z">June 19, 2026 at 6:37 PM</time>
-          </div>
-          <div class="facet-row"><span class="chip">Apple</span><span class="chip">Exploitation</span></div>
-          <p class="news-summary">Security researchers at Paradigm Shift have published a working exploit, dubbed usbliter8, that achieves arbitrary code execution inside the SecureROM of Apple&#39;s A12 and A13 chips.
-
-That code is burne...</p>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="The Gentlemen RaaS Uses GentleKiller EDR Framework Targeting 400 Security Processes" data-summary="The Gentlemen ransomware-as-a-service (RaaS) operation is actively developing and maintaining a suite of endpoint detection and response (EDR) killers that it hands out to affiliates for impairing sys..." data-severity="Critical" data-tags="Ransomware" data-vendors="" data-source-signal="Industry media">
-          <div class="chips">
-            <span class="severity severity-critical">Critical</span>
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-            <span class="chip">Industry media</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/06/the-gentlemen-raas-uses-gentlekiller.html" target="_blank" rel="noopener">The Gentlemen RaaS Uses GentleKiller EDR Framework Targeting 400 Security Processes</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-19T18:33:07.000Z">June 19, 2026 at 6:33 PM</time>
-          </div>
-          <div class="facet-row"><span class="chip">Ransomware</span></div>
-          <p class="news-summary">The Gentlemen ransomware-as-a-service (RaaS) operation is actively developing and maintaining a suite of endpoint detection and response (EDR) killers that it hands out to affiliates for impairing sys...</p>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Texas govt data breach exposes over 3 million driver’s licenses" data-summary="The Texas Parks and Wildlife Department (TPWD) disclosed a data breach at its license system vendor that exposed personal information for more than three million individuals. [...]..." data-severity="Critical" data-tags="Data Breach" data-vendors="" data-source-signal="Industry media">
-          <div class="chips">
-            <span class="severity severity-critical">Critical</span>
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-            <span class="chip">Industry media</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/texas-govt-data-breach-exposes-over-3-million-drivers-licenses/" target="_blank" rel="noopener">Texas govt data breach exposes over 3 million driver’s licenses</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-19T16:12:41.000Z">June 19, 2026 at 4:12 PM</time>
-          </div>
-          <div class="facet-row"><span class="chip">Data Breach</span></div>
-          <p class="news-summary">The Texas Parks and Wildlife Department (TPWD) disclosed a data breach at its license system vendor that exposed personal information for more than three million individuals. [...]...</p>
-        </article>
     </div>
   </main>
   
@@ -656,7 +653,7 @@ That code is burne...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-23T10:18:57.511Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-23T13:08:57.142Z').toLocaleString());
         if (emptyFilteredState) emptyFilteredState.hidden = visible !== 0;
       }
       if (search) search.addEventListener('input', debounce(update, 120));
