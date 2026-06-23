@@ -8,6 +8,7 @@ const {
 } = require('../scripts/fetch-news');
 const {
   collectFacetFilterOptions,
+  collectSourceCoverage,
   deriveArticleFacets,
   deriveAgeBucket,
   deriveHandoffCues,
@@ -329,6 +330,37 @@ test('collectFacetFilterOptions returns deterministic severity, tag, and vendor 
   assert.deepEqual(options.vendors, ['Microsoft']);
 });
 
+test('collectSourceCoverage returns deterministic source counts', () => {
+  const coverage = collectSourceCoverage([
+    {
+      title: 'First story',
+      link: 'https://example.com/first',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'Example Security',
+      summary: 'Story one.',
+    },
+    {
+      title: 'Second story',
+      link: 'https://example.com/second',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'Example Security',
+      summary: 'Story two.',
+    },
+    {
+      title: 'Third story',
+      link: 'https://example.com/third',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'Another Source',
+      summary: 'Story three.',
+    },
+  ]);
+
+  assert.deepEqual(coverage, [
+    { source: 'Example Security', count: 2 },
+    { source: 'Another Source', count: 1 },
+  ]);
+});
+
 test('deriveHandoffCues identifies downstream incident and governance relevance', () => {
   const cues = deriveHandoffCues({
     title: 'Microsoft Exchange zero-day exploited in data breach response',
@@ -410,6 +442,38 @@ test('generateHTML renders age metadata and filter controls', () => {
   assert.match(html, /const ageFilter = q\('#ageFilter'\)/);
   assert.match(html, /card.getAttribute\('data-age-bucket'\) === age/);
   assert.match(html, /\[sourceFilter, severityFilter, tagFilter, vendorFilter, ageFilter\]/);
+});
+
+test('generateHTML renders escaped source coverage and RSS clarity', () => {
+  const html = generateHTML([
+    {
+      title: 'First story',
+      link: 'https://example.com/first',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'Example <Security>',
+      summary: 'Story one.',
+    },
+    {
+      title: 'Second story',
+      link: 'https://example.com/second',
+      date: new Date('2026-06-17T17:00:00.000Z'),
+      source: 'Example <Security>',
+      summary: 'Story two.',
+    },
+    {
+      title: 'Third story',
+      link: 'https://example.com/third',
+      date: new Date('2026-06-17T16:00:00.000Z'),
+      source: 'Another Source',
+      summary: 'Story three.',
+    },
+  ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
+
+  assert.match(html, /<section class="source-coverage" aria-label="RSS source coverage">/);
+  assert.match(html, /<span class="source-count" data-source="Example &lt;Security&gt;">Example &lt;Security&gt; <strong>2<\/strong><\/span>/);
+  assert.match(html, /<span class="source-count" data-source="Another Source">Another Source <strong>1<\/strong><\/span>/);
+  assert.match(html, /<a href="\.\/feed\.xml">RSS feed<\/a>/);
+  assert.doesNotMatch(html, /Example <Security>/);
 });
 
 test('generateHTML treats the malformed feed date fallback as undated', () => {
