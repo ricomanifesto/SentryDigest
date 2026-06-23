@@ -89,6 +89,7 @@ const HANDOFF_CUE_RULES = [
 ];
 
 const AGE_BUCKET_ORDER = ['Fresh', 'Recent', 'Older', 'Undated'];
+const INVALID_FEED_DATE_FALLBACK_TIME = new Date('1970-01-01T00:00:00.000Z').getTime();
 
 function matchesRule(text, rule) {
   return rule.pattern.test(text);
@@ -140,14 +141,15 @@ function deriveHandoffCues(article) {
 function deriveAgeBucket(articleDate, generatedAt = new Date()) {
   const date = new Date(articleDate);
   const now = new Date(generatedAt);
-  if (!Number.isFinite(date.getTime()) || !Number.isFinite(now.getTime())) {
+  const dateTime = date.getTime();
+  if (!Number.isFinite(dateTime) || dateTime === INVALID_FEED_DATE_FALLBACK_TIME || !Number.isFinite(now.getTime())) {
     return {
       label: 'Undated',
       detail: 'date unavailable',
     };
   }
 
-  const ageMs = Math.max(0, now.getTime() - date.getTime());
+  const ageMs = Math.max(0, now.getTime() - dateTime);
   const ageMinutes = Math.floor(ageMs / (60 * 1000));
   const ageHours = Math.floor(ageMs / (60 * 60 * 1000));
   const ageDays = Math.floor(ageMs / (24 * 60 * 60 * 1000));

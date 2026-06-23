@@ -377,6 +377,10 @@ test('deriveAgeBucket returns deterministic operator age buckets', () => {
     label: 'Undated',
     detail: 'date unavailable',
   });
+  assert.deepEqual(deriveAgeBucket(INVALID_FEED_DATE_FALLBACK, generatedAt), {
+    label: 'Undated',
+    detail: 'date unavailable',
+  });
 });
 
 test('generateHTML renders age metadata and filter controls', () => {
@@ -406,6 +410,22 @@ test('generateHTML renders age metadata and filter controls', () => {
   assert.match(html, /const ageFilter = q\('#ageFilter'\)/);
   assert.match(html, /card.getAttribute\('data-age-bucket'\) === age/);
   assert.match(html, /\[sourceFilter, severityFilter, tagFilter, vendorFilter, ageFilter\]/);
+});
+
+test('generateHTML treats the malformed feed date fallback as undated', () => {
+  const html = generateHTML([
+    {
+      title: 'Malformed date feed item',
+      link: 'https://example.com/malformed-date',
+      date: INVALID_FEED_DATE_FALLBACK,
+      source: 'Example Security',
+      summary: 'A feed item without a usable publication date.',
+    },
+  ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
+
+  assert.match(html, /data-age-bucket="Undated"/);
+  assert.match(html, /<span class="chip age-chip">Undated - date unavailable<\/span>/);
+  assert.match(html, /<option value="Undated">Undated<\/option>/);
 });
 
 test('generateHTML renders facet filter controls and empty filtered state', () => {
