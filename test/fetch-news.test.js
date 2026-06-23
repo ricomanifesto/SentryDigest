@@ -613,7 +613,39 @@ test('generateHTML renders active filter summary and reset wiring', () => {
   assert.match(html, /resetFilters\.hidden = activeFiltersList\.length === 0/);
   assert.match(html, /resetFilters\.addEventListener\('click', function\(\)/);
   assert.match(html, /control\.value = ''/);
-  assert.match(html, /renderActiveFilters\(\);\s+syncQueryState\(\);/);
+  assert.match(html, /renderActiveFilters\(\);\s+renderFilterInsights\(visibleCards\);\s+syncQueryState\(\);/);
+});
+
+test('generateHTML renders visible result context wiring', () => {
+  const html = generateHTML([
+    {
+      title: 'Microsoft Exchange zero-day exploited in data breach response',
+      link: 'https://security.example.com/microsoft-exchange-zero-day',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'SecurityWeek',
+      summary: 'SEC filings mention incident response, active exploitation, and stolen credentials.',
+    },
+    {
+      title: 'Cisco VPN vulnerability patched by vendor',
+      link: 'https://security.example.com/cisco-vpn-vulnerability',
+      date: new Date('2026-06-17T17:00:00.000Z'),
+      source: 'SecurityWeek',
+      summary: 'CVE-2026-1234 affects exposed appliances.',
+    },
+  ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
+
+  assert.match(html, /<div id="filterInsights" class="filter-insights" aria-live="polite"><\/div>/);
+  assert.match(html, /const filterInsights = q\('#filterInsights'\)/);
+  assert.match(html, /function incrementCount\(counts, value\)/);
+  assert.match(html, /function collectListCounts\(counts, rawValue\)/);
+  assert.match(html, /function appendInsightGroup\(label, counts, limit\)/);
+  assert.match(html, /function renderFilterInsights\(visibleCards\)/);
+  assert.match(html, /const visibleCards = \[\]/);
+  assert.match(html, /if \(show\) \{\s+visible\+\+;\s+visibleCards\.push\(card\);/);
+  assert.match(html, /collectListCounts\(topicCounts, card\.getAttribute\('data-tags'\)\)/);
+  assert.match(html, /collectListCounts\(vendorCounts, card\.getAttribute\('data-vendors'\)\)/);
+  assert.match(html, /collectListCounts\(handoffCounts, card\.getAttribute\('data-handoff-cues'\)\)/);
+  assert.match(html, /renderFilterInsights\(visibleCards\)/);
 });
 
 test('generateHTML renders escaped source coverage and RSS clarity', () => {

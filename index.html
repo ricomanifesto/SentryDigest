@@ -51,6 +51,10 @@
     .btn { border: 1px solid var(--card-border); background: var(--card); color: var(--fg); padding: 8px 10px; border-radius: 10px; cursor: pointer; }
     .btn:hover { border-color: var(--accent); }
     .stats { color: var(--muted); font-size: 0.9rem; margin-top: 6px; }
+    .filter-insights { align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; padding: 10px 12px; }
+    .filter-insights[hidden] { display: none; }
+    .filter-insights-label { color: var(--muted); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
+    .filter-insight-chip { background: var(--chip); border-radius: 999px; color: var(--fg); font-size: 12px; padding: 4px 10px; }
     .source-coverage { align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: flex; flex-wrap: wrap; gap: 10px 12px; margin-top: 12px; padding: 10px 12px; }
     .source-coverage-label { color: var(--muted); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
     .source-counts { display: flex; flex: 1 1 260px; flex-wrap: wrap; gap: 8px; }
@@ -164,7 +168,8 @@
       <div id="activeFilters" class="active-filters" hidden aria-live="polite"></div>
       <button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters</button>
     </div>
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-06-23T21:38:09.164Z">6/23/2026, 9:38:09 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-06-23T21:38:09.265Z">6/23/2026, 9:38:09 PM</time></div>
+    <div id="filterInsights" class="filter-insights" aria-live="polite"></div>
     <section class="source-coverage" aria-label="RSS source coverage">
       <div class="source-coverage-label">RSS source coverage</div>
       <div class="source-counts"><span class="source-count" data-source="Bleeping Computer">Bleeping Computer <strong>14</strong></span><span class="source-count" data-source="The Hacker News">The Hacker News <strong>10</strong></span><span class="source-count" data-source="Dark Reading">Dark Reading <strong>5</strong></span><span class="source-count" data-source="Krebs on Security">Krebs on Security <strong>1</strong></span></div>
@@ -900,6 +905,7 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
       const emptyFilteredState = q('#emptyFilteredState');
       const activeFilters = q('#activeFilters');
       const resetFilters = q('#resetFilters');
+      const filterInsights = q('#filterInsights');
       const stats = q('#stats');
       const cards = qa('.news-item');
       const filterParams = {
@@ -988,6 +994,55 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
         });
       }
 
+      function incrementCount(counts, value){
+        if (!value) return;
+        counts[value] = (counts[value] || 0) + 1;
+      }
+
+      function collectListCounts(counts, rawValue){
+        (rawValue || '').split(',').filter(Boolean).forEach(function(value){
+          incrementCount(counts, value);
+        });
+      }
+
+      function appendInsightGroup(label, counts, limit){
+        const entries = Object.keys(counts)
+          .map(function(value){ return { value, count: counts[value] }; })
+          .sort(function(a, b){ return b.count - a.count || a.value.localeCompare(b.value); })
+          .slice(0, limit);
+        entries.forEach(function(entry){
+          const chip = document.createElement('span');
+          chip.className = 'filter-insight-chip';
+          chip.textContent = label + ': ' + entry.value + ' ' + entry.count;
+          filterInsights.appendChild(chip);
+        });
+      }
+
+      function renderFilterInsights(visibleCards){
+        if (!filterInsights) return;
+        filterInsights.textContent = '';
+        filterInsights.hidden = visibleCards.length === 0;
+        if (visibleCards.length === 0) return;
+        const label = document.createElement('span');
+        label.className = 'filter-insights-label';
+        label.textContent = 'Visible mix';
+        filterInsights.appendChild(label);
+        const severityCounts = {};
+        const topicCounts = {};
+        const vendorCounts = {};
+        const handoffCounts = {};
+        visibleCards.forEach(function(card){
+          incrementCount(severityCounts, card.getAttribute('data-severity'));
+          collectListCounts(topicCounts, card.getAttribute('data-tags'));
+          collectListCounts(vendorCounts, card.getAttribute('data-vendors'));
+          collectListCounts(handoffCounts, card.getAttribute('data-handoff-cues'));
+        });
+        appendInsightGroup('Severity', severityCounts, 3);
+        appendInsightGroup('Topic', topicCounts, 3);
+        appendInsightGroup('Vendor', vendorCounts, 3);
+        appendInsightGroup('Handoff', handoffCounts, 2);
+      }
+
       function update(){
         const term = (search && search.value || '').toLowerCase().trim();
         const src = sourceFilter && sourceFilter.value || '';
@@ -997,6 +1052,7 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
         const age = ageFilter && ageFilter.value || '';
         const handoff = handoffFilter && handoffFilter.value || '';
         let visible = 0;
+        const visibleCards = [];
         cards.forEach(card => {
           const matchesText = !term || (card.getAttribute('data-title').toLowerCase().includes(term) || card.getAttribute('data-summary').toLowerCase().includes(term));
           const matchesSource = !src || card.getAttribute('data-source') === src;
@@ -1007,13 +1063,17 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
           const matchesHandoff = !handoff || card.getAttribute('data-handoff-cues').split(',').filter(Boolean).includes(handoff);
           const show = matchesText && matchesSource && matchesSeverity && matchesTag && matchesVendor && matchesAge && matchesHandoff;
           card.style.display = show ? '' : 'none';
-          if (show) visible++;
+          if (show) {
+            visible++;
+            visibleCards.push(card);
+          }
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-23T21:38:09.164Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-23T21:38:09.265Z').toLocaleString());
         if (emptyFilteredState) emptyFilteredState.hidden = visible !== 0;
         renderActiveFilters();
+        renderFilterInsights(visibleCards);
         syncQueryState();
       }
       if (search) search.addEventListener('input', debounce(update, 120));
