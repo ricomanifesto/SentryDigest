@@ -120,7 +120,7 @@ function renderSelectOptions(values) {
     .join('');
 }
 
-const SUMMARY_PREVIEW_LENGTH = 220;
+const SUMMARY_PREVIEW_LENGTH = 160;
 
 function getSummaryPreview(summary) {
   if (summary.length <= SUMMARY_PREVIEW_LENGTH) {
@@ -129,7 +129,7 @@ function getSummaryPreview(summary) {
 
   const preview = summary.slice(0, SUMMARY_PREVIEW_LENGTH);
   const lastSpace = preview.lastIndexOf(' ');
-  const trimmed = preview.slice(0, lastSpace > 160 ? lastSpace : SUMMARY_PREVIEW_LENGTH).trim();
+  const trimmed = preview.slice(0, lastSpace > 120 ? lastSpace : SUMMARY_PREVIEW_LENGTH).trim();
   return `${trimmed}...`;
 }
 

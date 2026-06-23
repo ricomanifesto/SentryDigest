@@ -351,6 +351,25 @@ test('generateHTML renders long summaries as accessible expandable content', () 
   assert.match(html, /&lt;script&gt;alert\(1\)&lt;\/script&gt;/);
 });
 
+test('generateHTML expands production-shaped fetched summaries', () => {
+  const fetchedSummary = `${'Security teams should prioritize exposed VPN appliances and review incident timelines. '.repeat(3).slice(0, 200)}...`;
+  assert.equal(fetchedSummary.length, 203);
+
+  const html = generateHTML([
+    {
+      title: 'Fetched summary advisory',
+      link: 'https://example.com/fetched-summary-advisory',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'Example Security',
+      summary: fetchedSummary,
+    },
+  ]);
+
+  assert.match(html, /<p class="news-summary summary-preview" id="summary-preview-0">/);
+  assert.match(html, /<p class="news-summary summary-full" id="summary-full-0" hidden>/);
+  assert.match(html, /<button class="summary-toggle" type="button" aria-expanded="false" aria-controls="summary-full-0" data-summary-toggle="0">Show full summary<\/button>/);
+});
+
 test('generateHTML leaves short summaries as plain escaped content', () => {
   const html = generateHTML([
     {
