@@ -150,8 +150,12 @@
         <option value="">Any age</option>
         <option value="Fresh">Fresh</option><option value="Recent">Recent</option>
       </select>
+      <select id="handoffFilter" class="select" aria-label="Filter by downstream handoff cue">
+        <option value="">All handoff cues</option>
+        <option value="SentryInsight: incident watch">SentryInsight: incident watch</option><option value="SentryInsight: vuln triage">SentryInsight: vuln triage</option><option value="SentryInsight: vendor watch">SentryInsight: vendor watch</option><option value="SentryInsight: monitor">SentryInsight: monitor</option>
+      </select>
     </div>
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-23T16:12:47.036Z">6/23/2026, 4:12:47 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-23T16:12:47.126Z">6/23/2026, 4:12:47 PM</time></div>
     <section class="source-coverage" aria-label="RSS source coverage">
       <div class="source-coverage-label">RSS source coverage</div>
       <div class="source-counts"><span class="source-count" data-source="The Hacker News">The Hacker News <strong>14</strong></span><span class="source-count" data-source="Bleeping Computer">Bleeping Computer <strong>11</strong></span><span class="source-count" data-source="Dark Reading">Dark Reading <strong>5</strong></span></div>
@@ -903,6 +907,7 @@ The Federal Court released a ...</p>
       const tagFilter = q('#tagFilter');
       const vendorFilter = q('#vendorFilter');
       const ageFilter = q('#ageFilter');
+      const handoffFilter = q('#handoffFilter');
       const emptyFilteredState = q('#emptyFilteredState');
       const stats = q('#stats');
       const cards = qa('.news-item');
@@ -914,6 +919,7 @@ The Federal Court released a ...</p>
         const tag = tagFilter && tagFilter.value || '';
         const vendor = vendorFilter && vendorFilter.value || '';
         const age = ageFilter && ageFilter.value || '';
+        const handoff = handoffFilter && handoffFilter.value || '';
         let visible = 0;
         cards.forEach(card => {
           const matchesText = !term || (card.getAttribute('data-title').toLowerCase().includes(term) || card.getAttribute('data-summary').toLowerCase().includes(term));
@@ -922,17 +928,18 @@ The Federal Court released a ...</p>
           const matchesTag = !tag || card.getAttribute('data-tags').split(',').filter(Boolean).includes(tag);
           const matchesVendor = !vendor || card.getAttribute('data-vendors').split(',').filter(Boolean).includes(vendor);
           const matchesAge = !age || card.getAttribute('data-age-bucket') === age;
-          const show = matchesText && matchesSource && matchesSeverity && matchesTag && matchesVendor && matchesAge;
+          const matchesHandoff = !handoff || card.getAttribute('data-handoff-cues').split(',').filter(Boolean).includes(handoff);
+          const show = matchesText && matchesSource && matchesSeverity && matchesTag && matchesVendor && matchesAge && matchesHandoff;
           card.style.display = show ? '' : 'none';
           if (show) visible++;
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-23T16:12:47.036Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-23T16:12:47.126Z').toLocaleString());
         if (emptyFilteredState) emptyFilteredState.hidden = visible !== 0;
       }
       if (search) search.addEventListener('input', debounce(update, 120));
-      [sourceFilter, severityFilter, tagFilter, vendorFilter, ageFilter].forEach(function(filter){
+      [sourceFilter, severityFilter, tagFilter, vendorFilter, ageFilter, handoffFilter].forEach(function(filter){
         if (filter) filter.addEventListener('change', update);
       });
 

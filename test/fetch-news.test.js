@@ -308,7 +308,7 @@ test('generateHTML renders escaped downstream handoff cues on article cards', ()
   assert.match(html, /<span class="handoff-cue">GRCInsight: governance watch<\/span>/);
 });
 
-test('collectFacetFilterOptions returns deterministic severity, tag, and vendor options', () => {
+test('collectFacetFilterOptions returns deterministic severity, tag, vendor, and handoff options', () => {
   const options = collectFacetFilterOptions([
     {
       title: 'Microsoft Exchange zero-day exploited by ransomware crew',
@@ -324,11 +324,25 @@ test('collectFacetFilterOptions returns deterministic severity, tag, and vendor 
       source: 'Example Security',
       summary: 'Security teams are reviewing governance for critical business systems.',
     },
+    {
+      title: 'Weekly security podcast roundup',
+      link: 'https://example.com/security-podcast-roundup',
+      date: new Date('2026-06-17T17:00:00.000Z'),
+      source: 'Example Security',
+      summary: 'Researchers discuss general awareness topics.',
+    },
   ]);
 
   assert.deepEqual(options.severities, ['Critical', 'Monitor']);
   assert.deepEqual(options.tags, ['AI Security', 'Data Breach', 'Exploitation', 'Ransomware', 'Vulnerability']);
   assert.deepEqual(options.vendors, ['Microsoft']);
+  assert.deepEqual(options.handoffCues, [
+    'SentryInsight: incident watch',
+    'SentryInsight: vuln triage',
+    'SentryInsight: vendor watch',
+    'GRCInsight: governance watch',
+    'SentryInsight: monitor',
+  ]);
 });
 
 test('collectSourceCoverage returns deterministic source counts', () => {
@@ -470,6 +484,27 @@ test('deriveAgeBucket returns deterministic operator age buckets', () => {
   });
 });
 
+test('generateHTML uses generatedAt for new article badges', () => {
+  const realDateNow = Date.now;
+  Date.now = () => new Date('2030-01-01T00:00:00.000Z').getTime();
+
+  try {
+    const html = generateHTML([
+      {
+        title: 'Fresh relative to generated artifact',
+        link: 'https://example.com/fresh-artifact',
+        date: new Date('2026-06-17T17:30:00.000Z'),
+        source: 'Example Security',
+        summary: 'A recent article for this generated artifact.',
+      },
+    ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
+
+    assert.match(html, /<span class="badge-new">NEW<\/span>/);
+  } finally {
+    Date.now = realDateNow;
+  }
+});
+
 test('generateHTML renders age metadata and filter controls', () => {
   const html = generateHTML([
     {
@@ -496,7 +531,38 @@ test('generateHTML renders age metadata and filter controls', () => {
   assert.match(html, /<option value="Older">Older<\/option>/);
   assert.match(html, /const ageFilter = q\('#ageFilter'\)/);
   assert.match(html, /card.getAttribute\('data-age-bucket'\) === age/);
-  assert.match(html, /\[sourceFilter, severityFilter, tagFilter, vendorFilter, ageFilter\]/);
+  assert.match(html, /\[sourceFilter, severityFilter, tagFilter, vendorFilter, ageFilter, handoffFilter\]/);
+});
+
+test('generateHTML renders handoff cue filter controls', () => {
+  const html = generateHTML([
+    {
+      title: 'Microsoft Exchange zero-day exploited in data breach response',
+      link: 'https://security.example.com/microsoft-exchange-zero-day',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'SecurityWeek',
+      summary: 'SEC filings mention incident response, active exploitation, and stolen credentials.',
+    },
+    {
+      title: 'Weekly security podcast roundup',
+      link: 'https://example.com/security-podcast-roundup',
+      date: new Date('2026-06-17T17:00:00.000Z'),
+      source: 'Example Security',
+      summary: 'Researchers discuss general awareness topics.',
+    },
+  ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
+
+  assert.match(html, /<select id="handoffFilter" class="select" aria-label="Filter by downstream handoff cue">/);
+  assert.match(html, /<option value="SentryInsight: incident watch">SentryInsight: incident watch<\/option>/);
+  assert.match(html, /<option value="SentryInsight: vuln triage">SentryInsight: vuln triage<\/option>/);
+  assert.match(html, /<option value="SentryInsight: vendor watch">SentryInsight: vendor watch<\/option>/);
+  assert.match(html, /<option value="GRCInsight: governance watch">GRCInsight: governance watch<\/option>/);
+  assert.match(html, /<option value="SentryInsight: monitor">SentryInsight: monitor<\/option>/);
+  assert.match(html, /const handoffFilter = q\('#handoffFilter'\)/);
+  assert.match(html, /const handoff = handoffFilter && handoffFilter\.value \|\| ''/);
+  assert.match(html, /const matchesHandoff = !handoff \|\| card\.getAttribute\('data-handoff-cues'\)\.split\(','\)\.filter\(Boolean\)\.includes\(handoff\)/);
+  assert.match(html, /matchesSource && matchesSeverity && matchesTag && matchesVendor && matchesAge && matchesHandoff/);
+  assert.match(html, /\[sourceFilter, severityFilter, tagFilter, vendorFilter, ageFilter, handoffFilter\]/);
 });
 
 test('generateHTML renders escaped source coverage and RSS clarity', () => {
