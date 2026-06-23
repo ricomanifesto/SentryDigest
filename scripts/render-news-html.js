@@ -89,6 +89,7 @@ const HANDOFF_CUE_RULES = [
 ];
 
 const AGE_BUCKET_ORDER = ['Fresh', 'Recent', 'Older', 'Undated'];
+const HANDOFF_CUE_ORDER = HANDOFF_CUE_RULES.map((rule) => rule.label).concat('SentryInsight: monitor');
 const INVALID_FEED_DATE_FALLBACK_TIME = new Date('1970-01-01T00:00:00.000Z').getTime();
 const OPERATOR_LANE_RULES = [
   {
@@ -203,6 +204,7 @@ function collectFacetFilterOptions(newsItems, generatedAt = new Date()) {
   const tags = new Set();
   const vendors = new Set();
   const ageBuckets = new Set();
+  const handoffCues = new Set();
 
   newsItems.forEach((article) => {
     const facets = deriveArticleFacets(article);
@@ -210,6 +212,7 @@ function collectFacetFilterOptions(newsItems, generatedAt = new Date()) {
     facets.tags.forEach((tag) => tags.add(tag));
     facets.vendors.forEach((vendor) => vendors.add(vendor));
     ageBuckets.add(deriveAgeBucket(article.date, generatedAt).label);
+    deriveHandoffCues(article).forEach((cue) => handoffCues.add(cue));
   });
 
   const severityOrder = ['Critical', 'Elevated', 'Monitor'];
@@ -218,6 +221,7 @@ function collectFacetFilterOptions(newsItems, generatedAt = new Date()) {
     tags: Array.from(tags).sort((left, right) => left.localeCompare(right)),
     vendors: Array.from(vendors).sort((left, right) => left.localeCompare(right)),
     ageBuckets: AGE_BUCKET_ORDER.filter((bucket) => ageBuckets.has(bucket)),
+    handoffCues: HANDOFF_CUE_ORDER.filter((cue) => handoffCues.has(cue)),
   };
 }
 
@@ -366,7 +370,13 @@ function renderArticleCard(article, index = 0, generatedAt = new Date()) {
       return '';
     }
   })();
-  const isNew = (Date.now() - new Date(article.date).getTime()) < (24 * 60 * 60 * 1000);
+  const articleTime = getArticleTime(article.date);
+  const generatedAtTime = getArticleTime(generatedAt);
+  const ageFromGeneratedAt = generatedAtTime - articleTime;
+  const isNew = Number.isFinite(articleTime)
+    && Number.isFinite(generatedAtTime)
+    && ageFromGeneratedAt >= 0
+    && ageFromGeneratedAt < (24 * 60 * 60 * 1000);
   const dateText = formatArticleDate(article.date);
   const dateIso = new Date(article.date).toISOString();
   const safeSource = escapeHtml(article.source);
@@ -432,6 +442,7 @@ function generateHTML(newsItems, options = {}) {
   const tagOptions = renderSelectOptions(filterOptions.tags);
   const vendorOptions = renderSelectOptions(filterOptions.vendors);
   const ageOptions = renderSelectOptions(filterOptions.ageBuckets);
+  const handoffOptions = renderSelectOptions(filterOptions.handoffCues);
   const now = new Date(generatedAt);
   const nowIso = now.toISOString();
   const sourceCoverage = renderSourceCoverage(newsItems);
@@ -592,6 +603,10 @@ function generateHTML(newsItems, options = {}) {
         <option value="">Any age</option>
         ${ageOptions}
       </select>
+      <select id="handoffFilter" class="select" aria-label="Filter by downstream handoff cue">
+        <option value="">All handoff cues</option>
+        ${handoffOptions}
+      </select>
     </div>
     <div class="stats" id="stats">Showing ${totalItems} of ${totalItems} articles from ${uniqueSources.length} sources • Last updated <time datetime="${nowIso}">${now.toLocaleString()}</time></div>
     ${sourceCoverage}
@@ -632,6 +647,7 @@ function generateHTML(newsItems, options = {}) {
       const tagFilter = q('#tagFilter');
       const vendorFilter = q('#vendorFilter');
       const ageFilter = q('#ageFilter');
+      const handoffFilter = q('#handoffFilter');
       const emptyFilteredState = q('#emptyFilteredState');
       const stats = q('#stats');
       const cards = qa('.news-item');
@@ -643,6 +659,7 @@ function generateHTML(newsItems, options = {}) {
         const tag = tagFilter && tagFilter.value || '';
         const vendor = vendorFilter && vendorFilter.value || '';
         const age = ageFilter && ageFilter.value || '';
+        const handoff = handoffFilter && handoffFilter.value || '';
         let visible = 0;
         cards.forEach(card => {
           const matchesText = !term || (card.getAttribute('data-title').toLowerCase().includes(term) || card.getAttribute('data-summary').toLowerCase().includes(term));
@@ -651,7 +668,8 @@ function generateHTML(newsItems, options = {}) {
           const matchesTag = !tag || card.getAttribute('data-tags').split(',').filter(Boolean).includes(tag);
           const matchesVendor = !vendor || card.getAttribute('data-vendors').split(',').filter(Boolean).includes(vendor);
           const matchesAge = !age || card.getAttribute('data-age-bucket') === age;
-          const show = matchesText && matchesSource && matchesSeverity && matchesTag && matchesVendor && matchesAge;
+          const matchesHandoff = !handoff || card.getAttribute('data-handoff-cues').split(',').filter(Boolean).includes(handoff);
+          const show = matchesText && matchesSource && matchesSeverity && matchesTag && matchesVendor && matchesAge && matchesHandoff;
           card.style.display = show ? '' : 'none';
           if (show) visible++;
         });
@@ -661,7 +679,7 @@ function generateHTML(newsItems, options = {}) {
         if (emptyFilteredState) emptyFilteredState.hidden = visible !== 0;
       }
       if (search) search.addEventListener('input', debounce(update, 120));
-      [sourceFilter, severityFilter, tagFilter, vendorFilter, ageFilter].forEach(function(filter){
+      [sourceFilter, severityFilter, tagFilter, vendorFilter, ageFilter, handoffFilter].forEach(function(filter){
         if (filter) filter.addEventListener('change', update);
       });
 
