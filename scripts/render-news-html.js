@@ -94,6 +94,32 @@ function deriveArticleFacets(article) {
   };
 }
 
+function collectFacetFilterOptions(newsItems) {
+  const severities = new Set();
+  const tags = new Set();
+  const vendors = new Set();
+
+  newsItems.forEach((article) => {
+    const facets = deriveArticleFacets(article);
+    severities.add(facets.severity);
+    facets.tags.forEach((tag) => tags.add(tag));
+    facets.vendors.forEach((vendor) => vendors.add(vendor));
+  });
+
+  const severityOrder = ['Critical', 'Elevated', 'Monitor'];
+  return {
+    severities: severityOrder.filter((severity) => severities.has(severity)),
+    tags: Array.from(tags).sort((left, right) => left.localeCompare(right)),
+    vendors: Array.from(vendors).sort((left, right) => left.localeCompare(right)),
+  };
+}
+
+function renderSelectOptions(values) {
+  return values
+    .map((value) => `<option value="${escapeAttribute(value)}">${escapeHtml(value)}</option>`)
+    .join('');
+}
+
 function formatArticleDate(value) {
   return new Intl.DateTimeFormat('en-US', {
     month: 'long',
@@ -166,9 +192,11 @@ function renderEmptyState() {
 function generateHTML(newsItems) {
   const uniqueSources = Array.from(new Set(newsItems.map((article) => article.source)));
   const totalItems = newsItems.length;
-  const sourceOptions = uniqueSources
-    .map((source) => `<option value="${escapeAttribute(source)}">${escapeHtml(source)}</option>`)
-    .join('');
+  const filterOptions = collectFacetFilterOptions(newsItems);
+  const sourceOptions = renderSelectOptions(uniqueSources);
+  const severityOptions = renderSelectOptions(filterOptions.severities);
+  const tagOptions = renderSelectOptions(filterOptions.tags);
+  const vendorOptions = renderSelectOptions(filterOptions.vendors);
   const nowIso = new Date().toISOString();
   const articleCards = newsItems.length > 0
     ? newsItems.map(renderArticleCard).join('')
@@ -216,12 +244,15 @@ function generateHTML(newsItems) {
     .brand .title { font-weight: 700; letter-spacing: 0.2px; }
     .brand .subtitle { color: var(--muted); font-size: 0.9rem; }
     .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .filter-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
     .search { display: flex; align-items: center; gap: 8px; background: var(--card); border: 1px solid var(--card-border); padding: 8px 10px; border-radius: 10px; }
     .search input { border: none; outline: none; background: transparent; color: var(--fg); min-width: 220px; }
     .select { border: 1px solid var(--card-border); background: var(--card); color: var(--fg); padding: 8px 10px; border-radius: 10px; }
     .btn { border: 1px solid var(--card-border); background: var(--card); color: var(--fg); padding: 8px 10px; border-radius: 10px; cursor: pointer; }
     .btn:hover { border-color: var(--accent); }
     .stats { color: var(--muted); font-size: 0.9rem; margin-top: 6px; }
+    .empty-filtered { background: var(--card); border: 1px dashed var(--card-border); border-radius: 10px; color: var(--muted); margin-top: 18px; padding: 18px; text-align: center; }
+    .empty-filtered[hidden] { display: none; }
     .news-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin-top: 18px; }
     .news-item { background: var(--card); border: 1px solid var(--card-border); border-radius: 14px; padding: 16px; transition: transform .2s ease, box-shadow .2s ease; }
     .news-item:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(2,8,23,0.08); }
@@ -247,6 +278,7 @@ function generateHTML(newsItems) {
       .container { padding: 16px; }
       .masthead { align-items: stretch; flex-direction: column; }
       .controls { align-items: stretch; }
+      .filter-row { align-items: stretch; flex-direction: column; }
       .search { width: 100%; }
       .search input { min-width: 0; width: 100%; }
       .select, .btn { flex: 1 1 auto; }
@@ -281,7 +313,22 @@ function generateHTML(newsItems) {
   </header>
 
   <main class="container">
+    <div class="filter-row" aria-label="Article filters">
+      <select id="severityFilter" class="select" aria-label="Filter by severity">
+        <option value="">All severities</option>
+        ${severityOptions}
+      </select>
+      <select id="tagFilter" class="select" aria-label="Filter by topic tag">
+        <option value="">All topics</option>
+        ${tagOptions}
+      </select>
+      <select id="vendorFilter" class="select" aria-label="Filter by affected vendor">
+        <option value="">All vendors</option>
+        ${vendorOptions}
+      </select>
+    </div>
     <div class="stats" id="stats">Showing ${totalItems} of ${totalItems} articles from ${uniqueSources.length} sources • Last updated <time datetime="${nowIso}">${new Date().toLocaleString()}</time></div>
+    <div id="emptyFilteredState" class="empty-filtered" hidden>No articles match the current filters.</div>
 
     <div class="news-container" id="newsContainer">
       ${articleCards}
@@ -312,27 +359,40 @@ function generateHTML(newsItems) {
       const q = (sel) => document.querySelector(sel);
       const qa = (sel) => Array.prototype.slice.call(document.querySelectorAll(sel));
       const search = q('#search');
-      const filter = q('#sourceFilter');
+      const sourceFilter = q('#sourceFilter');
+      const severityFilter = q('#severityFilter');
+      const tagFilter = q('#tagFilter');
+      const vendorFilter = q('#vendorFilter');
+      const emptyFilteredState = q('#emptyFilteredState');
       const stats = q('#stats');
       const cards = qa('.news-item');
 
       function update(){
         const term = (search && search.value || '').toLowerCase().trim();
-        const src = filter && filter.value || '';
+        const src = sourceFilter && sourceFilter.value || '';
+        const severity = severityFilter && severityFilter.value || '';
+        const tag = tagFilter && tagFilter.value || '';
+        const vendor = vendorFilter && vendorFilter.value || '';
         let visible = 0;
         cards.forEach(card => {
           const matchesText = !term || (card.getAttribute('data-title').toLowerCase().includes(term) || card.getAttribute('data-summary').toLowerCase().includes(term));
           const matchesSource = !src || card.getAttribute('data-source') === src;
-          const show = matchesText && matchesSource;
+          const matchesSeverity = !severity || card.getAttribute('data-severity') === severity;
+          const matchesTag = !tag || card.getAttribute('data-tags').split(',').filter(Boolean).includes(tag);
+          const matchesVendor = !vendor || card.getAttribute('data-vendors').split(',').filter(Boolean).includes(vendor);
+          const show = matchesText && matchesSource && matchesSeverity && matchesTag && matchesVendor;
           card.style.display = show ? '' : 'none';
           if (show) visible++;
         });
         const total = ${totalItems};
         const srcCount = ${uniqueSources.length};
         if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('${nowIso}').toLocaleString());
+        if (emptyFilteredState) emptyFilteredState.hidden = visible !== 0;
       }
       if (search) search.addEventListener('input', debounce(update, 120));
-      if (filter) filter.addEventListener('change', update);
+      [sourceFilter, severityFilter, tagFilter, vendorFilter].forEach(function(filter){
+        if (filter) filter.addEventListener('change', update);
+      });
       update();
 
       function debounce(fn, wait){ let t; return function(){ clearTimeout(t); t=setTimeout(fn, wait); } }
@@ -344,6 +404,7 @@ function generateHTML(newsItems) {
 }
 
 module.exports = {
+  collectFacetFilterOptions,
   deriveArticleFacets,
   escapeHtml,
   formatArticleDate,
