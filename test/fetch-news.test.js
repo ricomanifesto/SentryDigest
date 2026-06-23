@@ -6,7 +6,7 @@ const {
   normalizeArticleDate,
   normalizeFeedDate,
 } = require('../scripts/fetch-news');
-const { generateHTML } = require('../scripts/render-news-html');
+const { deriveArticleFacets, generateHTML } = require('../scripts/render-news-html');
 
 test('normalizeFeedDate preserves valid feed dates', () => {
   const date = normalizeFeedDate(
@@ -93,4 +93,74 @@ test('generateHTML renders unsafe article links as inert anchors', () => {
 
   assert.doesNotMatch(html, /href="javascript:/);
   assert.match(html, /href="#"/);
+});
+
+test('deriveArticleFacets identifies operator severity, tags, vendors, and source signal', () => {
+  const facets = deriveArticleFacets({
+    title: 'Microsoft Exchange zero-day exploited by ransomware crew',
+    link: 'https://security.example.com/microsoft-exchange-zero-day',
+    date: new Date('2026-06-17T18:00:00.000Z'),
+    source: 'SecurityWeek',
+    summary: 'CVE-2026-1234 is under active exploitation in data breach investigations.',
+  });
+
+  assert.equal(facets.severity, 'Critical');
+  assert.deepEqual(facets.tags, ['Ransomware', 'Vulnerability', 'Exploitation', 'Data Breach']);
+  assert.deepEqual(facets.vendors, ['Microsoft']);
+  assert.equal(facets.sourceSignal, 'Industry media');
+});
+
+test('deriveArticleFacets recognizes vulnerability wording without CVE IDs', () => {
+  const singular = deriveArticleFacets({
+    title: 'Vendor fixes authentication vulnerability in edge appliance',
+    link: 'https://example.com/authentication-vulnerability',
+    date: new Date('2026-06-17T18:00:00.000Z'),
+    source: 'Example Security',
+    summary: 'The vulnerability can expose administrator sessions.',
+  });
+  const plural = deriveArticleFacets({
+    title: 'Several vulnerabilities affect popular VPN products',
+    link: 'https://example.com/vpn-vulnerabilities',
+    date: new Date('2026-06-17T18:00:00.000Z'),
+    source: 'Example Security',
+    summary: 'Administrators should review the advisories.',
+  });
+
+  assert.equal(singular.severity, 'Elevated');
+  assert.ok(singular.tags.includes('Vulnerability'));
+  assert.equal(plural.severity, 'Elevated');
+  assert.ok(plural.tags.includes('Vulnerability'));
+});
+
+test('deriveArticleFacets does not mark generic critical asset mentions as Critical', () => {
+  const facets = deriveArticleFacets({
+    title: 'AI agents connect to critical business systems',
+    link: 'https://example.com/ai-agents-business-systems',
+    date: new Date('2026-06-17T18:00:00.000Z'),
+    source: 'Example Security',
+    summary: 'Security teams are reviewing governance for critical business systems.',
+  });
+
+  assert.equal(facets.severity, 'Monitor');
+  assert.deepEqual(facets.tags, ['AI Security']);
+});
+
+test('generateHTML renders escaped operator facets on article cards', () => {
+  const html = generateHTML([
+    {
+      title: 'Cisco VPN flaw exploited in the wild',
+      link: 'https://example.com/cisco-vpn',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'Example Security',
+      summary: 'Attackers are exploiting a critical vulnerability affecting Cisco appliances.',
+    },
+  ]);
+
+  assert.match(html, /data-severity="Critical"/);
+  assert.match(html, /data-tags="Vulnerability,Exploitation"/);
+  assert.match(html, /data-vendors="Cisco"/);
+  assert.match(html, /data-source-signal="General source"/);
+  assert.match(html, /<span class="severity severity-critical">Critical<\/span>/);
+  assert.match(html, /<span class="chip">Cisco<\/span>/);
+  assert.match(html, /<span class="chip">Vulnerability<\/span>/);
 });
