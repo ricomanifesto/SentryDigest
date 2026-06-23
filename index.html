@@ -65,6 +65,8 @@
     .source-count strong { color: var(--accent); margin-left: 4px; }
     .source-coverage a { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
     .source-coverage a:hover { text-decoration: underline; }
+    .feed-link { align-items: center; display: inline-flex; gap: 6px; }
+    .feed-link-count { background: var(--chip); border-radius: 999px; color: var(--muted); font-size: 12px; padding: 2px 8px; }
     .operator-lanes { display: grid; gap: 12px; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 14px; }
     .operator-lane { background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: grid; gap: 6px; padding: 12px; }
     .operator-lane-heading { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
@@ -176,7 +178,7 @@
     <section class="source-coverage" aria-label="RSS source coverage">
       <div class="source-coverage-label">RSS source coverage</div>
       <div class="source-counts"><button class="source-count" type="button" data-source-filter="Bleeping Computer" aria-pressed="false">Bleeping Computer <strong>15</strong></button><button class="source-count" type="button" data-source-filter="The Hacker News" aria-pressed="false">The Hacker News <strong>9</strong></button><button class="source-count" type="button" data-source-filter="Dark Reading" aria-pressed="false">Dark Reading <strong>5</strong></button><button class="source-count" type="button" data-source-filter="Krebs on Security" aria-pressed="false">Krebs on Security <strong>1</strong></button><button class="source-count source-count-empty" type="button" data-source-filter="Threatpost" aria-pressed="false" aria-disabled="true" disabled>Threatpost <strong>0</strong></button></div>
-      <a href="./feed.xml">RSS feed</a>
+      <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with 30 latest articles">RSS feed <span class="feed-link-count">30 items</span></a>
     </section>
     <section class="operator-lanes" aria-label="Operator scan lanes">
       <article class="operator-lane" data-lane="Incident watch" data-lane-cue="SentryInsight: incident watch">

@@ -270,6 +270,8 @@ function renderSourceCoverage(newsItems, sourceNames = []) {
     return '';
   }
 
+  const feedItemLabel = newsItems.length === 1 ? '1 item' : `${newsItems.length} items`;
+  const feedArticleLabel = newsItems.length === 1 ? '1 latest article' : `${newsItems.length} latest articles`;
   const sourceCountItems = sourceCounts
     .map(({ source, count }) => {
       const emptyClass = count === 0 ? ' source-count-empty' : '';
@@ -281,7 +283,7 @@ function renderSourceCoverage(newsItems, sourceNames = []) {
   return `<section class="source-coverage" aria-label="RSS source coverage">
       <div class="source-coverage-label">RSS source coverage</div>
       <div class="source-counts">${sourceCountItems}</div>
-      <a href="./feed.xml">RSS feed</a>
+      <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with ${feedArticleLabel}">RSS feed <span class="feed-link-count">${feedItemLabel}</span></a>
     </section>`;
 }
 
@@ -529,6 +531,8 @@ function generateHTML(newsItems, options = {}) {
     .source-count strong { color: var(--accent); margin-left: 4px; }
     .source-coverage a { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
     .source-coverage a:hover { text-decoration: underline; }
+    .feed-link { align-items: center; display: inline-flex; gap: 6px; }
+    .feed-link-count { background: var(--chip); border-radius: 999px; color: var(--muted); font-size: 12px; padding: 2px 8px; }
     .operator-lanes { display: grid; gap: 12px; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 14px; }
     .operator-lane { background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: grid; gap: 6px; padding: 12px; }
     .operator-lane-heading { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
