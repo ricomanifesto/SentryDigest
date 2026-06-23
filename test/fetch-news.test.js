@@ -674,10 +674,36 @@ test('generateHTML renders escaped source coverage and RSS clarity', () => {
   ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
 
   assert.match(html, /<section class="source-coverage" aria-label="RSS source coverage">/);
-  assert.match(html, /<span class="source-count" data-source="Example &lt;Security&gt;">Example &lt;Security&gt; <strong>2<\/strong><\/span>/);
-  assert.match(html, /<span class="source-count" data-source="Another Source">Another Source <strong>1<\/strong><\/span>/);
+  assert.match(html, /<button class="source-count" type="button" data-source-filter="Example &lt;Security&gt;" aria-pressed="false">Example &lt;Security&gt; <strong>2<\/strong><\/button>/);
+  assert.match(html, /<button class="source-count" type="button" data-source-filter="Another Source" aria-pressed="false">Another Source <strong>1<\/strong><\/button>/);
   assert.match(html, /<a href="\.\/feed\.xml">RSS feed<\/a>/);
   assert.doesNotMatch(html, /Example <Security>/);
+});
+
+test('generateHTML wires source coverage counts into the source filter', () => {
+  const html = generateHTML([
+    {
+      title: 'First story',
+      link: 'https://example.com/first',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'Example Security',
+      summary: 'Story one.',
+    },
+    {
+      title: 'Second story',
+      link: 'https://example.com/second',
+      date: new Date('2026-06-17T17:00:00.000Z'),
+      source: 'Another Source',
+      summary: 'Story two.',
+    },
+  ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
+
+  assert.match(html, /const sourceCoverageButtons = qa\('\[data-source-filter\]'\)/);
+  assert.match(html, /sourceCoverageButtons\.forEach\(function\(button\)/);
+  assert.match(html, /const source = button\.getAttribute\('data-source-filter'\) \|\| ''/);
+  assert.match(html, /sourceFilter\.value = sourceFilter\.value === source \? '' : source/);
+  assert.match(html, /button\.setAttribute\('aria-pressed', button\.getAttribute\('data-source-filter'\) === src \? 'true' : 'false'\)/);
+  assert.match(html, /update\(\);/);
 });
 
 test('generateHTML renders escaped operator scan lanes', () => {
