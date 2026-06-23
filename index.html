@@ -168,7 +168,7 @@
       <div id="activeFilters" class="active-filters" hidden aria-live="polite"></div>
       <button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters</button>
     </div>
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-06-23T22:07:12.961Z">6/23/2026, 10:07:12 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-06-23T22:07:13.054Z">6/23/2026, 10:07:13 PM</time></div>
     <div id="filterInsights" class="filter-insights" aria-live="polite"></div>
     <section class="source-coverage" aria-label="RSS source coverage">
       <div class="source-coverage-label">RSS source coverage</div>
@@ -176,18 +176,18 @@
       <a href="./feed.xml">RSS feed</a>
     </section>
     <section class="operator-lanes" aria-label="Operator scan lanes">
-      <article class="operator-lane" data-lane="Incident watch">
+      <article class="operator-lane" data-lane="Incident watch" data-lane-cue="SentryInsight: incident watch">
         <div class="operator-lane-heading">Incident watch</div>
-        <span class="operator-lane-count"><strong>9</strong> items</span>
-        <a href="https://www.bleepingcomputer.com/news/security/tata-electronics-confirms-cyberattack-as-hackers-leak-data/" class="operator-lane-link">Tata Electronics confirms cyberattack as hackers leak data</a>
-      </article><article class="operator-lane" data-lane="Vulnerability triage">
+        <span class="operator-lane-count" data-lane-count><strong>9</strong> items</span>
+        <a href="https://www.bleepingcomputer.com/news/security/tata-electronics-confirms-cyberattack-as-hackers-leak-data/" class="operator-lane-link" data-lane-link>Tata Electronics confirms cyberattack as hackers leak data</a>
+      </article><article class="operator-lane" data-lane="Vulnerability triage" data-lane-cue="SentryInsight: vuln triage">
         <div class="operator-lane-heading">Vulnerability triage</div>
-        <span class="operator-lane-count"><strong>7</strong> items</span>
-        <a href="https://www.bleepingcomputer.com/news/security/cisco-unified-cm-sme-flaw-cve-2026-20230-now-exploited-in-attacks/" class="operator-lane-link">Cisco Unified CM flaw CVE-2026-20230 now exploited in attacks</a>
-      </article><article class="operator-lane" data-lane="Governance watch">
+        <span class="operator-lane-count" data-lane-count><strong>7</strong> items</span>
+        <a href="https://www.bleepingcomputer.com/news/security/cisco-unified-cm-sme-flaw-cve-2026-20230-now-exploited-in-attacks/" class="operator-lane-link" data-lane-link>Cisco Unified CM flaw CVE-2026-20230 now exploited in attacks</a>
+      </article><article class="operator-lane" data-lane="Governance watch" data-lane-cue="GRCInsight: governance watch">
         <div class="operator-lane-heading">Governance watch</div>
-        <span class="operator-lane-count"><strong>0</strong> items</span>
-        <a href="#" class="operator-lane-link">No current match</a>
+        <span class="operator-lane-count" data-lane-count><strong>0</strong> items</span>
+        <a href="#" class="operator-lane-link" data-lane-link>No current match</a>
       </article>
     </section>
     <div id="emptyFilteredState" class="empty-filtered" hidden>No articles match the current filters.</div>
@@ -900,6 +900,7 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
       const activeFilters = q('#activeFilters');
       const resetFilters = q('#resetFilters');
       const filterInsights = q('#filterInsights');
+      const operatorLanes = qa('.operator-lane');
       const stats = q('#stats');
       const cards = qa('.news-item');
       const filterParams = {
@@ -1037,6 +1038,30 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
         appendInsightGroup('Handoff', handoffCounts, 2);
       }
 
+      function updateOperatorLanes(visibleCards){
+        operatorLanes.forEach(function(lane){
+          const cue = lane.getAttribute('data-lane-cue');
+          const countTarget = lane.querySelector('[data-lane-count]');
+          const linkTarget = lane.querySelector('[data-lane-link]');
+          const matchingCards = visibleCards.filter(function(card){
+            return card.getAttribute('data-handoff-cues').split(',').filter(Boolean).includes(cue);
+          });
+          const itemLabel = matchingCards.length === 1 ? 'item' : 'items';
+          const latestLink = matchingCards[0] && matchingCards[0].querySelector('.news-title a');
+          if (countTarget) {
+            const strongCount = document.createElement('strong');
+            strongCount.textContent = matchingCards.length;
+            countTarget.textContent = '';
+            countTarget.appendChild(strongCount);
+            countTarget.appendChild(document.createTextNode(' ' + itemLabel));
+          }
+          if (linkTarget) {
+            linkTarget.textContent = latestLink ? latestLink.textContent : 'No current match';
+            linkTarget.setAttribute('href', latestLink ? latestLink.getAttribute('href') : '#');
+          }
+        });
+      }
+
       function update(){
         const term = (search && search.value || '').toLowerCase().trim();
         const src = sourceFilter && sourceFilter.value || '';
@@ -1064,10 +1089,11 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-23T22:07:12.961Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-23T22:07:13.054Z').toLocaleString());
         if (emptyFilteredState) emptyFilteredState.hidden = visible !== 0;
         renderActiveFilters();
         renderFilterInsights(visibleCards);
+        updateOperatorLanes(visibleCards);
         syncQueryState();
       }
       if (search) search.addEventListener('input', debounce(update, 120));

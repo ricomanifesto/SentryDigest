@@ -282,17 +282,18 @@ function renderOperatorLanes(newsItems) {
     return '';
   }
 
-  const laneCards = lanes.map((lane) => {
+  const laneCards = lanes.map((lane, index) => {
     const safeLabel = escapeHtml(lane.label);
     const safeLabelAttr = escapeAttribute(lane.label);
+    const safeCueAttr = escapeAttribute(OPERATOR_LANE_RULES[index].cue);
     const safeLatestTitle = lane.latestTitle ? escapeHtml(lane.latestTitle) : 'No current match';
     const safeLatestLink = escapeAttribute(lane.latestLink || '#');
     const itemLabel = lane.count === 1 ? 'item' : 'items';
 
-    return `<article class="operator-lane" data-lane="${safeLabelAttr}">
+    return `<article class="operator-lane" data-lane="${safeLabelAttr}" data-lane-cue="${safeCueAttr}">
         <div class="operator-lane-heading">${safeLabel}</div>
-        <span class="operator-lane-count"><strong>${lane.count}</strong> ${itemLabel}</span>
-        <a href="${safeLatestLink}" class="operator-lane-link">${safeLatestTitle}</a>
+        <span class="operator-lane-count" data-lane-count><strong>${lane.count}</strong> ${itemLabel}</span>
+        <a href="${safeLatestLink}" class="operator-lane-link" data-lane-link>${safeLatestTitle}</a>
       </article>`;
   }).join('');
 
@@ -666,6 +667,7 @@ function generateHTML(newsItems, options = {}) {
       const activeFilters = q('#activeFilters');
       const resetFilters = q('#resetFilters');
       const filterInsights = q('#filterInsights');
+      const operatorLanes = qa('.operator-lane');
       const stats = q('#stats');
       const cards = qa('.news-item');
       const filterParams = {
@@ -803,6 +805,30 @@ function generateHTML(newsItems, options = {}) {
         appendInsightGroup('Handoff', handoffCounts, 2);
       }
 
+      function updateOperatorLanes(visibleCards){
+        operatorLanes.forEach(function(lane){
+          const cue = lane.getAttribute('data-lane-cue');
+          const countTarget = lane.querySelector('[data-lane-count]');
+          const linkTarget = lane.querySelector('[data-lane-link]');
+          const matchingCards = visibleCards.filter(function(card){
+            return card.getAttribute('data-handoff-cues').split(',').filter(Boolean).includes(cue);
+          });
+          const itemLabel = matchingCards.length === 1 ? 'item' : 'items';
+          const latestLink = matchingCards[0] && matchingCards[0].querySelector('.news-title a');
+          if (countTarget) {
+            const strongCount = document.createElement('strong');
+            strongCount.textContent = matchingCards.length;
+            countTarget.textContent = '';
+            countTarget.appendChild(strongCount);
+            countTarget.appendChild(document.createTextNode(' ' + itemLabel));
+          }
+          if (linkTarget) {
+            linkTarget.textContent = latestLink ? latestLink.textContent : 'No current match';
+            linkTarget.setAttribute('href', latestLink ? latestLink.getAttribute('href') : '#');
+          }
+        });
+      }
+
       function update(){
         const term = (search && search.value || '').toLowerCase().trim();
         const src = sourceFilter && sourceFilter.value || '';
@@ -834,6 +860,7 @@ function generateHTML(newsItems, options = {}) {
         if (emptyFilteredState) emptyFilteredState.hidden = visible !== 0;
         renderActiveFilters();
         renderFilterInsights(visibleCards);
+        updateOperatorLanes(visibleCards);
         syncQueryState();
       }
       if (search) search.addEventListener('input', debounce(update, 120));
