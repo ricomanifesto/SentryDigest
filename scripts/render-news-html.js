@@ -120,6 +120,31 @@ function renderSelectOptions(values) {
     .join('');
 }
 
+const SUMMARY_PREVIEW_LENGTH = 160;
+const SUMMARY_WORD_BOUNDARY_MIN = 120;
+
+function getSummaryPreview(summary) {
+  const parts = getSummaryParts(summary);
+  return parts ? `${parts.preview}...` : summary;
+}
+
+function getSummaryParts(summary) {
+  if (summary.length <= SUMMARY_PREVIEW_LENGTH) {
+    return null;
+  }
+
+  const preview = summary.slice(0, SUMMARY_PREVIEW_LENGTH);
+  const lastSpace = preview.lastIndexOf(' ');
+  const previewEnd = lastSpace > SUMMARY_WORD_BOUNDARY_MIN ? lastSpace : SUMMARY_PREVIEW_LENGTH;
+  const previewText = preview.slice(0, previewEnd).trim();
+  const remainder = summary.slice(previewText.length).trimStart();
+
+  return {
+    preview: previewText,
+    remainder,
+  };
+}
+
 function formatArticleDate(value) {
   return new Intl.DateTimeFormat('en-US', {
     month: 'long',
@@ -130,7 +155,29 @@ function formatArticleDate(value) {
   }).format(new Date(value));
 }
 
-function renderArticleCard(article) {
+function renderSummary(summary, index) {
+  if (!summary) {
+    return '';
+  }
+
+  const safeSummary = escapeHtml(summary);
+  if (summary.length <= SUMMARY_PREVIEW_LENGTH) {
+    return `<p class="news-summary">${safeSummary}</p>`;
+  }
+
+  const summaryParts = getSummaryParts(summary);
+  const safePreview = escapeHtml(summaryParts.preview);
+  const safeRemainder = escapeHtml(summaryParts.remainder);
+  return `<details class="summary-disclosure">
+            <summary class="summary-toggle" aria-controls="summary-full-${index}">
+              <span class="summary-preview-text">${safePreview}</span><span class="summary-ellipsis" aria-hidden="true">...</span>
+              <span class="summary-action">Show full summary</span>
+            </summary>
+            <p class="news-summary summary-full" id="summary-full-${index}">${safeRemainder}</p>
+          </details>`;
+}
+
+function renderArticleCard(article, index = 0) {
   const articleLink = safeArticleLink(article.link);
   const facets = deriveArticleFacets(article);
   const hostname = (() => {
@@ -149,7 +196,6 @@ function renderArticleCard(article) {
   const safeHostAttr = escapeAttribute(hostname);
   const safeTitle = escapeHtml(article.title);
   const safeTitleAttr = escapeAttribute(article.title);
-  const safeSummary = escapeHtml(article.summary);
   const safeSummaryAttr = escapeAttribute(article.summary);
   const safeLink = escapeAttribute(articleLink);
   const safeSeverity = escapeHtml(facets.severity);
@@ -164,6 +210,7 @@ function renderArticleCard(article) {
   const hostChip = hostname ? `\n            <span class="chip">${safeHost}</span>` : '';
   const newBadge = isNew ? `\n            <span class="badge-new">NEW</span>` : '';
   const facetRow = (vendorChips || tagChips) ? `\n          <div class="facet-row">${vendorChips}${tagChips}</div>` : '';
+  const summary = renderSummary(article.summary, index);
 
   return `
         <article class="news-item" data-source="${safeSourceAttr}" data-host="${safeHostAttr}" data-title="${safeTitleAttr}" data-summary="${safeSummaryAttr}" data-severity="${safeSeverityAttr}" data-tags="${safeTagsAttr}" data-vendors="${safeVendorsAttr}" data-source-signal="${safeSourceSignalAttr}">
@@ -176,7 +223,7 @@ function renderArticleCard(article) {
           <div class="news-meta">
             <time datetime="${dateIso}">${dateText}</time>${newBadge}
           </div>${facetRow}
-          ${article.summary ? `<p class="news-summary">${safeSummary}</p>` : ''}
+          ${summary}
         </article>`;
 }
 
@@ -199,7 +246,7 @@ function generateHTML(newsItems) {
   const vendorOptions = renderSelectOptions(filterOptions.vendors);
   const nowIso = new Date().toISOString();
   const articleCards = newsItems.length > 0
-    ? newsItems.map(renderArticleCard).join('')
+    ? newsItems.map((article, index) => renderArticleCard(article, index)).join('')
     : renderEmptyState();
 
   return `
@@ -273,6 +320,13 @@ function generateHTML(newsItems) {
     .news-meta { color: var(--muted); font-size: 0.85rem; display: flex; gap: 8px; align-items: baseline; }
     .badge-new { color: #16a34a; font-weight: 600; font-size: 0.8rem; }
     .news-summary { margin-top: 8px; color: var(--fg); opacity: 0.9; }
+    .summary-disclosure { margin-top: 8px; }
+    .summary-toggle { color: var(--fg); cursor: pointer; font: inherit; font-size: 0.95rem; opacity: 0.9; }
+    .summary-action { color: var(--accent); font-size: 0.9rem; margin-left: 6px; white-space: nowrap; }
+    details[open] .summary-ellipsis { display: none; }
+    details[open] .summary-action { display: none; }
+    .summary-toggle:hover .summary-action { text-decoration: underline; }
+    .summary-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
     footer { border-top: 1px solid var(--card-border); color: var(--muted); font-size: 0.9rem; padding: 18px 0; margin-top: 22px; }
     @media (max-width: 640px) {
       .container { padding: 16px; }
@@ -393,6 +447,7 @@ function generateHTML(newsItems) {
       [sourceFilter, severityFilter, tagFilter, vendorFilter].forEach(function(filter){
         if (filter) filter.addEventListener('change', update);
       });
+
       update();
 
       function debounce(fn, wait){ let t; return function(){ clearTimeout(t); t=setTimeout(fn, wait); } }
@@ -409,6 +464,7 @@ module.exports = {
   escapeHtml,
   formatArticleDate,
   generateHTML,
+  getSummaryPreview,
   renderArticleCard,
   safeArticleLink,
 };
