@@ -184,6 +184,19 @@ test('deriveArticleFacets does not tag generic exchange incidents as Microsoft',
   assert.deepEqual(facets.tags, ['Data Breach', 'Identity']);
 });
 
+test('deriveArticleFacets recognizes plural credential-theft wording', () => {
+  const facets = deriveArticleFacets({
+    title: 'Firewall sniffer used to steal credentials',
+    link: 'https://example.com/firewall-credentials',
+    date: new Date('2026-06-17T18:00:00.000Z'),
+    source: 'Example Security',
+    summary: 'Attackers harvested authentication secrets from compromised firewalls.',
+  });
+
+  assert.equal(facets.severity, 'Critical');
+  assert.deepEqual(facets.tags, ['Data Breach', 'Identity']);
+});
+
 test('deriveArticleFacets does not treat compromised devices as data breaches', () => {
   const facets = deriveArticleFacets({
     title: 'Router botnet compromised thousands of outdated devices',

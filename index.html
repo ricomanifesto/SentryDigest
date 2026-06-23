@@ -105,7 +105,7 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-23T05:26:59.357Z">6/23/2026, 12:26:59 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-23T05:31:42.096Z">6/23/2026, 12:31:42 AM</time></div>
 
     <div class="news-container" id="newsContainer">
       
@@ -168,9 +168,9 @@
           <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
           <p class="news-summary">A newly disclosed FFmpeg flaw dubbed &#39;PixelSmash&#39; could be exploited for remote code execution on Jellyfin servers under certain conditions, and can also trigger a denial-of-service  condition in appl...</p>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="FortiBleed campaign used custom FortiGate sniffer to steal credentials" data-summary="Security firm SOCRadar says the large-scale FortiBleed campaign targeting Fortinet FortiGate devices used custom sniffers to harvest authentication secrets from compromised firewalls and steal credent..." data-severity="Monitor" data-tags="" data-vendors="Fortinet" data-source-signal="Industry media">
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="FortiBleed campaign used custom FortiGate sniffer to steal credentials" data-summary="Security firm SOCRadar says the large-scale FortiBleed campaign targeting Fortinet FortiGate devices used custom sniffers to harvest authentication secrets from compromised firewalls and steal credent..." data-severity="Critical" data-tags="Data Breach,Identity" data-vendors="Fortinet" data-source-signal="Industry media">
           <div class="chips">
-            <span class="severity severity-monitor">Monitor</span>
+            <span class="severity severity-critical">Critical</span>
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
@@ -180,7 +180,7 @@
             <time datetime="2026-06-22T20:01:02.000Z">June 22, 2026 at 3:01 PM</time>
             <span class="badge-new">NEW</span>
           </div>
-          <div class="facet-row"><span class="chip">Fortinet</span></div>
+          <div class="facet-row"><span class="chip">Fortinet</span><span class="chip">Data Breach</span><span class="chip">Identity</span></div>
           <p class="news-summary">Security firm SOCRadar says the large-scale FortiBleed campaign targeting Fortinet FortiGate devices used custom sniffers to harvest authentication secrets from compromised firewalls and steal credent...</p>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="ShapedPlugin WordPress Pro Plugins Backdoored in Supply Chain Attack" data-summary="Multiple WordPress plugins from ShapedPlugin were compromised in a supply chain attack after unknown threat actors managed to tamper with the official release channels and push backdoor code.
@@ -262,7 +262,7 @@
           <div class="facet-row"><span class="chip">GitHub</span></div>
           <p class="news-summary">Attackers are using multiple online channels — including GitHub, YouTube, and VirusTotal — to build an illusion of trust to spread a cross-platform clipboard hijacker....</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="29-Year-Old Squid Proxy Bug &#39;Squidbleed&#39; Can Leak Cleartext HTTP Requests" data-summary="A heap over-read in the Squid web proxy can leak another user&#39;s cleartext HTTP request, including any credentials or session tokens it carries, to anyone already allowed to send traffic through the sa..." data-severity="Critical" data-tags="Data Breach" data-vendors="" data-source-signal="Industry media">
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="29-Year-Old Squid Proxy Bug &#39;Squidbleed&#39; Can Leak Cleartext HTTP Requests" data-summary="A heap over-read in the Squid web proxy can leak another user&#39;s cleartext HTTP request, including any credentials or session tokens it carries, to anyone already allowed to send traffic through the sa..." data-severity="Critical" data-tags="Data Breach,Identity" data-vendors="" data-source-signal="Industry media">
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip"><span class="dot"></span>The Hacker News</span>
@@ -274,7 +274,7 @@
             <time datetime="2026-06-22T14:29:46.000Z">June 22, 2026 at 9:29 AM</time>
             <span class="badge-new">NEW</span>
           </div>
-          <div class="facet-row"><span class="chip">Data Breach</span></div>
+          <div class="facet-row"><span class="chip">Data Breach</span><span class="chip">Identity</span></div>
           <p class="news-summary">A heap over-read in the Squid web proxy can leak another user&#39;s cleartext HTTP request, including any credentials or session tokens it carries, to anyone already allowed to send traffic through the sa...</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="A Glimpse into the “Search Your Target” Market for Stolen Credentials" data-summary="Attackers no longer need to sift through massive credential dumps. They can pay others to do it for them. Flare explores how an emerging underground market searches stolen credential databases for spe..." data-severity="Critical" data-tags="Data Breach,Identity" data-vendors="" data-source-signal="Industry media">
@@ -622,7 +622,7 @@ Steer the agent to load an attacker&#39;s web page...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-23T05:26:59.357Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-23T05:31:42.096Z').toLocaleString());
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       if (filter) filter.addEventListener('change', update);
