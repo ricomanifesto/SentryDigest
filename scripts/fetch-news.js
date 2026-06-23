@@ -168,7 +168,9 @@ async function main() {
     console.log(`Fetched ${newsItems.length} news items from ${sources.length} active sources`);
     
     // Generate HTML
-    const html = generateHTML(newsItems);
+    const html = generateHTML(newsItems, {
+      sourceNames: sources.map(source => source.name),
+    });
     
     // Write HTML to index.html
     fs.writeFileSync(indexHtmlPath, html);

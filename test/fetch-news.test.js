@@ -376,6 +376,23 @@ test('collectSourceCoverage returns deterministic source counts', () => {
   ]);
 });
 
+test('collectSourceCoverage includes configured sources with zero articles', () => {
+  const coverage = collectSourceCoverage([
+    {
+      title: 'First story',
+      link: 'https://example.com/first',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'Example Security',
+      summary: 'Story one.',
+    },
+  ], ['Quiet Feed', 'Example Security']);
+
+  assert.deepEqual(coverage, [
+    { source: 'Example Security', count: 1 },
+    { source: 'Quiet Feed', count: 0 },
+  ]);
+});
+
 test('deriveHandoffCues identifies downstream incident and governance relevance', () => {
   const cues = deriveHandoffCues({
     title: 'Microsoft Exchange zero-day exploited in data breach response',
@@ -678,6 +695,25 @@ test('generateHTML renders escaped source coverage and RSS clarity', () => {
   assert.match(html, /<button class="source-count" type="button" data-source-filter="Another Source" aria-pressed="false">Another Source <strong>1<\/strong><\/button>/);
   assert.match(html, /<a href="\.\/feed\.xml">RSS feed<\/a>/);
   assert.doesNotMatch(html, /Example <Security>/);
+});
+
+test('generateHTML renders quiet configured feeds as inert source coverage chips', () => {
+  const html = generateHTML([
+    {
+      title: 'First story',
+      link: 'https://example.com/first',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'Example <Security>',
+      summary: 'Story one.',
+    },
+  ], {
+    generatedAt: new Date('2026-06-17T18:00:00.000Z'),
+    sourceNames: ['Quiet <Feed>', 'Example <Security>'],
+  });
+
+  assert.match(html, /<button class="source-count" type="button" data-source-filter="Example &lt;Security&gt;" aria-pressed="false">Example &lt;Security&gt; <strong>1<\/strong><\/button>/);
+  assert.match(html, /<button class="source-count source-count-empty" type="button" data-source-filter="Quiet &lt;Feed&gt;" aria-pressed="false" aria-disabled="true" disabled>Quiet &lt;Feed&gt; <strong>0<\/strong><\/button>/);
+  assert.doesNotMatch(html, /Quiet <Feed>/);
 });
 
 test('generateHTML wires source coverage counts into the source filter', () => {

@@ -225,8 +225,13 @@ function collectFacetFilterOptions(newsItems, generatedAt = new Date()) {
   };
 }
 
-function collectSourceCoverage(newsItems) {
+function collectSourceCoverage(newsItems, sourceNames = []) {
   const counts = new Map();
+  sourceNames.forEach((source) => {
+    if (source) {
+      counts.set(source, 0);
+    }
+  });
   newsItems.forEach((article) => {
     const source = article.source || 'Unknown source';
     counts.set(source, (counts.get(source) || 0) + 1);
@@ -259,14 +264,18 @@ function renderSelectOptions(values) {
     .join('');
 }
 
-function renderSourceCoverage(newsItems) {
-  const sourceCounts = collectSourceCoverage(newsItems);
+function renderSourceCoverage(newsItems, sourceNames = []) {
+  const sourceCounts = collectSourceCoverage(newsItems, sourceNames);
   if (sourceCounts.length === 0) {
     return '';
   }
 
   const sourceCountItems = sourceCounts
-    .map(({ source, count }) => `<button class="source-count" type="button" data-source-filter="${escapeAttribute(source)}" aria-pressed="false">${escapeHtml(source)} <strong>${count}</strong></button>`)
+    .map(({ source, count }) => {
+      const emptyClass = count === 0 ? ' source-count-empty' : '';
+      const disabledAttributes = count === 0 ? ' aria-disabled="true" disabled' : '';
+      return `<button class="source-count${emptyClass}" type="button" data-source-filter="${escapeAttribute(source)}" aria-pressed="false"${disabledAttributes}>${escapeHtml(source)} <strong>${count}</strong></button>`;
+    })
     .join('');
 
   return `<section class="source-coverage" aria-label="RSS source coverage">
@@ -435,6 +444,7 @@ function renderEmptyState() {
 
 function generateHTML(newsItems, options = {}) {
   const generatedAt = options.generatedAt || new Date();
+  const sourceNames = Array.isArray(options.sourceNames) ? options.sourceNames : [];
   const uniqueSources = Array.from(new Set(newsItems.map((article) => article.source)));
   const totalItems = newsItems.length;
   const filterOptions = collectFacetFilterOptions(newsItems, generatedAt);
@@ -446,7 +456,7 @@ function generateHTML(newsItems, options = {}) {
   const handoffOptions = renderSelectOptions(filterOptions.handoffCues);
   const now = new Date(generatedAt);
   const nowIso = now.toISOString();
-  const sourceCoverage = renderSourceCoverage(newsItems);
+  const sourceCoverage = renderSourceCoverage(newsItems, sourceNames);
   const operatorLanes = renderOperatorLanes(newsItems);
   const articleCards = newsItems.length > 0
     ? newsItems.map((article, index) => renderArticleCard(article, index, generatedAt)).join('')
@@ -514,6 +524,8 @@ function generateHTML(newsItems, options = {}) {
     .source-counts { display: flex; flex: 1 1 260px; flex-wrap: wrap; gap: 8px; }
     .source-count { background: var(--chip); border: 1px solid transparent; border-radius: 999px; color: var(--fg); cursor: pointer; font: inherit; font-size: 12px; padding: 4px 10px; }
     .source-count:hover, .source-count[aria-pressed="true"] { border-color: var(--accent); }
+    .source-count-empty { color: var(--muted); cursor: default; opacity: 0.78; }
+    .source-count-empty:hover { border-color: transparent; }
     .source-count strong { color: var(--accent); margin-left: 4px; }
     .source-coverage a { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
     .source-coverage a:hover { text-decoration: underline; }
