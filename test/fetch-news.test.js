@@ -110,6 +110,18 @@ test('deriveArticleFacets identifies operator severity, tags, vendors, and sourc
   assert.equal(facets.sourceSignal, 'Industry media');
 });
 
+test('deriveArticleFacets classifies Threatpost as industry media', () => {
+  const facets = deriveArticleFacets({
+    title: 'Threat intelligence teams track phishing campaign',
+    link: 'https://threatpost.com/example-story',
+    date: new Date('2026-06-17T18:00:00.000Z'),
+    source: 'Threatpost',
+    summary: 'Researchers observed credential harvesting infrastructure.',
+  });
+
+  assert.equal(facets.sourceSignal, 'Industry media');
+});
+
 test('deriveArticleFacets recognizes vulnerability wording without CVE IDs', () => {
   const singular = deriveArticleFacets({
     title: 'Vendor fixes authentication vulnerability in edge appliance',
