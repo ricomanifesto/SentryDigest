@@ -88,6 +88,8 @@ const HANDOFF_CUE_RULES = [
   },
 ];
 
+const AGE_BUCKET_ORDER = ['Fresh', 'Recent', 'Older', 'Undated'];
+
 function matchesRule(text, rule) {
   return rule.pattern.test(text);
 }
@@ -135,16 +137,50 @@ function deriveHandoffCues(article) {
   return cues.length > 0 ? cues : ['SentryInsight: monitor'];
 }
 
-function collectFacetFilterOptions(newsItems) {
+function deriveAgeBucket(articleDate, generatedAt = new Date()) {
+  const date = new Date(articleDate);
+  const now = new Date(generatedAt);
+  if (!Number.isFinite(date.getTime()) || !Number.isFinite(now.getTime())) {
+    return {
+      label: 'Undated',
+      detail: 'date unavailable',
+    };
+  }
+
+  const ageMs = Math.max(0, now.getTime() - date.getTime());
+  const ageMinutes = Math.floor(ageMs / (60 * 1000));
+  const ageHours = Math.floor(ageMs / (60 * 60 * 1000));
+  const ageDays = Math.floor(ageMs / (24 * 60 * 60 * 1000));
+
+  const detail = ageHours < 1
+    ? `${ageMinutes}m old`
+    : ageHours < 24
+      ? `${ageHours}h old`
+      : `${ageDays}d old`;
+
+  if (ageHours < 24) {
+    return { label: 'Fresh', detail };
+  }
+
+  if (ageDays < 4) {
+    return { label: 'Recent', detail };
+  }
+
+  return { label: 'Older', detail };
+}
+
+function collectFacetFilterOptions(newsItems, generatedAt = new Date()) {
   const severities = new Set();
   const tags = new Set();
   const vendors = new Set();
+  const ageBuckets = new Set();
 
   newsItems.forEach((article) => {
     const facets = deriveArticleFacets(article);
     severities.add(facets.severity);
     facets.tags.forEach((tag) => tags.add(tag));
     facets.vendors.forEach((vendor) => vendors.add(vendor));
+    ageBuckets.add(deriveAgeBucket(article.date, generatedAt).label);
   });
 
   const severityOrder = ['Critical', 'Elevated', 'Monitor'];
@@ -152,6 +188,7 @@ function collectFacetFilterOptions(newsItems) {
     severities: severityOrder.filter((severity) => severities.has(severity)),
     tags: Array.from(tags).sort((left, right) => left.localeCompare(right)),
     vendors: Array.from(vendors).sort((left, right) => left.localeCompare(right)),
+    ageBuckets: AGE_BUCKET_ORDER.filter((bucket) => ageBuckets.has(bucket)),
   };
 }
 
@@ -218,10 +255,11 @@ function renderSummary(summary, index) {
           </details>`;
 }
 
-function renderArticleCard(article, index = 0) {
+function renderArticleCard(article, index = 0, generatedAt = new Date()) {
   const articleLink = safeArticleLink(article.link);
   const facets = deriveArticleFacets(article);
   const handoffCues = deriveHandoffCues(article);
+  const ageBucket = deriveAgeBucket(article.date, generatedAt);
   const hostname = (() => {
     try {
       return new URL(articleLink).hostname.replace(/^www\./, '');
@@ -248,6 +286,9 @@ function renderArticleCard(article, index = 0) {
   const safeTagsAttr = escapeAttribute(facets.tags.join(','));
   const safeVendorsAttr = escapeAttribute(facets.vendors.join(','));
   const safeHandoffCuesAttr = escapeAttribute(handoffCues.join(','));
+  const safeAgeBucket = escapeHtml(ageBucket.label);
+  const safeAgeBucketAttr = escapeAttribute(ageBucket.label);
+  const safeAgeDetail = escapeHtml(ageBucket.detail);
   const vendorChips = facets.vendors.map((vendor) => `<span class="chip">${escapeHtml(vendor)}</span>`).join('');
   const tagChips = facets.tags.map((tag) => `<span class="chip">${escapeHtml(tag)}</span>`).join('');
   const handoffCueChips = handoffCues.map((cue) => `<span class="handoff-cue">${escapeHtml(cue)}</span>`).join('');
@@ -258,11 +299,12 @@ function renderArticleCard(article, index = 0) {
   const summary = renderSummary(article.summary, index);
 
   return `
-        <article class="news-item" data-source="${safeSourceAttr}" data-host="${safeHostAttr}" data-title="${safeTitleAttr}" data-summary="${safeSummaryAttr}" data-severity="${safeSeverityAttr}" data-tags="${safeTagsAttr}" data-vendors="${safeVendorsAttr}" data-source-signal="${safeSourceSignalAttr}" data-handoff-cues="${safeHandoffCuesAttr}">
+        <article class="news-item" data-source="${safeSourceAttr}" data-host="${safeHostAttr}" data-title="${safeTitleAttr}" data-summary="${safeSummaryAttr}" data-severity="${safeSeverityAttr}" data-tags="${safeTagsAttr}" data-vendors="${safeVendorsAttr}" data-source-signal="${safeSourceSignalAttr}" data-handoff-cues="${safeHandoffCuesAttr}" data-age-bucket="${safeAgeBucketAttr}">
           <div class="chips">
             <span class="severity severity-${safeSeverityClass}">${safeSeverity}</span>
             <span class="chip"><span class="dot"></span>${safeSource}</span>${hostChip}
             <span class="chip">${safeSourceSignal}</span>
+            <span class="chip age-chip">${safeAgeBucket} - ${safeAgeDetail}</span>
           </div>
           <h2 class="news-title"><a href="${safeLink}" target="_blank" rel="noopener">${safeTitle}</a></h2>
           <div class="news-meta">
@@ -281,17 +323,20 @@ function renderEmptyState() {
       `;
 }
 
-function generateHTML(newsItems) {
+function generateHTML(newsItems, options = {}) {
+  const generatedAt = options.generatedAt || new Date();
   const uniqueSources = Array.from(new Set(newsItems.map((article) => article.source)));
   const totalItems = newsItems.length;
-  const filterOptions = collectFacetFilterOptions(newsItems);
+  const filterOptions = collectFacetFilterOptions(newsItems, generatedAt);
   const sourceOptions = renderSelectOptions(uniqueSources);
   const severityOptions = renderSelectOptions(filterOptions.severities);
   const tagOptions = renderSelectOptions(filterOptions.tags);
   const vendorOptions = renderSelectOptions(filterOptions.vendors);
-  const nowIso = new Date().toISOString();
+  const ageOptions = renderSelectOptions(filterOptions.ageBuckets);
+  const now = new Date(generatedAt);
+  const nowIso = now.toISOString();
   const articleCards = newsItems.length > 0
-    ? newsItems.map((article, index) => renderArticleCard(article, index)).join('')
+    ? newsItems.map((article, index) => renderArticleCard(article, index, generatedAt)).join('')
     : renderEmptyState();
 
   return `
@@ -427,8 +472,12 @@ function generateHTML(newsItems) {
         <option value="">All vendors</option>
         ${vendorOptions}
       </select>
+      <select id="ageFilter" class="select" aria-label="Filter by article age">
+        <option value="">Any age</option>
+        ${ageOptions}
+      </select>
     </div>
-    <div class="stats" id="stats">Showing ${totalItems} of ${totalItems} articles from ${uniqueSources.length} sources • Last updated <time datetime="${nowIso}">${new Date().toLocaleString()}</time></div>
+    <div class="stats" id="stats">Showing ${totalItems} of ${totalItems} articles from ${uniqueSources.length} sources • Last updated <time datetime="${nowIso}">${now.toLocaleString()}</time></div>
     <div id="emptyFilteredState" class="empty-filtered" hidden>No articles match the current filters.</div>
 
     <div class="news-container" id="newsContainer">
@@ -464,6 +513,7 @@ function generateHTML(newsItems) {
       const severityFilter = q('#severityFilter');
       const tagFilter = q('#tagFilter');
       const vendorFilter = q('#vendorFilter');
+      const ageFilter = q('#ageFilter');
       const emptyFilteredState = q('#emptyFilteredState');
       const stats = q('#stats');
       const cards = qa('.news-item');
@@ -474,6 +524,7 @@ function generateHTML(newsItems) {
         const severity = severityFilter && severityFilter.value || '';
         const tag = tagFilter && tagFilter.value || '';
         const vendor = vendorFilter && vendorFilter.value || '';
+        const age = ageFilter && ageFilter.value || '';
         let visible = 0;
         cards.forEach(card => {
           const matchesText = !term || (card.getAttribute('data-title').toLowerCase().includes(term) || card.getAttribute('data-summary').toLowerCase().includes(term));
@@ -481,7 +532,8 @@ function generateHTML(newsItems) {
           const matchesSeverity = !severity || card.getAttribute('data-severity') === severity;
           const matchesTag = !tag || card.getAttribute('data-tags').split(',').filter(Boolean).includes(tag);
           const matchesVendor = !vendor || card.getAttribute('data-vendors').split(',').filter(Boolean).includes(vendor);
-          const show = matchesText && matchesSource && matchesSeverity && matchesTag && matchesVendor;
+          const matchesAge = !age || card.getAttribute('data-age-bucket') === age;
+          const show = matchesText && matchesSource && matchesSeverity && matchesTag && matchesVendor && matchesAge;
           card.style.display = show ? '' : 'none';
           if (show) visible++;
         });
@@ -491,7 +543,7 @@ function generateHTML(newsItems) {
         if (emptyFilteredState) emptyFilteredState.hidden = visible !== 0;
       }
       if (search) search.addEventListener('input', debounce(update, 120));
-      [sourceFilter, severityFilter, tagFilter, vendorFilter].forEach(function(filter){
+      [sourceFilter, severityFilter, tagFilter, vendorFilter, ageFilter].forEach(function(filter){
         if (filter) filter.addEventListener('change', update);
       });
 
@@ -507,6 +559,7 @@ function generateHTML(newsItems) {
 
 module.exports = {
   collectFacetFilterOptions,
+  deriveAgeBucket,
   deriveArticleFacets,
   deriveHandoffCues,
   escapeHtml,

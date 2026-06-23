@@ -9,6 +9,7 @@ const {
 const {
   collectFacetFilterOptions,
   deriveArticleFacets,
+  deriveAgeBucket,
   deriveHandoffCues,
   generateHTML,
 } = require('../scripts/render-news-html');
@@ -355,6 +356,56 @@ test('deriveHandoffCues returns a stable monitor cue for low-signal articles', (
   });
 
   assert.deepEqual(cues, ['SentryInsight: monitor']);
+});
+
+test('deriveAgeBucket returns deterministic operator age buckets', () => {
+  const generatedAt = new Date('2026-06-17T18:00:00.000Z');
+
+  assert.deepEqual(deriveAgeBucket(new Date('2026-06-17T17:30:00.000Z'), generatedAt), {
+    label: 'Fresh',
+    detail: '30m old',
+  });
+  assert.deepEqual(deriveAgeBucket(new Date('2026-06-16T18:00:00.000Z'), generatedAt), {
+    label: 'Recent',
+    detail: '1d old',
+  });
+  assert.deepEqual(deriveAgeBucket(new Date('2026-06-13T17:59:00.000Z'), generatedAt), {
+    label: 'Older',
+    detail: '4d old',
+  });
+  assert.deepEqual(deriveAgeBucket(new Date('invalid'), generatedAt), {
+    label: 'Undated',
+    detail: 'date unavailable',
+  });
+});
+
+test('generateHTML renders age metadata and filter controls', () => {
+  const html = generateHTML([
+    {
+      title: 'Fresh VPN exploitation story',
+      link: 'https://example.com/fresh-vpn',
+      date: new Date('2026-06-17T17:30:00.000Z'),
+      source: 'Example Security',
+      summary: 'Attackers are exploiting a VPN vulnerability.',
+    },
+    {
+      title: 'Older governance roundup',
+      link: 'https://example.com/older-governance',
+      date: new Date('2026-06-13T18:00:00.000Z'),
+      source: 'Example Security',
+      summary: 'Governance teams review audit findings.',
+    },
+  ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
+
+  assert.match(html, /data-age-bucket="Fresh"/);
+  assert.match(html, /data-age-bucket="Older"/);
+  assert.match(html, /<span class="chip age-chip">Fresh - 30m old<\/span>/);
+  assert.match(html, /<select id="ageFilter" class="select" aria-label="Filter by article age">/);
+  assert.match(html, /<option value="Fresh">Fresh<\/option>/);
+  assert.match(html, /<option value="Older">Older<\/option>/);
+  assert.match(html, /const ageFilter = q\('#ageFilter'\)/);
+  assert.match(html, /card.getAttribute\('data-age-bucket'\) === age/);
+  assert.match(html, /\[sourceFilter, severityFilter, tagFilter, vendorFilter, ageFilter\]/);
 });
 
 test('generateHTML renders facet filter controls and empty filtered state', () => {
