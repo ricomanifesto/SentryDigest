@@ -54,6 +54,13 @@
     .source-count strong { color: var(--accent); margin-left: 4px; }
     .source-coverage a { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
     .source-coverage a:hover { text-decoration: underline; }
+    .operator-lanes { display: grid; gap: 12px; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 14px; }
+    .operator-lane { background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: grid; gap: 6px; padding: 12px; }
+    .operator-lane-heading { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
+    .operator-lane-count { color: var(--muted); font-size: 0.85rem; }
+    .operator-lane-count strong { color: var(--accent); }
+    .operator-lane-link { color: var(--fg); font-size: 0.92rem; line-height: 1.35; text-decoration: none; }
+    .operator-lane-link:hover { color: var(--accent); text-decoration: underline; }
     .empty-filtered { background: var(--card); border: 1px dashed var(--card-border); border-radius: 10px; color: var(--muted); margin-top: 18px; padding: 18px; text-align: center; }
     .empty-filtered[hidden] { display: none; }
     .news-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin-top: 18px; }
@@ -94,6 +101,7 @@
       .search { width: 100%; }
       .search input { min-width: 0; width: 100%; }
       .select, .btn { flex: 1 1 auto; }
+      .operator-lanes { grid-template-columns: minmax(0, 1fr); }
       .news-container { grid-template-columns: minmax(0, 1fr); }
       .news-item { border-radius: 10px; }
     }
@@ -143,11 +151,26 @@
         <option value="Fresh">Fresh</option><option value="Recent">Recent</option>
       </select>
     </div>
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-23T16:01:44.370Z">6/23/2026, 4:01:44 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-23T16:06:42.307Z">6/23/2026, 4:06:42 PM</time></div>
     <section class="source-coverage" aria-label="RSS source coverage">
       <div class="source-coverage-label">RSS source coverage</div>
       <div class="source-counts"><span class="source-count" data-source="The Hacker News">The Hacker News <strong>14</strong></span><span class="source-count" data-source="Bleeping Computer">Bleeping Computer <strong>11</strong></span><span class="source-count" data-source="Dark Reading">Dark Reading <strong>5</strong></span></div>
       <a href="./feed.xml">RSS feed</a>
+    </section>
+    <section class="operator-lanes" aria-label="Operator scan lanes">
+      <article class="operator-lane" data-lane="Incident watch">
+        <div class="operator-lane-heading">Incident watch</div>
+        <span class="operator-lane-count"><strong>9</strong> items</span>
+        <a href="https://www.bleepingcomputer.com/news/security/lastpass-confirms-data-breach-in-klue-supply-chain-attack/" class="operator-lane-link">LastPass confirms data breach in Klue supply chain attack</a>
+      </article><article class="operator-lane" data-lane="Vulnerability triage">
+        <div class="operator-lane-heading">Vulnerability triage</div>
+        <span class="operator-lane-count"><strong>8</strong> items</span>
+        <a href="https://thehackernews.com/2026/06/github-updates-actionscheckout-to-block.html" class="operator-lane-link">GitHub Updates actions/checkout to Block Common Pwn Request Attack Patterns</a>
+      </article><article class="operator-lane" data-lane="Governance watch">
+        <div class="operator-lane-heading">Governance watch</div>
+        <span class="operator-lane-count"><strong>0</strong> items</span>
+        <a href="#" class="operator-lane-link">No current match</a>
+      </article>
     </section>
     <div id="emptyFilteredState" class="empty-filtered" hidden>No articles match the current filters.</div>
 
@@ -159,7 +182,7 @@
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 29m old</span>
+            <span class="chip age-chip">Fresh - 34m old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/scattered-spider-members-plead-guilty-to-hacking-transport-for-london/" target="_blank" rel="noopener">Scattered Spider members plead guilty to hacking Transport for London</a></h2>
           <div class="news-meta">
@@ -475,7 +498,7 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 18h old</span>
+            <span class="chip age-chip">Fresh - 19h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/ffmpeg-fixes-pixelsmash-flaw-in-widely-used-video-decoder/" target="_blank" rel="noopener">FFmpeg fixes PixelSmash flaw in widely used video decoder</a></h2>
           <div class="news-meta">
@@ -906,7 +929,7 @@ The Federal Court released a ...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-23T16:01:44.370Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-23T16:06:42.307Z').toLocaleString());
         if (emptyFilteredState) emptyFilteredState.hidden = visible !== 0;
       }
       if (search) search.addEventListener('input', debounce(update, 120));

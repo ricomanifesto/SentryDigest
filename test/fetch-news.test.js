@@ -8,6 +8,7 @@ const {
 } = require('../scripts/fetch-news');
 const {
   collectFacetFilterOptions,
+  collectOperatorLanes,
   collectSourceCoverage,
   deriveArticleFacets,
   deriveAgeBucket,
@@ -390,6 +391,60 @@ test('deriveHandoffCues returns a stable monitor cue for low-signal articles', (
   assert.deepEqual(cues, ['SentryInsight: monitor']);
 });
 
+test('collectOperatorLanes returns deterministic lane counts and latest articles', () => {
+  const lanes = collectOperatorLanes([
+    {
+      title: 'Malformed date incident should not become latest',
+      link: 'https://example.com/malformed-incident',
+      date: new Date('invalid'),
+      source: 'Example Security',
+      summary: 'Incident response teams are investigating stolen credentials.',
+    },
+    {
+      title: 'Ransomware crew steals credentials from exchange',
+      link: 'https://example.com/incident',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'Example Security',
+      summary: 'Incident response teams are investigating stolen credentials.',
+    },
+    {
+      title: 'Cisco VPN vulnerability patched by vendor',
+      link: 'https://example.com/vuln',
+      date: new Date('2026-06-17T17:00:00.000Z'),
+      source: 'Example Security',
+      summary: 'CVE-2026-1234 affects exposed appliances.',
+    },
+    {
+      title: 'Regulator opens privacy compliance audit',
+      link: 'https://example.com/grc',
+      date: new Date('2026-06-17T16:00:00.000Z'),
+      source: 'Example Security',
+      summary: 'Governance teams are reviewing regulatory filings.',
+    },
+  ]);
+
+  assert.deepEqual(lanes, [
+    {
+      label: 'Incident watch',
+      count: 2,
+      latestTitle: 'Ransomware crew steals credentials from exchange',
+      latestLink: 'https://example.com/incident',
+    },
+    {
+      label: 'Vulnerability triage',
+      count: 1,
+      latestTitle: 'Cisco VPN vulnerability patched by vendor',
+      latestLink: 'https://example.com/vuln',
+    },
+    {
+      label: 'Governance watch',
+      count: 1,
+      latestTitle: 'Regulator opens privacy compliance audit',
+      latestLink: 'https://example.com/grc',
+    },
+  ]);
+});
+
 test('deriveAgeBucket returns deterministic operator age buckets', () => {
   const generatedAt = new Date('2026-06-17T18:00:00.000Z');
 
@@ -474,6 +529,43 @@ test('generateHTML renders escaped source coverage and RSS clarity', () => {
   assert.match(html, /<span class="source-count" data-source="Another Source">Another Source <strong>1<\/strong><\/span>/);
   assert.match(html, /<a href="\.\/feed\.xml">RSS feed<\/a>/);
   assert.doesNotMatch(html, /Example <Security>/);
+});
+
+test('generateHTML renders escaped operator scan lanes', () => {
+  const html = generateHTML([
+    {
+      title: 'Ransomware crew steals credentials from exchange',
+      link: 'https://example.com/incident',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'Example Security',
+      summary: 'Incident response teams are investigating stolen credentials.',
+    },
+    {
+      title: 'Cisco VPN vulnerability patched by vendor',
+      link: 'https://example.com/vuln',
+      date: new Date('2026-06-17T17:00:00.000Z'),
+      source: 'Example Security',
+      summary: 'CVE-2026-1234 affects exposed appliances.',
+    },
+    {
+      title: 'Regulator opens <privacy> compliance audit',
+      link: 'javascript:alert(1)',
+      date: new Date('2026-06-17T16:00:00.000Z'),
+      source: 'Example Security',
+      summary: 'Governance teams are reviewing regulatory filings.',
+    },
+  ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
+
+  assert.match(html, /<section class="operator-lanes" aria-label="Operator scan lanes">/);
+  assert.match(html, /<article class="operator-lane" data-lane="Incident watch">/);
+  assert.match(html, /<article class="operator-lane" data-lane="Vulnerability triage">/);
+  assert.match(html, /<article class="operator-lane" data-lane="Governance watch">/);
+  assert.match(html, /<span class="operator-lane-count"><strong>1<\/strong> item<\/span>/);
+  assert.match(html, /Ransomware crew steals credentials from exchange/);
+  assert.match(html, /Cisco VPN vulnerability patched by vendor/);
+  assert.match(html, /Regulator opens &lt;privacy&gt; compliance audit/);
+  assert.match(html, /<a href="#" class="operator-lane-link">Regulator opens &lt;privacy&gt; compliance audit<\/a>/);
+  assert.doesNotMatch(html, /javascript:alert/);
 });
 
 test('generateHTML treats the malformed feed date fallback as undated', () => {

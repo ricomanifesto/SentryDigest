@@ -90,6 +90,20 @@ const HANDOFF_CUE_RULES = [
 
 const AGE_BUCKET_ORDER = ['Fresh', 'Recent', 'Older', 'Undated'];
 const INVALID_FEED_DATE_FALLBACK_TIME = new Date('1970-01-01T00:00:00.000Z').getTime();
+const OPERATOR_LANE_RULES = [
+  {
+    label: 'Incident watch',
+    cue: 'SentryInsight: incident watch',
+  },
+  {
+    label: 'Vulnerability triage',
+    cue: 'SentryInsight: vuln triage',
+  },
+  {
+    label: 'Governance watch',
+    cue: 'GRCInsight: governance watch',
+  },
+];
 
 function matchesRule(text, rule) {
   return rule.pattern.test(text);
@@ -141,7 +155,7 @@ function deriveHandoffCues(article) {
 function deriveAgeBucket(articleDate, generatedAt = new Date()) {
   const date = new Date(articleDate);
   const now = new Date(generatedAt);
-  const dateTime = date.getTime();
+  const dateTime = getArticleTime(articleDate);
   if (!Number.isFinite(dateTime) || dateTime === INVALID_FEED_DATE_FALLBACK_TIME || !Number.isFinite(now.getTime())) {
     return {
       label: 'Undated',
@@ -169,6 +183,19 @@ function deriveAgeBucket(articleDate, generatedAt = new Date()) {
   }
 
   return { label: 'Older', detail };
+}
+
+function getArticleTime(articleDate) {
+  return new Date(articleDate).getTime();
+}
+
+function getSortableArticleTime(articleDate) {
+  const articleTime = getArticleTime(articleDate);
+  if (!Number.isFinite(articleTime) || articleTime === INVALID_FEED_DATE_FALLBACK_TIME) {
+    return Number.NEGATIVE_INFINITY;
+  }
+
+  return articleTime;
 }
 
 function collectFacetFilterOptions(newsItems, generatedAt = new Date()) {
@@ -206,6 +233,22 @@ function collectSourceCoverage(newsItems) {
     .sort((left, right) => right.count - left.count || left.source.localeCompare(right.source));
 }
 
+function collectOperatorLanes(newsItems) {
+  return OPERATOR_LANE_RULES.map((lane) => {
+    const matchingArticles = newsItems
+      .filter((article) => deriveHandoffCues(article).includes(lane.cue))
+      .sort((left, right) => getSortableArticleTime(right.date) - getSortableArticleTime(left.date));
+    const latestArticle = matchingArticles[0];
+
+    return {
+      label: lane.label,
+      count: matchingArticles.length,
+      latestTitle: latestArticle ? latestArticle.title : '',
+      latestLink: latestArticle ? safeArticleLink(latestArticle.link) : '#',
+    };
+  });
+}
+
 function renderSelectOptions(values) {
   return values
     .map((value) => `<option value="${escapeAttribute(value)}">${escapeHtml(value)}</option>`)
@@ -226,6 +269,31 @@ function renderSourceCoverage(newsItems) {
       <div class="source-coverage-label">RSS source coverage</div>
       <div class="source-counts">${sourceCountItems}</div>
       <a href="./feed.xml">RSS feed</a>
+    </section>`;
+}
+
+function renderOperatorLanes(newsItems) {
+  const lanes = collectOperatorLanes(newsItems);
+  if (lanes.every((lane) => lane.count === 0)) {
+    return '';
+  }
+
+  const laneCards = lanes.map((lane) => {
+    const safeLabel = escapeHtml(lane.label);
+    const safeLabelAttr = escapeAttribute(lane.label);
+    const safeLatestTitle = lane.latestTitle ? escapeHtml(lane.latestTitle) : 'No current match';
+    const safeLatestLink = escapeAttribute(lane.latestLink || '#');
+    const itemLabel = lane.count === 1 ? 'item' : 'items';
+
+    return `<article class="operator-lane" data-lane="${safeLabelAttr}">
+        <div class="operator-lane-heading">${safeLabel}</div>
+        <span class="operator-lane-count"><strong>${lane.count}</strong> ${itemLabel}</span>
+        <a href="${safeLatestLink}" class="operator-lane-link">${safeLatestTitle}</a>
+      </article>`;
+  }).join('');
+
+  return `<section class="operator-lanes" aria-label="Operator scan lanes">
+      ${laneCards}
     </section>`;
 }
 
@@ -367,6 +435,7 @@ function generateHTML(newsItems, options = {}) {
   const now = new Date(generatedAt);
   const nowIso = now.toISOString();
   const sourceCoverage = renderSourceCoverage(newsItems);
+  const operatorLanes = renderOperatorLanes(newsItems);
   const articleCards = newsItems.length > 0
     ? newsItems.map((article, index) => renderArticleCard(article, index, generatedAt)).join('')
     : renderEmptyState();
@@ -427,6 +496,13 @@ function generateHTML(newsItems, options = {}) {
     .source-count strong { color: var(--accent); margin-left: 4px; }
     .source-coverage a { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
     .source-coverage a:hover { text-decoration: underline; }
+    .operator-lanes { display: grid; gap: 12px; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 14px; }
+    .operator-lane { background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: grid; gap: 6px; padding: 12px; }
+    .operator-lane-heading { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
+    .operator-lane-count { color: var(--muted); font-size: 0.85rem; }
+    .operator-lane-count strong { color: var(--accent); }
+    .operator-lane-link { color: var(--fg); font-size: 0.92rem; line-height: 1.35; text-decoration: none; }
+    .operator-lane-link:hover { color: var(--accent); text-decoration: underline; }
     .empty-filtered { background: var(--card); border: 1px dashed var(--card-border); border-radius: 10px; color: var(--muted); margin-top: 18px; padding: 18px; text-align: center; }
     .empty-filtered[hidden] { display: none; }
     .news-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin-top: 18px; }
@@ -467,6 +543,7 @@ function generateHTML(newsItems, options = {}) {
       .search { width: 100%; }
       .search input { min-width: 0; width: 100%; }
       .select, .btn { flex: 1 1 auto; }
+      .operator-lanes { grid-template-columns: minmax(0, 1fr); }
       .news-container { grid-template-columns: minmax(0, 1fr); }
       .news-item { border-radius: 10px; }
     }
@@ -518,6 +595,7 @@ function generateHTML(newsItems, options = {}) {
     </div>
     <div class="stats" id="stats">Showing ${totalItems} of ${totalItems} articles from ${uniqueSources.length} sources • Last updated <time datetime="${nowIso}">${now.toLocaleString()}</time></div>
     ${sourceCoverage}
+    ${operatorLanes}
     <div id="emptyFilteredState" class="empty-filtered" hidden>No articles match the current filters.</div>
 
     <div class="news-container" id="newsContainer">
@@ -599,6 +677,7 @@ function generateHTML(newsItems, options = {}) {
 
 module.exports = {
   collectFacetFilterOptions,
+  collectOperatorLanes,
   collectSourceCoverage,
   deriveAgeBucket,
   deriveArticleFacets,
