@@ -342,13 +342,38 @@ test('generateHTML renders long summaries as accessible expandable content', () 
     },
   ]);
 
-  assert.match(html, /<p class="news-summary summary-preview" id="summary-preview-0">/);
   assert.match(html, /<details class="summary-disclosure">/);
-  assert.match(html, /<summary class="summary-toggle">Show full summary<\/summary>/);
+  assert.match(html, /<summary class="summary-toggle" aria-controls="summary-full-0">/);
+  assert.match(html, /<span class="summary-preview-text">Security teams should prioritize exposed VPN appliances/);
+  assert.match(html, /<span class="summary-action">Show full summary<\/span>/);
   assert.match(html, /<p class="news-summary summary-full" id="summary-full-0">/);
+  assert.doesNotMatch(html, /<p class="news-summary summary-preview"/);
   assert.doesNotMatch(html, /data-summary-toggle/);
   assert.doesNotMatch(html, /<script>alert\(1\)<\/script>/);
   assert.match(html, /&lt;script&gt;alert\(1\)&lt;\/script&gt;/);
+});
+
+test('generateHTML splits expanded summary content without duplicating the preview', () => {
+  const previewText = 'Security teams should prioritize exposed VPN appliances and patch externally managed edge devices before broad scanning starts';
+  const summary = `${previewText} because attackers are chaining the flaw with stolen credentials across incident response cases.`;
+  const html = generateHTML([
+    {
+      title: 'VPN exploitation campaign expands',
+      link: 'https://example.com/vpn-exploitation',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'Example Security',
+      summary,
+    },
+  ]);
+
+  const previewMatch = html.match(/<span class="summary-preview-text">([^<]+)<\/span>/);
+  const remainderMatch = html.match(/<p class="news-summary summary-full" id="summary-full-0">([^<]+)<\/p>/);
+
+  assert.ok(previewMatch);
+  assert.ok(remainderMatch);
+  assert.ok(summary.startsWith(previewMatch[1]));
+  assert.ok(summary.endsWith(remainderMatch[1]));
+  assert.ok(!remainderMatch[1].startsWith(previewMatch[1]));
 });
 
 test('generateHTML expands production-shaped fetched summaries', () => {
@@ -365,9 +390,9 @@ test('generateHTML expands production-shaped fetched summaries', () => {
     },
   ]);
 
-  assert.match(html, /<p class="news-summary summary-preview" id="summary-preview-0">/);
   assert.match(html, /<details class="summary-disclosure">/);
-  assert.match(html, /<summary class="summary-toggle">Show full summary<\/summary>/);
+  assert.match(html, /<summary class="summary-toggle" aria-controls="summary-full-0">/);
+  assert.match(html, /<span class="summary-preview-text">Security teams should prioritize exposed VPN appliances/);
   assert.match(html, /<p class="news-summary summary-full" id="summary-full-0">/);
 });
 

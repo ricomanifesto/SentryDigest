@@ -121,16 +121,28 @@ function renderSelectOptions(values) {
 }
 
 const SUMMARY_PREVIEW_LENGTH = 160;
+const SUMMARY_WORD_BOUNDARY_MIN = 120;
 
 function getSummaryPreview(summary) {
+  const parts = getSummaryParts(summary);
+  return parts ? `${parts.preview}...` : summary;
+}
+
+function getSummaryParts(summary) {
   if (summary.length <= SUMMARY_PREVIEW_LENGTH) {
-    return summary;
+    return null;
   }
 
   const preview = summary.slice(0, SUMMARY_PREVIEW_LENGTH);
   const lastSpace = preview.lastIndexOf(' ');
-  const trimmed = preview.slice(0, lastSpace > 120 ? lastSpace : SUMMARY_PREVIEW_LENGTH).trim();
-  return `${trimmed}...`;
+  const previewEnd = lastSpace > SUMMARY_WORD_BOUNDARY_MIN ? lastSpace : SUMMARY_PREVIEW_LENGTH;
+  const previewText = preview.slice(0, previewEnd).trim();
+  const remainder = summary.slice(previewText.length).trimStart();
+
+  return {
+    preview: previewText,
+    remainder,
+  };
 }
 
 function formatArticleDate(value) {
@@ -153,11 +165,15 @@ function renderSummary(summary, index) {
     return `<p class="news-summary">${safeSummary}</p>`;
   }
 
-  const safePreview = escapeHtml(getSummaryPreview(summary));
-  return `<p class="news-summary summary-preview" id="summary-preview-${index}">${safePreview}</p>
-          <details class="summary-disclosure">
-            <summary class="summary-toggle">Show full summary</summary>
-            <p class="news-summary summary-full" id="summary-full-${index}">${safeSummary}</p>
+  const summaryParts = getSummaryParts(summary);
+  const safePreview = escapeHtml(summaryParts.preview);
+  const safeRemainder = escapeHtml(summaryParts.remainder);
+  return `<details class="summary-disclosure">
+            <summary class="summary-toggle" aria-controls="summary-full-${index}">
+              <span class="summary-preview-text">${safePreview}</span><span class="summary-ellipsis" aria-hidden="true">...</span>
+              <span class="summary-action">Show full summary</span>
+            </summary>
+            <p class="news-summary summary-full" id="summary-full-${index}">${safeRemainder}</p>
           </details>`;
 }
 
@@ -304,8 +320,11 @@ function generateHTML(newsItems) {
     .news-meta { color: var(--muted); font-size: 0.85rem; display: flex; gap: 8px; align-items: baseline; }
     .badge-new { color: #16a34a; font-weight: 600; font-size: 0.8rem; }
     .news-summary { margin-top: 8px; color: var(--fg); opacity: 0.9; }
-    .summary-toggle { border: none; background: transparent; color: var(--accent); cursor: pointer; font: inherit; font-size: 0.9rem; margin-top: 2px; padding: 0; }
-    .summary-toggle:hover { text-decoration: underline; }
+    .summary-disclosure { margin-top: 8px; }
+    .summary-toggle { color: var(--fg); cursor: pointer; font: inherit; font-size: 0.95rem; opacity: 0.9; }
+    .summary-action { color: var(--accent); font-size: 0.9rem; margin-left: 6px; white-space: nowrap; }
+    details[open] .summary-ellipsis { display: none; }
+    .summary-toggle:hover .summary-action { text-decoration: underline; }
     .summary-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
     footer { border-top: 1px solid var(--card-border); color: var(--muted); font-size: 0.9rem; padding: 18px 0; margin-top: 22px; }
     @media (max-width: 640px) {
