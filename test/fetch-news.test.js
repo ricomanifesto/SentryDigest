@@ -158,6 +158,19 @@ test('deriveArticleFacets elevates flaw and exploit stories tagged as operationa
   assert.deepEqual(facets.tags, ['Vulnerability', 'Exploitation']);
 });
 
+test('deriveArticleFacets elevates bare exploit stories through exploitation tags', () => {
+  const facets = deriveArticleFacets({
+    title: 'Researchers publish exploit for appliance flaw',
+    link: 'https://example.com/appliance-exploit',
+    date: new Date('2026-06-17T18:00:00.000Z'),
+    source: 'Example Security',
+    summary: 'Security teams should review exposure before broad scanning begins.',
+  });
+
+  assert.equal(facets.severity, 'Elevated');
+  assert.deepEqual(facets.tags, ['Vulnerability', 'Exploitation']);
+});
+
 test('deriveArticleFacets does not tag generic exchange incidents as Microsoft', () => {
   const facets = deriveArticleFacets({
     title: 'Cryptocurrency exchange discloses credential theft',
@@ -169,6 +182,19 @@ test('deriveArticleFacets does not tag generic exchange incidents as Microsoft',
 
   assert.deepEqual(facets.vendors, []);
   assert.deepEqual(facets.tags, ['Data Breach', 'Identity']);
+});
+
+test('deriveArticleFacets does not tag Cisco IOS XE advisories as Apple', () => {
+  const facets = deriveArticleFacets({
+    title: 'Cisco IOS XE advisory warns of exploit attempts',
+    link: 'https://example.com/cisco-ios-xe-advisory',
+    date: new Date('2026-06-17T18:00:00.000Z'),
+    source: 'Example Security',
+    summary: 'Administrators should patch affected Cisco routers.',
+  });
+
+  assert.deepEqual(facets.vendors, ['Cisco']);
+  assert.ok(!facets.vendors.includes('Apple'));
 });
 
 test('generateHTML renders escaped operator facets on article cards', () => {

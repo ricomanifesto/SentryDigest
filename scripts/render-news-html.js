@@ -39,7 +39,7 @@ const TOPIC_RULES = [
 const VENDOR_RULES = [
   { label: 'Microsoft', pattern: /\b(microsoft|windows|microsoft exchange|azure|entra|office 365|m365)\b/i },
   { label: 'Google', pattern: /\b(google|android|chrome|gmail|workspace|gcp)\b/i },
-  { label: 'Apple', pattern: /\b(apple|ios|macos|safari|iphone|ipad)\b/i },
+  { label: 'Apple', pattern: /\b(apple|macos|safari|iphone|ipad)\b/i },
   { label: 'Cisco', pattern: /\b(cisco|ios xe|asa|ftd|duo)\b/i },
   { label: 'Fortinet', pattern: /\b(fortinet|fortigate|fortios)\b/i },
   { label: 'Palo Alto', pattern: /\b(palo alto|pan-os|globalprotect)\b/i },
@@ -63,6 +63,20 @@ function matchesRule(text, rule) {
   return rule.pattern.test(text);
 }
 
+function deriveSeverity(text, tags) {
+  const criticalPattern = /\b(ransomware|zero-day|0-day|actively exploited|active exploitation|in the wild|critical bug|critical vulnerability|critical vulnerabilities|data breach|breach)\b/i;
+  if (criticalPattern.test(text) || tags.includes('Ransomware') || tags.includes('Data Breach')) {
+    return 'Critical';
+  }
+
+  const elevatedTags = ['Vulnerability', 'Exploitation', 'Identity', 'Malware', 'Supply Chain'];
+  if (tags.some((tag) => elevatedTags.includes(tag))) {
+    return 'Elevated';
+  }
+
+  return 'Monitor';
+}
+
 function deriveArticleFacets(article) {
   const safeLink = safeArticleLink(article.link);
   const host = safeLink === '#' ? '' : new URL(safeLink).hostname.replace(/^www\./, '');
@@ -70,9 +84,7 @@ function deriveArticleFacets(article) {
   const tags = TOPIC_RULES.filter((rule) => matchesRule(text, rule)).map((rule) => rule.label).slice(0, 4);
   const vendors = VENDOR_RULES.filter((rule) => matchesRule(text, rule)).map((rule) => rule.label).slice(0, 3);
   const sourceSignal = SOURCE_SIGNAL_RULES.find((rule) => matchesRule(`${article.source || ''} ${host}`, rule))?.label || 'General source';
-  const criticalPattern = /\b(ransomware|zero-day|0-day|actively exploited|active exploitation|in the wild|critical bug|critical vulnerability|critical vulnerabilities|data breach|breach)\b/i;
-  const elevatedPattern = /\b(cve-\d{4}-\d+|vulnerabilities|vulnerability|flaw|exploited|exploiting|exploitation|malware|phishing|patch|patched|compromised|supply chain)\b/i;
-  const severity = criticalPattern.test(text) ? 'Critical' : elevatedPattern.test(text) ? 'Elevated' : 'Monitor';
+  const severity = deriveSeverity(text, tags);
 
   return {
     severity,
