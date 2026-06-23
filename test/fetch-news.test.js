@@ -613,7 +613,7 @@ test('generateHTML renders active filter summary and reset wiring', () => {
   assert.match(html, /resetFilters\.hidden = activeFiltersList\.length === 0/);
   assert.match(html, /resetFilters\.addEventListener\('click', function\(\)/);
   assert.match(html, /control\.value = ''/);
-  assert.match(html, /renderActiveFilters\(\);\s+renderFilterInsights\(visibleCards\);\s+syncQueryState\(\);/);
+  assert.match(html, /renderActiveFilters\(\);\s+renderFilterInsights\(visibleCards\);\s+updateOperatorLanes\(visibleCards\);\s+syncQueryState\(\);/);
 });
 
 test('generateHTML renders visible result context wiring', () => {
@@ -706,15 +706,47 @@ test('generateHTML renders escaped operator scan lanes', () => {
   ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
 
   assert.match(html, /<section class="operator-lanes" aria-label="Operator scan lanes">/);
-  assert.match(html, /<article class="operator-lane" data-lane="Incident watch">/);
-  assert.match(html, /<article class="operator-lane" data-lane="Vulnerability triage">/);
-  assert.match(html, /<article class="operator-lane" data-lane="Governance watch">/);
-  assert.match(html, /<span class="operator-lane-count"><strong>1<\/strong> item<\/span>/);
+  assert.match(html, /<article class="operator-lane" data-lane="Incident watch" data-lane-cue="SentryInsight: incident watch">/);
+  assert.match(html, /<article class="operator-lane" data-lane="Vulnerability triage" data-lane-cue="SentryInsight: vuln triage">/);
+  assert.match(html, /<article class="operator-lane" data-lane="Governance watch" data-lane-cue="GRCInsight: governance watch">/);
+  assert.match(html, /<span class="operator-lane-count" data-lane-count><strong>1<\/strong> item<\/span>/);
+  assert.match(html, /<a href="https:\/\/example\.com\/incident" class="operator-lane-link" data-lane-link>Ransomware crew steals credentials from exchange<\/a>/);
   assert.match(html, /Ransomware crew steals credentials from exchange/);
   assert.match(html, /Cisco VPN vulnerability patched by vendor/);
   assert.match(html, /Regulator opens &lt;privacy&gt; compliance audit/);
-  assert.match(html, /<a href="#" class="operator-lane-link">Regulator opens &lt;privacy&gt; compliance audit<\/a>/);
+  assert.match(html, /<a href="#" class="operator-lane-link" data-lane-link>Regulator opens &lt;privacy&gt; compliance audit<\/a>/);
   assert.doesNotMatch(html, /javascript:alert/);
+});
+
+test('generateHTML renders filter-aware operator lane wiring', () => {
+  const html = generateHTML([
+    {
+      title: 'Ransomware crew steals credentials from exchange',
+      link: 'https://example.com/incident',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'Example Security',
+      summary: 'Incident response teams are investigating stolen credentials.',
+    },
+    {
+      title: 'Cisco VPN vulnerability patched by vendor',
+      link: 'https://example.com/vuln',
+      date: new Date('2026-06-17T17:00:00.000Z'),
+      source: 'Example Security',
+      summary: 'CVE-2026-1234 affects exposed appliances.',
+    },
+  ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
+
+  assert.match(html, /const operatorLanes = qa\('\.operator-lane'\)/);
+  assert.match(html, /function updateOperatorLanes\(visibleCards\)/);
+  assert.match(html, /const cue = lane\.getAttribute\('data-lane-cue'\)/);
+  assert.match(html, /card\.getAttribute\('data-handoff-cues'\)\.split\(','\)\.filter\(Boolean\)\.includes\(cue\)/);
+  assert.match(html, /const strongCount = document\.createElement\('strong'\)/);
+  assert.match(html, /strongCount\.textContent = matchingCards\.length/);
+  assert.match(html, /countTarget\.appendChild\(strongCount\)/);
+  assert.match(html, /countTarget\.appendChild\(document\.createTextNode\(' ' \+ itemLabel\)\)/);
+  assert.match(html, /linkTarget\.textContent = latestLink \? latestLink\.textContent : 'No current match'/);
+  assert.match(html, /linkTarget\.setAttribute\('href', latestLink \? latestLink\.getAttribute\('href'\) : '#'\)/);
+  assert.match(html, /renderFilterInsights\(visibleCards\);\s+updateOperatorLanes\(visibleCards\);\s+syncQueryState\(\);/);
 });
 
 test('generateHTML treats the malformed feed date fallback as undated', () => {
