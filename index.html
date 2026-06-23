@@ -54,6 +54,13 @@
     .source-count strong { color: var(--accent); margin-left: 4px; }
     .source-coverage a { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
     .source-coverage a:hover { text-decoration: underline; }
+    .operator-lanes { display: grid; gap: 12px; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 14px; }
+    .operator-lane { background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: grid; gap: 6px; padding: 12px; }
+    .operator-lane-heading { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
+    .operator-lane-count { color: var(--muted); font-size: 0.85rem; }
+    .operator-lane-count strong { color: var(--accent); }
+    .operator-lane-link { color: var(--fg); font-size: 0.92rem; line-height: 1.35; text-decoration: none; }
+    .operator-lane-link:hover { color: var(--accent); text-decoration: underline; }
     .empty-filtered { background: var(--card); border: 1px dashed var(--card-border); border-radius: 10px; color: var(--muted); margin-top: 18px; padding: 18px; text-align: center; }
     .empty-filtered[hidden] { display: none; }
     .news-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin-top: 18px; }
@@ -94,6 +101,7 @@
       .search { width: 100%; }
       .search input { min-width: 0; width: 100%; }
       .select, .btn { flex: 1 1 auto; }
+      .operator-lanes { grid-template-columns: minmax(0, 1fr); }
       .news-container { grid-template-columns: minmax(0, 1fr); }
       .news-item { border-radius: 10px; }
     }
@@ -143,11 +151,26 @@
         <option value="Fresh">Fresh</option><option value="Recent">Recent</option>
       </select>
     </div>
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-23T16:01:44.370Z">6/23/2026, 4:01:44 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-23T16:01:44.465Z">6/23/2026, 11:01:44 AM</time></div>
     <section class="source-coverage" aria-label="RSS source coverage">
       <div class="source-coverage-label">RSS source coverage</div>
       <div class="source-counts"><span class="source-count" data-source="The Hacker News">The Hacker News <strong>14</strong></span><span class="source-count" data-source="Bleeping Computer">Bleeping Computer <strong>11</strong></span><span class="source-count" data-source="Dark Reading">Dark Reading <strong>5</strong></span></div>
       <a href="./feed.xml">RSS feed</a>
+    </section>
+    <section class="operator-lanes" aria-label="Operator scan lanes">
+      <article class="operator-lane" data-lane="Incident watch">
+        <div class="operator-lane-heading">Incident watch</div>
+        <span class="operator-lane-count"><strong>9</strong> items</span>
+        <a href="https://www.bleepingcomputer.com/news/security/lastpass-confirms-data-breach-in-klue-supply-chain-attack/" class="operator-lane-link">LastPass confirms data breach in Klue supply chain attack</a>
+      </article><article class="operator-lane" data-lane="Vulnerability triage">
+        <div class="operator-lane-heading">Vulnerability triage</div>
+        <span class="operator-lane-count"><strong>8</strong> items</span>
+        <a href="https://thehackernews.com/2026/06/github-updates-actionscheckout-to-block.html" class="operator-lane-link">GitHub Updates actions/checkout to Block Common Pwn Request Attack Patterns</a>
+      </article><article class="operator-lane" data-lane="Governance watch">
+        <div class="operator-lane-heading">Governance watch</div>
+        <span class="operator-lane-count"><strong>0</strong> items</span>
+        <a href="#" class="operator-lane-link">No current match</a>
+      </article>
     </section>
     <div id="emptyFilteredState" class="empty-filtered" hidden>No articles match the current filters.</div>
 
@@ -163,7 +186,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/scattered-spider-members-plead-guilty-to-hacking-transport-for-london/" target="_blank" rel="noopener">Scattered Spider members plead guilty to hacking Transport for London</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-23T15:31:59.000Z">June 23, 2026 at 3:31 PM</time>
+            <time datetime="2026-06-23T15:31:59.000Z">June 23, 2026 at 10:31 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: monitor</span></div>
@@ -179,7 +202,7 @@
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/github-updates-actionscheckout-to-block.html" target="_blank" rel="noopener">GitHub Updates actions/checkout to Block Common Pwn Request Attack Patterns</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-23T14:22:03.000Z">June 23, 2026 at 2:22 PM</time>
+            <time datetime="2026-06-23T14:22:03.000Z">June 23, 2026 at 9:22 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           <div class="facet-row"><span class="chip">GitHub</span><span class="chip">Exploitation</span><span class="chip">Supply Chain</span></div>
@@ -202,7 +225,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/the-exploit-doesnt-exist-you-can-still-prove-it-works-against-you/" target="_blank" rel="noopener">The Exploit Doesn&#39;t Exist. You Can Still Prove It Works Against You</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-23T14:01:11.000Z">June 23, 2026 at 2:01 PM</time>
+            <time datetime="2026-06-23T14:01:11.000Z">June 23, 2026 at 9:01 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
@@ -225,7 +248,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/lastpass-confirms-data-breach-in-klue-supply-chain-attack/" target="_blank" rel="noopener">LastPass confirms data breach in Klue supply chain attack</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-23T13:58:25.000Z">June 23, 2026 at 1:58 PM</time>
+            <time datetime="2026-06-23T13:58:25.000Z">June 23, 2026 at 8:58 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           <div class="facet-row"><span class="chip">Data Breach</span><span class="chip">Identity</span><span class="chip">Supply Chain</span></div>
@@ -248,7 +271,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/socgholish-takedown-malicious-tds-threats" target="_blank" rel="noopener">SocGholish Takedown Highlights Malicious TDS Threats</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-23T13:51:33.000Z">June 23, 2026 at 1:51 PM</time>
+            <time datetime="2026-06-23T13:51:33.000Z">June 23, 2026 at 8:51 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: monitor</span></div>
@@ -264,7 +287,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/fortibleed-attackers-firewalls-credentials-stealers" target="_blank" rel="noopener">FortiBleed Attackers Turn Firewalls Into Credential Stealers as Heists Persist</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-23T12:34:54.000Z">June 23, 2026 at 12:34 PM</time>
+            <time datetime="2026-06-23T12:34:54.000Z">June 23, 2026 at 7:34 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           <div class="facet-row"><span class="chip">Fortinet</span><span class="chip">Identity</span></div>
@@ -287,7 +310,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/webinar-why-email-security-teams-are-drowning-in-alerts/" target="_blank" rel="noopener">Webinar: Why email security teams are drowning in alerts</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-23T12:12:20.000Z">June 23, 2026 at 12:12 PM</time>
+            <time datetime="2026-06-23T12:12:20.000Z">June 23, 2026 at 7:12 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           <div class="facet-row"><span class="chip">Identity</span><span class="chip">AI Security</span></div>
@@ -310,7 +333,7 @@
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/agentic-ai-weapon-that-no-longer-needs.html" target="_blank" rel="noopener">Agentic AI: The Weapon That No Longer Needs a Warrior</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-23T11:30:00.000Z">June 23, 2026 at 11:30 AM</time>
+            <time datetime="2026-06-23T11:30:00.000Z">June 23, 2026 at 6:30 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           <div class="facet-row"><span class="chip">AI Security</span></div>
@@ -338,7 +361,7 @@ The list of identified packages, is below -
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/malicious-npm-packages-pose-as-postcss.html" target="_blank" rel="noopener">Malicious npm Packages Pose as PostCSS Tools to Deliver Windows RAT</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-23T08:54:32.000Z">June 23, 2026 at 8:54 AM</time>
+            <time datetime="2026-06-23T08:54:32.000Z">June 23, 2026 at 3:54 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           <div class="facet-row"><span class="chip">Microsoft</span><span class="chip">Malware</span><span class="chip">Supply Chain</span></div>
@@ -366,7 +389,7 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/whatsapp-vbscript-campaign-uses-fake.html" target="_blank" rel="noopener">WhatsApp VBScript Campaign Uses Fake Documents to Install ManageEngine RMM Tool</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-23T05:38:40.000Z">June 23, 2026 at 5:38 AM</time>
+            <time datetime="2026-06-23T05:38:40.000Z">June 23, 2026 at 12:38 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: monitor</span></div>
@@ -388,7 +411,7 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/openai-expands-daybreak-with-gpt-55.html" target="_blank" rel="noopener">OpenAI Expands Daybreak With GPT-5.5-Cyber to Help Defenders Patch Security Flaws</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-23T03:56:58.000Z">June 23, 2026 at 3:56 AM</time>
+            <time datetime="2026-06-23T03:56:58.000Z">June 22, 2026 at 10:56 PM</time>
             <span class="badge-new">NEW</span>
           </div>
           <div class="facet-row"><span class="chip">OpenAI</span><span class="chip">Vulnerability</span><span class="chip">AI Security</span></div>
@@ -411,7 +434,7 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/whatsapp-phishing-attack-uses-fake-business-docs-to-hack-pcs/" target="_blank" rel="noopener">WhatsApp phishing attack uses fake business docs to hack PCs</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-22T22:42:21.000Z">June 22, 2026 at 10:42 PM</time>
+            <time datetime="2026-06-22T22:42:21.000Z">June 22, 2026 at 5:42 PM</time>
             <span class="badge-new">NEW</span>
           </div>
           <div class="facet-row"><span class="chip">Identity</span><span class="chip">Malware</span></div>
@@ -434,7 +457,7 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/jaredfromsubway-mev-bot-hacked-in-15-million-crypto-theft/" target="_blank" rel="noopener">JaredFromSubway MEV bot hacked in $15 million crypto theft</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-22T21:52:18.000Z">June 22, 2026 at 9:52 PM</time>
+            <time datetime="2026-06-22T21:52:18.000Z">June 22, 2026 at 4:52 PM</time>
             <span class="badge-new">NEW</span>
           </div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: monitor</span></div>
@@ -456,7 +479,7 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/application-security/difytap-bugs-wiretap-ai-chat-histories" target="_blank" rel="noopener">DifyTap Bugs Let Attackers &#39;Wiretap&#39; AI Chat Histories</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-22T21:14:11.000Z">June 22, 2026 at 9:14 PM</time>
+            <time datetime="2026-06-22T21:14:11.000Z">June 22, 2026 at 4:14 PM</time>
             <span class="badge-new">NEW</span>
           </div>
           <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span><span class="chip">AI Security</span></div>
@@ -479,7 +502,7 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/ffmpeg-fixes-pixelsmash-flaw-in-widely-used-video-decoder/" target="_blank" rel="noopener">FFmpeg fixes PixelSmash flaw in widely used video decoder</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-22T21:05:01.000Z">June 22, 2026 at 9:05 PM</time>
+            <time datetime="2026-06-22T21:05:01.000Z">June 22, 2026 at 4:05 PM</time>
             <span class="badge-new">NEW</span>
           </div>
           <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
@@ -502,7 +525,7 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/fortibleed-campaign-used-custom-fortigate-sniffer-to-steal-credentials/" target="_blank" rel="noopener">FortiBleed campaign used custom FortiGate sniffer to steal credentials</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-22T20:01:02.000Z">June 22, 2026 at 8:01 PM</time>
+            <time datetime="2026-06-22T20:01:02.000Z">June 22, 2026 at 3:01 PM</time>
             <span class="badge-new">NEW</span>
           </div>
           <div class="facet-row"><span class="chip">Fortinet</span><span class="chip">Data Breach</span><span class="chip">Identity</span></div>
@@ -527,7 +550,7 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/shapedplugin-wordpress-pro-plugins.html" target="_blank" rel="noopener">ShapedPlugin WordPress Pro Plugins Backdoored in Supply Chain Attack</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-22T18:00:48.000Z">June 22, 2026 at 6:00 PM</time>
+            <time datetime="2026-06-22T18:00:48.000Z">June 22, 2026 at 1:00 PM</time>
             <span class="badge-new">NEW</span>
           </div>
           <div class="facet-row"><span class="chip">Malware</span><span class="chip">Supply Chain</span></div>
@@ -552,7 +575,7 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-says-windows-11-26h2-is-coming-soon-details-upgrade-process/" target="_blank" rel="noopener">Microsoft says Windows 11 26H2 is coming soon, details upgrade process</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-22T17:41:31.000Z">June 22, 2026 at 5:41 PM</time>
+            <time datetime="2026-06-22T17:41:31.000Z">June 22, 2026 at 12:41 PM</time>
             <span class="badge-new">NEW</span>
           </div>
           <div class="facet-row"><span class="chip">Microsoft</span></div>
@@ -575,7 +598,7 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/microsoft-fixes-autogen-studio-flaw-that-enabled-code-execution/" target="_blank" rel="noopener">Microsoft fixes AutoGen Studio flaw that enabled code execution</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-22T17:28:57.000Z">June 22, 2026 at 5:28 PM</time>
+            <time datetime="2026-06-22T17:28:57.000Z">June 22, 2026 at 12:28 PM</time>
             <span class="badge-new">NEW</span>
           </div>
           <div class="facet-row"><span class="chip">Microsoft</span><span class="chip">Vulnerability</span><span class="chip">AI Security</span></div>
@@ -598,7 +621,7 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/29-year-old-squid-proxy-bug-squidbleed.html" target="_blank" rel="noopener">29-Year-Old Squid Proxy Bug &#39;Squidbleed&#39; Can Leak Cleartext HTTP Requests</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-22T16:29:00.000Z">June 22, 2026 at 4:29 PM</time>
+            <time datetime="2026-06-22T16:29:00.000Z">June 22, 2026 at 11:29 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           <div class="facet-row"><span class="chip">Data Breach</span><span class="chip">Identity</span></div>
@@ -621,7 +644,7 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/researchers-detail-difytap-flaws-in.html" target="_blank" rel="noopener">Researchers Detail DifyTap Flaws in Dify That Could Expose AI Chats Across Tenants</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-22T16:13:28.000Z">June 22, 2026 at 4:13 PM</time>
+            <time datetime="2026-06-22T16:13:28.000Z">June 22, 2026 at 11:13 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           <div class="facet-row"><span class="chip">GitHub</span><span class="chip">Vulnerability</span><span class="chip">AI Security</span></div>
@@ -644,7 +667,7 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/crypto-heist-fake-reputation-boosting-campaign" target="_blank" rel="noopener">Crypto Heist Fueled by Elaborate Fake Reputation-Boosting Campaign</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-22T16:10:10.000Z">June 22, 2026 at 4:10 PM</time>
+            <time datetime="2026-06-22T16:10:10.000Z">June 22, 2026 at 11:10 AM</time>
             <span class="badge-new">NEW</span>
           </div>
           <div class="facet-row"><span class="chip">GitHub</span></div>
@@ -667,7 +690,7 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/how-a-sim-swap-attack-led-to-a-near-account-takeover" target="_blank" rel="noopener">He Thought He Was Secure; His Phone Number Got Stolen Anyway</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-22T14:12:11.000Z">June 22, 2026 at 2:12 PM</time>
+            <time datetime="2026-06-22T14:12:11.000Z">June 22, 2026 at 9:12 AM</time>
           </div>
           <div class="facet-row"><span class="chip">Identity</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span></div>
@@ -689,7 +712,7 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/a-glimpse-into-the-search-your-target-market-for-stolen-credentials/" target="_blank" rel="noopener">A Glimpse into the “Search Your Target” Market for Stolen Credentials</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-22T14:05:15.000Z">June 22, 2026 at 2:05 PM</time>
+            <time datetime="2026-06-22T14:05:15.000Z">June 22, 2026 at 9:05 AM</time>
           </div>
           <div class="facet-row"><span class="chip">Data Breach</span><span class="chip">Identity</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span></div>
@@ -713,7 +736,7 @@ According to Elastic Security Labs, ..." data-severity="Elevated" data-tags="Mal
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/new-oxloader-loader-uses-malicious.html" target="_blank" rel="noopener">New OXLOADER Loader Uses Malicious Google Ads to Deliver CastleStealer</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-22T13:20:12.000Z">June 22, 2026 at 1:20 PM</time>
+            <time datetime="2026-06-22T13:20:12.000Z">June 22, 2026 at 8:20 AM</time>
           </div>
           <div class="facet-row"><span class="chip">Google</span><span class="chip">Malware</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: vendor watch</span></div>
@@ -739,7 +762,7 @@ On that date..." data-severity="Monitor" data-tags="" data-vendors="Google" data
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/google-sets-sept-30-deadline-for.html" target="_blank" rel="noopener">Google Sets Sept. 30 Deadline for Android Developer Verification in Four Countries</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-22T12:45:08.000Z">June 22, 2026 at 12:45 PM</time>
+            <time datetime="2026-06-22T12:45:08.000Z">June 22, 2026 at 7:45 AM</time>
           </div>
           <div class="facet-row"><span class="chip">Google</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: vendor watch</span></div>
@@ -763,7 +786,7 @@ On that date...</p>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/stop-your-legacy-infrastructure-from.html" target="_blank" rel="noopener">Stop Your Legacy Infrastructure from Hijacking Your AI Agents</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-22T11:58:00.000Z">June 22, 2026 at 11:58 AM</time>
+            <time datetime="2026-06-22T11:58:00.000Z">June 22, 2026 at 6:58 AM</time>
           </div>
           <div class="facet-row"><span class="chip">AI Security</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: monitor</span></div>
@@ -787,7 +810,7 @@ This week’s threat list looks painfully familiar: abused integrations, fake to
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/weekly-recap-browser-bugs-edr-killers.html" target="_blank" rel="noopener">⚡ Weekly Recap: Browser Bugs, EDR Killers, TV Botnet, OpenBSD Flaw, Android Trojan, and More</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-22T10:55:10.000Z">June 22, 2026 at 10:55 AM</time>
+            <time datetime="2026-06-22T10:55:10.000Z">June 22, 2026 at 5:55 AM</time>
           </div>
           <div class="facet-row"><span class="chip">Google</span><span class="chip">Ransomware</span><span class="chip">Vulnerability</span><span class="chip">Malware</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span><span class="handoff-cue">SentryInsight: vuln triage</span><span class="handoff-cue">SentryInsight: vendor watch</span></div>
@@ -813,7 +836,7 @@ The Federal Court released a ..." data-severity="Elevated" data-tags="Malware" 
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/canadas-spy-agency-used-first-of-its.html" target="_blank" rel="noopener">Canada’s Spy Agency Used First-of-Its-Kind Warrant to Clean Botnet-Infected Devices</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-22T09:11:37.000Z">June 22, 2026 at 9:11 AM</time>
+            <time datetime="2026-06-22T09:11:37.000Z">June 22, 2026 at 4:11 AM</time>
           </div>
           <div class="facet-row"><span class="chip">Malware</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: monitor</span></div>
@@ -837,7 +860,7 @@ The Federal Court released a ...</p>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/arystinger-malware-infects-4300-legacy.html" target="_blank" rel="noopener">AryStinger Malware Infects 4,300 Legacy Routers to Build Reconnaissance Proxy Network</a></h2>
           <div class="news-meta">
-            <time datetime="2026-06-22T06:57:44.000Z">June 22, 2026 at 6:57 AM</time>
+            <time datetime="2026-06-22T06:57:44.000Z">June 22, 2026 at 1:57 AM</time>
           </div>
           <div class="facet-row"><span class="chip">Malware</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: monitor</span></div>
@@ -906,7 +929,7 @@ The Federal Court released a ...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-23T16:01:44.370Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-23T16:01:44.465Z').toLocaleString());
         if (emptyFilteredState) emptyFilteredState.hidden = visible !== 0;
       }
       if (search) search.addEventListener('input', debounce(update, 120));
