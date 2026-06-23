@@ -155,8 +155,10 @@ function renderSummary(summary, index) {
 
   const safePreview = escapeHtml(getSummaryPreview(summary));
   return `<p class="news-summary summary-preview" id="summary-preview-${index}">${safePreview}</p>
-          <p class="news-summary summary-full" id="summary-full-${index}" hidden>${safeSummary}</p>
-          <button class="summary-toggle" type="button" aria-expanded="false" aria-controls="summary-full-${index}" data-summary-toggle="${index}">Show full summary</button>`;
+          <details class="summary-disclosure">
+            <summary class="summary-toggle">Show full summary</summary>
+            <p class="news-summary summary-full" id="summary-full-${index}">${safeSummary}</p>
+          </details>`;
 }
 
 function renderArticleCard(article, index = 0) {
@@ -426,18 +428,6 @@ function generateHTML(newsItems) {
         if (filter) filter.addEventListener('change', update);
       });
 
-      qa('[data-summary-toggle]').forEach(function(toggle){
-        toggle.addEventListener('click', function(){
-          const id = toggle.getAttribute('data-summary-toggle');
-          const summaryPreview = q('#summary-preview-' + id);
-          const summaryFull = q('#summary-full-' + id);
-          const expanded = toggle.getAttribute('aria-expanded') === 'true';
-          if (summaryPreview) summaryPreview.hidden = !expanded;
-          if (summaryFull) summaryFull.hidden = expanded;
-          toggle.setAttribute('aria-expanded', String(!expanded));
-          toggle.textContent = expanded ? 'Show full summary' : 'Show less';
-        });
-      });
       update();
 
       function debounce(fn, wait){ let t; return function(){ clearTimeout(t); t=setTimeout(fn, wait); } }

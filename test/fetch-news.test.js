@@ -343,10 +343,10 @@ test('generateHTML renders long summaries as accessible expandable content', () 
   ]);
 
   assert.match(html, /<p class="news-summary summary-preview" id="summary-preview-0">/);
-  assert.match(html, /<p class="news-summary summary-full" id="summary-full-0" hidden>/);
-  assert.match(html, /<button class="summary-toggle" type="button" aria-expanded="false" aria-controls="summary-full-0" data-summary-toggle="0">Show full summary<\/button>/);
-  assert.match(html, /summaryFull\.hidden = expanded/);
-  assert.match(html, /toggle\.setAttribute\('aria-expanded', String\(!expanded\)\)/);
+  assert.match(html, /<details class="summary-disclosure">/);
+  assert.match(html, /<summary class="summary-toggle">Show full summary<\/summary>/);
+  assert.match(html, /<p class="news-summary summary-full" id="summary-full-0">/);
+  assert.doesNotMatch(html, /data-summary-toggle/);
   assert.doesNotMatch(html, /<script>alert\(1\)<\/script>/);
   assert.match(html, /&lt;script&gt;alert\(1\)&lt;\/script&gt;/);
 });
@@ -366,8 +366,9 @@ test('generateHTML expands production-shaped fetched summaries', () => {
   ]);
 
   assert.match(html, /<p class="news-summary summary-preview" id="summary-preview-0">/);
-  assert.match(html, /<p class="news-summary summary-full" id="summary-full-0" hidden>/);
-  assert.match(html, /<button class="summary-toggle" type="button" aria-expanded="false" aria-controls="summary-full-0" data-summary-toggle="0">Show full summary<\/button>/);
+  assert.match(html, /<details class="summary-disclosure">/);
+  assert.match(html, /<summary class="summary-toggle">Show full summary<\/summary>/);
+  assert.match(html, /<p class="news-summary summary-full" id="summary-full-0">/);
 });
 
 test('generateHTML leaves short summaries as plain escaped content', () => {
@@ -382,6 +383,6 @@ test('generateHTML leaves short summaries as plain escaped content', () => {
   ]);
 
   assert.match(html, /<p class="news-summary">Patch exposed systems &lt;quickly&gt;\.<\/p>/);
-  assert.doesNotMatch(html, /<button class="summary-toggle"/);
+  assert.doesNotMatch(html, /<details class="summary-disclosure"/);
   assert.doesNotMatch(html, /<p class="news-summary summary-full"/);
 });
