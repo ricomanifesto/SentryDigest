@@ -6,7 +6,7 @@ const {
   normalizeArticleDate,
   normalizeFeedDate,
 } = require('../scripts/fetch-news');
-const { deriveArticleFacets, generateHTML } = require('../scripts/render-news-html');
+const { collectFacetFilterOptions, deriveArticleFacets, generateHTML } = require('../scripts/render-news-html');
 
 test('normalizeFeedDate preserves valid feed dates', () => {
   const date = normalizeFeedDate(
@@ -281,4 +281,51 @@ test('generateHTML renders escaped operator facets on article cards', () => {
   assert.match(html, /<span class="severity severity-critical">Critical<\/span>/);
   assert.match(html, /<span class="chip">Cisco<\/span>/);
   assert.match(html, /<span class="chip">Vulnerability<\/span>/);
+});
+
+test('collectFacetFilterOptions returns deterministic severity, tag, and vendor options', () => {
+  const options = collectFacetFilterOptions([
+    {
+      title: 'Microsoft Exchange zero-day exploited by ransomware crew',
+      link: 'https://security.example.com/microsoft-exchange-zero-day',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'SecurityWeek',
+      summary: 'CVE-2026-1234 is under active exploitation in data breach investigations.',
+    },
+    {
+      title: 'AI agents connect to critical business systems',
+      link: 'https://example.com/ai-agents-business-systems',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'Example Security',
+      summary: 'Security teams are reviewing governance for critical business systems.',
+    },
+  ]);
+
+  assert.deepEqual(options.severities, ['Critical', 'Monitor']);
+  assert.deepEqual(options.tags, ['AI Security', 'Data Breach', 'Exploitation', 'Ransomware', 'Vulnerability']);
+  assert.deepEqual(options.vendors, ['Microsoft']);
+});
+
+test('generateHTML renders facet filter controls and empty filtered state', () => {
+  const html = generateHTML([
+    {
+      title: 'Microsoft Exchange zero-day exploited by ransomware crew',
+      link: 'https://security.example.com/microsoft-exchange-zero-day',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'SecurityWeek',
+      summary: 'CVE-2026-1234 is under active exploitation in data breach investigations.',
+    },
+  ]);
+
+  assert.match(html, /<select id="severityFilter" class="select" aria-label="Filter by severity">/);
+  assert.match(html, /<option value="Critical">Critical<\/option>/);
+  assert.match(html, /<select id="tagFilter" class="select" aria-label="Filter by topic tag">/);
+  assert.match(html, /<option value="Data Breach">Data Breach<\/option>/);
+  assert.match(html, /<select id="vendorFilter" class="select" aria-label="Filter by affected vendor">/);
+  assert.match(html, /<option value="Microsoft">Microsoft<\/option>/);
+  assert.match(html, /id="emptyFilteredState"/);
+  assert.match(html, /No articles match the current filters/);
+  assert.match(html, /card.getAttribute\('data-severity'\) === severity/);
+  assert.match(html, /split\(','\)\.filter\(Boolean\)\.includes\(tag\)/);
+  assert.match(html, /split\(','\)\.filter\(Boolean\)\.includes\(vendor\)/);
 });

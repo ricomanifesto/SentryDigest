@@ -40,12 +40,15 @@
     .brand .title { font-weight: 700; letter-spacing: 0.2px; }
     .brand .subtitle { color: var(--muted); font-size: 0.9rem; }
     .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .filter-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
     .search { display: flex; align-items: center; gap: 8px; background: var(--card); border: 1px solid var(--card-border); padding: 8px 10px; border-radius: 10px; }
     .search input { border: none; outline: none; background: transparent; color: var(--fg); min-width: 220px; }
     .select { border: 1px solid var(--card-border); background: var(--card); color: var(--fg); padding: 8px 10px; border-radius: 10px; }
     .btn { border: 1px solid var(--card-border); background: var(--card); color: var(--fg); padding: 8px 10px; border-radius: 10px; cursor: pointer; }
     .btn:hover { border-color: var(--accent); }
     .stats { color: var(--muted); font-size: 0.9rem; margin-top: 6px; }
+    .empty-filtered { background: var(--card); border: 1px dashed var(--card-border); border-radius: 10px; color: var(--muted); margin-top: 18px; padding: 18px; text-align: center; }
+    .empty-filtered[hidden] { display: none; }
     .news-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin-top: 18px; }
     .news-item { background: var(--card); border: 1px solid var(--card-border); border-radius: 14px; padding: 16px; transition: transform .2s ease, box-shadow .2s ease; }
     .news-item:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(2,8,23,0.08); }
@@ -71,6 +74,7 @@
       .container { padding: 16px; }
       .masthead { align-items: stretch; flex-direction: column; }
       .controls { align-items: stretch; }
+      .filter-row { align-items: stretch; flex-direction: column; }
       .search { width: 100%; }
       .search input { min-width: 0; width: 100%; }
       .select, .btn { flex: 1 1 auto; }
@@ -105,7 +109,22 @@
   </header>
 
   <main class="container">
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-23T05:42:52.242Z">6/23/2026, 5:42:52 AM</time></div>
+    <div class="filter-row" aria-label="Article filters">
+      <select id="severityFilter" class="select" aria-label="Filter by severity">
+        <option value="">All severities</option>
+        <option value="Critical">Critical</option><option value="Elevated">Elevated</option><option value="Monitor">Monitor</option>
+      </select>
+      <select id="tagFilter" class="select" aria-label="Filter by topic tag">
+        <option value="">All topics</option>
+        <option value="AI Security">AI Security</option><option value="Data Breach">Data Breach</option><option value="Exploitation">Exploitation</option><option value="Identity">Identity</option><option value="Malware">Malware</option><option value="Ransomware">Ransomware</option><option value="Supply Chain">Supply Chain</option><option value="Vulnerability">Vulnerability</option>
+      </select>
+      <select id="vendorFilter" class="select" aria-label="Filter by affected vendor">
+        <option value="">All vendors</option>
+        <option value="Apple">Apple</option><option value="Fortinet">Fortinet</option><option value="GitHub">GitHub</option><option value="Google">Google</option><option value="Microsoft">Microsoft</option><option value="OpenAI">OpenAI</option>
+      </select>
+    </div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-23T05:50:12.429Z">6/23/2026, 5:50:12 AM</time></div>
+    <div id="emptyFilteredState" class="empty-filtered" hidden>No articles match the current filters.</div>
 
     <div class="news-container" id="newsContainer">
       
@@ -605,27 +624,40 @@ Steer the agent to load an attacker&#39;s web page...</p>
       const q = (sel) => document.querySelector(sel);
       const qa = (sel) => Array.prototype.slice.call(document.querySelectorAll(sel));
       const search = q('#search');
-      const filter = q('#sourceFilter');
+      const sourceFilter = q('#sourceFilter');
+      const severityFilter = q('#severityFilter');
+      const tagFilter = q('#tagFilter');
+      const vendorFilter = q('#vendorFilter');
+      const emptyFilteredState = q('#emptyFilteredState');
       const stats = q('#stats');
       const cards = qa('.news-item');
 
       function update(){
         const term = (search && search.value || '').toLowerCase().trim();
-        const src = filter && filter.value || '';
+        const src = sourceFilter && sourceFilter.value || '';
+        const severity = severityFilter && severityFilter.value || '';
+        const tag = tagFilter && tagFilter.value || '';
+        const vendor = vendorFilter && vendorFilter.value || '';
         let visible = 0;
         cards.forEach(card => {
           const matchesText = !term || (card.getAttribute('data-title').toLowerCase().includes(term) || card.getAttribute('data-summary').toLowerCase().includes(term));
           const matchesSource = !src || card.getAttribute('data-source') === src;
-          const show = matchesText && matchesSource;
+          const matchesSeverity = !severity || card.getAttribute('data-severity') === severity;
+          const matchesTag = !tag || card.getAttribute('data-tags').split(',').filter(Boolean).includes(tag);
+          const matchesVendor = !vendor || card.getAttribute('data-vendors').split(',').filter(Boolean).includes(vendor);
+          const show = matchesText && matchesSource && matchesSeverity && matchesTag && matchesVendor;
           card.style.display = show ? '' : 'none';
           if (show) visible++;
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-23T05:42:52.242Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-23T05:50:12.429Z').toLocaleString());
+        if (emptyFilteredState) emptyFilteredState.hidden = visible !== 0;
       }
       if (search) search.addEventListener('input', debounce(update, 120));
-      if (filter) filter.addEventListener('change', update);
+      [sourceFilter, severityFilter, tagFilter, vendorFilter].forEach(function(filter){
+        if (filter) filter.addEventListener('change', update);
+      });
       update();
 
       function debounce(fn, wait){ let t; return function(){ clearTimeout(t); t=setTimeout(fn, wait); } }
