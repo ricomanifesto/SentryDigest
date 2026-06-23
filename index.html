@@ -47,6 +47,13 @@
     .btn { border: 1px solid var(--card-border); background: var(--card); color: var(--fg); padding: 8px 10px; border-radius: 10px; cursor: pointer; }
     .btn:hover { border-color: var(--accent); }
     .stats { color: var(--muted); font-size: 0.9rem; margin-top: 6px; }
+    .source-coverage { align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: flex; flex-wrap: wrap; gap: 10px 12px; margin-top: 12px; padding: 10px 12px; }
+    .source-coverage-label { color: var(--muted); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
+    .source-counts { display: flex; flex: 1 1 260px; flex-wrap: wrap; gap: 8px; }
+    .source-count { background: var(--chip); border-radius: 999px; color: var(--fg); font-size: 12px; padding: 4px 10px; }
+    .source-count strong { color: var(--accent); margin-left: 4px; }
+    .source-coverage a { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
+    .source-coverage a:hover { text-decoration: underline; }
     .empty-filtered { background: var(--card); border: 1px dashed var(--card-border); border-radius: 10px; color: var(--muted); margin-top: 18px; padding: 18px; text-align: center; }
     .empty-filtered[hidden] { display: none; }
     .news-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin-top: 18px; }
@@ -136,7 +143,12 @@
         <option value="Fresh">Fresh</option><option value="Recent">Recent</option>
       </select>
     </div>
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-23T15:07:46.711Z">6/23/2026, 3:07:46 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-23T15:20:21.657Z">6/23/2026, 3:20:21 PM</time></div>
+    <section class="source-coverage" aria-label="RSS source coverage">
+      <div class="source-coverage-label">RSS source coverage</div>
+      <div class="source-counts"><span class="source-count" data-source="The Hacker News">The Hacker News <strong>15</strong></span><span class="source-count" data-source="Bleeping Computer">Bleeping Computer <strong>10</strong></span><span class="source-count" data-source="Dark Reading">Dark Reading <strong>5</strong></span></div>
+      <a href="./feed.xml">RSS feed</a>
+    </section>
     <div id="emptyFilteredState" class="empty-filtered" hidden>No articles match the current filters.</div>
 
     <div class="news-container" id="newsContainer">
@@ -147,7 +159,7 @@
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 45m old</span>
+            <span class="chip age-chip">Fresh - 58m old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/github-updates-actionscheckout-to-block.html" target="_blank" rel="noopener">GitHub Updates actions/checkout to Block Common Pwn Request Attack Patterns</a></h2>
           <div class="news-meta">
@@ -255,7 +267,7 @@
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 2h old</span>
+            <span class="chip age-chip">Fresh - 3h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/webinar-why-email-security-teams-are-drowning-in-alerts/" target="_blank" rel="noopener">Webinar: Why email security teams are drowning in alerts</a></h2>
           <div class="news-meta">
@@ -424,7 +436,7 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 17h old</span>
+            <span class="chip age-chip">Fresh - 18h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/application-security/difytap-bugs-wiretap-ai-chat-histories" target="_blank" rel="noopener">DifyTap Bugs Let Attackers &#39;Wiretap&#39; AI Chat Histories</a></h2>
           <div class="news-meta">
@@ -589,7 +601,7 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 22h old</span>
+            <span class="chip age-chip">Fresh - 23h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/researchers-detail-difytap-flaws-in.html" target="_blank" rel="noopener">Researchers Detail DifyTap Flaws in Dify That Could Expose AI Chats Across Tenants</a></h2>
           <div class="news-meta">
@@ -612,7 +624,7 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 22h old</span>
+            <span class="chip age-chip">Fresh - 23h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/crypto-heist-fake-reputation-boosting-campaign" target="_blank" rel="noopener">Crypto Heist Fueled by Elaborate Fake Reputation-Boosting Campaign</a></h2>
           <div class="news-meta">
@@ -900,7 +912,7 @@ The Federal Court released a ...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-23T15:07:46.711Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-23T15:20:21.657Z').toLocaleString());
         if (emptyFilteredState) emptyFilteredState.hidden = visible !== 0;
       }
       if (search) search.addEventListener('input', debounce(update, 120));

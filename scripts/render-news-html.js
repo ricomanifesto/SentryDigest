@@ -194,10 +194,39 @@ function collectFacetFilterOptions(newsItems, generatedAt = new Date()) {
   };
 }
 
+function collectSourceCoverage(newsItems) {
+  const counts = new Map();
+  newsItems.forEach((article) => {
+    const source = article.source || 'Unknown source';
+    counts.set(source, (counts.get(source) || 0) + 1);
+  });
+
+  return Array.from(counts.entries())
+    .map(([source, count]) => ({ source, count }))
+    .sort((left, right) => right.count - left.count || left.source.localeCompare(right.source));
+}
+
 function renderSelectOptions(values) {
   return values
     .map((value) => `<option value="${escapeAttribute(value)}">${escapeHtml(value)}</option>`)
     .join('');
+}
+
+function renderSourceCoverage(newsItems) {
+  const sourceCounts = collectSourceCoverage(newsItems);
+  if (sourceCounts.length === 0) {
+    return '';
+  }
+
+  const sourceCountItems = sourceCounts
+    .map(({ source, count }) => `<span class="source-count" data-source="${escapeAttribute(source)}">${escapeHtml(source)} <strong>${count}</strong></span>`)
+    .join('');
+
+  return `<section class="source-coverage" aria-label="RSS source coverage">
+      <div class="source-coverage-label">RSS source coverage</div>
+      <div class="source-counts">${sourceCountItems}</div>
+      <a href="./feed.xml">RSS feed</a>
+    </section>`;
 }
 
 const SUMMARY_PREVIEW_LENGTH = 160;
@@ -337,6 +366,7 @@ function generateHTML(newsItems, options = {}) {
   const ageOptions = renderSelectOptions(filterOptions.ageBuckets);
   const now = new Date(generatedAt);
   const nowIso = now.toISOString();
+  const sourceCoverage = renderSourceCoverage(newsItems);
   const articleCards = newsItems.length > 0
     ? newsItems.map((article, index) => renderArticleCard(article, index, generatedAt)).join('')
     : renderEmptyState();
@@ -390,6 +420,13 @@ function generateHTML(newsItems, options = {}) {
     .btn { border: 1px solid var(--card-border); background: var(--card); color: var(--fg); padding: 8px 10px; border-radius: 10px; cursor: pointer; }
     .btn:hover { border-color: var(--accent); }
     .stats { color: var(--muted); font-size: 0.9rem; margin-top: 6px; }
+    .source-coverage { align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: flex; flex-wrap: wrap; gap: 10px 12px; margin-top: 12px; padding: 10px 12px; }
+    .source-coverage-label { color: var(--muted); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
+    .source-counts { display: flex; flex: 1 1 260px; flex-wrap: wrap; gap: 8px; }
+    .source-count { background: var(--chip); border-radius: 999px; color: var(--fg); font-size: 12px; padding: 4px 10px; }
+    .source-count strong { color: var(--accent); margin-left: 4px; }
+    .source-coverage a { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
+    .source-coverage a:hover { text-decoration: underline; }
     .empty-filtered { background: var(--card); border: 1px dashed var(--card-border); border-radius: 10px; color: var(--muted); margin-top: 18px; padding: 18px; text-align: center; }
     .empty-filtered[hidden] { display: none; }
     .news-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin-top: 18px; }
@@ -480,6 +517,7 @@ function generateHTML(newsItems, options = {}) {
       </select>
     </div>
     <div class="stats" id="stats">Showing ${totalItems} of ${totalItems} articles from ${uniqueSources.length} sources • Last updated <time datetime="${nowIso}">${now.toLocaleString()}</time></div>
+    ${sourceCoverage}
     <div id="emptyFilteredState" class="empty-filtered" hidden>No articles match the current filters.</div>
 
     <div class="news-container" id="newsContainer">
@@ -561,6 +599,7 @@ function generateHTML(newsItems, options = {}) {
 
 module.exports = {
   collectFacetFilterOptions,
+  collectSourceCoverage,
   deriveAgeBucket,
   deriveArticleFacets,
   deriveHandoffCues,
