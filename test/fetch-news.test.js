@@ -565,6 +565,33 @@ test('generateHTML renders handoff cue filter controls', () => {
   assert.match(html, /\[sourceFilter, severityFilter, tagFilter, vendorFilter, ageFilter, handoffFilter\]/);
 });
 
+test('generateHTML renders shareable filter query state wiring', () => {
+  const html = generateHTML([
+    {
+      title: 'Microsoft Exchange zero-day exploited in data breach response',
+      link: 'https://security.example.com/microsoft-exchange-zero-day',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'SecurityWeek',
+      summary: 'SEC filings mention incident response, active exploitation, and stolen credentials.',
+    },
+  ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
+
+  assert.match(html, /const filterParams = \{/);
+  assert.match(html, /search: 'q'/);
+  assert.match(html, /sourceFilter: 'source'/);
+  assert.match(html, /severityFilter: 'severity'/);
+  assert.match(html, /tagFilter: 'tag'/);
+  assert.match(html, /vendorFilter: 'vendor'/);
+  assert.match(html, /ageFilter: 'age'/);
+  assert.match(html, /handoffFilter: 'handoff'/);
+  assert.match(html, /function applyQueryState\(\)/);
+  assert.match(html, /new URLSearchParams\(window\.location\.search\)/);
+  assert.match(html, /control\.value = value/);
+  assert.match(html, /function syncQueryState\(\)/);
+  assert.match(html, /window\.history\.replaceState\(null, '', nextUrl\)/);
+  assert.match(html, /applyQueryState\(\);\s+update\(\);/);
+});
+
 test('generateHTML renders escaped source coverage and RSS clarity', () => {
   const html = generateHTML([
     {
