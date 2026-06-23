@@ -26,7 +26,7 @@ function safeArticleLink(value) {
 const TOPIC_RULES = [
   { label: 'Ransomware', pattern: /\b(ransomware|extortion|encryptor)\b/i },
   { label: 'Vulnerability', pattern: /\b(cve-\d{4}-\d+|vulnerabilities|vulnerability|zero-day|0-day|flaw|patch|patched|critical bug)\b/i },
-  { label: 'Exploitation', pattern: /\b(exploit|exploited|exploitation|in the wild|active attacks?)\b/i },
+  { label: 'Exploitation', pattern: /\b(exploit|exploited|exploiting|exploitation|in the wild|active attacks?)\b/i },
   { label: 'Data Breach', pattern: /\b(data breach|breach|leak|stolen data|exposed data|compromised)\b/i },
   { label: 'Identity', pattern: /\b(identity|credential|password|oauth|sso|mfa|phishing)\b/i },
   { label: 'Cloud', pattern: /\b(cloud|aws|azure|gcp|kubernetes|container)\b/i },
@@ -37,7 +37,7 @@ const TOPIC_RULES = [
 ];
 
 const VENDOR_RULES = [
-  { label: 'Microsoft', pattern: /\b(microsoft|windows|exchange|azure|entra|office 365|m365)\b/i },
+  { label: 'Microsoft', pattern: /\b(microsoft|windows|microsoft exchange|azure|entra|office 365|m365)\b/i },
   { label: 'Google', pattern: /\b(google|android|chrome|gmail|workspace|gcp)\b/i },
   { label: 'Apple', pattern: /\b(apple|ios|macos|safari|iphone|ipad)\b/i },
   { label: 'Cisco', pattern: /\b(cisco|ios xe|asa|ftd|duo)\b/i },
@@ -71,7 +71,7 @@ function deriveArticleFacets(article) {
   const vendors = VENDOR_RULES.filter((rule) => matchesRule(text, rule)).map((rule) => rule.label).slice(0, 3);
   const sourceSignal = SOURCE_SIGNAL_RULES.find((rule) => matchesRule(`${article.source || ''} ${host}`, rule))?.label || 'General source';
   const criticalPattern = /\b(ransomware|zero-day|0-day|actively exploited|active exploitation|in the wild|critical bug|critical vulnerability|critical vulnerabilities|data breach|breach)\b/i;
-  const elevatedPattern = /\b(cve-\d{4}-\d+|vulnerabilities|vulnerability|exploit|malware|phishing|patch|compromised|supply chain)\b/i;
+  const elevatedPattern = /\b(cve-\d{4}-\d+|vulnerabilities|vulnerability|flaw|exploited|exploiting|exploitation|malware|phishing|patch|patched|compromised|supply chain)\b/i;
   const severity = criticalPattern.test(text) ? 'Critical' : elevatedPattern.test(text) ? 'Elevated' : 'Monitor';
 
   return {

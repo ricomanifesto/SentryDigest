@@ -145,6 +145,32 @@ test('deriveArticleFacets does not mark generic critical asset mentions as Criti
   assert.deepEqual(facets.tags, ['AI Security']);
 });
 
+test('deriveArticleFacets elevates flaw and exploit stories tagged as operational risks', () => {
+  const facets = deriveArticleFacets({
+    title: 'FFmpeg flaw exploited in video processing stacks',
+    link: 'https://example.com/ffmpeg-flaw-exploited',
+    date: new Date('2026-06-17T18:00:00.000Z'),
+    source: 'Example Security',
+    summary: 'Attackers are exploiting the flaw before some teams have patched affected servers.',
+  });
+
+  assert.equal(facets.severity, 'Elevated');
+  assert.deepEqual(facets.tags, ['Vulnerability', 'Exploitation']);
+});
+
+test('deriveArticleFacets does not tag generic exchange incidents as Microsoft', () => {
+  const facets = deriveArticleFacets({
+    title: 'Cryptocurrency exchange discloses credential theft',
+    link: 'https://example.com/crypto-exchange-incident',
+    date: new Date('2026-06-17T18:00:00.000Z'),
+    source: 'Example Security',
+    summary: 'The exchange reported a data breach and reset user passwords after an identity incident.',
+  });
+
+  assert.deepEqual(facets.vendors, []);
+  assert.deepEqual(facets.tags, ['Data Breach', 'Identity']);
+});
+
 test('generateHTML renders escaped operator facets on article cards', () => {
   const html = generateHTML([
     {
