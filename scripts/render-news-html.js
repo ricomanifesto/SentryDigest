@@ -494,6 +494,10 @@ function generateHTML(newsItems, options = {}) {
     .brand .subtitle { color: var(--muted); font-size: 0.9rem; }
     .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
     .filter-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    .filter-status { align-items: center; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .active-filters { display: flex; flex-wrap: wrap; gap: 8px; }
+    .active-filters[hidden] { display: none; }
+    .active-filter-chip { background: var(--card); border: 1px solid var(--card-border); border-radius: 999px; color: var(--fg); font-size: 12px; padding: 4px 10px; }
     .search { display: flex; align-items: center; gap: 8px; background: var(--card); border: 1px solid var(--card-border); padding: 8px 10px; border-radius: 10px; }
     .search input { border: none; outline: none; background: transparent; color: var(--fg); min-width: 220px; }
     .select { border: 1px solid var(--card-border); background: var(--card); color: var(--fg); padding: 8px 10px; border-radius: 10px; }
@@ -551,6 +555,7 @@ function generateHTML(newsItems, options = {}) {
       .masthead { align-items: stretch; flex-direction: column; }
       .controls { align-items: stretch; }
       .filter-row { align-items: stretch; flex-direction: column; }
+      .filter-status { align-items: stretch; flex-direction: column; }
       .search { width: 100%; }
       .search input { min-width: 0; width: 100%; }
       .select, .btn { flex: 1 1 auto; }
@@ -608,6 +613,10 @@ function generateHTML(newsItems, options = {}) {
         ${handoffOptions}
       </select>
     </div>
+    <div class="filter-status" aria-label="Active filters">
+      <div id="activeFilters" class="active-filters" hidden aria-live="polite"></div>
+      <button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters</button>
+    </div>
     <div class="stats" id="stats">Showing ${totalItems} of ${totalItems} articles from ${uniqueSources.length} sources • Last updated <time datetime="${nowIso}">${now.toLocaleString()}</time></div>
     ${sourceCoverage}
     ${operatorLanes}
@@ -649,6 +658,8 @@ function generateHTML(newsItems, options = {}) {
       const ageFilter = q('#ageFilter');
       const handoffFilter = q('#handoffFilter');
       const emptyFilteredState = q('#emptyFilteredState');
+      const activeFilters = q('#activeFilters');
+      const resetFilters = q('#resetFilters');
       const stats = q('#stats');
       const cards = qa('.news-item');
       const filterParams = {
@@ -668,6 +679,15 @@ function generateHTML(newsItems, options = {}) {
         vendorFilter,
         ageFilter,
         handoffFilter,
+      };
+      const filterLabels = {
+        search: 'Search',
+        sourceFilter: 'Source',
+        severityFilter: 'Severity',
+        tagFilter: 'Topic',
+        vendorFilter: 'Vendor',
+        ageFilter: 'Age',
+        handoffFilter: 'Handoff',
       };
 
       function applyQueryState(){
@@ -697,6 +717,37 @@ function generateHTML(newsItems, options = {}) {
         window.history.replaceState(null, '', nextUrl);
       }
 
+      function getControlLabel(control){
+        if (!control) return '';
+        if (control.tagName === 'SELECT' && control.selectedOptions && control.selectedOptions.length > 0) {
+          return control.selectedOptions[0].textContent || control.value;
+        }
+        return control.value || '';
+      }
+
+      function renderActiveFilters(){
+        if (!activeFilters) return;
+        const activeFiltersList = Object.keys(filterControls)
+          .map(function(key){
+            const control = filterControls[key];
+            const value = control && control.value || '';
+            const label = getControlLabel(control);
+            return value ? { key, label } : null;
+          })
+          .filter(Boolean);
+        activeFilters.textContent = '';
+        activeFilters.hidden = activeFiltersList.length === 0;
+        if (resetFilters) resetFilters.hidden = activeFiltersList.length === 0;
+        activeFiltersList.forEach(function(activeFilter){
+          const key = activeFilter.key;
+          const label = activeFilter.label;
+          const chip = document.createElement('span');
+          chip.className = 'active-filter-chip';
+          chip.textContent = filterLabels[key] + ': ' + label;
+          activeFilters.appendChild(chip);
+        });
+      }
+
       function update(){
         const term = (search && search.value || '').toLowerCase().trim();
         const src = sourceFilter && sourceFilter.value || '';
@@ -722,11 +773,19 @@ function generateHTML(newsItems, options = {}) {
         const srcCount = ${uniqueSources.length};
         if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('${nowIso}').toLocaleString());
         if (emptyFilteredState) emptyFilteredState.hidden = visible !== 0;
+        renderActiveFilters();
         syncQueryState();
       }
       if (search) search.addEventListener('input', debounce(update, 120));
       [sourceFilter, severityFilter, tagFilter, vendorFilter, ageFilter, handoffFilter].forEach(function(filter){
         if (filter) filter.addEventListener('change', update);
+      });
+      if (resetFilters) resetFilters.addEventListener('click', function(){
+        Object.keys(filterControls).forEach(function(key){
+          const control = filterControls[key];
+          if (control) control.value = '';
+        });
+        update();
       });
 
       applyQueryState();

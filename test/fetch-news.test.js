@@ -592,6 +592,30 @@ test('generateHTML renders shareable filter query state wiring', () => {
   assert.match(html, /applyQueryState\(\);\s+update\(\);/);
 });
 
+test('generateHTML renders active filter summary and reset wiring', () => {
+  const html = generateHTML([
+    {
+      title: 'Microsoft Exchange zero-day exploited in data breach response',
+      link: 'https://security.example.com/microsoft-exchange-zero-day',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'SecurityWeek',
+      summary: 'SEC filings mention incident response, active exploitation, and stolen credentials.',
+    },
+  ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
+
+  assert.match(html, /<div id="activeFilters" class="active-filters" hidden aria-live="polite"><\/div>/);
+  assert.match(html, /<button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters<\/button>/);
+  assert.match(html, /const activeFilters = q\('#activeFilters'\)/);
+  assert.match(html, /const resetFilters = q\('#resetFilters'\)/);
+  assert.match(html, /function renderActiveFilters\(\)/);
+  assert.match(html, /chip\.className = 'active-filter-chip'/);
+  assert.match(html, /chip\.textContent = filterLabels\[key\] \+ ': ' \+ label/);
+  assert.match(html, /resetFilters\.hidden = activeFiltersList\.length === 0/);
+  assert.match(html, /resetFilters\.addEventListener\('click', function\(\)/);
+  assert.match(html, /control\.value = ''/);
+  assert.match(html, /renderActiveFilters\(\);\s+syncQueryState\(\);/);
+});
+
 test('generateHTML renders escaped source coverage and RSS clarity', () => {
   const html = generateHTML([
     {
