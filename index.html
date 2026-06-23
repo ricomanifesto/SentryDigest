@@ -123,11 +123,36 @@
         <option value="Apple">Apple</option><option value="Fortinet">Fortinet</option><option value="GitHub">GitHub</option><option value="Google">Google</option><option value="Microsoft">Microsoft</option><option value="OpenAI">OpenAI</option>
       </select>
     </div>
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-23T07:26:05.640Z">6/23/2026, 7:26:05 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-23T10:18:57.511Z">6/23/2026, 10:18:57 AM</time></div>
     <div id="emptyFilteredState" class="empty-filtered" hidden>No articles match the current filters.</div>
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Malicious npm Packages Pose as PostCSS Tools to Deliver Windows RAT" data-summary="Cybersecurity researchers have discovered a set of malicious npm packages that are designed to deliver a Windows-based remote access trojan (RAT).
+
+The list of identified packages, is below -
+
+
+  aes-..." data-severity="Elevated" data-tags="Malware,Supply Chain" data-vendors="Microsoft" data-source-signal="Industry media">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+            <span class="chip">Industry media</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/06/malicious-npm-packages-pose-as-postcss.html" target="_blank" rel="noopener">Malicious npm Packages Pose as PostCSS Tools to Deliver Windows RAT</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-23T08:54:32.000Z">June 23, 2026 at 8:54 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <div class="facet-row"><span class="chip">Microsoft</span><span class="chip">Malware</span><span class="chip">Supply Chain</span></div>
+          <p class="news-summary">Cybersecurity researchers have discovered a set of malicious npm packages that are designed to deliver a Windows-based remote access trojan (RAT).
+
+The list of identified packages, is below -
+
+
+  aes-...</p>
+        </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="WhatsApp VBScript Campaign Uses Fake Documents to Install ManageEngine RMM Tool" data-summary="Direct messages sent via WhatsApp are being used to distribute malicious Visual Basic Script (VBScript) files that lead to the installation of legitimate Remote Monitoring and Management (RMM) softwar..." data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
@@ -409,7 +434,6 @@ The Federal Court released a ..." data-severity="Elevated" data-tags="Malware" 
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/canadas-spy-agency-used-first-of-its.html" target="_blank" rel="noopener">Canada’s Spy Agency Used First-of-Its-Kind Warrant to Clean Botnet-Infected Devices</a></h2>
           <div class="news-meta">
             <time datetime="2026-06-22T09:11:37.000Z">June 22, 2026 at 9:11 AM</time>
-            <span class="badge-new">NEW</span>
           </div>
           <div class="facet-row"><span class="chip">Malware</span></div>
           <p class="news-summary">Canada&#39;s spy service got a judge&#39;s permission to reach into infected servers, home routers, and IoT gear sitting on Canadian soil and neutralize two foreign-run botnets.
@@ -578,24 +602,6 @@ That code is burne...</p>
           <div class="facet-row"><span class="chip">Data Breach</span></div>
           <p class="news-summary">The Texas Parks and Wildlife Department (TPWD) disclosed a data breach at its license system vendor that exposed personal information for more than three million individuals. [...]...</p>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="AutoJack Attack Lets One Web Page Hijack AI Agent for Host Code Execution" data-summary="Microsoft researchers have detailed an exploit chain, named AutoJack, that turns an AI browsing agent into a delivery vehicle for remote code execution.
-
-Steer the agent to load an attacker&#39;s web page..." data-severity="Elevated" data-tags="Exploitation,AI Security" data-vendors="Microsoft" data-source-signal="Industry media">
-          <div class="chips">
-            <span class="severity severity-elevated">Elevated</span>
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-            <span class="chip">Industry media</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/06/autojack-attack-lets-one-web-page.html" target="_blank" rel="noopener">AutoJack Attack Lets One Web Page Hijack AI Agent for Host Code Execution</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-19T15:30:47.000Z">June 19, 2026 at 3:30 PM</time>
-          </div>
-          <div class="facet-row"><span class="chip">Microsoft</span><span class="chip">Exploitation</span><span class="chip">AI Security</span></div>
-          <p class="news-summary">Microsoft researchers have detailed an exploit chain, named AutoJack, that turns an AI browsing agent into a delivery vehicle for remote code execution.
-
-Steer the agent to load an attacker&#39;s web page...</p>
-        </article>
     </div>
   </main>
   
@@ -650,7 +656,7 @@ Steer the agent to load an attacker&#39;s web page...</p>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-23T07:26:05.640Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-23T10:18:57.511Z').toLocaleString());
         if (emptyFilteredState) emptyFilteredState.hidden = visible !== 0;
       }
       if (search) search.addEventListener('input', debounce(update, 120));
