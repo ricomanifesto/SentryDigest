@@ -324,6 +324,7 @@ function generateHTML(newsItems) {
     .summary-toggle { color: var(--fg); cursor: pointer; font: inherit; font-size: 0.95rem; opacity: 0.9; }
     .summary-action { color: var(--accent); font-size: 0.9rem; margin-left: 6px; white-space: nowrap; }
     details[open] .summary-ellipsis { display: none; }
+    details[open] .summary-action { display: none; }
     .summary-toggle:hover .summary-action { text-decoration: underline; }
     .summary-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
     footer { border-top: 1px solid var(--card-border); color: var(--muted); font-size: 0.9rem; padding: 18px 0; margin-top: 22px; }

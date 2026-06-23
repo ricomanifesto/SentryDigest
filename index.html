@@ -73,6 +73,7 @@
     .summary-toggle { color: var(--fg); cursor: pointer; font: inherit; font-size: 0.95rem; opacity: 0.9; }
     .summary-action { color: var(--accent); font-size: 0.9rem; margin-left: 6px; white-space: nowrap; }
     details[open] .summary-ellipsis { display: none; }
+    details[open] .summary-action { display: none; }
     .summary-toggle:hover .summary-action { text-decoration: underline; }
     .summary-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
     footer { border-top: 1px solid var(--card-border); color: var(--muted); font-size: 0.9rem; padding: 18px 0; margin-top: 22px; }
@@ -129,7 +130,7 @@
         <option value="Fortinet">Fortinet</option><option value="GitHub">GitHub</option><option value="Google">Google</option><option value="Microsoft">Microsoft</option><option value="OpenAI">OpenAI</option>
       </select>
     </div>
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-23T13:27:03.143Z">6/23/2026, 8:27:03 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-23T14:07:50.973Z">6/23/2026, 9:07:51 AM</time></div>
     <div id="emptyFilteredState" class="empty-filtered" hidden>No articles match the current filters.</div>
 
     <div class="news-container" id="newsContainer">
@@ -513,7 +514,6 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/a-glimpse-into-the-search-your-target-market-for-stolen-credentials/" target="_blank" rel="noopener">A Glimpse into the “Search Your Target” Market for Stolen Credentials</a></h2>
           <div class="news-meta">
             <time datetime="2026-06-22T14:05:15.000Z">June 22, 2026 at 9:05 AM</time>
-            <span class="badge-new">NEW</span>
           </div>
           <div class="facet-row"><span class="chip">Data Breach</span><span class="chip">Identity</span></div>
           <details class="summary-disclosure">
@@ -832,7 +832,7 @@ The</span><span class="summary-ellipsis" aria-hidden="true">...</span>
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-23T13:27:03.143Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-23T14:07:50.973Z').toLocaleString());
         if (emptyFilteredState) emptyFilteredState.hidden = visible !== 0;
       }
       if (search) search.addEventListener('input', debounce(update, 120));

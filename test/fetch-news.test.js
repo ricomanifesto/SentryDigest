@@ -346,6 +346,7 @@ test('generateHTML renders long summaries as accessible expandable content', () 
   assert.match(html, /<summary class="summary-toggle" aria-controls="summary-full-0">/);
   assert.match(html, /<span class="summary-preview-text">Security teams should prioritize exposed VPN appliances/);
   assert.match(html, /<span class="summary-action">Show full summary<\/span>/);
+  assert.match(html, /details\[open\] \.summary-action \{ display: none; \}/);
   assert.match(html, /<p class="news-summary summary-full" id="summary-full-0">/);
   assert.doesNotMatch(html, /<p class="news-summary summary-preview"/);
   assert.doesNotMatch(html, /data-summary-toggle/);
