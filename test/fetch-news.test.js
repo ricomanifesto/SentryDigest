@@ -337,6 +337,37 @@ test('generateHTML groups legend explanations into a compact digest legend', () 
   assert.doesNotMatch(html, /<section class="handoff-cue-legend" aria-label="Handoff cue legend">/);
 });
 
+test('generateHTML keeps legend details inside the source coverage scan row', () => {
+  const html = generateHTML([
+    {
+      title: 'Microsoft Exchange zero-day exploited in data breach response',
+      link: 'https://security.example.com/microsoft-exchange-zero-day',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'Microsoft',
+      summary: 'SEC filings mention incident response, active exploitation, and stolen credentials.',
+    },
+    {
+      title: 'Security news roundup',
+      link: 'https://www.bleepingcomputer.com/news/security/example/',
+      date: new Date('2026-06-17T16:00:00.000Z'),
+      source: 'Bleeping Computer',
+      summary: 'Industry reporting on security activity.',
+    },
+  ]);
+
+  const sourceCoverageStart = html.indexOf('<section class="source-coverage" aria-label="RSS source coverage">');
+  const feedLinkIndex = html.indexOf('<a class="feed-link"', sourceCoverageStart);
+  const digestLegendIndex = html.indexOf('<details class="digest-legend" aria-label="Digest legend">', sourceCoverageStart);
+  const sourceCoverageEnd = html.indexOf('</section>', sourceCoverageStart);
+  const operatorLanesIndex = html.indexOf('<section class="operator-lanes" aria-label="Operator scan lanes">');
+
+  assert.ok(sourceCoverageStart !== -1);
+  assert.ok(feedLinkIndex > sourceCoverageStart);
+  assert.ok(digestLegendIndex > feedLinkIndex);
+  assert.ok(digestLegendIndex < sourceCoverageEnd);
+  assert.ok(sourceCoverageEnd < operatorLanesIndex);
+});
+
 test('generateHTML renders a handoff cue legend for present cues', () => {
   const html = generateHTML([
     {

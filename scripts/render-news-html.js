@@ -303,7 +303,7 @@ function renderSelectOptions(values) {
     .join('');
 }
 
-function renderSourceCoverage(newsItems, sourceNames = []) {
+function renderSourceCoverage(newsItems, sourceNames = [], digestLegend = '') {
   const sourceCounts = collectSourceCoverage(newsItems, sourceNames);
   if (sourceCounts.length === 0) {
     return '';
@@ -322,7 +322,10 @@ function renderSourceCoverage(newsItems, sourceNames = []) {
   return `<section class="source-coverage" aria-label="RSS source coverage">
       <div class="source-coverage-label">RSS source coverage</div>
       <div class="source-counts">${sourceCountItems}</div>
-      <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with ${feedArticleLabel}">RSS feed <span class="feed-link-count">${feedItemLabel}</span></a>
+      <div class="source-coverage-actions">
+        <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with ${feedArticleLabel}">RSS feed <span class="feed-link-count">${feedItemLabel}</span></a>
+        ${digestLegend}
+      </div>
     </section>`;
 }
 
@@ -545,8 +548,8 @@ function generateHTML(newsItems, options = {}) {
   const handoffOptions = renderSelectOptions(filterOptions.handoffCues);
   const now = new Date(generatedAt);
   const nowIso = now.toISOString();
-  const sourceCoverage = renderSourceCoverage(newsItems, sourceNames);
   const digestLegend = renderDigestLegend(newsItems);
+  const sourceCoverage = renderSourceCoverage(newsItems, sourceNames, digestLegend);
   const operatorLanes = renderOperatorLanes(newsItems);
   const articleCards = newsItems.length > 0
     ? newsItems.map((article, index) => renderArticleCard(article, index, generatedAt)).join('')
@@ -612,6 +615,7 @@ function generateHTML(newsItems, options = {}) {
     .source-coverage { align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: flex; flex-wrap: wrap; gap: 10px 12px; margin-top: 12px; padding: 10px 12px; }
     .source-coverage-label { color: var(--muted); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
     .source-counts { display: flex; flex: 1 1 260px; flex-wrap: wrap; gap: 8px; }
+    .source-coverage-actions { align-items: center; display: flex; flex: 1 1 280px; flex-wrap: wrap; gap: 8px 12px; justify-content: flex-end; min-width: 0; }
     .source-count { background: var(--chip); border: 1px solid transparent; border-radius: 999px; color: var(--fg); cursor: pointer; font: inherit; font-size: 12px; padding: 4px 10px; }
     .source-count:hover, .source-count[aria-pressed="true"] { border-color: var(--accent); }
     .source-count-empty { color: var(--muted); cursor: default; opacity: 0.78; }
@@ -625,6 +629,7 @@ function generateHTML(newsItems, options = {}) {
     .digest-legend-summary { color: var(--fg); cursor: pointer; font-size: 0.9rem; font-weight: 700; }
     .digest-legend-summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
     .digest-legend-body { display: grid; gap: 10px; grid-template-columns: minmax(180px, 0.6fr) minmax(0, 1.4fr); margin-top: 10px; }
+    .source-coverage .digest-legend { background: transparent; border: 0; flex: 1 1 260px; margin-top: 0; padding: 0; }
     .digest-legend-group { align-content: start; display: grid; gap: 8px; min-width: 0; }
     .digest-legend-heading { color: var(--muted); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
     .source-signal-items { display: flex; flex: 1 1 260px; flex-wrap: wrap; gap: 8px; }
@@ -744,7 +749,6 @@ function generateHTML(newsItems, options = {}) {
     </div>
     <div class="stats" id="stats">Showing ${totalItems} of ${totalItems} articles from ${uniqueSources.length} sources • Last updated <time datetime="${nowIso}">${now.toLocaleString()}</time></div>
     <div id="filterInsights" class="filter-insights" aria-live="polite"></div>
-    ${digestLegend}
     ${sourceCoverage}
     ${operatorLanes}
     <div id="emptyFilteredState" class="empty-filtered" hidden>No articles match the current filters.</div>
