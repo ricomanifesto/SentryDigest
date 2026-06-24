@@ -96,6 +96,13 @@ const HANDOFF_CUE_RULES = [
 
 const AGE_BUCKET_ORDER = ['Fresh', 'Recent', 'Older', 'Undated'];
 const HANDOFF_CUE_ORDER = HANDOFF_CUE_RULES.map((rule) => rule.label).concat('SentryInsight: monitor');
+const HANDOFF_CUE_DETAILS = {
+  'SentryInsight: incident watch': 'Potential incident or compromise follow-up',
+  'SentryInsight: vuln triage': 'Vulnerability or exploitation review',
+  'SentryInsight: vendor watch': 'Vendor or product-owner tracking',
+  'GRCInsight: governance watch': 'Regulatory, privacy, or audit relevance',
+  'SentryInsight: monitor': 'Low-signal item worth monitoring',
+};
 const INVALID_FEED_DATE_FALLBACK_TIME = new Date('1970-01-01T00:00:00.000Z').getTime();
 const OPERATOR_LANE_RULES = [
   {
@@ -260,6 +267,20 @@ function collectSourceSignalLegend(newsItems) {
     }));
 }
 
+function collectHandoffCueLegend(newsItems) {
+  const presentCues = new Set();
+  newsItems.forEach((article) => {
+    deriveHandoffCues(article).forEach((cue) => presentCues.add(cue));
+  });
+
+  return HANDOFF_CUE_ORDER
+    .filter((label) => presentCues.has(label))
+    .map((label) => ({
+      label,
+      detail: HANDOFF_CUE_DETAILS[label],
+    }));
+}
+
 function collectOperatorLanes(newsItems) {
   return OPERATOR_LANE_RULES.map((lane) => {
     const matchingArticles = newsItems
@@ -318,6 +339,22 @@ function renderSourceSignalLegend(newsItems) {
   return `<section class="source-signal-legend" aria-label="Source signal legend">
       <div class="source-signal-legend-label">Source signals</div>
       <div class="source-signal-items">${signalChips}</div>
+    </section>`;
+}
+
+function renderHandoffCueLegend(newsItems) {
+  const cueItems = collectHandoffCueLegend(newsItems);
+  if (cueItems.length === 0) {
+    return '';
+  }
+
+  const cueChips = cueItems
+    .map(({ label, detail }) => `<span class="handoff-cue-legend-chip"><span class="handoff-cue-name">${escapeHtml(label)}</span><span class="handoff-cue-detail">${escapeHtml(detail)}</span></span>`)
+    .join('');
+
+  return `<section class="handoff-cue-legend" aria-label="Handoff cue legend">
+      <div class="handoff-cue-legend-label">Handoff cues</div>
+      <div class="handoff-cue-legend-items">${cueChips}</div>
     </section>`;
 }
 
@@ -494,6 +531,7 @@ function generateHTML(newsItems, options = {}) {
   const nowIso = now.toISOString();
   const sourceCoverage = renderSourceCoverage(newsItems, sourceNames);
   const sourceSignalLegend = renderSourceSignalLegend(newsItems);
+  const handoffCueLegend = renderHandoffCueLegend(newsItems);
   const operatorLanes = renderOperatorLanes(newsItems);
   const articleCards = newsItems.length > 0
     ? newsItems.map((article, index) => renderArticleCard(article, index, generatedAt)).join('')
@@ -574,6 +612,12 @@ function generateHTML(newsItems, options = {}) {
     .source-signal-chip { align-items: baseline; background: var(--chip); border-radius: 999px; display: inline-flex; gap: 6px; padding: 4px 10px; }
     .source-signal-name { color: var(--fg); font-size: 12px; font-weight: 700; }
     .source-signal-detail { color: var(--muted); font-size: 12px; }
+    .handoff-cue-legend { align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: flex; flex-wrap: wrap; gap: 10px 12px; margin-top: 12px; padding: 10px 12px; }
+    .handoff-cue-legend-label { color: var(--muted); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
+    .handoff-cue-legend-items { display: flex; flex: 1 1 260px; flex-wrap: wrap; gap: 8px; }
+    .handoff-cue-legend-chip { align-items: baseline; background: var(--chip); border-radius: 999px; display: inline-flex; gap: 6px; padding: 4px 10px; }
+    .handoff-cue-name { color: var(--fg); font-size: 12px; font-weight: 700; }
+    .handoff-cue-detail { color: var(--muted); font-size: 12px; }
     .operator-lanes { display: grid; gap: 12px; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 14px; }
     .operator-lane { background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: grid; gap: 6px; padding: 12px; }
     .operator-lane-heading { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
@@ -683,6 +727,7 @@ function generateHTML(newsItems, options = {}) {
     <div class="stats" id="stats">Showing ${totalItems} of ${totalItems} articles from ${uniqueSources.length} sources • Last updated <time datetime="${nowIso}">${now.toLocaleString()}</time></div>
     <div id="filterInsights" class="filter-insights" aria-live="polite"></div>
     ${sourceSignalLegend}
+    ${handoffCueLegend}
     ${sourceCoverage}
     ${operatorLanes}
     <div id="emptyFilteredState" class="empty-filtered" hidden>No articles match the current filters.</div>

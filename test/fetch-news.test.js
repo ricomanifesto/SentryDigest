@@ -308,6 +308,53 @@ test('generateHTML renders escaped downstream handoff cues on article cards', ()
   assert.match(html, /<span class="handoff-cue">GRCInsight: governance watch<\/span>/);
 });
 
+test('generateHTML renders a handoff cue legend for present cues', () => {
+  const html = generateHTML([
+    {
+      title: 'Microsoft Exchange zero-day exploited in data breach response',
+      link: 'https://security.example.com/microsoft-exchange-zero-day',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'SecurityWeek',
+      summary: 'SEC filings mention incident response, active exploitation, and stolen credentials.',
+    },
+    {
+      title: 'Weekly security podcast roundup',
+      link: 'https://example.com/security-podcast-roundup',
+      date: new Date('2026-06-17T17:00:00.000Z'),
+      source: 'Example <Security>',
+      summary: 'Researchers discuss general awareness topics.',
+    },
+  ]);
+
+  assert.match(html, /<section class="handoff-cue-legend" aria-label="Handoff cue legend">/);
+  assert.match(html, /<div class="handoff-cue-legend-label">Handoff cues<\/div>/);
+  assert.match(html, /<span class="handoff-cue-name">SentryInsight: incident watch<\/span><span class="handoff-cue-detail">Potential incident or compromise follow-up<\/span>/);
+  assert.match(html, /<span class="handoff-cue-name">SentryInsight: vuln triage<\/span><span class="handoff-cue-detail">Vulnerability or exploitation review<\/span>/);
+  assert.match(html, /<span class="handoff-cue-name">SentryInsight: vendor watch<\/span><span class="handoff-cue-detail">Vendor or product-owner tracking<\/span>/);
+  assert.match(html, /<span class="handoff-cue-name">GRCInsight: governance watch<\/span><span class="handoff-cue-detail">Regulatory, privacy, or audit relevance<\/span>/);
+  assert.match(html, /<span class="handoff-cue-name">SentryInsight: monitor<\/span><span class="handoff-cue-detail">Low-signal item worth monitoring<\/span>/);
+  assert.doesNotMatch(html, /Example <Security>/);
+});
+
+test('generateHTML omits absent handoff cue legend entries', () => {
+  const html = generateHTML([
+    {
+      title: 'Weekly security podcast roundup',
+      link: 'https://example.com/security-podcast-roundup',
+      date: new Date('2026-06-17T17:00:00.000Z'),
+      source: 'Example Security',
+      summary: 'Researchers discuss general awareness topics.',
+    },
+  ]);
+
+  assert.match(html, /<section class="handoff-cue-legend" aria-label="Handoff cue legend">/);
+  assert.match(html, /<span class="handoff-cue-name">SentryInsight: monitor<\/span>/);
+  assert.doesNotMatch(html, /Potential incident or compromise follow-up/);
+  assert.doesNotMatch(html, /Vulnerability or exploitation review/);
+  assert.doesNotMatch(html, /Vendor or product-owner tracking/);
+  assert.doesNotMatch(html, /Regulatory, privacy, or audit relevance/);
+});
+
 test('generateHTML renders a source signal legend for present classifications', () => {
   const html = generateHTML([
     {
