@@ -534,6 +534,28 @@ function renderEmptyState() {
       `;
 }
 
+function formatIssueDate(date) {
+  return new Intl.DateTimeFormat('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  }).format(new Date(date));
+}
+
+function renderIssueStrip(totalItems, sourceCount, generatedAt) {
+  const issueDate = new Date(generatedAt);
+  const articleLabel = totalItems === 1 ? 'article' : 'articles';
+  const sourceLabel = sourceCount === 1 ? 'source' : 'sources';
+
+  return `<section class="issue-strip" aria-label="Digest issue metadata">
+      <span class="issue-label">Current issue</span>
+      <time datetime="${issueDate.toISOString()}">${formatIssueDate(issueDate)}</time>
+      <span class="issue-stat"><strong>${totalItems}</strong> ${articleLabel}</span>
+      <span class="issue-stat"><strong>${sourceCount}</strong> ${sourceLabel}</span>
+      <a class="issue-link" href="./feed.xml">RSS archive</a>
+    </section>`;
+}
+
 function generateHTML(newsItems, options = {}) {
   const generatedAt = options.generatedAt || new Date();
   const sourceNames = Array.isArray(options.sourceNames) ? options.sourceNames : [];
@@ -551,6 +573,7 @@ function generateHTML(newsItems, options = {}) {
   const digestLegend = renderDigestLegend(newsItems);
   const sourceCoverage = renderSourceCoverage(newsItems, sourceNames, digestLegend);
   const operatorLanes = renderOperatorLanes(newsItems);
+  const issueStrip = renderIssueStrip(totalItems, uniqueSources.length, generatedAt);
   const articleCards = newsItems.length > 0
     ? newsItems.map((article, index) => renderArticleCard(article, index, generatedAt)).join('')
     : renderEmptyState();
@@ -608,6 +631,12 @@ function generateHTML(newsItems, options = {}) {
     .btn { border: 1px solid var(--card-border); background: var(--card); color: var(--fg); padding: 8px 10px; border-radius: 10px; cursor: pointer; }
     .btn:hover { border-color: var(--accent); }
     .stats { color: var(--muted); font-size: 0.9rem; margin-top: 6px; }
+    .issue-strip { align-items: center; color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px 10px; margin-top: 10px; }
+    .issue-label { color: var(--fg); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
+    .issue-stat { background: var(--chip); border-radius: 999px; color: var(--fg); font-size: 12px; padding: 3px 8px; }
+    .issue-stat strong { color: var(--accent); }
+    .issue-link { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
+    .issue-link:hover { text-decoration: underline; }
     .filter-insights { align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; padding: 10px 12px; }
     .filter-insights[hidden] { display: none; }
     .filter-insights-label { color: var(--muted); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
@@ -748,6 +777,7 @@ function generateHTML(newsItems, options = {}) {
       <button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters</button>
     </div>
     <div class="stats" id="stats">Showing ${totalItems} of ${totalItems} articles from ${uniqueSources.length} sources • Last updated <time datetime="${nowIso}">${now.toLocaleString()}</time></div>
+    ${issueStrip}
     <div id="filterInsights" class="filter-insights" aria-live="polite"></div>
     ${sourceCoverage}
     ${operatorLanes}

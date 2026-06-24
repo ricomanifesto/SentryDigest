@@ -831,6 +831,32 @@ test('generateHTML renders visible result context wiring', () => {
   assert.match(html, /renderFilterInsights\(visibleCards\)/);
 });
 
+test('generateHTML renders a compact digest issue metadata bar', () => {
+  const html = generateHTML([
+    {
+      title: 'First story',
+      link: 'https://example.com/first',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'Example Security',
+      summary: 'Story one.',
+    },
+    {
+      title: 'Second story',
+      link: 'https://example.com/second',
+      date: new Date('2026-06-17T17:00:00.000Z'),
+      source: 'Another Source',
+      summary: 'Story two.',
+    },
+  ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
+
+  assert.match(html, /<section class="issue-strip" aria-label="Digest issue metadata">/);
+  assert.match(html, /<span class="issue-label">Current issue<\/span>/);
+  assert.match(html, /<time datetime="2026-06-17T18:00:00.000Z">June 17, 2026<\/time>/);
+  assert.match(html, /<span class="issue-stat"><strong>2<\/strong> articles<\/span>/);
+  assert.match(html, /<span class="issue-stat"><strong>2<\/strong> sources<\/span>/);
+  assert.match(html, /<a class="issue-link" href="\.\/feed\.xml">RSS archive<\/a>/);
+});
+
 test('generateHTML renders escaped source coverage and RSS clarity', () => {
   const html = generateHTML([
     {
