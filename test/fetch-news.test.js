@@ -693,8 +693,22 @@ test('generateHTML renders escaped source coverage and RSS clarity', () => {
   assert.match(html, /<section class="source-coverage" aria-label="RSS source coverage">/);
   assert.match(html, /<button class="source-count" type="button" data-source-filter="Example &lt;Security&gt;" aria-pressed="false">Example &lt;Security&gt; <strong>2<\/strong><\/button>/);
   assert.match(html, /<button class="source-count" type="button" data-source-filter="Another Source" aria-pressed="false">Another Source <strong>1<\/strong><\/button>/);
-  assert.match(html, /<a href="\.\/feed\.xml">RSS feed<\/a>/);
+  assert.match(html, /<a class="feed-link" href="\.\/feed\.xml" aria-label="Open RSS feed with 3 latest articles">RSS feed <span class="feed-link-count">3 items<\/span><\/a>/);
   assert.doesNotMatch(html, /Example <Security>/);
+});
+
+test('generateHTML renders singular RSS item count for feed inspection', () => {
+  const html = generateHTML([
+    {
+      title: 'First story',
+      link: 'https://example.com/first',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'Example Security',
+      summary: 'Story one.',
+    },
+  ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
+
+  assert.match(html, /<a class="feed-link" href="\.\/feed\.xml" aria-label="Open RSS feed with 1 latest article">RSS feed <span class="feed-link-count">1 item<\/span><\/a>/);
 });
 
 test('generateHTML renders quiet configured feeds as inert source coverage chips', () => {
