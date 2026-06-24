@@ -58,6 +58,12 @@ const SOURCE_SIGNAL_RULES = [
   { label: 'Research team', pattern: /\b(unit 42|talos|mandiant|threat intelligence|research|labs|team)\b/i },
   { label: 'Industry media', pattern: /\b(securityweek|bleepingcomputer|the hacker news|dark reading|krebsonsecurity|threatpost|wired|therecord)\b/i },
 ];
+const SOURCE_SIGNAL_DETAILS = {
+  'Vendor advisory': 'Vendor or product-owner guidance',
+  'Research team': 'Threat research or lab analysis',
+  'Industry media': 'Security news reporting',
+  'General source': 'Monitor for added context',
+};
 
 const HANDOFF_CUE_RULES = [
   {
@@ -242,6 +248,18 @@ function collectSourceCoverage(newsItems, sourceNames = []) {
     .sort((left, right) => right.count - left.count || left.source.localeCompare(right.source));
 }
 
+function collectSourceSignalLegend(newsItems) {
+  const presentSignals = new Set(newsItems.map((article) => deriveArticleFacets(article).sourceSignal));
+  const signalOrder = SOURCE_SIGNAL_RULES.map((rule) => rule.label).concat('General source');
+
+  return signalOrder
+    .filter((label) => presentSignals.has(label))
+    .map((label) => ({
+      label,
+      detail: SOURCE_SIGNAL_DETAILS[label],
+    }));
+}
+
 function collectOperatorLanes(newsItems) {
   return OPERATOR_LANE_RULES.map((lane) => {
     const matchingArticles = newsItems
@@ -284,6 +302,22 @@ function renderSourceCoverage(newsItems, sourceNames = []) {
       <div class="source-coverage-label">RSS source coverage</div>
       <div class="source-counts">${sourceCountItems}</div>
       <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with ${feedArticleLabel}">RSS feed <span class="feed-link-count">${feedItemLabel}</span></a>
+    </section>`;
+}
+
+function renderSourceSignalLegend(newsItems) {
+  const signalItems = collectSourceSignalLegend(newsItems);
+  if (signalItems.length === 0) {
+    return '';
+  }
+
+  const signalChips = signalItems
+    .map(({ label, detail }) => `<span class="source-signal-chip"><span class="source-signal-name">${escapeHtml(label)}</span><span class="source-signal-detail">${escapeHtml(detail)}</span></span>`)
+    .join('');
+
+  return `<section class="source-signal-legend" aria-label="Source signal legend">
+      <div class="source-signal-legend-label">Source signals</div>
+      <div class="source-signal-items">${signalChips}</div>
     </section>`;
 }
 
@@ -459,6 +493,7 @@ function generateHTML(newsItems, options = {}) {
   const now = new Date(generatedAt);
   const nowIso = now.toISOString();
   const sourceCoverage = renderSourceCoverage(newsItems, sourceNames);
+  const sourceSignalLegend = renderSourceSignalLegend(newsItems);
   const operatorLanes = renderOperatorLanes(newsItems);
   const articleCards = newsItems.length > 0
     ? newsItems.map((article, index) => renderArticleCard(article, index, generatedAt)).join('')
@@ -533,6 +568,12 @@ function generateHTML(newsItems, options = {}) {
     .source-coverage a:hover { text-decoration: underline; }
     .feed-link { align-items: center; display: inline-flex; gap: 6px; }
     .feed-link-count { background: var(--chip); border-radius: 999px; color: var(--muted); font-size: 12px; padding: 2px 8px; }
+    .source-signal-legend { align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: flex; flex-wrap: wrap; gap: 10px 12px; margin-top: 12px; padding: 10px 12px; }
+    .source-signal-legend-label { color: var(--muted); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
+    .source-signal-items { display: flex; flex: 1 1 260px; flex-wrap: wrap; gap: 8px; }
+    .source-signal-chip { align-items: baseline; background: var(--chip); border-radius: 999px; display: inline-flex; gap: 6px; padding: 4px 10px; }
+    .source-signal-name { color: var(--fg); font-size: 12px; font-weight: 700; }
+    .source-signal-detail { color: var(--muted); font-size: 12px; }
     .operator-lanes { display: grid; gap: 12px; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 14px; }
     .operator-lane { background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: grid; gap: 6px; padding: 12px; }
     .operator-lane-heading { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
@@ -641,6 +682,7 @@ function generateHTML(newsItems, options = {}) {
     </div>
     <div class="stats" id="stats">Showing ${totalItems} of ${totalItems} articles from ${uniqueSources.length} sources • Last updated <time datetime="${nowIso}">${now.toLocaleString()}</time></div>
     <div id="filterInsights" class="filter-insights" aria-live="polite"></div>
+    ${sourceSignalLegend}
     ${sourceCoverage}
     ${operatorLanes}
     <div id="emptyFilteredState" class="empty-filtered" hidden>No articles match the current filters.</div>
