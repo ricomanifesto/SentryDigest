@@ -58,6 +58,7 @@
     .source-coverage { align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: flex; flex-wrap: wrap; gap: 10px 12px; margin-top: 12px; padding: 10px 12px; }
     .source-coverage-label { color: var(--muted); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
     .source-counts { display: flex; flex: 1 1 260px; flex-wrap: wrap; gap: 8px; }
+    .source-coverage-actions { align-items: center; display: flex; flex: 1 1 280px; flex-wrap: wrap; gap: 8px 12px; justify-content: flex-end; min-width: 0; }
     .source-count { background: var(--chip); border: 1px solid transparent; border-radius: 999px; color: var(--fg); cursor: pointer; font: inherit; font-size: 12px; padding: 4px 10px; }
     .source-count:hover, .source-count[aria-pressed="true"] { border-color: var(--accent); }
     .source-count-empty { color: var(--muted); cursor: default; opacity: 0.78; }
@@ -71,6 +72,7 @@
     .digest-legend-summary { color: var(--fg); cursor: pointer; font-size: 0.9rem; font-weight: 700; }
     .digest-legend-summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
     .digest-legend-body { display: grid; gap: 10px; grid-template-columns: minmax(180px, 0.6fr) minmax(0, 1.4fr); margin-top: 10px; }
+    .source-coverage .digest-legend { background: transparent; border: 0; flex: 1 1 260px; margin-top: 0; padding: 0; }
     .digest-legend-group { align-content: start; display: grid; gap: 8px; min-width: 0; }
     .digest-legend-heading { color: var(--muted); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
     .source-signal-items { display: flex; flex: 1 1 260px; flex-wrap: wrap; gap: 8px; }
@@ -188,9 +190,14 @@
       <div id="activeFilters" class="active-filters" hidden aria-live="polite"></div>
       <button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters</button>
     </div>
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-06-24T15:49:05.606Z">6/24/2026, 3:49:05 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources • Last updated <time datetime="2026-06-24T15:49:05.702Z">6/24/2026, 3:49:05 PM</time></div>
     <div id="filterInsights" class="filter-insights" aria-live="polite"></div>
-    <details class="digest-legend" aria-label="Digest legend">
+    <section class="source-coverage" aria-label="RSS source coverage">
+      <div class="source-coverage-label">RSS source coverage</div>
+      <div class="source-counts"><button class="source-count" type="button" data-source-filter="Bleeping Computer" aria-pressed="false">Bleeping Computer <strong>13</strong></button><button class="source-count" type="button" data-source-filter="The Hacker News" aria-pressed="false">The Hacker News <strong>11</strong></button><button class="source-count" type="button" data-source-filter="Dark Reading" aria-pressed="false">Dark Reading <strong>5</strong></button><button class="source-count" type="button" data-source-filter="Krebs on Security" aria-pressed="false">Krebs on Security <strong>1</strong></button><button class="source-count source-count-empty" type="button" data-source-filter="Threatpost" aria-pressed="false" aria-disabled="true" disabled>Threatpost <strong>0</strong></button></div>
+      <div class="source-coverage-actions">
+        <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with 30 latest articles">RSS feed <span class="feed-link-count">30 items</span></a>
+        <details class="digest-legend" aria-label="Digest legend">
       <summary class="digest-legend-summary">Digest legend: source signals and handoff cues</summary>
       <div class="digest-legend-body">
         <div class="digest-legend-group source-signal-legend" aria-label="Source signal legend">
@@ -202,10 +209,7 @@
     </div>
       </div>
     </details>
-    <section class="source-coverage" aria-label="RSS source coverage">
-      <div class="source-coverage-label">RSS source coverage</div>
-      <div class="source-counts"><button class="source-count" type="button" data-source-filter="Bleeping Computer" aria-pressed="false">Bleeping Computer <strong>13</strong></button><button class="source-count" type="button" data-source-filter="The Hacker News" aria-pressed="false">The Hacker News <strong>11</strong></button><button class="source-count" type="button" data-source-filter="Dark Reading" aria-pressed="false">Dark Reading <strong>5</strong></button><button class="source-count" type="button" data-source-filter="Krebs on Security" aria-pressed="false">Krebs on Security <strong>1</strong></button><button class="source-count source-count-empty" type="button" data-source-filter="Threatpost" aria-pressed="false" aria-disabled="true" disabled>Threatpost <strong>0</strong></button></div>
-      <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with 30 latest articles">RSS feed <span class="feed-link-count">30 items</span></a>
+      </div>
     </section>
     <section class="operator-lanes" aria-label="Operator scan lanes">
       <article class="operator-lane" data-lane="Incident watch" data-lane-cue="SentryInsight: incident watch">
@@ -1115,7 +1119,7 @@ The list of</span><span class="summary-ellipsis" aria-hidden="true">...</span>
         });
         const total = 30;
         const srcCount = 4;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-24T15:49:05.606Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-24T15:49:05.702Z').toLocaleString());
         if (emptyFilteredState) emptyFilteredState.hidden = visible !== 0;
         sourceCoverageButtons.forEach(function(button){
           button.setAttribute('aria-pressed', button.getAttribute('data-source-filter') === src ? 'true' : 'false');
