@@ -57,6 +57,12 @@
     .issue-stat strong { color: var(--accent); }
     .issue-link { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
     .issue-link:hover { text-decoration: underline; }
+    .issue-trail { align-items: center; color: var(--muted); display: flex; flex-wrap: wrap; font-size: 0.82rem; gap: 6px 10px; margin-top: 6px; }
+    .issue-trail-current { color: var(--fg); font-weight: 600; }
+    .issue-trail a { color: var(--accent); font-weight: 600; text-decoration: none; }
+    .issue-trail a:hover { text-decoration: underline; }
+    .issue-trail a::before { color: var(--muted); content: "›"; font-weight: 400; margin-right: 10px; }
+    .anchor-target { display: block; scroll-margin-top: 96px; }
     .filter-insights { align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; padding: 10px 12px; }
     .filter-insights[hidden] { display: none; }
     .filter-insights-label { color: var(--muted); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
@@ -204,7 +210,13 @@
       <span class="issue-stat"><strong>4</strong> sources</span>
       <a class="issue-link" href="./feed.xml">RSS archive</a>
     </section>
+    <nav class="issue-trail" aria-label="Digest archive trail">
+      <span class="issue-trail-current" aria-current="page">Current digest</span>
+      <a href="./feed.xml">RSS feed</a>
+      <a href="#sourceCoverage">Source coverage</a>
+    </nav>
     <div id="filterInsights" class="filter-insights" aria-live="polite"></div>
+    <span id="sourceCoverage" class="anchor-target" aria-hidden="true"></span>
     <section class="source-coverage" aria-label="RSS source coverage">
       <div class="source-coverage-label">RSS source coverage</div>
       <div class="source-counts"><button class="source-count" type="button" data-source-filter="Bleeping Computer" aria-pressed="false">Bleeping Computer <strong>13</strong></button><button class="source-count" type="button" data-source-filter="The Hacker News" aria-pressed="false">The Hacker News <strong>10</strong></button><button class="source-count" type="button" data-source-filter="Dark Reading" aria-pressed="false">Dark Reading <strong>6</strong></button><button class="source-count" type="button" data-source-filter="Krebs on Security" aria-pressed="false">Krebs on Security <strong>1</strong></button><button class="source-count source-count-empty" type="button" data-source-filter="Threatpost" aria-pressed="false" aria-disabled="true" disabled>Threatpost <strong>0</strong></button></div>
