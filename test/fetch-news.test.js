@@ -308,6 +308,65 @@ test('generateHTML renders escaped downstream handoff cues on article cards', ()
   assert.match(html, /<span class="handoff-cue">GRCInsight: governance watch<\/span>/);
 });
 
+test('generateHTML renders a source signal legend for present classifications', () => {
+  const html = generateHTML([
+    {
+      title: 'Microsoft Exchange patch advisory',
+      link: 'https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-1234',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'Microsoft',
+      summary: 'Vendor guidance for administrators.',
+    },
+    {
+      title: 'Researchers publish intrusion analysis',
+      link: 'https://unit42.paloaltonetworks.com/example-research/',
+      date: new Date('2026-06-17T17:00:00.000Z'),
+      source: 'Unit 42',
+      summary: 'Research team analysis of intrusion activity.',
+    },
+    {
+      title: 'Security news roundup',
+      link: 'https://www.bleepingcomputer.com/news/security/example/',
+      date: new Date('2026-06-17T16:00:00.000Z'),
+      source: 'Bleeping Computer',
+      summary: 'Industry reporting on security activity.',
+    },
+    {
+      title: 'Community security notes',
+      link: 'https://example.com/security-notes',
+      date: new Date('2026-06-17T15:00:00.000Z'),
+      source: 'Example <Security>',
+      summary: 'General monitoring notes.',
+    },
+  ]);
+
+  assert.match(html, /<section class="source-signal-legend" aria-label="Source signal legend">/);
+  assert.match(html, /<div class="source-signal-legend-label">Source signals<\/div>/);
+  assert.match(html, /<span class="source-signal-name">Vendor advisory<\/span><span class="source-signal-detail">Vendor or product-owner guidance<\/span>/);
+  assert.match(html, /<span class="source-signal-name">Research team<\/span><span class="source-signal-detail">Threat research or lab analysis<\/span>/);
+  assert.match(html, /<span class="source-signal-name">Industry media<\/span><span class="source-signal-detail">Security news reporting<\/span>/);
+  assert.match(html, /<span class="source-signal-name">General source<\/span><span class="source-signal-detail">Monitor for added context<\/span>/);
+  assert.doesNotMatch(html, /Example <Security>/);
+});
+
+test('generateHTML omits absent source signal legend entries', () => {
+  const html = generateHTML([
+    {
+      title: 'Security news roundup',
+      link: 'https://www.bleepingcomputer.com/news/security/example/',
+      date: new Date('2026-06-17T16:00:00.000Z'),
+      source: 'Bleeping Computer',
+      summary: 'Industry reporting on security activity.',
+    },
+  ]);
+
+  assert.match(html, /<section class="source-signal-legend" aria-label="Source signal legend">/);
+  assert.match(html, /<span class="source-signal-name">Industry media<\/span>/);
+  assert.doesNotMatch(html, /Vendor or product-owner guidance/);
+  assert.doesNotMatch(html, /Threat research or lab analysis/);
+  assert.doesNotMatch(html, /Monitor for added context/);
+});
+
 test('collectFacetFilterOptions returns deterministic severity, tag, vendor, and handoff options', () => {
   const options = collectFacetFilterOptions([
     {
