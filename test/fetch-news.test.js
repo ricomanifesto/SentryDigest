@@ -308,6 +308,35 @@ test('generateHTML renders escaped downstream handoff cues on article cards', ()
   assert.match(html, /<span class="handoff-cue">GRCInsight: governance watch<\/span>/);
 });
 
+test('generateHTML groups legend explanations into a compact digest legend', () => {
+  const html = generateHTML([
+    {
+      title: 'Microsoft Exchange zero-day exploited in data breach response',
+      link: 'https://security.example.com/microsoft-exchange-zero-day',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'Microsoft',
+      summary: 'SEC filings mention incident response, active exploitation, and stolen credentials.',
+    },
+    {
+      title: 'Security news roundup',
+      link: 'https://www.bleepingcomputer.com/news/security/example/',
+      date: new Date('2026-06-17T16:00:00.000Z'),
+      source: 'Bleeping Computer',
+      summary: 'Industry reporting on security activity.',
+    },
+  ]);
+
+  assert.match(html, /<details class="digest-legend" aria-label="Digest legend">/);
+  assert.match(html, /<summary class="digest-legend-summary">Digest legend: source signals and handoff cues<\/summary>/);
+  assert.match(html, /<div class="digest-legend-body">/);
+  assert.match(html, /<div class="digest-legend-group source-signal-legend" aria-label="Source signal legend">/);
+  assert.match(html, /<div class="digest-legend-group handoff-cue-legend" aria-label="Handoff cue legend">/);
+  assert.match(html, /<div class="digest-legend-heading">Source signals<\/div>/);
+  assert.match(html, /<div class="digest-legend-heading">Handoff cues<\/div>/);
+  assert.doesNotMatch(html, /<section class="source-signal-legend" aria-label="Source signal legend">/);
+  assert.doesNotMatch(html, /<section class="handoff-cue-legend" aria-label="Handoff cue legend">/);
+});
+
 test('generateHTML renders a handoff cue legend for present cues', () => {
   const html = generateHTML([
     {
@@ -326,8 +355,8 @@ test('generateHTML renders a handoff cue legend for present cues', () => {
     },
   ]);
 
-  assert.match(html, /<section class="handoff-cue-legend" aria-label="Handoff cue legend">/);
-  assert.match(html, /<div class="handoff-cue-legend-label">Handoff cues<\/div>/);
+  assert.match(html, /<div class="digest-legend-group handoff-cue-legend" aria-label="Handoff cue legend">/);
+  assert.match(html, /<div class="digest-legend-heading">Handoff cues<\/div>/);
   assert.match(html, /<span class="handoff-cue-name">SentryInsight: incident watch<\/span><span class="handoff-cue-detail">Potential incident or compromise follow-up<\/span>/);
   assert.match(html, /<span class="handoff-cue-name">SentryInsight: vuln triage<\/span><span class="handoff-cue-detail">Vulnerability or exploitation review<\/span>/);
   assert.match(html, /<span class="handoff-cue-name">SentryInsight: vendor watch<\/span><span class="handoff-cue-detail">Vendor or product-owner tracking<\/span>/);
@@ -347,7 +376,7 @@ test('generateHTML omits absent handoff cue legend entries', () => {
     },
   ]);
 
-  assert.match(html, /<section class="handoff-cue-legend" aria-label="Handoff cue legend">/);
+  assert.match(html, /<div class="digest-legend-group handoff-cue-legend" aria-label="Handoff cue legend">/);
   assert.match(html, /<span class="handoff-cue-name">SentryInsight: monitor<\/span>/);
   assert.doesNotMatch(html, /Potential incident or compromise follow-up/);
   assert.doesNotMatch(html, /Vulnerability or exploitation review/);
@@ -387,8 +416,8 @@ test('generateHTML renders a source signal legend for present classifications', 
     },
   ]);
 
-  assert.match(html, /<section class="source-signal-legend" aria-label="Source signal legend">/);
-  assert.match(html, /<div class="source-signal-legend-label">Source signals<\/div>/);
+  assert.match(html, /<div class="digest-legend-group source-signal-legend" aria-label="Source signal legend">/);
+  assert.match(html, /<div class="digest-legend-heading">Source signals<\/div>/);
   assert.match(html, /<span class="source-signal-name">Vendor advisory<\/span><span class="source-signal-detail">Vendor or product-owner guidance<\/span>/);
   assert.match(html, /<span class="source-signal-name">Research team<\/span><span class="source-signal-detail">Threat research or lab analysis<\/span>/);
   assert.match(html, /<span class="source-signal-name">Industry media<\/span><span class="source-signal-detail">Security news reporting<\/span>/);
@@ -407,7 +436,7 @@ test('generateHTML omits absent source signal legend entries', () => {
     },
   ]);
 
-  assert.match(html, /<section class="source-signal-legend" aria-label="Source signal legend">/);
+  assert.match(html, /<div class="digest-legend-group source-signal-legend" aria-label="Source signal legend">/);
   assert.match(html, /<span class="source-signal-name">Industry media<\/span>/);
   assert.doesNotMatch(html, /Vendor or product-owner guidance/);
   assert.doesNotMatch(html, /Threat research or lab analysis/);

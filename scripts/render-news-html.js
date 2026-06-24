@@ -336,10 +336,10 @@ function renderSourceSignalLegend(newsItems) {
     .map(({ label, detail }) => `<span class="source-signal-chip"><span class="source-signal-name">${escapeHtml(label)}</span><span class="source-signal-detail">${escapeHtml(detail)}</span></span>`)
     .join('');
 
-  return `<section class="source-signal-legend" aria-label="Source signal legend">
-      <div class="source-signal-legend-label">Source signals</div>
+  return `<div class="digest-legend-group source-signal-legend" aria-label="Source signal legend">
+      <div class="digest-legend-heading">Source signals</div>
       <div class="source-signal-items">${signalChips}</div>
-    </section>`;
+    </div>`;
 }
 
 function renderHandoffCueLegend(newsItems) {
@@ -352,10 +352,26 @@ function renderHandoffCueLegend(newsItems) {
     .map(({ label, detail }) => `<span class="handoff-cue-legend-chip"><span class="handoff-cue-name">${escapeHtml(label)}</span><span class="handoff-cue-detail">${escapeHtml(detail)}</span></span>`)
     .join('');
 
-  return `<section class="handoff-cue-legend" aria-label="Handoff cue legend">
-      <div class="handoff-cue-legend-label">Handoff cues</div>
+  return `<div class="digest-legend-group handoff-cue-legend" aria-label="Handoff cue legend">
+      <div class="digest-legend-heading">Handoff cues</div>
       <div class="handoff-cue-legend-items">${cueChips}</div>
-    </section>`;
+    </div>`;
+}
+
+function renderDigestLegend(newsItems) {
+  const sourceSignalLegend = renderSourceSignalLegend(newsItems);
+  const handoffCueLegend = renderHandoffCueLegend(newsItems);
+  const groups = [sourceSignalLegend, handoffCueLegend].filter(Boolean).join('');
+  if (!groups) {
+    return '';
+  }
+
+  return `<details class="digest-legend" aria-label="Digest legend">
+      <summary class="digest-legend-summary">Digest legend: source signals and handoff cues</summary>
+      <div class="digest-legend-body">
+        ${groups}
+      </div>
+    </details>`;
 }
 
 function renderOperatorLanes(newsItems) {
@@ -530,8 +546,7 @@ function generateHTML(newsItems, options = {}) {
   const now = new Date(generatedAt);
   const nowIso = now.toISOString();
   const sourceCoverage = renderSourceCoverage(newsItems, sourceNames);
-  const sourceSignalLegend = renderSourceSignalLegend(newsItems);
-  const handoffCueLegend = renderHandoffCueLegend(newsItems);
+  const digestLegend = renderDigestLegend(newsItems);
   const operatorLanes = renderOperatorLanes(newsItems);
   const articleCards = newsItems.length > 0
     ? newsItems.map((article, index) => renderArticleCard(article, index, generatedAt)).join('')
@@ -606,14 +621,16 @@ function generateHTML(newsItems, options = {}) {
     .source-coverage a:hover { text-decoration: underline; }
     .feed-link { align-items: center; display: inline-flex; gap: 6px; }
     .feed-link-count { background: var(--chip); border-radius: 999px; color: var(--muted); font-size: 12px; padding: 2px 8px; }
-    .source-signal-legend { align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: flex; flex-wrap: wrap; gap: 10px 12px; margin-top: 12px; padding: 10px 12px; }
-    .source-signal-legend-label { color: var(--muted); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
+    .digest-legend { background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; margin-top: 12px; padding: 10px 12px; }
+    .digest-legend-summary { color: var(--fg); cursor: pointer; font-size: 0.9rem; font-weight: 700; }
+    .digest-legend-summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .digest-legend-body { display: grid; gap: 10px; grid-template-columns: minmax(180px, 0.6fr) minmax(0, 1.4fr); margin-top: 10px; }
+    .digest-legend-group { align-content: start; display: grid; gap: 8px; min-width: 0; }
+    .digest-legend-heading { color: var(--muted); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
     .source-signal-items { display: flex; flex: 1 1 260px; flex-wrap: wrap; gap: 8px; }
     .source-signal-chip { align-items: baseline; background: var(--chip); border-radius: 999px; display: inline-flex; gap: 6px; padding: 4px 10px; }
     .source-signal-name { color: var(--fg); font-size: 12px; font-weight: 700; }
     .source-signal-detail { color: var(--muted); font-size: 12px; }
-    .handoff-cue-legend { align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: flex; flex-wrap: wrap; gap: 10px 12px; margin-top: 12px; padding: 10px 12px; }
-    .handoff-cue-legend-label { color: var(--muted); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
     .handoff-cue-legend-items { display: flex; flex: 1 1 260px; flex-wrap: wrap; gap: 8px; }
     .handoff-cue-legend-chip { align-items: baseline; background: var(--chip); border-radius: 999px; display: inline-flex; gap: 6px; padding: 4px 10px; }
     .handoff-cue-name { color: var(--fg); font-size: 12px; font-weight: 700; }
@@ -666,6 +683,7 @@ function generateHTML(newsItems, options = {}) {
       .search { width: 100%; }
       .search input { min-width: 0; width: 100%; }
       .select, .btn { flex: 1 1 auto; }
+      .digest-legend-body { grid-template-columns: minmax(0, 1fr); }
       .operator-lanes { grid-template-columns: minmax(0, 1fr); }
       .news-container { grid-template-columns: minmax(0, 1fr); }
       .news-item { border-radius: 10px; }
@@ -726,8 +744,7 @@ function generateHTML(newsItems, options = {}) {
     </div>
     <div class="stats" id="stats">Showing ${totalItems} of ${totalItems} articles from ${uniqueSources.length} sources • Last updated <time datetime="${nowIso}">${now.toLocaleString()}</time></div>
     <div id="filterInsights" class="filter-insights" aria-live="polite"></div>
-    ${sourceSignalLegend}
-    ${handoffCueLegend}
+    ${digestLegend}
     ${sourceCoverage}
     ${operatorLanes}
     <div id="emptyFilteredState" class="empty-filtered" hidden>No articles match the current filters.</div>
