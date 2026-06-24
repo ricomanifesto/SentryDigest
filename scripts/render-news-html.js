@@ -556,6 +556,14 @@ function renderIssueStrip(totalItems, sourceCount, generatedAt) {
     </section>`;
 }
 
+function renderIssueTrail() {
+  return `<nav class="issue-trail" aria-label="Digest archive trail">
+      <span class="issue-trail-current" aria-current="page">Current digest</span>
+      <a href="./feed.xml">RSS feed</a>
+      <a href="#sourceCoverage">Source coverage</a>
+    </nav>`;
+}
+
 function generateHTML(newsItems, options = {}) {
   const generatedAt = options.generatedAt || new Date();
   const sourceNames = Array.isArray(options.sourceNames) ? options.sourceNames : [];
@@ -574,6 +582,7 @@ function generateHTML(newsItems, options = {}) {
   const sourceCoverage = renderSourceCoverage(newsItems, sourceNames, digestLegend);
   const operatorLanes = renderOperatorLanes(newsItems);
   const issueStrip = renderIssueStrip(totalItems, uniqueSources.length, generatedAt);
+  const issueTrail = renderIssueTrail();
   const articleCards = newsItems.length > 0
     ? newsItems.map((article, index) => renderArticleCard(article, index, generatedAt)).join('')
     : renderEmptyState();
@@ -637,6 +646,12 @@ function generateHTML(newsItems, options = {}) {
     .issue-stat strong { color: var(--accent); }
     .issue-link { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
     .issue-link:hover { text-decoration: underline; }
+    .issue-trail { align-items: center; color: var(--muted); display: flex; flex-wrap: wrap; font-size: 0.82rem; gap: 6px 10px; margin-top: 6px; }
+    .issue-trail-current { color: var(--fg); font-weight: 600; }
+    .issue-trail a { color: var(--accent); font-weight: 600; text-decoration: none; }
+    .issue-trail a:hover { text-decoration: underline; }
+    .issue-trail a::before { color: var(--muted); content: "›"; font-weight: 400; margin-right: 10px; }
+    .anchor-target { display: block; scroll-margin-top: 96px; }
     .filter-insights { align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; padding: 10px 12px; }
     .filter-insights[hidden] { display: none; }
     .filter-insights-label { color: var(--muted); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
@@ -778,7 +793,9 @@ function generateHTML(newsItems, options = {}) {
     </div>
     <div class="stats" id="stats">Showing ${totalItems} of ${totalItems} articles from ${uniqueSources.length} sources • Last updated <time datetime="${nowIso}">${now.toLocaleString()}</time></div>
     ${issueStrip}
+    ${issueTrail}
     <div id="filterInsights" class="filter-insights" aria-live="polite"></div>
+    <span id="sourceCoverage" class="anchor-target" aria-hidden="true"></span>
     ${sourceCoverage}
     ${operatorLanes}
     <div id="emptyFilteredState" class="empty-filtered" hidden>No articles match the current filters.</div>

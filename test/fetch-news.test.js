@@ -857,6 +857,32 @@ test('generateHTML renders a compact digest issue metadata bar', () => {
   assert.match(html, /<a class="issue-link" href="\.\/feed\.xml">RSS archive<\/a>/);
 });
 
+test('generateHTML renders a compact feed archive trail', () => {
+  const html = generateHTML([
+    {
+      title: 'First story',
+      link: 'https://example.com/first',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'Example Security',
+      summary: 'Story one.',
+    },
+    {
+      title: 'Second story',
+      link: 'https://example.com/second',
+      date: new Date('2026-06-17T17:00:00.000Z'),
+      source: 'Another Source',
+      summary: 'Story two.',
+    },
+  ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
+
+  assert.match(html, /<nav class="issue-trail" aria-label="Digest archive trail">/);
+  assert.match(html, /<span class="issue-trail-current" aria-current="page">Current digest<\/span>/);
+  assert.match(html, /<a href="\.\/feed\.xml">RSS feed<\/a>/);
+  assert.match(html, /<a href="#sourceCoverage">Source coverage<\/a>/);
+  assert.match(html, /<span id="sourceCoverage" class="anchor-target" aria-hidden="true"><\/span>/);
+  assert.match(html, /<section class="source-coverage" aria-label="RSS source coverage">/);
+});
+
 test('generateHTML renders escaped source coverage and RSS clarity', () => {
   const html = generateHTML([
     {
