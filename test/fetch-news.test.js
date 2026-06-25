@@ -15,6 +15,7 @@ const {
   deriveHandoffCues,
   generateHTML,
 } = require('../scripts/render-news-html');
+const { ISSUE_TRAIL_CONTRACT } = require('../scripts/generated-artifact-contracts');
 
 test('normalizeFeedDate preserves valid feed dates', () => {
   const date = normalizeFeedDate(
@@ -875,11 +876,11 @@ test('generateHTML renders a compact feed archive trail', () => {
     },
   ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
 
-  assert.match(html, /<nav class="issue-trail" aria-label="Digest archive trail">/);
+  assert.ok(html.includes(`<nav class="${ISSUE_TRAIL_CONTRACT.navClass}" aria-label="Digest archive trail">`));
   assert.match(html, /<span class="issue-trail-current" aria-current="page">Current digest<\/span>/);
-  assert.match(html, /<a href="\.\/feed\.xml">RSS feed<\/a>/);
-  assert.match(html, /<a href="#sourceCoverage">Source coverage<\/a>/);
-  assert.match(html, /<span id="sourceCoverage" class="anchor-target" aria-hidden="true"><\/span>/);
+  assert.ok(html.includes(`<a href="${ISSUE_TRAIL_CONTRACT.feedHref}">RSS feed</a>`));
+  assert.ok(html.includes(`<a href="${ISSUE_TRAIL_CONTRACT.sourceCoverageHref}">Source coverage</a>`));
+  assert.ok(html.includes(`<span id="${ISSUE_TRAIL_CONTRACT.sourceCoverageAnchorId}" class="anchor-target" aria-hidden="true"></span>`));
   assert.match(html, /<section class="source-coverage" aria-label="RSS source coverage">/);
 });
 
@@ -895,7 +896,7 @@ test('generateHTML renders feed update cadence in the archive trail', () => {
   ], { generatedAt: new Date('2026-06-17T18:05:00.000Z') });
 
   assert.match(html, /<span class="issue-trail-meta">Updated <time datetime="2026-06-17T18:05:00.000Z">18:05 UTC<\/time><\/span>/);
-  assert.match(html, /<span class="issue-trail-meta">3h cadence<\/span>/);
+  assert.ok(html.includes(`<span class="issue-trail-meta">${ISSUE_TRAIL_CONTRACT.cadenceText}</span>`));
 });
 
 test('generateHTML renders escaped source coverage and RSS clarity', () => {

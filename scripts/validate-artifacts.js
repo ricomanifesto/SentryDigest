@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const cheerio = require('cheerio');
+const { ISSUE_TRAIL_CONTRACT } = require('./generated-artifact-contracts');
 
 function readText(label, filePath, repoRoot, failures) {
   if (!fs.existsSync(filePath)) {
@@ -144,10 +145,10 @@ function assertLinksMatchNewsData(label, actualLinks, newsData, failures, linkLa
 
 function validateIssueTrailContract(indexHtml, failures) {
   const $ = cheerio.load(indexHtml);
-  const trail = $('.issue-trail');
-  const sourceCoverageAnchor = $('#sourceCoverage');
-  const feedLink = trail.find('a[href="./feed.xml"]');
-  const sourceCoverageLink = trail.find('a[href="#sourceCoverage"]');
+  const trail = $(ISSUE_TRAIL_CONTRACT.navSelector);
+  const sourceCoverageAnchor = $(`#${ISSUE_TRAIL_CONTRACT.sourceCoverageAnchorId}`);
+  const feedLink = trail.find(`a[href="${ISSUE_TRAIL_CONTRACT.feedHref}"]`);
+  const sourceCoverageLink = trail.find(`a[href="${ISSUE_TRAIL_CONTRACT.sourceCoverageHref}"]`);
   const updatedTime = trail.find('time[datetime]');
   const trailText = trail.text().replace(/\s+/g, ' ').trim();
 
@@ -158,7 +159,7 @@ function validateIssueTrailContract(indexHtml, failures) {
     || sourceCoverageAnchor.length === 0
     || updatedTime.length === 0
     || !isValidDate(updatedTime.attr('datetime'))
-    || !trailText.includes('3h cadence')
+    || !trailText.includes(ISSUE_TRAIL_CONTRACT.cadenceText)
   ) {
     fail(failures, 'index.html must render the digest archive trail contract');
   }
