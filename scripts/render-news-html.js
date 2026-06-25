@@ -1,5 +1,6 @@
 const {
   DASHBOARD_RSS_LINK_CONTRACT,
+  formatSourceShortcutStatus,
   ISSUE_TRAIL_CONTRACT,
   SOURCE_COVERAGE_CONTRACT,
 } = require('./generated-artifact-contracts');
@@ -330,6 +331,8 @@ function renderSourceCoverage(newsItems, sourceNames = [], digestLegend = '') {
     })
     .join('');
 
+  const defaultStatus = formatSourceShortcutStatus(SOURCE_COVERAGE_CONTRACT.statusAllSourcesText, newsItems.length);
+
   return `<section class="${SOURCE_COVERAGE_CONTRACT.sectionClass}" aria-label="RSS source coverage">
       <div class="source-coverage-label">RSS source coverage</div>
       <div class="source-counts">${sourceCountItems}</div>
@@ -337,7 +340,7 @@ function renderSourceCoverage(newsItems, sourceNames = [], digestLegend = '') {
         <span><strong>${activeSourceCount}</strong> ${activeFeedLabel}</span>
         <span><strong>${quietSourceCount}</strong> ${quietFeedLabel}</span>${quietFeedNote}
       </div>
-      <div class="source-filter-status" data-source-filter-status aria-live="polite">${SOURCE_COVERAGE_CONTRACT.statusText}</div>
+      <div class="source-filter-status" data-source-filter-status aria-live="polite">${defaultStatus}</div>
       <div class="source-coverage-actions">
         <a class="feed-link" href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}" aria-label="Open RSS feed with ${feedArticleLabel}">RSS feed <span class="feed-link-count">${feedItemLabel}</span></a>
         ${digestLegend}
@@ -1063,13 +1066,14 @@ function generateHTML(newsItems, options = {}) {
         });
         const total = ${totalItems};
         const srcCount = ${uniqueSources.length};
+        const articleLabel = visible === 1 ? 'article' : 'articles';
         if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('${nowIso}').toLocaleString());
         if (emptyFilteredState) emptyFilteredState.hidden = visible !== 0;
         sourceCoverageButtons.forEach(function(button){
           button.setAttribute('aria-pressed', button.getAttribute('${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}') === src ? 'true' : 'false');
         });
         if (sourceFilterStatus) {
-          sourceFilterStatus.textContent = src ? 'Source shortcut: ' + getControlLabel(sourceFilter) : '${SOURCE_COVERAGE_CONTRACT.statusText}';
+          sourceFilterStatus.textContent = (src ? '${SOURCE_COVERAGE_CONTRACT.statusTextPrefix}' + getControlLabel(sourceFilter) : '${SOURCE_COVERAGE_CONTRACT.statusAllSourcesText}') + ' (' + visible + ' ' + articleLabel + ')';
         }
         renderActiveFilters();
         renderFilterInsights(visibleCards);
