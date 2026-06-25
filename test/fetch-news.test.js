@@ -851,7 +851,16 @@ test('generateHTML renders active filter summary and reset wiring', () => {
   assert.match(html, /const emptyResetFilters = q\('#emptyResetFilters'\)/);
   assert.match(html, /function renderActiveFilters\(\)/);
   assert.match(html, /chip\.className = 'active-filter-chip'/);
-  assert.match(html, /chip\.textContent = filterLabels\[key\] \+ ': ' \+ label/);
+  assert.match(html, /chipText\.textContent = filterLabels\[key\] \+ ': ' \+ label/);
+  assert.match(html, /const clearButton = document\.createElement\('button'\)/);
+  assert.match(html, /clearButton\.className = 'active-filter-clear'/);
+  assert.match(html, /clearButton\.type = 'button'/);
+  assert.match(html, /clearButton\.setAttribute\('data-filter-key', key\)/);
+  assert.match(html, /clearButton\.setAttribute\('aria-label', 'Clear ' \+ filterLabels\[key\] \+ ' filter'\)/);
+  assert.match(html, /clearButton\.textContent = '×'/);
+  assert.match(html, /activeFilters\.addEventListener\('click', function\(event\)/);
+  assert.match(html, /const key = target\.getAttribute\('data-filter-key'\)/);
+  assert.match(html, /if \(filterControls\[key\]\) filterControls\[key\]\.value = ''/);
   assert.match(html, /resetFilters\.hidden = activeFiltersList\.length === 0/);
   assert.match(html, /function clearFilters\(\)/);
   assert.match(html, /control\.value = ''/);
