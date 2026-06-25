@@ -340,6 +340,7 @@ function validateSourceCoverageContract(indexHtml, newsData, enabledSources, fai
   const expectedActiveSources = Array.from(expectedCounts.values()).filter((count) => count > 0).length;
   const expectedQuietSources = Array.from(expectedCounts.values()).filter((count) => count === 0).length;
   const sourceHealthSummary = section.find(SOURCE_COVERAGE_CONTRACT.healthSelector).first();
+  const sourceFilterStatus = section.find(SOURCE_COVERAGE_CONTRACT.statusSelector).first();
   const seenSources = new Set();
 
   if (sourceHealthSummary.length === 0) {
@@ -375,6 +376,11 @@ function validateSourceCoverageContract(indexHtml, newsData, enabledSources, fai
     if (expectedQuietSources > 0 && healthNoteText !== SOURCE_COVERAGE_CONTRACT.healthNoteText) {
       fail(failures, `index.html source health quiet note ${healthNoteText || 'missing'} does not match expected ${SOURCE_COVERAGE_CONTRACT.healthNoteText}`);
     }
+  }
+
+  const sourceFilterStatusText = sourceFilterStatus.text().trim();
+  if (sourceFilterStatusText !== SOURCE_COVERAGE_CONTRACT.statusText) {
+    fail(failures, `index.html source shortcut status ${sourceFilterStatusText || 'missing'} does not match expected ${SOURCE_COVERAGE_CONTRACT.statusText}`);
   }
 
   section.find(SOURCE_COVERAGE_CONTRACT.buttonSelector).each((index, element) => {

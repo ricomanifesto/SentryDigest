@@ -337,6 +337,7 @@ function renderSourceCoverage(newsItems, sourceNames = [], digestLegend = '') {
         <span><strong>${activeSourceCount}</strong> ${activeFeedLabel}</span>
         <span><strong>${quietSourceCount}</strong> ${quietFeedLabel}</span>${quietFeedNote}
       </div>
+      <div class="source-filter-status" data-source-filter-status aria-live="polite">${SOURCE_COVERAGE_CONTRACT.statusText}</div>
       <div class="source-coverage-actions">
         <a class="feed-link" href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}" aria-label="Open RSS feed with ${feedArticleLabel}">RSS feed <span class="feed-link-count">${feedItemLabel}</span></a>
         ${digestLegend}
@@ -696,6 +697,7 @@ function generateHTML(newsItems, options = {}) {
     .source-health-summary span { background: var(--bg); border: 1px solid var(--card-border); border-radius: 999px; padding: 3px 8px; }
     .source-health-summary strong { color: var(--fg); }
     .source-health-note { color: var(--muted); font-weight: 700; text-transform: uppercase; }
+    .source-filter-status { color: var(--muted); flex: 0 1 auto; font-size: 12px; font-weight: 700; }
     .source-coverage a { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
     .source-coverage a:hover { text-decoration: underline; }
     .feed-link { align-items: center; display: inline-flex; gap: 6px; }
@@ -870,6 +872,7 @@ function generateHTML(newsItems, options = {}) {
       const activeFilters = q('#activeFilters');
       const resetFilters = q('#resetFilters');
       const filterInsights = q('#filterInsights');
+      const sourceFilterStatus = q('${SOURCE_COVERAGE_CONTRACT.statusSelector}');
       const operatorLanes = qa('.operator-lane');
       const sourceCoverageButtons = qa('${SOURCE_COVERAGE_CONTRACT.buttonSelector}');
       const stats = q('#stats');
@@ -1065,6 +1068,9 @@ function generateHTML(newsItems, options = {}) {
         sourceCoverageButtons.forEach(function(button){
           button.setAttribute('aria-pressed', button.getAttribute('${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}') === src ? 'true' : 'false');
         });
+        if (sourceFilterStatus) {
+          sourceFilterStatus.textContent = src ? 'Source shortcut: ' + getControlLabel(sourceFilter) : '${SOURCE_COVERAGE_CONTRACT.statusText}';
+        }
         renderActiveFilters();
         renderFilterInsights(visibleCards);
         updateOperatorLanes(visibleCards);

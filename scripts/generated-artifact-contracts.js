@@ -31,6 +31,8 @@ const SOURCE_COVERAGE_CONTRACT = Object.freeze({
   sectionClass: 'source-coverage',
   sectionSelector: '.source-coverage',
   sourceFilterSelector: '#sourceFilter',
+  statusSelector: '[data-source-filter-status]',
+  statusText: 'Source shortcut: All active feeds',
 });
 
 const FEED_METADATA_CONTRACT = Object.freeze({
