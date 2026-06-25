@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const cheerio = require('cheerio');
 const {
+  FEED_INFO_CONTRACT,
   FEED_METADATA_CONTRACT,
   ISSUE_TRAIL_CONTRACT,
   SOURCE_COVERAGE_CONTRACT,
@@ -438,6 +439,14 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
   }
 
   if (feedInfo && newsData && Array.isArray(newsData)) {
+    if (feedInfo.title !== FEED_INFO_CONTRACT.title) {
+      fail(failures, 'feed-info.json title must match the feed info contract');
+    }
+
+    if (feedInfo.url !== FEED_INFO_CONTRACT.publicFeedUrl) {
+      fail(failures, 'feed-info.json url must match the public SentryDigest feed URL');
+    }
+
     if (feedInfo.itemCount !== newsData.length) {
       fail(failures, `feed-info.json itemCount ${feedInfo.itemCount} does not match news-data.json length ${newsData.length}`);
     }

@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const RSS = require('rss');
 const moment = require('moment');
+const { FEED_INFO_CONTRACT } = require('./generated-artifact-contracts');
 
 // Default generated artifact paths
 const defaultNewsDataPath = path.join(__dirname, '../news-data.json');
@@ -41,7 +42,7 @@ function generateRSSFeed(options = {}) {
   const feed = new RSS({
     title: 'Cybersecurity News Aggregator',
     description: 'Latest cybersecurity news from top sources',
-    feed_url: 'https://ricomanifesto.github.io/SentryDigest/feed.xml',
+    feed_url: FEED_INFO_CONTRACT.publicFeedUrl,
     site_url: 'https://ricomanifesto.github.io/SentryDigest/',
     image_url: 'https://ricomanifesto.github.io/SentryDigest/icon.png',
     language: 'en',
@@ -85,8 +86,8 @@ function generateRSSFeed(options = {}) {
 
   // Create a JSON file with RSS feed information (for reference)
   const feedInfo = {
-    title: 'Cybersecurity News Aggregator RSS Feed',
-    url: 'https://ricomanifesto.github.io/SentryDigest/feed.xml',
+    title: FEED_INFO_CONTRACT.title,
+    url: FEED_INFO_CONTRACT.publicFeedUrl,
     itemCount: newsData.length,
     sources: activeSources,
     lastUpdated: generatedAt.toISOString()

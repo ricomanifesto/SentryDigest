@@ -125,6 +125,7 @@ function createFixture(overrides = {}) {
     itemCount: overrides.feedInfoItemCount ?? newsData.length,
     sources: ['Example Security'],
     lastUpdated: overrides.feedInfoLastUpdated || '2026-06-17T18:30:00.000Z',
+    ...(overrides.feedInfo || {}),
   });
   writeText(
     path.join(repoRoot, 'feed.xml'),
@@ -184,6 +185,21 @@ test('validateArtifacts reports every changed downstream artifact mismatch', () 
   );
   assert.match(result.failures.join('\n'), /feed\.xml has 1 items, expected 2/);
   assert.match(result.failures.join('\n'), /index\.html renders 1 article cards, expected 2/);
+});
+
+test('validateArtifacts rejects malformed feed-info identity fields', () => {
+  const repoRoot = createFixture({
+    feedInfo: {
+      title: 'Alternate RSS Feed',
+      url: 'https://example.com/feed.xml',
+    },
+  });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(result.failures.join('\n'), /feed-info\.json title must match the feed info contract/);
+  assert.match(result.failures.join('\n'), /feed-info\.json url must match the public SentryDigest feed URL/);
 });
 
 test('validateArtifacts rejects feed links that drift from news-data', () => {
