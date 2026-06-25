@@ -9,6 +9,11 @@ const {
   RSS_CHANNEL_CONTRACT,
   SOURCE_COVERAGE_CONTRACT,
 } = require('./generated-artifact-contracts');
+const {
+  DEFAULT_MAX_NEWS_ITEMS,
+  isValidHttpUrl,
+  validateSourceConfig,
+} = require('./source-config-contract');
 
 function readText(label, filePath, repoRoot, failures) {
   if (!fs.existsSync(filePath)) {
@@ -34,15 +39,6 @@ function readJson(label, filePath, repoRoot, failures) {
   } catch (error) {
     fail(failures, `${label} is not valid JSON: ${error.message}`);
     return null;
-  }
-}
-
-function isValidHttpUrl(value) {
-  try {
-    const url = new URL(value);
-    return url.protocol === 'http:' || url.protocol === 'https:';
-  } catch {
-    return false;
   }
 }
 
@@ -436,34 +432,12 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
   const indexHtml = readText('index.html', artifacts.indexHtml, repoRoot, failures);
 
   let enabledSources = [];
-  let maxNewsItems = 30;
+  let maxNewsItems = DEFAULT_MAX_NEWS_ITEMS;
 
   if (config) {
-    if (!Array.isArray(config.sources) || config.sources.length === 0) {
-      fail(failures, 'config/news-sources.json must define at least one source');
-    } else {
-      enabledSources = config.sources.filter((source) => source.enabled);
-      enabledSources.forEach((source, index) => {
-        const label = `config source ${index + 1}`;
-        if (!source.name || typeof source.name !== 'string') {
-          fail(failures, `${label} must have a string name`);
-        }
-        if (!source.url || !isValidHttpUrl(source.url)) {
-          fail(failures, `${label} must have an http(s) url`);
-        }
-        if (source.type !== 'rss') {
-          fail(failures, `${label} has unsupported type "${source.type}"`);
-        }
-      });
-    }
-
-    if (config.settings && config.settings.maxNewsItems !== undefined) {
-      maxNewsItems = config.settings.maxNewsItems;
-    }
-
-    if (!Number.isInteger(maxNewsItems) || maxNewsItems <= 0) {
-      fail(failures, 'settings.maxNewsItems must be a positive integer');
-    }
+    const sourceConfig = validateSourceConfig(config, failures);
+    enabledSources = sourceConfig.enabledRssSources;
+    maxNewsItems = sourceConfig.maxNewsItems;
   }
 
   if (newsData) {
