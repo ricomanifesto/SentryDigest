@@ -1,7 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 const cheerio = require('cheerio');
-const { ISSUE_TRAIL_CONTRACT } = require('./generated-artifact-contracts');
+const {
+  ISSUE_TRAIL_CONTRACT,
+  SOURCE_COVERAGE_CONTRACT,
+} = require('./generated-artifact-contracts');
 
 function readText(label, filePath, repoRoot, failures) {
   if (!fs.existsSync(filePath)) {
@@ -165,6 +168,74 @@ function validateIssueTrailContract(indexHtml, failures) {
   }
 }
 
+function getExpectedSourceCounts(newsData, enabledSources) {
+  const counts = new Map();
+  enabledSources.forEach((source) => {
+    if (source && typeof source.name === 'string') {
+      counts.set(source.name, 0);
+    }
+  });
+
+  newsData.forEach((article) => {
+    if (!article || typeof article !== 'object' || Array.isArray(article) || typeof article.source !== 'string') {
+      return;
+    }
+    counts.set(article.source, (counts.get(article.source) || 0) + 1);
+  });
+
+  return counts;
+}
+
+function validateSourceCoverageContract(indexHtml, newsData, enabledSources, failures) {
+  const $ = cheerio.load(indexHtml);
+  const section = $(SOURCE_COVERAGE_CONTRACT.sectionSelector);
+  if (section.length === 0) {
+    fail(failures, 'index.html must render the source coverage contract');
+    return;
+  }
+
+  const expectedCounts = getExpectedSourceCounts(newsData, enabledSources);
+  const seenSources = new Set();
+  section.find(SOURCE_COVERAGE_CONTRACT.buttonSelector).each((index, element) => {
+    const button = $(element);
+    const source = button.attr(SOURCE_COVERAGE_CONTRACT.buttonDataAttribute) || '';
+    const countText = button.find('strong').first().text().trim();
+    const count = /^\d+$/.test(countText) ? Number.parseInt(countText, 10) : null;
+
+    if (seenSources.has(source)) {
+      fail(failures, `index.html source coverage duplicates source ${source}`);
+      return;
+    }
+    seenSources.add(source);
+
+    if (!expectedCounts.has(source)) {
+      fail(failures, `index.html source coverage includes unexpected source ${source}`);
+      return;
+    }
+
+    const expectedCount = expectedCounts.get(source);
+    if (count !== expectedCount) {
+      fail(failures, `index.html source coverage count for ${source} ${countText || 'missing'} does not match news-data.json count ${expectedCount}`);
+    }
+
+    const filterOption = $(`${SOURCE_COVERAGE_CONTRACT.sourceFilterSelector} option`)
+      .filter((optionIndex, option) => $(option).attr('value') === source);
+    if (expectedCount > 0 && filterOption.length === 0) {
+      fail(failures, `index.html source coverage source ${source} is not available in the source filter`);
+    }
+
+    if (expectedCount === 0 && (button.attr('disabled') === undefined || button.attr('aria-disabled') !== 'true')) {
+      fail(failures, `index.html source coverage source ${source} with zero items must be disabled`);
+    }
+  });
+
+  expectedCounts.forEach((count, source) => {
+    if (!seenSources.has(source)) {
+      fail(failures, `index.html source coverage is missing source ${source}`);
+    }
+  });
+}
+
 function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
   const artifacts = {
     config: path.join(repoRoot, 'config/news-sources.json'),
@@ -307,6 +378,7 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
       fail(failures, 'index.html must link to feed.xml');
     }
     validateIssueTrailContract(indexHtml, failures);
+    validateSourceCoverageContract(indexHtml, newsData, enabledSources, failures);
 
     const articleCount = countMatches(indexHtml, /<article class="news-item"/g);
     if (newsData.length > 0 && articleCount !== newsData.length) {

@@ -4,7 +4,10 @@ const os = require('node:os');
 const path = require('node:path');
 const test = require('node:test');
 
-const { ISSUE_TRAIL_CONTRACT } = require('../scripts/generated-artifact-contracts');
+const {
+  ISSUE_TRAIL_CONTRACT,
+  SOURCE_COVERAGE_CONTRACT,
+} = require('../scripts/generated-artifact-contracts');
 const { validateArtifacts } = require('../scripts/validate-artifacts');
 
 function writeJson(filePath, value) {
@@ -26,6 +29,41 @@ function renderArchiveTrail() {
       <span class="issue-trail-meta">${ISSUE_TRAIL_CONTRACT.cadenceText}</span>
     </nav>
     <span id="${ISSUE_TRAIL_CONTRACT.sourceCoverageAnchorId}" class="anchor-target" aria-hidden="true"></span>`;
+}
+
+function collectFixtureSourceCounts(newsData, sourceNames = ['Example Security']) {
+  const counts = new Map(sourceNames.map((source) => [source, 0]));
+
+  newsData.forEach((item) => {
+    if (!item || typeof item !== 'object' || Array.isArray(item) || typeof item.source !== 'string') {
+      return;
+    }
+    counts.set(item.source, (counts.get(item.source) || 0) + 1);
+  });
+
+  return [...counts.entries()].map(([source, count]) => ({ source, count }));
+}
+
+function renderFixtureSourceControls(newsData, sourceNames) {
+  const activeSources = collectFixtureSourceCounts(newsData, sourceNames)
+    .filter(({ count }) => count > 0)
+    .map(({ source }) => `<option value="${source}">${source}</option>`)
+    .join('');
+  const sourceButtons = collectFixtureSourceCounts(newsData, sourceNames)
+    .map(({ source, count }) => {
+      const emptyClass = count === 0 ? ' source-count-empty' : '';
+      const disabledAttributes = count === 0 ? ' aria-disabled="true" disabled' : '';
+      return `<button class="source-count${emptyClass}" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="${source}" aria-pressed="false"${disabledAttributes}>${source} <strong>${count}</strong></button>`;
+    })
+    .join('');
+
+  return `<select id="sourceFilter" class="select" aria-label="Filter by source">
+      <option value="">All sources</option>
+      ${activeSources}
+    </select>
+    <section class="${SOURCE_COVERAGE_CONTRACT.sectionClass}" aria-label="RSS source coverage">
+      <div class="source-counts">${sourceButtons}</div>
+    </section>`;
 }
 
 function createFixture(overrides = {}) {
@@ -83,6 +121,7 @@ function createFixture(overrides = {}) {
         <h1>SentryDigest</h1>
         <a href="./feed.xml">RSS</a>
         ${renderArchiveTrail()}
+        ${renderFixtureSourceControls(newsData, ['Example Security'])}
         ${newsData.map((item) => `<article class="news-item"><a href="${item.link}">${item.title}</a></article>`).join('\n')}
       </body></html>`
   );
@@ -179,6 +218,32 @@ test('validateArtifacts rejects a missing generated archive trail contract', () 
   assert.match(result.failures.join('\n'), /index\.html must render the digest archive trail contract/);
 });
 
+test('validateArtifacts rejects generated source coverage count drift', () => {
+  const repoRoot = createFixture({
+    indexHtml: `<html><body>
+      <h1>SentryDigest</h1>
+      <a href="./feed.xml">RSS</a>
+      ${renderArchiveTrail()}
+      <select id="sourceFilter" class="select" aria-label="Filter by source">
+        <option value="">All sources</option>
+        <option value="Example Security">Example Security</option>
+      </select>
+      <section class="${SOURCE_COVERAGE_CONTRACT.sectionClass}" aria-label="RSS source coverage">
+        <div class="source-counts">
+          <button class="source-count" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="Example Security" aria-pressed="false">Example Security <strong>1</strong></button>
+        </div>
+      </section>
+      <article class="news-item"><a href="https://example.com/newer">Newer item</a></article>
+      <article class="news-item"><a href="https://example.com/older">Older item</a></article>
+    </body></html>`,
+  });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(result.failures.join('\n'), /index\.html source coverage count for Example Security 1 does not match news-data\.json count 2/);
+});
+
 test('validateArtifacts accepts escaped generated HTML article hrefs', () => {
   const repoRoot = createFixture({
     newsData: [
@@ -194,6 +259,11 @@ test('validateArtifacts accepts escaped generated HTML article hrefs', () => {
       <h1>SentryDigest</h1>
       <a href="./feed.xml">RSS</a>
       ${renderArchiveTrail()}
+      ${renderFixtureSourceControls([
+        {
+          source: 'Example Security',
+        },
+      ], ['Example Security'])}
       <article class="news-item"><a href="https://example.com/article?x=1&amp;y=2">Query item</a></article>
     </body></html>`,
   });
@@ -219,6 +289,11 @@ test('validateArtifacts accepts renderer-normalized generated HTML article hrefs
       <h1>SentryDigest</h1>
       <a href="./feed.xml">RSS</a>
       ${renderArchiveTrail()}
+      ${renderFixtureSourceControls([
+        {
+          source: 'Example Security',
+        },
+      ], ['Example Security'])}
       <article class="news-item"><a href="https://example.com/">Normalized item</a></article>
     </body></html>`,
   });

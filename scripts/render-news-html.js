@@ -1,4 +1,7 @@
-const { ISSUE_TRAIL_CONTRACT } = require('./generated-artifact-contracts');
+const {
+  ISSUE_TRAIL_CONTRACT,
+  SOURCE_COVERAGE_CONTRACT,
+} = require('./generated-artifact-contracts');
 
 function escapeHtml(value) {
   return String(value ?? '')
@@ -317,11 +320,11 @@ function renderSourceCoverage(newsItems, sourceNames = [], digestLegend = '') {
     .map(({ source, count }) => {
       const emptyClass = count === 0 ? ' source-count-empty' : '';
       const disabledAttributes = count === 0 ? ' aria-disabled="true" disabled' : '';
-      return `<button class="source-count${emptyClass}" type="button" data-source-filter="${escapeAttribute(source)}" aria-pressed="false"${disabledAttributes}>${escapeHtml(source)} <strong>${count}</strong></button>`;
+      return `<button class="source-count${emptyClass}" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="${escapeAttribute(source)}" aria-pressed="false"${disabledAttributes}>${escapeHtml(source)} <strong>${count}</strong></button>`;
     })
     .join('');
 
-  return `<section class="source-coverage" aria-label="RSS source coverage">
+  return `<section class="${SOURCE_COVERAGE_CONTRACT.sectionClass}" aria-label="RSS source coverage">
       <div class="source-coverage-label">RSS source coverage</div>
       <div class="source-counts">${sourceCountItems}</div>
       <div class="source-coverage-actions">
@@ -854,7 +857,7 @@ function generateHTML(newsItems, options = {}) {
       const resetFilters = q('#resetFilters');
       const filterInsights = q('#filterInsights');
       const operatorLanes = qa('.operator-lane');
-      const sourceCoverageButtons = qa('[data-source-filter]');
+      const sourceCoverageButtons = qa('${SOURCE_COVERAGE_CONTRACT.buttonSelector}');
       const stats = q('#stats');
       const cards = qa('.news-item');
       const filterParams = {
@@ -1046,7 +1049,7 @@ function generateHTML(newsItems, options = {}) {
         if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('${nowIso}').toLocaleString());
         if (emptyFilteredState) emptyFilteredState.hidden = visible !== 0;
         sourceCoverageButtons.forEach(function(button){
-          button.setAttribute('aria-pressed', button.getAttribute('data-source-filter') === src ? 'true' : 'false');
+          button.setAttribute('aria-pressed', button.getAttribute('${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}') === src ? 'true' : 'false');
         });
         renderActiveFilters();
         renderFilterInsights(visibleCards);
@@ -1060,7 +1063,7 @@ function generateHTML(newsItems, options = {}) {
       sourceCoverageButtons.forEach(function(button){
         button.addEventListener('click', function(){
           if (!sourceFilter) return;
-          const source = button.getAttribute('data-source-filter') || '';
+          const source = button.getAttribute('${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}') || '';
           sourceFilter.value = sourceFilter.value === source ? '' : source;
           update();
         });
