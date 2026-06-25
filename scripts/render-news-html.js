@@ -1015,6 +1015,14 @@ function generateHTML(newsItems, options = {}) {
         appendInsightGroup('Handoff', handoffCounts, 2);
       }
 
+      function renderEmptyFilteredState(visible, src, hasComposedFilters){
+        if (!emptyFilteredState) return;
+        emptyFilteredState.hidden = visible !== 0;
+        if (visible !== 0) return;
+        const sourceLabel = src ? getControlLabel(sourceFilter) : '';
+        emptyFilteredState.textContent = sourceLabel && hasComposedFilters ? 'No ' + sourceLabel + ' articles match the current filters.' : 'No articles match the current filters.';
+      }
+
       function updateOperatorLanes(visibleCards){
         operatorLanes.forEach(function(lane){
           const cue = lane.getAttribute('data-lane-cue');
@@ -1069,7 +1077,7 @@ function generateHTML(newsItems, options = {}) {
         const articleLabel = visible === 1 ? 'article' : 'articles';
         const hasComposedFilters = Boolean(term || severity || tag || vendor || age || handoff);
         if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('${nowIso}').toLocaleString());
-        if (emptyFilteredState) emptyFilteredState.hidden = visible !== 0;
+        renderEmptyFilteredState(visible, src, hasComposedFilters);
         sourceCoverageButtons.forEach(function(button){
           button.setAttribute('aria-pressed', button.getAttribute('${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}') === src ? 'true' : 'false');
         });
