@@ -77,6 +77,9 @@
     .source-count-empty { color: var(--muted); cursor: default; opacity: 0.78; }
     .source-count-empty:hover { border-color: transparent; }
     .source-count strong { color: var(--accent); margin-left: 4px; }
+    .source-health-summary { align-items: center; color: var(--muted); display: flex; flex: 0 1 auto; flex-wrap: wrap; font-size: 12px; gap: 6px; }
+    .source-health-summary span { background: var(--bg); border: 1px solid var(--card-border); border-radius: 999px; padding: 3px 8px; }
+    .source-health-summary strong { color: var(--fg); }
     .source-coverage a { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
     .source-coverage a:hover { text-decoration: underline; }
     .feed-link { align-items: center; display: inline-flex; gap: 6px; }
@@ -203,10 +206,10 @@
       <div id="activeFilters" class="active-filters" hidden aria-live="polite"></div>
       <button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters</button>
     </div>
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-25T18:52:29.533Z">6/25/2026, 6:52:29 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-25T18:52:29.587Z">6/25/2026, 6:52:29 PM</time></div>
     <section class="issue-strip" aria-label="Digest issue metadata">
       <span class="issue-label">Current issue</span>
-      <time datetime="2026-06-25T18:52:29.533Z">June 25, 2026</time>
+      <time datetime="2026-06-25T18:52:29.587Z">June 25, 2026</time>
       <span class="issue-stat"><strong>30</strong> articles</span>
       <span class="issue-stat"><strong>3</strong> sources</span>
       <a class="issue-link" href="./feed.xml">RSS archive</a>
@@ -215,7 +218,7 @@
       <span class="issue-trail-current" aria-current="page">Current digest</span>
       <a href="./feed.xml">RSS feed</a>
       <a href="#sourceCoverage">Source coverage</a>
-      <span class="issue-trail-meta">Updated <time datetime="2026-06-25T18:52:29.533Z">18:52 UTC</time></span>
+      <span class="issue-trail-meta">Updated <time datetime="2026-06-25T18:52:29.587Z">18:52 UTC</time></span>
       <span class="issue-trail-meta">3h cadence</span>
     </nav>
     <div id="filterInsights" class="filter-insights" aria-live="polite"></div>
@@ -223,6 +226,10 @@
     <section class="source-coverage" aria-label="RSS source coverage">
       <div class="source-coverage-label">RSS source coverage</div>
       <div class="source-counts"><button class="source-count" type="button" data-source-filter="Bleeping Computer" aria-pressed="false">Bleeping Computer <strong>14</strong></button><button class="source-count" type="button" data-source-filter="The Hacker News" aria-pressed="false">The Hacker News <strong>10</strong></button><button class="source-count" type="button" data-source-filter="Dark Reading" aria-pressed="false">Dark Reading <strong>6</strong></button><button class="source-count source-count-empty" type="button" data-source-filter="Krebs on Security" aria-pressed="false" aria-disabled="true" disabled>Krebs on Security <strong>0</strong></button><button class="source-count source-count-empty" type="button" data-source-filter="Threatpost" aria-pressed="false" aria-disabled="true" disabled>Threatpost <strong>0</strong></button></div>
+      <div class="source-health-summary" data-active-sources="3" data-quiet-sources="2">
+        <span><strong>3</strong> active feeds</span>
+        <span><strong>2</strong> quiet feeds</span>
+      </div>
       <div class="source-coverage-actions">
         <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with 30 latest articles">RSS feed <span class="feed-link-count">30 items</span></a>
         <details class="digest-legend" aria-label="Digest legend">
@@ -1138,7 +1145,7 @@ For years, cybersecurity moved to a rhythm organizations could</span><span class
         });
         const total = 30;
         const srcCount = 3;
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-25T18:52:29.533Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-25T18:52:29.587Z').toLocaleString());
         if (emptyFilteredState) emptyFilteredState.hidden = visible !== 0;
         sourceCoverageButtons.forEach(function(button){
           button.setAttribute('aria-pressed', button.getAttribute('data-source-filter') === src ? 'true' : 'false');

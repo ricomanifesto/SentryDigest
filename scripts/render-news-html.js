@@ -317,6 +317,10 @@ function renderSourceCoverage(newsItems, sourceNames = [], digestLegend = '') {
 
   const feedItemLabel = newsItems.length === 1 ? '1 item' : `${newsItems.length} items`;
   const feedArticleLabel = newsItems.length === 1 ? '1 latest article' : `${newsItems.length} latest articles`;
+  const activeSourceCount = sourceCounts.filter(({ count }) => count > 0).length;
+  const quietSourceCount = sourceCounts.filter(({ count }) => count === 0).length;
+  const activeFeedLabel = activeSourceCount === 1 ? 'active feed' : 'active feeds';
+  const quietFeedLabel = quietSourceCount === 1 ? 'quiet feed' : 'quiet feeds';
   const sourceCountItems = sourceCounts
     .map(({ source, count }) => {
       const emptyClass = count === 0 ? ' source-count-empty' : '';
@@ -328,6 +332,10 @@ function renderSourceCoverage(newsItems, sourceNames = [], digestLegend = '') {
   return `<section class="${SOURCE_COVERAGE_CONTRACT.sectionClass}" aria-label="RSS source coverage">
       <div class="source-coverage-label">RSS source coverage</div>
       <div class="source-counts">${sourceCountItems}</div>
+      <div class="source-health-summary" ${SOURCE_COVERAGE_CONTRACT.activeSourcesAttribute}="${activeSourceCount}" ${SOURCE_COVERAGE_CONTRACT.quietSourcesAttribute}="${quietSourceCount}">
+        <span><strong>${activeSourceCount}</strong> ${activeFeedLabel}</span>
+        <span><strong>${quietSourceCount}</strong> ${quietFeedLabel}</span>
+      </div>
       <div class="source-coverage-actions">
         <a class="feed-link" href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}" aria-label="Open RSS feed with ${feedArticleLabel}">RSS feed <span class="feed-link-count">${feedItemLabel}</span></a>
         ${digestLegend}
@@ -683,6 +691,9 @@ function generateHTML(newsItems, options = {}) {
     .source-count-empty { color: var(--muted); cursor: default; opacity: 0.78; }
     .source-count-empty:hover { border-color: transparent; }
     .source-count strong { color: var(--accent); margin-left: 4px; }
+    .source-health-summary { align-items: center; color: var(--muted); display: flex; flex: 0 1 auto; flex-wrap: wrap; font-size: 12px; gap: 6px; }
+    .source-health-summary span { background: var(--bg); border: 1px solid var(--card-border); border-radius: 999px; padding: 3px 8px; }
+    .source-health-summary strong { color: var(--fg); }
     .source-coverage a { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
     .source-coverage a:hover { text-decoration: underline; }
     .feed-link { align-items: center; display: inline-flex; gap: 6px; }

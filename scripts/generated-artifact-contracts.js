@@ -21,8 +21,11 @@ const ISSUE_TRAIL_CONTRACT = Object.freeze({
 });
 
 const SOURCE_COVERAGE_CONTRACT = Object.freeze({
+  activeSourcesAttribute: 'data-active-sources',
   buttonDataAttribute: 'data-source-filter',
   buttonSelector: '[data-source-filter]',
+  healthSelector: '.source-health-summary',
+  quietSourcesAttribute: 'data-quiet-sources',
   sectionClass: 'source-coverage',
   sectionSelector: '.source-coverage',
   sourceFilterSelector: '#sourceFilter',
