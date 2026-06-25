@@ -237,11 +237,14 @@ function validateDashboardRssLinkContract(indexHtml, failures) {
   const $ = cheerio.load(indexHtml);
 
   DASHBOARD_RSS_LINK_CONTRACT.linkSelectors.forEach((selector) => {
+    let rssLinkCount = 0;
+
     $(selector).each((index, element) => {
       if (!isDashboardRssLink($, element)) {
         return;
       }
 
+      rssLinkCount += 1;
       const href = $(element).attr('href') || '';
       if (href !== DASHBOARD_RSS_LINK_CONTRACT.feedHref) {
         fail(
@@ -250,6 +253,10 @@ function validateDashboardRssLinkContract(indexHtml, failures) {
         );
       }
     });
+
+    if (rssLinkCount === 0) {
+      fail(failures, `index.html must render RSS link ${selector} for the dashboard RSS link contract`);
+    }
   });
 }
 
