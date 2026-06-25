@@ -128,6 +128,29 @@ function extractFeedItemLinks(feedXml) {
   return links;
 }
 
+function extractFeedItemMetadata(feedXml) {
+  const items = [];
+  const itemPattern = /<item\b[^>]*>[\s\S]*?<\/item>/gi;
+  const linkPattern = /<link\b[^>]*>([\s\S]*?)<\/link>/i;
+  const pubDatePattern = /<pubDate\b[^>]*>([\s\S]*?)<\/pubDate>/i;
+  const dcDatePattern = /<dc:date\b[^>]*>([\s\S]*?)<\/dc:date>/i;
+  let itemMatch;
+
+  while ((itemMatch = itemPattern.exec(feedXml)) !== null) {
+    const itemXml = itemMatch[0];
+    const linkMatch = linkPattern.exec(itemXml);
+    const pubDateMatch = pubDatePattern.exec(itemXml);
+    const dcDateMatch = dcDatePattern.exec(itemXml);
+    items.push({
+      link: linkMatch ? decodeHtmlEntities(linkMatch[1].trim()) : '',
+      pubDate: pubDateMatch ? decodeHtmlEntities(pubDateMatch[1].trim()) : '',
+      dcDate: dcDateMatch ? decodeHtmlEntities(dcDateMatch[1].trim()) : '',
+    });
+  }
+
+  return items;
+}
+
 function assertLinksMatchNewsData(label, actualLinks, newsData, failures, linkLabel = 'link') {
   if (actualLinks.length !== newsData.length) {
     fail(failures, `${label} has ${actualLinks.length} article links, expected ${newsData.length}`);
@@ -143,6 +166,36 @@ function assertLinksMatchNewsData(label, actualLinks, newsData, failures, linkLa
     const expectedLink = article.link;
     if (actualLink !== expectedLink) {
       fail(failures, `${label} item ${index + 1} ${linkLabel} ${actualLink} does not match news-data.json link ${expectedLink}`);
+    }
+  });
+}
+
+function assertFeedItemMetadataMatchesNewsData(feedItems, newsData, failures) {
+  if (feedItems.length !== newsData.length) {
+    return;
+  }
+
+  feedItems.forEach((feedItem, index) => {
+    const article = newsData[index];
+    if (!article || typeof article !== 'object' || Array.isArray(article) || !isValidDate(article.date)) {
+      return;
+    }
+
+    const articleDate = new Date(article.date);
+    const expectedTime = Math.floor(articleDate.getTime() / 1000);
+    const expectedDay = articleDate.toISOString().slice(0, 10);
+    const itemLabel = `feed.xml item ${index + 1}`;
+
+    if (!feedItem.pubDate || !isValidDate(feedItem.pubDate)) {
+      fail(failures, `${itemLabel} pubDate must be a valid date`);
+    } else if (Math.floor(new Date(feedItem.pubDate).getTime() / 1000) !== expectedTime) {
+      fail(failures, `${itemLabel} pubDate ${feedItem.pubDate} does not match news-data.json date ${article.date}`);
+    }
+
+    if (!feedItem.dcDate || !isValidDate(feedItem.dcDate)) {
+      fail(failures, `${itemLabel} dc:date must be a valid date`);
+    } else if (new Date(feedItem.dcDate).toISOString().slice(0, 10) !== expectedDay) {
+      fail(failures, `${itemLabel} dc:date ${feedItem.dcDate} does not match news-data.json date ${expectedDay}`);
     }
   });
 }
@@ -416,7 +469,9 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
       fail(failures, `feed.xml has ${feedItemCount} items, expected ${newsData.length}`);
     }
 
-    assertLinksMatchNewsData('feed.xml', extractFeedItemLinks(feedXml), newsData, failures);
+    const feedItems = extractFeedItemMetadata(feedXml);
+    assertLinksMatchNewsData('feed.xml', feedItems.map((item) => item.link), newsData, failures);
+    assertFeedItemMetadataMatchesNewsData(feedItems, newsData, failures);
 
     if (!feedXml.includes('https://ricomanifesto.github.io/SentryDigest/feed.xml')) {
       fail(failures, 'feed.xml must advertise the public SentryDigest feed URL');
@@ -490,6 +545,7 @@ if (require.main === module) {
 
 module.exports = {
   extractFeedItemLinks,
+  extractFeedItemMetadata,
   extractArticleHrefs,
   getGeneratedMetadataTimestamps,
   isSafeGeneratedArticleHref,

@@ -7,6 +7,10 @@ const moment = require('moment');
 const newsDataPath = path.join(__dirname, '../news-data.json');
 const rssOutputPath = path.join(__dirname, '../feed.xml');
 
+function formatFeedItemDate(date) {
+  return moment.utc(date).format('YYYY-MM-DD');
+}
+
 // Create RSS feed
 function generateRSSFeed() {
   try {
@@ -57,7 +61,7 @@ function generateRSSFeed() {
         date: item.date,
         custom_elements: [
           {'dc:source': item.source},
-          {'dc:date': moment(item.date).format('YYYY-MM-DD')}
+          {'dc:date': formatFeedItemDate(item.date)}
         ]
       });
     });
@@ -88,4 +92,11 @@ function generateRSSFeed() {
   }
 }
 
-generateRSSFeed();
+if (require.main === module) {
+  generateRSSFeed();
+}
+
+module.exports = {
+  formatFeedItemDate,
+  generateRSSFeed,
+};
