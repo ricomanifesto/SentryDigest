@@ -75,6 +75,17 @@ function renderFixtureSourceControls(newsData, sourceNames) {
     </section>`;
 }
 
+function renderFeedItem(item, overrides = {}) {
+  const pubDate = overrides.pubDate || new Date(item.date).toUTCString();
+  const dcDate = overrides.dcDate || item.date.slice(0, 10);
+  return `<item>
+        <title>${item.title}</title>
+        <link>${item.link}</link>
+        <pubDate>${pubDate}</pubDate>
+        <dc:date>${dcDate}</dc:date>
+      </item>`;
+}
+
 function createFixture(overrides = {}) {
   const repoRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'sentrydigest-'));
   const newsData = overrides.newsData || [
@@ -120,7 +131,7 @@ function createFixture(overrides = {}) {
     overrides.feedXml ||
       `<?xml version="1.0" encoding="UTF-8"?><rss><channel>
         <atom:link href="https://ricomanifesto.github.io/SentryDigest/feed.xml" />
-        ${newsData.map((item) => `<item><title>${item.title}</title><link>${item.link}</link></item>`).join('\n')}
+        ${newsData.map((item) => renderFeedItem(item)).join('\n')}
       </channel></rss>`
   );
   writeText(
@@ -179,8 +190,16 @@ test('validateArtifacts rejects feed links that drift from news-data', () => {
   const repoRoot = createFixture({
     feedXml: `<?xml version="1.0" encoding="UTF-8"?><rss><channel>
       <atom:link href="https://ricomanifesto.github.io/SentryDigest/feed.xml" />
-      <item><title>Newer item</title><link>https://example.com/wrong-newer</link></item>
-      <item><title>Older item</title><link>https://example.com/older</link></item>
+      ${renderFeedItem({
+        title: 'Newer item',
+        link: 'https://example.com/wrong-newer',
+        date: '2026-06-17T18:00:00.000Z',
+      })}
+      ${renderFeedItem({
+        title: 'Older item',
+        link: 'https://example.com/older',
+        date: '2026-06-17T17:00:00.000Z',
+      })}
     </channel></rss>`,
   });
 
@@ -191,6 +210,104 @@ test('validateArtifacts rejects feed links that drift from news-data', () => {
     result.failures.join('\n'),
     /feed\.xml item 1 link https:\/\/example\.com\/wrong-newer does not match news-data\.json link https:\/\/example\.com\/newer/
   );
+});
+
+test('validateArtifacts rejects feed item date drift from news-data', () => {
+  const repoRoot = createFixture({
+    feedXml: `<?xml version="1.0" encoding="UTF-8"?><rss><channel>
+      <atom:link href="https://ricomanifesto.github.io/SentryDigest/feed.xml" />
+      ${renderFeedItem({
+        title: 'Newer item',
+        link: 'https://example.com/newer',
+        date: '2026-06-17T18:00:00.000Z',
+      }, {
+        pubDate: 'Wed, 17 Jun 2026 16:00:00 GMT',
+        dcDate: '2026-06-17',
+      })}
+      ${renderFeedItem({
+        title: 'Older item',
+        link: 'https://example.com/older',
+        date: '2026-06-17T17:00:00.000Z',
+      })}
+    </channel></rss>`,
+  });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(
+    result.failures.join('\n'),
+    /feed\.xml item 1 pubDate Wed, 17 Jun 2026 16:00:00 GMT does not match news-data\.json date 2026-06-17T18:00:00.000Z/
+  );
+});
+
+test('validateArtifacts rejects feed item dc date drift from news-data', () => {
+  const repoRoot = createFixture({
+    feedXml: `<?xml version="1.0" encoding="UTF-8"?><rss><channel>
+      <atom:link href="https://ricomanifesto.github.io/SentryDigest/feed.xml" />
+      ${renderFeedItem({
+        title: 'Newer item',
+        link: 'https://example.com/newer',
+        date: '2026-06-17T18:00:00.000Z',
+      }, {
+        dcDate: '2026-06-16',
+      })}
+      ${renderFeedItem({
+        title: 'Older item',
+        link: 'https://example.com/older',
+        date: '2026-06-17T17:00:00.000Z',
+      })}
+    </channel></rss>`,
+  });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(
+    result.failures.join('\n'),
+    /feed\.xml item 1 dc:date 2026-06-16 does not match news-data\.json date 2026-06-17/
+  );
+});
+
+test('validateArtifacts accepts RSS pubDate second precision', () => {
+  const repoRoot = createFixture({
+    newsData: [
+      {
+        title: 'Millisecond item',
+        link: 'https://example.com/millisecond',
+        date: '2026-06-17T18:00:00.123Z',
+        source: 'Example Security',
+        summary: 'Story with millisecond precision.',
+      },
+    ],
+    feedXml: `<?xml version="1.0" encoding="UTF-8"?><rss><channel>
+      <atom:link href="https://ricomanifesto.github.io/SentryDigest/feed.xml" />
+      ${renderFeedItem({
+        title: 'Millisecond item',
+        link: 'https://example.com/millisecond',
+        date: '2026-06-17T18:00:00.123Z',
+      }, {
+        pubDate: 'Wed, 17 Jun 2026 18:00:00 GMT',
+      })}
+    </channel></rss>`,
+    indexHtml: `<html><body>
+      <h1>SentryDigest</h1>
+      <a href="./feed.xml">RSS</a>
+      ${renderGeneratedMetadata()}
+      ${renderArchiveTrail()}
+      ${renderFixtureSourceControls([
+        {
+          source: 'Example Security',
+        },
+      ], ['Example Security'])}
+      <article class="news-item"><a href="https://example.com/millisecond">Millisecond item</a></article>
+    </body></html>`,
+  });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, true);
+  assert.deepEqual(result.failures, []);
 });
 
 test('validateArtifacts rejects generated HTML article links that drift from news-data', () => {
@@ -360,7 +477,12 @@ test('validateArtifacts reports malformed news-data items without throwing durin
     newsData: [null],
     feedXml: `<?xml version="1.0" encoding="UTF-8"?><rss><channel>
       <atom:link href="https://ricomanifesto.github.io/SentryDigest/feed.xml" />
-      <item><title>Malformed</title><link>https://example.com/malformed</link></item>
+      <item>
+        <title>Malformed</title>
+        <link>https://example.com/malformed</link>
+        <pubDate>Wed, 17 Jun 2026 18:00:00 GMT</pubDate>
+        <dc:date>2026-06-17</dc:date>
+      </item>
     </channel></rss>`,
     indexHtml: `<html><body>
       <h1>SentryDigest</h1>
