@@ -333,7 +333,28 @@ function validateSourceCoverageContract(indexHtml, newsData, enabledSources, fai
   }
 
   const expectedCounts = getExpectedSourceCounts(newsData, enabledSources);
+  const expectedActiveSources = Array.from(expectedCounts.values()).filter((count) => count > 0).length;
+  const expectedQuietSources = Array.from(expectedCounts.values()).filter((count) => count === 0).length;
+  const sourceHealthSummary = section.find(SOURCE_COVERAGE_CONTRACT.healthSelector).first();
   const seenSources = new Set();
+
+  if (sourceHealthSummary.length === 0) {
+    fail(failures, 'index.html must render the source health summary');
+  } else {
+    const activeCountText = sourceHealthSummary.attr(SOURCE_COVERAGE_CONTRACT.activeSourcesAttribute) || '';
+    const quietCountText = sourceHealthSummary.attr(SOURCE_COVERAGE_CONTRACT.quietSourcesAttribute) || '';
+    const activeCount = /^\d+$/.test(activeCountText) ? Number.parseInt(activeCountText, 10) : null;
+    const quietCount = /^\d+$/.test(quietCountText) ? Number.parseInt(quietCountText, 10) : null;
+
+    if (activeCount !== expectedActiveSources) {
+      fail(failures, `index.html source health active count ${activeCountText || 'missing'} does not match expected ${expectedActiveSources}`);
+    }
+
+    if (quietCount !== expectedQuietSources) {
+      fail(failures, `index.html source health quiet count ${quietCountText || 'missing'} does not match expected ${expectedQuietSources}`);
+    }
+  }
+
   section.find(SOURCE_COVERAGE_CONTRACT.buttonSelector).each((index, element) => {
     const button = $(element);
     const source = button.attr(SOURCE_COVERAGE_CONTRACT.buttonDataAttribute) || '';
