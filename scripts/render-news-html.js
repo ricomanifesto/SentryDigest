@@ -542,6 +542,13 @@ function formatIssueDate(date) {
   }).format(new Date(date));
 }
 
+function formatUtcTime(date) {
+  const value = new Date(date);
+  const hours = String(value.getUTCHours()).padStart(2, '0');
+  const minutes = String(value.getUTCMinutes()).padStart(2, '0');
+  return `${hours}:${minutes} UTC`;
+}
+
 function renderIssueStrip(totalItems, sourceCount, generatedAt) {
   const issueDate = new Date(generatedAt);
   const articleLabel = totalItems === 1 ? 'article' : 'articles';
@@ -556,11 +563,15 @@ function renderIssueStrip(totalItems, sourceCount, generatedAt) {
     </section>`;
 }
 
-function renderIssueTrail() {
+function renderIssueTrail(generatedAt) {
+  const issueDate = new Date(generatedAt);
+
   return `<nav class="issue-trail" aria-label="Digest archive trail">
       <span class="issue-trail-current" aria-current="page">Current digest</span>
       <a href="./feed.xml">RSS feed</a>
       <a href="#sourceCoverage">Source coverage</a>
+      <span class="issue-trail-meta">Updated <time datetime="${issueDate.toISOString()}">${formatUtcTime(issueDate)}</time></span>
+      <span class="issue-trail-meta">3h cadence</span>
     </nav>`;
 }
 
@@ -582,7 +593,7 @@ function generateHTML(newsItems, options = {}) {
   const sourceCoverage = renderSourceCoverage(newsItems, sourceNames, digestLegend);
   const operatorLanes = renderOperatorLanes(newsItems);
   const issueStrip = renderIssueStrip(totalItems, uniqueSources.length, generatedAt);
-  const issueTrail = renderIssueTrail();
+  const issueTrail = renderIssueTrail(generatedAt);
   const articleCards = newsItems.length > 0
     ? newsItems.map((article, index) => renderArticleCard(article, index, generatedAt)).join('')
     : renderEmptyState();
@@ -650,7 +661,8 @@ function generateHTML(newsItems, options = {}) {
     .issue-trail-current { color: var(--fg); font-weight: 600; }
     .issue-trail a { color: var(--accent); font-weight: 600; text-decoration: none; }
     .issue-trail a:hover { text-decoration: underline; }
-    .issue-trail a::before { color: var(--muted); content: "›"; font-weight: 400; margin-right: 10px; }
+    .issue-trail a::before, .issue-trail-meta::before { color: var(--muted); content: "›"; font-weight: 400; margin-right: 10px; }
+    .issue-trail-meta { color: var(--muted); font-weight: 500; }
     .anchor-target { display: block; scroll-margin-top: 96px; }
     .filter-insights { align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; padding: 10px 12px; }
     .filter-insights[hidden] { display: none; }
