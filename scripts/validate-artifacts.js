@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const cheerio = require('cheerio');
 const {
+  FEED_METADATA_CONTRACT,
   ISSUE_TRAIL_CONTRACT,
   SOURCE_COVERAGE_CONTRACT,
 } = require('./generated-artifact-contracts');
@@ -166,6 +167,56 @@ function validateIssueTrailContract(indexHtml, failures) {
   ) {
     fail(failures, 'index.html must render the digest archive trail contract');
   }
+}
+
+function getGeneratedMetadataTimestamps(indexHtml, failures = []) {
+  const $ = cheerio.load(indexHtml);
+  const selectors = [
+    ['stats', FEED_METADATA_CONTRACT.statsTimeSelector],
+    ['issue strip', FEED_METADATA_CONTRACT.issueStripTimeSelector],
+    ['issue trail', FEED_METADATA_CONTRACT.issueTrailTimeSelector],
+  ];
+  const timestamps = new Set();
+
+  selectors.forEach(([label, selector]) => {
+    const elements = $(selector);
+    if (elements.length === 0) {
+      fail(failures, `index.html must render generated metadata timestamp for ${label}`);
+      return;
+    }
+
+    elements.each((index, element) => {
+      const value = $(element).attr('datetime');
+      if (isValidDate(value)) {
+        timestamps.add(value);
+      } else {
+        fail(failures, `index.html generated metadata timestamp for ${label} must be a valid date`);
+      }
+    });
+  });
+
+  return [...timestamps];
+}
+
+function validateFeedMetadataContract(feedInfo, indexHtml, failures) {
+  const feedUpdatedAt = new Date(feedInfo.lastUpdated).getTime();
+  const generatedTimestamps = getGeneratedMetadataTimestamps(indexHtml, failures);
+
+  if (generatedTimestamps.length === 0) {
+    fail(failures, 'index.html must render generated metadata timestamps');
+    return;
+  }
+
+  generatedTimestamps.forEach((timestamp) => {
+    const generatedAt = new Date(timestamp).getTime();
+    const driftMs = Math.abs(feedUpdatedAt - generatedAt);
+    if (driftMs > FEED_METADATA_CONTRACT.maxTimestampDriftMs) {
+      fail(
+        failures,
+        `feed-info.json lastUpdated must align with generated index.html metadata; ${feedInfo.lastUpdated} differs from ${timestamp} by ${driftMs}ms`
+      );
+    }
+  });
 }
 
 function getExpectedSourceCounts(newsData, enabledSources) {
@@ -350,6 +401,8 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
 
     if (!feedInfo.lastUpdated || !isValidDate(feedInfo.lastUpdated)) {
       fail(failures, 'feed-info.json lastUpdated must be a valid date');
+    } else if (indexHtml) {
+      validateFeedMetadataContract(feedInfo, indexHtml, failures);
     }
   }
 
@@ -438,6 +491,7 @@ if (require.main === module) {
 module.exports = {
   extractFeedItemLinks,
   extractArticleHrefs,
+  getGeneratedMetadataTimestamps,
   isSafeGeneratedArticleHref,
   normalizeGeneratedArticleLink,
   validateArtifacts,
