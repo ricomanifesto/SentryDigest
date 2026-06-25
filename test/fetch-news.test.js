@@ -1048,7 +1048,9 @@ test('generateHTML wires source coverage counts into the source filter', () => {
   assert.ok(html.includes(`const source = button.getAttribute('${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}') || ''`));
   assert.match(html, /sourceFilter\.value = sourceFilter\.value === source \? '' : source/);
   assert.ok(html.includes(`button.setAttribute('aria-pressed', button.getAttribute('${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}') === src ? 'true' : 'false')`));
-  assert.ok(html.includes("sourceFilterStatus.textContent = (src ? 'Source shortcut: ' + getControlLabel(sourceFilter) : 'Source shortcut: All active feeds') + ' (' + visible + ' ' + articleLabel + ')'"));
+  assert.ok(html.includes("const hasComposedFilters = Boolean(term || severity || tag || vendor || age || handoff)"));
+  assert.ok(html.includes("const countLabel = hasComposedFilters ? (articleLabel === 'article' ? 'filtered article' : 'filtered articles') : articleLabel"));
+  assert.ok(html.includes("sourceFilterStatus.textContent = (src ? 'Source shortcut: ' + getControlLabel(sourceFilter) : 'Source shortcut: All active feeds') + ' (' + visible + ' ' + countLabel + ')'"));
   assert.match(html, /update\(\);/);
 });
 
