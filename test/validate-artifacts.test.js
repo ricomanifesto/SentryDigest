@@ -31,6 +31,15 @@ function renderArchiveTrail() {
     <span id="${ISSUE_TRAIL_CONTRACT.sourceCoverageAnchorId}" class="anchor-target" aria-hidden="true"></span>`;
 }
 
+function renderGeneratedMetadata(generatedAt = '2026-06-17T18:30:00.000Z') {
+  return `<section id="stats" aria-label="Digest statistics">
+      <time datetime="${generatedAt}">Generated at ${generatedAt}</time>
+    </section>
+    <div class="issue-strip">
+      <time datetime="${generatedAt}">Updated ${generatedAt}</time>
+    </div>`;
+}
+
 function collectFixtureSourceCounts(newsData, sourceNames = ['Example Security']) {
   const counts = new Map(sourceNames.map((source) => [source, 0]));
 
@@ -104,7 +113,7 @@ function createFixture(overrides = {}) {
     url: 'https://ricomanifesto.github.io/SentryDigest/feed.xml',
     itemCount: overrides.feedInfoItemCount ?? newsData.length,
     sources: ['Example Security'],
-    lastUpdated: '2026-06-17T18:30:00.000Z',
+    lastUpdated: overrides.feedInfoLastUpdated || '2026-06-17T18:30:00.000Z',
   });
   writeText(
     path.join(repoRoot, 'feed.xml'),
@@ -120,6 +129,7 @@ function createFixture(overrides = {}) {
       `<html><body>
         <h1>SentryDigest</h1>
         <a href="./feed.xml">RSS</a>
+        ${renderGeneratedMetadata()}
         ${renderArchiveTrail()}
         ${renderFixtureSourceControls(newsData, ['Example Security'])}
         ${newsData.map((item) => `<article class="news-item"><a href="${item.link}">${item.title}</a></article>`).join('\n')}
@@ -244,6 +254,45 @@ test('validateArtifacts rejects generated source coverage count drift', () => {
   assert.match(result.failures.join('\n'), /index\.html source coverage count for Example Security 1 does not match news-data\.json count 2/);
 });
 
+test('validateArtifacts rejects feed-info timestamp drift from the generated digest', () => {
+  const repoRoot = createFixture({
+    feedInfoLastUpdated: '2026-06-17T17:00:00.000Z',
+  });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(result.failures.join('\n'), /feed-info\.json lastUpdated must align with generated index\.html metadata/);
+});
+
+test('validateArtifacts rejects malformed generated metadata timestamps', () => {
+  const repoRoot = createFixture({
+    indexHtml: `<html><body>
+      <h1>SentryDigest</h1>
+      <a href="./feed.xml">RSS</a>
+      <section id="stats" aria-label="Digest statistics">
+        <time datetime="not-a-date">Broken</time>
+      </section>
+      <div class="issue-strip">
+        <time datetime="2026-06-17T18:30:00.000Z">Updated 18:30 UTC</time>
+      </div>
+      ${renderArchiveTrail()}
+      ${renderFixtureSourceControls([
+        {
+          source: 'Example Security',
+        },
+      ], ['Example Security'])}
+      <article class="news-item"><a href="https://example.com/newer">Newer item</a></article>
+      <article class="news-item"><a href="https://example.com/older">Older item</a></article>
+    </body></html>`,
+  });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(result.failures.join('\n'), /index\.html generated metadata timestamp for stats must be a valid date/);
+});
+
 test('validateArtifacts accepts escaped generated HTML article hrefs', () => {
   const repoRoot = createFixture({
     newsData: [
@@ -258,6 +307,7 @@ test('validateArtifacts accepts escaped generated HTML article hrefs', () => {
     indexHtml: `<html><body>
       <h1>SentryDigest</h1>
       <a href="./feed.xml">RSS</a>
+      ${renderGeneratedMetadata()}
       ${renderArchiveTrail()}
       ${renderFixtureSourceControls([
         {
@@ -288,6 +338,7 @@ test('validateArtifacts accepts renderer-normalized generated HTML article hrefs
     indexHtml: `<html><body>
       <h1>SentryDigest</h1>
       <a href="./feed.xml">RSS</a>
+      ${renderGeneratedMetadata()}
       ${renderArchiveTrail()}
       ${renderFixtureSourceControls([
         {

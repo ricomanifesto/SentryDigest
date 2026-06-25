@@ -17,7 +17,15 @@ const SOURCE_COVERAGE_CONTRACT = Object.freeze({
   sourceFilterSelector: '#sourceFilter',
 });
 
+const FEED_METADATA_CONTRACT = Object.freeze({
+  issueStripTimeSelector: '.issue-strip time[datetime]',
+  issueTrailTimeSelector: `${ISSUE_TRAIL_CONTRACT.navSelector} time[datetime]`,
+  maxTimestampDriftMs: 5 * 60 * 1000,
+  statsTimeSelector: '#stats time[datetime]',
+});
+
 module.exports = {
+  FEED_METADATA_CONTRACT,
   ISSUE_TRAIL_CONTRACT,
   SOURCE_COVERAGE_CONTRACT,
 };
