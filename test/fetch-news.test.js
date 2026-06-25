@@ -1163,6 +1163,23 @@ test('generateHTML renders facet filter controls and empty filtered state', () =
   assert.match(html, /split\(','\)\.filter\(Boolean\)\.includes\(vendor\)/);
 });
 
+test('generateHTML composes empty filtered state with active source shortcut context', () => {
+  const html = generateHTML([
+    {
+      title: 'Microsoft Exchange zero-day exploited by ransomware crew',
+      link: 'https://security.example.com/microsoft-exchange-zero-day',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'SecurityWeek',
+      summary: 'CVE-2026-1234 is under active exploitation in data breach investigations.',
+    },
+  ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
+
+  assert.match(html, /function renderEmptyFilteredState\(visible, src, hasComposedFilters\)/);
+  assert.ok(html.includes("const sourceLabel = src ? getControlLabel(sourceFilter) : ''"));
+  assert.ok(html.includes("emptyFilteredState.textContent = sourceLabel && hasComposedFilters ? 'No ' + sourceLabel + ' articles match the current filters.' : 'No articles match the current filters.'"));
+  assert.match(html, /renderEmptyFilteredState\(visible, src, hasComposedFilters\)/);
+});
+
 test('generateHTML renders long summaries as accessible expandable content', () => {
   const longSummary = `${'Security teams should prioritize exposed VPN appliances. '.repeat(6)}<script>alert(1)</script>`;
   const html = generateHTML([
