@@ -24,7 +24,13 @@ const FEED_METADATA_CONTRACT = Object.freeze({
   statsTimeSelector: '#stats time[datetime]',
 });
 
+const FEED_INFO_CONTRACT = Object.freeze({
+  publicFeedUrl: 'https://ricomanifesto.github.io/SentryDigest/feed.xml',
+  title: 'Cybersecurity News Aggregator RSS Feed',
+});
+
 module.exports = {
+  FEED_INFO_CONTRACT,
   FEED_METADATA_CONTRACT,
   ISSUE_TRAIL_CONTRACT,
   SOURCE_COVERAGE_CONTRACT,
