@@ -886,6 +886,23 @@ test('generateHTML renders explicit keyboard focus states for filter controls', 
   assert.match(html, /\.active-filter-clear:hover, \.active-filter-clear:focus-visible \{ background: var\(--chip\); color: var\(--accent\); outline: 2px solid var\(--accent\); outline-offset: 1px; \}/);
 });
 
+test('generateHTML renders explicit keyboard focus states for source shortcuts', () => {
+  const html = generateHTML([
+    {
+      title: 'Critical Cisco exploit campaign',
+      link: 'https://example.com/cisco',
+      pubDate: 'Wed, 25 Jun 2026 12:00:00 GMT',
+      date: '2026-06-25T12:00:00.000Z',
+      source: 'Example Source',
+      summary: 'Cisco exploit campaign with ransomware follow-on risk.'
+    }
+  ], { sourceNames: ['Example Source'] });
+
+  assert.match(html, /\.source-count:hover, \.source-count:focus-visible, \.source-count\[aria-pressed="true"\] \{ border-color: var\(--accent\); \}/);
+  assert.match(html, /\.source-count:focus-visible \{ box-shadow: 0 0 0 3px rgba\(37,99,235,0\.15\); outline: 2px solid var\(--accent\); outline-offset: 2px; \}/);
+  assert.match(html, /\.source-count-empty:focus-visible \{ box-shadow: none; outline: none; \}/);
+});
+
 test('generateHTML renders visible result context wiring', () => {
   const html = generateHTML([
     {
