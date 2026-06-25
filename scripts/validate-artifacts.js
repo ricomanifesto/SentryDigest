@@ -342,13 +342,24 @@ function validateSourceCoverageContract(indexHtml, newsData, enabledSources, fai
   });
 }
 
-function validateRssChannelContract(feedXml, failures) {
+function getRssChannelIdentity(feedXml) {
   const $ = cheerio.load(feedXml, { xmlMode: true });
   const channel = $('channel').first();
-  const title = channel.children('title').first().text().trim();
-  const description = channel.children('description').first().text().trim();
-  const link = channel.children('link').first().text().trim();
-  const atomSelfLink = channel.children('atom\\:link[rel="self"]').attr('href') || '';
+  return {
+    atomSelfLink: channel.children('atom\\:link[rel="self"]').attr('href') || '',
+    description: channel.children('description').first().text().trim(),
+    link: channel.children('link').first().text().trim(),
+    title: channel.children('title').first().text().trim(),
+  };
+}
+
+function validateRssChannelContract(channelIdentity, failures) {
+  const {
+    atomSelfLink,
+    description,
+    link,
+    title,
+  } = channelIdentity;
 
   if (title !== RSS_CHANNEL_CONTRACT.title) {
     fail(failures, 'feed.xml channel title must match the RSS channel contract');
@@ -364,6 +375,12 @@ function validateRssChannelContract(feedXml, failures) {
 
   if (atomSelfLink !== RSS_CHANNEL_CONTRACT.publicFeedUrl) {
     fail(failures, 'feed.xml atom self link must match the public SentryDigest feed URL');
+  }
+}
+
+function validateFeedIdentityCrossArtifactContract(feedInfo, channelIdentity, failures) {
+  if (feedInfo.url !== channelIdentity.atomSelfLink) {
+    fail(failures, 'feed-info.json url must match feed.xml atom self link');
   }
 }
 
@@ -498,7 +515,11 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
     if (!feedXml.includes('<rss') || !feedXml.includes('<channel>')) {
       fail(failures, 'feed.xml must contain an RSS channel');
     } else {
-      validateRssChannelContract(feedXml, failures);
+      const channelIdentity = getRssChannelIdentity(feedXml);
+      validateRssChannelContract(channelIdentity, failures);
+      if (feedInfo) {
+        validateFeedIdentityCrossArtifactContract(feedInfo, channelIdentity, failures);
+      }
     }
 
     const feedItemCount = countMatches(feedXml, /<item>/g);
