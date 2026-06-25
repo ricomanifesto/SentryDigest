@@ -86,6 +86,21 @@ function renderFeedItem(item, overrides = {}) {
       </item>`;
 }
 
+function renderFeedXml(newsData, overrides = {}) {
+  const title = overrides.title || 'Cybersecurity News Aggregator';
+  const description = overrides.description || 'Latest cybersecurity news from top sources';
+  const siteUrl = overrides.siteUrl || 'https://ricomanifesto.github.io/SentryDigest/';
+  const feedUrl = overrides.feedUrl || 'https://ricomanifesto.github.io/SentryDigest/feed.xml';
+
+  return `<?xml version="1.0" encoding="UTF-8"?><rss><channel>
+        <title>${title}</title>
+        <description>${description}</description>
+        <link>${siteUrl}</link>
+        <atom:link href="${feedUrl}" rel="self" type="application/rss+xml" />
+        ${newsData.map((item) => renderFeedItem(item)).join('\n')}
+      </channel></rss>`;
+}
+
 function createFixture(overrides = {}) {
   const repoRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'sentrydigest-'));
   const newsData = overrides.newsData || [
@@ -129,11 +144,7 @@ function createFixture(overrides = {}) {
   });
   writeText(
     path.join(repoRoot, 'feed.xml'),
-    overrides.feedXml ||
-      `<?xml version="1.0" encoding="UTF-8"?><rss><channel>
-        <atom:link href="https://ricomanifesto.github.io/SentryDigest/feed.xml" />
-        ${newsData.map((item) => renderFeedItem(item)).join('\n')}
-      </channel></rss>`
+    overrides.feedXml || renderFeedXml(newsData)
   );
   writeText(
     path.join(repoRoot, 'index.html'),
@@ -200,6 +211,42 @@ test('validateArtifacts rejects malformed feed-info identity fields', () => {
   assert.equal(result.valid, false);
   assert.match(result.failures.join('\n'), /feed-info\.json title must match the feed info contract/);
   assert.match(result.failures.join('\n'), /feed-info\.json url must match the public SentryDigest feed URL/);
+});
+
+test('validateArtifacts rejects malformed RSS channel identity fields', () => {
+  const newsData = [
+    {
+      title: 'Newer item',
+      link: 'https://example.com/newer',
+      date: '2026-06-17T18:00:00.000Z',
+      source: 'Example Security',
+      summary: 'Newest story',
+    },
+    {
+      title: 'Older item',
+      link: 'https://example.com/older',
+      date: '2026-06-17T17:00:00.000Z',
+      source: 'Example Security',
+      summary: 'Older story',
+    },
+  ];
+  const repoRoot = createFixture({
+    newsData,
+    feedXml: renderFeedXml(newsData, {
+      title: 'Alternate Security Feed',
+      description: 'Alternate feed description',
+      siteUrl: 'https://example.com/',
+      feedUrl: 'https://example.com/feed.xml',
+    }),
+  });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(result.failures.join('\n'), /feed\.xml channel title must match the RSS channel contract/);
+  assert.match(result.failures.join('\n'), /feed\.xml channel description must match the RSS channel contract/);
+  assert.match(result.failures.join('\n'), /feed\.xml channel link must match the public SentryDigest site URL/);
+  assert.match(result.failures.join('\n'), /feed\.xml atom self link must match the public SentryDigest feed URL/);
 });
 
 test('validateArtifacts rejects feed links that drift from news-data', () => {
@@ -286,26 +333,18 @@ test('validateArtifacts rejects feed item dc date drift from news-data', () => {
 });
 
 test('validateArtifacts accepts RSS pubDate second precision', () => {
+  const newsData = [
+    {
+      title: 'Millisecond item',
+      link: 'https://example.com/millisecond',
+      date: '2026-06-17T18:00:00.123Z',
+      source: 'Example Security',
+      summary: 'Story with millisecond precision.',
+    },
+  ];
   const repoRoot = createFixture({
-    newsData: [
-      {
-        title: 'Millisecond item',
-        link: 'https://example.com/millisecond',
-        date: '2026-06-17T18:00:00.123Z',
-        source: 'Example Security',
-        summary: 'Story with millisecond precision.',
-      },
-    ],
-    feedXml: `<?xml version="1.0" encoding="UTF-8"?><rss><channel>
-      <atom:link href="https://ricomanifesto.github.io/SentryDigest/feed.xml" />
-      ${renderFeedItem({
-        title: 'Millisecond item',
-        link: 'https://example.com/millisecond',
-        date: '2026-06-17T18:00:00.123Z',
-      }, {
-        pubDate: 'Wed, 17 Jun 2026 18:00:00 GMT',
-      })}
-    </channel></rss>`,
+    newsData,
+    feedXml: renderFeedXml(newsData),
     indexHtml: `<html><body>
       <h1>SentryDigest</h1>
       <a href="./feed.xml">RSS</a>

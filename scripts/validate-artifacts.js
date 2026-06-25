@@ -5,6 +5,7 @@ const {
   FEED_INFO_CONTRACT,
   FEED_METADATA_CONTRACT,
   ISSUE_TRAIL_CONTRACT,
+  RSS_CHANNEL_CONTRACT,
   SOURCE_COVERAGE_CONTRACT,
 } = require('./generated-artifact-contracts');
 
@@ -341,6 +342,31 @@ function validateSourceCoverageContract(indexHtml, newsData, enabledSources, fai
   });
 }
 
+function validateRssChannelContract(feedXml, failures) {
+  const $ = cheerio.load(feedXml, { xmlMode: true });
+  const channel = $('channel').first();
+  const title = channel.children('title').first().text().trim();
+  const description = channel.children('description').first().text().trim();
+  const link = channel.children('link').first().text().trim();
+  const atomSelfLink = channel.children('atom\\:link[rel="self"]').attr('href') || '';
+
+  if (title !== RSS_CHANNEL_CONTRACT.title) {
+    fail(failures, 'feed.xml channel title must match the RSS channel contract');
+  }
+
+  if (description !== RSS_CHANNEL_CONTRACT.description) {
+    fail(failures, 'feed.xml channel description must match the RSS channel contract');
+  }
+
+  if (link !== RSS_CHANNEL_CONTRACT.publicSiteUrl) {
+    fail(failures, 'feed.xml channel link must match the public SentryDigest site URL');
+  }
+
+  if (atomSelfLink !== RSS_CHANNEL_CONTRACT.publicFeedUrl) {
+    fail(failures, 'feed.xml atom self link must match the public SentryDigest feed URL');
+  }
+}
+
 function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
   const artifacts = {
     config: path.join(repoRoot, 'config/news-sources.json'),
@@ -471,6 +497,8 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
   if (feedXml && newsData && Array.isArray(newsData)) {
     if (!feedXml.includes('<rss') || !feedXml.includes('<channel>')) {
       fail(failures, 'feed.xml must contain an RSS channel');
+    } else {
+      validateRssChannelContract(feedXml, failures);
     }
 
     const feedItemCount = countMatches(feedXml, /<item>/g);
@@ -482,9 +510,6 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
     assertLinksMatchNewsData('feed.xml', feedItems.map((item) => item.link), newsData, failures);
     assertFeedItemMetadataMatchesNewsData(feedItems, newsData, failures);
 
-    if (!feedXml.includes('https://ricomanifesto.github.io/SentryDigest/feed.xml')) {
-      fail(failures, 'feed.xml must advertise the public SentryDigest feed URL');
-    }
   }
 
   if (indexHtml && newsData && Array.isArray(newsData)) {

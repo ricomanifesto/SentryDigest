@@ -29,9 +29,18 @@ const FEED_INFO_CONTRACT = Object.freeze({
   title: 'Cybersecurity News Aggregator RSS Feed',
 });
 
+const RSS_CHANNEL_CONTRACT = Object.freeze({
+  description: 'Latest cybersecurity news from top sources',
+  imageUrl: 'https://ricomanifesto.github.io/SentryDigest/icon.png',
+  publicFeedUrl: FEED_INFO_CONTRACT.publicFeedUrl,
+  publicSiteUrl: 'https://ricomanifesto.github.io/SentryDigest/',
+  title: 'Cybersecurity News Aggregator',
+});
+
 module.exports = {
   FEED_INFO_CONTRACT,
   FEED_METADATA_CONTRACT,
   ISSUE_TRAIL_CONTRACT,
+  RSS_CHANNEL_CONTRACT,
   SOURCE_COVERAGE_CONTRACT,
 };
