@@ -646,6 +646,46 @@ test('validateArtifacts rejects generated source health count drift', () => {
   assert.match(result.failures.join('\n'), /index\.html source health quiet count 1 does not match expected 0/);
 });
 
+test('validateArtifacts rejects visible source health count drift', () => {
+  const repoRoot = createFixture({
+    indexHtml: `<html><head>${renderDashboardRssHead()}</head><body>
+      <h1>SentryDigest</h1>
+      ${renderDashboardRssControls()}
+      ${renderGeneratedMetadata()}
+      <section class="issue-strip">
+        <a class="issue-link" href="./feed.xml">RSS archive</a>
+        <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
+      </section>
+      ${renderArchiveTrail()}
+      <select id="sourceFilter" class="select" aria-label="Filter by source">
+        <option value="">All sources</option>
+        <option value="Example Security">Example Security</option>
+      </select>
+      <section class="${SOURCE_COVERAGE_CONTRACT.sectionClass}" aria-label="RSS source coverage">
+        <div class="source-counts">
+          <button class="source-count" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="Example Security" aria-pressed="false">Example Security <strong>2</strong></button>
+        </div>
+        <div class="source-health-summary" data-active-sources="1" data-quiet-sources="0">
+          <span><strong>99</strong> active feeds</span>
+          <span><strong>42</strong> quiet feeds</span>
+        </div>
+        <div class="source-coverage-actions">
+          <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with 2 latest articles">RSS feed <span class="feed-link-count">2 items</span></a>
+        </div>
+      </section>
+      <article class="news-item"><a href="https://example.com/newer">Newer item</a></article>
+      <article class="news-item"><a href="https://example.com/older">Older item</a></article>
+      ${renderDashboardRssFooter()}
+    </body></html>`,
+  });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(result.failures.join('\n'), /index\.html source health visible active count 99 does not match expected 1/);
+  assert.match(result.failures.join('\n'), /index\.html source health visible quiet count 42 does not match expected 0/);
+});
+
 test('validateArtifacts rejects feed-info timestamp drift from the generated digest', () => {
   const repoRoot = createFixture({
     feedInfoLastUpdated: '2026-06-17T17:00:00.000Z',
