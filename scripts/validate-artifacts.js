@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const cheerio = require('cheerio');
 
 function readText(label, filePath, repoRoot, failures) {
   if (!fs.existsSync(filePath)) {
@@ -139,6 +140,28 @@ function assertLinksMatchNewsData(label, actualLinks, newsData, failures, linkLa
       fail(failures, `${label} item ${index + 1} ${linkLabel} ${actualLink} does not match news-data.json link ${expectedLink}`);
     }
   });
+}
+
+function validateIssueTrailContract(indexHtml, failures) {
+  const $ = cheerio.load(indexHtml);
+  const trail = $('.issue-trail');
+  const sourceCoverageAnchor = $('#sourceCoverage');
+  const feedLink = trail.find('a[href="./feed.xml"]');
+  const sourceCoverageLink = trail.find('a[href="#sourceCoverage"]');
+  const updatedTime = trail.find('time[datetime]');
+  const trailText = trail.text().replace(/\s+/g, ' ').trim();
+
+  if (
+    trail.length === 0
+    || feedLink.length === 0
+    || sourceCoverageLink.length === 0
+    || sourceCoverageAnchor.length === 0
+    || updatedTime.length === 0
+    || !isValidDate(updatedTime.attr('datetime'))
+    || !trailText.includes('3h cadence')
+  ) {
+    fail(failures, 'index.html must render the digest archive trail contract');
+  }
 }
 
 function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
@@ -282,6 +305,7 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
     if (!indexHtml.includes('href="./feed.xml"')) {
       fail(failures, 'index.html must link to feed.xml');
     }
+    validateIssueTrailContract(indexHtml, failures);
 
     const articleCount = countMatches(indexHtml, /<article class="news-item"/g);
     if (newsData.length > 0 && articleCount !== newsData.length) {

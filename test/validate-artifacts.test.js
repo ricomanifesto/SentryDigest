@@ -16,6 +16,17 @@ function writeText(filePath, value) {
   fs.writeFileSync(filePath, value);
 }
 
+function renderArchiveTrail() {
+  return `<nav class="issue-trail" aria-label="Digest archive trail">
+      <span class="issue-trail-current" aria-current="page">Current digest</span>
+      <a href="./feed.xml">RSS feed</a>
+      <a href="#sourceCoverage">Source coverage</a>
+      <span class="issue-trail-meta">Updated <time datetime="2026-06-17T18:30:00.000Z">18:30 UTC</time></span>
+      <span class="issue-trail-meta">3h cadence</span>
+    </nav>
+    <span id="sourceCoverage" class="anchor-target" aria-hidden="true"></span>`;
+}
+
 function createFixture(overrides = {}) {
   const repoRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'sentrydigest-'));
   const newsData = overrides.newsData || [
@@ -70,6 +81,7 @@ function createFixture(overrides = {}) {
       `<html><body>
         <h1>SentryDigest</h1>
         <a href="./feed.xml">RSS</a>
+        ${renderArchiveTrail()}
         ${newsData.map((item) => `<article class="news-item"><a href="${item.link}">${item.title}</a></article>`).join('\n')}
       </body></html>`
   );
@@ -150,6 +162,22 @@ test('validateArtifacts rejects generated HTML article links that drift from new
   );
 });
 
+test('validateArtifacts rejects a missing generated archive trail contract', () => {
+  const repoRoot = createFixture({
+    indexHtml: `<html><body>
+      <h1>SentryDigest</h1>
+      <a href="./feed.xml">RSS</a>
+      <article class="news-item"><a href="https://example.com/newer">Newer item</a></article>
+      <article class="news-item"><a href="https://example.com/older">Older item</a></article>
+    </body></html>`,
+  });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(result.failures.join('\n'), /index\.html must render the digest archive trail contract/);
+});
+
 test('validateArtifacts accepts escaped generated HTML article hrefs', () => {
   const repoRoot = createFixture({
     newsData: [
@@ -164,6 +192,7 @@ test('validateArtifacts accepts escaped generated HTML article hrefs', () => {
     indexHtml: `<html><body>
       <h1>SentryDigest</h1>
       <a href="./feed.xml">RSS</a>
+      ${renderArchiveTrail()}
       <article class="news-item"><a href="https://example.com/article?x=1&amp;y=2">Query item</a></article>
     </body></html>`,
   });
@@ -188,6 +217,7 @@ test('validateArtifacts accepts renderer-normalized generated HTML article hrefs
     indexHtml: `<html><body>
       <h1>SentryDigest</h1>
       <a href="./feed.xml">RSS</a>
+      ${renderArchiveTrail()}
       <article class="news-item"><a href="https://example.com/">Normalized item</a></article>
     </body></html>`,
   });
