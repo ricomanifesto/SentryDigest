@@ -15,7 +15,10 @@ const {
   deriveHandoffCues,
   generateHTML,
 } = require('../scripts/render-news-html');
-const { ISSUE_TRAIL_CONTRACT } = require('../scripts/generated-artifact-contracts');
+const {
+  ISSUE_TRAIL_CONTRACT,
+  SOURCE_COVERAGE_CONTRACT,
+} = require('../scripts/generated-artifact-contracts');
 
 test('normalizeFeedDate preserves valid feed dates', () => {
   const date = normalizeFeedDate(
@@ -356,7 +359,7 @@ test('generateHTML keeps legend details inside the source coverage scan row', ()
     },
   ]);
 
-  const sourceCoverageStart = html.indexOf('<section class="source-coverage" aria-label="RSS source coverage">');
+  const sourceCoverageStart = html.indexOf(`<section class="${SOURCE_COVERAGE_CONTRACT.sectionClass}" aria-label="RSS source coverage">`);
   const feedLinkIndex = html.indexOf('<a class="feed-link"', sourceCoverageStart);
   const digestLegendIndex = html.indexOf('<details class="digest-legend" aria-label="Digest legend">', sourceCoverageStart);
   const sourceCoverageEnd = html.indexOf('</section>', sourceCoverageStart);
@@ -924,9 +927,9 @@ test('generateHTML renders escaped source coverage and RSS clarity', () => {
     },
   ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
 
-  assert.match(html, /<section class="source-coverage" aria-label="RSS source coverage">/);
-  assert.match(html, /<button class="source-count" type="button" data-source-filter="Example &lt;Security&gt;" aria-pressed="false">Example &lt;Security&gt; <strong>2<\/strong><\/button>/);
-  assert.match(html, /<button class="source-count" type="button" data-source-filter="Another Source" aria-pressed="false">Another Source <strong>1<\/strong><\/button>/);
+  assert.ok(html.includes(`<section class="${SOURCE_COVERAGE_CONTRACT.sectionClass}" aria-label="RSS source coverage">`));
+  assert.ok(html.includes(`<button class="source-count" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="Example &lt;Security&gt;" aria-pressed="false">Example &lt;Security&gt; <strong>2</strong></button>`));
+  assert.ok(html.includes(`<button class="source-count" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="Another Source" aria-pressed="false">Another Source <strong>1</strong></button>`));
   assert.match(html, /<a class="feed-link" href="\.\/feed\.xml" aria-label="Open RSS feed with 3 latest articles">RSS feed <span class="feed-link-count">3 items<\/span><\/a>/);
   assert.doesNotMatch(html, /Example <Security>/);
 });
@@ -959,8 +962,8 @@ test('generateHTML renders quiet configured feeds as inert source coverage chips
     sourceNames: ['Quiet <Feed>', 'Example <Security>'],
   });
 
-  assert.match(html, /<button class="source-count" type="button" data-source-filter="Example &lt;Security&gt;" aria-pressed="false">Example &lt;Security&gt; <strong>1<\/strong><\/button>/);
-  assert.match(html, /<button class="source-count source-count-empty" type="button" data-source-filter="Quiet &lt;Feed&gt;" aria-pressed="false" aria-disabled="true" disabled>Quiet &lt;Feed&gt; <strong>0<\/strong><\/button>/);
+  assert.ok(html.includes(`<button class="source-count" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="Example &lt;Security&gt;" aria-pressed="false">Example &lt;Security&gt; <strong>1</strong></button>`));
+  assert.ok(html.includes(`<button class="source-count source-count-empty" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="Quiet &lt;Feed&gt;" aria-pressed="false" aria-disabled="true" disabled>Quiet &lt;Feed&gt; <strong>0</strong></button>`));
   assert.doesNotMatch(html, /Quiet <Feed>/);
 });
 
@@ -982,11 +985,11 @@ test('generateHTML wires source coverage counts into the source filter', () => {
     },
   ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
 
-  assert.match(html, /const sourceCoverageButtons = qa\('\[data-source-filter\]'\)/);
+  assert.ok(html.includes(`const sourceCoverageButtons = qa('${SOURCE_COVERAGE_CONTRACT.buttonSelector}')`));
   assert.match(html, /sourceCoverageButtons\.forEach\(function\(button\)/);
-  assert.match(html, /const source = button\.getAttribute\('data-source-filter'\) \|\| ''/);
+  assert.ok(html.includes(`const source = button.getAttribute('${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}') || ''`));
   assert.match(html, /sourceFilter\.value = sourceFilter\.value === source \? '' : source/);
-  assert.match(html, /button\.setAttribute\('aria-pressed', button\.getAttribute\('data-source-filter'\) === src \? 'true' : 'false'\)/);
+  assert.ok(html.includes(`button.setAttribute('aria-pressed', button.getAttribute('${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}') === src ? 'true' : 'false')`));
   assert.match(html, /update\(\);/);
 });
 
