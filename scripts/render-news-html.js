@@ -1,4 +1,5 @@
 const {
+  DASHBOARD_RSS_LINK_CONTRACT,
   ISSUE_TRAIL_CONTRACT,
   SOURCE_COVERAGE_CONTRACT,
 } = require('./generated-artifact-contracts');
@@ -328,7 +329,7 @@ function renderSourceCoverage(newsItems, sourceNames = [], digestLegend = '') {
       <div class="source-coverage-label">RSS source coverage</div>
       <div class="source-counts">${sourceCountItems}</div>
       <div class="source-coverage-actions">
-        <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with ${feedArticleLabel}">RSS feed <span class="feed-link-count">${feedItemLabel}</span></a>
+        <a class="feed-link" href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}" aria-label="Open RSS feed with ${feedArticleLabel}">RSS feed <span class="feed-link-count">${feedItemLabel}</span></a>
         ${digestLegend}
       </div>
     </section>`;
@@ -564,7 +565,7 @@ function renderIssueStrip(totalItems, sourceCount, generatedAt) {
       <time datetime="${issueDate.toISOString()}">${formatIssueDate(issueDate)}</time>
       <span class="issue-stat"><strong>${totalItems}</strong> ${articleLabel}</span>
       <span class="issue-stat"><strong>${sourceCount}</strong> ${sourceLabel}</span>
-      <a class="issue-link" href="./feed.xml">RSS archive</a>
+      <a class="issue-link" href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}">RSS archive</a>
     </section>`;
 }
 
@@ -611,7 +612,7 @@ function generateHTML(newsItems, options = {}) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SentryDigest | Cybersecurity News</title>
   <meta name="description" content="Latest cybersecurity news from top sources">
-  <link rel="alternate" type="application/rss+xml" title="Cybersecurity News RSS Feed" href="./feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Cybersecurity News RSS Feed" href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}" />
   <link rel="icon" type="image/png" href="./assets/logo.png">
   <link rel="apple-touch-icon" href="./assets/logo.png">
   <style>
@@ -775,7 +776,7 @@ function generateHTML(newsItems, options = {}) {
           <option value="">All sources</option>
           ${sourceOptions}
         </select>
-        <a class="btn" href="./feed.xml">RSS</a>
+        <a class="btn" href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
       </div>
     </div>
@@ -824,7 +825,7 @@ function generateHTML(newsItems, options = {}) {
   
   <footer>
     <div class="container">
-      Powered by GitHub Actions • Updates every 3 hours • <a href="./feed.xml">RSS Feed</a>
+      Powered by GitHub Actions • Updates every 3 hours • <a href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}">RSS Feed</a>
     </div>
   </footer>
 

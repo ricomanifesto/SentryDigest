@@ -430,6 +430,49 @@ test('validateArtifacts rejects generated HTML article links that drift from new
   );
 });
 
+test('validateArtifacts rejects generated dashboard RSS link drift', () => {
+  const repoRoot = createFixture({
+    indexHtml: `<html><head>
+      <link rel="alternate" type="application/rss+xml" title="Cybersecurity News RSS Feed" href="./feed.xml" />
+    </head><body>
+      <h1>SentryDigest</h1>
+      <a class="btn" href="./feed.xml">RSS</a>
+      ${renderGeneratedMetadata()}
+      ${renderArchiveTrail()}
+      ${renderFixtureSourceControls([
+        {
+          title: 'Newer item',
+          link: 'https://example.com/newer',
+          date: '2026-06-17T18:00:00.000Z',
+          source: 'Example Security',
+          summary: 'Newest story',
+        },
+      ], ['Example Security'])}
+      <section class="${SOURCE_COVERAGE_CONTRACT.sectionClass}" aria-label="RSS source coverage">
+        <a class="feed-link" href="./wrong-feed.xml">RSS feed <span class="feed-link-count">1 item</span></a>
+      </section>
+      <article class="news-item"><a href="https://example.com/newer">Newer item</a></article>
+    </body></html>`,
+    newsData: [
+      {
+        title: 'Newer item',
+        link: 'https://example.com/newer',
+        date: '2026-06-17T18:00:00.000Z',
+        source: 'Example Security',
+        summary: 'Newest story',
+      },
+    ],
+  });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(
+    result.failures.join('\n'),
+    /index\.html RSS link \.source-coverage a\.feed-link href \.\/wrong-feed\.xml must match the dashboard RSS link contract/
+  );
+});
+
 test('validateArtifacts rejects a missing generated archive trail contract', () => {
   const repoRoot = createFixture({
     indexHtml: `<html><body>

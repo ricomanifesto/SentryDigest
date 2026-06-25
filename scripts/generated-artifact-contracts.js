@@ -1,8 +1,19 @@
 const SOURCE_COVERAGE_ANCHOR_ID = 'sourceCoverage';
 
+const DASHBOARD_RSS_LINK_CONTRACT = Object.freeze({
+  feedHref: './feed.xml',
+  linkSelectors: Object.freeze([
+    'link[rel="alternate"][type="application/rss+xml"]',
+    'a.btn',
+    '.issue-strip a.issue-link',
+    '.source-coverage a.feed-link',
+    'footer a',
+  ]),
+});
+
 const ISSUE_TRAIL_CONTRACT = Object.freeze({
   cadenceText: '3h cadence',
-  feedHref: './feed.xml',
+  feedHref: DASHBOARD_RSS_LINK_CONTRACT.feedHref,
   navClass: 'issue-trail',
   navSelector: '.issue-trail',
   sourceCoverageAnchorId: SOURCE_COVERAGE_ANCHOR_ID,
@@ -38,6 +49,7 @@ const RSS_CHANNEL_CONTRACT = Object.freeze({
 });
 
 module.exports = {
+  DASHBOARD_RSS_LINK_CONTRACT,
   FEED_INFO_CONTRACT,
   FEED_METADATA_CONTRACT,
   ISSUE_TRAIL_CONTRACT,
