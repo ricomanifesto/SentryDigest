@@ -9,75 +9,98 @@ const indexHtmlPath = path.join(__dirname, '../index.html');
 // Load configuration from file
 const configPath = path.join(__dirname, '../config/news-sources.json');
 let config;
+let sources;
+let maxNewsItems;
 
-try {
-  // Ensure config directory exists
-  const configDir = path.join(__dirname, '../config');
+function createDefaultSourceConfig(now = new Date()) {
+  return {
+    sources: [
+      {
+        name: 'Krebs on Security',
+        url: 'https://krebsonsecurity.com/feed/',
+        type: 'rss',
+        enabled: true,
+      },
+      {
+        name: 'The Hacker News',
+        url: 'https://feeds.feedburner.com/TheHackersNews',
+        type: 'rss',
+        enabled: true,
+      },
+      {
+        name: 'Threatpost',
+        url: 'https://threatpost.com/feed/',
+        type: 'rss',
+        enabled: true,
+      },
+      {
+        name: 'Bleeping Computer',
+        url: 'https://www.bleepingcomputer.com/feed/',
+        type: 'rss',
+        enabled: true,
+      },
+      {
+        name: 'Dark Reading',
+        url: 'https://www.darkreading.com/rss.xml',
+        type: 'rss',
+        enabled: true,
+      },
+      {
+        name: 'ZDNet Security',
+        url: 'https://www.zdnet.com/topic/security/rss.xml',
+        type: 'rss',
+        enabled: true,
+      },
+    ],
+    settings: {
+      maxNewsItems: 30,
+      lastUpdated: now.toISOString(),
+    },
+  };
+}
+
+function loadSourceConfig(options = {}) {
+  const {
+    configPath: sourceConfigPath = configPath,
+    logger = console,
+    now = new Date(),
+  } = options;
+  const configDir = path.dirname(sourceConfigPath);
+  let loadedConfig;
+
   if (!fs.existsSync(configDir)) {
     fs.mkdirSync(configDir, { recursive: true });
   }
-  
-  // Try to load the config file
-  if (fs.existsSync(configPath)) {
-    const configData = fs.readFileSync(configPath, 'utf8');
-    config = JSON.parse(configData);
-    console.log(`Loaded configuration with ${config.sources.length} sources`);
+
+  if (fs.existsSync(sourceConfigPath)) {
+    const configData = fs.readFileSync(sourceConfigPath, 'utf8');
+    loadedConfig = JSON.parse(configData);
+    const sourceCount = Array.isArray(loadedConfig.sources) ? loadedConfig.sources.length : 0;
+    logger.log(`Loaded configuration with ${sourceCount} sources`);
   } else {
-    // Create default config if none exists
-    console.log('No configuration found, creating default config');
-    config = {
-      "sources": [
-        {
-          "name": "Krebs on Security",
-          "url": "https://krebsonsecurity.com/feed/",
-          "type": "rss",
-          "enabled": true
-        },
-        {
-          "name": "The Hacker News",
-          "url": "https://feeds.feedburner.com/TheHackersNews",
-          "type": "rss",
-          "enabled": true
-        },
-        {
-          "name": "Threatpost",
-          "url": "https://threatpost.com/feed/",
-          "type": "rss",
-          "enabled": true
-        },
-        {
-          "name": "Bleeping Computer",
-          "url": "https://www.bleepingcomputer.com/feed/",
-          "type": "rss",
-          "enabled": true
-        },
-        {
-          "name": "Dark Reading",
-          "url": "https://www.darkreading.com/rss.xml",
-          "type": "rss",
-          "enabled": true
-        },
-        {
-          "name": "ZDNet Security",
-          "url": "https://www.zdnet.com/topic/security/rss.xml",
-          "type": "rss",
-          "enabled": true
-        }
-      ],
-      "settings": {
-        "maxNewsItems": 30,
-        "lastUpdated": new Date().toISOString()
-      }
-    };
-    fs.writeFileSync(configPath, JSON.stringify(config, null, 2));
+    logger.log('No configuration found, creating default config');
+    loadedConfig = createDefaultSourceConfig(now);
+    fs.writeFileSync(sourceConfigPath, JSON.stringify(loadedConfig, null, 2));
   }
+
+  const sourceConfig = assertSourceConfigContract(loadedConfig);
+  return {
+    config: loadedConfig,
+    configPath: sourceConfigPath,
+    enabledRssSources: sourceConfig.enabledRssSources,
+    maxNewsItems: sourceConfig.maxNewsItems,
+  };
+}
+
+try {
+  const sourceConfig = loadSourceConfig();
+  config = sourceConfig.config;
+  sources = sourceConfig.enabledRssSources;
+  maxNewsItems = sourceConfig.maxNewsItems;
 } catch (error) {
   console.error('Error with config file:', error.message);
   process.exit(1);
 }
-
-// Get sources from config
-const { enabledRssSources: sources } = assertSourceConfigContract(config);
 // Use simple date-based sort across all sources
 
 const INVALID_FEED_DATE_FALLBACK = new Date('1970-01-01T00:00:00.000Z');
@@ -148,8 +171,7 @@ async function fetchAllNews() {
   
   // Sort by date and cap to max
   allNews.sort((a, b) => b.date - a.date);
-  const maxItems = config.settings.maxNewsItems || 30;
-  allNews = allNews.slice(0, maxItems);
+  allNews = allNews.slice(0, maxNewsItems);
   
   return allNews;
 }
@@ -200,6 +222,8 @@ module.exports = {
   fetchAllNews,
   fetchRSSFeed,
   INVALID_FEED_DATE_FALLBACK,
+  createDefaultSourceConfig,
+  loadSourceConfig,
   normalizeArticleDate,
   normalizeFeedDate,
 };
