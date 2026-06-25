@@ -8,9 +8,6 @@ const indexHtmlPath = path.join(__dirname, '../index.html');
 
 // Load configuration from file
 const configPath = path.join(__dirname, '../config/news-sources.json');
-let config;
-let sources;
-let maxNewsItems;
 
 function createDefaultSourceConfig(now = new Date()) {
   return {
@@ -92,15 +89,6 @@ function loadSourceConfig(options = {}) {
   };
 }
 
-try {
-  const sourceConfig = loadSourceConfig();
-  config = sourceConfig.config;
-  sources = sourceConfig.enabledRssSources;
-  maxNewsItems = sourceConfig.maxNewsItems;
-} catch (error) {
-  console.error('Error with config file:', error.message);
-  process.exit(1);
-}
 // Use simple date-based sort across all sources
 
 const INVALID_FEED_DATE_FALLBACK = new Date('1970-01-01T00:00:00.000Z');
@@ -155,7 +143,11 @@ async function fetchRSSFeed(source) {
 
 */
 // Function to fetch news from all sources
-async function fetchAllNews() {
+async function fetchAllNews(options = {}) {
+  const {
+    sourceConfig = loadSourceConfig(options),
+  } = options;
+  const sources = sourceConfig.enabledRssSources;
   const allNewsPromises = sources.map(source => {
     if (source.type === 'rss') {
       return fetchRSSFeed(source);
@@ -171,7 +163,7 @@ async function fetchAllNews() {
   
   // Sort by date and cap to max
   allNews.sort((a, b) => b.date - a.date);
-  allNews = allNews.slice(0, maxNewsItems);
+  allNews = allNews.slice(0, sourceConfig.maxNewsItems);
   
   return allNews;
 }
@@ -184,10 +176,14 @@ async function main() {
     if (!fs.existsSync(scriptsDir)) {
       fs.mkdirSync(scriptsDir, { recursive: true });
     }
+
+    const sourceConfig = loadSourceConfig();
+    const config = sourceConfig.config;
+    const sources = sourceConfig.enabledRssSources;
     
     // Fetch news
     console.log('Fetching news...');
-    const newsItems = await fetchAllNews();
+    const newsItems = await fetchAllNews({ sourceConfig });
     console.log(`Fetched ${newsItems.length} news items from ${sources.length} active sources`);
     
     // Generate HTML
