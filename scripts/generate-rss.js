@@ -3,100 +3,120 @@ const path = require('path');
 const RSS = require('rss');
 const moment = require('moment');
 
-// Path to the news data file
-const newsDataPath = path.join(__dirname, '../news-data.json');
-const rssOutputPath = path.join(__dirname, '../feed.xml');
+// Default generated artifact paths
+const defaultNewsDataPath = path.join(__dirname, '../news-data.json');
+const defaultConfigPath = path.join(__dirname, '../config/news-sources.json');
+const defaultRssOutputPath = path.join(__dirname, '../feed.xml');
+const defaultFeedInfoPath = path.join(__dirname, '../feed-info.json');
 
 function formatFeedItemDate(date) {
   return moment.utc(date).format('YYYY-MM-DD');
 }
 
+function getGenerationDate(now) {
+  return now instanceof Date ? new Date(now.getTime()) : new Date(now);
+}
+
 // Create RSS feed
-function generateRSSFeed() {
-  try {
-    // Read the news data from the JSON file
-    if (!fs.existsSync(newsDataPath)) {
-      console.error('News data file not found. Run fetch-news.js first.');
-      process.exit(1);
+function generateRSSFeed(options = {}) {
+  const {
+    newsDataPath = defaultNewsDataPath,
+    configPath = defaultConfigPath,
+    rssOutputPath = defaultRssOutputPath,
+    feedInfoPath = defaultFeedInfoPath,
+    now = new Date(),
+    logger = console,
+  } = options;
+
+  // Read the news data from the JSON file
+  if (!fs.existsSync(newsDataPath)) {
+    throw new Error('News data file not found. Run fetch-news.js first.');
+  }
+
+  const generatedAt = getGenerationDate(now);
+  const newsData = JSON.parse(fs.readFileSync(newsDataPath, 'utf8'));
+  const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+
+  // Create a new RSS feed
+  const feed = new RSS({
+    title: 'Cybersecurity News Aggregator',
+    description: 'Latest cybersecurity news from top sources',
+    feed_url: 'https://ricomanifesto.github.io/SentryDigest/feed.xml',
+    site_url: 'https://ricomanifesto.github.io/SentryDigest/',
+    image_url: 'https://ricomanifesto.github.io/SentryDigest/icon.png',
+    language: 'en',
+    pubDate: generatedAt,
+    ttl: '180', // Time to live in minutes (3 hours)
+    custom_namespaces: {
+      'dc': 'http://purl.org/dc/elements/1.1/'
     }
+  });
 
-    const newsData = JSON.parse(fs.readFileSync(newsDataPath, 'utf8'));
-    const configPath = path.join(__dirname, '../config/news-sources.json');
-    const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-    
-    // Create a new RSS feed
-    const feed = new RSS({
-      title: 'Cybersecurity News Aggregator',
-      description: 'Latest cybersecurity news from top sources',
-      feed_url: 'https://ricomanifesto.github.io/SentryDigest/feed.xml',
-      site_url: 'https://ricomanifesto.github.io/SentryDigest/',
-      image_url: 'https://ricomanifesto.github.io/SentryDigest/icon.png',
-      language: 'en',
-      pubDate: new Date(),
-      ttl: '180', // Time to live in minutes (3 hours)
-      custom_namespaces: {
-        'dc': 'http://purl.org/dc/elements/1.1/'
-      }
+  // Add information about the sources
+  const activeSources = config.sources
+    .filter(source => source.enabled)
+    .map(source => source.name);
+
+  feed.custom_elements.push(
+    {'comment': `News aggregated from: ${activeSources.join(', ')}`}
+  );
+
+  // Add items to the feed
+  newsData.forEach(item => {
+    feed.item({
+      title: item.title,
+      description: item.summary || 'No summary available',
+      url: item.link,
+      guid: item.link,
+      categories: [item.source],
+      author: item.source,
+      date: item.date,
+      custom_elements: [
+        {'dc:source': item.source},
+        {'dc:date': formatFeedItemDate(item.date)}
+      ]
     });
+  });
 
-    // Add information about the sources
-    const activeSources = config.sources
-      .filter(source => source.enabled)
-      .map(source => source.name)
-      .join(', ');
-    
-    feed.custom_elements.push(
-      {'comment': `News aggregated from: ${activeSources}`}
-    );
+  // Generate the XML and write to file
+  const xml = feed.xml({ indent: true });
+  fs.writeFileSync(rssOutputPath, xml);
+  logger.log(`Generated RSS feed at ${rssOutputPath}`);
 
-    // Add items to the feed
-    newsData.forEach(item => {
-      feed.item({
-        title: item.title,
-        description: item.summary || 'No summary available',
-        url: item.link,
-        guid: item.link,
-        categories: [item.source],
-        author: item.source,
-        date: item.date,
-        custom_elements: [
-          {'dc:source': item.source},
-          {'dc:date': formatFeedItemDate(item.date)}
-        ]
-      });
-    });
+  // Create a JSON file with RSS feed information (for reference)
+  const feedInfo = {
+    title: 'Cybersecurity News Aggregator RSS Feed',
+    url: 'https://ricomanifesto.github.io/SentryDigest/feed.xml',
+    itemCount: newsData.length,
+    sources: activeSources,
+    lastUpdated: generatedAt.toISOString()
+  };
 
-    // Generate the XML and write to file
-    const xml = feed.xml({ indent: true });
-    fs.writeFileSync(rssOutputPath, xml);
-    console.log(`Generated RSS feed at ${rssOutputPath}`);
+  fs.writeFileSync(
+    feedInfoPath,
+    JSON.stringify(feedInfo, null, 2)
+  );
+  logger.log('Generated feed-info.json');
 
-    // Create a JSON file with RSS feed information (for reference)
-    const feedInfo = {
-      title: 'Cybersecurity News Aggregator RSS Feed',
-      url: 'https://ricomanifesto.github.io/SentryDigest/feed.xml',
-      itemCount: newsData.length,
-      sources: activeSources.split(', '),
-      lastUpdated: new Date().toISOString()
-    };
+  return {
+    feedInfo,
+    feedInfoPath,
+    itemCount: newsData.length,
+    rssOutputPath,
+  };
+}
 
-    fs.writeFileSync(
-      path.join(__dirname, '../feed-info.json'),
-      JSON.stringify(feedInfo, null, 2)
-    );
-    console.log('Generated feed-info.json');
-
+if (require.main === module) {
+  try {
+    generateRSSFeed();
   } catch (error) {
     console.error('Error generating RSS feed:', error.message);
     process.exit(1);
   }
 }
 
-if (require.main === module) {
-  generateRSSFeed();
-}
-
 module.exports = {
   formatFeedItemDate,
   generateRSSFeed,
+  getGenerationDate,
 };
