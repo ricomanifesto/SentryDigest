@@ -24,6 +24,32 @@ const {
   SOURCE_COVERAGE_CONTRACT,
 } = require('../scripts/generated-artifact-contracts');
 
+test('fetch-news helpers can be imported without loading source config', () => {
+  const modulePath = require.resolve('../scripts/fetch-news');
+  const cachedModule = require.cache[modulePath];
+  const originalExistsSync = fs.existsSync;
+  let existsSyncCalls = 0;
+
+  delete require.cache[modulePath];
+  fs.existsSync = (...args) => {
+    existsSyncCalls += 1;
+    return originalExistsSync(...args);
+  };
+
+  try {
+    const fetchNews = require('../scripts/fetch-news');
+
+    assert.equal(typeof fetchNews.normalizeFeedDate, 'function');
+    assert.equal(existsSyncCalls, 0);
+  } finally {
+    fs.existsSync = originalExistsSync;
+    delete require.cache[modulePath];
+    if (cachedModule) {
+      require.cache[modulePath] = cachedModule;
+    }
+  }
+});
+
 test('normalizeFeedDate preserves valid feed dates', () => {
   const date = normalizeFeedDate(
     'Wed, 17 Jun 2026 18:00:00 GMT',
