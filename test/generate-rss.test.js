@@ -35,7 +35,7 @@ test('generateRSSFeed writes explicit output paths without relying on repo globa
     configPath,
     JSON.stringify({
       sources: [
-        { name: 'Vendor Advisory', enabled: true },
+        { name: 'Vendor Advisory', url: 'https://example.com/vendor-feed.xml', type: 'rss', enabled: true },
         { name: 'Disabled Feed', enabled: false },
       ],
     })
@@ -65,6 +65,68 @@ test('generateRSSFeed writes explicit output paths without relying on repo globa
   } finally {
     fs.writeFileSync = originalWriteFileSync;
   }
+});
+
+test('generateRSSFeed rejects enabled sources outside the canonical RSS source contract', () => {
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sentrydigest-rss-source-contract-'));
+  const newsDataPath = path.join(tmpDir, 'news-data.json');
+  const configPath = path.join(tmpDir, 'news-sources.json');
+
+  fs.writeFileSync(newsDataPath, JSON.stringify([]));
+  fs.writeFileSync(
+    configPath,
+    JSON.stringify({
+      sources: [
+        {
+          name: 'Missing URL Feed',
+          enabled: true,
+        },
+      ],
+    })
+  );
+
+  assert.throws(
+    () => generateRSSFeed({
+      newsDataPath,
+      configPath,
+      rssOutputPath: path.join(tmpDir, 'feed.xml'),
+      feedInfoPath: path.join(tmpDir, 'feed-info.json'),
+      logger: { log() {}, error() {} },
+    }),
+    /config source 1 must have an http\(s\) url/
+  );
+});
+
+test('generateRSSFeed rejects non-boolean source enabled values', () => {
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sentrydigest-rss-enabled-contract-'));
+  const newsDataPath = path.join(tmpDir, 'news-data.json');
+  const configPath = path.join(tmpDir, 'news-sources.json');
+
+  fs.writeFileSync(newsDataPath, JSON.stringify([]));
+  fs.writeFileSync(
+    configPath,
+    JSON.stringify({
+      sources: [
+        {
+          name: 'String Enabled Feed',
+          url: 'https://example.com/feed.xml',
+          type: 'rss',
+          enabled: 'true',
+        },
+      ],
+    })
+  );
+
+  assert.throws(
+    () => generateRSSFeed({
+      newsDataPath,
+      configPath,
+      rssOutputPath: path.join(tmpDir, 'feed.xml'),
+      feedInfoPath: path.join(tmpDir, 'feed-info.json'),
+      logger: { log() {}, error() {} },
+    }),
+    /config source 1 enabled must be a boolean/
+  );
 });
 
 test('generateRSSFeed throws for missing news data without exiting module callers', () => {

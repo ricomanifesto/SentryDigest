@@ -6,6 +6,7 @@ const {
   FEED_INFO_CONTRACT,
   RSS_CHANNEL_CONTRACT,
 } = require('./generated-artifact-contracts');
+const { assertSourceConfigContract } = require('./source-config-contract');
 
 // Default generated artifact paths
 const defaultNewsDataPath = path.join(__dirname, '../news-data.json');
@@ -40,6 +41,7 @@ function generateRSSFeed(options = {}) {
   const generatedAt = getGenerationDate(now);
   const newsData = JSON.parse(fs.readFileSync(newsDataPath, 'utf8'));
   const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+  const { enabledRssSources } = assertSourceConfigContract(config);
 
   // Create a new RSS feed
   const feed = new RSS({
@@ -57,9 +59,7 @@ function generateRSSFeed(options = {}) {
   });
 
   // Add information about the sources
-  const activeSources = config.sources
-    .filter(source => source.enabled)
-    .map(source => source.name);
+  const activeSources = enabledRssSources.map(source => source.name);
 
   feed.custom_elements.push(
     {'comment': `News aggregated from: ${activeSources.join(', ')}`}
