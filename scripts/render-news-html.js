@@ -1,3 +1,5 @@
+const { ISSUE_TRAIL_CONTRACT } = require('./generated-artifact-contracts');
+
 function escapeHtml(value) {
   return String(value ?? '')
     .replace(/&/g, '&amp;')
@@ -566,12 +568,12 @@ function renderIssueStrip(totalItems, sourceCount, generatedAt) {
 function renderIssueTrail(generatedAt) {
   const issueDate = new Date(generatedAt);
 
-  return `<nav class="issue-trail" aria-label="Digest archive trail">
+  return `<nav class="${ISSUE_TRAIL_CONTRACT.navClass}" aria-label="Digest archive trail">
       <span class="issue-trail-current" aria-current="page">Current digest</span>
-      <a href="./feed.xml">RSS feed</a>
-      <a href="#sourceCoverage">Source coverage</a>
+      <a href="${ISSUE_TRAIL_CONTRACT.feedHref}">RSS feed</a>
+      <a href="${ISSUE_TRAIL_CONTRACT.sourceCoverageHref}">Source coverage</a>
       <span class="issue-trail-meta">Updated <time datetime="${issueDate.toISOString()}">${formatUtcTime(issueDate)}</time></span>
-      <span class="issue-trail-meta">3h cadence</span>
+      <span class="issue-trail-meta">${ISSUE_TRAIL_CONTRACT.cadenceText}</span>
     </nav>`;
 }
 
@@ -807,7 +809,7 @@ function generateHTML(newsItems, options = {}) {
     ${issueStrip}
     ${issueTrail}
     <div id="filterInsights" class="filter-insights" aria-live="polite"></div>
-    <span id="sourceCoverage" class="anchor-target" aria-hidden="true"></span>
+    <span id="${ISSUE_TRAIL_CONTRACT.sourceCoverageAnchorId}" class="anchor-target" aria-hidden="true"></span>
     ${sourceCoverage}
     ${operatorLanes}
     <div id="emptyFilteredState" class="empty-filtered" hidden>No articles match the current filters.</div>

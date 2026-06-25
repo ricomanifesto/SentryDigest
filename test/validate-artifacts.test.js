@@ -4,6 +4,7 @@ const os = require('node:os');
 const path = require('node:path');
 const test = require('node:test');
 
+const { ISSUE_TRAIL_CONTRACT } = require('../scripts/generated-artifact-contracts');
 const { validateArtifacts } = require('../scripts/validate-artifacts');
 
 function writeJson(filePath, value) {
@@ -17,14 +18,14 @@ function writeText(filePath, value) {
 }
 
 function renderArchiveTrail() {
-  return `<nav class="issue-trail" aria-label="Digest archive trail">
+  return `<nav class="${ISSUE_TRAIL_CONTRACT.navClass}" aria-label="Digest archive trail">
       <span class="issue-trail-current" aria-current="page">Current digest</span>
-      <a href="./feed.xml">RSS feed</a>
-      <a href="#sourceCoverage">Source coverage</a>
+      <a href="${ISSUE_TRAIL_CONTRACT.feedHref}">RSS feed</a>
+      <a href="${ISSUE_TRAIL_CONTRACT.sourceCoverageHref}">Source coverage</a>
       <span class="issue-trail-meta">Updated <time datetime="2026-06-17T18:30:00.000Z">18:30 UTC</time></span>
-      <span class="issue-trail-meta">3h cadence</span>
+      <span class="issue-trail-meta">${ISSUE_TRAIL_CONTRACT.cadenceText}</span>
     </nav>
-    <span id="sourceCoverage" class="anchor-target" aria-hidden="true"></span>`;
+    <span id="${ISSUE_TRAIL_CONTRACT.sourceCoverageAnchorId}" class="anchor-target" aria-hidden="true"></span>`;
 }
 
 function createFixture(overrides = {}) {
