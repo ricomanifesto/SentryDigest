@@ -845,14 +845,18 @@ test('generateHTML renders active filter summary and reset wiring', () => {
 
   assert.match(html, /<div id="activeFilters" class="active-filters" hidden aria-live="polite"><\/div>/);
   assert.match(html, /<button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters<\/button>/);
+  assert.match(html, /<button id="emptyResetFilters" class="btn empty-reset-filters" type="button">Reset filters<\/button>/);
   assert.match(html, /const activeFilters = q\('#activeFilters'\)/);
   assert.match(html, /const resetFilters = q\('#resetFilters'\)/);
+  assert.match(html, /const emptyResetFilters = q\('#emptyResetFilters'\)/);
   assert.match(html, /function renderActiveFilters\(\)/);
   assert.match(html, /chip\.className = 'active-filter-chip'/);
   assert.match(html, /chip\.textContent = filterLabels\[key\] \+ ': ' \+ label/);
   assert.match(html, /resetFilters\.hidden = activeFiltersList\.length === 0/);
-  assert.match(html, /resetFilters\.addEventListener\('click', function\(\)/);
+  assert.match(html, /function clearFilters\(\)/);
   assert.match(html, /control\.value = ''/);
+  assert.match(html, /if \(resetFilters\) resetFilters\.addEventListener\('click', clearFilters\)/);
+  assert.match(html, /if \(emptyResetFilters\) emptyResetFilters\.addEventListener\('click', clearFilters\)/);
   assert.match(html, /renderActiveFilters\(\);\s+renderFilterInsights\(visibleCards\);\s+updateOperatorLanes\(visibleCards\);\s+syncQueryState\(\);/);
 });
 
@@ -1176,7 +1180,8 @@ test('generateHTML composes empty filtered state with active source shortcut con
 
   assert.match(html, /function renderEmptyFilteredState\(visible, src, hasComposedFilters\)/);
   assert.ok(html.includes("const sourceLabel = src ? getControlLabel(sourceFilter) : ''"));
-  assert.ok(html.includes("emptyFilteredState.textContent = sourceLabel && hasComposedFilters ? 'No ' + sourceLabel + ' articles match the current filters.' : 'No articles match the current filters.'"));
+  assert.ok(html.includes("const messageTarget = emptyFilteredMessage || emptyFilteredState"));
+  assert.ok(html.includes("messageTarget.textContent = sourceLabel && hasComposedFilters ? 'No ' + sourceLabel + ' articles match the current filters.' : 'No articles match the current filters.'"));
   assert.match(html, /renderEmptyFilteredState\(visible, src, hasComposedFilters\)/);
 });
 

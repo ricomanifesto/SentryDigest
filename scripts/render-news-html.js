@@ -729,6 +729,8 @@ function generateHTML(newsItems, options = {}) {
     .operator-lane-link:hover { color: var(--accent); text-decoration: underline; }
     .empty-filtered { background: var(--card); border: 1px dashed var(--card-border); border-radius: 10px; color: var(--muted); margin-top: 18px; padding: 18px; text-align: center; }
     .empty-filtered[hidden] { display: none; }
+    .empty-filtered-message { margin: 0 0 12px; }
+    .empty-reset-filters { background: var(--accent); color: var(--accent-contrast); }
     .news-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin-top: 18px; }
     .news-item { background: var(--card); border: 1px solid var(--card-border); border-radius: 14px; padding: 16px; transition: transform .2s ease, box-shadow .2s ease; }
     .news-item:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(2,8,23,0.08); }
@@ -834,7 +836,10 @@ function generateHTML(newsItems, options = {}) {
     <span id="${ISSUE_TRAIL_CONTRACT.sourceCoverageAnchorId}" class="anchor-target" aria-hidden="true"></span>
     ${sourceCoverage}
     ${operatorLanes}
-    <div id="emptyFilteredState" class="empty-filtered" hidden>No articles match the current filters.</div>
+    <div id="emptyFilteredState" class="empty-filtered" hidden>
+      <p id="emptyFilteredMessage" class="empty-filtered-message">No articles match the current filters.</p>
+      <button id="emptyResetFilters" class="btn empty-reset-filters" type="button">Reset filters</button>
+    </div>
 
     <div class="news-container" id="newsContainer">
       ${articleCards}
@@ -872,8 +877,10 @@ function generateHTML(newsItems, options = {}) {
       const ageFilter = q('#ageFilter');
       const handoffFilter = q('#handoffFilter');
       const emptyFilteredState = q('#emptyFilteredState');
+      const emptyFilteredMessage = q('#emptyFilteredMessage');
       const activeFilters = q('#activeFilters');
       const resetFilters = q('#resetFilters');
+      const emptyResetFilters = q('#emptyResetFilters');
       const filterInsights = q('#filterInsights');
       const sourceFilterStatus = q('${SOURCE_COVERAGE_CONTRACT.statusSelector}');
       const operatorLanes = qa('.operator-lane');
@@ -1020,7 +1027,8 @@ function generateHTML(newsItems, options = {}) {
         emptyFilteredState.hidden = visible !== 0;
         if (visible !== 0) return;
         const sourceLabel = src ? getControlLabel(sourceFilter) : '';
-        emptyFilteredState.textContent = sourceLabel && hasComposedFilters ? 'No ' + sourceLabel + ' articles match the current filters.' : 'No articles match the current filters.';
+        const messageTarget = emptyFilteredMessage || emptyFilteredState;
+        messageTarget.textContent = sourceLabel && hasComposedFilters ? 'No ' + sourceLabel + ' articles match the current filters.' : 'No articles match the current filters.';
       }
 
       function updateOperatorLanes(visibleCards){
@@ -1102,13 +1110,15 @@ function generateHTML(newsItems, options = {}) {
           update();
         });
       });
-      if (resetFilters) resetFilters.addEventListener('click', function(){
+      function clearFilters(){
         Object.keys(filterControls).forEach(function(key){
           const control = filterControls[key];
           if (control) control.value = '';
         });
         update();
-      });
+      }
+      if (resetFilters) resetFilters.addEventListener('click', clearFilters);
+      if (emptyResetFilters) emptyResetFilters.addEventListener('click', clearFilters);
 
       applyQueryState();
       update();
