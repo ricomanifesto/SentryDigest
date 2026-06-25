@@ -883,6 +883,21 @@ test('generateHTML renders a compact feed archive trail', () => {
   assert.match(html, /<section class="source-coverage" aria-label="RSS source coverage">/);
 });
 
+test('generateHTML renders feed update cadence in the archive trail', () => {
+  const html = generateHTML([
+    {
+      title: 'First story',
+      link: 'https://example.com/first',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'Example Security',
+      summary: 'Story one.',
+    },
+  ], { generatedAt: new Date('2026-06-17T18:05:00.000Z') });
+
+  assert.match(html, /<span class="issue-trail-meta">Updated <time datetime="2026-06-17T18:05:00.000Z">18:05 UTC<\/time><\/span>/);
+  assert.match(html, /<span class="issue-trail-meta">3h cadence<\/span>/);
+});
+
 test('generateHTML renders escaped source coverage and RSS clarity', () => {
   const html = generateHTML([
     {
