@@ -75,6 +75,9 @@ function renderFixtureSourceControls(newsData, sourceNames) {
     .filter(({ count }) => count > 0)
     .map(({ source }) => `<option value="${source}">${source}</option>`)
     .join('');
+  const quietSourceNote = quietSourceCount > 0
+    ? `<span class="source-health-note">${SOURCE_COVERAGE_CONTRACT.healthNoteText}</span>`
+    : '';
   const sourceButtons = sourceCounts
     .map(({ source, count }) => {
       const emptyClass = count === 0 ? ' source-count-empty' : '';
@@ -91,7 +94,7 @@ function renderFixtureSourceControls(newsData, sourceNames) {
       <div class="source-counts">${sourceButtons}</div>
       <div class="source-health-summary" data-active-sources="${activeSourceCount}" data-quiet-sources="${quietSourceCount}">
         <span><strong>${activeSourceCount}</strong> active ${activeSourceCount === 1 ? 'feed' : 'feeds'}</span>
-        <span><strong>${quietSourceCount}</strong> quiet ${quietSourceCount === 1 ? 'feed' : 'feeds'}</span>
+        <span><strong>${quietSourceCount}</strong> quiet ${quietSourceCount === 1 ? 'feed' : 'feeds'}</span>${quietSourceNote}
       </div>
       <div class="source-coverage-actions">
         <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with ${newsData.length} latest articles">RSS feed <span class="feed-link-count">${newsData.length} items</span></a>
@@ -127,6 +130,7 @@ function renderFeedXml(newsData, overrides = {}) {
 
 function createFixture(overrides = {}) {
   const repoRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'sentrydigest-'));
+  const sourceNames = overrides.sourceNames || ['Example Security'];
   const newsData = overrides.newsData || [
     {
       title: 'Newer item',
@@ -145,14 +149,12 @@ function createFixture(overrides = {}) {
   ];
 
   writeJson(path.join(repoRoot, 'config/news-sources.json'), {
-    sources: [
-      {
-        name: 'Example Security',
-        url: 'https://example.com/feed.xml',
-        type: 'rss',
-        enabled: true,
-      },
-    ],
+    sources: sourceNames.map((source) => ({
+      name: source,
+      url: `https://example.com/${source.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.xml`,
+      type: 'rss',
+      enabled: true,
+    })),
     settings: {
       maxNewsItems: 30,
     },
@@ -162,7 +164,7 @@ function createFixture(overrides = {}) {
     title: FEED_INFO_CONTRACT.title,
     url: FEED_INFO_CONTRACT.publicFeedUrl,
     itemCount: overrides.feedInfoItemCount ?? newsData.length,
-    sources: ['Example Security'],
+    sources: sourceNames,
     lastUpdated: overrides.feedInfoLastUpdated || '2026-06-17T18:30:00.000Z',
     ...(overrides.feedInfo || {}),
   });
@@ -182,7 +184,7 @@ function createFixture(overrides = {}) {
           <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
         </section>
         ${renderArchiveTrail()}
-        ${renderFixtureSourceControls(newsData, ['Example Security'])}
+        ${renderFixtureSourceControls(newsData, sourceNames)}
         ${newsData.map((item) => `<article class="news-item"><a href="${item.link}">${item.title}</a></article>`).join('\n')}
         ${renderDashboardRssFooter()}
       </body></html>`
@@ -684,6 +686,59 @@ test('validateArtifacts rejects visible source health count drift', () => {
   assert.equal(result.valid, false);
   assert.match(result.failures.join('\n'), /index\.html source health visible active count 99 does not match expected 1/);
   assert.match(result.failures.join('\n'), /index\.html source health visible quiet count 42 does not match expected 0/);
+});
+
+test('validateArtifacts rejects quiet sources exposed as selectable source filters', () => {
+  const newsData = [
+    {
+      title: 'Only active item',
+      link: 'https://example.com/active',
+      date: '2026-06-17T18:00:00.000Z',
+      source: 'Example Security',
+      summary: 'Active story',
+    },
+  ];
+  const repoRoot = createFixture({
+    newsData,
+    indexHtml: `<html><head>${renderDashboardRssHead()}</head><body>
+      <h1>SentryDigest</h1>
+      ${renderDashboardRssControls()}
+      ${renderGeneratedMetadata()}
+      <section class="issue-strip">
+        <a class="issue-link" href="./feed.xml">RSS archive</a>
+        <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
+      </section>
+      ${renderArchiveTrail()}
+      <select id="sourceFilter" class="select" aria-label="Filter by source">
+        <option value="">All sources</option>
+        <option value="Example Security">Example Security</option>
+        <option value="Quiet Feed">Quiet Feed</option>
+      </select>
+      <section class="${SOURCE_COVERAGE_CONTRACT.sectionClass}" aria-label="RSS source coverage">
+        <div class="source-counts">
+          <button class="source-count" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="Example Security" aria-pressed="false">Example Security <strong>1</strong></button>
+          <button class="source-count source-count-empty" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="Quiet Feed" aria-pressed="false" aria-disabled="true" disabled>Quiet Feed <strong>0</strong></button>
+        </div>
+        <div class="source-health-summary" data-active-sources="1" data-quiet-sources="1">
+          <span><strong>1</strong> active feed</span>
+          <span><strong>1</strong> quiet feed</span>
+          <span class="source-health-note">wrong label</span>
+        </div>
+        <div class="source-coverage-actions">
+          <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with 1 latest article">RSS feed <span class="feed-link-count">1 item</span></a>
+        </div>
+      </section>
+      <article class="news-item"><a href="https://example.com/active">Only active item</a></article>
+      ${renderDashboardRssFooter()}
+    </body></html>`,
+    sourceNames: ['Example Security', 'Quiet Feed'],
+  });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(result.failures.join('\n'), /index\.html source coverage source Quiet Feed with zero items must not be available in the source filter/);
+  assert.match(result.failures.join('\n'), /index\.html source health quiet note wrong label does not match expected health only/);
 });
 
 test('validateArtifacts rejects feed-info timestamp drift from the generated digest', () => {

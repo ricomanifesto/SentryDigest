@@ -24,6 +24,8 @@ const SOURCE_COVERAGE_CONTRACT = Object.freeze({
   activeSourcesAttribute: 'data-active-sources',
   buttonDataAttribute: 'data-source-filter',
   buttonSelector: '[data-source-filter]',
+  healthNoteSelector: '.source-health-note',
+  healthNoteText: 'health only',
   healthSelector: '.source-health-summary',
   quietSourcesAttribute: 'data-quiet-sources',
   sectionClass: 'source-coverage',

@@ -1019,7 +1019,7 @@ test('generateHTML renders quiet configured feeds as inert source coverage chips
   assert.ok(html.includes(`<button class="source-count source-count-empty" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="Quiet &lt;Feed&gt;" aria-pressed="false" aria-disabled="true" disabled>Quiet &lt;Feed&gt; <strong>0</strong></button>`));
   assert.ok(html.includes('<div class="source-health-summary" data-active-sources="1" data-quiet-sources="1">'));
   assert.ok(html.includes('<span><strong>1</strong> active feed</span>'));
-  assert.ok(html.includes('<span><strong>1</strong> quiet feed</span>'));
+  assert.ok(html.includes(`<span><strong>1</strong> quiet feed</span> <span class="source-health-note">${SOURCE_COVERAGE_CONTRACT.healthNoteText}</span>`));
   assert.doesNotMatch(html, /Quiet <Feed>/);
 });
 

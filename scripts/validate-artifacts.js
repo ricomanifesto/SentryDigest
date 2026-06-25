@@ -370,6 +370,11 @@ function validateSourceCoverageContract(indexHtml, newsData, enabledSources, fai
     if (visibleQuietCount !== expectedQuietSources) {
       fail(failures, `index.html source health visible quiet count ${visibleCounts[1] || 'missing'} does not match expected ${expectedQuietSources}`);
     }
+
+    const healthNoteText = sourceHealthSummary.find(SOURCE_COVERAGE_CONTRACT.healthNoteSelector).first().text().trim();
+    if (expectedQuietSources > 0 && healthNoteText !== SOURCE_COVERAGE_CONTRACT.healthNoteText) {
+      fail(failures, `index.html source health quiet note ${healthNoteText || 'missing'} does not match expected ${SOURCE_COVERAGE_CONTRACT.healthNoteText}`);
+    }
   }
 
   section.find(SOURCE_COVERAGE_CONTRACT.buttonSelector).each((index, element) => {
@@ -398,6 +403,10 @@ function validateSourceCoverageContract(indexHtml, newsData, enabledSources, fai
       .filter((optionIndex, option) => $(option).attr('value') === source);
     if (expectedCount > 0 && filterOption.length === 0) {
       fail(failures, `index.html source coverage source ${source} is not available in the source filter`);
+    }
+
+    if (expectedCount === 0 && filterOption.length > 0) {
+      fail(failures, `index.html source coverage source ${source} with zero items must not be available in the source filter`);
     }
 
     if (expectedCount === 0 && (button.attr('disabled') === undefined || button.attr('aria-disabled') !== 'true')) {

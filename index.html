@@ -80,6 +80,7 @@
     .source-health-summary { align-items: center; color: var(--muted); display: flex; flex: 0 1 auto; flex-wrap: wrap; font-size: 12px; gap: 6px; }
     .source-health-summary span { background: var(--bg); border: 1px solid var(--card-border); border-radius: 999px; padding: 3px 8px; }
     .source-health-summary strong { color: var(--fg); }
+    .source-health-note { color: var(--muted); font-weight: 700; text-transform: uppercase; }
     .source-coverage a { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
     .source-coverage a:hover { text-decoration: underline; }
     .feed-link { align-items: center; display: inline-flex; gap: 6px; }
@@ -228,7 +229,7 @@
       <div class="source-counts"><button class="source-count" type="button" data-source-filter="Bleeping Computer" aria-pressed="false">Bleeping Computer <strong>14</strong></button><button class="source-count" type="button" data-source-filter="The Hacker News" aria-pressed="false">The Hacker News <strong>10</strong></button><button class="source-count" type="button" data-source-filter="Dark Reading" aria-pressed="false">Dark Reading <strong>6</strong></button><button class="source-count source-count-empty" type="button" data-source-filter="Krebs on Security" aria-pressed="false" aria-disabled="true" disabled>Krebs on Security <strong>0</strong></button><button class="source-count source-count-empty" type="button" data-source-filter="Threatpost" aria-pressed="false" aria-disabled="true" disabled>Threatpost <strong>0</strong></button></div>
       <div class="source-health-summary" data-active-sources="3" data-quiet-sources="2">
         <span><strong>3</strong> active feeds</span>
-        <span><strong>2</strong> quiet feeds</span>
+        <span><strong>2</strong> quiet feeds</span> <span class="source-health-note">health only</span>
       </div>
       <div class="source-coverage-actions">
         <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with 30 latest articles">RSS feed <span class="feed-link-count">30 items</span></a>
