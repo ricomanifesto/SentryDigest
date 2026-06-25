@@ -5,6 +5,7 @@ const {
   DASHBOARD_RSS_LINK_CONTRACT,
   FEED_INFO_CONTRACT,
   FEED_METADATA_CONTRACT,
+  formatSourceShortcutStatus,
   ISSUE_TRAIL_CONTRACT,
   RSS_CHANNEL_CONTRACT,
   SOURCE_COVERAGE_CONTRACT,
@@ -379,8 +380,9 @@ function validateSourceCoverageContract(indexHtml, newsData, enabledSources, fai
   }
 
   const sourceFilterStatusText = sourceFilterStatus.text().trim();
-  if (sourceFilterStatusText !== SOURCE_COVERAGE_CONTRACT.statusText) {
-    fail(failures, `index.html source shortcut status ${sourceFilterStatusText || 'missing'} does not match expected ${SOURCE_COVERAGE_CONTRACT.statusText}`);
+  const expectedSourceFilterStatus = formatSourceShortcutStatus(SOURCE_COVERAGE_CONTRACT.statusAllSourcesText, newsData.length);
+  if (sourceFilterStatusText !== expectedSourceFilterStatus) {
+    fail(failures, `index.html source shortcut status ${sourceFilterStatusText || 'missing'} does not match expected ${expectedSourceFilterStatus}`);
   }
 
   section.find(SOURCE_COVERAGE_CONTRACT.buttonSelector).each((index, element) => {

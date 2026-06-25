@@ -232,7 +232,7 @@
         <span><strong>3</strong> active feeds</span>
         <span><strong>2</strong> quiet feeds</span> <span class="source-health-note">health only</span>
       </div>
-      <div class="source-filter-status" data-source-filter-status aria-live="polite">Source shortcut: All active feeds</div>
+      <div class="source-filter-status" data-source-filter-status aria-live="polite">Source shortcut: All active feeds (30 articles)</div>
       <div class="source-coverage-actions">
         <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with 30 latest articles">RSS feed <span class="feed-link-count">30 items</span></a>
         <details class="digest-legend" aria-label="Digest legend">
@@ -1149,13 +1149,14 @@ For years, cybersecurity moved to a rhythm organizations could</span><span class
         });
         const total = 30;
         const srcCount = 3;
+        const articleLabel = visible === 1 ? 'article' : 'articles';
         if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-25T18:52:29.587Z').toLocaleString());
         if (emptyFilteredState) emptyFilteredState.hidden = visible !== 0;
         sourceCoverageButtons.forEach(function(button){
           button.setAttribute('aria-pressed', button.getAttribute('data-source-filter') === src ? 'true' : 'false');
         });
         if (sourceFilterStatus) {
-          sourceFilterStatus.textContent = src ? 'Source shortcut: ' + getControlLabel(sourceFilter) : 'Source shortcut: All active feeds';
+          sourceFilterStatus.textContent = (src ? 'Source shortcut: ' + getControlLabel(sourceFilter) : 'Source shortcut: All active feeds') + ' (' + visible + ' ' + articleLabel + ')';
         }
         renderActiveFilters();
         renderFilterInsights(visibleCards);

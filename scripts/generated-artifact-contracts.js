@@ -31,8 +31,9 @@ const SOURCE_COVERAGE_CONTRACT = Object.freeze({
   sectionClass: 'source-coverage',
   sectionSelector: '.source-coverage',
   sourceFilterSelector: '#sourceFilter',
+  statusAllSourcesText: 'Source shortcut: All active feeds',
   statusSelector: '[data-source-filter-status]',
-  statusText: 'Source shortcut: All active feeds',
+  statusTextPrefix: 'Source shortcut: ',
 });
 
 const FEED_METADATA_CONTRACT = Object.freeze({
@@ -55,10 +56,16 @@ const RSS_CHANNEL_CONTRACT = Object.freeze({
   title: 'Cybersecurity News Aggregator',
 });
 
+function formatSourceShortcutStatus(label, count) {
+  const articleLabel = count === 1 ? 'article' : 'articles';
+  return `${label} (${count} ${articleLabel})`;
+}
+
 module.exports = {
   DASHBOARD_RSS_LINK_CONTRACT,
   FEED_INFO_CONTRACT,
   FEED_METADATA_CONTRACT,
+  formatSourceShortcutStatus,
   ISSUE_TRAIL_CONTRACT,
   RSS_CHANNEL_CONTRACT,
   SOURCE_COVERAGE_CONTRACT,

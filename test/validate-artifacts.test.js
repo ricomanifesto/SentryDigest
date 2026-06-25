@@ -6,6 +6,7 @@ const test = require('node:test');
 
 const {
   FEED_INFO_CONTRACT,
+  formatSourceShortcutStatus,
   ISSUE_TRAIL_CONTRACT,
   RSS_CHANNEL_CONTRACT,
   SOURCE_COVERAGE_CONTRACT,
@@ -96,7 +97,7 @@ function renderFixtureSourceControls(newsData, sourceNames) {
         <span><strong>${activeSourceCount}</strong> active ${activeSourceCount === 1 ? 'feed' : 'feeds'}</span>
         <span><strong>${quietSourceCount}</strong> quiet ${quietSourceCount === 1 ? 'feed' : 'feeds'}</span>${quietSourceNote}
       </div>
-      <div class="source-filter-status" data-source-filter-status aria-live="polite">${SOURCE_COVERAGE_CONTRACT.statusText}</div>
+      <div class="source-filter-status" data-source-filter-status aria-live="polite">${formatSourceShortcutStatus(SOURCE_COVERAGE_CONTRACT.statusAllSourcesText, newsData.length)}</div>
       <div class="source-coverage-actions">
         <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with ${newsData.length} latest articles">RSS feed <span class="feed-link-count">${newsData.length} items</span></a>
       </div>
@@ -779,7 +780,7 @@ test('validateArtifacts rejects source shortcut status drift', () => {
   const result = validateArtifacts(repoRoot);
 
   assert.equal(result.valid, false);
-  assert.match(result.failures.join('\n'), /index\.html source shortcut status Source shortcut: stale source does not match expected Source shortcut: All active feeds/);
+  assert.match(result.failures.join('\n'), /index\.html source shortcut status Source shortcut: stale source does not match expected Source shortcut: All active feeds \(2 articles\)/);
 });
 
 test('validateArtifacts rejects feed-info timestamp drift from the generated digest', () => {
