@@ -1042,10 +1042,13 @@ test('generateHTML wires source coverage counts into the source filter', () => {
   ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
 
   assert.ok(html.includes(`const sourceCoverageButtons = qa('${SOURCE_COVERAGE_CONTRACT.buttonSelector}')`));
+  assert.ok(html.includes(`<div class="source-filter-status" data-source-filter-status aria-live="polite">${SOURCE_COVERAGE_CONTRACT.statusText}</div>`));
+  assert.ok(html.includes(`const sourceFilterStatus = q('${SOURCE_COVERAGE_CONTRACT.statusSelector}')`));
   assert.match(html, /sourceCoverageButtons\.forEach\(function\(button\)/);
   assert.ok(html.includes(`const source = button.getAttribute('${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}') || ''`));
   assert.match(html, /sourceFilter\.value = sourceFilter\.value === source \? '' : source/);
   assert.ok(html.includes(`button.setAttribute('aria-pressed', button.getAttribute('${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}') === src ? 'true' : 'false')`));
+  assert.ok(html.includes(`sourceFilterStatus.textContent = src ? 'Source shortcut: ' + getControlLabel(sourceFilter) : '${SOURCE_COVERAGE_CONTRACT.statusText}'`));
   assert.match(html, /update\(\);/);
 });
 

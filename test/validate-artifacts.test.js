@@ -96,6 +96,7 @@ function renderFixtureSourceControls(newsData, sourceNames) {
         <span><strong>${activeSourceCount}</strong> active ${activeSourceCount === 1 ? 'feed' : 'feeds'}</span>
         <span><strong>${quietSourceCount}</strong> quiet ${quietSourceCount === 1 ? 'feed' : 'feeds'}</span>${quietSourceNote}
       </div>
+      <div class="source-filter-status" data-source-filter-status aria-live="polite">${SOURCE_COVERAGE_CONTRACT.statusText}</div>
       <div class="source-coverage-actions">
         <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with ${newsData.length} latest articles">RSS feed <span class="feed-link-count">${newsData.length} items</span></a>
       </div>
@@ -739,6 +740,46 @@ test('validateArtifacts rejects quiet sources exposed as selectable source filte
   assert.equal(result.valid, false);
   assert.match(result.failures.join('\n'), /index\.html source coverage source Quiet Feed with zero items must not be available in the source filter/);
   assert.match(result.failures.join('\n'), /index\.html source health quiet note wrong label does not match expected health only/);
+});
+
+test('validateArtifacts rejects source shortcut status drift', () => {
+  const repoRoot = createFixture({
+    indexHtml: `<html><head>${renderDashboardRssHead()}</head><body>
+      <h1>SentryDigest</h1>
+      ${renderDashboardRssControls()}
+      ${renderGeneratedMetadata()}
+      <section class="issue-strip">
+        <a class="issue-link" href="./feed.xml">RSS archive</a>
+        <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
+      </section>
+      ${renderArchiveTrail()}
+      <select id="sourceFilter" class="select" aria-label="Filter by source">
+        <option value="">All sources</option>
+        <option value="Example Security">Example Security</option>
+      </select>
+      <section class="${SOURCE_COVERAGE_CONTRACT.sectionClass}" aria-label="RSS source coverage">
+        <div class="source-counts">
+          <button class="source-count" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="Example Security" aria-pressed="false">Example Security <strong>2</strong></button>
+        </div>
+        <div class="source-health-summary" data-active-sources="1" data-quiet-sources="0">
+          <span><strong>1</strong> active feed</span>
+          <span><strong>0</strong> quiet feeds</span>
+        </div>
+        <div class="source-filter-status" data-source-filter-status aria-live="polite">Source shortcut: stale source</div>
+        <div class="source-coverage-actions">
+          <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with 2 latest articles">RSS feed <span class="feed-link-count">2 items</span></a>
+        </div>
+      </section>
+      <article class="news-item"><a href="https://example.com/newer">Newer item</a></article>
+      <article class="news-item"><a href="https://example.com/older">Older item</a></article>
+      ${renderDashboardRssFooter()}
+    </body></html>`,
+  });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(result.failures.join('\n'), /index\.html source shortcut status Source shortcut: stale source does not match expected Source shortcut: All active feeds/);
 });
 
 test('validateArtifacts rejects feed-info timestamp drift from the generated digest', () => {

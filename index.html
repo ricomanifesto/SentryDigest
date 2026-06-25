@@ -81,6 +81,7 @@
     .source-health-summary span { background: var(--bg); border: 1px solid var(--card-border); border-radius: 999px; padding: 3px 8px; }
     .source-health-summary strong { color: var(--fg); }
     .source-health-note { color: var(--muted); font-weight: 700; text-transform: uppercase; }
+    .source-filter-status { color: var(--muted); flex: 0 1 auto; font-size: 12px; font-weight: 700; }
     .source-coverage a { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
     .source-coverage a:hover { text-decoration: underline; }
     .feed-link { align-items: center; display: inline-flex; gap: 6px; }
@@ -231,6 +232,7 @@
         <span><strong>3</strong> active feeds</span>
         <span><strong>2</strong> quiet feeds</span> <span class="source-health-note">health only</span>
       </div>
+      <div class="source-filter-status" data-source-filter-status aria-live="polite">Source shortcut: All active feeds</div>
       <div class="source-coverage-actions">
         <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with 30 latest articles">RSS feed <span class="feed-link-count">30 items</span></a>
         <details class="digest-legend" aria-label="Digest legend">
@@ -956,6 +958,7 @@ For years, cybersecurity moved to a rhythm organizations could</span><span class
       const activeFilters = q('#activeFilters');
       const resetFilters = q('#resetFilters');
       const filterInsights = q('#filterInsights');
+      const sourceFilterStatus = q('[data-source-filter-status]');
       const operatorLanes = qa('.operator-lane');
       const sourceCoverageButtons = qa('[data-source-filter]');
       const stats = q('#stats');
@@ -1151,6 +1154,9 @@ For years, cybersecurity moved to a rhythm organizations could</span><span class
         sourceCoverageButtons.forEach(function(button){
           button.setAttribute('aria-pressed', button.getAttribute('data-source-filter') === src ? 'true' : 'false');
         });
+        if (sourceFilterStatus) {
+          sourceFilterStatus.textContent = src ? 'Source shortcut: ' + getControlLabel(sourceFilter) : 'Source shortcut: All active feeds';
+        }
         renderActiveFilters();
         renderFilterInsights(visibleCards);
         updateOperatorLanes(visibleCards);
