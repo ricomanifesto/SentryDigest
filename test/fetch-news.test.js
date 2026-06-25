@@ -1,8 +1,12 @@
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const os = require('node:os');
+const path = require('node:path');
 const test = require('node:test');
 
 const {
   INVALID_FEED_DATE_FALLBACK,
+  loadSourceConfig,
   normalizeArticleDate,
   normalizeFeedDate,
 } = require('../scripts/fetch-news');
@@ -72,6 +76,29 @@ test('normalizeArticleDate uses parser date before the stable old fallback', () 
   });
 
   assert.equal(date.toISOString(), '2026-06-18T16:30:00.000Z');
+});
+
+test('loadSourceConfig bootstraps missing config with canonical RSS source shape', () => {
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sentrydigest-source-bootstrap-'));
+  const configPath = path.join(tmpDir, 'config/news-sources.json');
+
+  const result = loadSourceConfig({
+    configPath,
+    logger: { log() {} },
+    now: new Date('2026-06-25T18:00:00.000Z'),
+  });
+
+  assert.equal(fs.existsSync(configPath), true);
+  assert.equal(result.maxNewsItems, 30);
+  assert.equal(result.enabledRssSources.length, result.config.sources.length);
+  assert.equal(result.config.settings.lastUpdated, '2026-06-25T18:00:00.000Z');
+
+  result.enabledRssSources.forEach((source) => {
+    assert.equal(typeof source.name, 'string');
+    assert.match(source.url, /^https?:\/\//);
+    assert.equal(source.type, 'rss');
+    assert.equal(source.enabled, true);
+  });
 });
 
 test('generateHTML escapes feed-controlled article fields', () => {
