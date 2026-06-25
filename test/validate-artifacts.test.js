@@ -5,7 +5,9 @@ const path = require('node:path');
 const test = require('node:test');
 
 const {
+  FEED_INFO_CONTRACT,
   ISSUE_TRAIL_CONTRACT,
+  RSS_CHANNEL_CONTRACT,
   SOURCE_COVERAGE_CONTRACT,
 } = require('../scripts/generated-artifact-contracts');
 const { validateArtifacts } = require('../scripts/validate-artifacts');
@@ -87,10 +89,10 @@ function renderFeedItem(item, overrides = {}) {
 }
 
 function renderFeedXml(newsData, overrides = {}) {
-  const title = overrides.title || 'Cybersecurity News Aggregator';
-  const description = overrides.description || 'Latest cybersecurity news from top sources';
-  const siteUrl = overrides.siteUrl || 'https://ricomanifesto.github.io/SentryDigest/';
-  const feedUrl = overrides.feedUrl || 'https://ricomanifesto.github.io/SentryDigest/feed.xml';
+  const title = overrides.title || RSS_CHANNEL_CONTRACT.title;
+  const description = overrides.description || RSS_CHANNEL_CONTRACT.description;
+  const siteUrl = overrides.siteUrl || RSS_CHANNEL_CONTRACT.publicSiteUrl;
+  const feedUrl = overrides.feedUrl || RSS_CHANNEL_CONTRACT.publicFeedUrl;
 
   return `<?xml version="1.0" encoding="UTF-8"?><rss><channel>
         <title>${title}</title>
@@ -135,8 +137,8 @@ function createFixture(overrides = {}) {
   });
   writeJson(path.join(repoRoot, 'news-data.json'), newsData);
   writeJson(path.join(repoRoot, 'feed-info.json'), {
-    title: 'Cybersecurity News Aggregator RSS Feed',
-    url: 'https://ricomanifesto.github.io/SentryDigest/feed.xml',
+    title: FEED_INFO_CONTRACT.title,
+    url: FEED_INFO_CONTRACT.publicFeedUrl,
     itemCount: overrides.feedInfoItemCount ?? newsData.length,
     sources: ['Example Security'],
     lastUpdated: overrides.feedInfoLastUpdated || '2026-06-17T18:30:00.000Z',
@@ -247,6 +249,50 @@ test('validateArtifacts rejects malformed RSS channel identity fields', () => {
   assert.match(result.failures.join('\n'), /feed\.xml channel description must match the RSS channel contract/);
   assert.match(result.failures.join('\n'), /feed\.xml channel link must match the public SentryDigest site URL/);
   assert.match(result.failures.join('\n'), /feed\.xml atom self link must match the public SentryDigest feed URL/);
+});
+
+test('validateArtifacts rejects feed-info and RSS atom self link drift', () => {
+  const newsData = [
+    {
+      title: 'Newer item',
+      link: 'https://example.com/newer',
+      date: '2026-06-17T18:00:00.000Z',
+      source: 'Example Security',
+      summary: 'Newest story',
+    },
+    {
+      title: 'Older item',
+      link: 'https://example.com/older',
+      date: '2026-06-17T17:00:00.000Z',
+      source: 'Example Security',
+      summary: 'Older story',
+    },
+  ];
+  const repoRoot = createFixture({
+    newsData,
+    feedInfo: {
+      url: 'https://example.com/feed-info.xml',
+    },
+    feedXml: renderFeedXml(newsData, {
+      feedUrl: 'https://example.com/feed.xml',
+    }),
+  });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(
+    result.failures.join('\n'),
+    /feed-info\.json url must match the public SentryDigest feed URL/
+  );
+  assert.match(
+    result.failures.join('\n'),
+    /feed\.xml atom self link must match the public SentryDigest feed URL/
+  );
+  assert.match(
+    result.failures.join('\n'),
+    /feed-info\.json url must match feed\.xml atom self link/
+  );
 });
 
 test('validateArtifacts rejects feed links that drift from news-data', () => {
