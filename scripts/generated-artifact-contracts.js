@@ -56,8 +56,10 @@ const RSS_CHANNEL_CONTRACT = Object.freeze({
   title: 'Cybersecurity News Aggregator',
 });
 
-function formatSourceShortcutStatus(label, count) {
-  const articleLabel = count === 1 ? 'article' : 'articles';
+function formatSourceShortcutStatus(label, count, options = {}) {
+  const articleLabel = options.filtered
+    ? (count === 1 ? 'filtered article' : 'filtered articles')
+    : (count === 1 ? 'article' : 'articles');
   return `${label} (${count} ${articleLabel})`;
 }
 
