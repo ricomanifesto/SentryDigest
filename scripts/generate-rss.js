@@ -2,7 +2,10 @@ const fs = require('fs');
 const path = require('path');
 const RSS = require('rss');
 const moment = require('moment');
-const { FEED_INFO_CONTRACT } = require('./generated-artifact-contracts');
+const {
+  FEED_INFO_CONTRACT,
+  RSS_CHANNEL_CONTRACT,
+} = require('./generated-artifact-contracts');
 
 // Default generated artifact paths
 const defaultNewsDataPath = path.join(__dirname, '../news-data.json');
@@ -40,11 +43,11 @@ function generateRSSFeed(options = {}) {
 
   // Create a new RSS feed
   const feed = new RSS({
-    title: 'Cybersecurity News Aggregator',
-    description: 'Latest cybersecurity news from top sources',
-    feed_url: FEED_INFO_CONTRACT.publicFeedUrl,
-    site_url: 'https://ricomanifesto.github.io/SentryDigest/',
-    image_url: 'https://ricomanifesto.github.io/SentryDigest/icon.png',
+    title: RSS_CHANNEL_CONTRACT.title,
+    description: RSS_CHANNEL_CONTRACT.description,
+    feed_url: RSS_CHANNEL_CONTRACT.publicFeedUrl,
+    site_url: RSS_CHANNEL_CONTRACT.publicSiteUrl,
+    image_url: RSS_CHANNEL_CONTRACT.imageUrl,
     language: 'en',
     pubDate: generatedAt,
     ttl: '180', // Time to live in minutes (3 hours)
