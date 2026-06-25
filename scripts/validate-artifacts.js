@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const cheerio = require('cheerio');
 const {
+  DASHBOARD_RSS_LINK_CONTRACT,
   FEED_INFO_CONTRACT,
   FEED_METADATA_CONTRACT,
   ISSUE_TRAIL_CONTRACT,
@@ -222,6 +223,41 @@ function validateIssueTrailContract(indexHtml, failures) {
   ) {
     fail(failures, 'index.html must render the digest archive trail contract');
   }
+}
+
+function isDashboardRssLink($, element) {
+  if (element.tagName === 'link') {
+    return true;
+  }
+
+  return /\b(rss|feed)\b/i.test($(element).text());
+}
+
+function validateDashboardRssLinkContract(indexHtml, failures) {
+  const $ = cheerio.load(indexHtml);
+
+  DASHBOARD_RSS_LINK_CONTRACT.linkSelectors.forEach((selector) => {
+    let rssLinkCount = 0;
+
+    $(selector).each((index, element) => {
+      if (!isDashboardRssLink($, element)) {
+        return;
+      }
+
+      rssLinkCount += 1;
+      const href = $(element).attr('href') || '';
+      if (href !== DASHBOARD_RSS_LINK_CONTRACT.feedHref) {
+        fail(
+          failures,
+          `index.html RSS link ${selector} href ${href || 'missing'} must match the dashboard RSS link contract`
+        );
+      }
+    });
+
+    if (rssLinkCount === 0) {
+      fail(failures, `index.html must render RSS link ${selector} for the dashboard RSS link contract`);
+    }
+  });
 }
 
 function getGeneratedMetadataTimestamps(indexHtml, failures = []) {
@@ -540,6 +576,7 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
     if (!indexHtml.includes('href="./feed.xml"')) {
       fail(failures, 'index.html must link to feed.xml');
     }
+    validateDashboardRssLinkContract(indexHtml, failures);
     validateIssueTrailContract(indexHtml, failures);
     validateSourceCoverageContract(indexHtml, newsData, enabledSources, failures);
 

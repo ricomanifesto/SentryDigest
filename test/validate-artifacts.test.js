@@ -42,6 +42,18 @@ function renderGeneratedMetadata(generatedAt = '2026-06-17T18:30:00.000Z') {
     </div>`;
 }
 
+function renderDashboardRssHead() {
+  return '<link rel="alternate" type="application/rss+xml" title="Cybersecurity News RSS Feed" href="./feed.xml" />';
+}
+
+function renderDashboardRssControls() {
+  return '<a class="btn" href="./feed.xml">RSS</a>';
+}
+
+function renderDashboardRssFooter() {
+  return '<footer><a href="./feed.xml">RSS Feed</a></footer>';
+}
+
 function collectFixtureSourceCounts(newsData, sourceNames = ['Example Security']) {
   const counts = new Map(sourceNames.map((source) => [source, 0]));
 
@@ -74,6 +86,9 @@ function renderFixtureSourceControls(newsData, sourceNames) {
     </select>
     <section class="${SOURCE_COVERAGE_CONTRACT.sectionClass}" aria-label="RSS source coverage">
       <div class="source-counts">${sourceButtons}</div>
+      <div class="source-coverage-actions">
+        <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with ${newsData.length} latest articles">RSS feed <span class="feed-link-count">${newsData.length} items</span></a>
+      </div>
     </section>`;
 }
 
@@ -151,13 +166,18 @@ function createFixture(overrides = {}) {
   writeText(
     path.join(repoRoot, 'index.html'),
     overrides.indexHtml ||
-      `<html><body>
+      `<html><head>${renderDashboardRssHead()}</head><body>
         <h1>SentryDigest</h1>
-        <a href="./feed.xml">RSS</a>
+        ${renderDashboardRssControls()}
         ${renderGeneratedMetadata()}
+        <section class="issue-strip">
+          <a class="issue-link" href="./feed.xml">RSS archive</a>
+          <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
+        </section>
         ${renderArchiveTrail()}
         ${renderFixtureSourceControls(newsData, ['Example Security'])}
         ${newsData.map((item) => `<article class="news-item"><a href="${item.link}">${item.title}</a></article>`).join('\n')}
+        ${renderDashboardRssFooter()}
       </body></html>`
   );
 
@@ -391,10 +411,14 @@ test('validateArtifacts accepts RSS pubDate second precision', () => {
   const repoRoot = createFixture({
     newsData,
     feedXml: renderFeedXml(newsData),
-    indexHtml: `<html><body>
+    indexHtml: `<html><head>${renderDashboardRssHead()}</head><body>
       <h1>SentryDigest</h1>
-      <a href="./feed.xml">RSS</a>
+      ${renderDashboardRssControls()}
       ${renderGeneratedMetadata()}
+      <section class="issue-strip">
+        <a class="issue-link" href="./feed.xml">RSS archive</a>
+        <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
+      </section>
       ${renderArchiveTrail()}
       ${renderFixtureSourceControls([
         {
@@ -402,6 +426,7 @@ test('validateArtifacts accepts RSS pubDate second precision', () => {
         },
       ], ['Example Security'])}
       <article class="news-item"><a href="https://example.com/millisecond">Millisecond item</a></article>
+      ${renderDashboardRssFooter()}
     </body></html>`,
   });
 
@@ -427,6 +452,95 @@ test('validateArtifacts rejects generated HTML article links that drift from new
   assert.match(
     result.failures.join('\n'),
     /index\.html article item 1 href https:\/\/example\.com\/wrong-newer does not match news-data\.json link https:\/\/example\.com\/newer/
+  );
+});
+
+test('validateArtifacts rejects generated dashboard RSS link drift', () => {
+  const repoRoot = createFixture({
+    indexHtml: `<html><head>
+      <link rel="alternate" type="application/rss+xml" title="Cybersecurity News RSS Feed" href="./feed.xml" />
+    </head><body>
+      <h1>SentryDigest</h1>
+      <a class="btn" href="./feed.xml">RSS</a>
+      ${renderGeneratedMetadata()}
+      ${renderArchiveTrail()}
+      ${renderFixtureSourceControls([
+        {
+          title: 'Newer item',
+          link: 'https://example.com/newer',
+          date: '2026-06-17T18:00:00.000Z',
+          source: 'Example Security',
+          summary: 'Newest story',
+        },
+      ], ['Example Security'])}
+      <section class="${SOURCE_COVERAGE_CONTRACT.sectionClass}" aria-label="RSS source coverage">
+        <a class="feed-link" href="./wrong-feed.xml">RSS feed <span class="feed-link-count">1 item</span></a>
+      </section>
+      <article class="news-item"><a href="https://example.com/newer">Newer item</a></article>
+    </body></html>`,
+    newsData: [
+      {
+        title: 'Newer item',
+        link: 'https://example.com/newer',
+        date: '2026-06-17T18:00:00.000Z',
+        source: 'Example Security',
+        summary: 'Newest story',
+      },
+    ],
+  });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(
+    result.failures.join('\n'),
+    /index\.html RSS link \.source-coverage a\.feed-link href \.\/wrong-feed\.xml must match the dashboard RSS link contract/
+  );
+});
+
+test('validateArtifacts rejects missing generated dashboard RSS link affordances', () => {
+  const repoRoot = createFixture({
+    indexHtml: `<html><body>
+      <h1>SentryDigest</h1>
+      <a href="./feed.xml">RSS</a>
+      ${renderGeneratedMetadata()}
+      ${renderArchiveTrail()}
+      ${renderFixtureSourceControls([
+        {
+          title: 'Newer item',
+          link: 'https://example.com/newer',
+          date: '2026-06-17T18:00:00.000Z',
+          source: 'Example Security',
+          summary: 'Newest story',
+        },
+      ], ['Example Security'])}
+      <article class="news-item"><a href="https://example.com/newer">Newer item</a></article>
+    </body></html>`,
+    newsData: [
+      {
+        title: 'Newer item',
+        link: 'https://example.com/newer',
+        date: '2026-06-17T18:00:00.000Z',
+        source: 'Example Security',
+        summary: 'Newest story',
+      },
+    ],
+  });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(
+    result.failures.join('\n'),
+    /index\.html must render RSS link link\[rel="alternate"\]\[type="application\/rss\+xml"\] for the dashboard RSS link contract/
+  );
+  assert.match(
+    result.failures.join('\n'),
+    /index\.html must render RSS link \.issue-strip a\.issue-link for the dashboard RSS link contract/
+  );
+  assert.match(
+    result.failures.join('\n'),
+    /index\.html must render RSS link footer a for the dashboard RSS link contract/
   );
 });
 
@@ -522,10 +636,14 @@ test('validateArtifacts accepts escaped generated HTML article hrefs', () => {
         summary: 'Story with query params',
       },
     ],
-    indexHtml: `<html><body>
+    indexHtml: `<html><head>${renderDashboardRssHead()}</head><body>
       <h1>SentryDigest</h1>
-      <a href="./feed.xml">RSS</a>
+      ${renderDashboardRssControls()}
       ${renderGeneratedMetadata()}
+      <section class="issue-strip">
+        <a class="issue-link" href="./feed.xml">RSS archive</a>
+        <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
+      </section>
       ${renderArchiveTrail()}
       ${renderFixtureSourceControls([
         {
@@ -533,6 +651,7 @@ test('validateArtifacts accepts escaped generated HTML article hrefs', () => {
         },
       ], ['Example Security'])}
       <article class="news-item"><a href="https://example.com/article?x=1&amp;y=2">Query item</a></article>
+      ${renderDashboardRssFooter()}
     </body></html>`,
   });
 
@@ -553,10 +672,14 @@ test('validateArtifacts accepts renderer-normalized generated HTML article hrefs
         summary: 'Story with normalized URL',
       },
     ],
-    indexHtml: `<html><body>
+    indexHtml: `<html><head>${renderDashboardRssHead()}</head><body>
       <h1>SentryDigest</h1>
-      <a href="./feed.xml">RSS</a>
+      ${renderDashboardRssControls()}
       ${renderGeneratedMetadata()}
+      <section class="issue-strip">
+        <a class="issue-link" href="./feed.xml">RSS archive</a>
+        <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
+      </section>
       ${renderArchiveTrail()}
       ${renderFixtureSourceControls([
         {
@@ -564,6 +687,7 @@ test('validateArtifacts accepts renderer-normalized generated HTML article hrefs
         },
       ], ['Example Security'])}
       <article class="news-item"><a href="https://example.com/">Normalized item</a></article>
+      ${renderDashboardRssFooter()}
     </body></html>`,
   });
 
