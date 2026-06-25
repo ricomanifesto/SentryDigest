@@ -32,6 +32,11 @@ function validateSourceConfig(config, failures = []) {
         return;
       }
 
+      if (source.enabled !== undefined && typeof source.enabled !== 'boolean') {
+        fail(failures, `${label} enabled must be a boolean`);
+        return;
+      }
+
       if (source.enabled !== true) {
         return;
       }

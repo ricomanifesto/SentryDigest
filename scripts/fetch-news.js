@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { generateHTML } = require('./render-news-html');
+const { assertSourceConfigContract } = require('./source-config-contract');
 
 // Path to the index.html file
 const indexHtmlPath = path.join(__dirname, '../index.html');
@@ -76,7 +77,7 @@ try {
 }
 
 // Get sources from config
-const sources = config.sources.filter(source => source.enabled);
+const { enabledRssSources: sources } = assertSourceConfigContract(config);
 // Use simple date-based sort across all sources
 
 const INVALID_FEED_DATE_FALLBACK = new Date('1970-01-01T00:00:00.000Z');
