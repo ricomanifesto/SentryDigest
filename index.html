@@ -44,7 +44,9 @@
     .filter-status { align-items: center; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
     .active-filters { display: flex; flex-wrap: wrap; gap: 8px; }
     .active-filters[hidden] { display: none; }
-    .active-filter-chip { background: var(--card); border: 1px solid var(--card-border); border-radius: 999px; color: var(--fg); font-size: 12px; padding: 4px 10px; }
+    .active-filter-chip { align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 999px; color: var(--fg); display: inline-flex; font-size: 12px; gap: 6px; min-height: 28px; padding: 4px 8px 4px 10px; }
+    .active-filter-clear { align-items: center; background: transparent; border: 0; border-radius: 999px; color: var(--muted); cursor: pointer; display: inline-flex; font: inherit; height: 18px; justify-content: center; line-height: 1; padding: 0; width: 18px; }
+    .active-filter-clear:hover, .active-filter-clear:focus-visible { color: var(--accent); outline: 1px solid var(--accent); outline-offset: 1px; }
     .search { display: flex; align-items: center; gap: 8px; background: var(--card); border: 1px solid var(--card-border); padding: 8px 10px; border-radius: 10px; }
     .search input { border: none; outline: none; background: transparent; color: var(--fg); min-width: 220px; }
     .select { border: 1px solid var(--card-border); background: var(--card); color: var(--fg); padding: 8px 10px; border-radius: 10px; }
@@ -1051,7 +1053,16 @@ For years, cybersecurity moved to a rhythm organizations could</span><span class
           const label = activeFilter.label;
           const chip = document.createElement('span');
           chip.className = 'active-filter-chip';
-          chip.textContent = filterLabels[key] + ': ' + label;
+          const chipText = document.createElement('span');
+          chipText.textContent = filterLabels[key] + ': ' + label;
+          const clearButton = document.createElement('button');
+          clearButton.className = 'active-filter-clear';
+          clearButton.type = 'button';
+          clearButton.setAttribute('data-filter-key', key);
+          clearButton.setAttribute('aria-label', 'Clear ' + filterLabels[key] + ' filter');
+          clearButton.textContent = '×';
+          chip.appendChild(chipText);
+          chip.appendChild(clearButton);
           activeFilters.appendChild(chip);
         });
       }
@@ -1200,6 +1211,13 @@ For years, cybersecurity moved to a rhythm organizations could</span><span class
         });
         update();
       }
+      if (activeFilters) activeFilters.addEventListener('click', function(event){
+        const target = event.target;
+        if (!target || !target.matches || !target.matches('.active-filter-clear')) return;
+        const key = target.getAttribute('data-filter-key');
+        if (filterControls[key]) filterControls[key].value = '';
+        update();
+      });
       if (resetFilters) resetFilters.addEventListener('click', clearFilters);
       if (emptyResetFilters) emptyResetFilters.addEventListener('click', clearFilters);
 
