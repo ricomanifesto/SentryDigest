@@ -1258,7 +1258,7 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
         update('Cleared ' + clearedLabel + ' filter.');
         hadMultipleActiveFilters ? focusActiveFilterRecoveryTarget() : focusFilterRecoveryTarget();
       });
-      if (resetFilters) resetFilters.addEventListener('click', function(){ clearFilters(); });
+      if (resetFilters) resetFilters.addEventListener('click', function(){ clearFilters({ focusRecoveryTarget: true }); });
       if (emptyResetFilters) emptyResetFilters.addEventListener('click', function(){ clearFilters({ focusRecoveryTarget: true }); });
 
       applyQueryState();

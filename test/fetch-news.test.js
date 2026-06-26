@@ -866,7 +866,7 @@ test('generateHTML renders active filter summary and reset wiring', () => {
   assert.match(html, /resetFilters\.hidden = activeFiltersList\.length === 0/);
   assert.match(html, /function clearFilters\(options\)/);
   assert.match(html, /control\.value = ''/);
-  assert.match(html, /if \(resetFilters\) resetFilters\.addEventListener\('click', function\(\)\{ clearFilters\(\); \}\)/);
+  assert.match(html, /if \(resetFilters\) resetFilters\.addEventListener\('click', function\(\)\{ clearFilters\(\{ focusRecoveryTarget: true \}\); \}\)/);
   assert.match(html, /if \(emptyResetFilters\) emptyResetFilters\.addEventListener\('click', function\(\)\{ clearFilters\(\{ focusRecoveryTarget: true \}\); \}\)/);
   assert.match(html, /const totalArticleLabel = total === 1 \? 'article' : 'articles'/);
   assert.match(html, /function getFilterStatusText\(visible, total, actionLabel, emptyFilteredStatusText\)/);
@@ -1260,7 +1260,7 @@ test('generateHTML returns focus to search after empty-state reset', () => {
   assert.match(html, /function clearFilters\(options\)/);
   assert.match(html, /const shouldFocusRecoveryTarget = options && options\.focusRecoveryTarget/);
   assert.match(html, /if \(shouldFocusRecoveryTarget\) focusFilterRecoveryTarget\(\)/);
-  assert.match(html, /if \(resetFilters\) resetFilters\.addEventListener\('click', function\(\)\{ clearFilters\(\); \}\)/);
+  assert.match(html, /if \(resetFilters\) resetFilters\.addEventListener\('click', function\(\)\{ clearFilters\(\{ focusRecoveryTarget: true \}\); \}\)/);
   assert.match(html, /if \(emptyResetFilters\) emptyResetFilters\.addEventListener\('click', function\(\)\{ clearFilters\(\{ focusRecoveryTarget: true \}\); \}\)/);
 });
 
