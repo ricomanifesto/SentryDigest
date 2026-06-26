@@ -1263,6 +1263,27 @@ test('generateHTML returns focus to search after empty-state reset', () => {
   assert.match(html, /if \(emptyResetFilters\) emptyResetFilters\.addEventListener\('click', function\(\)\{ clearFilters\(\{ focusRecoveryTarget: true \}\); \}\)/);
 });
 
+test('generateHTML recovers focus after active filter chip clearing', () => {
+  const html = generateHTML([
+    {
+      title: 'Microsoft Exchange zero-day exploited by ransomware crew',
+      link: 'https://security.example.com/microsoft-exchange-zero-day',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'SecurityWeek',
+      summary: 'CVE-2026-1234 is under active exploitation in data breach investigations.',
+    },
+  ]);
+
+  assert.match(html, /function focusActiveFilterRecoveryTarget\(\)/);
+  assert.ok(html.includes("const nextClearButton = activeFilters && activeFilters.querySelector('.active-filter-clear');"));
+  assert.match(html, /if \(nextClearButton && typeof nextClearButton\.focus === 'function'\) \{/);
+  assert.match(html, /nextClearButton\.focus\(\)/);
+  assert.match(html, /focusFilterRecoveryTarget\(\)/);
+  assert.ok(html.includes("const hadMultipleActiveFilters = activeFilters && activeFilters.querySelectorAll('.active-filter-clear').length > 1;"));
+  assert.match(html, /update\('Cleared ' \+ clearedLabel \+ ' filter\.'\)/);
+  assert.match(html, /hadMultipleActiveFilters \? focusActiveFilterRecoveryTarget\(\) : focusFilterRecoveryTarget\(\)/);
+});
+
 test('generateHTML renders long summaries as accessible expandable content', () => {
   const longSummary = `${'Security teams should prioritize exposed VPN appliances. '.repeat(6)}<script>alert(1)</script>`;
   const html = generateHTML([

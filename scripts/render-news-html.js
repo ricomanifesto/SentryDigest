@@ -1064,6 +1064,15 @@ function generateHTML(newsItems, options = {}) {
         if (search && typeof search.focus === 'function') search.focus();
       }
 
+      function focusActiveFilterRecoveryTarget(){
+        const nextClearButton = activeFilters && activeFilters.querySelector('.active-filter-clear');
+        if (nextClearButton && typeof nextClearButton.focus === 'function') {
+          nextClearButton.focus();
+          return;
+        }
+        focusFilterRecoveryTarget();
+      }
+
       function updateOperatorLanes(visibleCards){
         operatorLanes.forEach(function(lane){
           const cue = lane.getAttribute('data-lane-cue');
@@ -1159,9 +1168,11 @@ function generateHTML(newsItems, options = {}) {
         const target = event.target;
         if (!target || !target.matches || !target.matches('.active-filter-clear')) return;
         const key = target.getAttribute('data-filter-key');
+        const hadMultipleActiveFilters = activeFilters && activeFilters.querySelectorAll('.active-filter-clear').length > 1;
         if (filterControls[key]) filterControls[key].value = '';
         const clearedLabel = filterLabels[key] || 'Selected';
         update('Cleared ' + clearedLabel + ' filter.');
+        hadMultipleActiveFilters ? focusActiveFilterRecoveryTarget() : focusFilterRecoveryTarget();
       });
       if (resetFilters) resetFilters.addEventListener('click', function(){ clearFilters(); });
       if (emptyResetFilters) emptyResetFilters.addEventListener('click', function(){ clearFilters({ focusRecoveryTarget: true }); });

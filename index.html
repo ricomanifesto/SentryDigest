@@ -182,7 +182,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -218,10 +218,10 @@
       <div id="filterStatusAnnouncement" class="sr-only" role="status" aria-live="polite" aria-atomic="true">Showing 30 of 30 articles.</div>
       <button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters</button>
     </div>
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-26T18:44:48.796Z">6/26/2026, 6:44:48 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-26T19:26:06.501Z">6/26/2026, 7:26:06 PM</time></div>
     <section class="issue-strip" aria-label="Digest issue metadata">
       <span class="issue-label">Current issue</span>
-      <time datetime="2026-06-26T18:44:48.796Z">June 26, 2026</time>
+      <time datetime="2026-06-26T19:26:06.501Z">June 26, 2026</time>
       <span class="issue-stat"><strong>30</strong> articles</span>
       <span class="issue-stat"><strong>3</strong> sources</span>
       <a class="issue-link" href="./feed.xml">RSS archive</a>
@@ -230,7 +230,7 @@
       <span class="issue-trail-current" aria-current="page">Current digest</span>
       <a href="./feed.xml">RSS feed</a>
       <a href="#sourceCoverage">Source coverage</a>
-      <span class="issue-trail-meta">Updated <time datetime="2026-06-26T18:44:48.796Z">18:44 UTC</time></span>
+      <span class="issue-trail-meta">Updated <time datetime="2026-06-26T19:26:06.501Z">19:26 UTC</time></span>
       <span class="issue-trail-meta">3h cadence</span>
     </nav>
     <div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true"></div>
@@ -262,8 +262,8 @@
     <section class="operator-lanes" aria-label="Operator scan lanes">
       <article class="operator-lane" data-lane="Incident watch" data-lane-cue="SentryInsight: incident watch">
         <div class="operator-lane-heading">Incident watch</div>
-        <span class="operator-lane-count" data-lane-count><strong>7</strong> items</span>
-        <a href="https://www.bleepingcomputer.com/news/security/polymarket-customers-lose-3-million-in-supply-chain-attack/" class="operator-lane-link" data-lane-link>Polymarket customers lose $3 million in supply-chain attack</a>
+        <span class="operator-lane-count" data-lane-count><strong>8</strong> items</span>
+        <a href="https://thehackernews.com/2026/06/new-sharkloader-malware-deploys-cobalt.html" class="operator-lane-link" data-lane-link>New SharkLoader Malware Deploys Cobalt Strike in StrikeShark Cyberattacks</a>
       </article><article class="operator-lane" data-lane="Vulnerability triage" data-lane-cue="SentryInsight: vuln triage">
         <div class="operator-lane-heading">Vulnerability triage</div>
         <span class="operator-lane-count" data-lane-count><strong>5</strong> items</span>
@@ -281,13 +281,36 @@
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="New SharkLoader Malware Deploys Cobalt Strike in StrikeShark Cyberattacks" data-summary="A newly discovered cyber attack campaign has been observed delivering a previously undocumented malware family called SharkLoader that acts as a loader for deploying Cobalt Strike Beacon on compromise..." data-severity="Elevated" data-tags="Malware" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Fresh">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+            <span class="chip">Industry media</span>
+            <span class="chip age-chip">Fresh - 1h old</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/06/new-sharkloader-malware-deploys-cobalt.html" target="_blank" rel="noopener">New SharkLoader Malware Deploys Cobalt Strike in StrikeShark Cyberattacks</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-06-26T18:17:46.000Z">June 26, 2026 at 6:17 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <div class="facet-row"><span class="chip">Malware</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span></div>
+          <details class="summary-disclosure">
+            <summary class="summary-toggle" aria-controls="summary-full-0">
+              <span class="summary-preview-text">A newly discovered cyber attack campaign has been observed delivering a previously undocumented malware family called SharkLoader that acts as a loader for</span><span class="summary-ellipsis" aria-hidden="true">...</span>
+              <span class="summary-action">Show full summary</span>
+            </summary>
+            <p class="news-summary summary-full" id="summary-full-0">deploying Cobalt Strike Beacon on compromise...</p>
+          </details>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Polymarket customers lose $3 million in supply-chain attack" data-summary="Polymarket says it will fully reimburse customers who lost an estimated $3 million after hackers injected a malicious script into the platform&#39;s frontend following a breach at a third-party vendor. [...." data-severity="Critical" data-tags="Data Breach" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Fresh">
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 40m old</span>
+            <span class="chip age-chip">Fresh - 1h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/polymarket-customers-lose-3-million-in-supply-chain-attack/" target="_blank" rel="noopener">Polymarket customers lose $3 million in supply-chain attack</a></h2>
           <div class="news-meta">
@@ -297,11 +320,11 @@
           <div class="facet-row"><span class="chip">Data Breach</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-0">
+            <summary class="summary-toggle" aria-controls="summary-full-1">
               <span class="summary-preview-text">Polymarket says it will fully reimburse customers who lost an estimated $3 million after hackers injected a malicious script into the platform&#39;s frontend</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-0">following a breach at a third-party vendor. [....</p>
+            <p class="news-summary summary-full" id="summary-full-1">following a breach at a third-party vendor. [....</p>
           </details>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Cybersecurity firms targeted by fraudulent OpenAI organization invites" data-summary="Threat actors are creating OpenAI tenants that impersonate legitimate companies and inviting employees to join them, in what appears to be a ploy to trick targets into submitting sensitive company inf..." data-severity="Monitor" data-tags="" data-vendors="OpenAI" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Fresh">
@@ -310,7 +333,7 @@
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 55m old</span>
+            <span class="chip age-chip">Fresh - 1h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cybersecurity-firms-targeted-by-fraudulent-openai-organization-invites/" target="_blank" rel="noopener">Cybersecurity firms targeted by fraudulent OpenAI organization invites</a></h2>
           <div class="news-meta">
@@ -320,14 +343,14 @@
           <div class="facet-row"><span class="chip">OpenAI</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: vendor watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-1">
+            <summary class="summary-toggle" aria-controls="summary-full-2">
               <span class="summary-preview-text">Threat actors are creating OpenAI tenants that impersonate legitimate companies and inviting employees to join them, in what appears to be a ploy to trick</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-1">targets into submitting sensitive company inf...</p>
+            <p class="news-summary summary-full" id="summary-full-2">targets into submitting sensitive company inf...</p>
           </details>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Cisco Adds NHI to Security Stack With Astrix, WideField Acquisitions" data-summary="Cisco joins a growing list of security platform providers who are betting that securing the agentic workforce means turning identity into the primary control plane...." data-severity="Elevated" data-tags="Identity" data-vendors="Cisco" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vendor watch" data-age-bucket="Fresh">
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Cisco Adds NHI to Security Stack With Astrix, WideField Acquisitions" data-summary="Cisco joins a growing list of security platform providers that are betting that securing the agentic workforce means turning identity into the primary control plane...." data-severity="Elevated" data-tags="Identity" data-vendors="Cisco" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vendor watch" data-age-bucket="Fresh">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -343,11 +366,11 @@
           <div class="facet-row"><span class="chip">Cisco</span><span class="chip">Identity</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span><span class="handoff-cue">SentryInsight: vendor watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-2">
-              <span class="summary-preview-text">Cisco joins a growing list of security platform providers who are betting that securing the agentic workforce means turning identity into the primary control</span><span class="summary-ellipsis" aria-hidden="true">...</span>
+            <summary class="summary-toggle" aria-controls="summary-full-3">
+              <span class="summary-preview-text">Cisco joins a growing list of security platform providers that are betting that securing the agentic workforce means turning identity into the primary control</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-2">plane....</p>
+            <p class="news-summary summary-full" id="summary-full-3">plane....</p>
           </details>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Chinese-Speaking APT Deploys New TinyRCT Backdoor in Southeast Asia Campaign" data-summary="A Chinese-speaking advanced persistent threat (APT) actor has been linked to a new custom backdoor called TinyRCT as part of cyber attacks aimed at government entities and critical infrastructure in S..." data-severity="Elevated" data-tags="Malware" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh">
@@ -356,7 +379,7 @@
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 2h old</span>
+            <span class="chip age-chip">Fresh - 3h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/chinese-speaking-apt-deploys-new.html" target="_blank" rel="noopener">Chinese-Speaking APT Deploys New TinyRCT Backdoor in Southeast Asia Campaign</a></h2>
           <div class="news-meta">
@@ -366,11 +389,11 @@
           <div class="facet-row"><span class="chip">Malware</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: monitor</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-3">
+            <summary class="summary-toggle" aria-controls="summary-full-4">
               <span class="summary-preview-text">A Chinese-speaking advanced persistent threat (APT) actor has been linked to a new custom backdoor called TinyRCT as part of cyber attacks aimed at government</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-3">entities and critical infrastructure in S...</p>
+            <p class="news-summary summary-full" id="summary-full-4">entities and critical infrastructure in S...</p>
           </details>
         </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="AI Won&#39;t Wipe-Out Entry-Level Cybersecurity Jobs" data-summary="Instead of eliminating jobs for early-career cyber pros, AI is creating new opportunities for candidates with strong human decision-making skills...." data-severity="Monitor" data-tags="AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh">
@@ -379,7 +402,7 @@
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 2h old</span>
+            <span class="chip age-chip">Fresh - 3h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/ai-wont-wipe-out-entry-level-cybersecurity-jobs" target="_blank" rel="noopener">AI Won&#39;t Wipe-Out Entry-Level Cybersecurity Jobs</a></h2>
           <div class="news-meta">
@@ -396,7 +419,7 @@
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 4h old</span>
+            <span class="chip age-chip">Fresh - 5h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/your-first-grc-agent-a-red-teamers-walkthrough/" target="_blank" rel="noopener">Your First GRC Agent: A Red Teamer&#39;s Walkthrough</a></h2>
           <div class="news-meta">
@@ -406,11 +429,11 @@
           <div class="facet-row"><span class="chip">AI Security</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">GRCInsight: governance watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-5">
+            <summary class="summary-toggle" aria-controls="summary-full-6">
               <span class="summary-preview-text">AI won&#39;t replace GRC analysts, but it can eliminate much of the repetitive work they do. Anecdotes walks through building an agent that continuously monitors</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-5">controls, identifies evidence gaps, and op...</p>
+            <p class="news-summary summary-full" id="summary-full-6">controls, identifies evidence gaps, and op...</p>
           </details>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="New Linux pedit COW Exploit Enables Root Access by Poisoning Cached Binaries" data-summary="A flaw in the Linux kernel&#39;s traffic-control subsystem can let a local unprivileged user gain root on affected systems.
@@ -421,7 +444,7 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot; is an out-of-bounds write in th
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 4h old</span>
+            <span class="chip age-chip">Fresh - 5h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/new-linux-pedit-cow-exploit-enables.html" target="_blank" rel="noopener">New Linux pedit COW Exploit Enables Root Access by Poisoning Cached Binaries</a></h2>
           <div class="news-meta">
@@ -431,13 +454,13 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot; is an out-of-bounds write in th
           <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: vuln triage</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-6">
+            <summary class="summary-toggle" aria-controls="summary-full-7">
               <span class="summary-preview-text">A flaw in the Linux kernel&#39;s traffic-control subsystem can let a local unprivileged user gain root on affected systems.
 
 CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-6">is an out-of-bounds write in the packet-...</p>
+            <p class="news-summary summary-full" id="summary-full-7">is an out-of-bounds write in the packet-...</p>
           </details>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Amazon Q Developer Flaw Could Let Malicious Repos Run Code via MCP Configs" data-summary="A high-severity flaw in Amazon Q Developer let a malicious repository run commands and steal a developer&#39;s cloud credentials. The path was short: a developer opens the repo, trusts the workspace, and ..." data-severity="Elevated" data-tags="Vulnerability,Identity,Cloud" data-vendors="Google" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Fresh">
@@ -446,7 +469,7 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 4h old</span>
+            <span class="chip age-chip">Fresh - 5h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/amazon-q-developer-flaw-could-let.html" target="_blank" rel="noopener">Amazon Q Developer Flaw Could Let Malicious Repos Run Code via MCP Configs</a></h2>
           <div class="news-meta">
@@ -456,11 +479,11 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
           <div class="facet-row"><span class="chip">Google</span><span class="chip">Vulnerability</span><span class="chip">Identity</span><span class="chip">Cloud</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span><span class="handoff-cue">SentryInsight: vuln triage</span><span class="handoff-cue">SentryInsight: vendor watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-7">
+            <summary class="summary-toggle" aria-controls="summary-full-8">
               <span class="summary-preview-text">A high-severity flaw in Amazon Q Developer let a malicious repository run commands and steal a developer&#39;s cloud credentials. The path was short: a developer</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-7">opens the repo, trusts the workspace, and ...</p>
+            <p class="news-summary summary-full" id="summary-full-8">opens the repo, trusts the workspace, and ...</p>
           </details>
         </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Meeting Trump&#39;s 2030 Quantum Deadline Will be Expensive, Complex" data-summary="Getting accurate visibility into IT and OT systems will be compounded by multivendor environments, misaligned update life cycles, and interoperability gaps...." data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh">
@@ -485,7 +508,7 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 5h old</span>
+            <span class="chip age-chip">Fresh - 6h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/submissions-guidelines-reminder" target="_blank" rel="noopener">Thanks for Crushing the Submissions Inbox. We&#39;re Trying to Keep Up</a></h2>
           <div class="news-meta">
@@ -511,11 +534,11 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
           <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: vuln triage</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-10">
+            <summary class="summary-toggle" aria-controls="summary-full-11">
               <span class="summary-preview-text">The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Thursday added a critical remote code execution vulnerability impacting PTC Windchill</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-10">PDMlink and PTC FlexPLM enterprise Product Dat...</p>
+            <p class="news-summary summary-full" id="summary-full-11">PDMlink and PTC FlexPLM enterprise Product Dat...</p>
           </details>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="New DirtyClone Linux Kernel Flaw Lets Local Users Gain Root via Cloned Packets" data-summary="DirtyClone is a new Linux kernel privilege escalation in the DirtyFrag family. JFrog Security Research published a working exploit walkthrough for the flaw on June 25, the first public demonstration f..." data-severity="Elevated" data-tags="Vulnerability,Exploitation" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Fresh">
@@ -524,7 +547,7 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 6h old</span>
+            <span class="chip age-chip">Fresh - 7h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/new-dirtyclone-linux-kernel-flaw-lets.html" target="_blank" rel="noopener">New DirtyClone Linux Kernel Flaw Lets Local Users Gain Root via Cloned Packets</a></h2>
           <div class="news-meta">
@@ -534,11 +557,11 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
           <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: vuln triage</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-11">
+            <summary class="summary-toggle" aria-controls="summary-full-12">
               <span class="summary-preview-text">DirtyClone is a new Linux kernel privilege escalation in the DirtyFrag family. JFrog Security Research published a working exploit walkthrough for the flaw on</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-11">June 25, the first public demonstration f...</p>
+            <p class="news-summary summary-full" id="summary-full-12">June 25, the first public demonstration f...</p>
           </details>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Guardian Agents: The Next Layer of Identity Governance" data-summary="AI agents are moving through enterprise environments, inheriting permissions, traversing systems, and executing decisions at machine speed with minimal oversight. The identity infrastructure built to ..." data-severity="Elevated" data-tags="Identity,AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,GRCInsight: governance watch" data-age-bucket="Fresh">
@@ -557,11 +580,11 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
           <div class="facet-row"><span class="chip">Identity</span><span class="chip">AI Security</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span><span class="handoff-cue">GRCInsight: governance watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-12">
+            <summary class="summary-toggle" aria-controls="summary-full-13">
               <span class="summary-preview-text">AI agents are moving through enterprise environments, inheriting permissions, traversing systems, and executing decisions at machine speed with minimal</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-12">oversight. The identity infrastructure built to ...</p>
+            <p class="news-summary summary-full" id="summary-full-13">oversight. The identity infrastructure built to ...</p>
           </details>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Miasma Malware Targets npm Packages and GitHub Actions in Supply Chain Attack" data-summary="Cybersecurity researchers have flagged yet another evolution of the supply chain attack linked to the Mini Shai-Hulud, Miasma, and Hades malware family that has compromised a new set of npm packages, ..." data-severity="Elevated" data-tags="Malware,Supply Chain" data-vendors="GitHub" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Fresh">
@@ -570,7 +593,7 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 7h old</span>
+            <span class="chip age-chip">Fresh - 8h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/miasma-malware-targets-npm-packages-and.html" target="_blank" rel="noopener">Miasma Malware Targets npm Packages and GitHub Actions in Supply Chain Attack</a></h2>
           <div class="news-meta">
@@ -580,11 +603,11 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
           <div class="facet-row"><span class="chip">GitHub</span><span class="chip">Malware</span><span class="chip">Supply Chain</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: vendor watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-13">
+            <summary class="summary-toggle" aria-controls="summary-full-14">
               <span class="summary-preview-text">Cybersecurity researchers have flagged yet another evolution of the supply chain attack linked to the Mini Shai-Hulud, Miasma, and Hades malware family that</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-13">has compromised a new set of npm packages, ...</p>
+            <p class="news-summary summary-full" id="summary-full-14">has compromised a new set of npm packages, ...</p>
           </details>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Microsoft Warns of Photo ZIP Phishing Campaign Targeting Hotels with Node.js Implant" data-summary="An active phishing campaign has been targeting hotel and other hospitality organizations across Europe and Asia since April 2026, using photo-themed ZIP files to drop a Node.js implant and dig into fr..." data-severity="Elevated" data-tags="Identity" data-vendors="Microsoft" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vendor watch" data-age-bucket="Fresh">
@@ -603,11 +626,11 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
           <div class="facet-row"><span class="chip">Microsoft</span><span class="chip">Identity</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span><span class="handoff-cue">SentryInsight: vendor watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-14">
+            <summary class="summary-toggle" aria-controls="summary-full-15">
               <span class="summary-preview-text">An active phishing campaign has been targeting hotel and other hospitality organizations across Europe and Asia since April 2026, using photo-themed ZIP files</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-14">to drop a Node.js implant and dig into fr...</p>
+            <p class="news-summary summary-full" id="summary-full-15">to drop a Node.js implant and dig into fr...</p>
           </details>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Russia Used Cellebrite on Jailed Activist&#39;s iPhone Months After Sales Cutoff " data-summary="Russian authorities used Cellebrite&#39;s UFED forensic tools to break into the iPhone of detained opposition activist Andrey Pivovarov in June 2021, three months after Cellebrite said it would stop selli..." data-severity="Monitor" data-tags="" data-vendors="Apple" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Fresh">
@@ -616,7 +639,7 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 9h old</span>
+            <span class="chip age-chip">Fresh - 10h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/russia-used-cellebrite-on-jailed.html" target="_blank" rel="noopener">Russia Used Cellebrite on Jailed Activist&#39;s iPhone Months After Sales Cutoff </a></h2>
           <div class="news-meta">
@@ -626,11 +649,11 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
           <div class="facet-row"><span class="chip">Apple</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: vendor watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-15">
+            <summary class="summary-toggle" aria-controls="summary-full-16">
               <span class="summary-preview-text">Russian authorities used Cellebrite&#39;s UFED forensic tools to break into the iPhone of detained opposition activist Andrey Pivovarov in June 2021, three months</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-15">after Cellebrite said it would stop selli...</p>
+            <p class="news-summary summary-full" id="summary-full-16">after Cellebrite said it would stop selli...</p>
           </details>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Google Details Turla&#39;s New STOCKSTAY Backdoor Used in Ukraine Espionage Attacks" data-summary="The Russian state-sponsored threat actor known as Turla has been attributed to a previously undocumented .NET backdoor called STOCKSTAY that has been deployed against government and military organizat..." data-severity="Elevated" data-tags="Malware" data-vendors="Google" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Fresh">
@@ -639,7 +662,7 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 11h old</span>
+            <span class="chip age-chip">Fresh - 12h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/google-details-turlas-new-stockstay.html" target="_blank" rel="noopener">Google Details Turla&#39;s New STOCKSTAY Backdoor Used in Ukraine Espionage Attacks</a></h2>
           <div class="news-meta">
@@ -649,11 +672,11 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
           <div class="facet-row"><span class="chip">Google</span><span class="chip">Malware</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: vendor watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-16">
+            <summary class="summary-toggle" aria-controls="summary-full-17">
               <span class="summary-preview-text">The Russian state-sponsored threat actor known as Turla has been attributed to a previously undocumented .NET backdoor called STOCKSTAY that has been deployed</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-16">against government and military organizat...</p>
+            <p class="news-summary summary-full" id="summary-full-17">against government and military organizat...</p>
           </details>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Anthropic is testing desktop-like Claude Cowork for mobile" data-summary="Anthropic appears to be testing Claude Cowork support on mobile, allowing you to manage long-running Claude tasks from your phone. [...]..." data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh">
@@ -662,7 +685,7 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 19h old</span>
+            <span class="chip age-chip">Fresh - 20h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/anthropic-is-testing-desktop-like-claude-cowork-for-mobile/" target="_blank" rel="noopener">Anthropic is testing desktop-like Claude Cowork for mobile</a></h2>
           <div class="news-meta">
@@ -672,7 +695,7 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: monitor</span></div>
           <p class="news-summary">Anthropic appears to be testing Claude Cowork support on mobile, allowing you to manage long-running Claude tasks from your phone. [...]...</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Robinhood Cuts Access Approval Time to Support High-Velocity Development" data-summary="The fintech company&#39;s engineering-first application security team re-engineered the process for granting system access, making it easier and more secure for developers working on their projects. Here ..." data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh">
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Robinhood Cuts Access Approval Time to Support High-Velocity Development" data-summary="The fintech company&#39;s engineering-first application security team reengineered the process for granting system access, making it easier and more secure for developers working on their projects. Here a..." data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip"><span class="dot"></span>Dark Reading</span>
@@ -687,11 +710,11 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
           </div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: monitor</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-18">
-              <span class="summary-preview-text">The fintech company&#39;s engineering-first application security team re-engineered the process for granting system access, making it easier and more secure for</span><span class="summary-ellipsis" aria-hidden="true">...</span>
+            <summary class="summary-toggle" aria-controls="summary-full-19">
+              <span class="summary-preview-text">The fintech company&#39;s engineering-first application security team reengineered the process for granting system access, making it easier and more secure for</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-18">developers working on their projects. Here ...</p>
+            <p class="news-summary summary-full" id="summary-full-19">developers working on their projects. Here a...</p>
           </details>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Poland busts SIM-swapping gang tied to millions in crypto theft" data-summary="Authorities in Poland have arrested four members of an organized cybercrime group accused of breaching telecommunications partners and hijacking email accounts to carry out SIM-swapping attacks. [...]..." data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh">
@@ -709,11 +732,11 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
           </div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: monitor</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-19">
+            <summary class="summary-toggle" aria-controls="summary-full-20">
               <span class="summary-preview-text">Authorities in Poland have arrested four members of an organized cybercrime group accused of breaching telecommunications partners and hijacking email accounts</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-19">to carry out SIM-swapping attacks. [...]...</p>
+            <p class="news-summary summary-full" id="summary-full-20">to carry out SIM-swapping attacks. [...]...</p>
           </details>
         </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="In Less Than 24 Hours, Attackers Weaponize Cisco CUCM Flaw" data-summary="The flaw enables server-side request forgery (SSRF) and escalates privileges to root, impacting Cisco Unified CM and Unified CM SME deployments...." data-severity="Elevated" data-tags="Vulnerability" data-vendors="Cisco" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Fresh">
@@ -722,7 +745,7 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 20h old</span>
+            <span class="chip age-chip">Fresh - 21h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/less-than-24-hours-attackers-weaponize-cisco-cucm-flaw" target="_blank" rel="noopener">In Less Than 24 Hours, Attackers Weaponize Cisco CUCM Flaw</a></h2>
           <div class="news-meta">
@@ -739,7 +762,7 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 21h old</span>
+            <span class="chip age-chip">Fresh - 22h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/russia-apt-gamaredon-arsenal-defense" target="_blank" rel="noopener">Russian APT &#39;Gamaredon&#39; Upgrades Its Arsenal, Requiring New Defenses</a></h2>
           <div class="news-meta">
@@ -765,11 +788,11 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
           </div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: monitor</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-22">
+            <summary class="summary-toggle" aria-controls="summary-full-23">
               <span class="summary-preview-text">Educational institutions, the edtech companies they rely on, and, more concerningly, the challenges they pose for schools are the focus of the latest</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-22">Reporters&#39; Notebook video series....</p>
+            <p class="news-summary summary-full" id="summary-full-23">Reporters&#39; Notebook video series....</p>
           </details>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Order-tracking app Shop abused to push callback phishing attacks" data-summary="Threat actors are increasingly abusing Shop, the order-tracking app from Shopify, by adding fake purchase receipts in users&#39; order histories to trick them into providing sensitive data or installing r..." data-severity="Elevated" data-tags="Identity" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Fresh">
@@ -778,7 +801,7 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 22h old</span>
+            <span class="chip age-chip">Fresh - 23h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/order-tracking-app-shop-abused-to-push-callback-phishing-attacks/" target="_blank" rel="noopener">Order-tracking app Shop abused to push callback phishing attacks</a></h2>
           <div class="news-meta">
@@ -788,33 +811,32 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
           <div class="facet-row"><span class="chip">Identity</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-23">
+            <summary class="summary-toggle" aria-controls="summary-full-24">
               <span class="summary-preview-text">Threat actors are increasingly abusing Shop, the order-tracking app from Shopify, by adding fake purchase receipts in users&#39; order histories to trick them into</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-23">providing sensitive data or installing r...</p>
+            <p class="news-summary summary-full" id="summary-full-24">providing sensitive data or installing r...</p>
           </details>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Local Police Collusion Hampers Crackdown on Asian Scam Centers" data-summary="With tens of billions of dollars flowing into regional economies from cybercrime, scam centers continue to flourish, despite international and law-enforcement efforts...." data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh">
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Local Police Collusion Hampers Crackdown on Asian Scam Centers" data-summary="With tens of billions of dollars flowing into regional economies from cybercrime, scam centers continue to flourish, despite international and law-enforcement efforts...." data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 23h old</span>
+            <span class="chip age-chip">Recent - 1d old</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/police-collusion-crackdown-asian-scam-centers" target="_blank" rel="noopener">Local Police Collusion Hampers Crackdown on Asian Scam Centers</a></h2>
           <div class="news-meta">
             <time datetime="2026-06-25T19:07:41.000Z">June 25, 2026 at 7:07 PM</time>
-            <span class="badge-new">NEW</span>
           </div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: monitor</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-24">
+            <summary class="summary-toggle" aria-controls="summary-full-25">
               <span class="summary-preview-text">With tens of billions of dollars flowing into regional economies from cybercrime, scam centers continue to flourish, despite international and law-enforcement</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-24">efforts....</p>
+            <p class="news-summary summary-full" id="summary-full-25">efforts....</p>
           </details>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft quietly extends free Windows 10 ESU support to October 2027" data-summary="Microsoft has quietly extended its free Windows 10 Extended Security Updates (ESU) program for consumers by an additional year, allowing enrolled devices to continue receiving security updates until O..." data-severity="Monitor" data-tags="" data-vendors="Microsoft" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent">
@@ -832,11 +854,11 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
           <div class="facet-row"><span class="chip">Microsoft</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: vendor watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-25">
+            <summary class="summary-toggle" aria-controls="summary-full-26">
               <span class="summary-preview-text">Microsoft has quietly extended its free Windows 10 Extended Security Updates (ESU) program for consumers by an additional year, allowing enrolled devices to</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-25">continue receiving security updates until O...</p>
+            <p class="news-summary summary-full" id="summary-full-26">continue receiving security updates until O...</p>
           </details>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="New macOS malware embeds fake errors to confuse AI analysis tools" data-summary="A newly discovered macOS malware dubbed &quot;Gaslight&quot; is designed to confuse AI-assisted malware analysis tools by hiding prompt injection strings and fake debugging data within the executable. [...]..." data-severity="Elevated" data-tags="Malware,AI Security" data-vendors="Apple" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent">
@@ -854,11 +876,11 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
           <div class="facet-row"><span class="chip">Apple</span><span class="chip">Malware</span><span class="chip">AI Security</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: vendor watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-26">
+            <summary class="summary-toggle" aria-controls="summary-full-27">
               <span class="summary-preview-text">A newly discovered macOS malware dubbed &quot;Gaslight&quot; is designed to confuse AI-assisted malware analysis tools by hiding prompt injection strings and fake</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-26">debugging data within the executable. [...]...</p>
+            <p class="news-summary summary-full" id="summary-full-27">debugging data within the executable. [...]...</p>
           </details>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="PirloTV sports piracy network disrupted as 44 domains seized" data-summary="A major sports piracy ring linked to the illegal PirloTV streaming platform has been disrupted in an action that targeted 44 domains. [...]..." data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent">
@@ -891,37 +913,11 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
           <div class="facet-row"><span class="chip">Identity</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-28">
+            <summary class="summary-toggle" aria-controls="summary-full-29">
               <span class="summary-preview-text">The Bluekit phishing-as-a-service platform continues to evolve with nearly 70 new hostnames identified over the past week and by adding browser-in-the-middle</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-28">capabilities for improved data theft. [......</p>
-          </details>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Chrome Ad Blocker with 10M+ Installs Found with Dormant Script Injection Capability" data-summary="An analysis of a popular Google Chrome ad block extension for YouTube has uncovered the ability to execute arbitrary JavaScript code.
-
-According to Island, the extension, named Adblock for YouTube (ID..." data-severity="Monitor" data-tags="" data-vendors="Google" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent">
-          <div class="chips">
-            <span class="severity severity-monitor">Monitor</span>
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-            <span class="chip">Industry media</span>
-            <span class="chip age-chip">Recent - 1d old</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/06/chrome-ad-blocker-with-10m-installs.html" target="_blank" rel="noopener">Chrome Ad Blocker with 10M+ Installs Found with Dormant Script Injection Capability</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-06-25T14:12:52.000Z">June 25, 2026 at 2:12 PM</time>
-          </div>
-          <div class="facet-row"><span class="chip">Google</span></div>
-          <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: vendor watch</span></div>
-          <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-29">
-              <span class="summary-preview-text">An analysis of a popular Google Chrome ad block extension for YouTube has uncovered the ability to execute arbitrary JavaScript code.
-
-According to Island, the</span><span class="summary-ellipsis" aria-hidden="true">...</span>
-              <span class="summary-action">Show full summary</span>
-            </summary>
-            <p class="news-summary summary-full" id="summary-full-29">extension, named Adblock for YouTube (ID...</p>
+            <p class="news-summary summary-full" id="summary-full-29">capabilities for improved data theft. [......</p>
           </details>
         </article>
     </div>
@@ -1136,6 +1132,15 @@ According to Island, the</span><span class="summary-ellipsis" aria-hidden="true"
         if (search && typeof search.focus === 'function') search.focus();
       }
 
+      function focusActiveFilterRecoveryTarget(){
+        const nextClearButton = activeFilters && activeFilters.querySelector('.active-filter-clear');
+        if (nextClearButton && typeof nextClearButton.focus === 'function') {
+          nextClearButton.focus();
+          return;
+        }
+        focusFilterRecoveryTarget();
+      }
+
       function updateOperatorLanes(visibleCards){
         operatorLanes.forEach(function(lane){
           const cue = lane.getAttribute('data-lane-cue');
@@ -1191,7 +1196,7 @@ According to Island, the</span><span class="summary-ellipsis" aria-hidden="true"
         const hasComposedFilters = Boolean(term || severity || tag || vendor || age || handoff);
         const safeStatusActionLabel = typeof statusActionLabel === 'string' ? statusActionLabel : '';
         const emptyFilteredStatusText = visible === 0 ? getEmptyFilteredMessage(src, hasComposedFilters) : '';
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-26T18:44:48.796Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-26T19:26:06.501Z').toLocaleString());
         if (filterStatusAnnouncement) filterStatusAnnouncement.textContent = getFilterStatusText(visible, total, safeStatusActionLabel, emptyFilteredStatusText);
         renderEmptyFilteredState(visible, src, hasComposedFilters);
         sourceCoverageButtons.forEach(function(button){
@@ -1231,9 +1236,11 @@ According to Island, the</span><span class="summary-ellipsis" aria-hidden="true"
         const target = event.target;
         if (!target || !target.matches || !target.matches('.active-filter-clear')) return;
         const key = target.getAttribute('data-filter-key');
+        const hadMultipleActiveFilters = activeFilters && activeFilters.querySelectorAll('.active-filter-clear').length > 1;
         if (filterControls[key]) filterControls[key].value = '';
         const clearedLabel = filterLabels[key] || 'Selected';
         update('Cleared ' + clearedLabel + ' filter.');
+        hadMultipleActiveFilters ? focusActiveFilterRecoveryTarget() : focusFilterRecoveryTarget();
       });
       if (resetFilters) resetFilters.addEventListener('click', function(){ clearFilters(); });
       if (emptyResetFilters) emptyResetFilters.addEventListener('click', function(){ clearFilters({ focusRecoveryTarget: true }); });
