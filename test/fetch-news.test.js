@@ -864,10 +864,10 @@ test('generateHTML renders active filter summary and reset wiring', () => {
   assert.match(html, /const key = target\.getAttribute\('data-filter-key'\)/);
   assert.match(html, /if \(filterControls\[key\]\) filterControls\[key\]\.value = ''/);
   assert.match(html, /resetFilters\.hidden = activeFiltersList\.length === 0/);
-  assert.match(html, /function clearFilters\(\)/);
+  assert.match(html, /function clearFilters\(options\)/);
   assert.match(html, /control\.value = ''/);
-  assert.match(html, /if \(resetFilters\) resetFilters\.addEventListener\('click', clearFilters\)/);
-  assert.match(html, /if \(emptyResetFilters\) emptyResetFilters\.addEventListener\('click', clearFilters\)/);
+  assert.match(html, /if \(resetFilters\) resetFilters\.addEventListener\('click', function\(\)\{ clearFilters\(\); \}\)/);
+  assert.match(html, /if \(emptyResetFilters\) emptyResetFilters\.addEventListener\('click', function\(\)\{ clearFilters\(\{ focusRecoveryTarget: true \}\); \}\)/);
   assert.match(html, /const totalArticleLabel = total === 1 \? 'article' : 'articles'/);
   assert.match(html, /function getFilterStatusText\(visible, total, actionLabel, emptyFilteredStatusText\)/);
   assert.match(html, /return actionLabel \? actionLabel \+ ' ' \+ resultText : resultText/);
@@ -1241,6 +1241,26 @@ test('generateHTML composes empty filtered state with active source shortcut con
   assert.match(html, /const emptyFilteredStatusText = visible === 0 \? getEmptyFilteredMessage\(src, hasComposedFilters\) : ''/);
   assert.match(html, /getFilterStatusText\(visible, total, safeStatusActionLabel, emptyFilteredStatusText\)/);
   assert.match(html, /renderEmptyFilteredState\(visible, src, hasComposedFilters\)/);
+});
+
+test('generateHTML returns focus to search after empty-state reset', () => {
+  const html = generateHTML([
+    {
+      title: 'Microsoft Exchange zero-day exploited by ransomware crew',
+      link: 'https://security.example.com/microsoft-exchange-zero-day',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'SecurityWeek',
+      summary: 'CVE-2026-1234 is under active exploitation in data breach investigations.',
+    },
+  ]);
+
+  assert.match(html, /function focusFilterRecoveryTarget\(\)/);
+  assert.match(html, /if \(search && typeof search\.focus === 'function'\) search\.focus\(\)/);
+  assert.match(html, /function clearFilters\(options\)/);
+  assert.match(html, /const shouldFocusRecoveryTarget = options && options\.focusRecoveryTarget/);
+  assert.match(html, /if \(shouldFocusRecoveryTarget\) focusFilterRecoveryTarget\(\)/);
+  assert.match(html, /if \(resetFilters\) resetFilters\.addEventListener\('click', function\(\)\{ clearFilters\(\); \}\)/);
+  assert.match(html, /if \(emptyResetFilters\) emptyResetFilters\.addEventListener\('click', function\(\)\{ clearFilters\(\{ focusRecoveryTarget: true \}\); \}\)/);
 });
 
 test('generateHTML renders long summaries as accessible expandable content', () => {
