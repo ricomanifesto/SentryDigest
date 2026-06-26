@@ -869,11 +869,11 @@ test('generateHTML renders active filter summary and reset wiring', () => {
   assert.match(html, /if \(resetFilters\) resetFilters\.addEventListener\('click', clearFilters\)/);
   assert.match(html, /if \(emptyResetFilters\) emptyResetFilters\.addEventListener\('click', clearFilters\)/);
   assert.match(html, /const totalArticleLabel = total === 1 \? 'article' : 'articles'/);
-  assert.match(html, /function getFilterStatusText\(visible, total, actionLabel\)/);
+  assert.match(html, /function getFilterStatusText\(visible, total, actionLabel, emptyFilteredStatusText\)/);
   assert.match(html, /return actionLabel \? actionLabel \+ ' ' \+ resultText : resultText/);
   assert.match(html, /function update\(statusActionLabel\)/);
   assert.match(html, /const safeStatusActionLabel = typeof statusActionLabel === 'string' \? statusActionLabel : ''/);
-  assert.match(html, /if \(filterStatusAnnouncement\) filterStatusAnnouncement\.textContent = getFilterStatusText\(visible, total, safeStatusActionLabel\)/);
+  assert.match(html, /if \(filterStatusAnnouncement\) filterStatusAnnouncement\.textContent = getFilterStatusText\(visible, total, safeStatusActionLabel, emptyFilteredStatusText\)/);
   assert.match(html, /update\('Filters reset\.'\)/);
   assert.match(html, /const clearedLabel = filterLabels\[key\] \|\| 'Selected'/);
   assert.match(html, /update\('Cleared ' \+ clearedLabel \+ ' filter\.'\)/);
@@ -1233,9 +1233,13 @@ test('generateHTML composes empty filtered state with active source shortcut con
   ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
 
   assert.match(html, /function renderEmptyFilteredState\(visible, src, hasComposedFilters\)/);
+  assert.match(html, /function getEmptyFilteredMessage\(src, hasComposedFilters\)/);
   assert.ok(html.includes("const sourceLabel = src ? getControlLabel(sourceFilter) : ''"));
+  assert.ok(html.includes("return sourceLabel && hasComposedFilters ? 'No ' + sourceLabel + ' articles match the current filters.' : 'No articles match the current filters.'"));
   assert.ok(html.includes("const messageTarget = emptyFilteredMessage || emptyFilteredState"));
-  assert.ok(html.includes("messageTarget.textContent = sourceLabel && hasComposedFilters ? 'No ' + sourceLabel + ' articles match the current filters.' : 'No articles match the current filters.'"));
+  assert.ok(html.includes("messageTarget.textContent = getEmptyFilteredMessage(src, hasComposedFilters)"));
+  assert.match(html, /const emptyFilteredStatusText = visible === 0 \? getEmptyFilteredMessage\(src, hasComposedFilters\) : ''/);
+  assert.match(html, /getFilterStatusText\(visible, total, safeStatusActionLabel, emptyFilteredStatusText\)/);
   assert.match(html, /renderEmptyFilteredState\(visible, src, hasComposedFilters\)/);
 });
 
