@@ -218,10 +218,10 @@
       <div id="filterStatusAnnouncement" class="sr-only" role="status" aria-live="polite" aria-atomic="true">Showing 30 of 30 articles.</div>
       <button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters</button>
     </div>
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-26T03:44:00.779Z">6/26/2026, 3:44:00 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-26T03:48:14.527Z">6/26/2026, 3:48:14 AM</time></div>
     <section class="issue-strip" aria-label="Digest issue metadata">
       <span class="issue-label">Current issue</span>
-      <time datetime="2026-06-26T03:44:00.779Z">June 26, 2026</time>
+      <time datetime="2026-06-26T03:48:14.527Z">June 26, 2026</time>
       <span class="issue-stat"><strong>30</strong> articles</span>
       <span class="issue-stat"><strong>3</strong> sources</span>
       <a class="issue-link" href="./feed.xml">RSS archive</a>
@@ -230,7 +230,7 @@
       <span class="issue-trail-current" aria-current="page">Current digest</span>
       <a href="./feed.xml">RSS feed</a>
       <a href="#sourceCoverage">Source coverage</a>
-      <span class="issue-trail-meta">Updated <time datetime="2026-06-26T03:44:00.779Z">03:44 UTC</time></span>
+      <span class="issue-trail-meta">Updated <time datetime="2026-06-26T03:48:14.527Z">03:48 UTC</time></span>
       <span class="issue-trail-meta">3h cadence</span>
     </nav>
     <div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true"></div>
@@ -381,7 +381,7 @@
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 7h old</span>
+            <span class="chip age-chip">Fresh - 8h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/order-tracking-app-shop-abused-to-push-callback-phishing-attacks/" target="_blank" rel="noopener">Order-tracking app Shop abused to push callback phishing attacks</a></h2>
           <div class="news-meta">
@@ -695,7 +695,7 @@ This week has the usual smell of prod on fire and nobody wanting to admit who le
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 21h old</span>
+            <span class="chip age-chip">Fresh - 22h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/cisco-catalyst-sd-wan-zero-day-cve-2026.html" target="_blank" rel="noopener">Cisco Catalyst SD-WAN Zero-Day CVE-2026-20245 Exploited to Gain Root Access</a></h2>
           <div class="news-meta">
@@ -1174,7 +1174,7 @@ This week has the usual smell of prod on fire and nobody wanting to admit who le
         const hasComposedFilters = Boolean(term || severity || tag || vendor || age || handoff);
         const safeStatusActionLabel = typeof statusActionLabel === 'string' ? statusActionLabel : '';
         const emptyFilteredStatusText = visible === 0 ? getEmptyFilteredMessage(src, hasComposedFilters) : '';
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-26T03:44:00.779Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-26T03:48:14.527Z').toLocaleString());
         if (filterStatusAnnouncement) filterStatusAnnouncement.textContent = getFilterStatusText(visible, total, safeStatusActionLabel, emptyFilteredStatusText);
         renderEmptyFilteredState(visible, src, hasComposedFilters);
         sourceCoverageButtons.forEach(function(button){
