@@ -1104,7 +1104,8 @@ test('generateHTML wires source coverage counts into the source filter', () => {
   assert.ok(html.includes(`const sourceFilterStatus = q('${SOURCE_COVERAGE_CONTRACT.statusSelector}')`));
   assert.match(html, /sourceCoverageButtons\.forEach\(function\(button\)/);
   assert.ok(html.includes(`const source = button.getAttribute('${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}') || ''`));
-  assert.match(html, /sourceFilter\.value = sourceFilter\.value === source \? '' : source/);
+  assert.match(html, /const nextSource = sourceFilter\.value === source \? '' : source/);
+  assert.match(html, /sourceFilter\.value = nextSource/);
   assert.ok(html.includes(`button.setAttribute('aria-pressed', button.getAttribute('${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}') === src ? 'true' : 'false')`));
   assert.ok(html.includes("const hasComposedFilters = Boolean(term || severity || tag || vendor || age || handoff)"));
   assert.ok(html.includes("const countLabel = hasComposedFilters ? (articleLabel === 'article' ? 'filtered article' : 'filtered articles') : articleLabel"));
@@ -1282,6 +1283,27 @@ test('generateHTML recovers focus after active filter chip clearing', () => {
   assert.ok(html.includes("const hadMultipleActiveFilters = activeFilters && activeFilters.querySelectorAll('.active-filter-clear').length > 1;"));
   assert.match(html, /update\('Cleared ' \+ clearedLabel \+ ' filter\.'\)/);
   assert.match(html, /hadMultipleActiveFilters \? focusActiveFilterRecoveryTarget\(\) : focusFilterRecoveryTarget\(\)/);
+});
+
+test('generateHTML recovers focus after source shortcut toggling', () => {
+  const html = generateHTML([
+    {
+      title: 'Microsoft Exchange zero-day exploited by ransomware crew',
+      link: 'https://security.example.com/microsoft-exchange-zero-day',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'SecurityWeek',
+      summary: 'CVE-2026-1234 is under active exploitation in data breach investigations.',
+    },
+  ]);
+
+  assert.match(html, /function focusSourceShortcutRecoveryTarget\(source\)/);
+  assert.ok(html.includes(`return button.getAttribute('${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}') === source;`));
+  assert.match(html, /if \(targetButton && typeof targetButton\.focus === 'function'\) \{/);
+  assert.match(html, /targetButton\.focus\(\)/);
+  assert.match(html, /focusFilterRecoveryTarget\(\)/);
+  assert.match(html, /const nextSource = sourceFilter\.value === source \? '' : source/);
+  assert.match(html, /sourceFilter\.value = nextSource/);
+  assert.match(html, /update\(\);\s+focusSourceShortcutRecoveryTarget\(source\);/);
 });
 
 test('generateHTML renders long summaries as accessible expandable content', () => {

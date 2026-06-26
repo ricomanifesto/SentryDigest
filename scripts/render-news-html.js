@@ -1073,6 +1073,17 @@ function generateHTML(newsItems, options = {}) {
         focusFilterRecoveryTarget();
       }
 
+      function focusSourceShortcutRecoveryTarget(source){
+        const targetButton = sourceCoverageButtons.find(function(button){
+          return button.getAttribute('${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}') === source;
+        });
+        if (targetButton && typeof targetButton.focus === 'function') {
+          targetButton.focus();
+          return;
+        }
+        focusFilterRecoveryTarget();
+      }
+
       function updateOperatorLanes(visibleCards){
         operatorLanes.forEach(function(lane){
           const cue = lane.getAttribute('data-lane-cue');
@@ -1151,8 +1162,10 @@ function generateHTML(newsItems, options = {}) {
         button.addEventListener('click', function(){
           if (!sourceFilter) return;
           const source = button.getAttribute('${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}') || '';
-          sourceFilter.value = sourceFilter.value === source ? '' : source;
+          const nextSource = sourceFilter.value === source ? '' : source;
+          sourceFilter.value = nextSource;
           update();
+          focusSourceShortcutRecoveryTarget(source);
         });
       });
       function clearFilters(options){
