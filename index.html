@@ -218,10 +218,10 @@
       <div id="filterStatusAnnouncement" class="sr-only" role="status" aria-live="polite" aria-atomic="true">Showing 30 of 30 articles.</div>
       <button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters</button>
     </div>
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-26T03:16:30.324Z">6/26/2026, 3:16:30 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-26T03:21:18.573Z">6/26/2026, 3:21:18 AM</time></div>
     <section class="issue-strip" aria-label="Digest issue metadata">
       <span class="issue-label">Current issue</span>
-      <time datetime="2026-06-26T03:16:30.324Z">June 26, 2026</time>
+      <time datetime="2026-06-26T03:21:18.573Z">June 26, 2026</time>
       <span class="issue-stat"><strong>30</strong> articles</span>
       <span class="issue-stat"><strong>3</strong> sources</span>
       <a class="issue-link" href="./feed.xml">RSS archive</a>
@@ -230,7 +230,7 @@
       <span class="issue-trail-current" aria-current="page">Current digest</span>
       <a href="./feed.xml">RSS feed</a>
       <a href="#sourceCoverage">Source coverage</a>
-      <span class="issue-trail-meta">Updated <time datetime="2026-06-26T03:16:30.324Z">03:16 UTC</time></span>
+      <span class="issue-trail-meta">Updated <time datetime="2026-06-26T03:21:18.573Z">03:21 UTC</time></span>
       <span class="issue-trail-meta">3h cadence</span>
     </nav>
     <div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true"></div>
@@ -610,7 +610,7 @@ This week has the usual smell of prod on fire and nobody wanting to admit who le
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 15h old</span>
+            <span class="chip age-chip">Fresh - 16h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/surviving-mythos-era-richard-bejtlich.html" target="_blank" rel="noopener">Surviving the Mythos Era: Richard Bejtlich on the Case for NDR</a></h2>
           <div class="news-meta">
@@ -1168,7 +1168,7 @@ This week has the usual smell of prod on fire and nobody wanting to admit who le
         const srcCount = 3;
         const articleLabel = visible === 1 ? 'article' : 'articles';
         const hasComposedFilters = Boolean(term || severity || tag || vendor || age || handoff);
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-26T03:16:30.324Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-26T03:21:18.573Z').toLocaleString());
         if (filterStatusAnnouncement) filterStatusAnnouncement.textContent = getFilterStatusText(visible, total, statusActionLabel);
         renderEmptyFilteredState(visible, src, hasComposedFilters);
         sourceCoverageButtons.forEach(function(button){
