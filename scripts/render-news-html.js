@@ -1041,18 +1041,22 @@ function generateHTML(newsItems, options = {}) {
         appendInsightGroup('Handoff', handoffCounts, 2);
       }
 
+      function getEmptyFilteredMessage(src, hasComposedFilters){
+        const sourceLabel = src ? getControlLabel(sourceFilter) : '';
+        return sourceLabel && hasComposedFilters ? 'No ' + sourceLabel + ' articles match the current filters.' : 'No articles match the current filters.';
+      }
+
       function renderEmptyFilteredState(visible, src, hasComposedFilters){
         if (!emptyFilteredState) return;
         emptyFilteredState.hidden = visible !== 0;
         if (visible !== 0) return;
-        const sourceLabel = src ? getControlLabel(sourceFilter) : '';
         const messageTarget = emptyFilteredMessage || emptyFilteredState;
-        messageTarget.textContent = sourceLabel && hasComposedFilters ? 'No ' + sourceLabel + ' articles match the current filters.' : 'No articles match the current filters.';
+        messageTarget.textContent = getEmptyFilteredMessage(src, hasComposedFilters);
       }
 
-      function getFilterStatusText(visible, total, actionLabel){
+      function getFilterStatusText(visible, total, actionLabel, emptyFilteredStatusText){
         const totalArticleLabel = total === 1 ? 'article' : 'articles';
-        const resultText = 'Showing ' + visible + ' of ' + total + ' ' + totalArticleLabel + '.';
+        const resultText = emptyFilteredStatusText ? emptyFilteredStatusText + ' Showing ' + visible + ' of ' + total + ' ' + totalArticleLabel + '.' : 'Showing ' + visible + ' of ' + total + ' ' + totalArticleLabel + '.';
         return actionLabel ? actionLabel + ' ' + resultText : resultText;
       }
 
@@ -1110,8 +1114,9 @@ function generateHTML(newsItems, options = {}) {
         const articleLabel = visible === 1 ? 'article' : 'articles';
         const hasComposedFilters = Boolean(term || severity || tag || vendor || age || handoff);
         const safeStatusActionLabel = typeof statusActionLabel === 'string' ? statusActionLabel : '';
+        const emptyFilteredStatusText = visible === 0 ? getEmptyFilteredMessage(src, hasComposedFilters) : '';
         if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('${nowIso}').toLocaleString());
-        if (filterStatusAnnouncement) filterStatusAnnouncement.textContent = getFilterStatusText(visible, total, safeStatusActionLabel);
+        if (filterStatusAnnouncement) filterStatusAnnouncement.textContent = getFilterStatusText(visible, total, safeStatusActionLabel, emptyFilteredStatusText);
         renderEmptyFilteredState(visible, src, hasComposedFilters);
         sourceCoverageButtons.forEach(function(button){
           button.setAttribute('aria-pressed', button.getAttribute('${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}') === src ? 'true' : 'false');
