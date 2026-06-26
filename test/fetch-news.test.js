@@ -872,7 +872,8 @@ test('generateHTML renders active filter summary and reset wiring', () => {
   assert.match(html, /function getFilterStatusText\(visible, total, actionLabel\)/);
   assert.match(html, /return actionLabel \? actionLabel \+ ' ' \+ resultText : resultText/);
   assert.match(html, /function update\(statusActionLabel\)/);
-  assert.match(html, /if \(filterStatusAnnouncement\) filterStatusAnnouncement\.textContent = getFilterStatusText\(visible, total, statusActionLabel\)/);
+  assert.match(html, /const safeStatusActionLabel = typeof statusActionLabel === 'string' \? statusActionLabel : ''/);
+  assert.match(html, /if \(filterStatusAnnouncement\) filterStatusAnnouncement\.textContent = getFilterStatusText\(visible, total, safeStatusActionLabel\)/);
   assert.match(html, /update\('Filters reset\.'\)/);
   assert.match(html, /const clearedLabel = filterLabels\[key\] \|\| 'Selected'/);
   assert.match(html, /update\('Cleared ' \+ clearedLabel \+ ' filter\.'\)/);
