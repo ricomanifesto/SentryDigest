@@ -42,6 +42,7 @@
     .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
     .filter-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
     .filter-status { align-items: center; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .sr-only { clip: rect(0 0 0 0); border: 0; height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; white-space: nowrap; width: 1px; }
     .active-filters { display: flex; flex-wrap: wrap; gap: 8px; }
     .active-filters[hidden] { display: none; }
     .active-filter-chip { align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 999px; color: var(--fg); display: inline-flex; font-size: 12px; gap: 6px; min-height: 28px; padding: 4px 8px 4px 10px; }
@@ -213,7 +214,8 @@
       </select>
     </div>
     <div class="filter-status" aria-label="Active filters">
-      <div id="activeFilters" class="active-filters" hidden aria-live="polite"></div>
+      <div id="activeFilters" class="active-filters" hidden></div>
+      <div id="filterStatusAnnouncement" class="sr-only" role="status" aria-live="polite" aria-atomic="true">Showing 30 of 30 articles.</div>
       <button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters</button>
     </div>
     <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-25T18:52:29.587Z">6/25/2026, 6:52:29 PM</time></div>
@@ -231,7 +233,7 @@
       <span class="issue-trail-meta">Updated <time datetime="2026-06-25T18:52:29.587Z">18:52 UTC</time></span>
       <span class="issue-trail-meta">3h cadence</span>
     </nav>
-    <div id="filterInsights" class="filter-insights" aria-live="polite"></div>
+    <div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true"></div>
     <span id="sourceCoverage" class="anchor-target" aria-hidden="true"></span>
     <section class="source-coverage" aria-label="RSS source coverage">
       <div class="source-coverage-label">RSS source coverage</div>
@@ -240,7 +242,7 @@
         <span><strong>3</strong> active feeds</span>
         <span><strong>2</strong> quiet feeds</span> <span class="source-health-note">health only</span>
       </div>
-      <div class="source-filter-status" data-source-filter-status aria-live="polite">Source shortcut: All active feeds (30 articles)</div>
+      <div class="source-filter-status" data-source-filter-status role="status" aria-live="polite" aria-atomic="true">Source shortcut: All active feeds (30 articles)</div>
       <div class="source-coverage-actions">
         <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with 30 latest articles">RSS feed <span class="feed-link-count">30 items</span></a>
         <details class="digest-legend" aria-label="Digest legend">
@@ -968,6 +970,7 @@ For years, cybersecurity moved to a rhythm organizations could</span><span class
       const emptyFilteredState = q('#emptyFilteredState');
       const emptyFilteredMessage = q('#emptyFilteredMessage');
       const activeFilters = q('#activeFilters');
+      const filterStatusAnnouncement = q('#filterStatusAnnouncement');
       const resetFilters = q('#resetFilters');
       const emptyResetFilters = q('#emptyResetFilters');
       const filterInsights = q('#filterInsights');
@@ -1181,8 +1184,10 @@ For years, cybersecurity moved to a rhythm organizations could</span><span class
         const total = 30;
         const srcCount = 3;
         const articleLabel = visible === 1 ? 'article' : 'articles';
+        const totalArticleLabel = total === 1 ? 'article' : 'articles';
         const hasComposedFilters = Boolean(term || severity || tag || vendor || age || handoff);
         if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-25T18:52:29.587Z').toLocaleString());
+        if (filterStatusAnnouncement) filterStatusAnnouncement.textContent = 'Showing ' + visible + ' of ' + total + ' ' + totalArticleLabel + '.';
         renderEmptyFilteredState(visible, src, hasComposedFilters);
         sourceCoverageButtons.forEach(function(button){
           button.setAttribute('aria-pressed', button.getAttribute('data-source-filter') === src ? 'true' : 'false');

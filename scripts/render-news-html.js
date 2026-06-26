@@ -340,7 +340,7 @@ function renderSourceCoverage(newsItems, sourceNames = [], digestLegend = '') {
         <span><strong>${activeSourceCount}</strong> ${activeFeedLabel}</span>
         <span><strong>${quietSourceCount}</strong> ${quietFeedLabel}</span>${quietFeedNote}
       </div>
-      <div class="source-filter-status" data-source-filter-status aria-live="polite">${defaultStatus}</div>
+      <div class="source-filter-status" data-source-filter-status role="status" aria-live="polite" aria-atomic="true">${defaultStatus}</div>
       <div class="source-coverage-actions">
         <a class="feed-link" href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}" aria-label="Open RSS feed with ${feedArticleLabel}">RSS feed <span class="feed-link-count">${feedItemLabel}</span></a>
         ${digestLegend}
@@ -608,6 +608,7 @@ function generateHTML(newsItems, options = {}) {
   const handoffOptions = renderSelectOptions(filterOptions.handoffCues);
   const now = new Date(generatedAt);
   const nowIso = now.toISOString();
+  const totalArticleLabel = totalItems === 1 ? 'article' : 'articles';
   const digestLegend = renderDigestLegend(newsItems);
   const sourceCoverage = renderSourceCoverage(newsItems, sourceNames, digestLegend);
   const operatorLanes = renderOperatorLanes(newsItems);
@@ -661,6 +662,7 @@ function generateHTML(newsItems, options = {}) {
     .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
     .filter-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
     .filter-status { align-items: center; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .sr-only { clip: rect(0 0 0 0); border: 0; height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; white-space: nowrap; width: 1px; }
     .active-filters { display: flex; flex-wrap: wrap; gap: 8px; }
     .active-filters[hidden] { display: none; }
     .active-filter-chip { align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 999px; color: var(--fg); display: inline-flex; font-size: 12px; gap: 6px; min-height: 28px; padding: 4px 8px 4px 10px; }
@@ -832,13 +834,14 @@ function generateHTML(newsItems, options = {}) {
       </select>
     </div>
     <div class="filter-status" aria-label="Active filters">
-      <div id="activeFilters" class="active-filters" hidden aria-live="polite"></div>
+      <div id="activeFilters" class="active-filters" hidden></div>
+      <div id="filterStatusAnnouncement" class="sr-only" role="status" aria-live="polite" aria-atomic="true">Showing ${totalItems} of ${totalItems} ${totalArticleLabel}.</div>
       <button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters</button>
     </div>
     <div class="stats" id="stats">Showing ${totalItems} of ${totalItems} articles from ${uniqueSources.length} sources • Last updated <time datetime="${nowIso}">${now.toLocaleString()}</time></div>
     ${issueStrip}
     ${issueTrail}
-    <div id="filterInsights" class="filter-insights" aria-live="polite"></div>
+    <div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true"></div>
     <span id="${ISSUE_TRAIL_CONTRACT.sourceCoverageAnchorId}" class="anchor-target" aria-hidden="true"></span>
     ${sourceCoverage}
     ${operatorLanes}
@@ -885,6 +888,7 @@ function generateHTML(newsItems, options = {}) {
       const emptyFilteredState = q('#emptyFilteredState');
       const emptyFilteredMessage = q('#emptyFilteredMessage');
       const activeFilters = q('#activeFilters');
+      const filterStatusAnnouncement = q('#filterStatusAnnouncement');
       const resetFilters = q('#resetFilters');
       const emptyResetFilters = q('#emptyResetFilters');
       const filterInsights = q('#filterInsights');
@@ -1098,8 +1102,10 @@ function generateHTML(newsItems, options = {}) {
         const total = ${totalItems};
         const srcCount = ${uniqueSources.length};
         const articleLabel = visible === 1 ? 'article' : 'articles';
+        const totalArticleLabel = total === 1 ? 'article' : 'articles';
         const hasComposedFilters = Boolean(term || severity || tag || vendor || age || handoff);
         if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('${nowIso}').toLocaleString());
+        if (filterStatusAnnouncement) filterStatusAnnouncement.textContent = 'Showing ' + visible + ' of ' + total + ' ' + totalArticleLabel + '.';
         renderEmptyFilteredState(visible, src, hasComposedFilters);
         sourceCoverageButtons.forEach(function(button){
           button.setAttribute('aria-pressed', button.getAttribute('${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}') === src ? 'true' : 'false');
