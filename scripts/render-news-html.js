@@ -1187,7 +1187,7 @@ function generateHTML(newsItems, options = {}) {
         update('Cleared ' + clearedLabel + ' filter.');
         hadMultipleActiveFilters ? focusActiveFilterRecoveryTarget() : focusFilterRecoveryTarget();
       });
-      if (resetFilters) resetFilters.addEventListener('click', function(){ clearFilters(); });
+      if (resetFilters) resetFilters.addEventListener('click', function(){ clearFilters({ focusRecoveryTarget: true }); });
       if (emptyResetFilters) emptyResetFilters.addEventListener('click', function(){ clearFilters({ focusRecoveryTarget: true }); });
 
       applyQueryState();
