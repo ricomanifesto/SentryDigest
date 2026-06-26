@@ -42,6 +42,7 @@
     .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
     .filter-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
     .filter-status { align-items: center; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .sr-only { clip: rect(0 0 0 0); border: 0; height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; white-space: nowrap; width: 1px; }
     .active-filters { display: flex; flex-wrap: wrap; gap: 8px; }
     .active-filters[hidden] { display: none; }
     .active-filter-chip { align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 999px; color: var(--fg); display: inline-flex; font-size: 12px; gap: 6px; min-height: 28px; padding: 4px 8px 4px 10px; }
@@ -213,13 +214,14 @@
       </select>
     </div>
     <div class="filter-status" aria-label="Active filters">
-      <div id="activeFilters" class="active-filters" hidden aria-live="polite"></div>
+      <div id="activeFilters" class="active-filters" hidden></div>
+      <div id="filterStatusAnnouncement" class="sr-only" role="status" aria-live="polite" aria-atomic="true">Showing 30 of 30 articles.</div>
       <button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters</button>
     </div>
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-26T01:07:51.661Z">6/26/2026, 1:07:51 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-26T03:16:30.239Z">6/26/2026, 3:16:30 AM</time></div>
     <section class="issue-strip" aria-label="Digest issue metadata">
       <span class="issue-label">Current issue</span>
-      <time datetime="2026-06-26T01:07:51.661Z">June 26, 2026</time>
+      <time datetime="2026-06-26T03:16:30.239Z">June 26, 2026</time>
       <span class="issue-stat"><strong>30</strong> articles</span>
       <span class="issue-stat"><strong>3</strong> sources</span>
       <a class="issue-link" href="./feed.xml">RSS archive</a>
@@ -228,10 +230,10 @@
       <span class="issue-trail-current" aria-current="page">Current digest</span>
       <a href="./feed.xml">RSS feed</a>
       <a href="#sourceCoverage">Source coverage</a>
-      <span class="issue-trail-meta">Updated <time datetime="2026-06-26T01:07:51.661Z">01:07 UTC</time></span>
+      <span class="issue-trail-meta">Updated <time datetime="2026-06-26T03:16:30.239Z">03:16 UTC</time></span>
       <span class="issue-trail-meta">3h cadence</span>
     </nav>
-    <div id="filterInsights" class="filter-insights" aria-live="polite"></div>
+    <div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true"></div>
     <span id="sourceCoverage" class="anchor-target" aria-hidden="true"></span>
     <section class="source-coverage" aria-label="RSS source coverage">
       <div class="source-coverage-label">RSS source coverage</div>
@@ -240,7 +242,7 @@
         <span><strong>3</strong> active feeds</span>
         <span><strong>2</strong> quiet feeds</span> <span class="source-health-note">health only</span>
       </div>
-      <div class="source-filter-status" data-source-filter-status aria-live="polite">Source shortcut: All active feeds (30 articles)</div>
+      <div class="source-filter-status" data-source-filter-status role="status" aria-live="polite" aria-atomic="true">Source shortcut: All active feeds (30 articles)</div>
       <div class="source-coverage-actions">
         <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with 30 latest articles">RSS feed <span class="feed-link-count">30 items</span></a>
         <details class="digest-legend" aria-label="Digest legend">
@@ -285,7 +287,7 @@
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 2h old</span>
+            <span class="chip age-chip">Fresh - 4h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/anthropic-is-testing-desktop-like-claude-cowork-for-mobile/" target="_blank" rel="noopener">Anthropic is testing desktop-like Claude Cowork for mobile</a></h2>
           <div class="news-meta">
@@ -301,7 +303,7 @@
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 2h old</span>
+            <span class="chip age-chip">Fresh - 4h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/poland-busts-sim-swapping-gang-tied-to-millions-in-crypto-theft/" target="_blank" rel="noopener">Poland busts SIM-swapping gang tied to millions in crypto theft</a></h2>
           <div class="news-meta">
@@ -323,7 +325,7 @@
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 3h old</span>
+            <span class="chip age-chip">Fresh - 5h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/less-than-24-hours-attackers-weaponize-cisco-cucm-flaw" target="_blank" rel="noopener">In Less Than 24 Hours, Attackers Weaponize Cisco CUCM Flaw</a></h2>
           <div class="news-meta">
@@ -340,7 +342,7 @@
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 3h old</span>
+            <span class="chip age-chip">Fresh - 6h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/russia-apt-gamaredon-arsenal-defense" target="_blank" rel="noopener">Russian APT &#39;Gamaredon&#39; Upgrades Its Arsenal, Requiring New Defenses</a></h2>
           <div class="news-meta">
@@ -357,7 +359,7 @@
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 4h old</span>
+            <span class="chip age-chip">Fresh - 6h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/edtech-attackers-shift-schools-software-suppliers" target="_blank" rel="noopener">EdTech Attackers Shift From Schools to Their Software Suppliers</a></h2>
           <div class="news-meta">
@@ -379,7 +381,7 @@
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 5h old</span>
+            <span class="chip age-chip">Fresh - 7h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/order-tracking-app-shop-abused-to-push-callback-phishing-attacks/" target="_blank" rel="noopener">Order-tracking app Shop abused to push callback phishing attacks</a></h2>
           <div class="news-meta">
@@ -402,7 +404,7 @@
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 6h old</span>
+            <span class="chip age-chip">Fresh - 8h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/police-collusion-crackdown-asian-scam-centers" target="_blank" rel="noopener">Local Police Collusion Hampers Crackdown on Asian Scam Centers</a></h2>
           <div class="news-meta">
@@ -424,7 +426,7 @@
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 6h old</span>
+            <span class="chip age-chip">Fresh - 8h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-quietly-extends-free-windows-10-esu-support-to-october-2027/" target="_blank" rel="noopener">Microsoft quietly extends free Windows 10 ESU support to October 2027</a></h2>
           <div class="news-meta">
@@ -447,7 +449,7 @@
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 8h old</span>
+            <span class="chip age-chip">Fresh - 10h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/new-macos-malware-embeds-fake-errors-to-confuse-ai-analysis-tools/" target="_blank" rel="noopener">New macOS malware embeds fake errors to confuse AI analysis tools</a></h2>
           <div class="news-meta">
@@ -470,7 +472,7 @@
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 9h old</span>
+            <span class="chip age-chip">Fresh - 11h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/pirlotv-sports-piracy-network-disrupted-as-44-domains-seized/" target="_blank" rel="noopener">PirloTV sports piracy network disrupted as 44 domains seized</a></h2>
           <div class="news-meta">
@@ -486,7 +488,7 @@
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 10h old</span>
+            <span class="chip age-chip">Fresh - 12h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/bluekit-phishing-kit-adopts-browser-in-the-middle-for-login-theft/" target="_blank" rel="noopener">Bluekit phishing kit adopts browser-in-the-middle for login theft</a></h2>
           <div class="news-meta">
@@ -511,7 +513,7 @@ According to Island, the extension, named Adblock for YouTube (ID..." data-sever
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 10h old</span>
+            <span class="chip age-chip">Fresh - 13h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/chrome-ad-blocker-with-10m-installs.html" target="_blank" rel="noopener">Chrome Ad Blocker with 10M+ Installs Found with Dormant Script Injection Capability</a></h2>
           <div class="news-meta">
@@ -536,7 +538,7 @@ According to Island, the</span><span class="summary-ellipsis" aria-hidden="true"
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 11h old</span>
+            <span class="chip age-chip">Fresh - 13h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/the-four-elevations-of-effective-fraud-prevention/" target="_blank" rel="noopener">The Four Elevations of Effective Fraud Prevention</a></h2>
           <div class="news-meta">
@@ -560,7 +562,7 @@ This week has the usual smell of prod on fire and nobody wanting to admit who le
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 12h old</span>
+            <span class="chip age-chip">Fresh - 14h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/threatsday-bulletin-smart-tv-proxyware.html" target="_blank" rel="noopener">ThreatsDay Bulletin: Smart TV Proxyware, 24-Year curl Bug, AI Crime Forums + 13 More Stories</a></h2>
           <div class="news-meta">
@@ -585,7 +587,7 @@ This week has the usual smell of prod on fire and nobody wanting to admit who le
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 12h old</span>
+            <span class="chip age-chip">Fresh - 15h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/webinar-why-account-takeovers-remain-one-of-the-hardest-threats-to-stop/" target="_blank" rel="noopener">Webinar: Why account takeovers remain one of the hardest threats to stop</a></h2>
           <div class="news-meta">
@@ -608,7 +610,7 @@ This week has the usual smell of prod on fire and nobody wanting to admit who le
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 13h old</span>
+            <span class="chip age-chip">Fresh - 15h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/surviving-mythos-era-richard-bejtlich.html" target="_blank" rel="noopener">Surviving the Mythos Era: Richard Bejtlich on the Case for NDR</a></h2>
           <div class="news-meta">
@@ -630,7 +632,7 @@ This week has the usual smell of prod on fire and nobody wanting to admit who le
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 15h old</span>
+            <span class="chip age-chip">Fresh - 17h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-analytics/europe-evolves-ransomware-favorite-region" target="_blank" rel="noopener">Europe Evolves Into Ransomware&#39;s Favorite Region</a></h2>
           <div class="news-meta">
@@ -647,7 +649,7 @@ This week has the usual smell of prod on fire and nobody wanting to admit who le
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 15h old</span>
+            <span class="chip age-chip">Fresh - 17h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/new-gaslight-macos-malware-uses-prompt.html" target="_blank" rel="noopener">New Gaslight macOS Malware Uses Prompt Injection to Disrupt AI-Assisted Analysis</a></h2>
           <div class="news-meta">
@@ -670,7 +672,7 @@ This week has the usual smell of prod on fire and nobody wanting to admit who le
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 16h old</span>
+            <span class="chip age-chip">Fresh - 18h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/new-mistic-backdoor-linked-to-kongtuke.html" target="_blank" rel="noopener">New Mistic Backdoor Linked to KongTuke in ClickFix and ModeloRAT Campaigns</a></h2>
           <div class="news-meta">
@@ -693,7 +695,7 @@ This week has the usual smell of prod on fire and nobody wanting to admit who le
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 19h old</span>
+            <span class="chip age-chip">Fresh - 21h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/cisco-catalyst-sd-wan-zero-day-cve-2026.html" target="_blank" rel="noopener">Cisco Catalyst SD-WAN Zero-Day CVE-2026-20245 Exploited to Gain Root Access</a></h2>
           <div class="news-meta">
@@ -945,6 +947,7 @@ This week has the usual smell of prod on fire and nobody wanting to admit who le
       const emptyFilteredState = q('#emptyFilteredState');
       const emptyFilteredMessage = q('#emptyFilteredMessage');
       const activeFilters = q('#activeFilters');
+      const filterStatusAnnouncement = q('#filterStatusAnnouncement');
       const resetFilters = q('#resetFilters');
       const emptyResetFilters = q('#emptyResetFilters');
       const filterInsights = q('#filterInsights');
@@ -1158,8 +1161,10 @@ This week has the usual smell of prod on fire and nobody wanting to admit who le
         const total = 30;
         const srcCount = 3;
         const articleLabel = visible === 1 ? 'article' : 'articles';
+        const totalArticleLabel = total === 1 ? 'article' : 'articles';
         const hasComposedFilters = Boolean(term || severity || tag || vendor || age || handoff);
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-26T01:07:51.661Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-26T03:16:30.239Z').toLocaleString());
+        if (filterStatusAnnouncement) filterStatusAnnouncement.textContent = 'Showing ' + visible + ' of ' + total + ' ' + totalArticleLabel + '.';
         renderEmptyFilteredState(visible, src, hasComposedFilters);
         sourceCoverageButtons.forEach(function(button){
           button.setAttribute('aria-pressed', button.getAttribute('data-source-filter') === src ? 'true' : 'false');

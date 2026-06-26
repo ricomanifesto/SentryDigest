@@ -843,10 +843,12 @@ test('generateHTML renders active filter summary and reset wiring', () => {
     },
   ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
 
-  assert.match(html, /<div id="activeFilters" class="active-filters" hidden aria-live="polite"><\/div>/);
+  assert.match(html, /<div id="activeFilters" class="active-filters" hidden><\/div>/);
+  assert.match(html, /<div id="filterStatusAnnouncement" class="sr-only" role="status" aria-live="polite" aria-atomic="true">Showing 1 of 1 article\.<\/div>/);
   assert.match(html, /<button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters<\/button>/);
   assert.match(html, /<button id="emptyResetFilters" class="btn empty-reset-filters" type="button">Reset filters<\/button>/);
   assert.match(html, /const activeFilters = q\('#activeFilters'\)/);
+  assert.match(html, /const filterStatusAnnouncement = q\('#filterStatusAnnouncement'\)/);
   assert.match(html, /const resetFilters = q\('#resetFilters'\)/);
   assert.match(html, /const emptyResetFilters = q\('#emptyResetFilters'\)/);
   assert.match(html, /function renderActiveFilters\(\)/);
@@ -866,6 +868,8 @@ test('generateHTML renders active filter summary and reset wiring', () => {
   assert.match(html, /control\.value = ''/);
   assert.match(html, /if \(resetFilters\) resetFilters\.addEventListener\('click', clearFilters\)/);
   assert.match(html, /if \(emptyResetFilters\) emptyResetFilters\.addEventListener\('click', clearFilters\)/);
+  assert.match(html, /const totalArticleLabel = total === 1 \? 'article' : 'articles'/);
+  assert.match(html, /if \(filterStatusAnnouncement\) filterStatusAnnouncement\.textContent = 'Showing ' \+ visible \+ ' of ' \+ total \+ ' ' \+ totalArticleLabel \+ '\.'/);
   assert.match(html, /renderActiveFilters\(\);\s+renderFilterInsights\(visibleCards\);\s+updateOperatorLanes\(visibleCards\);\s+syncQueryState\(\);/);
 });
 
@@ -921,7 +925,7 @@ test('generateHTML renders visible result context wiring', () => {
     },
   ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
 
-  assert.match(html, /<div id="filterInsights" class="filter-insights" aria-live="polite"><\/div>/);
+  assert.match(html, /<div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true"><\/div>/);
   assert.match(html, /const filterInsights = q\('#filterInsights'\)/);
   assert.match(html, /function incrementCount\(counts, value\)/);
   assert.match(html, /function collectListCounts\(counts, rawValue\)/);
@@ -1089,7 +1093,7 @@ test('generateHTML wires source coverage counts into the source filter', () => {
   ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
 
   assert.ok(html.includes(`const sourceCoverageButtons = qa('${SOURCE_COVERAGE_CONTRACT.buttonSelector}')`));
-  assert.ok(html.includes('<div class="source-filter-status" data-source-filter-status aria-live="polite">Source shortcut: All active feeds (2 articles)</div>'));
+  assert.ok(html.includes('<div class="source-filter-status" data-source-filter-status role="status" aria-live="polite" aria-atomic="true">Source shortcut: All active feeds (2 articles)</div>'));
   assert.ok(html.includes(`const sourceFilterStatus = q('${SOURCE_COVERAGE_CONTRACT.statusSelector}')`));
   assert.match(html, /sourceCoverageButtons\.forEach\(function\(button\)/);
   assert.ok(html.includes(`const source = button.getAttribute('${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}') || ''`));
