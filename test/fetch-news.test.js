@@ -869,7 +869,14 @@ test('generateHTML renders active filter summary and reset wiring', () => {
   assert.match(html, /if \(resetFilters\) resetFilters\.addEventListener\('click', clearFilters\)/);
   assert.match(html, /if \(emptyResetFilters\) emptyResetFilters\.addEventListener\('click', clearFilters\)/);
   assert.match(html, /const totalArticleLabel = total === 1 \? 'article' : 'articles'/);
-  assert.match(html, /if \(filterStatusAnnouncement\) filterStatusAnnouncement\.textContent = 'Showing ' \+ visible \+ ' of ' \+ total \+ ' ' \+ totalArticleLabel \+ '\.'/);
+  assert.match(html, /function getFilterStatusText\(visible, total, actionLabel\)/);
+  assert.match(html, /return actionLabel \? actionLabel \+ ' ' \+ resultText : resultText/);
+  assert.match(html, /function update\(statusActionLabel\)/);
+  assert.match(html, /const safeStatusActionLabel = typeof statusActionLabel === 'string' \? statusActionLabel : ''/);
+  assert.match(html, /if \(filterStatusAnnouncement\) filterStatusAnnouncement\.textContent = getFilterStatusText\(visible, total, safeStatusActionLabel\)/);
+  assert.match(html, /update\('Filters reset\.'\)/);
+  assert.match(html, /const clearedLabel = filterLabels\[key\] \|\| 'Selected'/);
+  assert.match(html, /update\('Cleared ' \+ clearedLabel \+ ' filter\.'\)/);
   assert.match(html, /renderActiveFilters\(\);\s+renderFilterInsights\(visibleCards\);\s+updateOperatorLanes\(visibleCards\);\s+syncQueryState\(\);/);
 });
 

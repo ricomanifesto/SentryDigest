@@ -1050,6 +1050,12 @@ function generateHTML(newsItems, options = {}) {
         messageTarget.textContent = sourceLabel && hasComposedFilters ? 'No ' + sourceLabel + ' articles match the current filters.' : 'No articles match the current filters.';
       }
 
+      function getFilterStatusText(visible, total, actionLabel){
+        const totalArticleLabel = total === 1 ? 'article' : 'articles';
+        const resultText = 'Showing ' + visible + ' of ' + total + ' ' + totalArticleLabel + '.';
+        return actionLabel ? actionLabel + ' ' + resultText : resultText;
+      }
+
       function updateOperatorLanes(visibleCards){
         operatorLanes.forEach(function(lane){
           const cue = lane.getAttribute('data-lane-cue');
@@ -1074,7 +1080,7 @@ function generateHTML(newsItems, options = {}) {
         });
       }
 
-      function update(){
+      function update(statusActionLabel){
         const term = (search && search.value || '').toLowerCase().trim();
         const src = sourceFilter && sourceFilter.value || '';
         const severity = severityFilter && severityFilter.value || '';
@@ -1102,10 +1108,10 @@ function generateHTML(newsItems, options = {}) {
         const total = ${totalItems};
         const srcCount = ${uniqueSources.length};
         const articleLabel = visible === 1 ? 'article' : 'articles';
-        const totalArticleLabel = total === 1 ? 'article' : 'articles';
         const hasComposedFilters = Boolean(term || severity || tag || vendor || age || handoff);
+        const safeStatusActionLabel = typeof statusActionLabel === 'string' ? statusActionLabel : '';
         if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('${nowIso}').toLocaleString());
-        if (filterStatusAnnouncement) filterStatusAnnouncement.textContent = 'Showing ' + visible + ' of ' + total + ' ' + totalArticleLabel + '.';
+        if (filterStatusAnnouncement) filterStatusAnnouncement.textContent = getFilterStatusText(visible, total, safeStatusActionLabel);
         renderEmptyFilteredState(visible, src, hasComposedFilters);
         sourceCoverageButtons.forEach(function(button){
           button.setAttribute('aria-pressed', button.getAttribute('${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}') === src ? 'true' : 'false');
@@ -1136,14 +1142,15 @@ function generateHTML(newsItems, options = {}) {
           const control = filterControls[key];
           if (control) control.value = '';
         });
-        update();
+        update('Filters reset.');
       }
       if (activeFilters) activeFilters.addEventListener('click', function(event){
         const target = event.target;
         if (!target || !target.matches || !target.matches('.active-filter-clear')) return;
         const key = target.getAttribute('data-filter-key');
         if (filterControls[key]) filterControls[key].value = '';
-        update();
+        const clearedLabel = filterLabels[key] || 'Selected';
+        update('Cleared ' + clearedLabel + ' filter.');
       });
       if (resetFilters) resetFilters.addEventListener('click', clearFilters);
       if (emptyResetFilters) emptyResetFilters.addEventListener('click', clearFilters);
