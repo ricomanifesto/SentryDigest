@@ -1060,6 +1060,10 @@ function generateHTML(newsItems, options = {}) {
         return actionLabel ? actionLabel + ' ' + resultText : resultText;
       }
 
+      function focusFilterRecoveryTarget(){
+        if (search && typeof search.focus === 'function') search.focus();
+      }
+
       function updateOperatorLanes(visibleCards){
         operatorLanes.forEach(function(lane){
           const cue = lane.getAttribute('data-lane-cue');
@@ -1142,12 +1146,14 @@ function generateHTML(newsItems, options = {}) {
           update();
         });
       });
-      function clearFilters(){
+      function clearFilters(options){
         Object.keys(filterControls).forEach(function(key){
           const control = filterControls[key];
           if (control) control.value = '';
         });
+        const shouldFocusRecoveryTarget = options && options.focusRecoveryTarget;
         update('Filters reset.');
+        if (shouldFocusRecoveryTarget) focusFilterRecoveryTarget();
       }
       if (activeFilters) activeFilters.addEventListener('click', function(event){
         const target = event.target;
@@ -1157,8 +1163,8 @@ function generateHTML(newsItems, options = {}) {
         const clearedLabel = filterLabels[key] || 'Selected';
         update('Cleared ' + clearedLabel + ' filter.');
       });
-      if (resetFilters) resetFilters.addEventListener('click', clearFilters);
-      if (emptyResetFilters) emptyResetFilters.addEventListener('click', clearFilters);
+      if (resetFilters) resetFilters.addEventListener('click', function(){ clearFilters(); });
+      if (emptyResetFilters) emptyResetFilters.addEventListener('click', function(){ clearFilters({ focusRecoveryTarget: true }); });
 
       applyQueryState();
       update();
