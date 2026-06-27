@@ -11,6 +11,7 @@ const {
   RSS_CHANNEL_CONTRACT,
   SOURCE_COVERAGE_CONTRACT,
 } = require('../scripts/generated-artifact-contracts');
+const { generateHTML } = require('../scripts/render-news-html');
 const { validateArtifacts } = require('../scripts/validate-artifacts');
 
 function writeJson(filePath, value) {
@@ -633,6 +634,56 @@ test('validateArtifacts rejects generated digest legend detail drift', () => {
   assert.match(
     result.failures.join('\n'),
     /index\.html handoff cue legend detail for SentryInsight: monitor Stale handoff detail does not match expected Low-signal item worth monitoring/
+  );
+});
+
+test('validateArtifacts rejects generated operator lane drift', () => {
+  const newsData = [
+    {
+      title: 'Ransomware crew steals credentials from exchange',
+      link: 'https://example.com/incident',
+      date: '2026-06-17T18:00:00.000Z',
+      source: 'Example Security',
+      summary: 'Incident response teams are investigating stolen credentials.',
+    },
+    {
+      title: 'Cisco VPN vulnerability patched by vendor',
+      link: 'https://example.com/vuln',
+      date: '2026-06-17T17:00:00.000Z',
+      source: 'Example Security',
+      summary: 'CVE-2026-1234 affects exposed appliances.',
+    },
+  ];
+  const generatedHtml = generateHTML(newsData, {
+    generatedAt: new Date('2026-06-17T18:30:00.000Z'),
+    sourceNames: ['Example Security'],
+  });
+  const staleHtml = generatedHtml
+    .replace(
+      '<article class="operator-lane" data-lane="Incident watch" data-lane-cue="SentryInsight: incident watch">\n        <div class="operator-lane-heading">Incident watch</div>\n        <span class="operator-lane-count" data-lane-count><strong>1</strong> item</span>\n        <a href="https://example.com/incident" class="operator-lane-link" data-lane-link>Ransomware crew steals credentials from exchange</a>',
+      '<article class="operator-lane" data-lane="Incident watch" data-lane-cue="SentryInsight: incident watch">\n        <div class="operator-lane-heading">Incident watch</div>\n        <span class="operator-lane-count" data-lane-count><strong>0</strong> items</span>\n        <a href="https://example.com/stale" class="operator-lane-link" data-lane-link>Stale incident lane</a>'
+    );
+
+  const repoRoot = createFixture({
+    indexHtml: staleHtml,
+    newsData,
+    sourceNames: ['Example Security'],
+  });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(
+    result.failures.join('\n'),
+    /index\.html operator lane Incident watch count 0 does not match expected 1/
+  );
+  assert.match(
+    result.failures.join('\n'),
+    /index\.html operator lane Incident watch latest link https:\/\/example\.com\/stale does not match expected https:\/\/example\.com\/incident/
+  );
+  assert.match(
+    result.failures.join('\n'),
+    /index\.html operator lane Incident watch latest title Stale incident lane does not match expected Ransomware crew steals credentials from exchange/
   );
 });
 
