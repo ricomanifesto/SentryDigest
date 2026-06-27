@@ -37,6 +37,17 @@ test('validateSourceConfig rejects duplicate enabled source urls', () => {
   assert.deepEqual(failures, ['config source 2 duplicates enabled source url "https://example.com/feed.xml"']);
 });
 
+test('validateSourceConfig rejects canonical duplicate enabled source urls', () => {
+  const { failures } = validateSourceConfig({
+    sources: [
+      enabledSource({ name: 'Example One', url: 'https://EXAMPLE.com:443/feed.xml' }),
+      enabledSource({ name: 'Example Two', url: 'https://example.com/feed.xml' }),
+    ],
+  });
+
+  assert.deepEqual(failures, ['config source 2 duplicates enabled source url "https://example.com/feed.xml"']);
+});
+
 test('validateSourceConfig allows disabled duplicate source names and urls', () => {
   const { enabledRssSources, failures } = validateSourceConfig({
     sources: [

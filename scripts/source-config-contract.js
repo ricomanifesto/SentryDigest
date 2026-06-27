@@ -13,6 +13,18 @@ function isValidHttpUrl(value) {
   }
 }
 
+function normalizeHttpUrl(value) {
+  try {
+    const url = new URL(value);
+    if (url.protocol !== 'http:' && url.protocol !== 'https:') {
+      return null;
+    }
+    return url.toString();
+  } catch {
+    return null;
+  }
+}
+
 function validateSourceConfig(config, failures = []) {
   const enabledRssSources = [];
   const enabledSourceNames = new Set();
@@ -61,11 +73,12 @@ function validateSourceConfig(config, failures = []) {
         }
       }
 
-      if (isValidHttpUrl(source.url)) {
-        if (enabledSourceUrls.has(source.url)) {
-          fail(failures, `${label} duplicates enabled source url "${source.url}"`);
+      const normalizedUrl = normalizeHttpUrl(source.url);
+      if (normalizedUrl) {
+        if (enabledSourceUrls.has(normalizedUrl)) {
+          fail(failures, `${label} duplicates enabled source url "${normalizedUrl}"`);
         } else {
-          enabledSourceUrls.add(source.url);
+          enabledSourceUrls.add(normalizedUrl);
         }
       }
 
@@ -107,5 +120,6 @@ module.exports = {
   DEFAULT_MAX_NEWS_ITEMS,
   assertSourceConfigContract,
   isValidHttpUrl,
+  normalizeHttpUrl,
   validateSourceConfig,
 };
