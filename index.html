@@ -1228,7 +1228,8 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
           const source = button.getAttribute('data-source-filter') || '';
           const nextSource = sourceFilter.value === source ? '' : source;
           sourceFilter.value = nextSource;
-          update();
+          const sourceShortcutStatus = nextSource ? 'Source shortcut: ' + getControlLabel(sourceFilter) + '.' : 'Source shortcut cleared.';
+          update(sourceShortcutStatus);
           focusSourceShortcutRecoveryTarget(source);
         });
       });
@@ -1266,4 +1267,3 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
   </script>
 </body>
 </html>
-  
