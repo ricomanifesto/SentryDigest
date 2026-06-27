@@ -26,6 +26,27 @@ test('validateSourceConfig rejects duplicate enabled source names', () => {
   assert.deepEqual(failures, ['config source 2 duplicates enabled source name "Example Security"']);
 });
 
+test('validateSourceConfig rejects blank enabled source names', () => {
+  const { failures } = validateSourceConfig({
+    sources: [
+      enabledSource({ name: '   ' }),
+    ],
+  });
+
+  assert.deepEqual(failures, ['config source 1 must have a non-empty string name']);
+});
+
+test('validateSourceConfig rejects normalized duplicate enabled source names', () => {
+  const { failures } = validateSourceConfig({
+    sources: [
+      enabledSource({ name: 'Example Security', url: 'https://example.com/one.xml' }),
+      enabledSource({ name: '  example   security  ', url: 'https://example.com/two.xml' }),
+    ],
+  });
+
+  assert.deepEqual(failures, ['config source 2 duplicates enabled source name "example security"']);
+});
+
 test('validateSourceConfig rejects duplicate enabled source urls', () => {
   const { failures } = validateSourceConfig({
     sources: [

@@ -26,6 +26,15 @@ function normalizeHttpUrl(value) {
   }
 }
 
+function normalizeSourceName(value) {
+  if (typeof value !== 'string') {
+    return null;
+  }
+
+  const normalized = value.trim().replace(/\s+/g, ' ');
+  return normalized || null;
+}
+
 function validateSourceConfig(config, failures = []) {
   const enabledRssSources = [];
   const enabledSourceNames = new Set();
@@ -56,8 +65,12 @@ function validateSourceConfig(config, failures = []) {
         return;
       }
 
-      if (!source.name || typeof source.name !== 'string') {
+      const normalizedName = normalizeSourceName(source.name);
+
+      if (typeof source.name !== 'string') {
         fail(failures, `${label} must have a string name`);
+      } else if (!normalizedName) {
+        fail(failures, `${label} must have a non-empty string name`);
       }
       if (!source.url || !isValidHttpUrl(source.url)) {
         fail(failures, `${label} must have an http(s) url`);
@@ -66,11 +79,12 @@ function validateSourceConfig(config, failures = []) {
         fail(failures, `${label} has unsupported type "${source.type}"`);
       }
 
-      if (typeof source.name === 'string') {
-        if (enabledSourceNames.has(source.name)) {
-          fail(failures, `${label} duplicates enabled source name "${source.name}"`);
+      if (normalizedName) {
+        const normalizedNameKey = normalizedName.toLowerCase();
+        if (enabledSourceNames.has(normalizedNameKey)) {
+          fail(failures, `${label} duplicates enabled source name "${normalizedName}"`);
         } else {
-          enabledSourceNames.add(source.name);
+          enabledSourceNames.add(normalizedNameKey);
         }
       }
 
@@ -84,8 +98,7 @@ function validateSourceConfig(config, failures = []) {
       }
 
       if (
-        source.name
-        && typeof source.name === 'string'
+        normalizedName
         && source.url
         && isValidHttpUrl(source.url)
         && source.type === 'rss'
@@ -122,5 +135,6 @@ module.exports = {
   assertSourceConfigContract,
   isValidHttpUrl,
   normalizeHttpUrl,
+  normalizeSourceName,
   validateSourceConfig,
 };
