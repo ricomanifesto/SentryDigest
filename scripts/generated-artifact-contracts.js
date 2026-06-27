@@ -2,6 +2,11 @@ const SOURCE_COVERAGE_ANCHOR_ID = 'sourceCoverage';
 
 const DASHBOARD_RSS_LINK_CONTRACT = Object.freeze({
   feedHref: './feed.xml',
+  linkLabels: Object.freeze({
+    'a.btn': 'Open generated RSS feed',
+    '.issue-strip a.issue-link': 'Open generated RSS archive',
+    'footer a': 'Open generated RSS feed',
+  }),
   linkSelectors: Object.freeze([
     'link[rel="alternate"][type="application/rss+xml"]',
     'a.btn',

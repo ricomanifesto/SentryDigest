@@ -253,6 +253,14 @@ function validateDashboardRssLinkContract(indexHtml, failures) {
           `index.html RSS link ${selector} href ${href || 'missing'} must match the dashboard RSS link contract`
         );
       }
+
+      const expectedLabel = DASHBOARD_RSS_LINK_CONTRACT.linkLabels[selector];
+      if (expectedLabel) {
+        const label = $(element).attr('aria-label') || '';
+        if (label !== expectedLabel) {
+          fail(failures, `index.html RSS link ${selector} label ${label || 'missing'} must match ${expectedLabel}`);
+        }
+      }
     });
 
     if (rssLinkCount === 0) {
