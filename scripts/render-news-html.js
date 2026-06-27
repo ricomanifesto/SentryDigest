@@ -1,5 +1,6 @@
 const {
   DASHBOARD_RSS_LINK_CONTRACT,
+  DIGEST_LEGEND_CONTRACT,
   formatSourceShortcutStatus,
   ISSUE_TRAIL_CONTRACT,
   SOURCE_COVERAGE_CONTRACT,
@@ -65,12 +66,7 @@ const SOURCE_SIGNAL_RULES = [
   { label: 'Research team', pattern: /\b(unit 42|talos|mandiant|threat intelligence|research|labs|team)\b/i },
   { label: 'Industry media', pattern: /\b(securityweek|bleepingcomputer|the hacker news|dark reading|krebsonsecurity|threatpost|wired|therecord)\b/i },
 ];
-const SOURCE_SIGNAL_DETAILS = {
-  'Vendor advisory': 'Vendor or product-owner guidance',
-  'Research team': 'Threat research or lab analysis',
-  'Industry media': 'Security news reporting',
-  'General source': 'Monitor for added context',
-};
+const SOURCE_SIGNAL_DETAILS = DIGEST_LEGEND_CONTRACT.sourceSignalDetails;
 
 const HANDOFF_CUE_RULES = [
   {
@@ -103,13 +99,7 @@ const HANDOFF_CUE_RULES = [
 
 const AGE_BUCKET_ORDER = ['Fresh', 'Recent', 'Older', 'Undated'];
 const HANDOFF_CUE_ORDER = HANDOFF_CUE_RULES.map((rule) => rule.label).concat('SentryInsight: monitor');
-const HANDOFF_CUE_DETAILS = {
-  'SentryInsight: incident watch': 'Potential incident or compromise follow-up',
-  'SentryInsight: vuln triage': 'Vulnerability or exploitation review',
-  'SentryInsight: vendor watch': 'Vendor or product-owner tracking',
-  'GRCInsight: governance watch': 'Regulatory, privacy, or audit relevance',
-  'SentryInsight: monitor': 'Low-signal item worth monitoring',
-};
+const HANDOFF_CUE_DETAILS = DIGEST_LEGEND_CONTRACT.handoffCueDetails;
 const INVALID_FEED_DATE_FALLBACK_TIME = new Date('1970-01-01T00:00:00.000Z').getTime();
 const OPERATOR_LANE_RULES = [
   {

@@ -3,6 +3,7 @@ const path = require('path');
 const cheerio = require('cheerio');
 const {
   DASHBOARD_RSS_LINK_CONTRACT,
+  DIGEST_LEGEND_CONTRACT,
   FEED_INFO_CONTRACT,
   FEED_METADATA_CONTRACT,
   formatSourceShortcutStatus,
@@ -10,6 +11,10 @@ const {
   RSS_CHANNEL_CONTRACT,
   SOURCE_COVERAGE_CONTRACT,
 } = require('./generated-artifact-contracts');
+const {
+  deriveArticleFacets,
+  deriveHandoffCues,
+} = require('./render-news-html');
 const {
   DEFAULT_MAX_NEWS_ITEMS,
   isValidHttpUrl,
@@ -281,6 +286,103 @@ function validateFilterInsightsContract(indexHtml, failures) {
   if (filterInsights.attr('hidden') === undefined) {
     fail(failures, 'index.html filter insights region must render hidden by default');
   }
+}
+
+function getExpectedDigestLegendEntries(newsData) {
+  const sourceSignals = new Map();
+  const handoffCues = new Map();
+
+  newsData.forEach((article) => {
+    if (!article || typeof article !== 'object' || Array.isArray(article)) {
+      return;
+    }
+
+    const sourceSignal = deriveArticleFacets(article).sourceSignal;
+    const sourceSignalDetail = DIGEST_LEGEND_CONTRACT.sourceSignalDetails[sourceSignal];
+    if (sourceSignalDetail) {
+      sourceSignals.set(sourceSignal, sourceSignalDetail);
+    }
+
+    deriveHandoffCues(article).forEach((cue) => {
+      const cueDetail = DIGEST_LEGEND_CONTRACT.handoffCueDetails[cue];
+      if (cueDetail) {
+        handoffCues.set(cue, cueDetail);
+      }
+    });
+  });
+
+  return { handoffCues, sourceSignals };
+}
+
+function validateDigestLegendGroup($, legend, expectedEntries, options, failures) {
+  if (expectedEntries.size === 0) {
+    return;
+  }
+
+  const group = legend.find(options.groupSelector).first();
+  if (group.length === 0) {
+    fail(failures, `index.html must render the ${options.label} legend`);
+    return;
+  }
+
+  const seenEntries = new Set();
+  group.find(options.itemSelector).each((index, element) => {
+    const item = $(element);
+    const name = item.find(options.nameSelector).first().text().trim();
+    const detail = item.find(options.detailSelector).first().text().trim();
+
+    if (seenEntries.has(name)) {
+      fail(failures, `index.html ${options.label} legend duplicates ${name}`);
+      return;
+    }
+    seenEntries.add(name);
+
+    if (!expectedEntries.has(name)) {
+      fail(failures, `index.html ${options.label} legend includes unexpected ${name || 'missing'}`);
+      return;
+    }
+
+    const expectedDetail = expectedEntries.get(name);
+    if (detail !== expectedDetail) {
+      fail(failures, `index.html ${options.label} legend detail for ${name} ${detail || 'missing'} does not match expected ${expectedDetail}`);
+    }
+  });
+
+  expectedEntries.forEach((detail, name) => {
+    if (!seenEntries.has(name)) {
+      fail(failures, `index.html ${options.label} legend is missing ${name}`);
+    }
+  });
+}
+
+function validateDigestLegendContract(indexHtml, newsData, failures) {
+  const expectedEntries = getExpectedDigestLegendEntries(newsData);
+  if (expectedEntries.sourceSignals.size === 0 && expectedEntries.handoffCues.size === 0) {
+    return;
+  }
+
+  const $ = cheerio.load(indexHtml);
+  const legend = $(DIGEST_LEGEND_CONTRACT.selector).first();
+  if (legend.length === 0) {
+    fail(failures, 'index.html must render the digest legend contract');
+    return;
+  }
+
+  validateDigestLegendGroup($, legend, expectedEntries.sourceSignals, {
+    detailSelector: DIGEST_LEGEND_CONTRACT.sourceSignalDetailSelector,
+    groupSelector: DIGEST_LEGEND_CONTRACT.sourceSignalGroupSelector,
+    itemSelector: DIGEST_LEGEND_CONTRACT.sourceSignalSelector,
+    label: 'source signal',
+    nameSelector: DIGEST_LEGEND_CONTRACT.sourceSignalNameSelector,
+  }, failures);
+
+  validateDigestLegendGroup($, legend, expectedEntries.handoffCues, {
+    detailSelector: DIGEST_LEGEND_CONTRACT.handoffCueDetailSelector,
+    groupSelector: DIGEST_LEGEND_CONTRACT.handoffCueGroupSelector,
+    itemSelector: DIGEST_LEGEND_CONTRACT.handoffCueSelector,
+    label: 'handoff cue',
+    nameSelector: DIGEST_LEGEND_CONTRACT.handoffCueNameSelector,
+  }, failures);
 }
 
 function getGeneratedMetadataTimestamps(indexHtml, failures = []) {
@@ -639,6 +741,7 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
     validateDashboardRssLinkContract(indexHtml, failures);
     validateIssueTrailContract(indexHtml, failures);
     validateFilterInsightsContract(indexHtml, failures);
+    validateDigestLegendContract(indexHtml, newsData, failures);
     validateSourceCoverageContract(indexHtml, newsData, enabledSources, failures);
 
     const articleCount = countMatches(indexHtml, /<article class="news-item"/g);

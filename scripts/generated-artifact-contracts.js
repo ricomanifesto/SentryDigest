@@ -1,5 +1,30 @@
 const SOURCE_COVERAGE_ANCHOR_ID = 'sourceCoverage';
 
+const DIGEST_LEGEND_CONTRACT = Object.freeze({
+  handoffCueDetails: Object.freeze({
+    'SentryInsight: incident watch': 'Potential incident or compromise follow-up',
+    'SentryInsight: vuln triage': 'Vulnerability or exploitation review',
+    'SentryInsight: vendor watch': 'Vendor or product-owner tracking',
+    'GRCInsight: governance watch': 'Regulatory, privacy, or audit relevance',
+    'SentryInsight: monitor': 'Low-signal item worth monitoring',
+  }),
+  handoffCueDetailSelector: '.handoff-cue-detail',
+  handoffCueGroupSelector: '.handoff-cue-legend',
+  handoffCueNameSelector: '.handoff-cue-name',
+  handoffCueSelector: '.handoff-cue-legend-chip',
+  selector: '.digest-legend',
+  sourceSignalDetails: Object.freeze({
+    'Vendor advisory': 'Vendor or product-owner guidance',
+    'Research team': 'Threat research or lab analysis',
+    'Industry media': 'Security news reporting',
+    'General source': 'Monitor for added context',
+  }),
+  sourceSignalDetailSelector: '.source-signal-detail',
+  sourceSignalGroupSelector: '.source-signal-legend',
+  sourceSignalNameSelector: '.source-signal-name',
+  sourceSignalSelector: '.source-signal-chip',
+});
+
 const DASHBOARD_RSS_LINK_CONTRACT = Object.freeze({
   feedHref: './feed.xml',
   linkLabels: Object.freeze({
@@ -70,6 +95,7 @@ function formatSourceShortcutStatus(label, count, options = {}) {
 
 module.exports = {
   DASHBOARD_RSS_LINK_CONTRACT,
+  DIGEST_LEGEND_CONTRACT,
   FEED_INFO_CONTRACT,
   FEED_METADATA_CONTRACT,
   formatSourceShortcutStatus,

@@ -59,6 +59,27 @@ function renderFilterInsights() {
   return '<div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true" hidden></div>';
 }
 
+function renderDigestLegend({
+  sourceSignalName = 'General source',
+  sourceSignalDetail = 'Monitor for added context',
+  handoffCueName = 'SentryInsight: monitor',
+  handoffCueDetail = 'Low-signal item worth monitoring',
+} = {}) {
+  return `<details class="digest-legend" aria-label="Digest legend">
+      <summary class="digest-legend-summary">Digest legend: source signals and handoff cues</summary>
+      <div class="digest-legend-body">
+        <div class="digest-legend-group source-signal-legend" aria-label="Source signal legend">
+          <div class="digest-legend-heading">Source signals</div>
+          <div class="source-signal-items"><span class="source-signal-chip"><span class="source-signal-name">${sourceSignalName}</span><span class="source-signal-detail">${sourceSignalDetail}</span></span></div>
+        </div>
+        <div class="digest-legend-group handoff-cue-legend" aria-label="Handoff cue legend">
+          <div class="digest-legend-heading">Handoff cues</div>
+          <div class="handoff-cue-legend-items"><span class="handoff-cue-legend-chip"><span class="handoff-cue-name">${handoffCueName}</span><span class="handoff-cue-detail">${handoffCueDetail}</span></span></div>
+        </div>
+      </div>
+    </details>`;
+}
+
 function collectFixtureSourceCounts(newsData, sourceNames = ['Example Security']) {
   const counts = new Map(sourceNames.map((source) => [source, 0]));
 
@@ -108,6 +129,7 @@ function renderFixtureSourceControls(newsData, sourceNames) {
       <div class="source-filter-status" data-source-filter-status aria-live="polite">${formatSourceShortcutStatus(SOURCE_COVERAGE_CONTRACT.statusAllSourcesText, newsData.length)}</div>
       <div class="source-coverage-actions">
         <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with ${newsData.length} latest articles">RSS feed <span class="feed-link-count">${newsData.length} items</span></a>
+        ${renderDigestLegend()}
       </div>
     </section>`;
 }
@@ -561,6 +583,56 @@ test('validateArtifacts rejects generated dashboard RSS link label drift', () =>
   assert.match(
     result.failures.join('\n'),
     /index\.html RSS link footer a label Open stale footer feed must match Open generated RSS feed/
+  );
+});
+
+test('validateArtifacts rejects generated digest legend detail drift', () => {
+  const newsData = [
+    {
+      title: 'Security news roundup',
+      link: 'https://www.bleepingcomputer.com/news/security/example/',
+      date: '2026-06-17T18:00:00.000Z',
+      source: 'Bleeping Computer',
+      summary: 'Industry reporting on security activity.',
+    },
+  ];
+  const repoRoot = createFixture({
+    newsData,
+    sourceNames: ['Bleeping Computer'],
+    indexHtml: `<html><head>${renderDashboardRssHead()}</head><body>
+      <h1>SentryDigest</h1>
+      ${renderDashboardRssControls()}
+      ${renderGeneratedMetadata()}
+      <section class="issue-strip">
+        <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
+        <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
+      </section>
+      ${renderArchiveTrail()}
+      ${renderFilterInsights()}
+      ${renderFixtureSourceControls(newsData, ['Bleeping Computer']).replace(
+        renderDigestLegend(),
+        renderDigestLegend({
+          sourceSignalName: 'Industry media',
+          sourceSignalDetail: 'Stale source detail',
+          handoffCueName: 'SentryInsight: monitor',
+          handoffCueDetail: 'Stale handoff detail',
+        })
+      )}
+      <article class="news-item"><a href="https://www.bleepingcomputer.com/news/security/example/">Security news roundup</a></article>
+      ${renderDashboardRssFooter()}
+    </body></html>`,
+  });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(
+    result.failures.join('\n'),
+    /index\.html source signal legend detail for Industry media Stale source detail does not match expected Security news reporting/
+  );
+  assert.match(
+    result.failures.join('\n'),
+    /index\.html handoff cue legend detail for SentryInsight: monitor Stale handoff detail does not match expected Low-signal item worth monitoring/
   );
 });
 
