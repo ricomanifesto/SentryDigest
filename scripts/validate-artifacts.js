@@ -421,6 +421,15 @@ function validateSourceCoverageContract(indexHtml, newsData, enabledSources, fai
       fail(failures, `index.html source coverage count for ${source} ${countText || 'missing'} does not match news-data.json count ${expectedCount}`);
     }
 
+    const expectedArticleLabel = expectedCount === 1 ? 'article' : 'articles';
+    const expectedSourceLabel = expectedCount === 0
+      ? `${source} source has no current articles`
+      : `Filter to ${source} source, ${expectedCount} ${expectedArticleLabel}`;
+    const sourceLabel = button.attr('aria-label') || '';
+    if (sourceLabel !== expectedSourceLabel) {
+      fail(failures, `index.html source coverage label for ${source} ${sourceLabel || 'missing'} does not match expected ${expectedSourceLabel}`);
+    }
+
     const filterOption = $(`${SOURCE_COVERAGE_CONTRACT.sourceFilterSelector} option`)
       .filter((optionIndex, option) => $(option).attr('value') === source);
     if (expectedCount > 0 && filterOption.length === 0) {
