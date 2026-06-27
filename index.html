@@ -218,10 +218,10 @@
       <div id="filterStatusAnnouncement" class="sr-only" role="status" aria-live="polite" aria-atomic="true">Showing 30 of 30 articles.</div>
       <button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters</button>
     </div>
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-27T16:33:23.352Z">6/27/2026, 4:33:23 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-27T17:09:39.503Z">6/27/2026, 5:09:39 PM</time></div>
     <section class="issue-strip" aria-label="Digest issue metadata">
       <span class="issue-label">Current issue</span>
-      <time datetime="2026-06-27T16:33:23.352Z">June 27, 2026</time>
+      <time datetime="2026-06-27T17:09:39.503Z">June 27, 2026</time>
       <span class="issue-stat"><strong>30</strong> articles</span>
       <span class="issue-stat"><strong>3</strong> sources</span>
       <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
@@ -230,7 +230,7 @@
       <span class="issue-trail-current" aria-current="page">Current digest</span>
       <a href="./feed.xml" aria-label="Open generated RSS feed">RSS feed</a>
       <a href="#sourceCoverage">Source coverage</a>
-      <span class="issue-trail-meta">Updated <time datetime="2026-06-27T16:33:23.352Z">16:33 UTC</time></span>
+      <span class="issue-trail-meta">Updated <time datetime="2026-06-27T17:09:39.503Z">17:09 UTC</time></span>
       <span class="issue-trail-meta">3h cadence</span>
     </nav>
     <div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true" hidden></div>
@@ -337,7 +337,7 @@ While ...</p>
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 4h old</span>
+            <span class="chip age-chip">Fresh - 5h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/third-party-breaches-teaches-education-lesson-vendor-risk" target="_blank" rel="noopener">Third-Party Breaches Teach Education Sector a Costly Lesson in Vendor Risk</a></h2>
           <div class="news-meta">
@@ -354,7 +354,7 @@ While ...</p>
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 18h old</span>
+            <span class="chip age-chip">Fresh - 19h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/fbi-russian-hackers-now-target-signal-backup-recovery-keys/" target="_blank" rel="noopener">FBI: Russian hackers now target Signal backup recovery keys</a></h2>
           <div class="news-meta">
@@ -377,7 +377,7 @@ While ...</p>
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 20h old</span>
+            <span class="chip age-chip">Fresh - 21h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cisa-sets-urgent-deadline-to-fix-cisco-flaw-exploited-in-attacks/" target="_blank" rel="noopener">CISA sets urgent deadline to fix Cisco flaw exploited in attacks</a></h2>
           <div class="news-meta">
@@ -400,7 +400,7 @@ While ...</p>
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 20h old</span>
+            <span class="chip age-chip">Fresh - 21h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/06/fbi-warns-russian-intelligence-hackers.html" target="_blank" rel="noopener">FBI Warns Russian Intelligence Hackers Target Signal Backup Recovery Keys</a></h2>
           <div class="news-meta">
@@ -463,7 +463,7 @@ While ...</p>
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 22h old</span>
+            <span class="chip age-chip">Fresh - 23h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/polymarket-customers-lose-3-million-in-supply-chain-attack/" target="_blank" rel="noopener">Polymarket customers lose $3 million in supply-chain attack</a></h2>
           <div class="news-meta">
@@ -486,7 +486,7 @@ While ...</p>
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 22h old</span>
+            <span class="chip age-chip">Fresh - 23h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cybersecurity-firms-targeted-by-fraudulent-openai-organization-invites/" target="_blank" rel="noopener">Cybersecurity firms targeted by fraudulent OpenAI organization invites</a></h2>
           <div class="news-meta">
@@ -1196,7 +1196,7 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
         const hasComposedFilters = Boolean(term || severity || tag || vendor || age || handoff);
         const safeStatusActionLabel = typeof statusActionLabel === 'string' ? statusActionLabel : '';
         const emptyFilteredStatusText = visible === 0 ? getEmptyFilteredMessage(src, hasComposedFilters) : '';
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-27T16:33:23.352Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-27T17:09:39.503Z').toLocaleString());
         if (filterStatusAnnouncement) filterStatusAnnouncement.textContent = getFilterStatusText(visible, total, safeStatusActionLabel, emptyFilteredStatusText);
         renderEmptyFilteredState(visible, src, hasComposedFilters);
         sourceCoverageButtons.forEach(function(button){
