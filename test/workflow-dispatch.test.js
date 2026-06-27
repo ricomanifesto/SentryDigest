@@ -55,5 +55,5 @@ test('update workflow declares minimum token permissions for artifact commits', 
 test('update workflow serializes generated artifact updates', () => {
   const workflow = readWorkflow();
 
-  assert.match(workflow, /^concurrency:\n\s+group: update-news\n\s+cancel-in-progress: false\s*$/m);
+  assert.match(workflow, /^concurrency:\n\s+group: update-news\n\s+cancel-in-progress: false\n\s+queue: max\s*$/m);
 });
