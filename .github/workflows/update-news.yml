@@ -12,6 +12,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: update-news
+  cancel-in-progress: false
+
 jobs:
   update-news:
     runs-on: ubuntu-latest
