@@ -1278,15 +1278,18 @@ test('generateHTML recovers focus after active filter chip clearing', () => {
     },
   ]);
 
-  assert.match(html, /function focusActiveFilterRecoveryTarget\(\)/);
-  assert.ok(html.includes("const nextClearButton = activeFilters && activeFilters.querySelector('.active-filter-clear');"));
+  assert.match(html, /function focusActiveFilterRecoveryTarget\(preferredIndex\)/);
+  assert.ok(html.includes("const remainingClearButtons = activeFilters ? Array.from(activeFilters.querySelectorAll('.active-filter-clear')) : [];"));
+  assert.ok(html.includes('const nextClearButton = remainingClearButtons[Math.min(preferredIndex, remainingClearButtons.length - 1)];'));
   assert.match(html, /if \(nextClearButton && typeof nextClearButton\.focus === 'function'\) \{/);
   assert.match(html, /nextClearButton\.focus\(\)/);
   assert.match(html, /focusFilterRecoveryTarget\(\)/);
-  assert.ok(html.includes("const hadMultipleActiveFilters = activeFilters && activeFilters.querySelectorAll('.active-filter-clear').length > 1;"));
+  assert.ok(html.includes("const clearButtonsBefore = activeFilters ? Array.from(activeFilters.querySelectorAll('.active-filter-clear')) : [];"));
+  assert.ok(html.includes('const clearedIndex = clearButtonsBefore.indexOf(target);'));
+  assert.ok(html.includes('const hasRemainingActiveFilters = clearButtonsBefore.length > 1;'));
   assert.match(html, /const clearedValue = filterControls\[key\] \? getControlLabel\(filterControls\[key\]\) : ''/);
   assert.match(html, /update\(clearedStatus\)/);
-  assert.match(html, /hadMultipleActiveFilters \? focusActiveFilterRecoveryTarget\(\) : focusFilterRecoveryTarget\(\)/);
+  assert.match(html, /hasRemainingActiveFilters \? focusActiveFilterRecoveryTarget\(clearedIndex\) : focusFilterRecoveryTarget\(\)/);
 });
 
 test('generateHTML recovers focus after source shortcut toggling', () => {
