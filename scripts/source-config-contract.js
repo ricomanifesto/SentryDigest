@@ -15,6 +15,8 @@ function isValidHttpUrl(value) {
 
 function validateSourceConfig(config, failures = []) {
   const enabledRssSources = [];
+  const enabledSourceNames = new Set();
+  const enabledSourceUrls = new Set();
   let maxNewsItems = DEFAULT_MAX_NEWS_ITEMS;
 
   if (!config || typeof config !== 'object' || Array.isArray(config)) {
@@ -49,6 +51,22 @@ function validateSourceConfig(config, failures = []) {
       }
       if (source.type !== 'rss') {
         fail(failures, `${label} has unsupported type "${source.type}"`);
+      }
+
+      if (typeof source.name === 'string') {
+        if (enabledSourceNames.has(source.name)) {
+          fail(failures, `${label} duplicates enabled source name "${source.name}"`);
+        } else {
+          enabledSourceNames.add(source.name);
+        }
+      }
+
+      if (isValidHttpUrl(source.url)) {
+        if (enabledSourceUrls.has(source.url)) {
+          fail(failures, `${label} duplicates enabled source url "${source.url}"`);
+        } else {
+          enabledSourceUrls.add(source.url);
+        }
       }
 
       if (
