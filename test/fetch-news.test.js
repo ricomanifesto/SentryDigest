@@ -859,7 +859,7 @@ test('generateHTML renders active filter summary and reset wiring', () => {
   assert.match(html, /clearButton\.className = 'active-filter-clear'/);
   assert.match(html, /clearButton\.type = 'button'/);
   assert.match(html, /clearButton\.setAttribute\('data-filter-key', key\)/);
-  assert.match(html, /clearButton\.setAttribute\('aria-label', 'Clear ' \+ filterLabels\[key\] \+ ' filter'\)/);
+  assert.match(html, /clearButton\.setAttribute\('aria-label', 'Clear ' \+ filterLabels\[key\] \+ ': ' \+ label \+ ' filter'\)/);
   assert.match(html, /clearButton\.textContent = '×'/);
   assert.match(html, /activeFilters\.addEventListener\('click', function\(event\)/);
   assert.match(html, /const key = target\.getAttribute\('data-filter-key'\)/);
