@@ -13,8 +13,23 @@ function isValidHttpUrl(value) {
   }
 }
 
+function normalizeHttpUrl(value) {
+  try {
+    const url = new URL(value);
+    if (url.protocol !== 'http:' && url.protocol !== 'https:') {
+      return null;
+    }
+    url.hash = '';
+    return url.toString();
+  } catch {
+    return null;
+  }
+}
+
 function validateSourceConfig(config, failures = []) {
   const enabledRssSources = [];
+  const enabledSourceNames = new Set();
+  const enabledSourceUrls = new Set();
   let maxNewsItems = DEFAULT_MAX_NEWS_ITEMS;
 
   if (!config || typeof config !== 'object' || Array.isArray(config)) {
@@ -49,6 +64,23 @@ function validateSourceConfig(config, failures = []) {
       }
       if (source.type !== 'rss') {
         fail(failures, `${label} has unsupported type "${source.type}"`);
+      }
+
+      if (typeof source.name === 'string') {
+        if (enabledSourceNames.has(source.name)) {
+          fail(failures, `${label} duplicates enabled source name "${source.name}"`);
+        } else {
+          enabledSourceNames.add(source.name);
+        }
+      }
+
+      const normalizedUrl = normalizeHttpUrl(source.url);
+      if (normalizedUrl) {
+        if (enabledSourceUrls.has(normalizedUrl)) {
+          fail(failures, `${label} duplicates enabled source url "${normalizedUrl}"`);
+        } else {
+          enabledSourceUrls.add(normalizedUrl);
+        }
       }
 
       if (
@@ -89,5 +121,6 @@ module.exports = {
   DEFAULT_MAX_NEWS_ITEMS,
   assertSourceConfigContract,
   isValidHttpUrl,
+  normalizeHttpUrl,
   validateSourceConfig,
 };
