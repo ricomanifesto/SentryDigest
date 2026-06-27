@@ -8,10 +8,12 @@ const {
   FEED_METADATA_CONTRACT,
   formatSourceShortcutStatus,
   ISSUE_TRAIL_CONTRACT,
+  OPERATOR_LANE_CONTRACT,
   RSS_CHANNEL_CONTRACT,
   SOURCE_COVERAGE_CONTRACT,
 } = require('./generated-artifact-contracts');
 const {
+  collectOperatorLanes,
   deriveArticleFacets,
   deriveHandoffCues,
 } = require('./render-news-html');
@@ -385,6 +387,91 @@ function validateDigestLegendContract(indexHtml, newsData, failures) {
   }, failures);
 }
 
+function validateOperatorLaneContract(indexHtml, newsData, failures) {
+  const validArticles = newsData.filter((article) => (
+    article
+    && typeof article === 'object'
+    && !Array.isArray(article)
+  ));
+  const expectedLanes = collectOperatorLanes(validArticles);
+  const shouldRenderLanes = expectedLanes.some((lane) => lane.count > 0);
+  const $ = cheerio.load(indexHtml);
+  const section = $(OPERATOR_LANE_CONTRACT.sectionSelector).first();
+
+  if (!shouldRenderLanes) {
+    if (section.length > 0) {
+      fail(failures, 'index.html must omit operator scan lanes when no lane has matching articles');
+    }
+    return;
+  }
+
+  if (section.length === 0) {
+    fail(failures, 'index.html must render the operator scan lanes contract');
+    return;
+  }
+
+  const expectedByLabel = new Map(expectedLanes.map((lane, index) => [
+    lane.label,
+    {
+      ...lane,
+      cue: OPERATOR_LANE_CONTRACT.lanes[index].cue,
+    },
+  ]));
+  const seenLanes = new Set();
+
+  section.find(OPERATOR_LANE_CONTRACT.laneSelector).each((index, element) => {
+    const lane = $(element);
+    const label = lane.attr(OPERATOR_LANE_CONTRACT.labelAttribute) || '';
+    const heading = lane.find(OPERATOR_LANE_CONTRACT.headingSelector).first().text().trim();
+    const cue = lane.attr(OPERATOR_LANE_CONTRACT.cueAttribute) || '';
+    const countText = lane.find(`${OPERATOR_LANE_CONTRACT.countSelector} strong`).first().text().trim();
+    const count = parseArtifactCount(countText);
+    const latestLink = lane.find(OPERATOR_LANE_CONTRACT.latestLinkSelector).first();
+    const latestHref = latestLink.attr('href') || '';
+    const latestTitle = latestLink.text().trim();
+
+    if (seenLanes.has(label)) {
+      fail(failures, `index.html operator lane duplicates ${label}`);
+      return;
+    }
+    seenLanes.add(label);
+
+    if (!expectedByLabel.has(label)) {
+      fail(failures, `index.html operator lane includes unexpected ${label || 'missing'}`);
+      return;
+    }
+
+    const expected = expectedByLabel.get(label);
+
+    if (heading !== expected.label) {
+      fail(failures, `index.html operator lane ${label} heading ${heading || 'missing'} does not match expected ${expected.label}`);
+    }
+
+    if (cue !== expected.cue) {
+      fail(failures, `index.html operator lane ${label} cue ${cue || 'missing'} does not match expected ${expected.cue}`);
+    }
+
+    if (count !== expected.count) {
+      fail(failures, `index.html operator lane ${label} count ${countText || 'missing'} does not match expected ${expected.count}`);
+    }
+
+    if (latestHref !== expected.latestLink) {
+      fail(failures, `index.html operator lane ${label} latest link ${latestHref || 'missing'} does not match expected ${expected.latestLink}`);
+    }
+
+    const expectedTitle = expected.latestTitle || 'No current match';
+    if (latestTitle !== expectedTitle) {
+      fail(failures, `index.html operator lane ${label} latest title ${latestTitle || 'missing'} does not match expected ${expectedTitle}`);
+    }
+  });
+
+  expectedByLabel.forEach((expected, label) => {
+    if (!seenLanes.has(label)) {
+      fail(failures, `index.html operator lane is missing ${label}`);
+    }
+  });
+}
+
 function getGeneratedMetadataTimestamps(indexHtml, failures = []) {
   const $ = cheerio.load(indexHtml);
   const selectors = [
@@ -742,6 +829,7 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
     validateIssueTrailContract(indexHtml, failures);
     validateFilterInsightsContract(indexHtml, failures);
     validateDigestLegendContract(indexHtml, newsData, failures);
+    validateOperatorLaneContract(indexHtml, newsData, failures);
     validateSourceCoverageContract(indexHtml, newsData, enabledSources, failures);
 
     const articleCount = countMatches(indexHtml, /<article class="news-item"/g);

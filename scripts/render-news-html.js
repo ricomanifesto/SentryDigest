@@ -3,6 +3,7 @@ const {
   DIGEST_LEGEND_CONTRACT,
   formatSourceShortcutStatus,
   ISSUE_TRAIL_CONTRACT,
+  OPERATOR_LANE_CONTRACT,
   SOURCE_COVERAGE_CONTRACT,
 } = require('./generated-artifact-contracts');
 
@@ -101,20 +102,7 @@ const AGE_BUCKET_ORDER = ['Fresh', 'Recent', 'Older', 'Undated'];
 const HANDOFF_CUE_ORDER = HANDOFF_CUE_RULES.map((rule) => rule.label).concat('SentryInsight: monitor');
 const HANDOFF_CUE_DETAILS = DIGEST_LEGEND_CONTRACT.handoffCueDetails;
 const INVALID_FEED_DATE_FALLBACK_TIME = new Date('1970-01-01T00:00:00.000Z').getTime();
-const OPERATOR_LANE_RULES = [
-  {
-    label: 'Incident watch',
-    cue: 'SentryInsight: incident watch',
-  },
-  {
-    label: 'Vulnerability triage',
-    cue: 'SentryInsight: vuln triage',
-  },
-  {
-    label: 'Governance watch',
-    cue: 'GRCInsight: governance watch',
-  },
-];
+const OPERATOR_LANE_RULES = OPERATOR_LANE_CONTRACT.lanes;
 
 function matchesRule(text, rule) {
   return rule.pattern.test(text);

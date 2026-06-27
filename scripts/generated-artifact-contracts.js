@@ -50,6 +50,30 @@ const ISSUE_TRAIL_CONTRACT = Object.freeze({
   sourceCoverageHref: `#${SOURCE_COVERAGE_ANCHOR_ID}`,
 });
 
+const OPERATOR_LANE_CONTRACT = Object.freeze({
+  countSelector: '[data-lane-count]',
+  cueAttribute: 'data-lane-cue',
+  headingSelector: '.operator-lane-heading',
+  labelAttribute: 'data-lane',
+  lanes: Object.freeze([
+    Object.freeze({
+      cue: 'SentryInsight: incident watch',
+      label: 'Incident watch',
+    }),
+    Object.freeze({
+      cue: 'SentryInsight: vuln triage',
+      label: 'Vulnerability triage',
+    }),
+    Object.freeze({
+      cue: 'GRCInsight: governance watch',
+      label: 'Governance watch',
+    }),
+  ]),
+  laneSelector: '.operator-lane',
+  latestLinkSelector: '[data-lane-link]',
+  sectionSelector: '.operator-lanes',
+});
+
 const SOURCE_COVERAGE_CONTRACT = Object.freeze({
   activeSourcesAttribute: 'data-active-sources',
   buttonDataAttribute: 'data-source-filter',
@@ -100,6 +124,7 @@ module.exports = {
   FEED_METADATA_CONTRACT,
   formatSourceShortcutStatus,
   ISSUE_TRAIL_CONTRACT,
+  OPERATOR_LANE_CONTRACT,
   RSS_CHANNEL_CONTRACT,
   SOURCE_COVERAGE_CONTRACT,
 };
