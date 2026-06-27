@@ -261,6 +261,20 @@ function validateDashboardRssLinkContract(indexHtml, failures) {
   });
 }
 
+function validateFilterInsightsContract(indexHtml, failures) {
+  const $ = cheerio.load(indexHtml);
+  const filterInsights = $('#filterInsights').first();
+
+  if (filterInsights.length === 0) {
+    fail(failures, 'index.html must render the filter insights region');
+    return;
+  }
+
+  if (filterInsights.attr('hidden') === undefined) {
+    fail(failures, 'index.html filter insights region must render hidden by default');
+  }
+}
+
 function getGeneratedMetadataTimestamps(indexHtml, failures = []) {
   const $ = cheerio.load(indexHtml);
   const selectors = [
@@ -607,6 +621,7 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
     }
     validateDashboardRssLinkContract(indexHtml, failures);
     validateIssueTrailContract(indexHtml, failures);
+    validateFilterInsightsContract(indexHtml, failures);
     validateSourceCoverageContract(indexHtml, newsData, enabledSources, failures);
 
     const articleCount = countMatches(indexHtml, /<article class="news-item"/g);
