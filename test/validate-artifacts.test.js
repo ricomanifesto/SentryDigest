@@ -48,11 +48,11 @@ function renderDashboardRssHead() {
 }
 
 function renderDashboardRssControls() {
-  return '<a class="btn" href="./feed.xml">RSS</a>';
+  return '<a class="btn" href="./feed.xml" aria-label="Open generated RSS feed">RSS</a>';
 }
 
 function renderDashboardRssFooter() {
-  return '<footer><a href="./feed.xml">RSS Feed</a></footer>';
+  return '<footer><a href="./feed.xml" aria-label="Open generated RSS feed">RSS Feed</a></footer>';
 }
 
 function renderFilterInsights() {
@@ -190,7 +190,7 @@ function createFixture(overrides = {}) {
         ${renderDashboardRssControls()}
         ${renderGeneratedMetadata()}
         <section class="issue-strip">
-          <a class="issue-link" href="./feed.xml">RSS archive</a>
+          <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
           <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
         </section>
         ${renderArchiveTrail()}
@@ -436,7 +436,7 @@ test('validateArtifacts accepts RSS pubDate second precision', () => {
       ${renderDashboardRssControls()}
       ${renderGeneratedMetadata()}
       <section class="issue-strip">
-        <a class="issue-link" href="./feed.xml">RSS archive</a>
+        <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
         <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
       </section>
       ${renderArchiveTrail()}
@@ -519,6 +519,51 @@ test('validateArtifacts rejects generated dashboard RSS link drift', () => {
   );
 });
 
+test('validateArtifacts rejects generated dashboard RSS link label drift', () => {
+  const repoRoot = createFixture({
+    indexHtml: `<html><head>
+      <link rel="alternate" type="application/rss+xml" title="Cybersecurity News RSS Feed" href="./feed.xml" />
+    </head><body>
+      <h1>SentryDigest</h1>
+      <a class="btn" href="./feed.xml" aria-label="Open stale feed">RSS</a>
+      ${renderGeneratedMetadata()}
+      <section class="issue-strip">
+        <a class="issue-link" href="./feed.xml" aria-label="Open stale archive">RSS archive</a>
+        <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
+      </section>
+      ${renderArchiveTrail()}
+      ${renderFilterInsights()}
+      ${renderFixtureSourceControls([
+        {
+          source: 'Example Security',
+        },
+        {
+          source: 'Example Security',
+        },
+      ], ['Example Security'])}
+      <article class="news-item"><a href="https://example.com/newer">Newer item</a></article>
+      <article class="news-item"><a href="https://example.com/older">Older item</a></article>
+      <footer><a href="./feed.xml" aria-label="Open stale footer feed">RSS Feed</a></footer>
+    </body></html>`,
+  });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(
+    result.failures.join('\n'),
+    /index\.html RSS link a\.btn label Open stale feed must match Open generated RSS feed/
+  );
+  assert.match(
+    result.failures.join('\n'),
+    /index\.html RSS link \.issue-strip a\.issue-link label Open stale archive must match Open generated RSS archive/
+  );
+  assert.match(
+    result.failures.join('\n'),
+    /index\.html RSS link footer a label Open stale footer feed must match Open generated RSS feed/
+  );
+});
+
 test('validateArtifacts rejects missing generated dashboard RSS link affordances', () => {
   const repoRoot = createFixture({
     indexHtml: `<html><body>
@@ -588,7 +633,7 @@ test('validateArtifacts rejects generated source coverage count drift', () => {
       ${renderDashboardRssControls()}
       ${renderGeneratedMetadata()}
       <section class="issue-strip">
-        <a class="issue-link" href="./feed.xml">RSS archive</a>
+        <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
         <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
       </section>
       ${renderArchiveTrail()}
@@ -627,7 +672,7 @@ test('validateArtifacts rejects generated source health count drift', () => {
       ${renderDashboardRssControls()}
       ${renderGeneratedMetadata()}
       <section class="issue-strip">
-        <a class="issue-link" href="./feed.xml">RSS archive</a>
+        <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
         <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
       </section>
       ${renderArchiveTrail()}
@@ -667,7 +712,7 @@ test('validateArtifacts rejects visible source health count drift', () => {
       ${renderDashboardRssControls()}
       ${renderGeneratedMetadata()}
       <section class="issue-strip">
-        <a class="issue-link" href="./feed.xml">RSS archive</a>
+        <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
         <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
       </section>
       ${renderArchiveTrail()}
@@ -717,7 +762,7 @@ test('validateArtifacts rejects quiet sources exposed as selectable source filte
       ${renderDashboardRssControls()}
       ${renderGeneratedMetadata()}
       <section class="issue-strip">
-        <a class="issue-link" href="./feed.xml">RSS archive</a>
+        <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
         <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
       </section>
       ${renderArchiveTrail()}
@@ -760,7 +805,7 @@ test('validateArtifacts rejects active source shortcut label drift', () => {
       ${renderDashboardRssControls()}
       ${renderGeneratedMetadata()}
       <section class="issue-strip">
-        <a class="issue-link" href="./feed.xml">RSS archive</a>
+        <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
         <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
       </section>
       ${renderArchiveTrail()}
@@ -814,7 +859,7 @@ test('validateArtifacts rejects quiet source shortcut label drift', () => {
       ${renderDashboardRssControls()}
       ${renderGeneratedMetadata()}
       <section class="issue-strip">
-        <a class="issue-link" href="./feed.xml">RSS archive</a>
+        <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
         <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
       </section>
       ${renderArchiveTrail()}
@@ -860,7 +905,7 @@ test('validateArtifacts rejects source shortcut status drift', () => {
       ${renderDashboardRssControls()}
       ${renderGeneratedMetadata()}
       <section class="issue-strip">
-        <a class="issue-link" href="./feed.xml">RSS archive</a>
+        <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
         <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
       </section>
       ${renderArchiveTrail()}
@@ -900,7 +945,7 @@ test('validateArtifacts rejects visible generated filter insights by default', (
       ${renderDashboardRssControls()}
       ${renderGeneratedMetadata()}
       <section class="issue-strip">
-        <a class="issue-link" href="./feed.xml">RSS archive</a>
+        <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
         <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
       </section>
       ${renderArchiveTrail()}
@@ -980,7 +1025,7 @@ test('validateArtifacts accepts escaped generated HTML article hrefs', () => {
       ${renderDashboardRssControls()}
       ${renderGeneratedMetadata()}
       <section class="issue-strip">
-        <a class="issue-link" href="./feed.xml">RSS archive</a>
+        <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
         <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
       </section>
       ${renderArchiveTrail()}
@@ -1017,7 +1062,7 @@ test('validateArtifacts accepts renderer-normalized generated HTML article hrefs
       ${renderDashboardRssControls()}
       ${renderGeneratedMetadata()}
       <section class="issue-strip">
-        <a class="issue-link" href="./feed.xml">RSS archive</a>
+        <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
         <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
       </section>
       ${renderArchiveTrail()}
