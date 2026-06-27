@@ -1065,8 +1065,9 @@ function generateHTML(newsItems, options = {}) {
         if (search && typeof search.focus === 'function') search.focus();
       }
 
-      function focusActiveFilterRecoveryTarget(){
-        const nextClearButton = activeFilters && activeFilters.querySelector('.active-filter-clear');
+      function focusActiveFilterRecoveryTarget(preferredIndex){
+        const remainingClearButtons = activeFilters ? Array.from(activeFilters.querySelectorAll('.active-filter-clear')) : [];
+        const nextClearButton = remainingClearButtons[Math.min(preferredIndex, remainingClearButtons.length - 1)];
         if (nextClearButton && typeof nextClearButton.focus === 'function') {
           nextClearButton.focus();
           return;
@@ -1182,13 +1183,15 @@ function generateHTML(newsItems, options = {}) {
         const target = event.target;
         if (!target || !target.matches || !target.matches('.active-filter-clear')) return;
         const key = target.getAttribute('data-filter-key');
-        const hadMultipleActiveFilters = activeFilters && activeFilters.querySelectorAll('.active-filter-clear').length > 1;
+        const clearButtonsBefore = activeFilters ? Array.from(activeFilters.querySelectorAll('.active-filter-clear')) : [];
+        const clearedIndex = clearButtonsBefore.indexOf(target);
+        const hasRemainingActiveFilters = clearButtonsBefore.length > 1;
         const clearedLabel = filterLabels[key] || 'Selected';
         const clearedValue = filterControls[key] ? getControlLabel(filterControls[key]) : '';
         const clearedStatus = clearedValue ? 'Cleared ' + clearedLabel + ': ' + clearedValue + ' filter.' : 'Cleared ' + clearedLabel + ' filter.';
         if (filterControls[key]) filterControls[key].value = '';
         update(clearedStatus);
-        hadMultipleActiveFilters ? focusActiveFilterRecoveryTarget() : focusFilterRecoveryTarget();
+        hasRemainingActiveFilters ? focusActiveFilterRecoveryTarget(clearedIndex) : focusFilterRecoveryTarget();
       });
       if (resetFilters) resetFilters.addEventListener('click', function(){ clearFilters({ focusRecoveryTarget: true }); });
       if (emptyResetFilters) emptyResetFilters.addEventListener('click', function(){ clearFilters({ focusRecoveryTarget: true }); });
