@@ -1183,9 +1183,11 @@ function generateHTML(newsItems, options = {}) {
         if (!target || !target.matches || !target.matches('.active-filter-clear')) return;
         const key = target.getAttribute('data-filter-key');
         const hadMultipleActiveFilters = activeFilters && activeFilters.querySelectorAll('.active-filter-clear').length > 1;
-        if (filterControls[key]) filterControls[key].value = '';
         const clearedLabel = filterLabels[key] || 'Selected';
-        update('Cleared ' + clearedLabel + ' filter.');
+        const clearedValue = filterControls[key] ? getControlLabel(filterControls[key]) : '';
+        const clearedStatus = clearedValue ? 'Cleared ' + clearedLabel + ': ' + clearedValue + ' filter.' : 'Cleared ' + clearedLabel + ' filter.';
+        if (filterControls[key]) filterControls[key].value = '';
+        update(clearedStatus);
         hadMultipleActiveFilters ? focusActiveFilterRecoveryTarget() : focusFilterRecoveryTarget();
       });
       if (resetFilters) resetFilters.addEventListener('click', function(){ clearFilters({ focusRecoveryTarget: true }); });

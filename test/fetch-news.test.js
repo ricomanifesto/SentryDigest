@@ -877,7 +877,9 @@ test('generateHTML renders active filter summary and reset wiring', () => {
   assert.match(html, /if \(filterStatusAnnouncement\) filterStatusAnnouncement\.textContent = getFilterStatusText\(visible, total, safeStatusActionLabel, emptyFilteredStatusText\)/);
   assert.match(html, /update\('Filters reset\.'\)/);
   assert.match(html, /const clearedLabel = filterLabels\[key\] \|\| 'Selected'/);
-  assert.match(html, /update\('Cleared ' \+ clearedLabel \+ ' filter\.'\)/);
+  assert.match(html, /const clearedValue = filterControls\[key\] \? getControlLabel\(filterControls\[key\]\) : ''/);
+  assert.match(html, /const clearedStatus = clearedValue \? 'Cleared ' \+ clearedLabel \+ ': ' \+ clearedValue \+ ' filter\.' : 'Cleared ' \+ clearedLabel \+ ' filter\.'/);
+  assert.match(html, /update\(clearedStatus\)/);
   assert.match(html, /renderActiveFilters\(\);\s+renderFilterInsights\(visibleCards\);\s+updateOperatorLanes\(visibleCards\);\s+syncQueryState\(\);/);
 });
 
@@ -1282,7 +1284,8 @@ test('generateHTML recovers focus after active filter chip clearing', () => {
   assert.match(html, /nextClearButton\.focus\(\)/);
   assert.match(html, /focusFilterRecoveryTarget\(\)/);
   assert.ok(html.includes("const hadMultipleActiveFilters = activeFilters && activeFilters.querySelectorAll('.active-filter-clear').length > 1;"));
-  assert.match(html, /update\('Cleared ' \+ clearedLabel \+ ' filter\.'\)/);
+  assert.match(html, /const clearedValue = filterControls\[key\] \? getControlLabel\(filterControls\[key\]\) : ''/);
+  assert.match(html, /update\(clearedStatus\)/);
   assert.match(html, /hadMultipleActiveFilters \? focusActiveFilterRecoveryTarget\(\) : focusFilterRecoveryTarget\(\)/);
 });
 
