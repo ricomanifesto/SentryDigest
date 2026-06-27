@@ -45,3 +45,9 @@ test('update workflow installs dependencies from the lockfile', () => {
   assert.doesNotMatch(workflow, /^\s*run: npm install\s*$/m);
   assert.match(workflow, /^\s*run: npm ci\s*$/m);
 });
+
+test('update workflow declares minimum token permissions for artifact commits', () => {
+  const workflow = readWorkflow();
+
+  assert.match(workflow, /^permissions:\n\s+contents: write\s*$/m);
+});
