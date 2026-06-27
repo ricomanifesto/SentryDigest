@@ -1166,7 +1166,8 @@ function generateHTML(newsItems, options = {}) {
           const source = button.getAttribute('${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}') || '';
           const nextSource = sourceFilter.value === source ? '' : source;
           sourceFilter.value = nextSource;
-          update();
+          const sourceShortcutStatus = nextSource ? 'Source shortcut: ' + getControlLabel(sourceFilter) + '.' : 'Source shortcut cleared.';
+          update(sourceShortcutStatus);
           focusSourceShortcutRecoveryTarget(source);
         });
       });

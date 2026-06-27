@@ -1113,7 +1113,8 @@ test('generateHTML wires source coverage counts into the source filter', () => {
   assert.ok(html.includes("const hasComposedFilters = Boolean(term || severity || tag || vendor || age || handoff)"));
   assert.ok(html.includes("const countLabel = hasComposedFilters ? (articleLabel === 'article' ? 'filtered article' : 'filtered articles') : articleLabel"));
   assert.ok(html.includes("sourceFilterStatus.textContent = (src ? 'Source shortcut: ' + getControlLabel(sourceFilter) : 'Source shortcut: All active feeds') + ' (' + visible + ' ' + countLabel + ')'"));
-  assert.match(html, /update\(\);/);
+  assert.ok(html.includes("const sourceShortcutStatus = nextSource ? 'Source shortcut: ' + getControlLabel(sourceFilter) + '.' : 'Source shortcut cleared.'"));
+  assert.match(html, /update\(sourceShortcutStatus\);/);
 });
 
 test('generateHTML renders escaped operator scan lanes', () => {
@@ -1310,7 +1311,8 @@ test('generateHTML recovers focus after source shortcut toggling', () => {
   assert.match(html, /focusFilterRecoveryTarget\(\)/);
   assert.match(html, /const nextSource = sourceFilter\.value === source \? '' : source/);
   assert.match(html, /sourceFilter\.value = nextSource/);
-  assert.match(html, /update\(\);\s+focusSourceShortcutRecoveryTarget\(source\);/);
+  assert.ok(html.includes("const sourceShortcutStatus = nextSource ? 'Source shortcut: ' + getControlLabel(sourceFilter) + '.' : 'Source shortcut cleared.'"));
+  assert.match(html, /update\(sourceShortcutStatus\);\s+focusSourceShortcutRecoveryTarget\(source\);/);
 });
 
 test('generateHTML renders long summaries as accessible expandable content', () => {
