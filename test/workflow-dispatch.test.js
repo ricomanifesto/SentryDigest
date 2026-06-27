@@ -57,3 +57,12 @@ test('update workflow serializes generated artifact updates', () => {
 
   assert.match(workflow, /^concurrency:\n\s+group: update-news\n\s+cancel-in-progress: false\n\s+queue: max\s*$/m);
 });
+
+test('update workflow refreshes the branch before generating artifacts', () => {
+  const workflow = readWorkflow();
+
+  assert.match(
+    workflow,
+    /- name: Refresh branch head\n\s+run: git pull --ff-only origin "\$GITHUB_REF_NAME"\s*\n\s+- name: Set up Node\.js/
+  );
+});

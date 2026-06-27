@@ -24,6 +24,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Refresh branch head
+        run: git pull --ff-only origin "$GITHUB_REF_NAME"
       
       - name: Set up Node.js
         uses: actions/setup-node@v3
