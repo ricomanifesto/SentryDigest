@@ -55,6 +55,10 @@ function renderDashboardRssFooter() {
   return '<footer><a href="./feed.xml">RSS Feed</a></footer>';
 }
 
+function renderFilterInsights() {
+  return '<div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true" hidden></div>';
+}
+
 function collectFixtureSourceCounts(newsData, sourceNames = ['Example Security']) {
   const counts = new Map(sourceNames.map((source) => [source, 0]));
 
@@ -186,6 +190,7 @@ function createFixture(overrides = {}) {
           <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
         </section>
         ${renderArchiveTrail()}
+        ${renderFilterInsights()}
         ${renderFixtureSourceControls(newsData, sourceNames)}
         ${newsData.map((item) => `<article class="news-item"><a href="${item.link}">${item.title}</a></article>`).join('\n')}
         ${renderDashboardRssFooter()}
@@ -431,6 +436,7 @@ test('validateArtifacts accepts RSS pubDate second precision', () => {
         <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
       </section>
       ${renderArchiveTrail()}
+      ${renderFilterInsights()}
       ${renderFixtureSourceControls([
         {
           source: 'Example Security',
@@ -783,6 +789,38 @@ test('validateArtifacts rejects source shortcut status drift', () => {
   assert.match(result.failures.join('\n'), /index\.html source shortcut status Source shortcut: stale source does not match expected Source shortcut: All active feeds \(2 articles\)/);
 });
 
+test('validateArtifacts rejects visible generated filter insights by default', () => {
+  const repoRoot = createFixture({
+    indexHtml: `<html><head>${renderDashboardRssHead()}</head><body>
+      <h1>SentryDigest</h1>
+      ${renderDashboardRssControls()}
+      ${renderGeneratedMetadata()}
+      <section class="issue-strip">
+        <a class="issue-link" href="./feed.xml">RSS archive</a>
+        <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
+      </section>
+      ${renderArchiveTrail()}
+      <div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true"></div>
+      ${renderFixtureSourceControls([
+        {
+          source: 'Example Security',
+        },
+        {
+          source: 'Example Security',
+        },
+      ], ['Example Security'])}
+      <article class="news-item"><a href="https://example.com/newer">Newer item</a></article>
+      <article class="news-item"><a href="https://example.com/older">Older item</a></article>
+      ${renderDashboardRssFooter()}
+    </body></html>`,
+  });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(result.failures.join('\n'), /index\.html filter insights region must render hidden by default/);
+});
+
 test('validateArtifacts rejects feed-info timestamp drift from the generated digest', () => {
   const repoRoot = createFixture({
     feedInfoLastUpdated: '2026-06-17T17:00:00.000Z',
@@ -842,6 +880,7 @@ test('validateArtifacts accepts escaped generated HTML article hrefs', () => {
         <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
       </section>
       ${renderArchiveTrail()}
+      ${renderFilterInsights()}
       ${renderFixtureSourceControls([
         {
           source: 'Example Security',
@@ -878,6 +917,7 @@ test('validateArtifacts accepts renderer-normalized generated HTML article hrefs
         <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
       </section>
       ${renderArchiveTrail()}
+      ${renderFilterInsights()}
       ${renderFixtureSourceControls([
         {
           source: 'Example Security',
