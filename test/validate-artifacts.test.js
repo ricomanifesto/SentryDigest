@@ -87,7 +87,11 @@ function renderFixtureSourceControls(newsData, sourceNames) {
     .map(({ source, count }) => {
       const emptyClass = count === 0 ? ' source-count-empty' : '';
       const disabledAttributes = count === 0 ? ' aria-disabled="true" disabled' : '';
-      return `<button class="source-count${emptyClass}" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="${source}" aria-pressed="false"${disabledAttributes}>${source} <strong>${count}</strong></button>`;
+      const articleLabel = count === 1 ? 'article' : 'articles';
+      const sourceLabel = count === 0
+        ? `${source} source has no current articles`
+        : `Filter to ${source} source, ${count} ${articleLabel}`;
+      return `<button class="source-count${emptyClass}" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="${source}" aria-label="${sourceLabel}" aria-pressed="false"${disabledAttributes}>${source} <strong>${count}</strong></button>`;
     })
     .join('');
 
@@ -747,6 +751,106 @@ test('validateArtifacts rejects quiet sources exposed as selectable source filte
   assert.equal(result.valid, false);
   assert.match(result.failures.join('\n'), /index\.html source coverage source Quiet Feed with zero items must not be available in the source filter/);
   assert.match(result.failures.join('\n'), /index\.html source health quiet note wrong label does not match expected health only/);
+});
+
+test('validateArtifacts rejects active source shortcut label drift', () => {
+  const repoRoot = createFixture({
+    indexHtml: `<html><head>${renderDashboardRssHead()}</head><body>
+      <h1>SentryDigest</h1>
+      ${renderDashboardRssControls()}
+      ${renderGeneratedMetadata()}
+      <section class="issue-strip">
+        <a class="issue-link" href="./feed.xml">RSS archive</a>
+        <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
+      </section>
+      ${renderArchiveTrail()}
+      ${renderFilterInsights()}
+      <select id="sourceFilter" class="select" aria-label="Filter by source">
+        <option value="">All sources</option>
+        <option value="Example Security">Example Security</option>
+      </select>
+      <section class="${SOURCE_COVERAGE_CONTRACT.sectionClass}" aria-label="RSS source coverage">
+        <div class="source-counts">
+          <button class="source-count" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="Example Security" aria-label="Filter to stale source" aria-pressed="false">Example Security <strong>2</strong></button>
+        </div>
+        <div class="source-health-summary" data-active-sources="1" data-quiet-sources="0">
+          <span><strong>1</strong> active feed</span>
+          <span><strong>0</strong> quiet feeds</span>
+        </div>
+        <div class="source-filter-status" data-source-filter-status aria-live="polite">Source shortcut: All active feeds (2 articles)</div>
+        <div class="source-coverage-actions">
+          <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with 2 latest articles">RSS feed <span class="feed-link-count">2 items</span></a>
+        </div>
+      </section>
+      <article class="news-item"><a href="https://example.com/newer">Newer item</a></article>
+      <article class="news-item"><a href="https://example.com/older">Older item</a></article>
+      ${renderDashboardRssFooter()}
+    </body></html>`,
+  });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(
+    result.failures.join('\n'),
+    /index\.html source coverage label for Example Security Filter to stale source does not match expected Filter to Example Security source, 2 articles/
+  );
+});
+
+test('validateArtifacts rejects quiet source shortcut label drift', () => {
+  const newsData = [
+    {
+      title: 'Only active item',
+      link: 'https://example.com/active',
+      date: '2026-06-17T18:00:00.000Z',
+      source: 'Example Security',
+      summary: 'Active story',
+    },
+  ];
+  const repoRoot = createFixture({
+    newsData,
+    indexHtml: `<html><head>${renderDashboardRssHead()}</head><body>
+      <h1>SentryDigest</h1>
+      ${renderDashboardRssControls()}
+      ${renderGeneratedMetadata()}
+      <section class="issue-strip">
+        <a class="issue-link" href="./feed.xml">RSS archive</a>
+        <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
+      </section>
+      ${renderArchiveTrail()}
+      ${renderFilterInsights()}
+      <select id="sourceFilter" class="select" aria-label="Filter by source">
+        <option value="">All sources</option>
+        <option value="Example Security">Example Security</option>
+      </select>
+      <section class="${SOURCE_COVERAGE_CONTRACT.sectionClass}" aria-label="RSS source coverage">
+        <div class="source-counts">
+          <button class="source-count" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="Example Security" aria-label="Filter to Example Security source, 1 article" aria-pressed="false">Example Security <strong>1</strong></button>
+          <button class="source-count source-count-empty" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="Quiet Feed" aria-label="Quiet feed is stale" aria-pressed="false" aria-disabled="true" disabled>Quiet Feed <strong>0</strong></button>
+        </div>
+        <div class="source-health-summary" data-active-sources="1" data-quiet-sources="1">
+          <span><strong>1</strong> active feed</span>
+          <span><strong>1</strong> quiet feed</span>
+          <span class="source-health-note">health only</span>
+        </div>
+        <div class="source-filter-status" data-source-filter-status aria-live="polite">Source shortcut: All active feeds (1 article)</div>
+        <div class="source-coverage-actions">
+          <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with 1 latest article">RSS feed <span class="feed-link-count">1 item</span></a>
+        </div>
+      </section>
+      <article class="news-item"><a href="https://example.com/active">Only active item</a></article>
+      ${renderDashboardRssFooter()}
+    </body></html>`,
+    sourceNames: ['Example Security', 'Quiet Feed'],
+  });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(
+    result.failures.join('\n'),
+    /index\.html source coverage label for Quiet Feed Quiet feed is stale does not match expected Quiet Feed source has no current articles/
+  );
 });
 
 test('validateArtifacts rejects source shortcut status drift', () => {
