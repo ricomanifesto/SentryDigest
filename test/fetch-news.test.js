@@ -935,7 +935,7 @@ test('generateHTML renders visible result context wiring', () => {
     },
   ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
 
-  assert.match(html, /<div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true"><\/div>/);
+  assert.match(html, /<div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true" hidden><\/div>/);
   assert.match(html, /const filterInsights = q\('#filterInsights'\)/);
   assert.match(html, /function incrementCount\(counts, value\)/);
   assert.match(html, /function collectListCounts\(counts, rawValue\)/);

@@ -845,7 +845,7 @@ function generateHTML(newsItems, options = {}) {
     <div class="stats" id="stats">Showing ${totalItems} of ${totalItems} articles from ${uniqueSources.length} sources • Last updated <time datetime="${nowIso}">${now.toLocaleString()}</time></div>
     ${issueStrip}
     ${issueTrail}
-    <div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true"></div>
+    <div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true" hidden></div>
     <span id="${ISSUE_TRAIL_CONTRACT.sourceCoverageAnchorId}" class="anchor-target" aria-hidden="true"></span>
     ${sourceCoverage}
     ${operatorLanes}
