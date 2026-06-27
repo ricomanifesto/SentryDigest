@@ -96,3 +96,27 @@ test('validateSourceConfig allows disabled duplicate source names and urls', () 
   assert.deepEqual(failures, []);
   assert.equal(enabledRssSources.length, 1);
 });
+
+test('validateSourceConfig uses the default item limit when settings are omitted', () => {
+  const { failures, maxNewsItems } = validateSourceConfig({
+    sources: [
+      enabledSource(),
+    ],
+  });
+
+  assert.deepEqual(failures, []);
+  assert.equal(maxNewsItems, 30);
+});
+
+test('validateSourceConfig rejects malformed settings blocks', () => {
+  for (const settings of [null, [], 'recent']) {
+    const { failures } = validateSourceConfig({
+      sources: [
+        enabledSource(),
+      ],
+      settings,
+    });
+
+    assert.deepEqual(failures, ['settings must be an object']);
+  }
+});

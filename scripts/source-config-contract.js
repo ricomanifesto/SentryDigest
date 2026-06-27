@@ -108,8 +108,12 @@ function validateSourceConfig(config, failures = []) {
     });
   }
 
-  if (config.settings && config.settings.maxNewsItems !== undefined) {
-    maxNewsItems = config.settings.maxNewsItems;
+  if (config.settings !== undefined) {
+    if (!config.settings || typeof config.settings !== 'object' || Array.isArray(config.settings)) {
+      fail(failures, 'settings must be an object');
+    } else if (config.settings.maxNewsItems !== undefined) {
+      maxNewsItems = config.settings.maxNewsItems;
+    }
   }
 
   if (!Number.isInteger(maxNewsItems) || maxNewsItems <= 0) {
