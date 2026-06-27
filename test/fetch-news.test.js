@@ -972,7 +972,7 @@ test('generateHTML renders a compact digest issue metadata bar', () => {
   assert.match(html, /<time datetime="2026-06-17T18:00:00.000Z">June 17, 2026<\/time>/);
   assert.match(html, /<span class="issue-stat"><strong>2<\/strong> articles<\/span>/);
   assert.match(html, /<span class="issue-stat"><strong>2<\/strong> sources<\/span>/);
-  assert.match(html, /<a class="issue-link" href="\.\/feed\.xml">RSS archive<\/a>/);
+  assert.match(html, /<a class="issue-link" href="\.\/feed\.xml" aria-label="Open generated RSS archive">RSS archive<\/a>/);
 });
 
 test('generateHTML renders a compact feed archive trail', () => {
@@ -995,10 +995,26 @@ test('generateHTML renders a compact feed archive trail', () => {
 
   assert.ok(html.includes(`<nav class="${ISSUE_TRAIL_CONTRACT.navClass}" aria-label="Digest archive trail">`));
   assert.match(html, /<span class="issue-trail-current" aria-current="page">Current digest<\/span>/);
-  assert.ok(html.includes(`<a href="${ISSUE_TRAIL_CONTRACT.feedHref}">RSS feed</a>`));
+  assert.ok(html.includes(`<a href="${ISSUE_TRAIL_CONTRACT.feedHref}" aria-label="Open generated RSS feed">RSS feed</a>`));
   assert.ok(html.includes(`<a href="${ISSUE_TRAIL_CONTRACT.sourceCoverageHref}">Source coverage</a>`));
   assert.ok(html.includes(`<span id="${ISSUE_TRAIL_CONTRACT.sourceCoverageAnchorId}" class="anchor-target" aria-hidden="true"></span>`));
   assert.match(html, /<section class="source-coverage" aria-label="RSS source coverage">/);
+});
+
+test('generateHTML labels repeated RSS navigation links', () => {
+  const html = generateHTML([
+    {
+      title: 'First story',
+      link: 'https://example.com/first',
+      date: new Date('2026-06-17T18:00:00.000Z'),
+      source: 'Example Security',
+      summary: 'Story one.',
+    },
+  ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
+
+  assert.ok(html.includes('<a class="btn" href="./feed.xml" aria-label="Open generated RSS feed">RSS</a>'));
+  assert.ok(html.includes('<a href="./feed.xml" aria-label="Open generated RSS feed">RSS Feed</a>'));
+  assert.match(html, /<a class="feed-link" href="\.\/feed\.xml" aria-label="Open RSS feed with 1 latest article">RSS feed <span class="feed-link-count">1 item<\/span><\/a>/);
 });
 
 test('generateHTML renders feed update cadence in the archive trail', () => {
