@@ -578,7 +578,7 @@ function renderIssueStrip(totalItems, sourceCount, generatedAt) {
       <time datetime="${issueDate.toISOString()}">${formatIssueDate(issueDate)}</time>
       <span class="issue-stat"><strong>${totalItems}</strong> ${articleLabel}</span>
       <span class="issue-stat"><strong>${sourceCount}</strong> ${sourceLabel}</span>
-      <a class="issue-link" href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}">RSS archive</a>
+      <a class="issue-link" href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}" aria-label="Open generated RSS archive">RSS archive</a>
     </section>`;
 }
 
@@ -587,7 +587,7 @@ function renderIssueTrail(generatedAt) {
 
   return `<nav class="${ISSUE_TRAIL_CONTRACT.navClass}" aria-label="Digest archive trail">
       <span class="issue-trail-current" aria-current="page">Current digest</span>
-      <a href="${ISSUE_TRAIL_CONTRACT.feedHref}">RSS feed</a>
+      <a href="${ISSUE_TRAIL_CONTRACT.feedHref}" aria-label="Open generated RSS feed">RSS feed</a>
       <a href="${ISSUE_TRAIL_CONTRACT.sourceCoverageHref}">Source coverage</a>
       <span class="issue-trail-meta">Updated <time datetime="${issueDate.toISOString()}">${formatUtcTime(issueDate)}</time></span>
       <span class="issue-trail-meta">${ISSUE_TRAIL_CONTRACT.cadenceText}</span>
@@ -804,7 +804,7 @@ function generateHTML(newsItems, options = {}) {
           <option value="">All sources</option>
           ${sourceOptions}
         </select>
-        <a class="btn" href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}">RSS</a>
+        <a class="btn" href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}" aria-label="Open generated RSS feed">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
       </div>
     </div>
@@ -857,7 +857,7 @@ function generateHTML(newsItems, options = {}) {
   
   <footer>
     <div class="container">
-      Powered by GitHub Actions • Updates every 3 hours • <a href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}">RSS Feed</a>
+      Powered by GitHub Actions • Updates every 3 hours • <a href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}" aria-label="Open generated RSS feed">RSS Feed</a>
     </div>
   </footer>
 
