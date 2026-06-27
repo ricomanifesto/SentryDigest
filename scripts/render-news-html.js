@@ -327,7 +327,11 @@ function renderSourceCoverage(newsItems, sourceNames = [], digestLegend = '') {
     .map(({ source, count }) => {
       const emptyClass = count === 0 ? ' source-count-empty' : '';
       const disabledAttributes = count === 0 ? ' aria-disabled="true" disabled' : '';
-      return `<button class="source-count${emptyClass}" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="${escapeAttribute(source)}" aria-pressed="false"${disabledAttributes}>${escapeHtml(source)} <strong>${count}</strong></button>`;
+      const articleLabel = count === 1 ? 'article' : 'articles';
+      const sourceLabel = count === 0
+        ? `${source} source has no current articles`
+        : `Filter to ${source} source, ${count} ${articleLabel}`;
+      return `<button class="source-count${emptyClass}" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="${escapeAttribute(source)}" aria-label="${escapeAttribute(sourceLabel)}" aria-pressed="false"${disabledAttributes}>${escapeHtml(source)} <strong>${count}</strong></button>`;
     })
     .join('');
 

@@ -1058,8 +1058,8 @@ test('generateHTML renders escaped source coverage and RSS clarity', () => {
   ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
 
   assert.ok(html.includes(`<section class="${SOURCE_COVERAGE_CONTRACT.sectionClass}" aria-label="RSS source coverage">`));
-  assert.ok(html.includes(`<button class="source-count" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="Example &lt;Security&gt;" aria-pressed="false">Example &lt;Security&gt; <strong>2</strong></button>`));
-  assert.ok(html.includes(`<button class="source-count" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="Another Source" aria-pressed="false">Another Source <strong>1</strong></button>`));
+  assert.ok(html.includes(`<button class="source-count" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="Example &lt;Security&gt;" aria-label="Filter to Example &lt;Security&gt; source, 2 articles" aria-pressed="false">Example &lt;Security&gt; <strong>2</strong></button>`));
+  assert.ok(html.includes(`<button class="source-count" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="Another Source" aria-label="Filter to Another Source source, 1 article" aria-pressed="false">Another Source <strong>1</strong></button>`));
   assert.match(html, /<a class="feed-link" href="\.\/feed\.xml" aria-label="Open RSS feed with 3 latest articles">RSS feed <span class="feed-link-count">3 items<\/span><\/a>/);
   assert.doesNotMatch(html, /Example <Security>/);
 });
@@ -1092,8 +1092,8 @@ test('generateHTML renders quiet configured feeds as inert source coverage chips
     sourceNames: ['Quiet <Feed>', 'Example <Security>'],
   });
 
-  assert.ok(html.includes(`<button class="source-count" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="Example &lt;Security&gt;" aria-pressed="false">Example &lt;Security&gt; <strong>1</strong></button>`));
-  assert.ok(html.includes(`<button class="source-count source-count-empty" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="Quiet &lt;Feed&gt;" aria-pressed="false" aria-disabled="true" disabled>Quiet &lt;Feed&gt; <strong>0</strong></button>`));
+  assert.ok(html.includes(`<button class="source-count" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="Example &lt;Security&gt;" aria-label="Filter to Example &lt;Security&gt; source, 1 article" aria-pressed="false">Example &lt;Security&gt; <strong>1</strong></button>`));
+  assert.ok(html.includes(`<button class="source-count source-count-empty" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="Quiet &lt;Feed&gt;" aria-label="Quiet &lt;Feed&gt; source has no current articles" aria-pressed="false" aria-disabled="true" disabled>Quiet &lt;Feed&gt; <strong>0</strong></button>`));
   assert.ok(html.includes('<div class="source-health-summary" data-active-sources="1" data-quiet-sources="1">'));
   assert.ok(html.includes('<span><strong>1</strong> active feed</span>'));
   assert.ok(html.includes(`<span><strong>1</strong> quiet feed</span> <span class="source-health-note">${SOURCE_COVERAGE_CONTRACT.healthNoteText}</span>`));
