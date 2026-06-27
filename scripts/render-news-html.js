@@ -985,7 +985,7 @@ function generateHTML(newsItems, options = {}) {
           clearButton.className = 'active-filter-clear';
           clearButton.type = 'button';
           clearButton.setAttribute('data-filter-key', key);
-          clearButton.setAttribute('aria-label', 'Clear ' + filterLabels[key] + ' filter');
+          clearButton.setAttribute('aria-label', 'Clear ' + filterLabels[key] + ': ' + label + ' filter');
           clearButton.textContent = '×';
           chip.appendChild(chipText);
           chip.appendChild(clearButton);
