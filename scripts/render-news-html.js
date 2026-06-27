@@ -834,7 +834,7 @@ function generateHTML(newsItems, options = {}) {
       </select>
     </div>
     <div class="filter-status" aria-label="Active filters">
-      <div id="activeFilters" class="active-filters" hidden></div>
+      <div id="activeFilters" class="active-filters" role="list" aria-label="Active filter chips" hidden></div>
       <div id="filterStatusAnnouncement" class="sr-only" role="status" aria-live="polite" aria-atomic="true">Showing ${totalItems} of ${totalItems} ${totalArticleLabel}.</div>
       <button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters</button>
     </div>
@@ -978,6 +978,7 @@ function generateHTML(newsItems, options = {}) {
           const label = activeFilter.label;
           const chip = document.createElement('span');
           chip.className = 'active-filter-chip';
+          chip.setAttribute('role', 'listitem');
           const chipText = document.createElement('span');
           chipText.textContent = filterLabels[key] + ': ' + label;
           const clearButton = document.createElement('button');

@@ -843,7 +843,7 @@ test('generateHTML renders active filter summary and reset wiring', () => {
     },
   ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
 
-  assert.match(html, /<div id="activeFilters" class="active-filters" hidden><\/div>/);
+  assert.match(html, /<div id="activeFilters" class="active-filters" role="list" aria-label="Active filter chips" hidden><\/div>/);
   assert.match(html, /<div id="filterStatusAnnouncement" class="sr-only" role="status" aria-live="polite" aria-atomic="true">Showing 1 of 1 article\.<\/div>/);
   assert.match(html, /<button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters<\/button>/);
   assert.match(html, /<button id="emptyResetFilters" class="btn empty-reset-filters" type="button">Reset filters<\/button>/);
@@ -853,6 +853,7 @@ test('generateHTML renders active filter summary and reset wiring', () => {
   assert.match(html, /const emptyResetFilters = q\('#emptyResetFilters'\)/);
   assert.match(html, /function renderActiveFilters\(\)/);
   assert.match(html, /chip\.className = 'active-filter-chip'/);
+  assert.match(html, /chip\.setAttribute\('role', 'listitem'\)/);
   assert.match(html, /chipText\.textContent = filterLabels\[key\] \+ ': ' \+ label/);
   assert.match(html, /const clearButton = document\.createElement\('button'\)/);
   assert.match(html, /clearButton\.className = 'active-filter-clear'/);
