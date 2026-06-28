@@ -66,3 +66,16 @@ test('update workflow refreshes the branch before generating artifacts', () => {
     /- name: Refresh branch head\n\s+run: git pull --ff-only origin "\$GITHUB_REF_NAME"\s*\n\s+- name: Set up Node\.js/
   );
 });
+
+test('update workflow uses the artifact validation command before committing', () => {
+  const workflow = readWorkflow();
+
+  assert.match(
+    workflow,
+    /- name: Validate generated artifacts\n\s+run: npm run validate\s*\n\s+- name: Configure Git/
+  );
+  assert.doesNotMatch(
+    workflow,
+    /- name: Validate generated artifacts\n\s+run: npm test\s*\n\s+- name: Configure Git/
+  );
+});
