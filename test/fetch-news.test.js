@@ -10,6 +10,7 @@ const {
   normalizeArticleDate,
   normalizeFeedDate,
   updateConfigLastUpdated,
+  writeGeneratedNewsArtifacts,
 } = require('../scripts/fetch-news');
 const {
   collectFacetFilterOptions,
@@ -151,6 +152,55 @@ test('updateConfigLastUpdated initializes missing settings while preserving exis
     sortMode: 'recent',
     lastUpdated: '2026-06-25T20:00:00.000Z',
   });
+});
+
+test('writeGeneratedNewsArtifacts rejects invalid news data before writing artifacts', () => {
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sentrydigest-fetch-write-contract-'));
+  const indexHtmlPath = path.join(tmpDir, 'index.html');
+  const newsDataPath = path.join(tmpDir, 'news-data.json');
+  const configPath = path.join(tmpDir, 'config/news-sources.json');
+  const sourceConfig = {
+    config: {
+      sources: [
+        { name: 'Example Security', url: 'https://example.com/feed.xml', type: 'rss', enabled: true },
+      ],
+      settings: { maxNewsItems: 5 },
+    },
+    enabledRssSources: [
+      { name: 'Example Security', url: 'https://example.com/feed.xml', type: 'rss', enabled: true },
+    ],
+    maxNewsItems: 5,
+  };
+
+  assert.throws(
+    () => writeGeneratedNewsArtifacts({
+      newsItems: [
+        {
+          title: 'Older duplicate item',
+          link: 'https://example.com/duplicate',
+          source: 'Example Security',
+          date: new Date('2026-06-17T00:30:00.000Z'),
+        },
+        {
+          title: 'Newer duplicate item',
+          link: 'https://example.com/duplicate',
+          source: 'Example Security',
+          date: new Date('2026-06-18T00:30:00.000Z'),
+        },
+      ],
+      sourceConfig,
+      indexHtmlPath,
+      newsDataPath,
+      configPath,
+      logger: { log() {} },
+      now: new Date('2026-06-18T01:00:00.000Z'),
+    }),
+    /duplicates link.*newest-first/
+  );
+  assert.equal(fs.existsSync(indexHtmlPath), false);
+  assert.equal(fs.existsSync(newsDataPath), false);
+  assert.equal(fs.existsSync(configPath), false);
+  assert.deepEqual(sourceConfig.config.settings, { maxNewsItems: 5 });
 });
 
 test('generateHTML escapes feed-controlled article fields', () => {

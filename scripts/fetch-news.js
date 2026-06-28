@@ -1,10 +1,12 @@
 const fs = require('fs');
 const path = require('path');
 const { generateHTML } = require('./render-news-html');
+const { assertRssNewsDataContract } = require('./generate-rss');
 const { assertSourceConfigContract } = require('./source-config-contract');
 
 // Path to the index.html file
 const indexHtmlPath = path.join(__dirname, '../index.html');
+const newsDataPath = path.join(__dirname, '../news-data.json');
 
 // Load configuration from file
 const configPath = path.join(__dirname, '../config/news-sources.json');
@@ -177,6 +179,37 @@ async function fetchAllNews(options = {}) {
   return allNews;
 }
 
+function writeGeneratedNewsArtifacts(options) {
+  const {
+    newsItems,
+    sourceConfig,
+    indexHtmlPath: outputIndexHtmlPath = indexHtmlPath,
+    newsDataPath: outputNewsDataPath = newsDataPath,
+    configPath: outputConfigPath = configPath,
+    logger = console,
+    now = new Date(),
+  } = options;
+  const config = sourceConfig.config;
+  const sources = sourceConfig.enabledRssSources;
+
+  assertRssNewsDataContract(newsItems, sources, sourceConfig.maxNewsItems);
+
+  const html = generateHTML(newsItems, {
+    sourceNames: sources.map(source => source.name),
+  });
+
+  fs.writeFileSync(outputIndexHtmlPath, html);
+  logger.log('Generated index.html');
+
+  fs.writeFileSync(outputNewsDataPath, JSON.stringify(newsItems, null, 2));
+  logger.log('Generated news-data.json');
+
+  updateConfigLastUpdated(config, now);
+  fs.mkdirSync(path.dirname(outputConfigPath), { recursive: true });
+  fs.writeFileSync(outputConfigPath, JSON.stringify(config, null, 2));
+  logger.log('Updated config file with timestamp');
+}
+
 // Main function
 async function main() {
   try {
@@ -187,31 +220,17 @@ async function main() {
     }
 
     const sourceConfig = loadSourceConfig();
-    const config = sourceConfig.config;
     const sources = sourceConfig.enabledRssSources;
     
     // Fetch news
     console.log('Fetching news...');
     const newsItems = await fetchAllNews({ sourceConfig });
     console.log(`Fetched ${newsItems.length} news items from ${sources.length} active sources`);
-    
-    // Generate HTML
-    const html = generateHTML(newsItems, {
-      sourceNames: sources.map(source => source.name),
+
+    writeGeneratedNewsArtifacts({
+      newsItems,
+      sourceConfig,
     });
-    
-    // Write HTML to index.html
-    fs.writeFileSync(indexHtmlPath, html);
-    console.log('Generated index.html');
-    
-    // Create a JSON file with the data for potential API use or debugging
-    fs.writeFileSync(path.join(__dirname, '../news-data.json'), JSON.stringify(newsItems, null, 2));
-    console.log('Generated news-data.json');
-    
-    // Update config file with last updated timestamp
-    updateConfigLastUpdated(config);
-    fs.writeFileSync(configPath, JSON.stringify(config, null, 2));
-    console.log('Updated config file with timestamp');
     
   } catch (error) {
     console.error('Error:', error);
@@ -232,4 +251,5 @@ module.exports = {
   normalizeArticleDate,
   normalizeFeedDate,
   updateConfigLastUpdated,
+  writeGeneratedNewsArtifacts,
 };
