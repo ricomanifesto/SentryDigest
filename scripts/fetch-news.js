@@ -89,6 +89,15 @@ function loadSourceConfig(options = {}) {
   };
 }
 
+function updateConfigLastUpdated(config, now = new Date()) {
+  if (!config.settings) {
+    config.settings = {};
+  }
+
+  config.settings.lastUpdated = now.toISOString();
+  return config;
+}
+
 // Use simple date-based sort across all sources
 
 const INVALID_FEED_DATE_FALLBACK = new Date('1970-01-01T00:00:00.000Z');
@@ -200,7 +209,7 @@ async function main() {
     console.log('Generated news-data.json');
     
     // Update config file with last updated timestamp
-    config.settings.lastUpdated = new Date().toISOString();
+    updateConfigLastUpdated(config);
     fs.writeFileSync(configPath, JSON.stringify(config, null, 2));
     console.log('Updated config file with timestamp');
     
@@ -222,4 +231,5 @@ module.exports = {
   loadSourceConfig,
   normalizeArticleDate,
   normalizeFeedDate,
+  updateConfigLastUpdated,
 };
