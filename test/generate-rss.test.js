@@ -129,6 +129,231 @@ test('generateRSSFeed rejects non-boolean source enabled values', () => {
   );
 });
 
+test('generateRSSFeed rejects malformed news data before writing artifacts', () => {
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sentrydigest-rss-news-contract-'));
+  const newsDataPath = path.join(tmpDir, 'news-data.json');
+  const configPath = path.join(tmpDir, 'news-sources.json');
+  const rssOutputPath = path.join(tmpDir, 'feed.xml');
+  const feedInfoPath = path.join(tmpDir, 'feed-info.json');
+
+  fs.writeFileSync(
+    configPath,
+    JSON.stringify({
+      sources: [
+        { name: 'Example Security', url: 'https://example.com/feed.xml', type: 'rss', enabled: true },
+      ],
+    })
+  );
+
+  for (const newsData of [
+    { title: 'Not an array' },
+    [
+      {
+        title: 'Missing link',
+        source: 'Example Security',
+        date: '2026-06-17T00:30:00.000Z',
+      },
+    ],
+  ]) {
+    fs.writeFileSync(newsDataPath, JSON.stringify(newsData));
+    fs.rmSync(rssOutputPath, { force: true });
+    fs.rmSync(feedInfoPath, { force: true });
+
+    assert.throws(
+      () => generateRSSFeed({
+        newsDataPath,
+        configPath,
+        rssOutputPath,
+        feedInfoPath,
+        logger: { log() {}, error() {} },
+      }),
+      /news-data\.json/
+    );
+    assert.equal(fs.existsSync(rssOutputPath), false);
+    assert.equal(fs.existsSync(feedInfoPath), false);
+  }
+});
+
+test('generateRSSFeed rejects news data from disabled sources before writing artifacts', () => {
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sentrydigest-rss-news-source-contract-'));
+  const newsDataPath = path.join(tmpDir, 'news-data.json');
+  const configPath = path.join(tmpDir, 'news-sources.json');
+  const rssOutputPath = path.join(tmpDir, 'feed.xml');
+  const feedInfoPath = path.join(tmpDir, 'feed-info.json');
+
+  fs.writeFileSync(
+    newsDataPath,
+    JSON.stringify([
+      {
+        title: 'Disabled source item',
+        summary: 'This item should not be written to the RSS output.',
+        link: 'https://example.com/disabled-source-item',
+        source: 'Disabled Feed',
+        date: '2026-06-17T00:30:00.000Z',
+      },
+    ])
+  );
+  fs.writeFileSync(
+    configPath,
+    JSON.stringify({
+      sources: [
+        { name: 'Enabled Feed', url: 'https://example.com/enabled.xml', type: 'rss', enabled: true },
+        { name: 'Disabled Feed', url: 'https://example.com/disabled.xml', type: 'rss', enabled: false },
+      ],
+    })
+  );
+
+  assert.throws(
+    () => generateRSSFeed({
+      newsDataPath,
+      configPath,
+      rssOutputPath,
+      feedInfoPath,
+      logger: { log() {}, error() {} },
+    }),
+    /must match an enabled RSS source/
+  );
+  assert.equal(fs.existsSync(rssOutputPath), false);
+  assert.equal(fs.existsSync(feedInfoPath), false);
+});
+
+test('generateRSSFeed rejects normalized source-name drift before writing artifacts', () => {
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sentrydigest-rss-news-source-drift-'));
+  const newsDataPath = path.join(tmpDir, 'news-data.json');
+  const configPath = path.join(tmpDir, 'news-sources.json');
+  const rssOutputPath = path.join(tmpDir, 'feed.xml');
+  const feedInfoPath = path.join(tmpDir, 'feed-info.json');
+
+  fs.writeFileSync(
+    newsDataPath,
+    JSON.stringify([
+      {
+        title: 'Source name drift item',
+        summary: 'This item should not be written to the RSS output.',
+        link: 'https://example.com/source-name-drift-item',
+        source: 'enabled feed ',
+        date: '2026-06-17T00:30:00.000Z',
+      },
+    ])
+  );
+  fs.writeFileSync(
+    configPath,
+    JSON.stringify({
+      sources: [
+        { name: 'Enabled Feed', url: 'https://example.com/enabled.xml', type: 'rss', enabled: true },
+      ],
+    })
+  );
+
+  assert.throws(
+    () => generateRSSFeed({
+      newsDataPath,
+      configPath,
+      rssOutputPath,
+      feedInfoPath,
+      logger: { log() {}, error() {} },
+    }),
+    /must match an enabled RSS source/
+  );
+  assert.equal(fs.existsSync(rssOutputPath), false);
+  assert.equal(fs.existsSync(feedInfoPath), false);
+});
+
+test('generateRSSFeed rejects too many news items before writing artifacts', () => {
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sentrydigest-rss-news-max-items-'));
+  const newsDataPath = path.join(tmpDir, 'news-data.json');
+  const configPath = path.join(tmpDir, 'news-sources.json');
+  const rssOutputPath = path.join(tmpDir, 'feed.xml');
+  const feedInfoPath = path.join(tmpDir, 'feed-info.json');
+
+  fs.writeFileSync(
+    newsDataPath,
+    JSON.stringify([
+      {
+        title: 'Newest item',
+        link: 'https://example.com/newest',
+        source: 'Enabled Feed',
+        date: '2026-06-18T00:30:00.000Z',
+      },
+      {
+        title: 'Older item',
+        link: 'https://example.com/older',
+        source: 'Enabled Feed',
+        date: '2026-06-17T00:30:00.000Z',
+      },
+    ])
+  );
+  fs.writeFileSync(
+    configPath,
+    JSON.stringify({
+      sources: [
+        { name: 'Enabled Feed', url: 'https://example.com/enabled.xml', type: 'rss', enabled: true },
+      ],
+      settings: { maxNewsItems: 1 },
+    })
+  );
+
+  assert.throws(
+    () => generateRSSFeed({
+      newsDataPath,
+      configPath,
+      rssOutputPath,
+      feedInfoPath,
+      logger: { log() {}, error() {} },
+    }),
+    /exceeds maxNewsItems 1/
+  );
+  assert.equal(fs.existsSync(rssOutputPath), false);
+  assert.equal(fs.existsSync(feedInfoPath), false);
+});
+
+test('generateRSSFeed rejects duplicate links and out-of-order dates before writing artifacts', () => {
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sentrydigest-rss-news-cross-item-'));
+  const newsDataPath = path.join(tmpDir, 'news-data.json');
+  const configPath = path.join(tmpDir, 'news-sources.json');
+  const rssOutputPath = path.join(tmpDir, 'feed.xml');
+  const feedInfoPath = path.join(tmpDir, 'feed-info.json');
+
+  fs.writeFileSync(
+    newsDataPath,
+    JSON.stringify([
+      {
+        title: 'Older duplicate item',
+        link: 'https://example.com/duplicate',
+        source: 'Enabled Feed',
+        date: '2026-06-17T00:30:00.000Z',
+      },
+      {
+        title: 'Newer duplicate item',
+        link: 'https://example.com/duplicate',
+        source: 'Enabled Feed',
+        date: '2026-06-18T00:30:00.000Z',
+      },
+    ])
+  );
+  fs.writeFileSync(
+    configPath,
+    JSON.stringify({
+      sources: [
+        { name: 'Enabled Feed', url: 'https://example.com/enabled.xml', type: 'rss', enabled: true },
+      ],
+    })
+  );
+
+  assert.throws(
+    () => generateRSSFeed({
+      newsDataPath,
+      configPath,
+      rssOutputPath,
+      feedInfoPath,
+      logger: { log() {}, error() {} },
+    }),
+    /duplicates link.*newest-first/
+  );
+  assert.equal(fs.existsSync(rssOutputPath), false);
+  assert.equal(fs.existsSync(feedInfoPath), false);
+});
+
 test('generateRSSFeed throws for missing news data without exiting module callers', () => {
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sentrydigest-rss-missing-'));
   const originalExit = process.exit;
