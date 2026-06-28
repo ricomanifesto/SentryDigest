@@ -9,6 +9,7 @@ const {
   loadSourceConfig,
   normalizeArticleDate,
   normalizeFeedDate,
+  updateConfigLastUpdated,
 } = require('../scripts/fetch-news');
 const {
   collectFacetFilterOptions,
@@ -124,6 +125,31 @@ test('loadSourceConfig bootstraps missing config with canonical RSS source shape
     assert.match(source.url, /^https?:\/\//);
     assert.equal(source.type, 'rss');
     assert.equal(source.enabled, true);
+  });
+});
+
+test('updateConfigLastUpdated initializes missing settings while preserving existing fields', () => {
+  const configWithoutSettings = {
+    sources: [],
+  };
+  const configWithSettings = {
+    sources: [],
+    settings: {
+      maxNewsItems: 10,
+      sortMode: 'recent',
+    },
+  };
+
+  updateConfigLastUpdated(configWithoutSettings, new Date('2026-06-25T19:00:00.000Z'));
+  updateConfigLastUpdated(configWithSettings, new Date('2026-06-25T20:00:00.000Z'));
+
+  assert.deepEqual(configWithoutSettings.settings, {
+    lastUpdated: '2026-06-25T19:00:00.000Z',
+  });
+  assert.deepEqual(configWithSettings.settings, {
+    maxNewsItems: 10,
+    sortMode: 'recent',
+    lastUpdated: '2026-06-25T20:00:00.000Z',
   });
 });
 
