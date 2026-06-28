@@ -43,7 +43,7 @@ jobs:
         run: node scripts/generate-rss.js
 
       - name: Validate generated artifacts
-        run: npm test
+        run: npm run validate
       
       - name: Configure Git
         run: |
