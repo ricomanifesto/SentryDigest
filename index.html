@@ -218,10 +218,10 @@
       <div id="filterStatusAnnouncement" class="sr-only" role="status" aria-live="polite" aria-atomic="true">Showing 30 of 30 articles.</div>
       <button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters</button>
     </div>
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-28T21:28:17.727Z">6/28/2026, 9:28:17 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-06-29T01:09:38.754Z">6/29/2026, 1:09:38 AM</time></div>
     <section class="issue-strip" aria-label="Digest issue metadata">
       <span class="issue-label">Current issue</span>
-      <time datetime="2026-06-28T21:28:17.727Z">June 28, 2026</time>
+      <time datetime="2026-06-29T01:09:38.754Z">June 29, 2026</time>
       <span class="issue-stat"><strong>30</strong> articles</span>
       <span class="issue-stat"><strong>3</strong> sources</span>
       <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
@@ -230,7 +230,7 @@
       <span class="issue-trail-current" aria-current="page">Current digest</span>
       <a href="./feed.xml" aria-label="Open generated RSS feed">RSS feed</a>
       <a href="#sourceCoverage">Source coverage</a>
-      <span class="issue-trail-meta">Updated <time datetime="2026-06-28T21:28:17.727Z">21:28 UTC</time></span>
+      <span class="issue-trail-meta">Updated <time datetime="2026-06-29T01:09:38.754Z">01:09 UTC</time></span>
       <span class="issue-trail-meta">3h cadence</span>
     </nav>
     <div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true" hidden></div>
@@ -287,7 +287,7 @@
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 7h old</span>
+            <span class="chip age-chip">Fresh - 10h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/data-breach-exposes-up-to-142-million-email-logins-at-six-isps/" target="_blank" rel="noopener">Data breach exposes up to 14.2 million email logins at six ISPs</a></h2>
           <div class="news-meta">
@@ -396,7 +396,7 @@ While ...</p>
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Recent - 1d old</span>
+            <span class="chip age-chip">Recent - 2d old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/fbi-russian-hackers-now-target-signal-backup-recovery-keys/" target="_blank" rel="noopener">FBI: Russian hackers now target Signal backup recovery keys</a></h2>
           <div class="news-meta">
@@ -874,7 +874,7 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Recent - 2d old</span>
+            <span class="chip age-chip">Recent - 3d old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/anthropic-is-testing-desktop-like-claude-cowork-for-mobile/" target="_blank" rel="noopener">Anthropic is testing desktop-like Claude Cowork for mobile</a></h2>
           <div class="news-meta">
@@ -889,7 +889,7 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Recent - 2d old</span>
+            <span class="chip age-chip">Recent - 3d old</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/application-security/robinhood-reengineered-access-approvals-for-high-velocity-development" target="_blank" rel="noopener">Robinhood Cuts Access Approval Time to Support High-Velocity Development</a></h2>
           <div class="news-meta">
@@ -1193,7 +1193,7 @@ CVE-2026-46331, nicknamed &quot;pedit COW,&quot;</span><span class="summary-elli
         const hasComposedFilters = Boolean(term || severity || tag || vendor || age || handoff);
         const safeStatusActionLabel = typeof statusActionLabel === 'string' ? statusActionLabel : '';
         const emptyFilteredStatusText = visible === 0 ? getEmptyFilteredMessage(src, hasComposedFilters) : '';
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-28T21:28:17.727Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-06-29T01:09:38.754Z').toLocaleString());
         if (filterStatusAnnouncement) filterStatusAnnouncement.textContent = getFilterStatusText(visible, total, safeStatusActionLabel, emptyFilteredStatusText);
         renderEmptyFilteredState(visible, src, hasComposedFilters);
         sourceCoverageButtons.forEach(function(button){
