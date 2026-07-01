@@ -4,9 +4,13 @@
   <img src="assets/logo.png" alt="SentryDigest Logo" width="400">
 </p>
 
-Cybersecurity news aggregator. Pulls multiple RSS sources into one dashboard. Updates every 3 hours via GitHub Actions.
+SentryDigest turns noisy security feeds into a daily analyst-ready briefing, with source links, severity cues, and clean HTML output you can inspect before sharing.
 
 **[Live Dashboard](https://ricomanifesto.github.io/SentryDigest/)**
+
+## What It Does
+
+SentryDigest collects security news from multiple RSS sources, normalizes the feed data, and publishes a browsable dashboard plus RSS output. It is built for quick review: source names, links, timestamps, ordering, and generated artifacts stay visible and testable.
 
 ## Sources
 
@@ -15,7 +19,22 @@ Cybersecurity news aggregator. Pulls multiple RSS sources into one dashboard. Up
 - Threatpost
 - Bleeping Computer
 - Dark Reading
- 
+
+Sources are configured in `config/news-sources.json`.
+
+## Outputs
+
+- `index.html` - generated dashboard
+- `feed.xml` - generated RSS feed
+- `news-data.json` - normalized news data
+- `feed-info.json` - feed metadata
+
+## Automation
+
+The GitHub Actions workflow runs on a schedule, on source configuration changes, and by manual trigger. Successful updates can dispatch downstream analysis in:
+
+- [SentryInsight](https://github.com/ricomanifesto/SentryInsight)
+- [GRCInsight](https://github.com/ricomanifesto/GRCInsight)
 
 ## Setup
 
@@ -25,12 +44,15 @@ cd SentryDigest
 npm install
 ```
 
-Manual run:
+## Usage
+
 ```bash
-npm run fetch          # Fetch news, generate HTML
-npm run generate-rss    # Generate RSS feed
-npm test               # Validate generated artifacts
+npm run fetch
+npm run generate-rss
+npm test
 ```
+
+`npm run fetch` fetches news and generates the dashboard artifacts. `npm run generate-rss` writes the RSS feed. `npm test` validates the generated output before publishing.
 
 ## Configuration
 
@@ -45,31 +67,8 @@ Define sources in `config/news-sources.json`:
 }
 ```
 
-Workflow rebuilds on config changes. Set `maxNewsItems` to control count.
-
- 
-
-## Automation
-
-Runs:
-- Every 3 hours
-- On `news-sources.json` changes
-- Manual trigger via GitHub Actions
-
-Updates trigger [SentryInsight](https://github.com/ricomanifesto/SentryInsight) and [GRCInsight](https://github.com/ricomanifesto/GRCInsight) analysis.
-
-## Output
-
-- `index.html` - Dashboard
-- `feed.xml` - RSS feed
-- `news-data.json` - Raw data
-- `feed-info.json` - Metadata
+Set `maxNewsItems` to control the generated item count. The workflow rebuilds when source configuration changes.
 
 ## Validation
 
-`npm test` runs the Node test suite, checks JavaScript syntax, and then performs
-a dependency-free artifact validation check. The artifact validator verifies
-that the source config, `news-data.json`, `feed.xml`, `feed-info.json`, and
-`index.html` have matching item counts, valid dates/URLs, enabled source names,
-and newest-first news ordering. The GitHub Actions update workflow runs this
-check before committing generated artifacts or dispatching downstream analysis.
+`npm test` runs the Node test suite, checks JavaScript syntax, and performs dependency-free artifact validation. The artifact validator verifies that `news-data.json`, `feed.xml`, `feed-info.json`, and `index.html` agree on item counts, dates, URLs, enabled source names, and newest-first ordering.
