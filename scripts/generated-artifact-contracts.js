@@ -30,14 +30,14 @@ const DASHBOARD_RSS_LINK_CONTRACT = Object.freeze({
   linkLabels: Object.freeze({
     'a.btn': 'Open generated RSS feed',
     '.issue-strip a.issue-link': 'Open generated RSS archive',
-    'footer a': 'Open generated RSS feed',
+    'footer a[data-rss-link]': 'Open generated RSS feed',
   }),
   linkSelectors: Object.freeze([
     'link[rel="alternate"][type="application/rss+xml"]',
     'a.btn',
     '.issue-strip a.issue-link',
     '.source-coverage a.feed-link',
-    'footer a',
+    'footer a[data-rss-link]',
   ]),
 });
 
@@ -104,10 +104,20 @@ const FEED_INFO_CONTRACT = Object.freeze({
 
 const RSS_CHANNEL_CONTRACT = Object.freeze({
   description: 'Latest cybersecurity news from top sources',
-  imageUrl: 'https://ricomanifesto.github.io/SentryDigest/icon.png',
+  imageUrl: 'https://ricomanifesto.github.io/SentryDigest/assets/logo.png',
   publicFeedUrl: FEED_INFO_CONTRACT.publicFeedUrl,
   publicSiteUrl: 'https://ricomanifesto.github.io/SentryDigest/',
   title: 'Cybersecurity News Aggregator',
+});
+
+const SITE_METADATA_CONTRACT = Object.freeze({
+  authorName: 'Michael Rico',
+  authorUrl: 'https://ricomanifesto.com/',
+  description: RSS_CHANNEL_CONTRACT.description,
+  githubUrl: 'https://github.com/ricomanifesto/SentryDigest',
+  imageUrl: RSS_CHANNEL_CONTRACT.imageUrl,
+  publicSiteUrl: RSS_CHANNEL_CONTRACT.publicSiteUrl,
+  title: 'SentryDigest | Cybersecurity News',
 });
 
 function formatSourceShortcutStatus(label, count, options = {}) {
@@ -126,5 +136,6 @@ module.exports = {
   ISSUE_TRAIL_CONTRACT,
   OPERATOR_LANE_CONTRACT,
   RSS_CHANNEL_CONTRACT,
+  SITE_METADATA_CONTRACT,
   SOURCE_COVERAGE_CONTRACT,
 };

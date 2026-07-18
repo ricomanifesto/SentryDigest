@@ -221,6 +221,21 @@ test('generateHTML escapes feed-controlled article fields', () => {
   assert.match(html, /Example &lt;Security&gt;/);
 });
 
+test('generateHTML publishes discoverable project identity metadata', () => {
+  const html = generateHTML([], {
+    generatedAt: new Date('2026-06-17T18:00:00.000Z'),
+  });
+
+  assert.match(html, /<link rel="canonical" href="https:\/\/ricomanifesto\.github\.io\/SentryDigest\/">/);
+  assert.match(html, /<meta property="og:url" content="https:\/\/ricomanifesto\.github\.io\/SentryDigest\/">/);
+  assert.match(html, /<meta property="og:image" content="https:\/\/ricomanifesto\.github\.io\/SentryDigest\/assets\/logo\.png">/);
+  assert.match(html, /<meta name="twitter:card" content="summary">/);
+  assert.match(html, /<meta name="twitter:image" content="https:\/\/ricomanifesto\.github\.io\/SentryDigest\/assets\/logo\.png">/);
+  assert.match(html, /<script type="application\/ld\+json">[\s\S]*"@type":"WebSite"[\s\S]*"name":"Michael Rico"[\s\S]*<\/script>/);
+  assert.match(html, /<a href="https:\/\/ricomanifesto\.com\/">Michael Rico<\/a>/);
+  assert.doesNotMatch(html, /\/Users\//);
+});
+
 test('generateHTML renders unsafe article links as inert anchors', () => {
   const html = generateHTML([
     {
@@ -1089,7 +1104,7 @@ test('generateHTML labels repeated RSS navigation links', () => {
   ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
 
   assert.ok(html.includes('<a class="btn" href="./feed.xml" aria-label="Open generated RSS feed">RSS</a>'));
-  assert.ok(html.includes('<a href="./feed.xml" aria-label="Open generated RSS feed">RSS Feed</a>'));
+  assert.ok(html.includes('<a data-rss-link href="./feed.xml" aria-label="Open generated RSS feed">RSS Feed</a>'));
   assert.match(html, /<a class="feed-link" href="\.\/feed\.xml" aria-label="Open RSS feed with 1 latest article">RSS feed <span class="feed-link-count">1 item<\/span><\/a>/);
 });
 

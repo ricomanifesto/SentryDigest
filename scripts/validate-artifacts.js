@@ -10,6 +10,7 @@ const {
   ISSUE_TRAIL_CONTRACT,
   OPERATOR_LANE_CONTRACT,
   RSS_CHANNEL_CONTRACT,
+  SITE_METADATA_CONTRACT,
   SOURCE_COVERAGE_CONTRACT,
 } = require('./generated-artifact-contracts');
 const {
@@ -691,6 +692,73 @@ function validateFeedIdentityCrossArtifactContract(feedInfo, channelIdentity, fa
   }
 }
 
+function validateSiteMetadata(indexHtml, sitemapXml, failures) {
+  if (indexHtml) {
+    const $ = cheerio.load(indexHtml);
+    const exactValues = [
+      ['index.html title', $('title').first().text().trim(), SITE_METADATA_CONTRACT.title],
+      ['index.html description', $('meta[name="description"]').attr('content'), SITE_METADATA_CONTRACT.description],
+      ['index.html canonical URL', $('link[rel="canonical"]').attr('href'), SITE_METADATA_CONTRACT.publicSiteUrl],
+      ['index.html Open Graph type', $('meta[property="og:type"]').attr('content'), 'website'],
+      ['index.html Open Graph title', $('meta[property="og:title"]').attr('content'), SITE_METADATA_CONTRACT.title],
+      ['index.html Open Graph description', $('meta[property="og:description"]').attr('content'), SITE_METADATA_CONTRACT.description],
+      ['index.html Open Graph URL', $('meta[property="og:url"]').attr('content'), SITE_METADATA_CONTRACT.publicSiteUrl],
+      ['index.html Open Graph image', $('meta[property="og:image"]').attr('content'), SITE_METADATA_CONTRACT.imageUrl],
+      ['index.html Twitter card', $('meta[name="twitter:card"]').attr('content'), 'summary'],
+      ['index.html Twitter title', $('meta[name="twitter:title"]').attr('content'), SITE_METADATA_CONTRACT.title],
+      ['index.html Twitter description', $('meta[name="twitter:description"]').attr('content'), SITE_METADATA_CONTRACT.description],
+      ['index.html Twitter image', $('meta[name="twitter:image"]').attr('content'), SITE_METADATA_CONTRACT.imageUrl],
+    ];
+
+    for (const [label, actual, expected] of exactValues) {
+      if (actual !== expected) {
+        fail(failures, `${label} ${actual || 'missing'} must match ${expected}`);
+      }
+    }
+
+    const jsonLdText = $('script[type="application/ld+json"]').first().text().trim();
+    if (!jsonLdText) {
+      fail(failures, 'index.html must publish JSON-LD project identity');
+    } else {
+      try {
+        const identity = JSON.parse(jsonLdText);
+        if (
+          identity['@context'] !== 'https://schema.org'
+          || identity['@type'] !== 'WebSite'
+          || identity.name !== 'SentryDigest'
+          || identity.url !== SITE_METADATA_CONTRACT.publicSiteUrl
+          || identity.description !== SITE_METADATA_CONTRACT.description
+          || identity.author?.name !== SITE_METADATA_CONTRACT.authorName
+          || identity.author?.url !== SITE_METADATA_CONTRACT.authorUrl
+          || identity.publisher?.name !== 'Rico Manifesto'
+          || identity.publisher?.url !== SITE_METADATA_CONTRACT.authorUrl
+          || identity.sameAs !== SITE_METADATA_CONTRACT.githubUrl
+        ) {
+          fail(failures, 'index.html JSON-LD must match the public SentryDigest identity contract');
+        }
+      } catch (error) {
+        fail(failures, `index.html JSON-LD is not valid JSON: ${error.message}`);
+      }
+    }
+
+    const attribution = $(`footer a[href="${SITE_METADATA_CONTRACT.authorUrl}"]`)
+      .filter((_, element) => $(element).text().trim() === SITE_METADATA_CONTRACT.authorName);
+    if (attribution.length !== 1) {
+      fail(failures, 'index.html footer must link Michael Rico to the canonical portfolio');
+    }
+  }
+
+  if (sitemapXml) {
+    const $xml = cheerio.load(sitemapXml, { xmlMode: true });
+    const locations = $xml('urlset > url > loc')
+      .map((_, element) => $xml(element).text().trim())
+      .get();
+    if (locations.length !== 1 || locations[0] !== SITE_METADATA_CONTRACT.publicSiteUrl) {
+      fail(failures, 'sitemap.xml must contain only the canonical SentryDigest project URL');
+    }
+  }
+}
+
 function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
   const artifacts = {
     config: path.join(repoRoot, 'config/news-sources.json'),
@@ -698,6 +766,7 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
     feedInfo: path.join(repoRoot, 'feed-info.json'),
     feedXml: path.join(repoRoot, 'feed.xml'),
     indexHtml: path.join(repoRoot, 'index.html'),
+    sitemapXml: path.join(repoRoot, 'sitemap.xml'),
   };
   const failures = [];
   const config = readJson('config/news-sources.json', artifacts.config, repoRoot, failures);
@@ -705,6 +774,9 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
   const feedInfo = readJson('feed-info.json', artifacts.feedInfo, repoRoot, failures);
   const feedXml = readText('feed.xml', artifacts.feedXml, repoRoot, failures);
   const indexHtml = readText('index.html', artifacts.indexHtml, repoRoot, failures);
+  const sitemapXml = readText('sitemap.xml', artifacts.sitemapXml, repoRoot, failures);
+
+  validateSiteMetadata(indexHtml, sitemapXml, failures);
 
   let enabledSources = [];
   let maxNewsItems = DEFAULT_MAX_NEWS_ITEMS;

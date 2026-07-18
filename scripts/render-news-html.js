@@ -4,6 +4,7 @@ const {
   formatSourceShortcutStatus,
   ISSUE_TRAIL_CONTRACT,
   OPERATOR_LANE_CONTRACT,
+  SITE_METADATA_CONTRACT,
   SOURCE_COVERAGE_CONTRACT,
 } = require('./generated-artifact-contracts');
 
@@ -596,6 +597,24 @@ function generateHTML(newsItems, options = {}) {
   const operatorLanes = renderOperatorLanes(newsItems);
   const issueStrip = renderIssueStrip(totalItems, uniqueSources.length, generatedAt);
   const issueTrail = renderIssueTrail(generatedAt);
+  const structuredData = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'SentryDigest',
+    url: SITE_METADATA_CONTRACT.publicSiteUrl,
+    description: SITE_METADATA_CONTRACT.description,
+    author: {
+      '@type': 'Person',
+      name: SITE_METADATA_CONTRACT.authorName,
+      url: SITE_METADATA_CONTRACT.authorUrl,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Rico Manifesto',
+      url: SITE_METADATA_CONTRACT.authorUrl,
+    },
+    sameAs: SITE_METADATA_CONTRACT.githubUrl,
+  }).replace(/</g, '\\u003c');
   const articleCards = newsItems.length > 0
     ? newsItems.map((article, index) => renderArticleCard(article, index, generatedAt)).join('')
     : renderEmptyState();
@@ -606,8 +625,19 @@ function generateHTML(newsItems, options = {}) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SentryDigest | Cybersecurity News</title>
-  <meta name="description" content="Latest cybersecurity news from top sources">
+  <title>${SITE_METADATA_CONTRACT.title}</title>
+  <meta name="description" content="${SITE_METADATA_CONTRACT.description}">
+  <link rel="canonical" href="${SITE_METADATA_CONTRACT.publicSiteUrl}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="${SITE_METADATA_CONTRACT.title}">
+  <meta property="og:description" content="${SITE_METADATA_CONTRACT.description}">
+  <meta property="og:url" content="${SITE_METADATA_CONTRACT.publicSiteUrl}">
+  <meta property="og:image" content="${SITE_METADATA_CONTRACT.imageUrl}">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="${SITE_METADATA_CONTRACT.title}">
+  <meta name="twitter:description" content="${SITE_METADATA_CONTRACT.description}">
+  <meta name="twitter:image" content="${SITE_METADATA_CONTRACT.imageUrl}">
+  <script type="application/ld+json">${structuredData}</script>
   <link rel="alternate" type="application/rss+xml" title="Cybersecurity News RSS Feed" href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}" />
   <link rel="icon" type="image/png" href="./assets/logo.png">
   <link rel="apple-touch-icon" href="./assets/logo.png">
@@ -836,10 +866,10 @@ function generateHTML(newsItems, options = {}) {
       ${articleCards}
     </div>
   </main>
-  
+
   <footer>
     <div class="container">
-      Powered by GitHub Actions • Updates every 3 hours • <a href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}" aria-label="Open generated RSS feed">RSS Feed</a>
+      A Rico Manifesto project by <a href="${SITE_METADATA_CONTRACT.authorUrl}">${SITE_METADATA_CONTRACT.authorName}</a> • Powered by GitHub Actions • Updates every 3 hours • <a data-rss-link href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}" aria-label="Open generated RSS feed">RSS Feed</a>
     </div>
   </footer>
 
@@ -1187,7 +1217,7 @@ function generateHTML(newsItems, options = {}) {
   </script>
 </body>
 </html>
-  `;
+`;
 }
 
 module.exports = {

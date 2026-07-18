@@ -9,6 +9,7 @@ const {
   formatSourceShortcutStatus,
   ISSUE_TRAIL_CONTRACT,
   RSS_CHANNEL_CONTRACT,
+  SITE_METADATA_CONTRACT,
   SOURCE_COVERAGE_CONTRACT,
 } = require('../scripts/generated-artifact-contracts');
 const { generateHTML } = require('../scripts/render-news-html');
@@ -45,7 +46,45 @@ function renderGeneratedMetadata(generatedAt = '2026-06-17T18:30:00.000Z') {
 }
 
 function renderDashboardRssHead() {
-  return '<link rel="alternate" type="application/rss+xml" title="Cybersecurity News RSS Feed" href="./feed.xml" />';
+  const structuredData = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'SentryDigest',
+    url: SITE_METADATA_CONTRACT.publicSiteUrl,
+    description: SITE_METADATA_CONTRACT.description,
+    author: {
+      '@type': 'Person',
+      name: SITE_METADATA_CONTRACT.authorName,
+      url: SITE_METADATA_CONTRACT.authorUrl,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Rico Manifesto',
+      url: SITE_METADATA_CONTRACT.authorUrl,
+    },
+    sameAs: SITE_METADATA_CONTRACT.githubUrl,
+  });
+  return `<title>${SITE_METADATA_CONTRACT.title}</title>
+    <meta name="description" content="${SITE_METADATA_CONTRACT.description}">
+    <link rel="canonical" href="${SITE_METADATA_CONTRACT.publicSiteUrl}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="${SITE_METADATA_CONTRACT.title}">
+    <meta property="og:description" content="${SITE_METADATA_CONTRACT.description}">
+    <meta property="og:url" content="${SITE_METADATA_CONTRACT.publicSiteUrl}">
+    <meta property="og:image" content="${SITE_METADATA_CONTRACT.imageUrl}">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="${SITE_METADATA_CONTRACT.title}">
+    <meta name="twitter:description" content="${SITE_METADATA_CONTRACT.description}">
+    <meta name="twitter:image" content="${SITE_METADATA_CONTRACT.imageUrl}">
+    <script type="application/ld+json">${structuredData}</script>
+    <link rel="alternate" type="application/rss+xml" title="Cybersecurity News RSS Feed" href="./feed.xml" />`;
+}
+
+function renderSitemap() {
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>${SITE_METADATA_CONTRACT.publicSiteUrl}</loc></url>
+</urlset>`;
 }
 
 function renderDashboardRssControls() {
@@ -53,7 +92,7 @@ function renderDashboardRssControls() {
 }
 
 function renderDashboardRssFooter() {
-  return '<footer><a href="./feed.xml" aria-label="Open generated RSS feed">RSS Feed</a></footer>';
+  return `<footer><a href="${SITE_METADATA_CONTRACT.authorUrl}">${SITE_METADATA_CONTRACT.authorName}</a><a data-rss-link href="./feed.xml" aria-label="Open generated RSS feed">RSS Feed</a></footer>`;
 }
 
 function renderFilterInsights() {
@@ -223,6 +262,7 @@ function createFixture(overrides = {}) {
         ${renderDashboardRssFooter()}
       </body></html>`
   );
+  writeText(path.join(repoRoot, 'sitemap.xml'), overrides.sitemapXml || renderSitemap());
 
   return repoRoot;
 }
@@ -236,6 +276,44 @@ test('validateArtifacts passes when generated artifacts agree', () => {
   assert.deepEqual(result.failures, []);
   assert.equal(result.itemCount, 2);
   assert.equal(result.enabledSourceCount, 1);
+});
+
+test('validateArtifacts rejects a missing project sitemap', () => {
+  const repoRoot = createFixture();
+  fs.unlinkSync(path.join(repoRoot, 'sitemap.xml'));
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(result.failures.join('\n'), /sitemap\.xml is missing/);
+});
+
+test('validateArtifacts rejects missing canonical site metadata', () => {
+  const generatedHtml = generateHTML([
+    {
+      title: 'Newer item',
+      link: 'https://example.com/newer',
+      date: '2026-06-17T18:00:00.000Z',
+      source: 'Example Security',
+      summary: 'Newest story',
+    },
+    {
+      title: 'Older item',
+      link: 'https://example.com/older',
+      date: '2026-06-17T17:00:00.000Z',
+      source: 'Example Security',
+      summary: 'Older story',
+    },
+  ], {
+    generatedAt: new Date('2026-06-17T18:30:00.000Z'),
+    sourceNames: ['Example Security'],
+  }).replace(`<link rel="canonical" href="${SITE_METADATA_CONTRACT.publicSiteUrl}">`, '');
+  const repoRoot = createFixture({ indexHtml: generatedHtml });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(result.failures.join('\n'), /index\.html canonical URL/);
 });
 
 test('validateArtifacts reports every changed downstream artifact mismatch', () => {
@@ -566,7 +644,7 @@ test('validateArtifacts rejects generated dashboard RSS link label drift', () =>
       ], ['Example Security'])}
       <article class="news-item"><a href="https://example.com/newer">Newer item</a></article>
       <article class="news-item"><a href="https://example.com/older">Older item</a></article>
-      <footer><a href="./feed.xml" aria-label="Open stale footer feed">RSS Feed</a></footer>
+      <footer><a data-rss-link href="./feed.xml" aria-label="Open stale footer feed">RSS Feed</a></footer>
     </body></html>`,
   });
 
@@ -583,7 +661,7 @@ test('validateArtifacts rejects generated dashboard RSS link label drift', () =>
   );
   assert.match(
     result.failures.join('\n'),
-    /index\.html RSS link footer a label Open stale footer feed must match Open generated RSS feed/
+    /index\.html RSS link footer a\[data-rss-link\] label Open stale footer feed must match Open generated RSS feed/
   );
 });
 
@@ -729,7 +807,7 @@ test('validateArtifacts rejects missing generated dashboard RSS link affordances
   );
   assert.match(
     result.failures.join('\n'),
-    /index\.html must render RSS link footer a for the dashboard RSS link contract/
+    /index\.html must render RSS link footer a\[data-rss-link\] for the dashboard RSS link contract/
   );
 });
 
