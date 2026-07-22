@@ -132,21 +132,16 @@ function normalizeArticleDate(article) {
 
 // Function to fetch RSS feed content
 async function fetchRSSFeed(source) {
-  try {
-    const Parser = require('rss-parser');
-    const parser = new Parser();
-    const feed = await parser.parseURL(source.url);
-    return feed.items.map(article => ({
-      title: article.title,
-      link: article.link,
-      date: normalizeArticleDate(article),
-      source: source.name,
-      summary: article.contentSnippet ? article.contentSnippet.substring(0, 200) + '...' : ''
-    }));
-  } catch (error) {
-    console.error(`Error fetching from ${source.name}:`, error.message);
-    return [];
-  }
+  const Parser = require('rss-parser');
+  const parser = new Parser();
+  const feed = await parser.parseURL(source.url);
+  return feed.items.map(article => ({
+    title: article.title,
+    link: article.link,
+    date: normalizeArticleDate(article),
+    source: source.name,
+    summary: article.contentSnippet ? article.contentSnippet.substring(0, 200) + '...' : ''
+  }));
 }
 
 /* VT integration removed
@@ -157,17 +152,33 @@ async function fetchRSSFeed(source) {
 async function fetchAllNews(options = {}) {
   const {
     sourceConfig = loadSourceConfig(options),
+    fetchFeed = fetchRSSFeed,
+    logger = console,
   } = options;
   const sources = sourceConfig.enabledRssSources;
   const allNewsPromises = sources.map(source => {
     if (source.type === 'rss') {
-      return fetchRSSFeed(source);
+      return fetchFeed(source);
     }
     // Add other types of fetching if needed (e.g., web scraping for non-RSS sources)
     return Promise.resolve([]);
   });
 
-  const allNewsArrays = await Promise.all(allNewsPromises);
+  const fetchResults = await Promise.allSettled(allNewsPromises);
+  const allNewsArrays = [];
+
+  fetchResults.forEach((result, index) => {
+    if (result.status === 'fulfilled') {
+      allNewsArrays.push(result.value);
+      return;
+    }
+
+    logger.error(`Error fetching from ${sources[index].name}:`, result.reason?.message || result.reason);
+  });
+
+  if (sources.length > 0 && allNewsArrays.length === 0) {
+    throw new Error(`Failed to fetch all ${sources.length} enabled RSS sources`);
+  }
   
   // Flatten the array of arrays into a single array
   let allNews = allNewsArrays.flat();
