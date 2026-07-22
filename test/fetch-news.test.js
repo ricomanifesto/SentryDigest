@@ -5,6 +5,7 @@ const path = require('node:path');
 const test = require('node:test');
 
 const {
+  fetchAllNews,
   INVALID_FEED_DATE_FALLBACK,
   loadSourceConfig,
   normalizeArticleDate,
@@ -50,6 +51,59 @@ test('fetch-news helpers can be imported without loading source config', () => {
       require.cache[modulePath] = cachedModule;
     }
   }
+});
+
+test('fetchAllNews keeps successful source results when another source fails', async () => {
+  const sourceConfig = {
+    enabledRssSources: [
+      { name: 'Healthy Source', type: 'rss' },
+      { name: 'Unavailable Source', type: 'rss' },
+    ],
+    maxNewsItems: 30,
+  };
+  const errors = [];
+
+  const result = await fetchAllNews({
+    sourceConfig,
+    fetchFeed: async (source) => {
+      if (source.name === 'Unavailable Source') {
+        throw new Error('upstream unavailable');
+      }
+      return [{
+        title: 'Current security item',
+        link: 'https://example.com/current',
+        date: new Date('2026-07-22T10:00:00.000Z'),
+        source: source.name,
+        summary: '',
+      }];
+    },
+    logger: { error: (...args) => errors.push(args.join(' ')) },
+  });
+
+  assert.equal(result.length, 1);
+  assert.equal(result[0].source, 'Healthy Source');
+  assert.match(errors[0], /Unavailable Source.*upstream unavailable/);
+});
+
+test('fetchAllNews rejects a total source outage before artifact generation', async () => {
+  const sourceConfig = {
+    enabledRssSources: [
+      { name: 'Source One', type: 'rss' },
+      { name: 'Source Two', type: 'rss' },
+    ],
+    maxNewsItems: 30,
+  };
+
+  await assert.rejects(
+    fetchAllNews({
+      sourceConfig,
+      fetchFeed: async () => {
+        throw new Error('upstream unavailable');
+      },
+      logger: { error() {} },
+    }),
+    /Failed to fetch all 2 enabled RSS sources/,
+  );
 });
 
 test('normalizeFeedDate preserves valid feed dates', () => {
