@@ -229,10 +229,10 @@
       <div id="filterStatusAnnouncement" class="sr-only" role="status" aria-live="polite" aria-atomic="true">Showing 30 of 30 articles.</div>
       <button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters</button>
     </div>
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-08-02T08:29:32.778Z">8/2/2026, 8:29:32 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-08-02T10:43:35.719Z">8/2/2026, 10:43:35 AM</time></div>
     <section class="issue-strip" aria-label="Digest issue metadata">
       <span class="issue-label">Current issue</span>
-      <time datetime="2026-08-02T08:29:32.778Z">August 2, 2026</time>
+      <time datetime="2026-08-02T10:43:35.719Z">August 2, 2026</time>
       <span class="issue-stat"><strong>30</strong> articles</span>
       <span class="issue-stat"><strong>3</strong> sources</span>
       <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
@@ -241,7 +241,7 @@
       <span class="issue-trail-current" aria-current="page">Current digest</span>
       <a href="./feed.xml" aria-label="Open generated RSS feed">RSS feed</a>
       <a href="#sourceCoverage">Source coverage</a>
-      <span class="issue-trail-meta">Updated <time datetime="2026-08-02T08:29:32.778Z">08:29 UTC</time></span>
+      <span class="issue-trail-meta">Updated <time datetime="2026-08-02T10:43:35.719Z">10:43 UTC</time></span>
       <span class="issue-trail-meta">3h cadence</span>
     </nav>
     <div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true" hidden></div>
@@ -298,7 +298,7 @@
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 15h old</span>
+            <span class="chip age-chip">Fresh - 17h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/coldcard-hardware-wallet-flaw-linked-to.html" target="_blank" rel="noopener">Coldcard Hardware Wallet Flaw Linked to $70 Million Bitcoin Theft in 41 Minutes</a></h2>
           <div class="news-meta">
@@ -321,7 +321,7 @@
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 18h old</span>
+            <span class="chip age-chip">Fresh - 20h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/rails-patches-critical-active-storage-flaw-with-rce-potential/" target="_blank" rel="noopener">Rails patches critical Active Storage flaw with RCE potential</a></h2>
           <div class="news-meta">
@@ -340,18 +340,17 @@
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Hackers Poison Adform Script to Swap Crypto Wallet Addresses Across Customer Sites" data-summary="Attackers modified a JavaScript file served by advertising technology company Adform, turning it into a browser-side tool that rewrites cryptocurrency wallet addresses.
 
-Adform detected the incident o..." data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh">
+Adform detected the incident o..." data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 23h old</span>
+            <span class="chip age-chip">Recent - 1d old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/hackers-poison-adform-script-to-swap.html" target="_blank" rel="noopener">Hackers Poison Adform Script to Swap Crypto Wallet Addresses Across Customer Sites</a></h2>
           <div class="news-meta">
             <time datetime="2026-08-01T09:03:07.000Z">August 1, 2026 at 9:03 AM</time>
-            <span class="badge-new">NEW</span>
           </div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: monitor</span></div>
           <details class="summary-disclosure">
@@ -1221,7 +1220,7 @@ After an initial Telegram instruction, th...</p>
         const hasComposedFilters = Boolean(term || severity || tag || vendor || age || handoff);
         const safeStatusActionLabel = typeof statusActionLabel === 'string' ? statusActionLabel : '';
         const emptyFilteredStatusText = visible === 0 ? getEmptyFilteredMessage(src, hasComposedFilters) : '';
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-08-02T08:29:32.778Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-08-02T10:43:35.719Z').toLocaleString());
         if (filterStatusAnnouncement) filterStatusAnnouncement.textContent = getFilterStatusText(visible, total, safeStatusActionLabel, emptyFilteredStatusText);
         renderEmptyFilteredState(visible, src, hasComposedFilters);
         sourceCoverageButtons.forEach(function(button){
