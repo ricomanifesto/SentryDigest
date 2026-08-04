@@ -633,14 +633,17 @@ function generateHTML(newsItems, options = {}) {
   <meta property="og:description" content="${SITE_METADATA_CONTRACT.description}">
   <meta property="og:url" content="${SITE_METADATA_CONTRACT.publicSiteUrl}">
   <meta property="og:image" content="${SITE_METADATA_CONTRACT.imageUrl}">
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${SITE_METADATA_CONTRACT.title}">
   <meta name="twitter:description" content="${SITE_METADATA_CONTRACT.description}">
   <meta name="twitter:image" content="${SITE_METADATA_CONTRACT.imageUrl}">
   <script type="application/ld+json">${structuredData}</script>
   <link rel="alternate" type="application/rss+xml" title="Cybersecurity News RSS Feed" href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}" />
-  <link rel="icon" type="image/png" href="./assets/logo.png">
-  <link rel="apple-touch-icon" href="./assets/logo.png">
+  <link rel="icon" href="./assets/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/svg+xml" href="./assets/icon.svg">
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+  <link rel="manifest" href="./site.webmanifest">
+  <meta name="theme-color" content="#d97706">
   <style>
     :root { 
       --bg: #f7f8fa; 
@@ -801,7 +804,7 @@ function generateHTML(newsItems, options = {}) {
   <header class="site-header">
     <div class="container masthead">
       <div class="brand">
-        <img src="./assets/logo.png" alt="SentryDigest" />
+        <img src="./assets/icon.svg" alt="SentryDigest" />
         <div>
           <div class="title">SentryDigest</div>
           <div class="subtitle">Cybersecurity News Aggregator</div>

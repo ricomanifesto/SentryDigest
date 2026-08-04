@@ -72,7 +72,7 @@ function renderDashboardRssHead() {
     <meta property="og:description" content="${SITE_METADATA_CONTRACT.description}">
     <meta property="og:url" content="${SITE_METADATA_CONTRACT.publicSiteUrl}">
     <meta property="og:image" content="${SITE_METADATA_CONTRACT.imageUrl}">
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="${SITE_METADATA_CONTRACT.title}">
     <meta name="twitter:description" content="${SITE_METADATA_CONTRACT.description}">
     <meta name="twitter:image" content="${SITE_METADATA_CONTRACT.imageUrl}">

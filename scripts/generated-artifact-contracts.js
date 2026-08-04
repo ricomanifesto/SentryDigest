@@ -104,7 +104,7 @@ const FEED_INFO_CONTRACT = Object.freeze({
 
 const RSS_CHANNEL_CONTRACT = Object.freeze({
   description: 'Latest cybersecurity news from top sources',
-  imageUrl: 'https://ricomanifesto.github.io/SentryDigest/assets/logo.png',
+  imageUrl: 'https://ricomanifesto.github.io/SentryDigest/assets/icon-512.png',
   publicFeedUrl: FEED_INFO_CONTRACT.publicFeedUrl,
   publicSiteUrl: 'https://ricomanifesto.github.io/SentryDigest/',
   title: 'Cybersecurity News Aggregator',
@@ -115,7 +115,7 @@ const SITE_METADATA_CONTRACT = Object.freeze({
   authorUrl: 'https://ricomanifesto.com/',
   description: RSS_CHANNEL_CONTRACT.description,
   githubUrl: 'https://github.com/ricomanifesto/SentryDigest',
-  imageUrl: RSS_CHANNEL_CONTRACT.imageUrl,
+  imageUrl: 'https://ricomanifesto.github.io/SentryDigest/assets/social-preview.png',
   publicSiteUrl: RSS_CHANNEL_CONTRACT.publicSiteUrl,
   title: 'SentryDigest | Cybersecurity News',
 });

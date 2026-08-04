@@ -704,7 +704,7 @@ function validateSiteMetadata(indexHtml, sitemapXml, failures) {
       ['index.html Open Graph description', $('meta[property="og:description"]').attr('content'), SITE_METADATA_CONTRACT.description],
       ['index.html Open Graph URL', $('meta[property="og:url"]').attr('content'), SITE_METADATA_CONTRACT.publicSiteUrl],
       ['index.html Open Graph image', $('meta[property="og:image"]').attr('content'), SITE_METADATA_CONTRACT.imageUrl],
-      ['index.html Twitter card', $('meta[name="twitter:card"]').attr('content'), 'summary'],
+      ['index.html Twitter card', $('meta[name="twitter:card"]').attr('content'), 'summary_large_image'],
       ['index.html Twitter title', $('meta[name="twitter:title"]').attr('content'), SITE_METADATA_CONTRACT.title],
       ['index.html Twitter description', $('meta[name="twitter:description"]').attr('content'), SITE_METADATA_CONTRACT.description],
       ['index.html Twitter image', $('meta[name="twitter:image"]').attr('content'), SITE_METADATA_CONTRACT.imageUrl],
