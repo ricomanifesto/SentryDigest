@@ -228,9 +228,9 @@ test('generateHTML publishes discoverable project identity metadata', () => {
 
   assert.match(html, /<link rel="canonical" href="https:\/\/ricomanifesto\.github\.io\/SentryDigest\/">/);
   assert.match(html, /<meta property="og:url" content="https:\/\/ricomanifesto\.github\.io\/SentryDigest\/">/);
-  assert.match(html, /<meta property="og:image" content="https:\/\/ricomanifesto\.github\.io\/SentryDigest\/assets\/logo\.png">/);
-  assert.match(html, /<meta name="twitter:card" content="summary">/);
-  assert.match(html, /<meta name="twitter:image" content="https:\/\/ricomanifesto\.github\.io\/SentryDigest\/assets\/logo\.png">/);
+  assert.match(html, /<meta property="og:image" content="https:\/\/ricomanifesto\.github\.io\/SentryDigest\/assets\/social-preview\.png">/);
+  assert.match(html, /<meta name="twitter:card" content="summary_large_image">/);
+  assert.match(html, /<meta name="twitter:image" content="https:\/\/ricomanifesto\.github\.io\/SentryDigest\/assets\/social-preview\.png">/);
   assert.match(html, /<script type="application\/ld\+json">[\s\S]*"@type":"WebSite"[\s\S]*"name":"Michael Rico"[\s\S]*<\/script>/);
   assert.match(html, /<a href="https:\/\/ricomanifesto\.com\/">Michael Rico<\/a>/);
   assert.doesNotMatch(html, /\/Users\//);

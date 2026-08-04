@@ -1,7 +1,10 @@
 # SentryDigest
 
 <p align="center">
-  <img src="assets/logo.png" alt="SentryDigest Logo" width="400">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/logo-lockup-dark.png">
+    <img src="assets/logo-lockup-light.png" alt="SentryDigest" width="440">
+  </picture>
 </p>
 
 SentryDigest turns noisy security feeds into a daily analyst-ready briefing, with source links, severity cues, and clean HTML output you can inspect before sharing.
