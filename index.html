@@ -193,7 +193,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml" aria-label="Open generated RSS feed">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -209,7 +209,7 @@
       </select>
       <select id="tagFilter" class="select" aria-label="Filter by topic tag">
         <option value="">All topics</option>
-        <option value="AI Security">AI Security</option><option value="Cloud">Cloud</option><option value="Data Breach">Data Breach</option><option value="Exploitation">Exploitation</option><option value="Identity">Identity</option><option value="Malware">Malware</option><option value="Ransomware">Ransomware</option><option value="Supply Chain">Supply Chain</option><option value="Vulnerability">Vulnerability</option>
+        <option value="AI Security">AI Security</option><option value="Data Breach">Data Breach</option><option value="Exploitation">Exploitation</option><option value="Identity">Identity</option><option value="Malware">Malware</option><option value="Ransomware">Ransomware</option><option value="Supply Chain">Supply Chain</option><option value="Vulnerability">Vulnerability</option>
       </select>
       <select id="vendorFilter" class="select" aria-label="Filter by affected vendor">
         <option value="">All vendors</option>
@@ -229,10 +229,10 @@
       <div id="filterStatusAnnouncement" class="sr-only" role="status" aria-live="polite" aria-atomic="true">Showing 30 of 30 articles.</div>
       <button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters</button>
     </div>
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-08-03T22:10:58.099Z">8/3/2026, 10:10:58 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-08-04T02:55:40.244Z">8/4/2026, 2:55:40 AM</time></div>
     <section class="issue-strip" aria-label="Digest issue metadata">
       <span class="issue-label">Current issue</span>
-      <time datetime="2026-08-03T22:10:58.099Z">August 3, 2026</time>
+      <time datetime="2026-08-04T02:55:40.244Z">August 4, 2026</time>
       <span class="issue-stat"><strong>30</strong> articles</span>
       <span class="issue-stat"><strong>3</strong> sources</span>
       <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
@@ -241,7 +241,7 @@
       <span class="issue-trail-current" aria-current="page">Current digest</span>
       <a href="./feed.xml" aria-label="Open generated RSS feed">RSS feed</a>
       <a href="#sourceCoverage">Source coverage</a>
-      <span class="issue-trail-meta">Updated <time datetime="2026-08-03T22:10:58.099Z">22:10 UTC</time></span>
+      <span class="issue-trail-meta">Updated <time datetime="2026-08-04T02:55:40.244Z">02:55 UTC</time></span>
       <span class="issue-trail-meta">3h cadence</span>
     </nav>
     <div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true" hidden></div>
@@ -273,8 +273,8 @@
     <section class="operator-lanes" aria-label="Operator scan lanes">
       <article class="operator-lane" data-lane="Incident watch" data-lane-cue="SentryInsight: incident watch">
         <div class="operator-lane-heading">Incident watch</div>
-        <span class="operator-lane-count" data-lane-count><strong>7</strong> items</span>
-        <a href="https://thehackernews.com/2026/08/google-password-manager-attacks-could.html" class="operator-lane-link" data-lane-link>Google Password Manager Attacks Could Let Malware Hijack Passkey-Protected Accounts</a>
+        <span class="operator-lane-count" data-lane-count><strong>8</strong> items</span>
+        <a href="https://www.bleepingcomputer.com/news/security/hotel-wi-fi-attacks-use-custom-malware-to-breach-microsoft-365-accounts/" class="operator-lane-link" data-lane-link>Hotel Wi-Fi attacks use custom malware to breach Microsoft 365 accounts</a>
       </article><article class="operator-lane" data-lane="Vulnerability triage" data-lane-cue="SentryInsight: vuln triage">
         <div class="operator-lane-heading">Vulnerability triage</div>
         <span class="operator-lane-count" data-lane-count><strong>10</strong> items</span>
@@ -292,13 +292,53 @@
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Hotel Wi-Fi attacks use custom malware to breach Microsoft 365 accounts" data-summary="Microsoft has linked a global campaign targeting hospitality Wi-Fi networks to the Russian threat actor Midnight Blizzard, also known as APT29. [...]..." data-severity="Critical" data-tags="Data Breach,Malware" data-vendors="Microsoft" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vendor watch" data-age-bucket="Fresh">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+            <span class="chip">Industry media</span>
+            <span class="chip age-chip">Fresh - 2h old</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hotel-wi-fi-attacks-use-custom-malware-to-breach-microsoft-365-accounts/" target="_blank" rel="noopener">Hotel Wi-Fi attacks use custom malware to breach Microsoft 365 accounts</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-08-04T00:17:15.000Z">August 4, 2026 at 12:17 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <div class="facet-row"><span class="chip">Microsoft</span><span class="chip">Data Breach</span><span class="chip">Malware</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span><span class="handoff-cue">SentryInsight: vendor watch</span></div>
+          <p class="news-summary">Microsoft has linked a global campaign targeting hospitality Wi-Fi networks to the Russian threat actor Midnight Blizzard, also known as APT29. [...]...</p>
+        </article>
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="New Pass-ta-key attacks let malware hijack Google-synced passkeys" data-summary="Security researchers have discovered three attacks that allow malware on already-compromised Windows devices to abuse Google Password Manager&#39;s synced passkeys to take over accounts, bypass user verif..." data-severity="Elevated" data-tags="Identity,Malware" data-vendors="Microsoft,Google" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vendor watch" data-age-bucket="Fresh">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
+            <span class="chip">bleepingcomputer.com</span>
+            <span class="chip">Industry media</span>
+            <span class="chip age-chip">Fresh - 2h old</span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/new-pass-ta-key-attacks-let-malware-hijack-google-synced-passkeys/" target="_blank" rel="noopener">New Pass-ta-key attacks let malware hijack Google-synced passkeys</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-08-03T23:58:01.000Z">August 3, 2026 at 11:58 PM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <div class="facet-row"><span class="chip">Microsoft</span><span class="chip">Google</span><span class="chip">Identity</span><span class="chip">Malware</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span><span class="handoff-cue">SentryInsight: vendor watch</span></div>
+          <details class="summary-disclosure">
+            <summary class="summary-toggle" aria-controls="summary-full-1">
+              <span class="summary-preview-text">Security researchers have discovered three attacks that allow malware on already-compromised Windows devices to abuse Google Password Manager&#39;s synced passkeys</span><span class="summary-ellipsis" aria-hidden="true">...</span>
+              <span class="summary-action">Show full summary</span>
+            </summary>
+            <p class="news-summary summary-full" id="summary-full-1">to take over accounts, bypass user verif...</p>
+          </details>
+        </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Attackers Exploit N-able Patch Bypass Flaw on RMM Servers" data-summary="Over the weekend, the vendor discovered another vector of authentication bypass CVE-2026-18577 that gives attackers administrator access...." data-severity="Elevated" data-tags="Vulnerability,Exploitation" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Fresh">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 49m old</span>
+            <span class="chip age-chip">Fresh - 5h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/attackers-exploit-n-able-patch-bypass-flaw" target="_blank" rel="noopener">Attackers Exploit N-able Patch Bypass Flaw on RMM Servers</a></h2>
           <div class="news-meta">
@@ -315,7 +355,7 @@
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 1h old</span>
+            <span class="chip age-chip">Fresh - 6h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/new-tool-advances-ai-generated-video-detection" target="_blank" rel="noopener">New Tool Traces AI Videos Back to Their Source</a></h2>
           <div class="news-meta">
@@ -326,22 +366,22 @@
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: monitor</span></div>
           <p class="news-summary">Researchers dug into the root of the problem with the goal of promoting industry collaboration on improved protective measures....</p>
         </article>
-        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Anthropic: AI Attacks Result of Security Gaps, Not Model Issues" data-summary="Last month&#39;s incidents in which Claude breached real-world systems derived from over-permissioning, especially with Internet access...." data-severity="Monitor" data-tags="AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh">
+        <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Anthropic: Claude Attacks Result of Security Gaps, Not Model Issues" data-summary="Last month&#39;s incidents in which the AI model breached real-world systems derived from over-permissioning, especially with Internet access...." data-severity="Monitor" data-tags="AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 1h old</span>
+            <span class="chip age-chip">Fresh - 6h old</span>
           </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/anthropic-ai-issues-result-security-gaps" target="_blank" rel="noopener">Anthropic: AI Attacks Result of Security Gaps, Not Model Issues</a></h2>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/anthropic-ai-issues-result-security-gaps" target="_blank" rel="noopener">Anthropic: Claude Attacks Result of Security Gaps, Not Model Issues</a></h2>
           <div class="news-meta">
             <time datetime="2026-08-03T20:31:12.000Z">August 3, 2026 at 8:31 PM</time>
             <span class="badge-new">NEW</span>
           </div>
           <div class="facet-row"><span class="chip">AI Security</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: monitor</span></div>
-          <p class="news-summary">Last month&#39;s incidents in which Claude breached real-world systems derived from over-permissioning, especially with Internet access....</p>
+          <p class="news-summary">Last month&#39;s incidents in which the AI model breached real-world systems derived from over-permissioning, especially with Internet access....</p>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="New DOUBLECUP ClickFix service hides malware in browser cache images" data-summary="A new Russian loader-as-a-service named DOUBLECUP uses ClickFix attacks to hide malicious code in PNG images cached by victims&#39; browsers, ultimately delivering CountLoader to Windows and macOS devices..." data-severity="Elevated" data-tags="Malware" data-vendors="Microsoft,Apple" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Fresh">
           <div class="chips">
@@ -349,7 +389,7 @@
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 2h old</span>
+            <span class="chip age-chip">Fresh - 6h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/new-doublecup-clickfix-service-hides-malware-in-browser-cache-images/" target="_blank" rel="noopener">New DOUBLECUP ClickFix service hides malware in browser cache images</a></h2>
           <div class="news-meta">
@@ -359,11 +399,11 @@
           <div class="facet-row"><span class="chip">Microsoft</span><span class="chip">Apple</span><span class="chip">Malware</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: vendor watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-3">
+            <summary class="summary-toggle" aria-controls="summary-full-5">
               <span class="summary-preview-text">A new Russian loader-as-a-service named DOUBLECUP uses ClickFix attacks to hide malicious code in PNG images cached by victims&#39; browsers, ultimately delivering</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-3">CountLoader to Windows and macOS devices...</p>
+            <p class="news-summary summary-full" id="summary-full-5">CountLoader to Windows and macOS devices...</p>
           </details>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Fake Roblox Xeno script launcher pushes infostealer, RAT malware" data-summary="Fake Xeno Executor installers are infecting unsuspecting Roblox players with malware that provides remote access and steals sensitive information. [...]..." data-severity="Elevated" data-tags="Malware" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh">
@@ -372,7 +412,7 @@
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 2h old</span>
+            <span class="chip age-chip">Fresh - 7h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/fake-roblox-xeno-script-launcher-pushes-infostealer-rat-malware/" target="_blank" rel="noopener">Fake Roblox Xeno script launcher pushes infostealer, RAT malware</a></h2>
           <div class="news-meta">
@@ -389,7 +429,7 @@
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 3h old</span>
+            <span class="chip age-chip">Fresh - 8h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/18-malicious-npm-packages-deliver-cross.html" target="_blank" rel="noopener">18 Malicious npm Packages Deliver Cross-Platform RAT to Alibaba Tool Users</a></h2>
           <div class="news-meta">
@@ -399,11 +439,11 @@
           <div class="facet-row"><span class="chip">Malware</span><span class="chip">Supply Chain</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: monitor</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-5">
+            <summary class="summary-toggle" aria-controls="summary-full-7">
               <span class="summary-preview-text">Cybersecurity researchers have discovered a new set of malicious npm packages that target users of Alibaba developer tools with a cross-platform remote access</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-5">trojan (RAT) as part of a sophisticated, ...</p>
+            <p class="news-summary summary-full" id="summary-full-7">trojan (RAT) as part of a sophisticated, ...</p>
           </details>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="N-able warns of N-central auth bypass flaw exploited in attacks" data-summary="N-able is warning customers that hackers are exploiting an authentication bypass vulnerability (CVE-2026-18577) affecting both hosted and on-premises N-central servers. [...]..." data-severity="Elevated" data-tags="Vulnerability,Exploitation" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Fresh">
@@ -412,7 +452,7 @@
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 5h old</span>
+            <span class="chip age-chip">Fresh - 9h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/n-able-warns-of-n-central-auth-bypass-flaw-exploited-in-attacks/" target="_blank" rel="noopener">N-able warns of N-central auth bypass flaw exploited in attacks</a></h2>
           <div class="news-meta">
@@ -422,11 +462,11 @@
           <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: vuln triage</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-6">
+            <summary class="summary-toggle" aria-controls="summary-full-8">
               <span class="summary-preview-text">N-able is warning customers that hackers are exploiting an authentication bypass vulnerability (CVE-2026-18577) affecting both hosted and on-premises N-central</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-6">servers. [...]...</p>
+            <p class="news-summary summary-full" id="summary-full-8">servers. [...]...</p>
           </details>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Google Password Manager Attacks Could Let Malware Hijack Passkey-Protected Accounts" data-summary="Malware running as an ordinary user on a Windows machine can sign into a victim&#39;s passkey-protected accounts without a fingerprint, a PIN, or anything at all appearing on the victim&#39;s screen.
@@ -437,7 +477,7 @@ Unit 42..." data-severity="Elevated" data-tags="Identity,Malware" data-vendors="
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 5h old</span>
+            <span class="chip age-chip">Fresh - 10h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/google-password-manager-attacks-could.html" target="_blank" rel="noopener">Google Password Manager Attacks Could Let Malware Hijack Passkey-Protected Accounts</a></h2>
           <div class="news-meta">
@@ -447,11 +487,11 @@ Unit 42..." data-severity="Elevated" data-tags="Identity,Malware" data-vendors="
           <div class="facet-row"><span class="chip">Microsoft</span><span class="chip">Google</span><span class="chip">Identity</span><span class="chip">Malware</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span><span class="handoff-cue">SentryInsight: vendor watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-7">
+            <summary class="summary-toggle" aria-controls="summary-full-9">
               <span class="summary-preview-text">Malware running as an ordinary user on a Windows machine can sign into a victim&#39;s passkey-protected accounts without a fingerprint, a PIN, or anything at all</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-7">appearing on the victim&#39;s screen.
+            <p class="news-summary summary-full" id="summary-full-9">appearing on the victim&#39;s screen.
 
 Unit 42...</p>
           </details>
@@ -464,7 +504,7 @@ In a repor..." data-severity="Critical" data-tags="Ransomware,Exploitation" data
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 5h old</span>
+            <span class="chip age-chip">Fresh - 10h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/inc-ransomware-emerges-as-dominant.html" target="_blank" rel="noopener">INC Ransomware Emerges as Dominant Actor Exploiting SonicWall SMA 1000 Flaws</a></h2>
           <div class="news-meta">
@@ -474,11 +514,11 @@ In a repor..." data-severity="Critical" data-tags="Ransomware,Exploitation" data
           <div class="facet-row"><span class="chip">Ransomware</span><span class="chip">Exploitation</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span><span class="handoff-cue">SentryInsight: vuln triage</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-8">
+            <summary class="summary-toggle" aria-controls="summary-full-10">
               <span class="summary-preview-text">The INC Ransomware operation has emerged as the &quot;dominant threat actor&quot; exploiting the recently disclosed security flaws in SonicWall Secure Mobile Access</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-8">(SMA) 1000 series VPN appliances.
+            <p class="news-summary summary-full" id="summary-full-10">(SMA) 1000 series VPN appliances.
 
 In a repor...</p>
           </details>
@@ -489,7 +529,7 @@ In a repor...</p>
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 6h old</span>
+            <span class="chip age-chip">Fresh - 11h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/chinese-actor-deepseek-ai-agent-attack-security-firm" target="_blank" rel="noopener">Chinese Actor Weaponizes Deepseek AI Agent to Attack Security Firm</a></h2>
           <div class="news-meta">
@@ -506,7 +546,7 @@ In a repor...</p>
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 7h old</span>
+            <span class="chip age-chip">Fresh - 11h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/exfilsquad-hackers-leak-info-of-over-100-000-uk-police-officers-staff/" target="_blank" rel="noopener">ExfilSquad hackers leak info of over 100,000 UK police officers, staff</a></h2>
           <div class="news-meta">
@@ -516,11 +556,11 @@ In a repor...</p>
           <div class="facet-row"><span class="chip">Data Breach</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-10">
+            <summary class="summary-toggle" aria-controls="summary-full-12">
               <span class="summary-preview-text">A cyberattack on the U.K.&#39;s Police National Legal Database (PNLD) has compromised contact data of more than 100,000 police officers and other criminal justice</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-10">professionals. [...]...</p>
+            <p class="news-summary summary-full" id="summary-full-12">professionals. [...]...</p>
           </details>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Inside the Underground Business of the Android BTMOB RAT malware" data-summary="Flare researchers analyzed thousands of underground posts to examine how the BTMOB Android malware operation evolved into a fragmented ecosystem of resellers, source-code vendors, custom versions, and..." data-severity="Elevated" data-tags="Malware" data-vendors="Google" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Fresh">
@@ -529,7 +569,7 @@ In a repor...</p>
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 7h old</span>
+            <span class="chip age-chip">Fresh - 12h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/inside-the-underground-business-of-btmob-rat/" target="_blank" rel="noopener">Inside the Underground Business of the Android BTMOB RAT malware</a></h2>
           <div class="news-meta">
@@ -539,11 +579,11 @@ In a repor...</p>
           <div class="facet-row"><span class="chip">Google</span><span class="chip">Malware</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: vendor watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-11">
+            <summary class="summary-toggle" aria-controls="summary-full-13">
               <span class="summary-preview-text">Flare researchers analyzed thousands of underground posts to examine how the BTMOB Android malware operation evolved into a fragmented ecosystem of resellers,</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-11">source-code vendors, custom versions, and...</p>
+            <p class="news-summary summary-full" id="summary-full-13">source-code vendors, custom versions, and...</p>
           </details>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="⚡ Weekly Recap: Rogue AI Models, $88M Bitcoin Theft, Water-System Attacks and Dangling DNS Hijacks" data-summary="This week kept coming back to permission. A model crossed a boundary. A wallet trusted bad randomness. Webmail kept an intruder around. Public systems, package feeds, hotel networks, and login flows a..." data-severity="Monitor" data-tags="AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh">
@@ -552,7 +592,7 @@ In a repor...</p>
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 8h old</span>
+            <span class="chip age-chip">Fresh - 12h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/weekly-recap-rogue-ai-models-88m.html" target="_blank" rel="noopener">⚡ Weekly Recap: Rogue AI Models, $88M Bitcoin Theft, Water-System Attacks and Dangling DNS Hijacks</a></h2>
           <div class="news-meta">
@@ -562,11 +602,11 @@ In a repor...</p>
           <div class="facet-row"><span class="chip">AI Security</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: monitor</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-12">
+            <summary class="summary-toggle" aria-controls="summary-full-14">
               <span class="summary-preview-text">This week kept coming back to permission. A model crossed a boundary. A wallet trusted bad randomness. Webmail kept an intruder around. Public systems, package</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-12">feeds, hotel networks, and login flows a...</p>
+            <p class="news-summary summary-full" id="summary-full-14">feeds, hotel networks, and login flows a...</p>
           </details>
         </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Is There Really a Fix for CISO Fatigue?" data-summary="Accountability without any real authority is driving CISO burnout, and organizations need to take notice...." data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh">
@@ -575,7 +615,7 @@ In a repor...</p>
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 8h old</span>
+            <span class="chip age-chip">Fresh - 12h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/fix-for-ciso-fatigue" target="_blank" rel="noopener">Is There Really a Fix for CISO Fatigue?</a></h2>
           <div class="news-meta">
@@ -593,7 +633,7 @@ AI platforms like Claude, Codex and Cursor are already helping security teams wr
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 10h old</span>
+            <span class="chip age-chip">Fresh - 15h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/fomo-in-soc-where-ai-platforms-like.html" target="_blank" rel="noopener">FOMO in the SOC: Where AI Platforms like Claude Actually Fit</a></h2>
           <div class="news-meta">
@@ -603,13 +643,13 @@ AI platforms like Claude, Codex and Cursor are already helping security teams wr
           <div class="facet-row"><span class="chip">AI Security</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: monitor</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-14">
+            <summary class="summary-toggle" aria-controls="summary-full-16">
               <span class="summary-preview-text">AI is moving incredibly fast, and every security leader is feeling the pressure to keep up.
 
 AI platforms like Claude, Codex and Cursor are already helping</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-14">security teams write detections, investigate...</p>
+            <p class="news-summary summary-full" id="summary-full-16">security teams write detections, investigate...</p>
           </details>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Chinese Threat Actor Uses Leaked DarkSword Kit to Deploy GHOSTBLADE on iOS" data-summary="An unknown Chinese-speaking threat actor has been observed running a campaign targeting Apple iOS devices by leveraging a publicly leaked version of the DarkSword exploit kit.
@@ -620,7 +660,7 @@ Attack surface manageme..." data-severity="Elevated" data-tags="Exploitation" da
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 11h old</span>
+            <span class="chip age-chip">Fresh - 16h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/chinese-threat-actor-uses-leaked.html" target="_blank" rel="noopener">Chinese Threat Actor Uses Leaked DarkSword Kit to Deploy GHOSTBLADE on iOS</a></h2>
           <div class="news-meta">
@@ -630,11 +670,11 @@ Attack surface manageme..." data-severity="Elevated" data-tags="Exploitation" da
           <div class="facet-row"><span class="chip">Apple</span><span class="chip">Exploitation</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: vuln triage</span><span class="handoff-cue">SentryInsight: vendor watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-15">
+            <summary class="summary-toggle" aria-controls="summary-full-17">
               <span class="summary-preview-text">An unknown Chinese-speaking threat actor has been observed running a campaign targeting Apple iOS devices by leveraging a publicly leaked version of the</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-15">DarkSword exploit kit.
+            <p class="news-summary summary-full" id="summary-full-17">DarkSword exploit kit.
 
 Attack surface manageme...</p>
           </details>
@@ -647,7 +687,7 @@ The data included names, organisations ..." data-severity="Critical" data-tags="
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 12h old</span>
+            <span class="chip age-chip">Fresh - 17h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/pnld-breach-exposes-uk-police-and.html" target="_blank" rel="noopener">PNLD Breach Exposes U.K. Police and Government Contact Details on Dark Web</a></h2>
           <div class="news-meta">
@@ -657,11 +697,11 @@ The data included names, organisations ..." data-severity="Critical" data-tags="
           <div class="facet-row"><span class="chip">Data Breach</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-16">
+            <summary class="summary-toggle" aria-controls="summary-full-18">
               <span class="summary-preview-text">The Police National Legal Database (PNLD) has confirmed that police, government and customer contact information was compromised and published on the dark</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-16">web.
+            <p class="news-summary summary-full" id="summary-full-18">web.
 
 The data included names, organisations ...</p>
           </details>
@@ -674,7 +714,7 @@ The vendor&#39;s July..." data-severity="Elevated" data-tags="Vulnerability" dat
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 14h old</span>
+            <span class="chip age-chip">Fresh - 18h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/thermo-fisher-patches-flaw-that-could.html" target="_blank" rel="noopener">Thermo Fisher Patches Flaw That Could Make DNA File Tampering Nearly Undetectable</a></h2>
           <div class="news-meta">
@@ -684,11 +724,11 @@ The vendor&#39;s July..." data-severity="Elevated" data-tags="Vulnerability" dat
           <div class="facet-row"><span class="chip">Vulnerability</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: vuln triage</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-17">
+            <summary class="summary-toggle" aria-controls="summary-full-19">
               <span class="summary-preview-text">Thermo Fisher Scientific has patched a flaw in select Applied Biosystems human identification software that could allow data files to be altered before</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-17">analysis software loads them.
+            <p class="news-summary summary-full" id="summary-full-19">analysis software loads them.
 
 The vendor&#39;s July...</p>
           </details>
@@ -701,7 +741,7 @@ Its first fix was incomplete. ..." data-severity="Elevated" data-tags="Exploitat
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 15h old</span>
+            <span class="chip age-chip">Fresh - 20h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/n-able-says-attackers-take-over-n.html" target="_blank" rel="noopener">N-able Says Attackers Take Over N-central Servers After Initial Fix Proves Incomplete</a></h2>
           <div class="news-meta">
@@ -711,11 +751,11 @@ Its first fix was incomplete. ..." data-severity="Elevated" data-tags="Exploitat
           <div class="facet-row"><span class="chip">Exploitation</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: vuln triage</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-18">
+            <summary class="summary-toggle" aria-controls="summary-full-20">
               <span class="summary-preview-text">N-able said attackers exploited an authentication bypass in N-central to gain remote administrative access and reach the customer systems managed through those</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-18">servers.
+            <p class="news-summary summary-full" id="summary-full-20">servers.
 
 Its first fix was incomplete. ...</p>
           </details>
@@ -726,7 +766,7 @@ Its first fix was incomplete. ...</p>
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 15h old</span>
+            <span class="chip age-chip">Fresh - 20h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/hugging-face-diffusers-flaws-could-let.html" target="_blank" rel="noopener">Hugging Face Diffusers Flaws Could Let Model Repositories Execute Arbitrary Code</a></h2>
           <div class="news-meta">
@@ -736,34 +776,33 @@ Its first fix was incomplete. ...</p>
           <div class="facet-row"><span class="chip">AI Security</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: monitor</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-19">
+            <summary class="summary-toggle" aria-controls="summary-full-21">
               <span class="summary-preview-text">Three high-severity security flaws have been disclosed in Hugging Face&#39;s Diffusers library that could allow crafted model repositories to stealthily execute</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-19">arbitrary code on machines that load it, op...</p>
+            <p class="news-summary summary-full" id="summary-full-21">arbitrary code on machines that load it, op...</p>
           </details>
         </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="OpenAI teases Astra, its next major AI model, after it solves 10 long-standing math problems" data-summary="OpenAI has revealed Astra, an unreleased model designed to tackle complex, long-running tasks, after an internal version produced ten significant advances in mathematics and theoretical computer scien..." data-severity="Monitor" data-tags="AI Security" data-vendors="OpenAI" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Fresh">
+        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="OpenAI teases Astra, its next major AI model, after it solves 10 long-standing math problems" data-summary="OpenAI has revealed Astra, an unreleased model designed to tackle complex, long-running tasks, after an internal version produced ten significant advances in mathematics and theoretical computer scien..." data-severity="Monitor" data-tags="AI Security" data-vendors="OpenAI" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 23h old</span>
+            <span class="chip age-chip">Recent - 1d old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/openai-teases-astra-its-next-major-ai-model-after-it-solves-10-long-standing-math-problems/" target="_blank" rel="noopener">OpenAI teases Astra, its next major AI model, after it solves 10 long-standing math problems</a></h2>
           <div class="news-meta">
             <time datetime="2026-08-02T22:31:41.000Z">August 2, 2026 at 10:31 PM</time>
-            <span class="badge-new">NEW</span>
           </div>
           <div class="facet-row"><span class="chip">OpenAI</span><span class="chip">AI Security</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: vendor watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-20">
+            <summary class="summary-toggle" aria-controls="summary-full-22">
               <span class="summary-preview-text">OpenAI has revealed Astra, an unreleased model designed to tackle complex, long-running tasks, after an internal version produced ten significant advances in</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-20">mathematics and theoretical computer scien...</p>
+            <p class="news-summary summary-full" id="summary-full-22">mathematics and theoretical computer scien...</p>
           </details>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="COLDCARD wallet RNG flaw likely linked to $88 million Bitcoin theft" data-summary="A vulnerability in COLDCARD hardware wallet firmware allowed attackers to steal an estimated $88.6 million in Bitcoin from thousands of wallets whose seeds were generated using a flawed random number ..." data-severity="Elevated" data-tags="Vulnerability" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Recent">
@@ -781,11 +820,11 @@ Its first fix was incomplete. ...</p>
           <div class="facet-row"><span class="chip">Vulnerability</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: vuln triage</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-21">
+            <summary class="summary-toggle" aria-controls="summary-full-23">
               <span class="summary-preview-text">A vulnerability in COLDCARD hardware wallet firmware allowed attackers to steal an estimated $88.6 million in Bitcoin from thousands of wallets whose seeds</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-21">were generated using a flawed random number ...</p>
+            <p class="news-summary summary-full" id="summary-full-23">were generated using a flawed random number ...</p>
           </details>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Google Chrome may soon block New Tab hijacker extensions by default" data-summary="Google is preparing a new Chrome security feature that would block policy-installed extensions from hijacking the New Tab page or changing the default search engine. [...]..." data-severity="Monitor" data-tags="" data-vendors="Google" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent">
@@ -803,11 +842,11 @@ Its first fix was incomplete. ...</p>
           <div class="facet-row"><span class="chip">Google</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: vendor watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-22">
+            <summary class="summary-toggle" aria-controls="summary-full-24">
               <span class="summary-preview-text">Google is preparing a new Chrome security feature that would block policy-installed extensions from hijacking the New Tab page or changing the default search</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-22">engine. [...]...</p>
+            <p class="news-summary summary-full" id="summary-full-24">engine. [...]...</p>
           </details>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Coldcard Hardware Wallet Flaw Linked to $70 Million Bitcoin Theft in 41 Minutes" data-summary="An attacker drained 1,196 Bitcoin addresses in 41 minutes on July 30, taking 1,082.65 BTC worth about $70.2 million at the time. Galaxy Research mapped the sweep and tied it to a firmware flaw in Cold..." data-severity="Elevated" data-tags="Vulnerability" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Recent">
@@ -825,11 +864,11 @@ Its first fix was incomplete. ...</p>
           <div class="facet-row"><span class="chip">Vulnerability</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: vuln triage</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-23">
+            <summary class="summary-toggle" aria-controls="summary-full-25">
               <span class="summary-preview-text">An attacker drained 1,196 Bitcoin addresses in 41 minutes on July 30, taking 1,082.65 BTC worth about $70.2 million at the time. Galaxy Research mapped the</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-23">sweep and tied it to a firmware flaw in Cold...</p>
+            <p class="news-summary summary-full" id="summary-full-25">sweep and tied it to a firmware flaw in Cold...</p>
           </details>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Rails patches critical Active Storage flaw with RCE potential" data-summary="A critical vulnerability in the Active Storage framework can allow an unauthenticated attacker to read arbitrary files from a Rails application, and potentially escalate to remote code execution (RCE)..." data-severity="Critical" data-tags="Vulnerability" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage" data-age-bucket="Recent">
@@ -847,11 +886,11 @@ Its first fix was incomplete. ...</p>
           <div class="facet-row"><span class="chip">Vulnerability</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span><span class="handoff-cue">SentryInsight: vuln triage</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-24">
+            <summary class="summary-toggle" aria-controls="summary-full-26">
               <span class="summary-preview-text">A critical vulnerability in the Active Storage framework can allow an unauthenticated attacker to read arbitrary files from a Rails application, and</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-24">potentially escalate to remote code execution (RCE)...</p>
+            <p class="news-summary summary-full" id="summary-full-26">potentially escalate to remote code execution (RCE)...</p>
           </details>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Hackers Poison Adform Script to Swap Crypto Wallet Addresses Across Customer Sites" data-summary="Attackers modified a JavaScript file served by advertising technology company Adform, turning it into a browser-side tool that rewrites cryptocurrency wallet addresses.
@@ -870,11 +909,11 @@ Adform detected the incident o..." data-severity="Monitor" data-tags="" data-ven
           </div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: monitor</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-25">
+            <summary class="summary-toggle" aria-controls="summary-full-27">
               <span class="summary-preview-text">Attackers modified a JavaScript file served by advertising technology company Adform, turning it into a browser-side tool that rewrites cryptocurrency wallet</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-25">addresses.
+            <p class="news-summary summary-full" id="summary-full-27">addresses.
 
 Adform detected the incident o...</p>
           </details>
@@ -894,11 +933,11 @@ Adform detected the incident o...</p>
           <div class="facet-row"><span class="chip">Vulnerability</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: vuln triage</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-26">
+            <summary class="summary-toggle" aria-controls="summary-full-28">
               <span class="summary-preview-text">Adobe has released security updates to address a maximum-severity security flaw in Campaign Classic (ACC), its enterprise-focused marketing automation</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-26">platform, that could result in arbitrary code exe...</p>
+            <p class="news-summary summary-full" id="summary-full-28">platform, that could result in arbitrary code exe...</p>
           </details>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Hijacked Hotel Wi-Fi Pushes Fake Updates to Deliver Surveillance Malware" data-summary="A fake browser update served over hijacked hotel Wi-Fi has been used to deliver CornFlake, a remote access trojan (RAT) that can capture webcam images, microphone audio, and keystrokes, Microsoft said..." data-severity="Elevated" data-tags="Malware" data-vendors="Microsoft" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent">
@@ -916,55 +955,11 @@ Adform detected the incident o...</p>
           <div class="facet-row"><span class="chip">Microsoft</span><span class="chip">Malware</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: vendor watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-27">
+            <summary class="summary-toggle" aria-controls="summary-full-29">
               <span class="summary-preview-text">A fake browser update served over hijacked hotel Wi-Fi has been used to deliver CornFlake, a remote access trojan (RAT) that can capture webcam images,</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-27">microphone audio, and keystrokes, Microsoft said...</p>
-          </details>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Amgen says cloud data breach exposed patient health, proprietary info" data-summary="Pharmaceutical company Amgen says it suffered a data breach after threat actors stole corporate data and patient information stored in multiple cloud systems operated by third-party service providers...." data-severity="Critical" data-tags="Data Breach,Cloud" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Recent">
-          <div class="chips">
-            <span class="severity severity-critical">Critical</span>
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-            <span class="chip">Industry media</span>
-            <span class="chip age-chip">Recent - 2d old</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/amgen-says-cloud-data-breach-exposed-patient-health-proprietary-info/" target="_blank" rel="noopener">Amgen says cloud data breach exposed patient health, proprietary info</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-07-31T22:16:42.000Z">July 31, 2026 at 10:16 PM</time>
-          </div>
-          <div class="facet-row"><span class="chip">Data Breach</span><span class="chip">Cloud</span></div>
-          <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span></div>
-          <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-28">
-              <span class="summary-preview-text">Pharmaceutical company Amgen says it suffered a data breach after threat actors stole corporate data and patient information stored in multiple cloud systems</span><span class="summary-ellipsis" aria-hidden="true">...</span>
-              <span class="summary-action">Show full summary</span>
-            </summary>
-            <p class="news-summary summary-full" id="summary-full-28">operated by third-party service providers....</p>
-          </details>
-        </article>
-        <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Arch Linux disables AUR package adoption to stop malware flood" data-summary="The Arch Linux project has temporarily disabled adoption of Arch User Repository (AUR) packages after a surge in malicious takeovers of existing packages. [...]..." data-severity="Elevated" data-tags="Malware" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent">
-          <div class="chips">
-            <span class="severity severity-elevated">Elevated</span>
-            <span class="chip"><span class="dot"></span>Bleeping Computer</span>
-            <span class="chip">bleepingcomputer.com</span>
-            <span class="chip">Industry media</span>
-            <span class="chip age-chip">Recent - 3d old</span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/arch-linux-disables-aur-package-adoption-to-stop-malware-flood/" target="_blank" rel="noopener">Arch Linux disables AUR package adoption to stop malware flood</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-07-31T21:38:08.000Z">July 31, 2026 at 9:38 PM</time>
-          </div>
-          <div class="facet-row"><span class="chip">Malware</span></div>
-          <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: monitor</span></div>
-          <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-29">
-              <span class="summary-preview-text">The Arch Linux project has temporarily disabled adoption of Arch User Repository (AUR) packages after a surge in malicious takeovers of existing packages.</span><span class="summary-ellipsis" aria-hidden="true">...</span>
-              <span class="summary-action">Show full summary</span>
-            </summary>
-            <p class="news-summary summary-full" id="summary-full-29">[...]...</p>
+            <p class="news-summary summary-full" id="summary-full-29">microphone audio, and keystrokes, Microsoft said...</p>
           </details>
         </article>
     </div>
@@ -1256,7 +1251,7 @@ Adform detected the incident o...</p>
         const hasComposedFilters = Boolean(term || severity || tag || vendor || age || handoff);
         const safeStatusActionLabel = typeof statusActionLabel === 'string' ? statusActionLabel : '';
         const emptyFilteredStatusText = visible === 0 ? getEmptyFilteredMessage(src, hasComposedFilters) : '';
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-08-03T22:10:58.099Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-08-04T02:55:40.244Z').toLocaleString());
         if (filterStatusAnnouncement) filterStatusAnnouncement.textContent = getFilterStatusText(visible, total, safeStatusActionLabel, emptyFilteredStatusText);
         renderEmptyFilteredState(visible, src, hasComposedFilters);
         sourceCoverageButtons.forEach(function(button){
