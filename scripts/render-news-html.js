@@ -643,7 +643,7 @@ function generateHTML(newsItems, options = {}) {
   <link rel="icon" type="image/svg+xml" href="./assets/icon.svg">
   <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
   <link rel="manifest" href="./site.webmanifest">
-  <meta name="theme-color" content="#d97706">
+  <meta name="theme-color" content="#2563eb">
   <style>
     :root { 
       --bg: #f7f8fa; 
