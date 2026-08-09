@@ -232,10 +232,10 @@
       <div id="filterStatusAnnouncement" class="sr-only" role="status" aria-live="polite" aria-atomic="true">Showing 30 of 30 articles.</div>
       <button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters</button>
     </div>
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-08-09T15:36:00.550Z">8/9/2026, 3:36:00 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-08-09T18:47:54.522Z">8/9/2026, 6:47:54 PM</time></div>
     <section class="issue-strip" aria-label="Digest issue metadata">
       <span class="issue-label">Current issue</span>
-      <time datetime="2026-08-09T15:36:00.550Z">August 9, 2026</time>
+      <time datetime="2026-08-09T18:47:54.522Z">August 9, 2026</time>
       <span class="issue-stat"><strong>30</strong> articles</span>
       <span class="issue-stat"><strong>3</strong> sources</span>
       <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
@@ -244,7 +244,7 @@
       <span class="issue-trail-current" aria-current="page">Current digest</span>
       <a href="./feed.xml" aria-label="Open generated RSS feed">RSS feed</a>
       <a href="#sourceCoverage">Source coverage</a>
-      <span class="issue-trail-meta">Updated <time datetime="2026-08-09T15:36:00.550Z">15:36 UTC</time></span>
+      <span class="issue-trail-meta">Updated <time datetime="2026-08-09T18:47:54.522Z">18:47 UTC</time></span>
       <span class="issue-trail-meta">3h cadence</span>
     </nav>
     <div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true" hidden></div>
@@ -512,7 +512,7 @@ The vulnerability (...</p>
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Recent - 1d old</span>
+            <span class="chip age-chip">Recent - 2d old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/clickfix-attacks-deliver-macos-stealer.html" target="_blank" rel="noopener">ClickFix Attacks Deliver macOS Stealer That Can Drain Crypto Wallets</a></h2>
           <div class="news-meta">
@@ -537,7 +537,7 @@ The vulnerability (...</p>
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Recent - 1d old</span>
+            <span class="chip age-chip">Recent - 2d old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/unc6671-vishing-attacks-target-personal.html" target="_blank" rel="noopener">UNC6671 Vishing Attacks Target Personal Phones to Steal SaaS Data</a></h2>
           <div class="news-meta">
@@ -561,7 +561,7 @@ The vulnerability (...</p>
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Recent - 1d old</span>
+            <span class="chip age-chip">Recent - 2d old</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/application-security/ai-generated-patches-fail-half-time" target="_blank" rel="noopener">AI-Generated Patches Fail Half the Time</a></h2>
           <div class="news-meta">
@@ -577,7 +577,7 @@ The vulnerability (...</p>
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Recent - 1d old</span>
+            <span class="chip age-chip">Recent - 2d old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/levi-strauss-and-co-says-hackers-stole-corporate-data-in-cyberattack/" target="_blank" rel="noopener">Levi Strauss &amp; Co. says hackers stole corporate data in cyberattack</a></h2>
           <div class="news-meta">
@@ -1247,7 +1247,7 @@ The flaw ...</p>
         const hasComposedFilters = Boolean(term || severity || tag || vendor || age || handoff);
         const safeStatusActionLabel = typeof statusActionLabel === 'string' ? statusActionLabel : '';
         const emptyFilteredStatusText = visible === 0 ? getEmptyFilteredMessage(src, hasComposedFilters) : '';
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-08-09T15:36:00.550Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-08-09T18:47:54.522Z').toLocaleString());
         if (filterStatusAnnouncement) filterStatusAnnouncement.textContent = getFilterStatusText(visible, total, safeStatusActionLabel, emptyFilteredStatusText);
         renderEmptyFilteredState(visible, src, hasComposedFilters);
         sourceCoverageButtons.forEach(function(button){
