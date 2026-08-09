@@ -232,10 +232,10 @@
       <div id="filterStatusAnnouncement" class="sr-only" role="status" aria-live="polite" aria-atomic="true">Showing 30 of 30 articles.</div>
       <button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters</button>
     </div>
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-08-09T18:47:54.522Z">8/9/2026, 6:47:54 PM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-08-09T21:36:48.493Z">8/9/2026, 9:36:48 PM</time></div>
     <section class="issue-strip" aria-label="Digest issue metadata">
       <span class="issue-label">Current issue</span>
-      <time datetime="2026-08-09T18:47:54.522Z">August 9, 2026</time>
+      <time datetime="2026-08-09T21:36:48.493Z">August 9, 2026</time>
       <span class="issue-stat"><strong>30</strong> articles</span>
       <span class="issue-stat"><strong>3</strong> sources</span>
       <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
@@ -244,7 +244,7 @@
       <span class="issue-trail-current" aria-current="page">Current digest</span>
       <a href="./feed.xml" aria-label="Open generated RSS feed">RSS feed</a>
       <a href="#sourceCoverage">Source coverage</a>
-      <span class="issue-trail-meta">Updated <time datetime="2026-08-09T18:47:54.522Z">18:47 UTC</time></span>
+      <span class="issue-trail-meta">Updated <time datetime="2026-08-09T21:36:48.493Z">21:36 UTC</time></span>
       <span class="issue-trail-meta">3h cadence</span>
     </nav>
     <div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true" hidden></div>
@@ -441,7 +441,7 @@ The vulnerability (...</p>
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Recent - 1d old</span>
+            <span class="chip age-chip">Recent - 2d old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/framework-tally-disclose-metabase-data-theft-attacks/" target="_blank" rel="noopener">Metabase SQLi zero-day exploited in customer data-theft attacks</a></h2>
           <div class="news-meta">
@@ -463,7 +463,7 @@ The vulnerability (...</p>
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Recent - 1d old</span>
+            <span class="chip age-chip">Recent - 2d old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/unlimited-technology-systems-breach-impacts-38-million-people/" target="_blank" rel="noopener">Unlimited Technology Systems breach impacts 3.8 million people</a></h2>
           <div class="news-meta">
@@ -487,7 +487,7 @@ The vulnerability (...</p>
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Recent - 1d old</span>
+            <span class="chip age-chip">Recent - 2d old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/nearly-800-malicious-npm-packages.html" target="_blank" rel="noopener">Nearly 800 Malicious npm Packages Deliver Cross-Platform RAT and Infostealer</a></h2>
           <div class="news-meta">
@@ -904,7 +904,7 @@ The flaw ...</p>
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Recent - 2d old</span>
+            <span class="chip age-chip">Recent - 3d old</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/meta-ai-escapes-lab-hacking-joyride" target="_blank" rel="noopener">Déjà Vu? Meta&#39;s AI Escapes Testing Lab in Hacking Joyride</a></h2>
           <div class="news-meta">
@@ -920,7 +920,7 @@ The flaw ...</p>
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Recent - 2d old</span>
+            <span class="chip age-chip">Recent - 3d old</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cloud-security/researcher-claims-control-chatgpt-secure-sandbox" target="_blank" rel="noopener">Researcher Claims Control of ChatGPT Secure Sandbox</a></h2>
           <div class="news-meta">
@@ -942,7 +942,7 @@ The flaw ...</p>
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Recent - 2d old</span>
+            <span class="chip age-chip">Recent - 3d old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hedge-fund-cyberattacks-tied-to-blackfile-linked-unc6671-extortion-group/" target="_blank" rel="noopener">Hedge fund cyberattacks tied to BlackFile-linked UNC6671 extortion group</a></h2>
           <div class="news-meta">
@@ -1247,7 +1247,7 @@ The flaw ...</p>
         const hasComposedFilters = Boolean(term || severity || tag || vendor || age || handoff);
         const safeStatusActionLabel = typeof statusActionLabel === 'string' ? statusActionLabel : '';
         const emptyFilteredStatusText = visible === 0 ? getEmptyFilteredMessage(src, hasComposedFilters) : '';
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-08-09T18:47:54.522Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-08-09T21:36:48.493Z').toLocaleString());
         if (filterStatusAnnouncement) filterStatusAnnouncement.textContent = getFilterStatusText(visible, total, safeStatusActionLabel, emptyFilteredStatusText);
         renderEmptyFilteredState(visible, src, hasComposedFilters);
         sourceCoverageButtons.forEach(function(button){
