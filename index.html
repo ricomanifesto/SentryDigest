@@ -196,7 +196,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml" aria-label="Open generated RSS feed">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -212,7 +212,7 @@
       </select>
       <select id="tagFilter" class="select" aria-label="Filter by topic tag">
         <option value="">All topics</option>
-        <option value="AI Security">AI Security</option><option value="Data Breach">Data Breach</option><option value="Exploitation">Exploitation</option><option value="Identity">Identity</option><option value="Malware">Malware</option><option value="Ransomware">Ransomware</option><option value="Vulnerability">Vulnerability</option>
+        <option value="AI Security">AI Security</option><option value="Data Breach">Data Breach</option><option value="Exploitation">Exploitation</option><option value="Identity">Identity</option><option value="Malware">Malware</option><option value="Ransomware">Ransomware</option><option value="Supply Chain">Supply Chain</option><option value="Vulnerability">Vulnerability</option>
       </select>
       <select id="vendorFilter" class="select" aria-label="Filter by affected vendor">
         <option value="">All vendors</option>
@@ -232,10 +232,10 @@
       <div id="filterStatusAnnouncement" class="sr-only" role="status" aria-live="polite" aria-atomic="true">Showing 30 of 30 articles.</div>
       <button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters</button>
     </div>
-    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-08-11T04:22:57.134Z">8/11/2026, 4:22:57 AM</time></div>
+    <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources • Last updated <time datetime="2026-08-11T07:14:41.288Z">8/11/2026, 7:14:41 AM</time></div>
     <section class="issue-strip" aria-label="Digest issue metadata">
       <span class="issue-label">Current issue</span>
-      <time datetime="2026-08-11T04:22:57.134Z">August 11, 2026</time>
+      <time datetime="2026-08-11T07:14:41.288Z">August 11, 2026</time>
       <span class="issue-stat"><strong>30</strong> articles</span>
       <span class="issue-stat"><strong>3</strong> sources</span>
       <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
@@ -244,7 +244,7 @@
       <span class="issue-trail-current" aria-current="page">Current digest</span>
       <a href="./feed.xml" aria-label="Open generated RSS feed">RSS feed</a>
       <a href="#sourceCoverage">Source coverage</a>
-      <span class="issue-trail-meta">Updated <time datetime="2026-08-11T04:22:57.134Z">04:22 UTC</time></span>
+      <span class="issue-trail-meta">Updated <time datetime="2026-08-11T07:14:41.288Z">07:14 UTC</time></span>
       <span class="issue-trail-meta">3h cadence</span>
     </nav>
     <div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true" hidden></div>
@@ -276,11 +276,11 @@
     <section class="operator-lanes" aria-label="Operator scan lanes">
       <article class="operator-lane" data-lane="Incident watch" data-lane-cue="SentryInsight: incident watch">
         <div class="operator-lane-heading">Incident watch</div>
-        <span class="operator-lane-count" data-lane-count><strong>16</strong> items</span>
-        <a href="https://www.darkreading.com/cyber-risk/ghostjacking-identity-governance-gaps-ai-agents" class="operator-lane-link" data-lane-link>&#39;GhostJacking&#39; Exposes Identity Governance Gaps in AI Agents</a>
+        <span class="operator-lane-count" data-lane-count><strong>17</strong> items</span>
+        <a href="https://thehackernews.com/2026/08/bdthemes-supply-chain-attack-poisons.html" class="operator-lane-link" data-lane-link>BdThemes Supply Chain Attack Poisons JSON to Create Rogue WordPress Admins</a>
       </article><article class="operator-lane" data-lane="Vulnerability triage" data-lane-cue="SentryInsight: vuln triage">
         <div class="operator-lane-heading">Vulnerability triage</div>
-        <span class="operator-lane-count" data-lane-count><strong>13</strong> items</span>
+        <span class="operator-lane-count" data-lane-count><strong>12</strong> items</span>
         <a href="https://www.darkreading.com/vulnerabilities-threats/metabase-sql-zero-day-attacks-wide-blast-radius" class="operator-lane-link" data-lane-link>Metabase SQL Zero-Day Attacks Could Have Wide Blast Radius</a>
       </article><article class="operator-lane" data-lane="Governance watch" data-lane-cue="GRCInsight: governance watch">
         <div class="operator-lane-heading">Governance watch</div>
@@ -295,13 +295,36 @@
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="BdThemes Supply Chain Attack Poisons JSON to Create Rogue WordPress Admins" data-summary="Cybersecurity researchers have warned of a supply chain compromise impacting WordPress plugin vendor BdThemes, prompting the content management systems (CMS) platform&#39;s plugins team to temporarily dis..." data-severity="Elevated" data-tags="Supply Chain" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Fresh">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip"><span class="dot"></span>The Hacker News</span>
+            <span class="chip">thehackernews.com</span>
+            <span class="chip">Industry media</span>
+            <span class="chip age-chip">Fresh - 1h old</span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/08/bdthemes-supply-chain-attack-poisons.html" target="_blank" rel="noopener">BdThemes Supply Chain Attack Poisons JSON to Create Rogue WordPress Admins</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-08-11T05:48:44.000Z">August 11, 2026 at 5:48 AM</time>
+            <span class="badge-new">NEW</span>
+          </div>
+          <div class="facet-row"><span class="chip">Supply Chain</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span></div>
+          <details class="summary-disclosure">
+            <summary class="summary-toggle" aria-controls="summary-full-0">
+              <span class="summary-preview-text">Cybersecurity researchers have warned of a supply chain compromise impacting WordPress plugin vendor BdThemes, prompting the content management systems (CMS)</span><span class="summary-ellipsis" aria-hidden="true">...</span>
+              <span class="summary-action">Show full summary</span>
+            </summary>
+            <p class="news-summary summary-full" id="summary-full-0">platform&#39;s plugins team to temporarily dis...</p>
+          </details>
+        </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Hackers breached a small Polish energy plant via private APN last year" data-summary="Hackers breached a heat-and-power plant facility in Poland, which supplies heat to about 50,000 residents, using a private APN (Access Point Name) to access an OT (Operational Technology) network. [....." data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 5h old</span>
+            <span class="chip age-chip">Fresh - 8h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hackers-breached-a-small-polish-energy-plant-via-private-apn-last-year/" target="_blank" rel="noopener">Hackers breached a small Polish energy plant via private APN last year</a></h2>
           <div class="news-meta">
@@ -310,11 +333,11 @@
           </div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: monitor</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-0">
+            <summary class="summary-toggle" aria-controls="summary-full-1">
               <span class="summary-preview-text">Hackers breached a heat-and-power plant facility in Poland, which supplies heat to about 50,000 residents, using a private APN (Access Point Name) to access an</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-0">OT (Operational Technology) network. [.....</p>
+            <p class="news-summary summary-full" id="summary-full-1">OT (Operational Technology) network. [.....</p>
           </details>
         </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="&#39;GhostJacking&#39; Exposes Identity Governance Gaps in AI Agents" data-summary="New research shows how attackers can use security alerts and blocked events to manipulate and hijack AI agents...." data-severity="Elevated" data-tags="Identity,AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,GRCInsight: governance watch" data-age-bucket="Fresh">
@@ -323,7 +346,7 @@
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 6h old</span>
+            <span class="chip age-chip">Fresh - 9h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/ghostjacking-identity-governance-gaps-ai-agents" target="_blank" rel="noopener">&#39;GhostJacking&#39; Exposes Identity Governance Gaps in AI Agents</a></h2>
           <div class="news-meta">
@@ -340,7 +363,7 @@
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 6h old</span>
+            <span class="chip age-chip">Fresh - 9h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/ics-ot-security/multistate-water-system-attacks-widen-iran-suspected" target="_blank" rel="noopener">Multistate Water System Attacks Widen, Iran Suspected</a></h2>
           <div class="news-meta">
@@ -356,7 +379,7 @@
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 7h old</span>
+            <span class="chip age-chip">Fresh - 10h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/bdthemes-plugins-supply-chain-hack-creates-rogue-wordpress-admins/" target="_blank" rel="noopener">BdThemes plugins supply-chain hack creates rogue WordPress admins</a></h2>
           <div class="news-meta">
@@ -365,11 +388,11 @@
           </div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: monitor</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-3">
+            <summary class="summary-toggle" aria-controls="summary-full-4">
               <span class="summary-preview-text">A threat actor compromised the upstream infrastructure of BdThemes, a developer of premium WordPress web-design tools, and modified a remote JSON feed</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-3">delivered to administrators&#39; browsers to create r...</p>
+            <p class="news-summary summary-full" id="summary-full-4">delivered to administrators&#39; browsers to create r...</p>
           </details>
         </article>
         <article class="news-item" data-source="Dark Reading" data-host="darkreading.com" data-title="Metabase SQL Zero-Day Attacks Could Have Wide Blast Radius" data-summary="The maximum-severity vulnerability, which still has no CVE, allows malicious, remote administrator access to the business-analytics platform and its downstream users...." data-severity="Critical" data-tags="Vulnerability" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage" data-age-bucket="Fresh">
@@ -378,7 +401,7 @@
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 7h old</span>
+            <span class="chip age-chip">Fresh - 10h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/metabase-sql-zero-day-attacks-wide-blast-radius" target="_blank" rel="noopener">Metabase SQL Zero-Day Attacks Could Have Wide Blast Radius</a></h2>
           <div class="news-meta">
@@ -388,11 +411,11 @@
           <div class="facet-row"><span class="chip">Vulnerability</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span><span class="handoff-cue">SentryInsight: vuln triage</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-4">
+            <summary class="summary-toggle" aria-controls="summary-full-5">
               <span class="summary-preview-text">The maximum-severity vulnerability, which still has no CVE, allows malicious, remote administrator access to the business-analytics platform and its downstream</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-4">users....</p>
+            <p class="news-summary summary-full" id="summary-full-5">users....</p>
           </details>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="OpenAI releases ChatGPT 5.6 Cyber, but it&#39;s only for approved users" data-summary="OpenAI has developed a new model called &quot;GPT 5.6 Cyber,&quot; designed for vulnerability research, penetration testing, incident response, and remediation. [...]..." data-severity="Elevated" data-tags="Vulnerability,AI Security" data-vendors="OpenAI" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Fresh">
@@ -401,7 +424,7 @@
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 8h old</span>
+            <span class="chip age-chip">Fresh - 11h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/openai-releases-chatgpt-56-cyber-but-its-only-for-approved-users/" target="_blank" rel="noopener">OpenAI releases ChatGPT 5.6 Cyber, but it&#39;s only for approved users</a></h2>
           <div class="news-meta">
@@ -418,7 +441,7 @@
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 10h old</span>
+            <span class="chip age-chip">Fresh - 13h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/patch-gap-defenders-chains-not-checklists" target="_blank" rel="noopener">The Patch Gap: Why Defenders Need to Think in Chains, Not Checklists</a></h2>
           <div class="news-meta">
@@ -435,7 +458,7 @@
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 10h old</span>
+            <span class="chip age-chip">Fresh - 13h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/new-stormencryptor-ransomware-used-by-former-medusa-affiliate/" target="_blank" rel="noopener">New StormEncryptor ransomware used by former Medusa affiliate</a></h2>
           <div class="news-meta">
@@ -445,11 +468,11 @@
           <div class="facet-row"><span class="chip">Ransomware</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-7">
+            <summary class="summary-toggle" aria-controls="summary-full-8">
               <span class="summary-preview-text">A financially motivated threat actor previously associated with the Medusa ransomware operation is now deploying a new ransomware strain called StormEncryptor.</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-7">[...]...</p>
+            <p class="news-summary summary-full" id="summary-full-8">[...]...</p>
           </details>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Shipping 10–50× More Code? Watch This Webinar on Securing AI-Speed Development" data-summary="AI is helping development teams produce far more code, far faster. But security teams still have to review vulnerabilities, manage dependencies, prioritize fixes, and control risk at human speed.
@@ -460,7 +483,7 @@ Whe..." data-severity="Elevated" data-tags="Vulnerability,AI Security" data-vend
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 10h old</span>
+            <span class="chip age-chip">Fresh - 13h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/shipping-1050-more-code-watch-this.html" target="_blank" rel="noopener">Shipping 10–50× More Code? Watch This Webinar on Securing AI-Speed Development</a></h2>
           <div class="news-meta">
@@ -470,11 +493,11 @@ Whe..." data-severity="Elevated" data-tags="Vulnerability,AI Security" data-vend
           <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">AI Security</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: vuln triage</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-8">
+            <summary class="summary-toggle" aria-controls="summary-full-9">
               <span class="summary-preview-text">AI is helping development teams produce far more code, far faster. But security teams still have to review vulnerabilities, manage dependencies, prioritize</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-8">fixes, and control risk at human speed.
+            <p class="news-summary summary-full" id="summary-full-9">fixes, and control risk at human speed.
 
 Whe...</p>
           </details>
@@ -485,7 +508,7 @@ Whe...</p>
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 11h old</span>
+            <span class="chip age-chip">Fresh - 14h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/coruna-darksword-ios-exploits-proliferate-globally" target="_blank" rel="noopener">Coruna, DarkSword iOS Exploits Proliferate Globally</a></h2>
           <div class="news-meta">
@@ -504,7 +527,7 @@ The use of StormEncrypto..." data-severity="Critical" data-tags="Ransomware,Vuln
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 11h old</span>
+            <span class="chip age-chip">Fresh - 14h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/china-linked-hackers-deploy-new.html" target="_blank" rel="noopener">China-Linked Hackers Deploy New StormEncryptor Ransomware, Likely via N-central Flaw</a></h2>
           <div class="news-meta">
@@ -514,11 +537,11 @@ The use of StormEncrypto..." data-severity="Critical" data-tags="Ransomware,Vuln
           <div class="facet-row"><span class="chip">Microsoft</span><span class="chip">Ransomware</span><span class="chip">Vulnerability</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span><span class="handoff-cue">SentryInsight: vuln triage</span><span class="handoff-cue">SentryInsight: vendor watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-10">
+            <summary class="summary-toggle" aria-controls="summary-full-11">
               <span class="summary-preview-text">Microsoft has disclosed that Storm-1175, a financially motivated threat actor linked to China, has deployed a previously undocumented ransomware strain called</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-10">StormEncryptor.
+            <p class="news-summary summary-full" id="summary-full-11">StormEncryptor.
 
 The use of StormEncrypto...</p>
           </details>
@@ -529,7 +552,7 @@ The use of StormEncrypto...</p>
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 11h old</span>
+            <span class="chip age-chip">Fresh - 14h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/application-security/outdated-cybercrime-laws-security-researchers-risk" target="_blank" rel="noopener">Outdated Cybercrime Laws Put Security Researchers at Risk</a></h2>
           <div class="news-meta">
@@ -545,7 +568,7 @@ The use of StormEncrypto...</p>
             <span class="chip"><span class="dot"></span>Dark Reading</span>
             <span class="chip">darkreading.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 12h old</span>
+            <span class="chip age-chip">Fresh - 15h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/sherlock-holmes-was-the-og-social-engineer" target="_blank" rel="noopener">Sherlock Holmes was the “OG” Social Engineer</a></h2>
           <div class="news-meta">
@@ -554,11 +577,11 @@ The use of StormEncrypto...</p>
           </div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: monitor</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-12">
+            <summary class="summary-toggle" aria-controls="summary-full-13">
               <span class="summary-preview-text">The crime solver wore disguises, spied on targets, and built intelligence networks long before modern-day tactics emerged. He has lessons for today’s ethical-</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-12">and nonethical-hat hackers....</p>
+            <p class="news-summary summary-full" id="summary-full-13">and nonethical-hat hackers....</p>
           </details>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="⚡ Weekly Recap: AI Goes Rogue, Metabase 0-Day, MCP Supply-Chain Attacks, and Router Backdoors" data-summary="A lot of security problems still begin with someone doing a completely normal thing. Cloning a repo. Answering a call. Leaving a box exposed. Trusting the default.
@@ -569,7 +592,7 @@ That pretty much covers the mood th..." data-severity="Critical" data-tags="Vuln
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 13h old</span>
+            <span class="chip age-chip">Fresh - 16h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/weekly-recap-ai-goes-rogue-metabase-0.html" target="_blank" rel="noopener">⚡ Weekly Recap: AI Goes Rogue, Metabase 0-Day, MCP Supply-Chain Attacks, and Router Backdoors</a></h2>
           <div class="news-meta">
@@ -579,11 +602,11 @@ That pretty much covers the mood th..." data-severity="Critical" data-tags="Vuln
           <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">AI Security</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span><span class="handoff-cue">SentryInsight: vuln triage</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-13">
+            <summary class="summary-toggle" aria-controls="summary-full-14">
               <span class="summary-preview-text">A lot of security problems still begin with someone doing a completely normal thing. Cloning a repo. Answering a call. Leaving a box exposed. Trusting the</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-13">default.
+            <p class="news-summary summary-full" id="summary-full-14">default.
 
 That pretty much covers the mood th...</p>
           </details>
@@ -594,7 +617,7 @@ That pretty much covers the mood th...</p>
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 13h old</span>
+            <span class="chip age-chip">Fresh - 16h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cisa-sonicwall-sma1000-flaws-now-exploited-by-ransomware-gangs/" target="_blank" rel="noopener">CISA: SonicWall SMA1000 flaws now exploited by ransomware gangs</a></h2>
           <div class="news-meta">
@@ -604,11 +627,11 @@ That pretty much covers the mood th...</p>
           <div class="facet-row"><span class="chip">Ransomware</span><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span><span class="handoff-cue">SentryInsight: vuln triage</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-14">
+            <summary class="summary-toggle" aria-controls="summary-full-15">
               <span class="summary-preview-text">CISA has confirmed that ransomware gangs have begun exploiting two recently patched SonicWall SMA1000 vulnerabilities, including a maximum-severity server-side</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-14">request forgery (SSRF) flaw. [...]...</p>
+            <p class="news-summary summary-full" id="summary-full-15">request forgery (SSRF) flaw. [...]...</p>
           </details>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="When Credentials Are No Longer Enough: Device Trust in the AI Era" data-summary="AI is making phishing, credential theft, and social engineering faster and more efficient, while traditional trust signals such as passwords, MFA, IP reputation, and geolocation become easier to bypas..." data-severity="Critical" data-tags="Data Breach,Identity,AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Fresh">
@@ -617,7 +640,7 @@ That pretty much covers the mood th...</p>
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 14h old</span>
+            <span class="chip age-chip">Fresh - 17h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/when-credentials-are-no-longer-enough-device-trust-in-the-ai-era/" target="_blank" rel="noopener">When Credentials Are No Longer Enough: Device Trust in the AI Era</a></h2>
           <div class="news-meta">
@@ -627,11 +650,11 @@ That pretty much covers the mood th...</p>
           <div class="facet-row"><span class="chip">Data Breach</span><span class="chip">Identity</span><span class="chip">AI Security</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-15">
+            <summary class="summary-toggle" aria-controls="summary-full-16">
               <span class="summary-preview-text">AI is making phishing, credential theft, and social engineering faster and more efficient, while traditional trust signals such as passwords, MFA, IP</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-15">reputation, and geolocation become easier to bypas...</p>
+            <p class="news-summary summary-full" id="summary-full-16">reputation, and geolocation become easier to bypas...</p>
           </details>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Kimsuky Builds Offline AI Stack to Boost Phishing and Automate Malware Development" data-summary="North Korea&#39;s state hackers are no longer content to type prompts into public chatbots. One of the country&#39;s main espionage groups has begun running artificial intelligence (AI) offline on its own ser..." data-severity="Elevated" data-tags="Identity,Malware,AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Fresh">
@@ -640,7 +663,7 @@ That pretty much covers the mood th...</p>
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 15h old</span>
+            <span class="chip age-chip">Fresh - 17h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/kimsuky-builds-offline-ai-stack-that.html" target="_blank" rel="noopener">Kimsuky Builds Offline AI Stack to Boost Phishing and Automate Malware Development</a></h2>
           <div class="news-meta">
@@ -650,11 +673,11 @@ That pretty much covers the mood th...</p>
           <div class="facet-row"><span class="chip">Identity</span><span class="chip">Malware</span><span class="chip">AI Security</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-16">
+            <summary class="summary-toggle" aria-controls="summary-full-17">
               <span class="summary-preview-text">North Korea&#39;s state hackers are no longer content to type prompts into public chatbots. One of the country&#39;s main espionage groups has begun running artificial</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-16">intelligence (AI) offline on its own ser...</p>
+            <p class="news-summary summary-full" id="summary-full-17">intelligence (AI) offline on its own ser...</p>
           </details>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Member of The Com sent to prison for blackmail, sextortion" data-summary="A member of &quot;The Com,&quot; a loose-knit online cybercrime collective that targets children and teenagers, has been sentenced to two years in prison for blackmail and sextortion offenses against nearly 120..." data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh">
@@ -663,7 +686,7 @@ That pretty much covers the mood th...</p>
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 15h old</span>
+            <span class="chip age-chip">Fresh - 18h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/member-of-the-com-sent-to-prison-for-blackmail-sextortion/" target="_blank" rel="noopener">Member of The Com sent to prison for blackmail, sextortion</a></h2>
           <div class="news-meta">
@@ -672,11 +695,11 @@ That pretty much covers the mood th...</p>
           </div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: monitor</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-17">
+            <summary class="summary-toggle" aria-controls="summary-full-18">
               <span class="summary-preview-text">A member of &quot;The Com,&quot; a loose-knit online cybercrime collective that targets children and teenagers, has been sentenced to two years in prison for blackmail</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-17">and sextortion offenses against nearly 120...</p>
+            <p class="news-summary summary-full" id="summary-full-18">and sextortion offenses against nearly 120...</p>
           </details>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="New Passkey Attacks Can Recover Synced Private Keys or Bypass Phishing-Resistant MFA" data-summary="Three separate research efforts last week demonstrated ways to defeat passkey protections without breaking the cryptography they rest on.
@@ -687,7 +710,7 @@ Passkeys are designed to replace reusable passwords and resis..." data-severity=
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 15h old</span>
+            <span class="chip age-chip">Fresh - 18h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/new-passkey-attacks-can-recover-synced.html" target="_blank" rel="noopener">New Passkey Attacks Can Recover Synced Private Keys or Bypass Phishing-Resistant MFA</a></h2>
           <div class="news-meta">
@@ -697,13 +720,13 @@ Passkeys are designed to replace reusable passwords and resis..." data-severity=
           <div class="facet-row"><span class="chip">Identity</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-18">
+            <summary class="summary-toggle" aria-controls="summary-full-19">
               <span class="summary-preview-text">Three separate research efforts last week demonstrated ways to defeat passkey protections without breaking the cryptography they rest on.
 
 Passkeys are</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-18">designed to replace reusable passwords and resis...</p>
+            <p class="news-summary summary-full" id="summary-full-19">designed to replace reusable passwords and resis...</p>
           </details>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="LexisNexis shuts down services after suspicious activity on servers" data-summary="LexisNexis took its Diligence, Metabase API, and Newsdesk services offline as part of its response to unusual activity on servers hosted and managed by an unnamed third-party vendor. [...]..." data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh">
@@ -712,7 +735,7 @@ Passkeys are</span><span class="summary-ellipsis" aria-hidden="true">...</span>
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 16h old</span>
+            <span class="chip age-chip">Fresh - 19h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/lexisnexis-shuts-down-services-after-suspicious-activity-on-servers/" target="_blank" rel="noopener">LexisNexis shuts down services after suspicious activity on servers</a></h2>
           <div class="news-meta">
@@ -721,11 +744,11 @@ Passkeys are</span><span class="summary-ellipsis" aria-hidden="true">...</span>
           </div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: monitor</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-19">
+            <summary class="summary-toggle" aria-controls="summary-full-20">
               <span class="summary-preview-text">LexisNexis took its Diligence, Metabase API, and Newsdesk services offline as part of its response to unusual activity on servers hosted and managed by an</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-19">unnamed third-party vendor. [...]...</p>
+            <p class="news-summary summary-full" id="summary-full-20">unnamed third-party vendor. [...]...</p>
           </details>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Valve notifies Steam hardware customers of a data breach" data-summary="Video game publisher and digital distribution giant Valve is notifying Steam hardware customers in Europe that hackers stole their data after hacking its shipping partner, CEVA Logistics. [...]..." data-severity="Critical" data-tags="Data Breach" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Fresh">
@@ -734,7 +757,7 @@ Passkeys are</span><span class="summary-ellipsis" aria-hidden="true">...</span>
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 16h old</span>
+            <span class="chip age-chip">Fresh - 19h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/valve-notifies-steam-hardware-customers-of-a-data-breach/" target="_blank" rel="noopener">Valve notifies Steam hardware customers of a data breach</a></h2>
           <div class="news-meta">
@@ -744,11 +767,11 @@ Passkeys are</span><span class="summary-ellipsis" aria-hidden="true">...</span>
           <div class="facet-row"><span class="chip">Data Breach</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-20">
+            <summary class="summary-toggle" aria-controls="summary-full-21">
               <span class="summary-preview-text">Video game publisher and digital distribution giant Valve is notifying Steam hardware customers in Europe that hackers stole their data after hacking its</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-20">shipping partner, CEVA Logistics. [...]...</p>
+            <p class="news-summary summary-full" id="summary-full-21">shipping partner, CEVA Logistics. [...]...</p>
           </details>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="TrueConf Server Flaws Exploited to Replace Client Installers with PhantomCore" data-summary="The threat actor known as Head Mare has been observed weaponizing security flaws in unpatched TrueConf servers once again in attacks targeting Russian companies spanning instrumentation, electronics, ..." data-severity="Elevated" data-tags="Exploitation" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Fresh">
@@ -757,7 +780,7 @@ Passkeys are</span><span class="summary-ellipsis" aria-hidden="true">...</span>
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 16h old</span>
+            <span class="chip age-chip">Fresh - 19h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/head-mare-exploits-trueconf-flaws-to.html" target="_blank" rel="noopener">TrueConf Server Flaws Exploited to Replace Client Installers with PhantomCore</a></h2>
           <div class="news-meta">
@@ -767,11 +790,11 @@ Passkeys are</span><span class="summary-ellipsis" aria-hidden="true">...</span>
           <div class="facet-row"><span class="chip">Exploitation</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: vuln triage</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-21">
+            <summary class="summary-toggle" aria-controls="summary-full-22">
               <span class="summary-preview-text">The threat actor known as Head Mare has been observed weaponizing security flaws in unpatched TrueConf servers once again in attacks targeting Russian</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-21">companies spanning instrumentation, electronics, ...</p>
+            <p class="news-summary summary-full" id="summary-full-22">companies spanning instrumentation, electronics, ...</p>
           </details>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Critical Progress LoadMaster flaw now actively exploited in attacks" data-summary="The U.S. Cybersecurity and Infrastructure Security Agency (CISA) warned that hackers are exploiting a critical-severity Progress Kemp LoadMaster command injection vulnerability. [...]..." data-severity="Critical" data-tags="Vulnerability,Exploitation" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage" data-age-bucket="Fresh">
@@ -780,7 +803,7 @@ Passkeys are</span><span class="summary-ellipsis" aria-hidden="true">...</span>
             <span class="chip"><span class="dot"></span>Bleeping Computer</span>
             <span class="chip">bleepingcomputer.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 18h old</span>
+            <span class="chip age-chip">Fresh - 21h old</span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cisa-warns-of-critical-progress-loadmaster-flaw-exploited-in-attacks/" target="_blank" rel="noopener">Critical Progress LoadMaster flaw now actively exploited in attacks</a></h2>
           <div class="news-meta">
@@ -790,11 +813,11 @@ Passkeys are</span><span class="summary-ellipsis" aria-hidden="true">...</span>
           <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span><span class="handoff-cue">SentryInsight: vuln triage</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-22">
+            <summary class="summary-toggle" aria-controls="summary-full-23">
               <span class="summary-preview-text">The U.S. Cybersecurity and Infrastructure Security Agency (CISA) warned that hackers are exploiting a critical-severity Progress Kemp LoadMaster command</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-22">injection vulnerability. [...]...</p>
+            <p class="news-summary summary-full" id="summary-full-23">injection vulnerability. [...]...</p>
           </details>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Solidity Pro VS Code Extensions Steal Crypto Wallets, API Keys, and Credentials" data-summary="Cybersecurity researchers have flagged a malicious Microsoft Visual Studio Code (VS Code) extension named Solidity Pro (&quot;solidity-pro&quot;) that has been observed delivering a browser wallet and credentia..." data-severity="Elevated" data-tags="Identity" data-vendors="Microsoft" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vendor watch" data-age-bucket="Fresh">
@@ -803,7 +826,7 @@ Passkeys are</span><span class="summary-ellipsis" aria-hidden="true">...</span>
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 20h old</span>
+            <span class="chip age-chip">Fresh - 23h old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/solidity-pro-vs-code-extensions-steal.html" target="_blank" rel="noopener">Solidity Pro VS Code Extensions Steal Crypto Wallets, API Keys, and Credentials</a></h2>
           <div class="news-meta">
@@ -813,34 +836,33 @@ Passkeys are</span><span class="summary-ellipsis" aria-hidden="true">...</span>
           <div class="facet-row"><span class="chip">Microsoft</span><span class="chip">Identity</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span><span class="handoff-cue">SentryInsight: vendor watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-23">
+            <summary class="summary-toggle" aria-controls="summary-full-24">
               <span class="summary-preview-text">Cybersecurity researchers have flagged a malicious Microsoft Visual Studio Code (VS Code) extension named Solidity Pro (&quot;solidity-pro&quot;) that has been observed</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-23">delivering a browser wallet and credentia...</p>
+            <p class="news-summary summary-full" id="summary-full-24">delivering a browser wallet and credentia...</p>
           </details>
         </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="OpenAI&#39;s Next AI Model Astra Shows Cyber Performance Strong Enough to Trigger Pause" data-summary="OpenAI has announced that it&#39;s pausing some &quot;internal activities&quot; involving its upcoming artificial intelligence (AI) model Astra after an internal evaluation found it had made significant advancement..." data-severity="Monitor" data-tags="AI Security" data-vendors="OpenAI" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Fresh">
+        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="OpenAI&#39;s Next AI Model Astra Shows Cyber Performance Strong Enough to Trigger Pause" data-summary="OpenAI has announced that it&#39;s pausing some &quot;internal activities&quot; involving its upcoming artificial intelligence (AI) model Astra after an internal evaluation found it had made significant advancement..." data-severity="Monitor" data-tags="AI Security" data-vendors="OpenAI" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Fresh - 22h old</span>
+            <span class="chip age-chip">Recent - 1d old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/openais-next-ai-model-astra-shows-cyber.html" target="_blank" rel="noopener">OpenAI&#39;s Next AI Model Astra Shows Cyber Performance Strong Enough to Trigger Pause</a></h2>
           <div class="news-meta">
             <time datetime="2026-08-10T05:50:03.000Z">August 10, 2026 at 5:50 AM</time>
-            <span class="badge-new">NEW</span>
           </div>
           <div class="facet-row"><span class="chip">OpenAI</span><span class="chip">AI Security</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: vendor watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-24">
+            <summary class="summary-toggle" aria-controls="summary-full-25">
               <span class="summary-preview-text">OpenAI has announced that it&#39;s pausing some &quot;internal activities&quot; involving its upcoming artificial intelligence (AI) model Astra after an internal evaluation</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-24">found it had made significant advancement...</p>
+            <p class="news-summary summary-full" id="summary-full-25">found it had made significant advancement...</p>
           </details>
         </article>
         <article class="news-item" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Hackers breach TrueConf to trojanize client installers with backdoors" data-summary="The Head Mare hacktivist group has been exploiting vulnerabilities in unpatched TrueConf video conferencing servers to replace client installers with malicious versions that deliver backdoors. [...]..." data-severity="Critical" data-tags="Vulnerability,Exploitation,Data Breach" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage" data-age-bucket="Recent">
@@ -858,11 +880,11 @@ Passkeys are</span><span class="summary-ellipsis" aria-hidden="true">...</span>
           <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span><span class="chip">Data Breach</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span><span class="handoff-cue">SentryInsight: vuln triage</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-25">
+            <summary class="summary-toggle" aria-controls="summary-full-26">
               <span class="summary-preview-text">The Head Mare hacktivist group has been exploiting vulnerabilities in unpatched TrueConf video conferencing servers to replace client installers with malicious</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-25">versions that deliver backdoors. [...]...</p>
+            <p class="news-summary summary-full" id="summary-full-26">versions that deliver backdoors. [...]...</p>
           </details>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Atlassian Rovo Can Be Tricked Into Sending Jira and Confluence Data to Attackers" data-summary="Attacker-controlled instructions can make Atlassian&#39;s Rovo assistant collect Jira or Confluence data that a signed-in user can access, then send it to an outside server. Two security firms found that ..." data-severity="Monitor" data-tags="" data-vendors="Atlassian" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent">
@@ -880,11 +902,11 @@ Passkeys are</span><span class="summary-ellipsis" aria-hidden="true">...</span>
           <div class="facet-row"><span class="chip">Atlassian</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: vendor watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-26">
+            <summary class="summary-toggle" aria-controls="summary-full-27">
               <span class="summary-preview-text">Attacker-controlled instructions can make Atlassian&#39;s Rovo assistant collect Jira or Confluence data that a signed-in user can access, then send it to an</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-26">outside server. Two security firms found that ...</p>
+            <p class="news-summary summary-full" id="summary-full-27">outside server. Two security firms found that ...</p>
           </details>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="New CSS Attacks Can Break Webmail Defenses to Steal Passwords and Tokens" data-summary="New research shows content inside an email can escape its message boundary and interfere with the webmail interface.
@@ -904,13 +926,13 @@ Across attack chains spanning Outlook, Gmail, Fastmail, Proton Mail, Yahoo Mail,
           <div class="facet-row"><span class="chip">Google</span><span class="chip">Identity</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span><span class="handoff-cue">SentryInsight: vendor watch</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-27">
+            <summary class="summary-toggle" aria-controls="summary-full-28">
               <span class="summary-preview-text">New research shows content inside an email can escape its message boundary and interfere with the webmail interface.
 
 Across attack chains spanning Outlook,</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-27">Gmail, Fastmail, Proton Mail, Yahoo Mail, a...</p>
+            <p class="news-summary summary-full" id="summary-full-28">Gmail, Fastmail, Proton Mail, Yahoo Mail, a...</p>
           </details>
         </article>
         <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="Metabase Zero-Day Exploited in Wild Allows Admin Access Without Authentication" data-summary="Metabase has warned that a maximum-severity security flaw impacting its business intelligence and data visualization software package has been exploited in the wild as a zero-day.
@@ -921,7 +943,7 @@ The vulnerability (..." data-severity="Critical" data-tags="Vulnerability,Exploi
             <span class="chip"><span class="dot"></span>The Hacker News</span>
             <span class="chip">thehackernews.com</span>
             <span class="chip">Industry media</span>
-            <span class="chip age-chip">Recent - 2d old</span>
+            <span class="chip age-chip">Recent - 3d old</span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/metabase-zero-day-exploited-in-wild.html" target="_blank" rel="noopener">Metabase Zero-Day Exploited in Wild Allows Admin Access Without Authentication</a></h2>
           <div class="news-meta">
@@ -930,35 +952,13 @@ The vulnerability (..." data-severity="Critical" data-tags="Vulnerability,Exploi
           <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: incident watch</span><span class="handoff-cue">SentryInsight: vuln triage</span></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-28">
+            <summary class="summary-toggle" aria-controls="summary-full-29">
               <span class="summary-preview-text">Metabase has warned that a maximum-severity security flaw impacting its business intelligence and data visualization software package has been exploited in the</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-28">wild as a zero-day.
+            <p class="news-summary summary-full" id="summary-full-29">wild as a zero-day.
 
 The vulnerability (...</p>
-          </details>
-        </article>
-        <article class="news-item" data-source="The Hacker News" data-host="thehackernews.com" data-title="N-able Issues N-central Hotfix 2 as Attackers Reach Managed Systems and Persist" data-summary="N-able has released a fresh round of hotfixes for N‑central as part of its investigation into ongoing exploitation of a recently disclosed security flaw in the Remote Monitoring and Management (RMM) p..." data-severity="Elevated" data-tags="Vulnerability,Exploitation" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Recent">
-          <div class="chips">
-            <span class="severity severity-elevated">Elevated</span>
-            <span class="chip"><span class="dot"></span>The Hacker News</span>
-            <span class="chip">thehackernews.com</span>
-            <span class="chip">Industry media</span>
-            <span class="chip age-chip">Recent - 2d old</span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/08/n-central-attackers-reach-managed.html" target="_blank" rel="noopener">N-able Issues N-central Hotfix 2 as Attackers Reach Managed Systems and Persist</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-08-08T06:57:43.000Z">August 8, 2026 at 6:57 AM</time>
-          </div>
-          <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
-          <div class="handoff-row" aria-label="Downstream handoff cues"><span class="handoff-cue">SentryInsight: vuln triage</span></div>
-          <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-29">
-              <span class="summary-preview-text">N-able has released a fresh round of hotfixes for N‑central as part of its investigation into ongoing exploitation of a recently disclosed security flaw in the</span><span class="summary-ellipsis" aria-hidden="true">...</span>
-              <span class="summary-action">Show full summary</span>
-            </summary>
-            <p class="news-summary summary-full" id="summary-full-29">Remote Monitoring and Management (RMM) p...</p>
           </details>
         </article>
     </div>
@@ -1250,7 +1250,7 @@ The vulnerability (...</p>
         const hasComposedFilters = Boolean(term || severity || tag || vendor || age || handoff);
         const safeStatusActionLabel = typeof statusActionLabel === 'string' ? statusActionLabel : '';
         const emptyFilteredStatusText = visible === 0 ? getEmptyFilteredMessage(src, hasComposedFilters) : '';
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-08-11T04:22:57.134Z').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('2026-08-11T07:14:41.288Z').toLocaleString());
         if (filterStatusAnnouncement) filterStatusAnnouncement.textContent = getFilterStatusText(visible, total, safeStatusActionLabel, emptyFilteredStatusText);
         renderEmptyFilteredState(visible, src, hasComposedFilters);
         sourceCoverageButtons.forEach(function(button){
