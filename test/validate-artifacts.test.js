@@ -1307,7 +1307,7 @@ test('validateArtifacts reports malformed news-data items without throwing durin
 
   const result = validateArtifacts(repoRoot);
   assert.equal(result.valid, false);
-  assert.match(result.failures.join('\n'), /news-data item 1 must be an object/);
+  assert.match(result.failures.join('\n'), /news-data.json item 1 must be an object/);
 });
 
 test('validateArtifacts reports missing generated artifacts', () => {

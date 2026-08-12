@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { generateHTML } = require('./render-news-html');
-const { assertRssNewsDataContract } = require('./generate-rss');
+const { assertNewsDataContract } = require('./news-data-contract');
 const { assertSourceConfigContract } = require('./source-config-contract');
 
 // Path to the index.html file
@@ -144,10 +144,6 @@ async function fetchRSSFeed(source) {
   }));
 }
 
-/* VT integration removed
-// VT integration removed
-
-*/
 // Function to fetch news from all sources
 async function fetchAllNews(options = {}) {
   const {
@@ -157,11 +153,7 @@ async function fetchAllNews(options = {}) {
   } = options;
   const sources = sourceConfig.enabledRssSources;
   const allNewsPromises = sources.map(source => {
-    if (source.type === 'rss') {
-      return fetchFeed(source);
-    }
-    // Add other types of fetching if needed (e.g., web scraping for non-RSS sources)
-    return Promise.resolve([]);
+    return fetchFeed(source);
   });
 
   const fetchResults = await Promise.allSettled(allNewsPromises);
@@ -176,7 +168,7 @@ async function fetchAllNews(options = {}) {
     logger.error(`Error fetching from ${sources[index].name}:`, result.reason?.message || result.reason);
   });
 
-  if (sources.length > 0 && allNewsArrays.length === 0) {
+  if (allNewsArrays.length === 0) {
     throw new Error(`Failed to fetch all ${sources.length} enabled RSS sources`);
   }
   
@@ -203,7 +195,7 @@ function writeGeneratedNewsArtifacts(options) {
   const config = sourceConfig.config;
   const sources = sourceConfig.enabledRssSources;
 
-  assertRssNewsDataContract(newsItems, sources, sourceConfig.maxNewsItems);
+  assertNewsDataContract(newsItems, sources, sourceConfig.maxNewsItems);
 
   const html = generateHTML(newsItems, {
     sourceNames: sources.map(source => source.name),
@@ -224,12 +216,6 @@ function writeGeneratedNewsArtifacts(options) {
 // Main function
 async function main() {
   try {
-    // Create necessary directories if they don't exist
-    const scriptsDir = path.join(__dirname);
-    if (!fs.existsSync(scriptsDir)) {
-      fs.mkdirSync(scriptsDir, { recursive: true });
-    }
-
     const sourceConfig = loadSourceConfig();
     const sources = sourceConfig.enabledRssSources;
     

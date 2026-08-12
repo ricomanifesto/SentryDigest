@@ -761,6 +761,19 @@ test('collectSourceCoverage includes configured sources with zero articles', () 
   ]);
 });
 
+test('collectSourceCoverage ignores malformed entries while counting valid sources', () => {
+  const coverage = collectSourceCoverage([
+    null,
+    [],
+    { source: 'Example Security' },
+  ], ['Example Security', 'Quiet Source']);
+
+  assert.deepEqual(coverage, [
+    { source: 'Example Security', count: 1 },
+    { source: 'Quiet Source', count: 0 },
+  ]);
+});
+
 test('deriveHandoffCues identifies downstream incident and governance relevance', () => {
   const cues = deriveHandoffCues({
     title: 'Microsoft Exchange zero-day exploited in data breach response',

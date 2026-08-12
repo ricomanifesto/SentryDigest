@@ -232,7 +232,13 @@ function collectSourceCoverage(newsItems, sourceNames = []) {
     }
   });
   newsItems.forEach((article) => {
-    const source = article.source || 'Unknown source';
+    if (!article || typeof article !== 'object' || Array.isArray(article)) {
+      return;
+    }
+
+    const source = typeof article.source === 'string' && article.source
+      ? article.source
+      : 'Unknown source';
     counts.set(source, (counts.get(source) || 0) + 1);
   });
 

@@ -15,14 +15,18 @@ const {
 } = require('./generated-artifact-contracts');
 const {
   collectOperatorLanes,
+  collectSourceCoverage,
   deriveArticleFacets,
   deriveHandoffCues,
 } = require('./render-news-html');
 const {
   DEFAULT_MAX_NEWS_ITEMS,
-  isValidHttpUrl,
   validateSourceConfig,
 } = require('./source-config-contract');
+const {
+  collectNewsDataFailures,
+  isValidDate,
+} = require('./news-data-contract');
 
 function readText(label, filePath, repoRoot, failures) {
   if (!fs.existsSync(filePath)) {
@@ -53,11 +57,6 @@ function readJson(label, filePath, repoRoot, failures) {
     fail(failures, `${label} is not valid JSON: ${error.message}`);
     return null;
   }
-}
-
-function isValidDate(value) {
-  const date = new Date(value);
-  return !Number.isNaN(date.getTime());
 }
 
 function countMatches(text, pattern) {
@@ -124,20 +123,6 @@ function extractArticleHrefs(indexHtml) {
   }
 
   return hrefs;
-}
-
-function extractFeedItemLinks(feedXml) {
-  const links = [];
-  const itemPattern = /<item\b[^>]*>[\s\S]*?<\/item>/gi;
-  const linkPattern = /<link\b[^>]*>([\s\S]*?)<\/link>/i;
-  let itemMatch;
-
-  while ((itemMatch = itemPattern.exec(feedXml)) !== null) {
-    const linkMatch = linkPattern.exec(itemMatch[0]);
-    links.push(linkMatch ? decodeHtmlEntities(linkMatch[1].trim()) : '');
-  }
-
-  return links;
 }
 
 function extractFeedItemMetadata(feedXml) {
@@ -523,24 +508,6 @@ function validateFeedMetadataContract(feedInfo, indexHtml, failures) {
   });
 }
 
-function getExpectedSourceCounts(newsData, enabledSources) {
-  const counts = new Map();
-  enabledSources.forEach((source) => {
-    if (source && typeof source.name === 'string') {
-      counts.set(source.name, 0);
-    }
-  });
-
-  newsData.forEach((article) => {
-    if (!article || typeof article !== 'object' || Array.isArray(article) || typeof article.source !== 'string') {
-      return;
-    }
-    counts.set(article.source, (counts.get(article.source) || 0) + 1);
-  });
-
-  return counts;
-}
-
 function validateSourceCoverageContract(indexHtml, newsData, enabledSources, failures) {
   const $ = cheerio.load(indexHtml);
   const section = $(SOURCE_COVERAGE_CONTRACT.sectionSelector);
@@ -549,7 +516,12 @@ function validateSourceCoverageContract(indexHtml, newsData, enabledSources, fai
     return;
   }
 
-  const expectedCounts = getExpectedSourceCounts(newsData, enabledSources);
+  const expectedCounts = new Map(
+    collectSourceCoverage(
+      newsData,
+      enabledSources.map((source) => source.name)
+    ).map(({ source, count }) => [source, count])
+  );
   const expectedActiveSources = Array.from(expectedCounts.values()).filter((count) => count > 0).length;
   const expectedQuietSources = Array.from(expectedCounts.values()).filter((count) => count === 0).length;
   const sourceHealthSummary = section.find(SOURCE_COVERAGE_CONTRACT.healthSelector).first();
@@ -788,54 +760,9 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
   }
 
   if (newsData) {
-    if (!Array.isArray(newsData)) {
-      fail(failures, 'news-data.json must be an array');
-    } else {
-      if (newsData.length > maxNewsItems) {
-        fail(failures, `news-data.json has ${newsData.length} items, which exceeds maxNewsItems ${maxNewsItems}`);
-      }
-
-      const links = new Set();
-      const enabledSourceNames = new Set(enabledSources.map((source) => source.name));
-
-      newsData.forEach((article, index) => {
-        const label = `news-data item ${index + 1}`;
-        if (!article || typeof article !== 'object' || Array.isArray(article)) {
-          fail(failures, `${label} must be an object`);
-          return;
-        }
-
-        if (!article.title || typeof article.title !== 'string') {
-          fail(failures, `${label} must have a string title`);
-        }
-        if (!article.link || !isValidHttpUrl(article.link)) {
-          fail(failures, `${label} must have an http(s) link`);
-        } else if (links.has(article.link)) {
-          fail(failures, `${label} duplicates link ${article.link}`);
-        } else {
-          links.add(article.link);
-        }
-        if (!article.date || !isValidDate(article.date)) {
-          fail(failures, `${label} must have a valid date`);
-        }
-        if (!article.source || typeof article.source !== 'string') {
-          fail(failures, `${label} must have a string source`);
-        } else if (enabledSourceNames.size > 0 && !enabledSourceNames.has(article.source)) {
-          fail(failures, `${label} source "${article.source}" is not enabled in config`);
-        }
-        if (article.summary !== undefined && typeof article.summary !== 'string') {
-          fail(failures, `${label} summary must be a string when present`);
-        }
-
-        if (index > 0 && isValidDate(article.date) && isValidDate(newsData[index - 1].date)) {
-          const previous = new Date(newsData[index - 1].date).getTime();
-          const current = new Date(article.date).getTime();
-          if (current > previous) {
-            fail(failures, `${label} is newer than the previous item; news-data.json must be newest-first`);
-          }
-        }
-      });
-    }
+    failures.push(
+      ...collectNewsDataFailures(newsData, enabledSources, maxNewsItems)
+    );
   }
 
   if (feedInfo && newsData && Array.isArray(newsData)) {
@@ -960,11 +887,5 @@ if (require.main === module) {
 }
 
 module.exports = {
-  extractFeedItemLinks,
-  extractFeedItemMetadata,
-  extractArticleHrefs,
-  getGeneratedMetadataTimestamps,
-  isSafeGeneratedArticleHref,
-  normalizeGeneratedArticleLink,
   validateArtifacts,
 };
