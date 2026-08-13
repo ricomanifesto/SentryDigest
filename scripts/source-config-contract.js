@@ -111,8 +111,15 @@ function validateSourceConfig(config, failures = []) {
   if (config.settings !== undefined) {
     if (!config.settings || typeof config.settings !== 'object' || Array.isArray(config.settings)) {
       fail(failures, 'settings must be an object');
-    } else if (config.settings.maxNewsItems !== undefined) {
-      maxNewsItems = config.settings.maxNewsItems;
+    } else {
+      if (config.settings.maxNewsItems !== undefined) {
+        maxNewsItems = config.settings.maxNewsItems;
+      }
+      ['testTrigger', 'manualTrigger'].forEach((field) => {
+        if (Object.hasOwn(config.settings, field)) {
+          fail(failures, `settings.${field} is a trigger-only field and must not be committed`);
+        }
+      });
     }
   }
 

@@ -29,7 +29,7 @@ const DASHBOARD_RSS_LINK_CONTRACT = Object.freeze({
   feedHref: './feed.xml',
   linkLabels: Object.freeze({
     'a.btn': 'Open generated RSS feed',
-    '.issue-strip a.issue-link': 'Open generated RSS archive',
+    '.issue-strip a.issue-link': 'Open rolling RSS feed',
     'footer a[data-rss-link]': 'Open generated RSS feed',
   }),
   linkSelectors: Object.freeze([
@@ -79,35 +79,34 @@ const SOURCE_COVERAGE_CONTRACT = Object.freeze({
   buttonDataAttribute: 'data-source-filter',
   buttonSelector: '[data-source-filter]',
   healthNoteSelector: '.source-health-note',
-  healthNoteText: 'health only',
+  healthNoteText: '',
   healthSelector: '.source-health-summary',
   quietSourcesAttribute: 'data-quiet-sources',
   sectionClass: 'source-coverage',
   sectionSelector: '.source-coverage',
   sourceFilterSelector: '#sourceFilter',
-  statusAllSourcesText: 'Source shortcut: All active feeds',
+  statusAllSourcesText: 'All contributing feeds',
   statusSelector: '[data-source-filter-status]',
-  statusTextPrefix: 'Source shortcut: ',
+  statusTextPrefix: 'Source filter: ',
 });
 
 const FEED_METADATA_CONTRACT = Object.freeze({
   issueStripTimeSelector: '.issue-strip time[datetime]',
   issueTrailTimeSelector: `${ISSUE_TRAIL_CONTRACT.navSelector} time[datetime]`,
   maxTimestampDriftMs: 5 * 60 * 1000,
-  statsTimeSelector: '#stats time[datetime]',
 });
 
 const FEED_INFO_CONTRACT = Object.freeze({
   publicFeedUrl: 'https://ricomanifesto.github.io/SentryDigest/feed.xml',
-  title: 'Cybersecurity News Aggregator RSS Feed',
+  title: 'SentryDigest RSS Feed',
 });
 
 const RSS_CHANNEL_CONTRACT = Object.freeze({
-  description: 'Latest cybersecurity news from top sources',
+  description: 'A fresh, scannable cybersecurity brief from trusted sources',
   imageUrl: 'https://ricomanifesto.github.io/SentryDigest/assets/icon-512.png',
   publicFeedUrl: FEED_INFO_CONTRACT.publicFeedUrl,
   publicSiteUrl: 'https://ricomanifesto.github.io/SentryDigest/',
-  title: 'Cybersecurity News Aggregator',
+  title: 'SentryDigest',
 });
 
 const SITE_METADATA_CONTRACT = Object.freeze({

@@ -120,3 +120,17 @@ test('validateSourceConfig rejects malformed settings blocks', () => {
     assert.deepEqual(failures, ['settings must be an object']);
   }
 });
+
+test('validateSourceConfig rejects committed trigger-only settings', () => {
+  for (const triggerField of ['testTrigger', 'manualTrigger']) {
+    const { failures } = validateSourceConfig({
+      sources: [enabledSource()],
+      settings: {
+        maxNewsItems: 30,
+        [triggerField]: true,
+      },
+    });
+
+    assert.deepEqual(failures, [`settings.${triggerField} is a trigger-only field and must not be committed`]);
+  }
+});

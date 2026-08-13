@@ -1,6 +1,7 @@
 const {
   DASHBOARD_RSS_LINK_CONTRACT,
   DIGEST_LEGEND_CONTRACT,
+  FEED_INFO_CONTRACT,
   formatSourceShortcutStatus,
   ISSUE_TRAIL_CONTRACT,
   OPERATOR_LANE_CONTRACT,
@@ -37,7 +38,7 @@ const TOPIC_RULES = [
   { label: 'Ransomware', pattern: /\b(ransomware|extortion|encryptor)\b/i },
   { label: 'Vulnerability', pattern: /\b(cve-\d{4}-\d+|vulnerabilities|vulnerability|zero-day|0-day|flaw|patch|patched|critical bug)\b/i },
   { label: 'Exploitation', pattern: /\b(exploit|exploited|exploiting|exploitation|in the wild|active attacks?)\b/i },
-  { label: 'Data Breach', pattern: /\b(data breach|breach|leaks?|leaked data|stolen data|stolen credentials?|steal credentials?|stealing credentials?|exposed data|credential theft)\b/i },
+  { label: 'Data Breach', pattern: /\b(data breach|data[- ]theft|breach|leaks?|leaked data|stolen (?:customer )?(?:data|records|credentials?)|steal credentials?|stealing credentials?|exposed data|credential theft)\b/i },
   { label: 'Identity', pattern: /\b(identity|credentials?|passwords?|oauth|sso|mfa|phishing)\b/i },
   { label: 'Cloud', pattern: /\b(cloud|aws|azure|gcp|kubernetes|container)\b/i },
   { label: 'Malware', pattern: /\b(malware|trojan|backdoor|loader|spyware|botnet)\b/i },
@@ -110,7 +111,7 @@ function matchesRule(text, rule) {
 }
 
 function deriveSeverity(text, tags) {
-  const criticalPattern = /\b(ransomware|zero-day|0-day|actively exploited|active exploitation|in the wild|critical bug|critical vulnerability|critical vulnerabilities|data breach|breach)\b/i;
+  const criticalPattern = /\b(ransomware|zero-day|0-day|actively exploited|active exploitation|in the wild|critical bug|critical vulnerability|critical vulnerabilities|data breach|data[- ]theft|mass compromise|breach)\b/i;
   if (criticalPattern.test(text) || tags.includes('Ransomware') || tags.includes('Data Breach')) {
     return 'Critical';
   }
@@ -174,7 +175,7 @@ function deriveAgeBucket(articleDate, generatedAt = new Date()) {
       ? `${ageHours}h old`
       : `${ageDays}d old`;
 
-  if (ageHours < 24) {
+  if (ageHours < 6) {
     return { label: 'Fresh', detail };
   }
 
@@ -203,7 +204,6 @@ function collectFacetFilterOptions(newsItems, generatedAt = new Date()) {
   const tags = new Set();
   const vendors = new Set();
   const ageBuckets = new Set();
-  const handoffCues = new Set();
 
   newsItems.forEach((article) => {
     const facets = deriveArticleFacets(article);
@@ -211,7 +211,6 @@ function collectFacetFilterOptions(newsItems, generatedAt = new Date()) {
     facets.tags.forEach((tag) => tags.add(tag));
     facets.vendors.forEach((vendor) => vendors.add(vendor));
     ageBuckets.add(deriveAgeBucket(article.date, generatedAt).label);
-    deriveHandoffCues(article).forEach((cue) => handoffCues.add(cue));
   });
 
   const severityOrder = ['Critical', 'Elevated', 'Monitor'];
@@ -220,7 +219,7 @@ function collectFacetFilterOptions(newsItems, generatedAt = new Date()) {
     tags: Array.from(tags).sort((left, right) => left.localeCompare(right)),
     vendors: Array.from(vendors).sort((left, right) => left.localeCompare(right)),
     ageBuckets: AGE_BUCKET_ORDER.filter((bucket) => ageBuckets.has(bucket)),
-    handoffCues: HANDOFF_CUE_ORDER.filter((cue) => handoffCues.has(cue)),
+    handoffCues: HANDOFF_CUE_ORDER,
   };
 }
 
@@ -260,13 +259,7 @@ function collectSourceSignalLegend(newsItems) {
 }
 
 function collectHandoffCueLegend(newsItems) {
-  const presentCues = new Set();
-  newsItems.forEach((article) => {
-    deriveHandoffCues(article).forEach((cue) => presentCues.add(cue));
-  });
-
   return HANDOFF_CUE_ORDER
-    .filter((label) => presentCues.has(label))
     .map((label) => ({
       label,
       detail: HANDOFF_CUE_DETAILS[label],
@@ -281,12 +274,13 @@ function collectOperatorLanes(newsItems) {
     const latestArticle = matchingArticles[0];
 
     return {
+      cue: lane.cue,
       label: lane.label,
       count: matchingArticles.length,
       latestTitle: latestArticle ? latestArticle.title : '',
       latestLink: latestArticle ? safeArticleLink(latestArticle.link) : '#',
     };
-  });
+  }).filter((lane) => lane.count > 0);
 }
 
 function renderSelectOptions(values) {
@@ -296,27 +290,22 @@ function renderSelectOptions(values) {
 }
 
 function renderSourceCoverage(newsItems, sourceNames = [], digestLegend = '') {
-  const sourceCounts = collectSourceCoverage(newsItems, sourceNames);
+  const sourceCounts = collectSourceCoverage(newsItems, sourceNames)
+    .filter(({ count }) => count > 0);
   if (sourceCounts.length === 0) {
     return '';
   }
 
   const feedItemLabel = newsItems.length === 1 ? '1 item' : `${newsItems.length} items`;
   const feedArticleLabel = newsItems.length === 1 ? '1 latest article' : `${newsItems.length} latest articles`;
-  const activeSourceCount = sourceCounts.filter(({ count }) => count > 0).length;
-  const quietSourceCount = sourceCounts.filter(({ count }) => count === 0).length;
+  const activeSourceCount = sourceCounts.length;
+  const quietSourceCount = 0;
   const activeFeedLabel = activeSourceCount === 1 ? 'active feed' : 'active feeds';
-  const quietFeedLabel = quietSourceCount === 1 ? 'quiet feed' : 'quiet feeds';
-  const quietFeedNote = quietSourceCount > 0 ? ` <span class="source-health-note">${SOURCE_COVERAGE_CONTRACT.healthNoteText}</span>` : '';
   const sourceCountItems = sourceCounts
     .map(({ source, count }) => {
-      const emptyClass = count === 0 ? ' source-count-empty' : '';
-      const disabledAttributes = count === 0 ? ' aria-disabled="true" disabled' : '';
       const articleLabel = count === 1 ? 'article' : 'articles';
-      const sourceLabel = count === 0
-        ? `${source} source has no current articles`
-        : `Filter to ${source} source, ${count} ${articleLabel}`;
-      return `<button class="source-count${emptyClass}" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="${escapeAttribute(source)}" aria-label="${escapeAttribute(sourceLabel)}" aria-pressed="false"${disabledAttributes}>${escapeHtml(source)} <strong>${count}</strong></button>`;
+      const sourceLabel = `Filter to ${source} source, ${count} ${articleLabel}`;
+      return `<button class="source-count" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="${escapeAttribute(source)}" aria-label="${escapeAttribute(sourceLabel)}" aria-pressed="false">${escapeHtml(source)} <strong>${count}</strong></button>`;
     })
     .join('');
 
@@ -327,7 +316,6 @@ function renderSourceCoverage(newsItems, sourceNames = [], digestLegend = '') {
       <div class="source-counts">${sourceCountItems}</div>
       <div class="source-health-summary" ${SOURCE_COVERAGE_CONTRACT.activeSourcesAttribute}="${activeSourceCount}" ${SOURCE_COVERAGE_CONTRACT.quietSourcesAttribute}="${quietSourceCount}">
         <span><strong>${activeSourceCount}</strong> ${activeFeedLabel}</span>
-        <span><strong>${quietSourceCount}</strong> ${quietFeedLabel}</span>${quietFeedNote}
       </div>
       <div class="source-filter-status" data-source-filter-status role="status" aria-live="polite" aria-atomic="true">${defaultStatus}</div>
       <div class="source-coverage-actions">
@@ -387,22 +375,26 @@ function renderDigestLegend(newsItems) {
 
 function renderOperatorLanes(newsItems) {
   const lanes = collectOperatorLanes(newsItems);
-  if (lanes.every((lane) => lane.count === 0)) {
+  if (lanes.length === 0) {
     return '';
   }
 
-  const laneCards = lanes.map((lane, index) => {
+  const laneCards = lanes.map((lane) => {
     const safeLabel = escapeHtml(lane.label);
     const safeLabelAttr = escapeAttribute(lane.label);
-    const safeCueAttr = escapeAttribute(OPERATOR_LANE_RULES[index].cue);
-    const safeLatestTitle = lane.latestTitle ? escapeHtml(lane.latestTitle) : 'No current match';
-    const safeLatestLink = escapeAttribute(lane.latestLink || '#');
+    const safeCueAttr = escapeAttribute(lane.cue);
+    const safeLatestTitle = escapeHtml(lane.latestTitle);
+    const safeLatestLink = escapeAttribute(lane.latestLink);
     const itemLabel = lane.count === 1 ? 'item' : 'items';
+    const latestStory = lane.latestLink === '#'
+      ? `<span class="operator-lane-story">${safeLatestTitle}</span>`
+      : `<a href="${safeLatestLink}" class="operator-lane-link" data-lane-link>${safeLatestTitle}</a>`;
 
     return `<article class="operator-lane" data-lane="${safeLabelAttr}" data-lane-cue="${safeCueAttr}">
         <div class="operator-lane-heading">${safeLabel}</div>
         <span class="operator-lane-count" data-lane-count><strong>${lane.count}</strong> ${itemLabel}</span>
-        <a href="${safeLatestLink}" class="operator-lane-link" data-lane-link>${safeLatestTitle}</a>
+        ${latestStory}
+        <span class="operator-lane-empty" data-lane-empty hidden>No current match</span>
       </article>`;
   }).join('');
 
@@ -413,6 +405,8 @@ function renderOperatorLanes(newsItems) {
 
 const SUMMARY_PREVIEW_LENGTH = 160;
 const SUMMARY_WORD_BOUNDARY_MIN = 120;
+const SUMMARY_REMAINDER_MIN_LENGTH = 48;
+const SUMMARY_REMAINDER_MIN_WORDS = 6;
 
 function getSummaryPreview(summary) {
   const parts = getSummaryParts(summary);
@@ -430,6 +424,14 @@ function getSummaryParts(summary) {
   const previewText = preview.slice(0, previewEnd).trim();
   const remainder = summary.slice(previewText.length).trimStart();
 
+  if (
+    remainder.length < SUMMARY_REMAINDER_MIN_LENGTH
+    || remainder.split(/\s+/).filter(Boolean).length < SUMMARY_REMAINDER_MIN_WORDS
+    || /^(?:hacked\s*)?(?:\[(?:\.{3}|…)]|\.{3}|…)+[.!?]*$/i.test(remainder)
+  ) {
+    return null;
+  }
+
   return {
     preview: previewText,
     remainder,
@@ -437,13 +439,15 @@ function getSummaryParts(summary) {
 }
 
 function formatArticleDate(value) {
-  return new Intl.DateTimeFormat('en-US', {
+  const formatted = new Intl.DateTimeFormat('en-US', {
     month: 'long',
     day: 'numeric',
     year: 'numeric',
     hour: 'numeric',
     minute: '2-digit',
+    timeZone: 'UTC',
   }).format(new Date(value));
+  return `${formatted} UTC`;
 }
 
 function renderSummary(summary, index) {
@@ -452,11 +456,11 @@ function renderSummary(summary, index) {
   }
 
   const safeSummary = escapeHtml(summary);
-  if (summary.length <= SUMMARY_PREVIEW_LENGTH) {
+  const summaryParts = getSummaryParts(summary);
+  if (!summaryParts) {
     return `<p class="news-summary">${safeSummary}</p>`;
   }
 
-  const summaryParts = getSummaryParts(summary);
   const safePreview = escapeHtml(summaryParts.preview);
   const safeRemainder = escapeHtml(summaryParts.remainder);
   return `<details class="summary-disclosure">
@@ -468,7 +472,7 @@ function renderSummary(summary, index) {
           </details>`;
 }
 
-function renderArticleCard(article, index = 0, generatedAt = new Date()) {
+function renderArticleCard(article, index = 0, generatedAt = new Date(), options = {}) {
   const articleLink = safeArticleLink(article.link);
   const facets = deriveArticleFacets(article);
   const handoffCues = deriveHandoffCues(article);
@@ -481,18 +485,22 @@ function renderArticleCard(article, index = 0, generatedAt = new Date()) {
     }
   })();
   const articleTime = getArticleTime(article.date);
+  const firstSeenTime = getArticleTime(article.firstSeen);
   const generatedAtTime = getArticleTime(generatedAt);
-  const ageFromGeneratedAt = generatedAtTime - articleTime;
-  const isNew = Number.isFinite(articleTime)
+  const ageFromGeneratedAt = generatedAtTime - firstSeenTime;
+  const isNew = Number.isFinite(firstSeenTime)
     && Number.isFinite(generatedAtTime)
     && ageFromGeneratedAt >= 0
-    && ageFromGeneratedAt < (24 * 60 * 60 * 1000);
+    && ageFromGeneratedAt < (5 * 60 * 1000);
   const dateText = formatArticleDate(article.date);
   const dateIso = new Date(article.date).toISOString();
   const safeSource = escapeHtml(article.source);
   const safeSourceAttr = escapeAttribute(article.source);
   const safeHost = escapeHtml(hostname);
   const safeHostAttr = escapeAttribute(hostname);
+  const safeSourceDisplay = hostname
+    ? `${safeSource} · ${safeHost}`
+    : safeSource;
   const safeTitle = escapeHtml(article.title);
   const safeTitleAttr = escapeAttribute(article.title);
   const safeSummaryAttr = escapeAttribute(article.summary);
@@ -511,21 +519,25 @@ function renderArticleCard(article, index = 0, generatedAt = new Date()) {
   const vendorChips = facets.vendors.map((vendor) => `<span class="chip">${escapeHtml(vendor)}</span>`).join('');
   const tagChips = facets.tags.map((tag) => `<span class="chip">${escapeHtml(tag)}</span>`).join('');
   const handoffCueChips = handoffCues.map((cue) => `<span class="handoff-cue">${escapeHtml(cue)}</span>`).join('');
-  const hostChip = hostname ? `\n            <span class="chip">${safeHost}</span>` : '';
+  const sourceSignalChip = options.showSourceSignal
+    ? `\n            <span class="chip">${safeSourceSignal}</span>`
+    : '';
   const newBadge = isNew ? `\n            <span class="badge-new">NEW</span>` : '';
   const facetRow = (vendorChips || tagChips) ? `\n          <div class="facet-row">${vendorChips}${tagChips}</div>` : '';
   const handoffRow = `\n          <div class="handoff-row" aria-label="Downstream handoff cues">${handoffCueChips}</div>`;
   const summary = renderSummary(article.summary, index);
+  const renderedTitle = articleLink === '#'
+    ? `<span>${safeTitle}</span>`
+    : `<a href="${safeLink}" target="_blank" rel="noopener">${safeTitle}</a>`;
 
   return `
-        <article class="news-item" data-source="${safeSourceAttr}" data-host="${safeHostAttr}" data-title="${safeTitleAttr}" data-summary="${safeSummaryAttr}" data-severity="${safeSeverityAttr}" data-tags="${safeTagsAttr}" data-vendors="${safeVendorsAttr}" data-source-signal="${safeSourceSignalAttr}" data-handoff-cues="${safeHandoffCuesAttr}" data-age-bucket="${safeAgeBucketAttr}">
+        <article class="news-item" data-source="${safeSourceAttr}" data-host="${safeHostAttr}" data-title="${safeTitleAttr}" data-summary="${safeSummaryAttr}" data-severity="${safeSeverityAttr}" data-tags="${safeTagsAttr}" data-vendors="${safeVendorsAttr}" data-source-signal="${safeSourceSignalAttr}" data-handoff-cues="${safeHandoffCuesAttr}" data-age-bucket="${safeAgeBucketAttr}" data-published-at="${dateIso}">
           <div class="chips">
             <span class="severity severity-${safeSeverityClass}">${safeSeverity}</span>
-            <span class="chip"><span class="dot"></span>${safeSource}</span>${hostChip}
-            <span class="chip">${safeSourceSignal}</span>
-            <span class="chip age-chip">${safeAgeBucket} - ${safeAgeDetail}</span>
+            <span class="chip"><span class="dot"></span>${safeSourceDisplay}</span>${sourceSignalChip}
+            <span class="chip age-chip"><span data-age-label>${safeAgeBucket}</span> · <span data-age-detail>${safeAgeDetail}</span></span>
           </div>
-          <h2 class="news-title"><a href="${safeLink}" target="_blank" rel="noopener">${safeTitle}</a></h2>
+          <h2 class="news-title">${renderedTitle}</h2>
           <div class="news-meta">
             <time datetime="${dateIso}">${dateText}</time>${newBadge}
           </div>${facetRow}${handoffRow}
@@ -547,6 +559,7 @@ function formatIssueDate(date) {
     month: 'long',
     day: 'numeric',
     year: 'numeric',
+    timeZone: 'UTC',
   }).format(new Date(date));
 }
 
@@ -554,7 +567,12 @@ function formatUtcTime(date) {
   const value = new Date(date);
   const hours = String(value.getUTCHours()).padStart(2, '0');
   const minutes = String(value.getUTCMinutes()).padStart(2, '0');
-  return `${hours}:${minutes} UTC`;
+  const issueDay = new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    day: 'numeric',
+    timeZone: 'UTC',
+  }).format(value);
+  return `${hours}:${minutes} UTC · ${issueDay}`;
 }
 
 function renderIssueStrip(totalItems, sourceCount, generatedAt) {
@@ -567,14 +585,14 @@ function renderIssueStrip(totalItems, sourceCount, generatedAt) {
       <time datetime="${issueDate.toISOString()}">${formatIssueDate(issueDate)}</time>
       <span class="issue-stat"><strong>${totalItems}</strong> ${articleLabel}</span>
       <span class="issue-stat"><strong>${sourceCount}</strong> ${sourceLabel}</span>
-      <a class="issue-link" href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}" aria-label="Open generated RSS archive">RSS archive</a>
+      <a class="issue-link" href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}" aria-label="Open rolling RSS feed">Rolling RSS feed</a>
     </section>`;
 }
 
 function renderIssueTrail(generatedAt) {
   const issueDate = new Date(generatedAt);
 
-  return `<nav class="${ISSUE_TRAIL_CONTRACT.navClass}" aria-label="Digest archive trail">
+  return `<nav class="${ISSUE_TRAIL_CONTRACT.navClass}" aria-label="Digest navigation">
       <span class="issue-trail-current" aria-current="page">Current digest</span>
       <a href="${ISSUE_TRAIL_CONTRACT.feedHref}" aria-label="Open generated RSS feed">RSS feed</a>
       <a href="${ISSUE_TRAIL_CONTRACT.sourceCoverageHref}">Source coverage</a>
@@ -595,8 +613,6 @@ function generateHTML(newsItems, options = {}) {
   const vendorOptions = renderSelectOptions(filterOptions.vendors);
   const ageOptions = renderSelectOptions(filterOptions.ageBuckets);
   const handoffOptions = renderSelectOptions(filterOptions.handoffCues);
-  const now = new Date(generatedAt);
-  const nowIso = now.toISOString();
   const totalArticleLabel = totalItems === 1 ? 'article' : 'articles';
   const digestLegend = renderDigestLegend(newsItems);
   const sourceCoverage = renderSourceCoverage(newsItems, sourceNames, digestLegend);
@@ -621,8 +637,10 @@ function generateHTML(newsItems, options = {}) {
     },
     sameAs: SITE_METADATA_CONTRACT.githubUrl,
   }).replace(/</g, '\\u003c');
+  const sourceSignals = new Set(newsItems.map((article) => deriveArticleFacets(article).sourceSignal));
+  const showSourceSignal = sourceSignals.size > 1;
   const articleCards = newsItems.length > 0
-    ? newsItems.map((article, index) => renderArticleCard(article, index, generatedAt)).join('')
+    ? newsItems.map((article, index) => renderArticleCard(article, index, generatedAt, { showSourceSignal })).join('')
     : renderEmptyState();
 
   return `
@@ -644,7 +662,7 @@ function generateHTML(newsItems, options = {}) {
   <meta name="twitter:description" content="${SITE_METADATA_CONTRACT.description}">
   <meta name="twitter:image" content="${SITE_METADATA_CONTRACT.imageUrl}">
   <script type="application/ld+json">${structuredData}</script>
-  <link rel="alternate" type="application/rss+xml" title="Cybersecurity News RSS Feed" href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}" />
+  <link rel="alternate" type="application/rss+xml" title="${FEED_INFO_CONTRACT.title}" href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}" />
   <link rel="icon" href="./assets/favicon.ico" sizes="48x48">
   <link rel="icon" type="image/svg+xml" href="./assets/icon.svg">
   <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
@@ -721,14 +739,10 @@ function generateHTML(newsItems, options = {}) {
     .source-count { background: var(--chip); border: 1px solid transparent; border-radius: 999px; color: var(--fg); cursor: pointer; font: inherit; font-size: 12px; padding: 4px 10px; }
     .source-count:hover, .source-count:focus-visible, .source-count[aria-pressed="true"] { border-color: var(--accent); }
     .source-count:focus-visible { box-shadow: 0 0 0 3px rgba(37,99,235,0.15); outline: 2px solid var(--accent); outline-offset: 2px; }
-    .source-count-empty { color: var(--muted); cursor: default; opacity: 0.78; }
-    .source-count-empty:hover { border-color: transparent; }
-    .source-count-empty:focus-visible { box-shadow: none; outline: none; }
     .source-count strong { color: var(--accent); margin-left: 4px; }
     .source-health-summary { align-items: center; color: var(--muted); display: flex; flex: 0 1 auto; flex-wrap: wrap; font-size: 12px; gap: 6px; }
     .source-health-summary span { background: var(--bg); border: 1px solid var(--card-border); border-radius: 999px; padding: 3px 8px; }
     .source-health-summary strong { color: var(--fg); }
-    .source-health-note { color: var(--muted); font-weight: 700; text-transform: uppercase; }
     .source-filter-status { color: var(--muted); flex: 0 1 auto; font-size: 12px; font-weight: 700; }
     .source-coverage a { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
     .source-coverage a:hover { text-decoration: underline; }
@@ -813,7 +827,7 @@ function generateHTML(newsItems, options = {}) {
         <img src="./assets/icon.svg" alt="SentryDigest" />
         <div>
           <div class="title">SentryDigest</div>
-          <div class="subtitle">Cybersecurity News Aggregator</div>
+          <div class="subtitle">Cybersecurity morning brief</div>
         </div>
       </div>
       <div class="controls">
@@ -859,7 +873,7 @@ function generateHTML(newsItems, options = {}) {
       <div id="filterStatusAnnouncement" class="sr-only" role="status" aria-live="polite" aria-atomic="true">Showing ${totalItems} of ${totalItems} ${totalArticleLabel}.</div>
       <button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters</button>
     </div>
-    <div class="stats" id="stats">Showing ${totalItems} of ${totalItems} articles from ${uniqueSources.length} sources • Last updated <time datetime="${nowIso}">${now.toLocaleString()}</time></div>
+    <div class="stats" id="stats">Showing ${totalItems} of ${totalItems} articles from ${uniqueSources.length} sources</div>
     ${issueStrip}
     ${issueTrail}
     <div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true" hidden></div>
@@ -1045,7 +1059,7 @@ function generateHTML(newsItems, options = {}) {
         if (visibleCards.length === 0) return;
         const label = document.createElement('span');
         label.className = 'filter-insights-label';
-        label.textContent = 'Visible mix';
+        label.textContent = 'Current results';
         filterInsights.appendChild(label);
         const severityCounts = {};
         const topicCounts = {};
@@ -1112,6 +1126,7 @@ function generateHTML(newsItems, options = {}) {
           const cue = lane.getAttribute('data-lane-cue');
           const countTarget = lane.querySelector('[data-lane-count]');
           const linkTarget = lane.querySelector('[data-lane-link]');
+          const emptyTarget = lane.querySelector('[data-lane-empty]');
           const matchingCards = visibleCards.filter(function(card){
             return card.getAttribute('data-handoff-cues').split(',').filter(Boolean).includes(cue);
           });
@@ -1125,9 +1140,42 @@ function generateHTML(newsItems, options = {}) {
             countTarget.appendChild(document.createTextNode(' ' + itemLabel));
           }
           if (linkTarget) {
-            linkTarget.textContent = latestLink ? latestLink.textContent : 'No current match';
-            linkTarget.setAttribute('href', latestLink ? latestLink.getAttribute('href') : '#');
+            linkTarget.hidden = !latestLink;
+            linkTarget.textContent = latestLink ? latestLink.textContent : '';
+            if (latestLink) {
+              linkTarget.setAttribute('href', latestLink.getAttribute('href'));
+            } else {
+              linkTarget.removeAttribute('href');
+            }
           }
+          if (emptyTarget) emptyTarget.hidden = Boolean(latestLink);
+        });
+      }
+
+      const freshHours = 6;
+
+      function getAgeState(publishedAt){
+        const publishedTime = new Date(publishedAt).getTime();
+        if (!Number.isFinite(publishedTime) || publishedTime === ${INVALID_FEED_DATE_FALLBACK_TIME}) {
+          return { label: 'Undated', detail: 'date unavailable' };
+        }
+        const ageMs = Math.max(0, Date.now() - publishedTime);
+        const ageMinutes = Math.floor(ageMs / (60 * 1000));
+        const ageHours = Math.floor(ageMs / (60 * 60 * 1000));
+        const ageDays = Math.floor(ageMs / (24 * 60 * 60 * 1000));
+        const detail = ageHours < 1 ? ageMinutes + 'm old' : ageHours < 24 ? ageHours + 'h old' : ageDays + 'd old';
+        const label = ageHours < freshHours ? 'Fresh' : ageDays < 4 ? 'Recent' : 'Older';
+        return { label, detail };
+      }
+
+      function updateFreshness(){
+        cards.forEach(function(card){
+          const age = getAgeState(card.getAttribute('data-published-at'));
+          const labelTarget = card.querySelector('[data-age-label]');
+          const detailTarget = card.querySelector('[data-age-detail]');
+          card.setAttribute('data-age-bucket', age.label);
+          if (labelTarget) labelTarget.textContent = age.label;
+          if (detailTarget) detailTarget.textContent = age.detail;
         });
       }
 
@@ -1162,7 +1210,7 @@ function generateHTML(newsItems, options = {}) {
         const hasComposedFilters = Boolean(term || severity || tag || vendor || age || handoff);
         const safeStatusActionLabel = typeof statusActionLabel === 'string' ? statusActionLabel : '';
         const emptyFilteredStatusText = visible === 0 ? getEmptyFilteredMessage(src, hasComposedFilters) : '';
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources • Last updated ' + (new Date('${nowIso}').toLocaleString());
+        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources';
         if (filterStatusAnnouncement) filterStatusAnnouncement.textContent = getFilterStatusText(visible, total, safeStatusActionLabel, emptyFilteredStatusText);
         renderEmptyFilteredState(visible, src, hasComposedFilters);
         sourceCoverageButtons.forEach(function(button){
@@ -1187,8 +1235,8 @@ function generateHTML(newsItems, options = {}) {
           const source = button.getAttribute('${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}') || '';
           const nextSource = sourceFilter.value === source ? '' : source;
           sourceFilter.value = nextSource;
-          const sourceShortcutStatus = nextSource ? 'Source shortcut: ' + getControlLabel(sourceFilter) + '.' : 'Source shortcut cleared.';
-          update(sourceShortcutStatus);
+          const sourceFilterAction = nextSource ? 'Source filter: ' + getControlLabel(sourceFilter) + '.' : 'Source filter cleared.';
+          update(sourceFilterAction);
           focusSourceShortcutRecoveryTarget(source);
         });
       });
@@ -1219,7 +1267,12 @@ function generateHTML(newsItems, options = {}) {
       if (emptyResetFilters) emptyResetFilters.addEventListener('click', function(){ clearFilters({ focusRecoveryTarget: true }); });
 
       applyQueryState();
+      updateFreshness();
       update();
+      window.setInterval(function(){
+        updateFreshness();
+        if (ageFilter && ageFilter.value) update();
+      }, 60 * 1000);
 
       function debounce(fn, wait){ let t; return function(){ clearTimeout(t); t=setTimeout(fn, wait); } }
     })();

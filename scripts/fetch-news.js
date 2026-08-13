@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const cheerio = require('cheerio');
 const { generateHTML } = require('./render-news-html');
 const { assertNewsDataContract } = require('./news-data-contract');
 const { assertSourceConfigContract } = require('./source-config-contract');
@@ -23,12 +24,6 @@ function createDefaultSourceConfig(now = new Date()) {
       {
         name: 'The Hacker News',
         url: 'https://feeds.feedburner.com/TheHackersNews',
-        type: 'rss',
-        enabled: true,
-      },
-      {
-        name: 'Threatpost',
-        url: 'https://threatpost.com/feed/',
         type: 'rss',
         enabled: true,
       },
@@ -130,17 +125,65 @@ function normalizeArticleDate(article) {
   return INVALID_FEED_DATE_FALLBACK;
 }
 
+function normalizeFeedText(value) {
+  let normalized = String(value ?? '');
+
+  for (let pass = 0; pass < 3; pass += 1) {
+    const decoded = cheerio.load(normalized, null, false).text();
+    if (decoded === normalized) {
+      break;
+    }
+    normalized = decoded;
+  }
+
+  return normalized.replace(/\s+/g, ' ').trim();
+}
+
+function normalizeSummary(value) {
+  const normalized = normalizeFeedText(value);
+  const truncationMarker = /\[(?:\.{3}|…)]/g;
+  const hadTruncationMarker = truncationMarker.test(normalized);
+  truncationMarker.lastIndex = 0;
+
+  let summary = normalized.replace(truncationMarker, ' ').replace(/\s+/g, ' ').trim();
+  if (hadTruncationMarker) {
+    summary = summary.replace(/\s*(?:(?:\.{3})|…)+\s*$/g, '').trim();
+  }
+
+  return summary;
+}
+
+function assignFirstSeen(newsItems, previousNewsItems = [], generatedAt = new Date()) {
+  const generatedAtIso = new Date(generatedAt).toISOString();
+  const previousByLink = new Map(
+    previousNewsItems
+      .filter((item) => item && typeof item === 'object' && typeof item.link === 'string')
+      .map((item) => [item.link, item])
+  );
+
+  return newsItems.map((article) => {
+    const previous = previousByLink.get(article.link);
+    const candidates = [article.firstSeen, previous?.firstSeen, previous?.date];
+    const firstSeen = candidates.find((value) => value && !Number.isNaN(new Date(value).getTime()));
+
+    return {
+      ...article,
+      firstSeen: firstSeen ? new Date(firstSeen).toISOString() : generatedAtIso,
+    };
+  });
+}
+
 // Function to fetch RSS feed content
 async function fetchRSSFeed(source) {
   const Parser = require('rss-parser');
   const parser = new Parser();
   const feed = await parser.parseURL(source.url);
   return feed.items.map(article => ({
-    title: article.title,
+    title: normalizeFeedText(article.title),
     link: article.link,
     date: normalizeArticleDate(article),
     source: source.name,
-    summary: article.contentSnippet ? article.contentSnippet.substring(0, 200) + '...' : ''
+    summary: normalizeSummary(article.contentSnippet || article.content || article.description || '')
   }));
 }
 
@@ -191,20 +234,35 @@ function writeGeneratedNewsArtifacts(options) {
     configPath: outputConfigPath = configPath,
     logger = console,
     now = new Date(),
+    previousNewsItems,
   } = options;
   const config = sourceConfig.config;
   const sources = sourceConfig.enabledRssSources;
+  let previousItems = previousNewsItems;
 
-  assertNewsDataContract(newsItems, sources, sourceConfig.maxNewsItems);
+  if (!Array.isArray(previousItems)) {
+    try {
+      previousItems = fs.existsSync(outputNewsDataPath)
+        ? JSON.parse(fs.readFileSync(outputNewsDataPath, 'utf8'))
+        : [];
+    } catch {
+      previousItems = [];
+    }
+  }
 
-  const html = generateHTML(newsItems, {
-    sourceNames: sources.map(source => source.name),
+  const generatedNewsItems = assignFirstSeen(newsItems, previousItems, now);
+
+  assertNewsDataContract(generatedNewsItems, sources, sourceConfig.maxNewsItems);
+
+  const html = generateHTML(generatedNewsItems, {
+    generatedAt: now,
+    sourceNames: Array.from(new Set(generatedNewsItems.map((article) => article.source))),
   });
 
   fs.writeFileSync(outputIndexHtmlPath, html);
   logger.log('Generated index.html');
 
-  fs.writeFileSync(outputNewsDataPath, JSON.stringify(newsItems, null, 2));
+  fs.writeFileSync(outputNewsDataPath, JSON.stringify(generatedNewsItems, null, 2));
   logger.log('Generated news-data.json');
 
   updateConfigLastUpdated(config, now);
@@ -240,13 +298,16 @@ if (require.main === module) {
 }
 
 module.exports = {
+  assignFirstSeen,
   fetchAllNews,
   fetchRSSFeed,
   INVALID_FEED_DATE_FALLBACK,
   createDefaultSourceConfig,
   loadSourceConfig,
   normalizeArticleDate,
+  normalizeFeedText,
   normalizeFeedDate,
+  normalizeSummary,
   updateConfigLastUpdated,
   writeGeneratedNewsArtifacts,
 };

@@ -17,7 +17,6 @@ const {
   collectOperatorLanes,
   collectSourceCoverage,
   deriveArticleFacets,
-  deriveHandoffCues,
 } = require('./render-news-html');
 const {
   DEFAULT_MAX_NEWS_ITEMS,
@@ -278,7 +277,7 @@ function validateFilterInsightsContract(indexHtml, failures) {
 
 function getExpectedDigestLegendEntries(newsData) {
   const sourceSignals = new Map();
-  const handoffCues = new Map();
+  const handoffCues = new Map(Object.entries(DIGEST_LEGEND_CONTRACT.handoffCueDetails));
 
   newsData.forEach((article) => {
     if (!article || typeof article !== 'object' || Array.isArray(article)) {
@@ -291,12 +290,6 @@ function getExpectedDigestLegendEntries(newsData) {
       sourceSignals.set(sourceSignal, sourceSignalDetail);
     }
 
-    deriveHandoffCues(article).forEach((cue) => {
-      const cueDetail = DIGEST_LEGEND_CONTRACT.handoffCueDetails[cue];
-      if (cueDetail) {
-        handoffCues.set(cue, cueDetail);
-      }
-    });
   });
 
   return { handoffCues, sourceSignals };
@@ -380,7 +373,7 @@ function validateOperatorLaneContract(indexHtml, newsData, failures) {
     && !Array.isArray(article)
   ));
   const expectedLanes = collectOperatorLanes(validArticles);
-  const shouldRenderLanes = expectedLanes.some((lane) => lane.count > 0);
+  const shouldRenderLanes = expectedLanes.length > 0;
   const $ = cheerio.load(indexHtml);
   const section = $(OPERATOR_LANE_CONTRACT.sectionSelector).first();
 
@@ -396,11 +389,10 @@ function validateOperatorLaneContract(indexHtml, newsData, failures) {
     return;
   }
 
-  const expectedByLabel = new Map(expectedLanes.map((lane, index) => [
+  const expectedByLabel = new Map(expectedLanes.map((lane) => [
     lane.label,
     {
       ...lane,
-      cue: OPERATOR_LANE_CONTRACT.lanes[index].cue,
     },
   ]));
   const seenLanes = new Set();
@@ -461,7 +453,6 @@ function validateOperatorLaneContract(indexHtml, newsData, failures) {
 function getGeneratedMetadataTimestamps(indexHtml, failures = []) {
   const $ = cheerio.load(indexHtml);
   const selectors = [
-    ['stats', FEED_METADATA_CONTRACT.statsTimeSelector],
     ['issue strip', FEED_METADATA_CONTRACT.issueStripTimeSelector],
     ['issue trail', FEED_METADATA_CONTRACT.issueTrailTimeSelector],
   ];
@@ -519,7 +510,7 @@ function validateSourceCoverageContract(indexHtml, newsData, enabledSources, fai
   const expectedCounts = new Map(
     collectSourceCoverage(
       newsData,
-      enabledSources.map((source) => source.name)
+      Array.from(new Set(newsData.map((article) => article?.source).filter(Boolean)))
     ).map(({ source, count }) => [source, count])
   );
   const expectedActiveSources = Array.from(expectedCounts.values()).filter((count) => count > 0).length;
@@ -539,7 +530,6 @@ function validateSourceCoverageContract(indexHtml, newsData, enabledSources, fai
       .map((index, element) => $(element).text().trim())
       .get();
     const visibleActiveCount = parseArtifactCount(visibleCounts[0] || '');
-    const visibleQuietCount = parseArtifactCount(visibleCounts[1] || '');
 
     if (activeCount !== expectedActiveSources) {
       fail(failures, `index.html source health active count ${activeCountText || 'missing'} does not match expected ${expectedActiveSources}`);
@@ -553,20 +543,16 @@ function validateSourceCoverageContract(indexHtml, newsData, enabledSources, fai
       fail(failures, `index.html source health visible active count ${visibleCounts[0] || 'missing'} does not match expected ${expectedActiveSources}`);
     }
 
-    if (visibleQuietCount !== expectedQuietSources) {
-      fail(failures, `index.html source health visible quiet count ${visibleCounts[1] || 'missing'} does not match expected ${expectedQuietSources}`);
-    }
-
     const healthNoteText = sourceHealthSummary.find(SOURCE_COVERAGE_CONTRACT.healthNoteSelector).first().text().trim();
-    if (expectedQuietSources > 0 && healthNoteText !== SOURCE_COVERAGE_CONTRACT.healthNoteText) {
-      fail(failures, `index.html source health quiet note ${healthNoteText || 'missing'} does not match expected ${SOURCE_COVERAGE_CONTRACT.healthNoteText}`);
+    if (healthNoteText) {
+      fail(failures, 'index.html source coverage must not expose reader-facing health-only jargon');
     }
   }
 
   const sourceFilterStatusText = sourceFilterStatus.text().trim();
   const expectedSourceFilterStatus = formatSourceShortcutStatus(SOURCE_COVERAGE_CONTRACT.statusAllSourcesText, newsData.length);
   if (sourceFilterStatusText !== expectedSourceFilterStatus) {
-    fail(failures, `index.html source shortcut status ${sourceFilterStatusText || 'missing'} does not match expected ${expectedSourceFilterStatus}`);
+    fail(failures, `index.html source filter status ${sourceFilterStatusText || 'missing'} does not match expected ${expectedSourceFilterStatus}`);
   }
 
   section.find(SOURCE_COVERAGE_CONTRACT.buttonSelector).each((index, element) => {
@@ -592,9 +578,7 @@ function validateSourceCoverageContract(indexHtml, newsData, enabledSources, fai
     }
 
     const expectedArticleLabel = expectedCount === 1 ? 'article' : 'articles';
-    const expectedSourceLabel = expectedCount === 0
-      ? `${source} source has no current articles`
-      : `Filter to ${source} source, ${expectedCount} ${expectedArticleLabel}`;
+    const expectedSourceLabel = `Filter to ${source} source, ${expectedCount} ${expectedArticleLabel}`;
     const sourceLabel = button.attr('aria-label') || '';
     if (sourceLabel !== expectedSourceLabel) {
       fail(failures, `index.html source coverage label for ${source} ${sourceLabel || 'missing'} does not match expected ${expectedSourceLabel}`);
@@ -602,16 +586,8 @@ function validateSourceCoverageContract(indexHtml, newsData, enabledSources, fai
 
     const filterOption = $(`${SOURCE_COVERAGE_CONTRACT.sourceFilterSelector} option`)
       .filter((optionIndex, option) => $(option).attr('value') === source);
-    if (expectedCount > 0 && filterOption.length === 0) {
+    if (filterOption.length === 0) {
       fail(failures, `index.html source coverage source ${source} is not available in the source filter`);
-    }
-
-    if (expectedCount === 0 && filterOption.length > 0) {
-      fail(failures, `index.html source coverage source ${source} with zero items must not be available in the source filter`);
-    }
-
-    if (expectedCount === 0 && (button.attr('disabled') === undefined || button.attr('aria-disabled') !== 'true')) {
-      fail(failures, `index.html source coverage source ${source} with zero items must be disabled`);
     }
   });
 
@@ -731,6 +707,71 @@ function validateSiteMetadata(indexHtml, sitemapXml, failures) {
   }
 }
 
+const ENCODED_HTML_ENTITY_PATTERN = /&(?:amp|quot|apos|lt|gt|#\d+|#x[0-9a-f]+);/i;
+const FEED_TRUNCATION_PATTERN = /\[(?:\.{3}|…)]/;
+
+function validateReaderExperience(indexHtml, newsData = [], failures = []) {
+  newsData.forEach((article, index) => {
+    if (!article || typeof article !== 'object' || Array.isArray(article)) {
+      return;
+    }
+
+    if (typeof article.title === 'string' && ENCODED_HTML_ENTITY_PATTERN.test(article.title)) {
+      fail(failures, `news-data.json item ${index + 1} title contains an encoded HTML entity`);
+    }
+    if (typeof article.summary === 'string') {
+      if (ENCODED_HTML_ENTITY_PATTERN.test(article.summary)) {
+        fail(failures, `news-data.json item ${index + 1} summary contains an encoded HTML entity`);
+      }
+      if (FEED_TRUNCATION_PATTERN.test(article.summary)) {
+        fail(failures, `news-data.json item ${index + 1} summary contains a feed truncation artifact`);
+      }
+    }
+  });
+
+  if (!indexHtml) {
+    return failures;
+  }
+
+  const $ = cheerio.load(indexHtml);
+  if ($('a[href="#"]').length > 0) {
+    fail(failures, 'index.html contains a hash-only link control');
+  }
+
+  $('.news-title').each((index, element) => {
+    if (ENCODED_HTML_ENTITY_PATTERN.test($(element).text())) {
+      fail(failures, `index.html article title ${index + 1} exposes an encoded HTML entity`);
+    }
+  });
+
+  $('.summary-disclosure .summary-full').each((index, element) => {
+    const remainder = $(element).text().replace(/\s+/g, ' ').trim();
+    const wordCount = remainder.split(/\s+/).filter(Boolean).length;
+    if (remainder.length < 48 || wordCount < 6 || FEED_TRUNCATION_PATTERN.test(remainder)) {
+      fail(failures, `index.html summary disclosure ${index + 1} has no meaningful remainder`);
+    }
+  });
+
+  $('time[datetime]').each((index, element) => {
+    const label = $(element).text().replace(/\s+/g, ' ').trim();
+    if (/\b\d{1,2}:\d{2}\b/.test(label) && !/\bUTC\b/.test(label)) {
+      fail(failures, `index.html visible timestamp ${index + 1} must include a UTC timezone label`);
+    }
+  });
+
+  $('a[href="./feed.xml"]').each((index, element) => {
+    if (/archive/i.test($(element).text())) {
+      fail(failures, `index.html rolling feed link ${index + 1} must not promise an archive`);
+    }
+  });
+
+  if (/\.toLocaleString\s*\(/.test(indexHtml)) {
+    fail(failures, 'index.html must not contain locale-dependent generated timestamp rendering');
+  }
+
+  return failures;
+}
+
 function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
   const artifacts = {
     config: path.join(repoRoot, 'config/news-sources.json'),
@@ -748,6 +789,7 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
   const indexHtml = readText('index.html', artifacts.indexHtml, repoRoot, failures);
   const sitemapXml = readText('sitemap.xml', artifacts.sitemapXml, repoRoot, failures);
 
+  validateReaderExperience(indexHtml, Array.isArray(newsData) ? newsData : [], failures);
   validateSiteMetadata(indexHtml, sitemapXml, failures);
 
   let enabledSources = [];
@@ -781,10 +823,10 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
     if (!Array.isArray(feedInfo.sources)) {
       fail(failures, 'feed-info.json sources must be an array');
     } else {
-      const expectedSources = enabledSources.map((source) => source.name).sort();
+      const expectedSources = Array.from(new Set(newsData.map((article) => article?.source).filter(Boolean))).sort();
       const actualSources = [...feedInfo.sources].sort();
       if (JSON.stringify(actualSources) !== JSON.stringify(expectedSources)) {
-        fail(failures, 'feed-info.json sources must match enabled config sources');
+        fail(failures, 'feed-info.json sources must match sources represented in news-data.json');
       }
     }
 
@@ -888,4 +930,5 @@ if (require.main === module) {
 
 module.exports = {
   validateArtifacts,
+  validateReaderExperience,
 };

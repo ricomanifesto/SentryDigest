@@ -46,6 +46,15 @@ test('update workflow installs dependencies from the lockfile', () => {
   assert.match(workflow, /^\s*run: npm ci\s*$/m);
 });
 
+test('config pushes only run the updater from main', () => {
+  const workflow = readWorkflow();
+
+  assert.match(
+    workflow,
+    /^\s+push:\n\s+branches:\n\s+- main\n\s+paths:/m
+  );
+});
+
 test('update workflow declares minimum token permissions for artifact commits', () => {
   const workflow = readWorkflow();
 
@@ -67,15 +76,11 @@ test('update workflow refreshes the branch before generating artifacts', () => {
   );
 });
 
-test('update workflow uses the artifact validation command before committing', () => {
+test('update workflow runs the full test suite before committing', () => {
   const workflow = readWorkflow();
 
   assert.match(
     workflow,
-    /- name: Validate generated artifacts\n\s+run: npm run validate\s*\n\s+- name: Configure Git/
-  );
-  assert.doesNotMatch(
-    workflow,
-    /- name: Validate generated artifacts\n\s+run: npm test\s*\n\s+- name: Configure Git/
+    /- name: Test generated site\n\s+run: npm test\s*\n\s+- name: Configure Git/
   );
 });

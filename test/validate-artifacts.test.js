@@ -5,6 +5,7 @@ const path = require('node:path');
 const test = require('node:test');
 
 const {
+  DIGEST_LEGEND_CONTRACT,
   FEED_INFO_CONTRACT,
   formatSourceShortcutStatus,
   ISSUE_TRAIL_CONTRACT,
@@ -26,7 +27,7 @@ function writeText(filePath, value) {
 }
 
 function renderArchiveTrail() {
-  return `<nav class="${ISSUE_TRAIL_CONTRACT.navClass}" aria-label="Digest archive trail">
+  return `<nav class="${ISSUE_TRAIL_CONTRACT.navClass}" aria-label="Digest navigation">
       <span class="issue-trail-current" aria-current="page">Current digest</span>
       <a href="${ISSUE_TRAIL_CONTRACT.feedHref}">RSS feed</a>
       <a href="${ISSUE_TRAIL_CONTRACT.sourceCoverageHref}">Source coverage</a>
@@ -38,10 +39,10 @@ function renderArchiveTrail() {
 
 function renderGeneratedMetadata(generatedAt = '2026-06-17T18:30:00.000Z') {
   return `<section id="stats" aria-label="Digest statistics">
-      <time datetime="${generatedAt}">Generated at ${generatedAt}</time>
+      Showing 2 of 2 articles from 1 source
     </section>
     <div class="issue-strip">
-      <time datetime="${generatedAt}">Updated ${generatedAt}</time>
+      <time datetime="${generatedAt}">18:30 UTC</time>
     </div>`;
 }
 
@@ -77,7 +78,7 @@ function renderDashboardRssHead() {
     <meta name="twitter:description" content="${SITE_METADATA_CONTRACT.description}">
     <meta name="twitter:image" content="${SITE_METADATA_CONTRACT.imageUrl}">
     <script type="application/ld+json">${structuredData}</script>
-    <link rel="alternate" type="application/rss+xml" title="Cybersecurity News RSS Feed" href="./feed.xml" />`;
+    <link rel="alternate" type="application/rss+xml" title="${FEED_INFO_CONTRACT.title}" href="./feed.xml" />`;
 }
 
 function renderSitemap() {
@@ -105,6 +106,13 @@ function renderDigestLegend({
   handoffCueName = 'SentryInsight: monitor',
   handoffCueDetail = 'Low-signal item worth monitoring',
 } = {}) {
+  const handoffCues = Object.entries(DIGEST_LEGEND_CONTRACT.handoffCueDetails)
+    .map(([name, detail]) => {
+      const renderedDetail = name === handoffCueName ? handoffCueDetail : detail;
+      return `<span class="handoff-cue-legend-chip"><span class="handoff-cue-name">${name}</span><span class="handoff-cue-detail">${renderedDetail}</span></span>`;
+    })
+    .join('');
+
   return `<details class="digest-legend" aria-label="Digest legend">
       <summary class="digest-legend-summary">Digest legend: source signals and handoff cues</summary>
       <div class="digest-legend-body">
@@ -114,7 +122,7 @@ function renderDigestLegend({
         </div>
         <div class="digest-legend-group handoff-cue-legend" aria-label="Handoff cue legend">
           <div class="digest-legend-heading">Handoff cues</div>
-          <div class="handoff-cue-legend-items"><span class="handoff-cue-legend-chip"><span class="handoff-cue-name">${handoffCueName}</span><span class="handoff-cue-detail">${handoffCueDetail}</span></span></div>
+          <div class="handoff-cue-legend-items">${handoffCues}</div>
         </div>
       </div>
     </details>`;
@@ -134,25 +142,19 @@ function collectFixtureSourceCounts(newsData, sourceNames = ['Example Security']
 }
 
 function renderFixtureSourceControls(newsData, sourceNames) {
-  const sourceCounts = collectFixtureSourceCounts(newsData, sourceNames);
-  const activeSourceCount = sourceCounts.filter(({ count }) => count > 0).length;
-  const quietSourceCount = sourceCounts.filter(({ count }) => count === 0).length;
+  const sourceCounts = collectFixtureSourceCounts(newsData, sourceNames)
+    .filter(({ count }) => count > 0);
+  const activeSourceCount = sourceCounts.length;
+  const quietSourceCount = 0;
   const activeSources = sourceCounts
     .filter(({ count }) => count > 0)
     .map(({ source }) => `<option value="${source}">${source}</option>`)
     .join('');
-  const quietSourceNote = quietSourceCount > 0
-    ? `<span class="source-health-note">${SOURCE_COVERAGE_CONTRACT.healthNoteText}</span>`
-    : '';
   const sourceButtons = sourceCounts
     .map(({ source, count }) => {
-      const emptyClass = count === 0 ? ' source-count-empty' : '';
-      const disabledAttributes = count === 0 ? ' aria-disabled="true" disabled' : '';
       const articleLabel = count === 1 ? 'article' : 'articles';
-      const sourceLabel = count === 0
-        ? `${source} source has no current articles`
-        : `Filter to ${source} source, ${count} ${articleLabel}`;
-      return `<button class="source-count${emptyClass}" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="${source}" aria-label="${sourceLabel}" aria-pressed="false"${disabledAttributes}>${source} <strong>${count}</strong></button>`;
+      const sourceLabel = `Filter to ${source} source, ${count} ${articleLabel}`;
+      return `<button class="source-count" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="${source}" aria-label="${sourceLabel}" aria-pressed="false">${source} <strong>${count}</strong></button>`;
     })
     .join('');
 
@@ -164,7 +166,6 @@ function renderFixtureSourceControls(newsData, sourceNames) {
       <div class="source-counts">${sourceButtons}</div>
       <div class="source-health-summary" data-active-sources="${activeSourceCount}" data-quiet-sources="${quietSourceCount}">
         <span><strong>${activeSourceCount}</strong> active ${activeSourceCount === 1 ? 'feed' : 'feeds'}</span>
-        <span><strong>${quietSourceCount}</strong> quiet ${quietSourceCount === 1 ? 'feed' : 'feeds'}</span>${quietSourceNote}
       </div>
       <div class="source-filter-status" data-source-filter-status aria-live="polite">${formatSourceShortcutStatus(SOURCE_COVERAGE_CONTRACT.statusAllSourcesText, newsData.length)}</div>
       <div class="source-coverage-actions">
@@ -236,7 +237,7 @@ function createFixture(overrides = {}) {
     title: FEED_INFO_CONTRACT.title,
     url: FEED_INFO_CONTRACT.publicFeedUrl,
     itemCount: overrides.feedInfoItemCount ?? newsData.length,
-    sources: sourceNames,
+    sources: overrides.feedInfoSources || Array.from(new Set(newsData.map((item) => item?.source).filter(Boolean))),
     lastUpdated: overrides.feedInfoLastUpdated || '2026-06-17T18:30:00.000Z',
     ...(overrides.feedInfo || {}),
   });
@@ -252,8 +253,8 @@ function createFixture(overrides = {}) {
         ${renderDashboardRssControls()}
         ${renderGeneratedMetadata()}
         <section class="issue-strip">
-          <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
-          <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
+          <a class="issue-link" href="./feed.xml" aria-label="Open rolling RSS feed">Rolling RSS feed</a>
+          <time datetime="2026-06-17T18:30:00.000Z">18:30 UTC</time>
         </section>
         ${renderArchiveTrail()}
         ${renderFilterInsights()}
@@ -272,7 +273,7 @@ test('validateArtifacts passes when generated artifacts agree', () => {
 
   const result = validateArtifacts(repoRoot);
 
-  assert.equal(result.valid, true);
+  assert.equal(result.valid, true, result.failures.join('\n'));
   assert.deepEqual(result.failures, []);
   assert.equal(result.itemCount, 2);
   assert.equal(result.enabledSourceCount, 1);
@@ -537,8 +538,8 @@ test('validateArtifacts accepts RSS pubDate second precision', () => {
       ${renderDashboardRssControls()}
       ${renderGeneratedMetadata()}
       <section class="issue-strip">
-        <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
-        <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
+        <a class="issue-link" href="./feed.xml" aria-label="Open rolling RSS feed">Rolling RSS feed</a>
+        <time datetime="2026-06-17T18:30:00.000Z">18:30 UTC</time>
       </section>
       ${renderArchiveTrail()}
       ${renderFilterInsights()}
@@ -554,7 +555,7 @@ test('validateArtifacts accepts RSS pubDate second precision', () => {
 
   const result = validateArtifacts(repoRoot);
 
-  assert.equal(result.valid, true);
+  assert.equal(result.valid, true, result.failures.join('\n'));
   assert.deepEqual(result.failures, []);
 });
 
@@ -630,7 +631,7 @@ test('validateArtifacts rejects generated dashboard RSS link label drift', () =>
       ${renderGeneratedMetadata()}
       <section class="issue-strip">
         <a class="issue-link" href="./feed.xml" aria-label="Open stale archive">RSS archive</a>
-        <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
+        <time datetime="2026-06-17T18:30:00.000Z">18:30 UTC</time>
       </section>
       ${renderArchiveTrail()}
       ${renderFilterInsights()}
@@ -657,7 +658,7 @@ test('validateArtifacts rejects generated dashboard RSS link label drift', () =>
   );
   assert.match(
     result.failures.join('\n'),
-    /index\.html RSS link \.issue-strip a\.issue-link label Open stale archive must match Open generated RSS archive/
+    /index\.html RSS link \.issue-strip a\.issue-link label Open stale archive must match Open rolling RSS feed/
   );
   assert.match(
     result.failures.join('\n'),
@@ -683,8 +684,8 @@ test('validateArtifacts rejects generated digest legend detail drift', () => {
       ${renderDashboardRssControls()}
       ${renderGeneratedMetadata()}
       <section class="issue-strip">
-        <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
-        <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
+        <a class="issue-link" href="./feed.xml" aria-label="Open rolling RSS feed">Rolling RSS feed</a>
+        <time datetime="2026-06-17T18:30:00.000Z">18:30 UTC</time>
       </section>
       ${renderArchiveTrail()}
       ${renderFilterInsights()}
@@ -834,8 +835,8 @@ test('validateArtifacts rejects generated source coverage count drift', () => {
       ${renderDashboardRssControls()}
       ${renderGeneratedMetadata()}
       <section class="issue-strip">
-        <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
-        <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
+        <a class="issue-link" href="./feed.xml" aria-label="Open rolling RSS feed">Rolling RSS feed</a>
+        <time datetime="2026-06-17T18:30:00.000Z">18:30 UTC</time>
       </section>
       ${renderArchiveTrail()}
       <select id="sourceFilter" class="select" aria-label="Filter by source">
@@ -873,8 +874,8 @@ test('validateArtifacts rejects generated source health count drift', () => {
       ${renderDashboardRssControls()}
       ${renderGeneratedMetadata()}
       <section class="issue-strip">
-        <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
-        <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
+        <a class="issue-link" href="./feed.xml" aria-label="Open rolling RSS feed">Rolling RSS feed</a>
+        <time datetime="2026-06-17T18:30:00.000Z">18:30 UTC</time>
       </section>
       ${renderArchiveTrail()}
       <select id="sourceFilter" class="select" aria-label="Filter by source">
@@ -906,15 +907,15 @@ test('validateArtifacts rejects generated source health count drift', () => {
   assert.match(result.failures.join('\n'), /index\.html source health quiet count 1 does not match expected 0/);
 });
 
-test('validateArtifacts rejects visible source health count drift', () => {
+test('validateArtifacts rejects visible contributing source count drift', () => {
   const repoRoot = createFixture({
     indexHtml: `<html><head>${renderDashboardRssHead()}</head><body>
       <h1>SentryDigest</h1>
       ${renderDashboardRssControls()}
       ${renderGeneratedMetadata()}
       <section class="issue-strip">
-        <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
-        <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
+        <a class="issue-link" href="./feed.xml" aria-label="Open rolling RSS feed">Rolling RSS feed</a>
+        <time datetime="2026-06-17T18:30:00.000Z">18:30 UTC</time>
       </section>
       ${renderArchiveTrail()}
       <select id="sourceFilter" class="select" aria-label="Filter by source">
@@ -943,10 +944,9 @@ test('validateArtifacts rejects visible source health count drift', () => {
 
   assert.equal(result.valid, false);
   assert.match(result.failures.join('\n'), /index\.html source health visible active count 99 does not match expected 1/);
-  assert.match(result.failures.join('\n'), /index\.html source health visible quiet count 42 does not match expected 0/);
 });
 
-test('validateArtifacts rejects quiet sources exposed as selectable source filters', () => {
+test('validateArtifacts rejects non-contributing sources exposed as selectable filters', () => {
   const newsData = [
     {
       title: 'Only active item',
@@ -963,8 +963,8 @@ test('validateArtifacts rejects quiet sources exposed as selectable source filte
       ${renderDashboardRssControls()}
       ${renderGeneratedMetadata()}
       <section class="issue-strip">
-        <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
-        <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
+        <a class="issue-link" href="./feed.xml" aria-label="Open rolling RSS feed">Rolling RSS feed</a>
+        <time datetime="2026-06-17T18:30:00.000Z">18:30 UTC</time>
       </section>
       ${renderArchiveTrail()}
       <select id="sourceFilter" class="select" aria-label="Filter by source">
@@ -995,8 +995,8 @@ test('validateArtifacts rejects quiet sources exposed as selectable source filte
   const result = validateArtifacts(repoRoot);
 
   assert.equal(result.valid, false);
-  assert.match(result.failures.join('\n'), /index\.html source coverage source Quiet Feed with zero items must not be available in the source filter/);
-  assert.match(result.failures.join('\n'), /index\.html source health quiet note wrong label does not match expected health only/);
+  assert.match(result.failures.join('\n'), /index\.html source coverage includes unexpected source Quiet Feed/);
+  assert.match(result.failures.join('\n'), /index\.html source coverage must not expose reader-facing health-only jargon/);
 });
 
 test('validateArtifacts rejects active source shortcut label drift', () => {
@@ -1006,8 +1006,8 @@ test('validateArtifacts rejects active source shortcut label drift', () => {
       ${renderDashboardRssControls()}
       ${renderGeneratedMetadata()}
       <section class="issue-strip">
-        <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
-        <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
+        <a class="issue-link" href="./feed.xml" aria-label="Open rolling RSS feed">Rolling RSS feed</a>
+        <time datetime="2026-06-17T18:30:00.000Z">18:30 UTC</time>
       </section>
       ${renderArchiveTrail()}
       ${renderFilterInsights()}
@@ -1023,7 +1023,7 @@ test('validateArtifacts rejects active source shortcut label drift', () => {
           <span><strong>1</strong> active feed</span>
           <span><strong>0</strong> quiet feeds</span>
         </div>
-        <div class="source-filter-status" data-source-filter-status aria-live="polite">Source shortcut: All active feeds (2 articles)</div>
+        <div class="source-filter-status" data-source-filter-status aria-live="polite">All contributing feeds (2 articles)</div>
         <div class="source-coverage-actions">
           <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with 2 latest articles">RSS feed <span class="feed-link-count">2 items</span></a>
         </div>
@@ -1043,7 +1043,7 @@ test('validateArtifacts rejects active source shortcut label drift', () => {
   );
 });
 
-test('validateArtifacts rejects quiet source shortcut label drift', () => {
+test('validateArtifacts rejects a non-contributing source control', () => {
   const newsData = [
     {
       title: 'Only active item',
@@ -1060,8 +1060,8 @@ test('validateArtifacts rejects quiet source shortcut label drift', () => {
       ${renderDashboardRssControls()}
       ${renderGeneratedMetadata()}
       <section class="issue-strip">
-        <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
-        <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
+        <a class="issue-link" href="./feed.xml" aria-label="Open rolling RSS feed">Rolling RSS feed</a>
+        <time datetime="2026-06-17T18:30:00.000Z">18:30 UTC</time>
       </section>
       ${renderArchiveTrail()}
       ${renderFilterInsights()}
@@ -1095,19 +1095,19 @@ test('validateArtifacts rejects quiet source shortcut label drift', () => {
   assert.equal(result.valid, false);
   assert.match(
     result.failures.join('\n'),
-    /index\.html source coverage label for Quiet Feed Quiet feed is stale does not match expected Quiet Feed source has no current articles/
+    /index\.html source coverage includes unexpected source Quiet Feed/
   );
 });
 
-test('validateArtifacts rejects source shortcut status drift', () => {
+test('validateArtifacts rejects source filter status drift', () => {
   const repoRoot = createFixture({
     indexHtml: `<html><head>${renderDashboardRssHead()}</head><body>
       <h1>SentryDigest</h1>
       ${renderDashboardRssControls()}
       ${renderGeneratedMetadata()}
       <section class="issue-strip">
-        <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
-        <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
+        <a class="issue-link" href="./feed.xml" aria-label="Open rolling RSS feed">Rolling RSS feed</a>
+        <time datetime="2026-06-17T18:30:00.000Z">18:30 UTC</time>
       </section>
       ${renderArchiveTrail()}
       <select id="sourceFilter" class="select" aria-label="Filter by source">
@@ -1136,7 +1136,7 @@ test('validateArtifacts rejects source shortcut status drift', () => {
   const result = validateArtifacts(repoRoot);
 
   assert.equal(result.valid, false);
-  assert.match(result.failures.join('\n'), /index\.html source shortcut status Source shortcut: stale source does not match expected Source shortcut: All active feeds \(2 articles\)/);
+  assert.match(result.failures.join('\n'), /index\.html source filter status Source shortcut: stale source does not match expected All contributing feeds \(2 articles\)/);
 });
 
 test('validateArtifacts rejects visible generated filter insights by default', () => {
@@ -1146,8 +1146,8 @@ test('validateArtifacts rejects visible generated filter insights by default', (
       ${renderDashboardRssControls()}
       ${renderGeneratedMetadata()}
       <section class="issue-strip">
-        <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
-        <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
+        <a class="issue-link" href="./feed.xml" aria-label="Open rolling RSS feed">Rolling RSS feed</a>
+        <time datetime="2026-06-17T18:30:00.000Z">18:30 UTC</time>
       </section>
       ${renderArchiveTrail()}
       <div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true"></div>
@@ -1187,11 +1187,9 @@ test('validateArtifacts rejects malformed generated metadata timestamps', () => 
     indexHtml: `<html><body>
       <h1>SentryDigest</h1>
       <a href="./feed.xml">RSS</a>
-      <section id="stats" aria-label="Digest statistics">
-        <time datetime="not-a-date">Broken</time>
-      </section>
+      <section id="stats" aria-label="Digest statistics">Showing 2 articles</section>
       <div class="issue-strip">
-        <time datetime="2026-06-17T18:30:00.000Z">Updated 18:30 UTC</time>
+        <time datetime="not-a-date">Broken</time>
       </div>
       ${renderArchiveTrail()}
       ${renderFixtureSourceControls([
@@ -1207,7 +1205,7 @@ test('validateArtifacts rejects malformed generated metadata timestamps', () => 
   const result = validateArtifacts(repoRoot);
 
   assert.equal(result.valid, false);
-  assert.match(result.failures.join('\n'), /index\.html generated metadata timestamp for stats must be a valid date/);
+  assert.match(result.failures.join('\n'), /index\.html generated metadata timestamp for issue strip must be a valid date/);
 });
 
 test('validateArtifacts accepts escaped generated HTML article hrefs', () => {
@@ -1226,8 +1224,8 @@ test('validateArtifacts accepts escaped generated HTML article hrefs', () => {
       ${renderDashboardRssControls()}
       ${renderGeneratedMetadata()}
       <section class="issue-strip">
-        <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
-        <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
+        <a class="issue-link" href="./feed.xml" aria-label="Open rolling RSS feed">Rolling RSS feed</a>
+        <time datetime="2026-06-17T18:30:00.000Z">18:30 UTC</time>
       </section>
       ${renderArchiveTrail()}
       ${renderFilterInsights()}
@@ -1243,7 +1241,7 @@ test('validateArtifacts accepts escaped generated HTML article hrefs', () => {
 
   const result = validateArtifacts(repoRoot);
 
-  assert.equal(result.valid, true);
+  assert.equal(result.valid, true, result.failures.join('\n'));
   assert.deepEqual(result.failures, []);
 });
 
@@ -1263,8 +1261,8 @@ test('validateArtifacts accepts renderer-normalized generated HTML article hrefs
       ${renderDashboardRssControls()}
       ${renderGeneratedMetadata()}
       <section class="issue-strip">
-        <a class="issue-link" href="./feed.xml" aria-label="Open generated RSS archive">RSS archive</a>
-        <time datetime="2026-06-17T18:30:00.000Z">Updated 2026-06-17T18:30:00.000Z</time>
+        <a class="issue-link" href="./feed.xml" aria-label="Open rolling RSS feed">Rolling RSS feed</a>
+        <time datetime="2026-06-17T18:30:00.000Z">18:30 UTC</time>
       </section>
       ${renderArchiveTrail()}
       ${renderFilterInsights()}
@@ -1280,7 +1278,7 @@ test('validateArtifacts accepts renderer-normalized generated HTML article hrefs
 
   const result = validateArtifacts(repoRoot);
 
-  assert.equal(result.valid, true);
+  assert.equal(result.valid, true, result.failures.join('\n'));
   assert.deepEqual(result.failures, []);
 });
 

@@ -290,7 +290,7 @@ test('generateHTML publishes discoverable project identity metadata', () => {
   assert.doesNotMatch(html, /\/Users\//);
 });
 
-test('generateHTML renders unsafe article links as inert anchors', () => {
+test('generateHTML renders unsafe article titles without a link control', () => {
   const html = generateHTML([
     {
       title: 'Unsafe link',
@@ -302,7 +302,8 @@ test('generateHTML renders unsafe article links as inert anchors', () => {
   ]);
 
   assert.doesNotMatch(html, /href="javascript:/);
-  assert.match(html, /href="#"/);
+  assert.match(html, /<h2 class="news-title"><span>Unsafe link<\/span><\/h2>/);
+  assert.doesNotMatch(html, /href="#"/);
 });
 
 test('deriveArticleFacets identifies operator severity, tags, vendors, and source signal', () => {
@@ -598,7 +599,7 @@ test('generateHTML renders a handoff cue legend for present cues', () => {
   assert.doesNotMatch(html, /Example <Security>/);
 });
 
-test('generateHTML omits absent handoff cue legend entries', () => {
+test('generateHTML keeps the complete handoff taxonomy when cues are absent', () => {
   const html = generateHTML([
     {
       title: 'Weekly security podcast roundup',
@@ -611,10 +612,10 @@ test('generateHTML omits absent handoff cue legend entries', () => {
 
   assert.match(html, /<div class="digest-legend-group handoff-cue-legend" aria-label="Handoff cue legend">/);
   assert.match(html, /<span class="handoff-cue-name">SentryInsight: monitor<\/span>/);
-  assert.doesNotMatch(html, /Potential incident or compromise follow-up/);
-  assert.doesNotMatch(html, /Vulnerability or exploitation review/);
-  assert.doesNotMatch(html, /Vendor or product-owner tracking/);
-  assert.doesNotMatch(html, /Regulatory, privacy, or audit relevance/);
+  assert.match(html, /Potential incident or compromise follow-up/);
+  assert.match(html, /Vulnerability or exploitation review/);
+  assert.match(html, /Vendor or product-owner tracking/);
+  assert.match(html, /Regulatory, privacy, or audit relevance/);
 });
 
 test('generateHTML renders a source signal legend for present classifications', () => {
@@ -837,18 +838,21 @@ test('collectOperatorLanes returns deterministic lane counts and latest articles
 
   assert.deepEqual(lanes, [
     {
+      cue: 'SentryInsight: incident watch',
       label: 'Incident watch',
       count: 2,
       latestTitle: 'Ransomware crew steals credentials from exchange',
       latestLink: 'https://example.com/incident',
     },
     {
+      cue: 'SentryInsight: vuln triage',
       label: 'Vulnerability triage',
       count: 1,
       latestTitle: 'Cisco VPN vulnerability patched by vendor',
       latestLink: 'https://example.com/vuln',
     },
     {
+      cue: 'GRCInsight: governance watch',
       label: 'Governance watch',
       count: 1,
       latestTitle: 'Regulator opens privacy compliance audit',
@@ -892,6 +896,7 @@ test('generateHTML uses generatedAt for new article badges', () => {
         title: 'Fresh relative to generated artifact',
         link: 'https://example.com/fresh-artifact',
         date: new Date('2026-06-17T17:30:00.000Z'),
+        firstSeen: '2026-06-17T18:00:00.000Z',
         source: 'Example Security',
         summary: 'A recent article for this generated artifact.',
       },
@@ -923,7 +928,7 @@ test('generateHTML renders age metadata and filter controls', () => {
 
   assert.match(html, /data-age-bucket="Fresh"/);
   assert.match(html, /data-age-bucket="Older"/);
-  assert.match(html, /<span class="chip age-chip">Fresh - 30m old<\/span>/);
+  assert.match(html, /<span class="chip age-chip"><span data-age-label>Fresh<\/span> · <span data-age-detail>30m old<\/span><\/span>/);
   assert.match(html, /<select id="ageFilter" class="select" aria-label="Filter by article age">/);
   assert.match(html, /<option value="Fresh">Fresh<\/option>/);
   assert.match(html, /<option value="Older">Older<\/option>/);
@@ -987,7 +992,7 @@ test('generateHTML renders shareable filter query state wiring', () => {
   assert.match(html, /control\.value = value/);
   assert.match(html, /function syncQueryState\(\)/);
   assert.match(html, /window\.history\.replaceState\(null, '', nextUrl\)/);
-  assert.match(html, /applyQueryState\(\);\s+update\(\);/);
+  assert.match(html, /applyQueryState\(\);\s+updateFreshness\(\);\s+update\(\);/);
 });
 
 test('generateHTML renders active filter summary and reset wiring', () => {
@@ -1072,7 +1077,7 @@ test('generateHTML renders explicit keyboard focus states for source shortcuts',
 
   assert.match(html, /\.source-count:hover, \.source-count:focus-visible, \.source-count\[aria-pressed="true"\] \{ border-color: var\(--accent\); \}/);
   assert.match(html, /\.source-count:focus-visible \{ box-shadow: 0 0 0 3px rgba\(37,99,235,0\.15\); outline: 2px solid var\(--accent\); outline-offset: 2px; \}/);
-  assert.match(html, /\.source-count-empty:focus-visible \{ box-shadow: none; outline: none; \}/);
+  assert.doesNotMatch(html, /\.source-count-empty/);
 });
 
 test('generateHTML renders visible result context wiring', () => {
@@ -1130,10 +1135,10 @@ test('generateHTML renders a compact digest issue metadata bar', () => {
   assert.match(html, /<time datetime="2026-06-17T18:00:00.000Z">June 17, 2026<\/time>/);
   assert.match(html, /<span class="issue-stat"><strong>2<\/strong> articles<\/span>/);
   assert.match(html, /<span class="issue-stat"><strong>2<\/strong> sources<\/span>/);
-  assert.match(html, /<a class="issue-link" href="\.\/feed\.xml" aria-label="Open generated RSS archive">RSS archive<\/a>/);
+  assert.match(html, /<a class="issue-link" href="\.\/feed\.xml" aria-label="Open rolling RSS feed">Rolling RSS feed<\/a>/);
 });
 
-test('generateHTML renders a compact feed archive trail', () => {
+test('generateHTML renders compact digest navigation', () => {
   const html = generateHTML([
     {
       title: 'First story',
@@ -1151,7 +1156,7 @@ test('generateHTML renders a compact feed archive trail', () => {
     },
   ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
 
-  assert.ok(html.includes(`<nav class="${ISSUE_TRAIL_CONTRACT.navClass}" aria-label="Digest archive trail">`));
+  assert.ok(html.includes(`<nav class="${ISSUE_TRAIL_CONTRACT.navClass}" aria-label="Digest navigation">`));
   assert.match(html, /<span class="issue-trail-current" aria-current="page">Current digest<\/span>/);
   assert.ok(html.includes(`<a href="${ISSUE_TRAIL_CONTRACT.feedHref}" aria-label="Open generated RSS feed">RSS feed</a>`));
   assert.ok(html.includes(`<a href="${ISSUE_TRAIL_CONTRACT.sourceCoverageHref}">Source coverage</a>`));
@@ -1175,7 +1180,7 @@ test('generateHTML labels repeated RSS navigation links', () => {
   assert.match(html, /<a class="feed-link" href="\.\/feed\.xml" aria-label="Open RSS feed with 1 latest article">RSS feed <span class="feed-link-count">1 item<\/span><\/a>/);
 });
 
-test('generateHTML renders feed update cadence in the archive trail', () => {
+test('generateHTML renders feed update cadence with a UTC day label', () => {
   const html = generateHTML([
     {
       title: 'First story',
@@ -1186,7 +1191,7 @@ test('generateHTML renders feed update cadence in the archive trail', () => {
     },
   ], { generatedAt: new Date('2026-06-17T18:05:00.000Z') });
 
-  assert.match(html, /<span class="issue-trail-meta">Updated <time datetime="2026-06-17T18:05:00.000Z">18:05 UTC<\/time><\/span>/);
+  assert.match(html, /<span class="issue-trail-meta">Updated <time datetime="2026-06-17T18:05:00.000Z">18:05 UTC · Jun 17<\/time><\/span>/);
   assert.ok(html.includes(`<span class="issue-trail-meta">${ISSUE_TRAIL_CONTRACT.cadenceText}</span>`));
 });
 
@@ -1236,7 +1241,7 @@ test('generateHTML renders singular RSS item count for feed inspection', () => {
   assert.match(html, /<a class="feed-link" href="\.\/feed\.xml" aria-label="Open RSS feed with 1 latest article">RSS feed <span class="feed-link-count">1 item<\/span><\/a>/);
 });
 
-test('generateHTML renders quiet configured feeds as inert source coverage chips', () => {
+test('generateHTML omits configured feeds that do not contribute to the rolling digest', () => {
   const html = generateHTML([
     {
       title: 'First story',
@@ -1251,10 +1256,9 @@ test('generateHTML renders quiet configured feeds as inert source coverage chips
   });
 
   assert.ok(html.includes(`<button class="source-count" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="Example &lt;Security&gt;" aria-label="Filter to Example &lt;Security&gt; source, 1 article" aria-pressed="false">Example &lt;Security&gt; <strong>1</strong></button>`));
-  assert.ok(html.includes(`<button class="source-count source-count-empty" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="Quiet &lt;Feed&gt;" aria-label="Quiet &lt;Feed&gt; source has no current articles" aria-pressed="false" aria-disabled="true" disabled>Quiet &lt;Feed&gt; <strong>0</strong></button>`));
-  assert.ok(html.includes('<div class="source-health-summary" data-active-sources="1" data-quiet-sources="1">'));
+  assert.doesNotMatch(html, /Quiet &lt;Feed&gt;/);
+  assert.ok(html.includes('<div class="source-health-summary" data-active-sources="1" data-quiet-sources="0">'));
   assert.ok(html.includes('<span><strong>1</strong> active feed</span>'));
-  assert.ok(html.includes(`<span><strong>1</strong> quiet feed</span> <span class="source-health-note">${SOURCE_COVERAGE_CONTRACT.healthNoteText}</span>`));
   assert.doesNotMatch(html, /Quiet <Feed>/);
 });
 
@@ -1277,7 +1281,7 @@ test('generateHTML wires source coverage counts into the source filter', () => {
   ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
 
   assert.ok(html.includes(`const sourceCoverageButtons = qa('${SOURCE_COVERAGE_CONTRACT.buttonSelector}')`));
-  assert.ok(html.includes('<div class="source-filter-status" data-source-filter-status role="status" aria-live="polite" aria-atomic="true">Source shortcut: All active feeds (2 articles)</div>'));
+  assert.ok(html.includes('<div class="source-filter-status" data-source-filter-status role="status" aria-live="polite" aria-atomic="true">All contributing feeds (2 articles)</div>'));
   assert.ok(html.includes(`const sourceFilterStatus = q('${SOURCE_COVERAGE_CONTRACT.statusSelector}')`));
   assert.match(html, /sourceCoverageButtons\.forEach\(function\(button\)/);
   assert.ok(html.includes(`const source = button.getAttribute('${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}') || ''`));
@@ -1286,9 +1290,9 @@ test('generateHTML wires source coverage counts into the source filter', () => {
   assert.ok(html.includes(`button.setAttribute('aria-pressed', button.getAttribute('${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}') === src ? 'true' : 'false')`));
   assert.ok(html.includes("const hasComposedFilters = Boolean(term || severity || tag || vendor || age || handoff)"));
   assert.ok(html.includes("const countLabel = hasComposedFilters ? (articleLabel === 'article' ? 'filtered article' : 'filtered articles') : articleLabel"));
-  assert.ok(html.includes("sourceFilterStatus.textContent = (src ? 'Source shortcut: ' + getControlLabel(sourceFilter) : 'Source shortcut: All active feeds') + ' (' + visible + ' ' + countLabel + ')'"));
-  assert.ok(html.includes("const sourceShortcutStatus = nextSource ? 'Source shortcut: ' + getControlLabel(sourceFilter) + '.' : 'Source shortcut cleared.'"));
-  assert.match(html, /update\(sourceShortcutStatus\);/);
+  assert.ok(html.includes("sourceFilterStatus.textContent = (src ? 'Source filter: ' + getControlLabel(sourceFilter) : 'All contributing feeds') + ' (' + visible + ' ' + countLabel + ')'"));
+  assert.ok(html.includes("const sourceFilterAction = nextSource ? 'Source filter: ' + getControlLabel(sourceFilter) + '.' : 'Source filter cleared.'"));
+  assert.match(html, /update\(sourceFilterAction\);/);
 });
 
 test('generateHTML renders escaped operator scan lanes', () => {
@@ -1325,7 +1329,7 @@ test('generateHTML renders escaped operator scan lanes', () => {
   assert.match(html, /Ransomware crew steals credentials from exchange/);
   assert.match(html, /Cisco VPN vulnerability patched by vendor/);
   assert.match(html, /Regulator opens &lt;privacy&gt; compliance audit/);
-  assert.match(html, /<a href="#" class="operator-lane-link" data-lane-link>Regulator opens &lt;privacy&gt; compliance audit<\/a>/);
+  assert.doesNotMatch(html, /href="#"/);
   assert.doesNotMatch(html, /javascript:alert/);
 });
 
@@ -1355,8 +1359,9 @@ test('generateHTML renders filter-aware operator lane wiring', () => {
   assert.match(html, /strongCount\.textContent = matchingCards\.length/);
   assert.match(html, /countTarget\.appendChild\(strongCount\)/);
   assert.match(html, /countTarget\.appendChild\(document\.createTextNode\(' ' \+ itemLabel\)\)/);
-  assert.match(html, /linkTarget\.textContent = latestLink \? latestLink\.textContent : 'No current match'/);
-  assert.match(html, /linkTarget\.setAttribute\('href', latestLink \? latestLink\.getAttribute\('href'\) : '#'\)/);
+  assert.match(html, /linkTarget\.hidden = !latestLink/);
+  assert.match(html, /linkTarget\.removeAttribute\('href'\)/);
+  assert.match(html, /if \(emptyTarget\) emptyTarget\.hidden = Boolean\(latestLink\)/);
   assert.match(html, /renderFilterInsights\(visibleCards\);\s+updateOperatorLanes\(visibleCards\);\s+syncQueryState\(\);/);
 });
 
@@ -1372,7 +1377,7 @@ test('generateHTML treats the malformed feed date fallback as undated', () => {
   ], { generatedAt: new Date('2026-06-17T18:00:00.000Z') });
 
   assert.match(html, /data-age-bucket="Undated"/);
-  assert.match(html, /<span class="chip age-chip">Undated - date unavailable<\/span>/);
+  assert.match(html, /<span class="chip age-chip"><span data-age-label>Undated<\/span> · <span data-age-detail>date unavailable<\/span><\/span>/);
   assert.match(html, /<option value="Undated">Undated<\/option>/);
 });
 
@@ -1485,8 +1490,8 @@ test('generateHTML recovers focus after source shortcut toggling', () => {
   assert.match(html, /focusFilterRecoveryTarget\(\)/);
   assert.match(html, /const nextSource = sourceFilter\.value === source \? '' : source/);
   assert.match(html, /sourceFilter\.value = nextSource/);
-  assert.ok(html.includes("const sourceShortcutStatus = nextSource ? 'Source shortcut: ' + getControlLabel(sourceFilter) + '.' : 'Source shortcut cleared.'"));
-  assert.match(html, /update\(sourceShortcutStatus\);\s+focusSourceShortcutRecoveryTarget\(source\);/);
+  assert.ok(html.includes("const sourceFilterAction = nextSource ? 'Source filter: ' + getControlLabel(sourceFilter) + '.' : 'Source filter cleared.'"));
+  assert.match(html, /update\(sourceFilterAction\);\s+focusSourceShortcutRecoveryTarget\(source\);/);
 });
 
 test('generateHTML renders long summaries as accessible expandable content', () => {

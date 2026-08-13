@@ -61,6 +61,9 @@ function collectNewsDataItemFailures(item, index, enabledSourceNames) {
   if (!item.date || !isValidDate(item.date)) {
     failures.push(`${label} must have a valid date`);
   }
+  if (item.firstSeen !== undefined && !isValidDate(item.firstSeen)) {
+    failures.push(`${label} firstSeen must be a valid timestamp when present`);
+  }
 
   const normalizedSourceName = normalizeSourceName(item.source);
   if (!item.source || typeof item.source !== 'string') {

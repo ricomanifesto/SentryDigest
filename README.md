@@ -19,7 +19,6 @@ SentryDigest collects security news from multiple RSS sources, normalizes the fe
 
 - Krebs on Security
 - The Hacker News
-- Threatpost
 - Bleeping Computer
 - Dark Reading
 
@@ -74,4 +73,4 @@ Set `maxNewsItems` to control the generated item count. The workflow rebuilds wh
 
 ## Validation
 
-`npm test` runs the Node test suite, checks JavaScript syntax, and performs dependency-free artifact validation. The artifact validator verifies that `news-data.json`, `feed.xml`, `feed-info.json`, and `index.html` agree on item counts, dates, URLs, enabled source names, and newest-first ordering.
+`npm test` runs the Node test suite, checks JavaScript syntax, and performs artifact validation. The validator checks cross-artifact counts, dates, URLs, contributing source names, and newest-first ordering. It also rejects reader-facing regressions such as feed truncation markers, encoded title entities, hash-only controls, hollow summary disclosures, and unlabeled clock times.

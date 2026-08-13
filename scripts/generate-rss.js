@@ -61,8 +61,8 @@ function generateRSSFeed(options = {}) {
     }
   });
 
-  // Add information about the sources
-  const activeSources = enabledRssSources.map(source => source.name);
+  // Describe the sources represented in this rolling feed, not every configured input.
+  const activeSources = Array.from(new Set(newsData.map((item) => item.source)));
 
   feed.custom_elements.push(
     {'comment': `News aggregated from: ${activeSources.join(', ')}`}
