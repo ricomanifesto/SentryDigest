@@ -6,6 +6,7 @@ const test = require('node:test');
 
 const {
   fetchAllNews,
+  fetchNewsSnapshot,
   INVALID_FEED_DATE_FALLBACK,
   loadSourceConfig,
   normalizeArticleDate,
@@ -104,6 +105,42 @@ test('fetchAllNews rejects a total source outage before artifact generation', as
     }),
     /Failed to fetch all 2 enabled RSS sources/,
   );
+});
+
+test('fetchNewsSnapshot records the newest contribution from every successful source before the rolling cap', async () => {
+  const sourceConfig = {
+    enabledRssSources: [
+      { name: 'Busy Source', type: 'rss' },
+      { name: 'Quiet Source', type: 'rss' },
+    ],
+    maxNewsItems: 1,
+  };
+
+  const snapshot = await fetchNewsSnapshot({
+    sourceConfig,
+    fetchFeed: async (source) => source.name === 'Busy Source'
+      ? [{
+        title: 'Newest item',
+        link: 'https://example.com/newest',
+        date: new Date('2026-08-13T18:00:00.000Z'),
+        source: source.name,
+        summary: 'Newest item.',
+      }]
+      : [{
+        title: 'Older quiet-source item',
+        link: 'https://example.com/older',
+        date: new Date('2026-08-01T12:00:00.000Z'),
+        source: source.name,
+        summary: 'Older item.',
+      }],
+    logger: { error() {} },
+  });
+
+  assert.equal(snapshot.newsItems.length, 1);
+  assert.deepEqual(snapshot.sourceContributions, [
+    { name: 'Busy Source', lastContributedAt: '2026-08-13T18:00:00.000Z' },
+    { name: 'Quiet Source', lastContributedAt: '2026-08-01T12:00:00.000Z' },
+  ]);
 });
 
 test('normalizeFeedDate preserves valid feed dates', () => {
@@ -507,8 +544,8 @@ test('generateHTML renders escaped downstream handoff cues on article cards', ()
 
   assert.match(html, /data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage,SentryInsight: vendor watch,GRCInsight: governance watch"/);
   assert.match(html, /<div class="handoff-row" aria-label="Downstream handoff cues">/);
-  assert.match(html, /<span class="handoff-cue">SentryInsight: incident watch<\/span>/);
-  assert.match(html, /<span class="handoff-cue">GRCInsight: governance watch<\/span>/);
+  assert.match(html, /<a class="handoff-cue" href="https:\/\/ricomanifesto\.github\.io\/SentryInsight\/"[^>]*>SentryInsight: incident watch<\/a>/);
+  assert.match(html, /<a class="handoff-cue" href="https:\/\/ricomanifesto\.github\.io\/GRCInsight\/"[^>]*>GRCInsight: governance watch<\/a>/);
 });
 
 test('generateHTML groups legend explanations into a compact digest legend', () => {
@@ -1241,7 +1278,7 @@ test('generateHTML renders singular RSS item count for feed inspection', () => {
   assert.match(html, /<a class="feed-link" href="\.\/feed\.xml" aria-label="Open RSS feed with 1 latest article">RSS feed <span class="feed-link-count">1 item<\/span><\/a>/);
 });
 
-test('generateHTML omits configured feeds that do not contribute to the rolling digest', () => {
+test('generateHTML keeps non-contributing feeds visible as inert health metadata', () => {
   const html = generateHTML([
     {
       title: 'First story',
@@ -1256,9 +1293,11 @@ test('generateHTML omits configured feeds that do not contribute to the rolling 
   });
 
   assert.ok(html.includes(`<button class="source-count" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="Example &lt;Security&gt;" aria-label="Filter to Example &lt;Security&gt; source, 1 article" aria-pressed="false">Example &lt;Security&gt; <strong>1</strong></button>`));
-  assert.doesNotMatch(html, /Quiet &lt;Feed&gt;/);
-  assert.ok(html.includes('<div class="source-health-summary" data-active-sources="1" data-quiet-sources="0">'));
+  assert.match(html, /Quiet &lt;Feed&gt; quiet · no contribution recorded/);
+  assert.ok(html.includes('<div class="source-health-summary" data-active-sources="1" data-quiet-sources="1">'));
   assert.ok(html.includes('<span><strong>1</strong> active feed</span>'));
+  assert.ok(html.includes('<span><strong>1</strong> quiet feed</span>'));
+  assert.doesNotMatch(html, /data-source-filter="Quiet &lt;Feed&gt;"/);
   assert.doesNotMatch(html, /Quiet <Feed>/);
 });
 

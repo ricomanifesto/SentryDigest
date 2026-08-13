@@ -7,6 +7,7 @@ const {
   FEED_INFO_CONTRACT,
   FEED_METADATA_CONTRACT,
   formatSourceShortcutStatus,
+  HANDOFF_DESTINATION_CONTRACT,
   ISSUE_TRAIL_CONTRACT,
   OPERATOR_LANE_CONTRACT,
   RSS_CHANNEL_CONTRACT,
@@ -26,6 +27,7 @@ const {
   collectNewsDataFailures,
   isValidDate,
 } = require('./news-data-contract');
+const { collectSourceHealth } = require('./source-health');
 
 function readText(label, filePath, repoRoot, failures) {
   if (!fs.existsSync(filePath)) {
@@ -111,13 +113,20 @@ function normalizeGeneratedArticleLink(value) {
 function extractArticleHrefs(indexHtml) {
   const hrefs = [];
   const articlePattern = /<article\b[^>]*class="[^"]*\bnews-item\b[^"]*"[^>]*>[\s\S]*?<\/article>/gi;
-  const hrefPattern = /\bhref\s*=\s*(["'])(.*?)\1/gi;
+  const anchorPattern = /<a\b([^>]*)>/gi;
+  const hrefPattern = /\bhref\s*=\s*(["'])(.*?)\1/i;
   let articleMatch;
 
   while ((articleMatch = articlePattern.exec(indexHtml)) !== null) {
-    let hrefMatch;
-    while ((hrefMatch = hrefPattern.exec(articleMatch[0])) !== null) {
-      hrefs.push(hrefMatch[2]);
+    let anchorMatch;
+    while ((anchorMatch = anchorPattern.exec(articleMatch[0])) !== null) {
+      if (/\bclass\s*=\s*(["'])[^"']*\bhandoff-cue\b[^"']*\1/i.test(anchorMatch[1])) {
+        continue;
+      }
+      const hrefMatch = hrefPattern.exec(anchorMatch[1]);
+      if (hrefMatch) {
+        hrefs.push(hrefMatch[2]);
+      }
     }
   }
 
@@ -508,10 +517,8 @@ function validateSourceCoverageContract(indexHtml, newsData, enabledSources, fai
   }
 
   const expectedCounts = new Map(
-    collectSourceCoverage(
-      newsData,
-      Array.from(new Set(newsData.map((article) => article?.source).filter(Boolean)))
-    ).map(({ source, count }) => [source, count])
+    collectSourceHealth(newsData, enabledSources)
+      .map(({ name, itemCount }) => [name, itemCount])
   );
   const expectedActiveSources = Array.from(expectedCounts.values()).filter((count) => count > 0).length;
   const expectedQuietSources = Array.from(expectedCounts.values()).filter((count) => count === 0).length;
@@ -530,6 +537,7 @@ function validateSourceCoverageContract(indexHtml, newsData, enabledSources, fai
       .map((index, element) => $(element).text().trim())
       .get();
     const visibleActiveCount = parseArtifactCount(visibleCounts[0] || '');
+    const visibleQuietCount = parseArtifactCount(visibleCounts[1] || '');
 
     if (activeCount !== expectedActiveSources) {
       fail(failures, `index.html source health active count ${activeCountText || 'missing'} does not match expected ${expectedActiveSources}`);
@@ -543,9 +551,8 @@ function validateSourceCoverageContract(indexHtml, newsData, enabledSources, fai
       fail(failures, `index.html source health visible active count ${visibleCounts[0] || 'missing'} does not match expected ${expectedActiveSources}`);
     }
 
-    const healthNoteText = sourceHealthSummary.find(SOURCE_COVERAGE_CONTRACT.healthNoteSelector).first().text().trim();
-    if (healthNoteText) {
-      fail(failures, 'index.html source coverage must not expose reader-facing health-only jargon');
+    if (visibleQuietCount !== expectedQuietSources) {
+      fail(failures, `index.html source health visible quiet count ${visibleCounts[1] || 'missing'} does not match expected ${expectedQuietSources}`);
     }
   }
 
@@ -567,7 +574,7 @@ function validateSourceCoverageContract(indexHtml, newsData, enabledSources, fai
     }
     seenSources.add(source);
 
-    if (!expectedCounts.has(source)) {
+    if (!expectedCounts.has(source) || expectedCounts.get(source) === 0) {
       fail(failures, `index.html source coverage includes unexpected source ${source}`);
       return;
     }
@@ -592,8 +599,40 @@ function validateSourceCoverageContract(indexHtml, newsData, enabledSources, fai
   });
 
   expectedCounts.forEach((count, source) => {
-    if (!seenSources.has(source)) {
+    if (count > 0 && !seenSources.has(source)) {
       fail(failures, `index.html source coverage is missing source ${source}`);
+    }
+  });
+
+  const expectedHealth = new Map(
+    collectSourceHealth(newsData, enabledSources)
+      .filter(({ itemCount }) => itemCount === 0)
+      .map((health) => [health.name, health])
+  );
+  const seenQuietSources = new Set();
+  section.find(SOURCE_COVERAGE_CONTRACT.quietSourceSelector).each((index, element) => {
+    const quietSource = $(element);
+    const source = quietSource.attr(SOURCE_COVERAGE_CONTRACT.quietSourceAttribute) || '';
+    const lastContributedAt = quietSource.attr(SOURCE_COVERAGE_CONTRACT.quietSourceLastContributedAttribute) || null;
+    seenQuietSources.add(source);
+
+    if (!expectedHealth.has(source)) {
+      fail(failures, `index.html source health includes unexpected quiet source ${source || 'missing'}`);
+      return;
+    }
+
+    const expected = expectedHealth.get(source);
+    if (lastContributedAt !== expected.lastContributedAt) {
+      fail(failures, `index.html quiet source ${source} last contribution ${lastContributedAt || 'missing'} does not match config ${expected.lastContributedAt || 'missing'}`);
+    }
+    if (!/\bquiet\b/i.test(quietSource.text())) {
+      fail(failures, `index.html quiet source ${source} must be labeled quiet`);
+    }
+  });
+
+  expectedHealth.forEach((health, source) => {
+    if (!seenQuietSources.has(source)) {
+      fail(failures, `index.html source health is missing quiet source ${source}`);
     }
   });
 }
@@ -726,6 +765,9 @@ function validateReaderExperience(indexHtml, newsData = [], failures = []) {
       if (FEED_TRUNCATION_PATTERN.test(article.summary)) {
         fail(failures, `news-data.json item ${index + 1} summary contains a feed truncation artifact`);
       }
+      if (/[.,;:!?]+…$/u.test(article.summary.trim())) {
+        fail(failures, `news-data.json item ${index + 1} summary has redundant punctuation before a truncation ellipsis`);
+      }
     }
   });
 
@@ -750,6 +792,36 @@ function validateReaderExperience(indexHtml, newsData = [], failures = []) {
     if (remainder.length < 48 || wordCount < 6 || FEED_TRUNCATION_PATTERN.test(remainder)) {
       fail(failures, `index.html summary disclosure ${index + 1} has no meaningful remainder`);
     }
+  });
+
+  $('.news-summary').each((index, element) => {
+    if (/[.,;:!?]+…$/u.test($(element).text().trim())) {
+      fail(failures, `index.html summary ${index + 1} has redundant punctuation before a truncation ellipsis`);
+    }
+  });
+
+  const validateHandoffLink = (element, cue, location) => {
+    const expectedHref = HANDOFF_DESTINATION_CONTRACT.destinations[cue];
+    const link = $(element);
+    if (element.tagName !== 'a') {
+      fail(failures, `index.html ${location} ${cue || 'missing'} must be a link`);
+      return;
+    }
+    if (!expectedHref || link.attr('href') !== expectedHref) {
+      fail(failures, `index.html ${location} ${cue || 'missing'} must link to its downstream product`);
+    }
+  };
+
+  $('.handoff-cue').each((index, element) => {
+    validateHandoffLink(element, $(element).text().trim(), `card handoff cue ${index + 1}`);
+  });
+  $('.handoff-cue-legend-chip').each((index, element) => {
+    const cue = $(element).find('.handoff-cue-name').first().text().trim();
+    validateHandoffLink(element, cue, `legend handoff cue ${index + 1}`);
+  });
+  $('.operator-lane-heading').each((index, element) => {
+    const cue = $(element).closest('.operator-lane').attr(OPERATOR_LANE_CONTRACT.cueAttribute) || '';
+    validateHandoffLink(element, cue, `operator lane ${index + 1}`);
   });
 
   $('time[datetime]').each((index, element) => {
@@ -828,6 +900,13 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
       if (JSON.stringify(actualSources) !== JSON.stringify(expectedSources)) {
         fail(failures, 'feed-info.json sources must match sources represented in news-data.json');
       }
+    }
+
+    const expectedSourceHealth = collectSourceHealth(newsData, enabledSources);
+    if (!Array.isArray(feedInfo.sourceHealth)) {
+      fail(failures, 'feed-info.json sourceHealth must be an array');
+    } else if (JSON.stringify(feedInfo.sourceHealth) !== JSON.stringify(expectedSourceHealth)) {
+      fail(failures, 'feed-info.json sourceHealth must match configured source contribution history');
     }
 
     if (!feedInfo.lastUpdated || !isValidDate(feedInfo.lastUpdated)) {

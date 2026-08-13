@@ -61,6 +61,18 @@ function validateSourceConfig(config, failures = []) {
         return;
       }
 
+      if (
+        Object.hasOwn(source, 'lastContributedAt')
+        && source.lastContributedAt !== null
+        && (
+          typeof source.lastContributedAt !== 'string'
+          || Number.isNaN(new Date(source.lastContributedAt).getTime())
+          || new Date(source.lastContributedAt).toISOString() !== source.lastContributedAt
+        )
+      ) {
+        fail(failures, `${label} lastContributedAt must be null or a valid ISO timestamp`);
+      }
+
       if (source.enabled !== true) {
         return;
       }

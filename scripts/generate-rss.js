@@ -9,6 +9,7 @@ const {
   assertSourceConfigContract,
 } = require('./source-config-contract');
 const { assertNewsDataContract } = require('./news-data-contract');
+const { collectSourceHealth } = require('./source-health');
 
 // Default generated artifact paths
 const defaultNewsDataPath = path.join(__dirname, '../news-data.json');
@@ -96,6 +97,7 @@ function generateRSSFeed(options = {}) {
     url: FEED_INFO_CONTRACT.publicFeedUrl,
     itemCount: newsData.length,
     sources: activeSources,
+    sourceHealth: collectSourceHealth(newsData, enabledRssSources),
     lastUpdated: generatedAt.toISOString()
   };
 

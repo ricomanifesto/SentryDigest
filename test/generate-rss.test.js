@@ -35,7 +35,8 @@ test('generateRSSFeed writes explicit output paths without relying on repo globa
     configPath,
     JSON.stringify({
       sources: [
-        { name: 'Vendor Advisory', url: 'https://example.com/vendor-feed.xml', type: 'rss', enabled: true },
+        { name: 'Vendor Advisory', url: 'https://example.com/vendor-feed.xml', type: 'rss', enabled: true, lastContributedAt: '2026-06-17T00:30:00.000Z' },
+        { name: 'Quiet Feed', url: 'https://example.com/quiet.xml', type: 'rss', enabled: true, lastContributedAt: '2026-06-01T09:00:00.000Z' },
         { name: 'Disabled Feed', enabled: false },
       ],
     })
@@ -61,7 +62,12 @@ test('generateRSSFeed writes explicit output paths without relying on repo globa
     assert.equal(result.feedInfoPath, feedInfoPath);
     assert.equal(result.rssOutputPath, rssOutputPath);
     assert.match(writes.get(rssOutputPath), /<dc:date>2026-06-17<\/dc:date>/);
-    assert.equal(JSON.parse(writes.get(feedInfoPath)).sources.length, 1);
+    const writtenFeedInfo = JSON.parse(writes.get(feedInfoPath));
+    assert.equal(writtenFeedInfo.sources.length, 1);
+    assert.deepEqual(writtenFeedInfo.sourceHealth, [
+      { name: 'Vendor Advisory', itemCount: 1, lastContributedAt: '2026-06-17T00:30:00.000Z' },
+      { name: 'Quiet Feed', itemCount: 0, lastContributedAt: '2026-06-01T09:00:00.000Z' },
+    ]);
   } finally {
     fs.writeFileSync = originalWriteFileSync;
   }

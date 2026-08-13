@@ -8,12 +8,14 @@ const {
   DIGEST_LEGEND_CONTRACT,
   FEED_INFO_CONTRACT,
   formatSourceShortcutStatus,
+  HANDOFF_DESTINATION_CONTRACT,
   ISSUE_TRAIL_CONTRACT,
   RSS_CHANNEL_CONTRACT,
   SITE_METADATA_CONTRACT,
   SOURCE_COVERAGE_CONTRACT,
 } = require('../scripts/generated-artifact-contracts');
 const { generateHTML } = require('../scripts/render-news-html');
+const { collectSourceHealth } = require('../scripts/source-health');
 const { validateArtifacts } = require('../scripts/validate-artifacts');
 
 function writeJson(filePath, value) {
@@ -109,7 +111,7 @@ function renderDigestLegend({
   const handoffCues = Object.entries(DIGEST_LEGEND_CONTRACT.handoffCueDetails)
     .map(([name, detail]) => {
       const renderedDetail = name === handoffCueName ? handoffCueDetail : detail;
-      return `<span class="handoff-cue-legend-chip"><span class="handoff-cue-name">${name}</span><span class="handoff-cue-detail">${renderedDetail}</span></span>`;
+      return `<a class="handoff-cue-legend-chip" href="${HANDOFF_DESTINATION_CONTRACT.destinations[name]}"><span class="handoff-cue-name">${name}</span><span class="handoff-cue-detail">${renderedDetail}</span></a>`;
     })
     .join('');
 
@@ -142,20 +144,24 @@ function collectFixtureSourceCounts(newsData, sourceNames = ['Example Security']
 }
 
 function renderFixtureSourceControls(newsData, sourceNames) {
-  const sourceCounts = collectFixtureSourceCounts(newsData, sourceNames)
-    .filter(({ count }) => count > 0);
-  const activeSourceCount = sourceCounts.length;
-  const quietSourceCount = 0;
+  const sourceCounts = collectFixtureSourceCounts(newsData, sourceNames);
+  const activeSourceCount = sourceCounts.filter(({ count }) => count > 0).length;
+  const quietSourceCount = sourceCounts.filter(({ count }) => count === 0).length;
   const activeSources = sourceCounts
     .filter(({ count }) => count > 0)
     .map(({ source }) => `<option value="${source}">${source}</option>`)
     .join('');
   const sourceButtons = sourceCounts
+    .filter(({ count }) => count > 0)
     .map(({ source, count }) => {
       const articleLabel = count === 1 ? 'article' : 'articles';
       const sourceLabel = `Filter to ${source} source, ${count} ${articleLabel}`;
       return `<button class="source-count" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="${source}" aria-label="${sourceLabel}" aria-pressed="false">${source} <strong>${count}</strong></button>`;
     })
+    .join('');
+  const quietSources = sourceCounts
+    .filter(({ count }) => count === 0)
+    .map(({ source }) => `<span class="source-health-note" data-source-name="${source}" data-last-contributed-at="">${source} quiet · no contribution recorded</span>`)
     .join('');
 
   return `<select id="sourceFilter" class="select" aria-label="Filter by source">
@@ -166,7 +172,9 @@ function renderFixtureSourceControls(newsData, sourceNames) {
       <div class="source-counts">${sourceButtons}</div>
       <div class="source-health-summary" data-active-sources="${activeSourceCount}" data-quiet-sources="${quietSourceCount}">
         <span><strong>${activeSourceCount}</strong> active ${activeSourceCount === 1 ? 'feed' : 'feeds'}</span>
+        <span><strong>${quietSourceCount}</strong> quiet ${quietSourceCount === 1 ? 'feed' : 'feeds'}</span>
       </div>
+      <div class="source-quiet-feeds">${quietSources}</div>
       <div class="source-filter-status" data-source-filter-status aria-live="polite">${formatSourceShortcutStatus(SOURCE_COVERAGE_CONTRACT.statusAllSourcesText, newsData.length)}</div>
       <div class="source-coverage-actions">
         <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with ${newsData.length} latest articles">RSS feed <span class="feed-link-count">${newsData.length} items</span></a>
@@ -221,13 +229,19 @@ function createFixture(overrides = {}) {
     },
   ];
 
-  writeJson(path.join(repoRoot, 'config/news-sources.json'), {
-    sources: sourceNames.map((source) => ({
+  const fixtureSources = sourceNames.map((source) => ({
       name: source,
       url: `https://example.com/${source.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.xml`,
       type: 'rss',
       enabled: true,
-    })),
+      lastContributedAt: null,
+    }));
+  const sourceHealth = collectSourceHealth(newsData, fixtureSources);
+  fixtureSources.forEach((source) => {
+    source.lastContributedAt = sourceHealth.find((health) => health.name === source.name)?.lastContributedAt || null;
+  });
+  writeJson(path.join(repoRoot, 'config/news-sources.json'), {
+    sources: fixtureSources,
     settings: {
       maxNewsItems: 30,
     },
@@ -238,6 +252,7 @@ function createFixture(overrides = {}) {
     url: FEED_INFO_CONTRACT.publicFeedUrl,
     itemCount: overrides.feedInfoItemCount ?? newsData.length,
     sources: overrides.feedInfoSources || Array.from(new Set(newsData.map((item) => item?.source).filter(Boolean))),
+    sourceHealth,
     lastUpdated: overrides.feedInfoLastUpdated || '2026-06-17T18:30:00.000Z',
     ...(overrides.feedInfo || {}),
   });
@@ -739,8 +754,8 @@ test('validateArtifacts rejects generated operator lane drift', () => {
   });
   const staleHtml = generatedHtml
     .replace(
-      '<article class="operator-lane" data-lane="Incident watch" data-lane-cue="SentryInsight: incident watch">\n        <div class="operator-lane-heading">Incident watch</div>\n        <span class="operator-lane-count" data-lane-count><strong>1</strong> item</span>\n        <a href="https://example.com/incident" class="operator-lane-link" data-lane-link>Ransomware crew steals credentials from exchange</a>',
-      '<article class="operator-lane" data-lane="Incident watch" data-lane-cue="SentryInsight: incident watch">\n        <div class="operator-lane-heading">Incident watch</div>\n        <span class="operator-lane-count" data-lane-count><strong>0</strong> items</span>\n        <a href="https://example.com/stale" class="operator-lane-link" data-lane-link>Stale incident lane</a>'
+      '<span class="operator-lane-count" data-lane-count><strong>1</strong> item</span>\n        <a href="https://example.com/incident" class="operator-lane-link" data-lane-link>Ransomware crew steals credentials from exchange</a>',
+      '<span class="operator-lane-count" data-lane-count><strong>0</strong> items</span>\n        <a href="https://example.com/stale" class="operator-lane-link" data-lane-link>Stale incident lane</a>'
     );
 
   const repoRoot = createFixture({
@@ -996,7 +1011,7 @@ test('validateArtifacts rejects non-contributing sources exposed as selectable f
 
   assert.equal(result.valid, false);
   assert.match(result.failures.join('\n'), /index\.html source coverage includes unexpected source Quiet Feed/);
-  assert.match(result.failures.join('\n'), /index\.html source coverage must not expose reader-facing health-only jargon/);
+  assert.match(result.failures.join('\n'), /index\.html source health includes unexpected quiet source missing/);
 });
 
 test('validateArtifacts rejects active source shortcut label drift', () => {

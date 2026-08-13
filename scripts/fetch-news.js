@@ -4,6 +4,11 @@ const cheerio = require('cheerio');
 const { generateHTML } = require('./render-news-html');
 const { assertNewsDataContract } = require('./news-data-contract');
 const { assertSourceConfigContract } = require('./source-config-contract');
+const {
+  newestContributionTimestamp,
+  updateSourceContributionHistory,
+  collectSourceHealth,
+} = require('./source-health');
 
 // Path to the index.html file
 const indexHtmlPath = path.join(__dirname, '../index.html');
@@ -20,30 +25,35 @@ function createDefaultSourceConfig(now = new Date()) {
         url: 'https://krebsonsecurity.com/feed/',
         type: 'rss',
         enabled: true,
+        lastContributedAt: null,
       },
       {
         name: 'The Hacker News',
         url: 'https://feeds.feedburner.com/TheHackersNews',
         type: 'rss',
         enabled: true,
+        lastContributedAt: null,
       },
       {
         name: 'Bleeping Computer',
         url: 'https://www.bleepingcomputer.com/feed/',
         type: 'rss',
         enabled: true,
+        lastContributedAt: null,
       },
       {
         name: 'Dark Reading',
         url: 'https://www.darkreading.com/rss.xml',
         type: 'rss',
         enabled: true,
+        lastContributedAt: null,
       },
       {
         name: 'ZDNet Security',
         url: 'https://www.zdnet.com/topic/security/rss.xml',
         type: 'rss',
         enabled: true,
+        lastContributedAt: null,
       },
     ],
     settings: {
@@ -147,7 +157,18 @@ function normalizeSummary(value) {
 
   let summary = normalized.replace(truncationMarker, ' ').replace(/\s+/g, ' ').trim();
   if (hadTruncationMarker) {
-    summary = summary.replace(/\s*(?:(?:\.{3})|…)+\s*$/g, '').trim();
+    summary = summary
+      .replace(/\s*(?:\.{3}|…)+\s*$/g, '')
+      .replace(/[.,;:!?]+\s*$/g, '')
+      .trim();
+    return summary ? `${summary}…` : '';
+  }
+
+  if (
+    summary.length > 160
+    && !/[.!?…](?:["'’”)\]}]*)$/.test(summary)
+  ) {
+    return `${summary.replace(/[.,;:!?]+$/g, '').trim()}…`;
   }
 
   return summary;
@@ -187,8 +208,7 @@ async function fetchRSSFeed(source) {
   }));
 }
 
-// Function to fetch news from all sources
-async function fetchAllNews(options = {}) {
+async function fetchNewsSnapshot(options = {}) {
   const {
     sourceConfig = loadSourceConfig(options),
     fetchFeed = fetchRSSFeed,
@@ -201,10 +221,17 @@ async function fetchAllNews(options = {}) {
 
   const fetchResults = await Promise.allSettled(allNewsPromises);
   const allNewsArrays = [];
+  const sourceContributions = [];
 
   fetchResults.forEach((result, index) => {
     if (result.status === 'fulfilled') {
       allNewsArrays.push(result.value);
+      sourceContributions.push({
+        name: sources[index].name,
+        lastContributedAt: newestContributionTimestamp(
+          Array.isArray(result.value) ? result.value.map((article) => article?.date) : []
+        ),
+      });
       return;
     }
 
@@ -222,7 +249,16 @@ async function fetchAllNews(options = {}) {
   allNews.sort((a, b) => b.date - a.date);
   allNews = allNews.slice(0, sourceConfig.maxNewsItems);
   
-  return allNews;
+  return {
+    newsItems: allNews,
+    sourceContributions,
+  };
+}
+
+// Compatibility helper for callers that only need the rolling article list.
+async function fetchAllNews(options = {}) {
+  const snapshot = await fetchNewsSnapshot(options);
+  return snapshot.newsItems;
 }
 
 function writeGeneratedNewsArtifacts(options) {
@@ -235,6 +271,7 @@ function writeGeneratedNewsArtifacts(options) {
     logger = console,
     now = new Date(),
     previousNewsItems,
+    sourceContributions = [],
   } = options;
   const config = sourceConfig.config;
   const sources = sourceConfig.enabledRssSources;
@@ -254,9 +291,12 @@ function writeGeneratedNewsArtifacts(options) {
 
   assertNewsDataContract(generatedNewsItems, sources, sourceConfig.maxNewsItems);
 
+  updateSourceContributionHistory(config, sourceContributions, generatedNewsItems);
+  const sourceHealth = collectSourceHealth(generatedNewsItems, sources);
+
   const html = generateHTML(generatedNewsItems, {
     generatedAt: now,
-    sourceNames: Array.from(new Set(generatedNewsItems.map((article) => article.source))),
+    sourceHealth,
   });
 
   fs.writeFileSync(outputIndexHtmlPath, html);
@@ -279,12 +319,13 @@ async function main() {
     
     // Fetch news
     console.log('Fetching news...');
-    const newsItems = await fetchAllNews({ sourceConfig });
-    console.log(`Fetched ${newsItems.length} news items from ${sources.length} active sources`);
+    const snapshot = await fetchNewsSnapshot({ sourceConfig });
+    console.log(`Fetched ${snapshot.newsItems.length} news items from ${sources.length} active sources`);
 
     writeGeneratedNewsArtifacts({
-      newsItems,
+      newsItems: snapshot.newsItems,
       sourceConfig,
+      sourceContributions: snapshot.sourceContributions,
     });
     
   } catch (error) {
@@ -300,6 +341,7 @@ if (require.main === module) {
 module.exports = {
   assignFirstSeen,
   fetchAllNews,
+  fetchNewsSnapshot,
   fetchRSSFeed,
   INVALID_FEED_DATE_FALLBACK,
   createDefaultSourceConfig,

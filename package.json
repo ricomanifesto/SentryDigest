@@ -8,7 +8,9 @@
     "generate-rss": "node scripts/generate-rss.js",
     "syntax": "node scripts/check-js-syntax.js",
     "validate": "node scripts/validate-artifacts.js",
-    "test": "node --test && npm run syntax && npm run validate"
+    "test:unit": "node --test test/*.test.js",
+    "test:browser": "playwright test",
+    "test": "npm run test:unit && npm run syntax && npm run validate && npm run test:browser"
   },
   "keywords": [
     "cybersecurity",
@@ -19,7 +21,10 @@
   "license": "MIT",
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
-    "rss-parser": "^3.13.0",
-    "rss": "^1.2.2"
+    "rss": "^1.2.2",
+    "rss-parser": "^3.13.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.62.1"
   }
 }

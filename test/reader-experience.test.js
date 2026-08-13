@@ -3,6 +3,7 @@ const test = require('node:test');
 
 const {
   FEED_INFO_CONTRACT,
+  HANDOFF_DESTINATION_CONTRACT,
   RSS_CHANNEL_CONTRACT,
 } = require('../scripts/generated-artifact-contracts');
 const {
@@ -39,7 +40,15 @@ test('ingest normalization decodes repeated entities and removes feed truncation
   );
   assert.equal(
     normalizeSummary('<p>Systems were hacked [...]...</p>'),
-    'Systems were hacked',
+    'Systems were hacked…',
+  );
+  assert.equal(
+    normalizeSummary('<p>More reporting follows. [...]...</p>'),
+    'More reporting follows…',
+  );
+  assert.equal(
+    normalizeSummary(`${'Investigators are tracing the campaign across affected organizations. '.repeat(3)}During testing,`),
+    `${'Investigators are tracing the campaign across affected organizations. '.repeat(3)}During testing…`,
   );
 });
 
@@ -141,7 +150,44 @@ test('feed summaries cut off mid-sentence stay visible without a hollow disclosu
 
   assert.doesNotMatch(html, /<details class="summary-disclosure">/);
   assert.doesNotMatch(html, /Show full summary/);
-  assert.match(html, new RegExp(`<p class="news-summary">${incompleteSummary}</p>`));
+  assert.match(html, new RegExp(`<p class="news-summary">${incompleteSummary}…</p>`));
+});
+
+test('quiet configured sources remain visible with durable contribution history', () => {
+  const html = generateHTML([article()], {
+    generatedAt: GENERATED_AT,
+    sourceHealth: [
+      {
+        name: 'Bleeping Computer',
+        itemCount: 1,
+        lastContributedAt: '2026-08-13T15:13:00.000Z',
+      },
+      {
+        name: 'Krebs on Security',
+        itemCount: 0,
+        lastContributedAt: '2026-08-09T11:30:00.000Z',
+      },
+    ],
+  });
+
+  assert.match(html, /data-active-sources="1" data-quiet-sources="1"/);
+  assert.match(html, /Krebs on Security quiet since <time datetime="2026-08-09T11:30:00.000Z">August 9, 2026 at 11:30 AM UTC<\/time>/);
+  assert.doesNotMatch(html, /data-source-filter="Krebs on Security"/);
+  assert.doesNotMatch(html, /HEALTH ONLY/i);
+});
+
+test('handoff cues, legend entries, and lane headings link to downstream products', () => {
+  const html = generateHTML([
+    article({
+      title: 'Ransomware incident triggers regulatory review',
+      summary: 'Incident response teams are investigating stolen records and privacy obligations.',
+    }),
+  ], { generatedAt: GENERATED_AT });
+
+  assert.match(html, new RegExp(`<a class="handoff-cue" href="${HANDOFF_DESTINATION_CONTRACT.destinations['SentryInsight: incident watch']}"`));
+  assert.match(html, new RegExp(`<a class="handoff-cue-legend-chip" href="${HANDOFF_DESTINATION_CONTRACT.destinations['GRCInsight: governance watch']}"`));
+  assert.match(html, new RegExp(`<a class="operator-lane-heading" data-lane-destination href="${HANDOFF_DESTINATION_CONTRACT.destinations['SentryInsight: incident watch']}"`));
+  assert.match(html, new RegExp(`<a class="operator-lane-heading" data-lane-destination href="${HANDOFF_DESTINATION_CONTRACT.destinations['GRCInsight: governance watch']}"`));
 });
 
 test('rolling feed wording and machine-readable identity stay honest', () => {
@@ -151,6 +197,20 @@ test('rolling feed wording and machine-readable identity stay honest', () => {
   assert.equal(FEED_INFO_CONTRACT.title, 'SentryDigest RSS Feed');
   assert.match(html, />Rolling RSS feed<\/a>/);
   assert.doesNotMatch(html, /RSS archive/i);
+});
+
+test('reader contracts reject punctuation stacked before a truncation ellipsis', () => {
+  const failures = [];
+  validateReaderExperience(
+    '<p class="news-summary">Systems were hacked.…</p>',
+    [article({ summary: 'Systems were hacked.…' })],
+    failures,
+  );
+
+  assert.equal(
+    failures.filter((failure) => /redundant punctuation before a truncation ellipsis/.test(failure)).length,
+    2,
+  );
 });
 
 test('reader experience contracts reject the observed papercut classes', () => {

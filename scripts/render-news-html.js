@@ -3,11 +3,13 @@ const {
   DIGEST_LEGEND_CONTRACT,
   FEED_INFO_CONTRACT,
   formatSourceShortcutStatus,
+  HANDOFF_DESTINATION_CONTRACT,
   ISSUE_TRAIL_CONTRACT,
   OPERATOR_LANE_CONTRACT,
   SITE_METADATA_CONTRACT,
   SOURCE_COVERAGE_CONTRACT,
 } = require('./generated-artifact-contracts');
+const { collectSourceHealth } = require('./source-health');
 
 function escapeHtml(value) {
   return String(value ?? '')
@@ -289,23 +291,35 @@ function renderSelectOptions(values) {
     .join('');
 }
 
-function renderSourceCoverage(newsItems, sourceNames = [], digestLegend = '') {
-  const sourceCounts = collectSourceCoverage(newsItems, sourceNames)
-    .filter(({ count }) => count > 0);
-  if (sourceCounts.length === 0) {
+function renderSourceCoverage(newsItems, sourceHealth = [], digestLegend = '') {
+  const activeSources = sourceHealth.filter(({ itemCount }) => itemCount > 0);
+  const quietSources = sourceHealth.filter(({ itemCount }) => itemCount === 0);
+  if (activeSources.length === 0 && quietSources.length === 0) {
     return '';
   }
 
   const feedItemLabel = newsItems.length === 1 ? '1 item' : `${newsItems.length} items`;
   const feedArticleLabel = newsItems.length === 1 ? '1 latest article' : `${newsItems.length} latest articles`;
-  const activeSourceCount = sourceCounts.length;
-  const quietSourceCount = 0;
+  const activeSourceCount = activeSources.length;
+  const quietSourceCount = quietSources.length;
   const activeFeedLabel = activeSourceCount === 1 ? 'active feed' : 'active feeds';
-  const sourceCountItems = sourceCounts
-    .map(({ source, count }) => {
+  const quietFeedLabel = quietSourceCount === 1 ? 'quiet feed' : 'quiet feeds';
+  const sourceCountItems = activeSources
+    .map(({ name: source, itemCount: count }) => {
       const articleLabel = count === 1 ? 'article' : 'articles';
       const sourceLabel = `Filter to ${source} source, ${count} ${articleLabel}`;
       return `<button class="source-count" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="${escapeAttribute(source)}" aria-label="${escapeAttribute(sourceLabel)}" aria-pressed="false">${escapeHtml(source)} <strong>${count}</strong></button>`;
+    })
+    .join('');
+  const quietSourceItems = quietSources
+    .map(({ name, lastContributedAt }) => {
+      const safeName = escapeHtml(name);
+      const safeNameAttr = escapeAttribute(name);
+      const safeLastContributedAt = lastContributedAt ? escapeAttribute(lastContributedAt) : '';
+      const contributionLabel = lastContributedAt
+        ? `quiet since <time datetime="${safeLastContributedAt}">${escapeHtml(formatArticleDate(lastContributedAt))}</time>`
+        : 'quiet · no contribution recorded';
+      return `<span class="${SOURCE_COVERAGE_CONTRACT.healthNoteSelector.slice(1)}" ${SOURCE_COVERAGE_CONTRACT.quietSourceAttribute}="${safeNameAttr}" ${SOURCE_COVERAGE_CONTRACT.quietSourceLastContributedAttribute}="${safeLastContributedAt}">${safeName} ${contributionLabel}</span>`;
     })
     .join('');
 
@@ -316,7 +330,9 @@ function renderSourceCoverage(newsItems, sourceNames = [], digestLegend = '') {
       <div class="source-counts">${sourceCountItems}</div>
       <div class="source-health-summary" ${SOURCE_COVERAGE_CONTRACT.activeSourcesAttribute}="${activeSourceCount}" ${SOURCE_COVERAGE_CONTRACT.quietSourcesAttribute}="${quietSourceCount}">
         <span><strong>${activeSourceCount}</strong> ${activeFeedLabel}</span>
+        <span><strong>${quietSourceCount}</strong> ${quietFeedLabel}</span>
       </div>
+      <div class="source-quiet-feeds" aria-label="Quiet RSS sources">${quietSourceItems}</div>
       <div class="source-filter-status" data-source-filter-status role="status" aria-live="polite" aria-atomic="true">${defaultStatus}</div>
       <div class="source-coverage-actions">
         <a class="feed-link" href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}" aria-label="Open RSS feed with ${feedArticleLabel}">RSS feed <span class="feed-link-count">${feedItemLabel}</span></a>
@@ -348,7 +364,7 @@ function renderHandoffCueLegend(newsItems) {
   }
 
   const cueChips = cueItems
-    .map(({ label, detail }) => `<span class="handoff-cue-legend-chip"><span class="handoff-cue-name">${escapeHtml(label)}</span><span class="handoff-cue-detail">${escapeHtml(detail)}</span></span>`)
+    .map(({ label, detail }) => `<a class="handoff-cue-legend-chip" href="${escapeAttribute(HANDOFF_DESTINATION_CONTRACT.destinations[label])}" target="_blank" rel="noopener noreferrer" aria-label="Open ${escapeAttribute(label.split(':')[0])}"><span class="handoff-cue-name">${escapeHtml(label)}</span><span class="handoff-cue-detail">${escapeHtml(detail)}</span></a>`)
     .join('');
 
   return `<div class="digest-legend-group handoff-cue-legend" aria-label="Handoff cue legend">
@@ -385,13 +401,14 @@ function renderOperatorLanes(newsItems) {
     const safeCueAttr = escapeAttribute(lane.cue);
     const safeLatestTitle = escapeHtml(lane.latestTitle);
     const safeLatestLink = escapeAttribute(lane.latestLink);
+    const safeDestination = escapeAttribute(HANDOFF_DESTINATION_CONTRACT.destinations[lane.cue]);
     const itemLabel = lane.count === 1 ? 'item' : 'items';
     const latestStory = lane.latestLink === '#'
       ? `<span class="operator-lane-story">${safeLatestTitle}</span>`
       : `<a href="${safeLatestLink}" class="operator-lane-link" data-lane-link>${safeLatestTitle}</a>`;
 
     return `<article class="operator-lane" data-lane="${safeLabelAttr}" data-lane-cue="${safeCueAttr}">
-        <div class="operator-lane-heading">${safeLabel}</div>
+        <a class="operator-lane-heading" data-lane-destination href="${safeDestination}" target="_blank" rel="noopener noreferrer" aria-label="Open ${escapeAttribute(lane.cue.split(':')[0])}">${safeLabel}</a>
         <span class="operator-lane-count" data-lane-count><strong>${lane.count}</strong> ${itemLabel}</span>
         ${latestStory}
         <span class="operator-lane-empty" data-lane-empty hidden>No current match</span>
@@ -407,7 +424,7 @@ const SUMMARY_PREVIEW_LENGTH = 160;
 const SUMMARY_WORD_BOUNDARY_MIN = 120;
 const SUMMARY_REMAINDER_MIN_LENGTH = 48;
 const SUMMARY_REMAINDER_MIN_WORDS = 6;
-const COMPLETE_SUMMARY_ENDING_PATTERN = /[.!?…](?:["'’”)\]}]*)$/;
+const COMPLETE_SUMMARY_ENDING_PATTERN = /[.!?](?:["'’”)\]}]*)$/;
 
 function getSummaryPreview(summary) {
   const parts = getSummaryParts(summary);
@@ -459,10 +476,13 @@ function renderSummary(summary, index) {
     return '';
   }
 
-  const safeSummary = escapeHtml(summary);
   const summaryParts = getSummaryParts(summary);
   if (!summaryParts) {
-    return `<p class="news-summary">${safeSummary}</p>`;
+    const visibleSummary = summary.length > SUMMARY_PREVIEW_LENGTH
+      && !/[.!?…](?:["'’”)\]}]*)$/.test(summary.trim())
+      ? `${summary.trim().replace(/[.,;:!?]+$/g, '')}…`
+      : summary;
+    return `<p class="news-summary">${escapeHtml(visibleSummary)}</p>`;
   }
 
   const safePreview = escapeHtml(summaryParts.preview);
@@ -522,7 +542,7 @@ function renderArticleCard(article, index = 0, generatedAt = new Date(), options
   const safeAgeDetail = escapeHtml(ageBucket.detail);
   const vendorChips = facets.vendors.map((vendor) => `<span class="chip">${escapeHtml(vendor)}</span>`).join('');
   const tagChips = facets.tags.map((tag) => `<span class="chip">${escapeHtml(tag)}</span>`).join('');
-  const handoffCueChips = handoffCues.map((cue) => `<span class="handoff-cue">${escapeHtml(cue)}</span>`).join('');
+  const handoffCueChips = handoffCues.map((cue) => `<a class="handoff-cue" href="${escapeAttribute(HANDOFF_DESTINATION_CONTRACT.destinations[cue])}" target="_blank" rel="noopener noreferrer" aria-label="Open ${escapeAttribute(cue.split(':')[0])}">${escapeHtml(cue)}</a>`).join('');
   const sourceSignalChip = options.showSourceSignal
     ? `\n            <span class="chip">${safeSourceSignal}</span>`
     : '';
@@ -608,6 +628,9 @@ function renderIssueTrail(generatedAt) {
 function generateHTML(newsItems, options = {}) {
   const generatedAt = options.generatedAt || new Date();
   const sourceNames = Array.isArray(options.sourceNames) ? options.sourceNames : [];
+  const sourceHealth = Array.isArray(options.sourceHealth)
+    ? options.sourceHealth
+    : collectSourceHealth(newsItems, sourceNames.length > 0 ? sourceNames : Array.from(new Set(newsItems.map((article) => article.source))));
   const uniqueSources = Array.from(new Set(newsItems.map((article) => article.source)));
   const totalItems = newsItems.length;
   const filterOptions = collectFacetFilterOptions(newsItems, generatedAt);
@@ -619,7 +642,7 @@ function generateHTML(newsItems, options = {}) {
   const handoffOptions = renderSelectOptions(filterOptions.handoffCues);
   const totalArticleLabel = totalItems === 1 ? 'article' : 'articles';
   const digestLegend = renderDigestLegend(newsItems);
-  const sourceCoverage = renderSourceCoverage(newsItems, sourceNames, digestLegend);
+  const sourceCoverage = renderSourceCoverage(newsItems, sourceHealth, digestLegend);
   const operatorLanes = renderOperatorLanes(newsItems);
   const issueStrip = renderIssueStrip(totalItems, uniqueSources.length, generatedAt);
   const issueTrail = renderIssueTrail(generatedAt);
@@ -700,7 +723,7 @@ function generateHTML(newsItems, options = {}) {
     .masthead { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; }
     .brand { display: flex; align-items: center; gap: 10px; }
     .brand img { width: 28px; height: 28px; border-radius: 6px; }
-    .brand .title { font-weight: 700; letter-spacing: 0.2px; }
+    .brand .title { font-size: inherit; font-weight: 700; letter-spacing: 0.2px; margin: 0; }
     .brand .subtitle { color: var(--muted); font-size: 0.9rem; }
     .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
     .filter-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
@@ -747,6 +770,8 @@ function generateHTML(newsItems, options = {}) {
     .source-health-summary { align-items: center; color: var(--muted); display: flex; flex: 0 1 auto; flex-wrap: wrap; font-size: 12px; gap: 6px; }
     .source-health-summary span { background: var(--bg); border: 1px solid var(--card-border); border-radius: 999px; padding: 3px 8px; }
     .source-health-summary strong { color: var(--fg); }
+    .source-quiet-feeds { color: var(--muted); display: flex; flex: 1 1 100%; flex-wrap: wrap; font-size: 12px; gap: 6px 12px; }
+    .source-health-note { display: inline-flex; gap: 4px; }
     .source-filter-status { color: var(--muted); flex: 0 1 auto; font-size: 12px; font-weight: 700; }
     .source-coverage a { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
     .source-coverage a:hover { text-decoration: underline; }
@@ -764,7 +789,8 @@ function generateHTML(newsItems, options = {}) {
     .source-signal-name { color: var(--fg); font-size: 12px; font-weight: 700; }
     .source-signal-detail { color: var(--muted); font-size: 12px; }
     .handoff-cue-legend-items { display: flex; flex: 1 1 260px; flex-wrap: wrap; gap: 8px; }
-    .handoff-cue-legend-chip { align-items: baseline; background: var(--chip); border-radius: 999px; display: inline-flex; gap: 6px; padding: 4px 10px; }
+    .handoff-cue-legend-chip { align-items: baseline; background: var(--chip); border-radius: 999px; display: inline-flex; gap: 6px; padding: 4px 10px; text-decoration: none; }
+    .handoff-cue-legend-chip:hover, .handoff-cue-legend-chip:focus-visible { box-shadow: 0 0 0 2px var(--accent); text-decoration: none; }
     .handoff-cue-name { color: var(--fg); font-size: 12px; font-weight: 700; }
     .handoff-cue-detail { color: var(--muted); font-size: 12px; }
     .operator-lanes { display: grid; gap: 12px; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 14px; }
@@ -793,7 +819,8 @@ function generateHTML(newsItems, options = {}) {
     [data-theme="dark"] .severity-monitor { background: rgba(14,165,233,0.18); color: #bae6fd; }
     .facet-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
     .handoff-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-    .handoff-cue { border: 1px solid var(--card-border); border-radius: 6px; color: var(--muted); display: inline-flex; font-size: 12px; padding: 3px 8px; }
+    .handoff-cue { border: 1px solid var(--card-border); border-radius: 6px; color: var(--muted); display: inline-flex; font-size: 12px; padding: 3px 8px; text-decoration: none; }
+    .handoff-cue:hover, .handoff-cue:focus-visible { border-color: var(--accent); color: var(--accent); text-decoration: none; }
     .news-title { font-size: 1.06rem; margin: 6px 0 8px; }
     .news-title a { color: var(--fg); text-decoration: none; }
     .news-title a:hover { text-decoration: underline; }
@@ -830,7 +857,7 @@ function generateHTML(newsItems, options = {}) {
       <div class="brand">
         <img src="./assets/icon.svg" alt="SentryDigest" />
         <div>
-          <div class="title">SentryDigest</div>
+          <h1 class="title">SentryDigest</h1>
           <div class="subtitle">Cybersecurity morning brief</div>
         </div>
       </div>

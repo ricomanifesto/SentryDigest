@@ -25,6 +25,19 @@ const DIGEST_LEGEND_CONTRACT = Object.freeze({
   sourceSignalSelector: '.source-signal-chip',
 });
 
+const HANDOFF_DESTINATION_CONTRACT = Object.freeze({
+  destinations: Object.freeze({
+    'SentryInsight: incident watch': 'https://ricomanifesto.github.io/SentryInsight/',
+    'SentryInsight: vuln triage': 'https://ricomanifesto.github.io/SentryInsight/',
+    'SentryInsight: vendor watch': 'https://ricomanifesto.github.io/SentryInsight/',
+    'GRCInsight: governance watch': 'https://ricomanifesto.github.io/GRCInsight/',
+    'SentryInsight: monitor': 'https://ricomanifesto.github.io/SentryInsight/',
+  }),
+  cardLinkSelector: 'a.handoff-cue',
+  laneLinkSelector: 'a[data-lane-destination]',
+  legendLinkSelector: 'a.handoff-cue-legend-chip',
+});
+
 const DASHBOARD_RSS_LINK_CONTRACT = Object.freeze({
   feedHref: './feed.xml',
   linkLabels: Object.freeze({
@@ -79,8 +92,10 @@ const SOURCE_COVERAGE_CONTRACT = Object.freeze({
   buttonDataAttribute: 'data-source-filter',
   buttonSelector: '[data-source-filter]',
   healthNoteSelector: '.source-health-note',
-  healthNoteText: '',
   healthSelector: '.source-health-summary',
+  quietSourceAttribute: 'data-source-name',
+  quietSourceLastContributedAttribute: 'data-last-contributed-at',
+  quietSourceSelector: '.source-health-note',
   quietSourcesAttribute: 'data-quiet-sources',
   sectionClass: 'source-coverage',
   sectionSelector: '.source-coverage',
@@ -132,6 +147,7 @@ module.exports = {
   FEED_INFO_CONTRACT,
   FEED_METADATA_CONTRACT,
   formatSourceShortcutStatus,
+  HANDOFF_DESTINATION_CONTRACT,
   ISSUE_TRAIL_CONTRACT,
   OPERATOR_LANE_CONTRACT,
   RSS_CHANNEL_CONTRACT,

@@ -81,6 +81,16 @@ test('update workflow runs the full test suite before committing', () => {
 
   assert.match(
     workflow,
-    /- name: Test generated site\n\s+run: npm test\s*\n\s+- name: Configure Git/
+    /- name: Test generated site\n\s+run: npm test[\s\S]*?- name: Configure Git/
   );
+});
+
+test('update workflow installs Chromium and preserves rendered-page screenshots', () => {
+  const workflow = readWorkflow();
+
+  assert.match(workflow, /actions\/setup-node@v6/);
+  assert.match(workflow, /node-version: '24'/);
+  assert.match(workflow, /run: npx playwright install chromium --with-deps/);
+  assert.match(workflow, /uses: actions\/upload-artifact@v4/);
+  assert.match(workflow, /path: test-results\/screenshots/);
 });

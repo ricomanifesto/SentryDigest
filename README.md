@@ -44,6 +44,7 @@ The GitHub Actions workflow runs on a schedule, on source configuration changes,
 git clone https://github.com/ricomanifesto/SentryDigest.git
 cd SentryDigest
 npm install
+npx playwright install chromium
 ```
 
 ## Usage
@@ -54,7 +55,7 @@ npm run generate-rss
 npm test
 ```
 
-`npm run fetch` fetches news and generates the dashboard artifacts. `npm run generate-rss` writes the RSS feed. `npm test` validates the generated output before publishing.
+`npm run fetch` fetches news and generates the dashboard artifacts. `npm run generate-rss` writes the RSS feed. `npm test` validates the generated output and renders it in Chromium before publishing.
 
 ## Configuration
 
@@ -65,12 +66,13 @@ Define sources in `config/news-sources.json`:
   "name": "Source Name",
   "url": "https://example.com/feed/",
   "type": "rss",
-  "enabled": true
+  "enabled": true,
+  "lastContributedAt": null
 }
 ```
 
-Set `maxNewsItems` to control the generated item count. The workflow rebuilds when source configuration changes.
+Set `maxNewsItems` to control the generated item count. The fetch job maintains `lastContributedAt`; leave it `null` for a newly added source. The workflow rebuilds when source configuration changes.
 
 ## Validation
 
-`npm test` runs the Node test suite, checks JavaScript syntax, and performs artifact validation. The validator checks cross-artifact counts, dates, URLs, contributing source names, and newest-first ordering. It also rejects reader-facing regressions such as feed truncation markers, encoded title entities, hash-only controls, hollow summary disclosures, and unlabeled clock times.
+`npm test` runs the Node test suite, checks JavaScript syntax, validates the generated artifacts, and exercises the rendered page in Chromium. The validator checks cross-artifact counts, dates, URLs, source contribution history, downstream handoff destinations, and newest-first ordering. It also rejects reader-facing regressions such as feed truncation markers, encoded title entities, hash-only controls, hollow summary disclosures, and unlabeled clock times. CI preserves desktop and mobile screenshots from the rendered-page gate.

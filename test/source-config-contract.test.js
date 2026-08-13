@@ -134,3 +134,17 @@ test('validateSourceConfig rejects committed trigger-only settings', () => {
     assert.deepEqual(failures, [`settings.${triggerField} is a trigger-only field and must not be committed`]);
   }
 });
+
+test('validateSourceConfig accepts null or ISO contribution history and rejects malformed values', () => {
+  for (const lastContributedAt of [null, '2026-08-13T18:00:00.000Z']) {
+    const { failures } = validateSourceConfig({
+      sources: [enabledSource({ lastContributedAt })],
+    });
+    assert.deepEqual(failures, []);
+  }
+
+  const { failures } = validateSourceConfig({
+    sources: [enabledSource({ lastContributedAt: 'last Tuesday' })],
+  });
+  assert.deepEqual(failures, ['config source 1 lastContributedAt must be null or a valid ISO timestamp']);
+});
