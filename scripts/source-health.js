@@ -1,3 +1,6 @@
+const DAY_MS = 24 * 60 * 60 * 1000;
+const SOURCE_STALE_AFTER_DAYS = 30;
+
 function normalizeContributionTimestamp(value) {
   if (!value) {
     return null;
@@ -51,6 +54,43 @@ function collectSourceHealth(newsItems = [], sources = []) {
     }));
 }
 
+function describeSourceHealth(sourceHealth = [], asOf = new Date()) {
+  const observedAt = new Date(asOf).getTime();
+  if (!Number.isFinite(observedAt)) {
+    throw new Error('source health observation time must be a valid date');
+  }
+
+  return sourceHealth.map((health) => {
+    if (health.itemCount > 0) {
+      return {
+        ...health,
+        status: 'active',
+        quietForDays: 0,
+      };
+    }
+
+    const lastContributedAt = normalizeContributionTimestamp(health.lastContributedAt);
+    if (!lastContributedAt) {
+      return {
+        ...health,
+        lastContributedAt: null,
+        status: 'unobserved',
+        quietForDays: null,
+      };
+    }
+
+    const quietForDays = Math.floor(
+      Math.max(0, observedAt - new Date(lastContributedAt).getTime()) / DAY_MS
+    );
+    return {
+      ...health,
+      lastContributedAt,
+      status: quietForDays >= SOURCE_STALE_AFTER_DAYS ? 'stale' : 'quiet',
+      quietForDays,
+    };
+  });
+}
+
 function updateSourceContributionHistory(config, sourceContributions = [], newsItems = []) {
   const observedBySource = new Map(
     sourceContributions.map((contribution) => [
@@ -86,7 +126,9 @@ function updateSourceContributionHistory(config, sourceContributions = [], newsI
 
 module.exports = {
   collectSourceHealth,
+  describeSourceHealth,
   newestContributionTimestamp,
   normalizeContributionTimestamp,
+  SOURCE_STALE_AFTER_DAYS,
   updateSourceContributionHistory,
 };

@@ -151,6 +151,36 @@ test('feed summaries cut off mid-sentence stay visible without a hollow disclosu
   assert.doesNotMatch(html, /<details class="summary-disclosure">/);
   assert.doesNotMatch(html, /Show full summary/);
   assert.match(html, new RegExp(`<p class="news-summary">${incompleteSummary}…</p>`));
+  assert.match(
+    html,
+    /<a class="summary-continuation" href="https:\/\/www\.bleepingcomputer\.com\/news\/security\/example\/"[^>]*>Continues at Bleeping Computer <span aria-hidden="true">→<\/span><\/a>/,
+  );
+});
+
+test('truncated summary continuation is escaped, accessible, and points at the article', () => {
+  const html = generateHTML([
+    article({
+      link: 'https://example.com/read?topic=breach&view=full',
+      source: 'News & Analysis',
+      summary: 'Investigators are tracing the campaign across affected organizations…',
+    }),
+  ], { generatedAt: GENERATED_AT });
+
+  assert.match(html, /class="summary-continuation"/);
+  assert.match(html, /href="https:\/\/example\.com\/read\?topic=breach&amp;view=full"/);
+  assert.match(html, /aria-label="Continue reading at News &amp; Analysis"/);
+  assert.match(html, />Continues at News &amp; Analysis <span aria-hidden="true">→<\/span><\/a>/);
+});
+
+test('reader contracts reject a truncated summary whose continuation path disappears', () => {
+  const articles = [article({ summary: 'Investigators are tracing the campaign across affected organizations…' })];
+  const html = generateHTML(articles, { generatedAt: GENERATED_AT })
+    .replace(/<a class="summary-continuation"[\s\S]*?<\/a>/, '');
+  const failures = [];
+
+  validateReaderExperience(html, articles, failures);
+
+  assert.match(failures.join('\n'), /truncated summary 1 must have one continuation link/);
 });
 
 test('quiet configured sources remain visible with durable contribution history', () => {
@@ -171,9 +201,30 @@ test('quiet configured sources remain visible with durable contribution history'
   });
 
   assert.match(html, /data-active-sources="1" data-quiet-sources="1"/);
-  assert.match(html, /Krebs on Security quiet since <time datetime="2026-08-09T11:30:00.000Z">August 9, 2026 at 11:30 AM UTC<\/time>/);
+  assert.match(html, /data-health-status="quiet" data-quiet-for-days="4">Krebs on Security quiet since <time datetime="2026-08-09T11:30:00.000Z">August 9, 2026 at 11:30 AM UTC<\/time>/);
   assert.doesNotMatch(html, /data-source-filter="Krebs on Security"/);
   assert.doesNotMatch(html, /HEALTH ONLY/i);
+});
+
+test('prolonged source silence is labeled as probable feed failure instead of ordinary quiet', () => {
+  const html = generateHTML([article()], {
+    generatedAt: new Date('2026-08-31T12:00:00.000Z'),
+    sourceHealth: [
+      {
+        name: 'Bleeping Computer',
+        itemCount: 1,
+        lastContributedAt: '2026-08-31T11:00:00.000Z',
+      },
+      {
+        name: 'Long Quiet Feed',
+        itemCount: 0,
+        lastContributedAt: '2026-07-01T12:00:00.000Z',
+      },
+    ],
+  });
+
+  assert.match(html, /data-health-status="stale" data-quiet-for-days="61">Long Quiet Feed no items in 61 days; feed may have moved · last contribution <time datetime="2026-07-01T12:00:00.000Z">July 1, 2026 at 12:00 PM UTC<\/time>/);
+  assert.doesNotMatch(html, /data-source-filter="Long Quiet Feed"/);
 });
 
 test('handoff cues, legend entries, and lane headings link to downstream products', () => {
@@ -188,6 +239,40 @@ test('handoff cues, legend entries, and lane headings link to downstream product
   assert.match(html, new RegExp(`<a class="handoff-cue-legend-chip" href="${HANDOFF_DESTINATION_CONTRACT.destinations['GRCInsight: governance watch']}"`));
   assert.match(html, new RegExp(`<a class="operator-lane-heading" data-lane-destination href="${HANDOFF_DESTINATION_CONTRACT.destinations['SentryInsight: incident watch']}"`));
   assert.match(html, new RegExp(`<a class="operator-lane-heading" data-lane-destination href="${HANDOFF_DESTINATION_CONTRACT.destinations['GRCInsight: governance watch']}"`));
+});
+
+test('incident handoffs carry complete CVE context while generic and GRC links keep their front doors', () => {
+  const cveHtml = generateHTML([
+    article({
+      title: 'CVE-2026-59310 exploited in a ransomware intrusion',
+      summary: 'Incident response teams are investigating stolen credentials and regulatory obligations.',
+    }),
+  ], { generatedAt: GENERATED_AT });
+  const genericHtml = generateHTML([
+    article({
+      title: 'Ransomware intrusion under investigation',
+      summary: 'Incident response teams are investigating stolen credentials and regulatory obligations.',
+    }),
+  ], { generatedAt: GENERATED_AT });
+
+  assert.match(cveHtml, /<a class="handoff-cue" href="https:\/\/ricomanifesto\.github\.io\/SentryInsight\/#cve-2026-59310"[^>]*>SentryInsight: incident watch<\/a>/);
+  assert.match(cveHtml, /<a class="operator-lane-heading" data-lane-destination href="https:\/\/ricomanifesto\.github\.io\/SentryInsight\/#cve-2026-59310"/);
+  assert.match(cveHtml, /<a class="handoff-cue" href="https:\/\/ricomanifesto\.github\.io\/GRCInsight\/"[^>]*>GRCInsight: governance watch<\/a>/);
+  assert.match(genericHtml, /<a class="handoff-cue" href="https:\/\/ricomanifesto\.github\.io\/SentryInsight\/"[^>]*>SentryInsight: incident watch<\/a>/);
+});
+
+test('reader contracts reject an incident handoff that drops available CVE context', () => {
+  const articles = [article({
+    title: 'CVE-2026-59310 exploited in a ransomware intrusion',
+    summary: 'Incident response teams are investigating stolen credentials.',
+  })];
+  const html = generateHTML(articles, { generatedAt: GENERATED_AT })
+    .replaceAll('https://ricomanifesto.github.io/SentryInsight/#cve-2026-59310', 'https://ricomanifesto.github.io/SentryInsight/');
+  const failures = [];
+
+  validateReaderExperience(html, articles, failures);
+
+  assert.match(failures.join('\n'), /card 1 handoff cue 1 .* must link to its downstream product/);
 });
 
 test('rolling feed wording and machine-readable identity stay honest', () => {

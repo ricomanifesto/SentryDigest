@@ -13,11 +13,13 @@ const {
   RSS_CHANNEL_CONTRACT,
   SITE_METADATA_CONTRACT,
   SOURCE_COVERAGE_CONTRACT,
+  SUMMARY_CONTINUATION_CONTRACT,
 } = require('./generated-artifact-contracts');
 const {
   collectOperatorLanes,
   collectSourceCoverage,
   deriveArticleFacets,
+  getHandoffDestination,
 } = require('./render-news-html');
 const {
   DEFAULT_MAX_NEWS_ITEMS,
@@ -27,7 +29,7 @@ const {
   collectNewsDataFailures,
   isValidDate,
 } = require('./news-data-contract');
-const { collectSourceHealth } = require('./source-health');
+const { collectSourceHealth, describeSourceHealth } = require('./source-health');
 
 function readText(label, filePath, repoRoot, failures) {
   if (!fs.existsSync(filePath)) {
@@ -120,7 +122,7 @@ function extractArticleHrefs(indexHtml) {
   while ((articleMatch = articlePattern.exec(indexHtml)) !== null) {
     let anchorMatch;
     while ((anchorMatch = anchorPattern.exec(articleMatch[0])) !== null) {
-      if (/\bclass\s*=\s*(["'])[^"']*\bhandoff-cue\b[^"']*\1/i.test(anchorMatch[1])) {
+      if (/\bclass\s*=\s*(["'])[^"']*\b(?:handoff-cue|summary-continuation)\b[^"']*\1/i.test(anchorMatch[1])) {
         continue;
       }
       const hrefMatch = hrefPattern.exec(anchorMatch[1]);
@@ -516,8 +518,13 @@ function validateSourceCoverageContract(indexHtml, newsData, enabledSources, fai
     return;
   }
 
+  const generatedAt = $(FEED_METADATA_CONTRACT.issueStripTimeSelector).first().attr('datetime');
+  const sourceHealth = describeSourceHealth(
+    collectSourceHealth(newsData, enabledSources),
+    isValidDate(generatedAt) ? generatedAt : new Date(0),
+  );
   const expectedCounts = new Map(
-    collectSourceHealth(newsData, enabledSources)
+    sourceHealth
       .map(({ name, itemCount }) => [name, itemCount])
   );
   const expectedActiveSources = Array.from(expectedCounts.values()).filter((count) => count > 0).length;
@@ -605,7 +612,7 @@ function validateSourceCoverageContract(indexHtml, newsData, enabledSources, fai
   });
 
   const expectedHealth = new Map(
-    collectSourceHealth(newsData, enabledSources)
+    sourceHealth
       .filter(({ itemCount }) => itemCount === 0)
       .map((health) => [health.name, health])
   );
@@ -614,6 +621,8 @@ function validateSourceCoverageContract(indexHtml, newsData, enabledSources, fai
     const quietSource = $(element);
     const source = quietSource.attr(SOURCE_COVERAGE_CONTRACT.quietSourceAttribute) || '';
     const lastContributedAt = quietSource.attr(SOURCE_COVERAGE_CONTRACT.quietSourceLastContributedAttribute) || null;
+    const status = quietSource.attr(SOURCE_COVERAGE_CONTRACT.healthStatusAttribute) || '';
+    const quietForDaysText = quietSource.attr(SOURCE_COVERAGE_CONTRACT.quietSourceDaysAttribute) ?? '';
     seenQuietSources.add(source);
 
     if (!expectedHealth.has(source)) {
@@ -625,8 +634,20 @@ function validateSourceCoverageContract(indexHtml, newsData, enabledSources, fai
     if (lastContributedAt !== expected.lastContributedAt) {
       fail(failures, `index.html quiet source ${source} last contribution ${lastContributedAt || 'missing'} does not match config ${expected.lastContributedAt || 'missing'}`);
     }
-    if (!/\bquiet\b/i.test(quietSource.text())) {
-      fail(failures, `index.html quiet source ${source} must be labeled quiet`);
+    if (status !== expected.status) {
+      fail(failures, `index.html quiet source ${source} health status ${status || 'missing'} does not match expected ${expected.status}`);
+    }
+    if (quietForDaysText !== (expected.quietForDays === null ? '' : String(expected.quietForDays))) {
+      fail(failures, `index.html quiet source ${source} quiet days ${quietForDaysText || 'missing'} does not match expected ${expected.quietForDays}`);
+    }
+    if (expected.status === 'quiet' && !/\bquiet since\b/i.test(quietSource.text())) {
+      fail(failures, `index.html quiet source ${source} must say when it became quiet`);
+    }
+    if (expected.status === 'stale' && !/\bfeed may have moved\b/i.test(quietSource.text())) {
+      fail(failures, `index.html stale source ${source} must warn that the feed may have moved`);
+    }
+    if (expected.status === 'unobserved' && !/\bno contribution recorded\b/i.test(quietSource.text())) {
+      fail(failures, `index.html unobserved source ${source} must say no contribution is recorded`);
     }
   });
 
@@ -800,8 +821,7 @@ function validateReaderExperience(indexHtml, newsData = [], failures = []) {
     }
   });
 
-  const validateHandoffLink = (element, cue, location) => {
-    const expectedHref = HANDOFF_DESTINATION_CONTRACT.destinations[cue];
+  const validateHandoffLink = (element, cue, location, expectedHref = HANDOFF_DESTINATION_CONTRACT.destinations[cue]) => {
     const link = $(element);
     if (element.tagName !== 'a') {
       fail(failures, `index.html ${location} ${cue || 'missing'} must be a link`);
@@ -812,16 +832,56 @@ function validateReaderExperience(indexHtml, newsData = [], failures = []) {
     }
   };
 
-  $('.handoff-cue').each((index, element) => {
-    validateHandoffLink(element, $(element).text().trim(), `card handoff cue ${index + 1}`);
+  $('article.news-item').each((cardIndex, cardElement) => {
+    const card = $(cardElement);
+    const article = newsData[cardIndex];
+    const plainSummary = card.children('p.news-summary').first();
+    const continuation = card.find(SUMMARY_CONTINUATION_CONTRACT.selector);
+    const summaryIsTruncated = plainSummary.length > 0 && plainSummary.text().trim().endsWith('…');
+
+    if (summaryIsTruncated) {
+      if (continuation.length !== 1) {
+        fail(failures, `index.html truncated summary ${cardIndex + 1} must have one continuation link`);
+      } else if (article && typeof article === 'object') {
+        const expectedArticleHref = normalizeGeneratedArticleLink(article.link);
+        const actualArticleHref = normalizeGeneratedArticleLink(continuation.attr('href') || '');
+        if (actualArticleHref !== expectedArticleHref) {
+          fail(failures, `index.html truncated summary ${cardIndex + 1} continuation must link to its article`);
+        }
+        const expectedAriaLabel = `${SUMMARY_CONTINUATION_CONTRACT.ariaLabelPrefix}${article.source}`;
+        if (continuation.attr('aria-label') !== expectedAriaLabel) {
+          fail(failures, `index.html truncated summary ${cardIndex + 1} continuation must name its source`);
+        }
+        if (!continuation.text().trim().startsWith(`${SUMMARY_CONTINUATION_CONTRACT.visibleTextPrefix}${article.source}`)) {
+          fail(failures, `index.html truncated summary ${cardIndex + 1} continuation must visibly name its source`);
+        }
+      }
+    } else if (continuation.length > 0) {
+      fail(failures, `index.html complete summary ${cardIndex + 1} must not render a continuation link`);
+    }
+
+    card.find('.handoff-cue').each((cueIndex, element) => {
+      const cue = $(element).text().trim();
+      validateHandoffLink(
+        element,
+        cue,
+        `card ${cardIndex + 1} handoff cue ${cueIndex + 1}`,
+        getHandoffDestination(cue, article),
+      );
+    });
   });
   $('.handoff-cue-legend-chip').each((index, element) => {
     const cue = $(element).find('.handoff-cue-name').first().text().trim();
     validateHandoffLink(element, cue, `legend handoff cue ${index + 1}`);
   });
+  const expectedLaneDestinations = new Map(
+    collectOperatorLanes(
+      newsData.filter((article) => article && typeof article === 'object' && !Array.isArray(article))
+    ).map((lane) => [lane.cue, lane.destination])
+  );
   $('.operator-lane-heading').each((index, element) => {
     const cue = $(element).closest('.operator-lane').attr(OPERATOR_LANE_CONTRACT.cueAttribute) || '';
-    validateHandoffLink(element, cue, `operator lane ${index + 1}`);
+    validateHandoffLink(element, cue, `operator lane ${index + 1}`, expectedLaneDestinations.get(cue));
   });
 
   $('time[datetime]').each((index, element) => {
@@ -902,7 +962,10 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
       }
     }
 
-    const expectedSourceHealth = collectSourceHealth(newsData, enabledSources);
+    const expectedSourceHealth = describeSourceHealth(
+      collectSourceHealth(newsData, enabledSources),
+      isValidDate(feedInfo.lastUpdated) ? feedInfo.lastUpdated : new Date(0),
+    );
     if (!Array.isArray(feedInfo.sourceHealth)) {
       fail(failures, 'feed-info.json sourceHealth must be an array');
     } else if (JSON.stringify(feedInfo.sourceHealth) !== JSON.stringify(expectedSourceHealth)) {

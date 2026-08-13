@@ -55,7 +55,7 @@ npm run generate-rss
 npm test
 ```
 
-`npm run fetch` fetches news and generates the dashboard artifacts. `npm run generate-rss` writes the RSS feed. `npm test` validates the generated output and renders it in Chromium before publishing.
+`npm run fetch` fetches news and generates the dashboard artifacts. `npm run generate-rss` writes the RSS feed. Truncated summaries include a source-named continuation link, and incident handoffs carry a complete CVE fragment when one is available. `npm test` validates the generated output and renders it in Chromium before publishing.
 
 ## Configuration
 
@@ -71,8 +71,8 @@ Define sources in `config/news-sources.json`:
 }
 ```
 
-Set `maxNewsItems` to control the generated item count. The fetch job maintains `lastContributedAt`; leave it `null` for a newly added source. The workflow rebuilds when source configuration changes.
+Set `maxNewsItems` to control the generated item count. The fetch job maintains `lastContributedAt`; leave it `null` for a newly added source. `feed-info.json` derives each source's `active`, `quiet`, `stale`, or `unobserved` status at generation time. A non-contributing source becomes stale after 30 days without changing its durable configuration history. The workflow rebuilds when source configuration changes.
 
 ## Validation
 
-`npm test` runs the Node test suite, checks JavaScript syntax, validates the generated artifacts, and exercises the rendered page in Chromium. The validator checks cross-artifact counts, dates, URLs, source contribution history, downstream handoff destinations, and newest-first ordering. It also rejects reader-facing regressions such as feed truncation markers, encoded title entities, hash-only controls, hollow summary disclosures, and unlabeled clock times. CI preserves desktop and mobile screenshots from the rendered-page gate.
+`npm test` runs the Node test suite, checks JavaScript syntax, validates the generated artifacts, and exercises the rendered page in Chromium. The validator checks cross-artifact counts, dates, URLs, source health, summary continuation destinations, contextual downstream handoffs, and newest-first ordering. It also rejects reader-facing regressions such as feed truncation markers, encoded title entities, hash-only controls, hollow summary disclosures, and unlabeled clock times. CI preserves desktop and mobile screenshots from the rendered-page gate.

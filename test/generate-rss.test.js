@@ -65,8 +65,8 @@ test('generateRSSFeed writes explicit output paths without relying on repo globa
     const writtenFeedInfo = JSON.parse(writes.get(feedInfoPath));
     assert.equal(writtenFeedInfo.sources.length, 1);
     assert.deepEqual(writtenFeedInfo.sourceHealth, [
-      { name: 'Vendor Advisory', itemCount: 1, lastContributedAt: '2026-06-17T00:30:00.000Z' },
-      { name: 'Quiet Feed', itemCount: 0, lastContributedAt: '2026-06-01T09:00:00.000Z' },
+      { name: 'Vendor Advisory', itemCount: 1, lastContributedAt: '2026-06-17T00:30:00.000Z', status: 'active', quietForDays: 0 },
+      { name: 'Quiet Feed', itemCount: 0, lastContributedAt: '2026-06-01T09:00:00.000Z', status: 'quiet', quietForDays: 15 },
     ]);
   } finally {
     fs.writeFileSync = originalWriteFileSync;

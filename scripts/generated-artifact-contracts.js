@@ -26,6 +26,8 @@ const DIGEST_LEGEND_CONTRACT = Object.freeze({
 });
 
 const HANDOFF_DESTINATION_CONTRACT = Object.freeze({
+  cveContextCue: 'SentryInsight: incident watch',
+  cveFragmentPattern: '#cve-YYYY-NNNN',
   destinations: Object.freeze({
     'SentryInsight: incident watch': 'https://ricomanifesto.github.io/SentryInsight/',
     'SentryInsight: vuln triage': 'https://ricomanifesto.github.io/SentryInsight/',
@@ -93,8 +95,10 @@ const SOURCE_COVERAGE_CONTRACT = Object.freeze({
   buttonSelector: '[data-source-filter]',
   healthNoteSelector: '.source-health-note',
   healthSelector: '.source-health-summary',
+  healthStatusAttribute: 'data-health-status',
   quietSourceAttribute: 'data-source-name',
   quietSourceLastContributedAttribute: 'data-last-contributed-at',
+  quietSourceDaysAttribute: 'data-quiet-for-days',
   quietSourceSelector: '.source-health-note',
   quietSourcesAttribute: 'data-quiet-sources',
   sectionClass: 'source-coverage',
@@ -103,6 +107,12 @@ const SOURCE_COVERAGE_CONTRACT = Object.freeze({
   statusAllSourcesText: 'All contributing feeds',
   statusSelector: '[data-source-filter-status]',
   statusTextPrefix: 'Source filter: ',
+});
+
+const SUMMARY_CONTINUATION_CONTRACT = Object.freeze({
+  ariaLabelPrefix: 'Continue reading at ',
+  selector: 'a.summary-continuation',
+  visibleTextPrefix: 'Continues at ',
 });
 
 const FEED_METADATA_CONTRACT = Object.freeze({
@@ -153,4 +163,5 @@ module.exports = {
   RSS_CHANNEL_CONTRACT,
   SITE_METADATA_CONTRACT,
   SOURCE_COVERAGE_CONTRACT,
+  SUMMARY_CONTINUATION_CONTRACT,
 };

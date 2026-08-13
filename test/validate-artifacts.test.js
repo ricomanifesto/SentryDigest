@@ -15,7 +15,7 @@ const {
   SOURCE_COVERAGE_CONTRACT,
 } = require('../scripts/generated-artifact-contracts');
 const { generateHTML } = require('../scripts/render-news-html');
-const { collectSourceHealth } = require('../scripts/source-health');
+const { collectSourceHealth, describeSourceHealth } = require('../scripts/source-health');
 const { validateArtifacts } = require('../scripts/validate-artifacts');
 
 function writeJson(filePath, value) {
@@ -236,7 +236,11 @@ function createFixture(overrides = {}) {
       enabled: true,
       lastContributedAt: null,
     }));
-  const sourceHealth = collectSourceHealth(newsData, fixtureSources);
+  const feedInfoLastUpdated = overrides.feedInfoLastUpdated || '2026-06-17T18:30:00.000Z';
+  const sourceHealth = describeSourceHealth(
+    collectSourceHealth(newsData, fixtureSources),
+    feedInfoLastUpdated,
+  );
   fixtureSources.forEach((source) => {
     source.lastContributedAt = sourceHealth.find((health) => health.name === source.name)?.lastContributedAt || null;
   });
@@ -253,7 +257,7 @@ function createFixture(overrides = {}) {
     itemCount: overrides.feedInfoItemCount ?? newsData.length,
     sources: overrides.feedInfoSources || Array.from(new Set(newsData.map((item) => item?.source).filter(Boolean))),
     sourceHealth,
-    lastUpdated: overrides.feedInfoLastUpdated || '2026-06-17T18:30:00.000Z',
+    lastUpdated: feedInfoLastUpdated,
     ...(overrides.feedInfo || {}),
   });
   writeText(
@@ -1390,6 +1394,44 @@ test('validateArtifacts rejects single-quoted unsafe article links in generated 
 
   assert.equal(result.valid, false);
   assert.match(result.failures.join('\n'), /index\.html contains unsafe article href javascript:alert\(1\)/);
+});
+
+test('validateArtifacts rejects stale source health presented as ordinary quiet', () => {
+  const lastUpdated = '2026-06-17T18:30:00.000Z';
+  const newsData = [
+    {
+      title: 'Only active item',
+      link: 'https://example.com/active',
+      date: '2026-06-17T18:00:00.000Z',
+      source: 'Example Security',
+      summary: 'Active story.',
+    },
+  ];
+  const repoRoot = createFixture({
+    feedInfoLastUpdated: lastUpdated,
+    newsData,
+    sourceNames: ['Example Security', 'Stale Feed'],
+  });
+  const configPath = path.join(repoRoot, 'config/news-sources.json');
+  const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+  config.sources.find((source) => source.name === 'Stale Feed').lastContributedAt = '2026-05-01T12:00:00.000Z';
+  writeJson(configPath, config);
+  const rawSourceHealth = collectSourceHealth(newsData, config.sources);
+  const feedInfoPath = path.join(repoRoot, 'feed-info.json');
+  const feedInfo = JSON.parse(fs.readFileSync(feedInfoPath, 'utf8'));
+  feedInfo.sourceHealth = describeSourceHealth(rawSourceHealth, lastUpdated);
+  writeJson(feedInfoPath, feedInfo);
+  const indexHtml = generateHTML(newsData, {
+    generatedAt: new Date(lastUpdated),
+    sourceHealth: rawSourceHealth,
+  }).replace(/data-health-status="stale"/g, 'data-health-status="quiet"');
+  assert.match(indexHtml, /data-source-name="Stale Feed"[^>]*data-health-status="quiet"/);
+  writeText(path.join(repoRoot, 'index.html'), indexHtml);
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(result.failures.join('\n'), /Stale Feed health status quiet does not match expected stale/);
 });
 
 test('validateArtifacts reports malformed encoded article hrefs without throwing', () => {

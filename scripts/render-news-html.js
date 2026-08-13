@@ -9,7 +9,7 @@ const {
   SITE_METADATA_CONTRACT,
   SOURCE_COVERAGE_CONTRACT,
 } = require('./generated-artifact-contracts');
-const { collectSourceHealth } = require('./source-health');
+const { collectSourceHealth, describeSourceHealth } = require('./source-health');
 
 function escapeHtml(value) {
   return String(value ?? '')
@@ -155,6 +155,23 @@ function deriveHandoffCues(article) {
   return cues.length > 0 ? cues : ['SentryInsight: monitor'];
 }
 
+function extractArticleCves(article) {
+  const text = `${article?.title || ''} ${article?.summary || ''} ${article?.link || ''}`;
+  return Array.from(new Set(
+    (text.match(/\bCVE-\d{4}-\d{4,}\b/gi) || []).map((cve) => cve.toUpperCase())
+  ));
+}
+
+function getHandoffDestination(cue, article) {
+  const destination = HANDOFF_DESTINATION_CONTRACT.destinations[cue];
+  if (!destination || cue !== HANDOFF_DESTINATION_CONTRACT.cveContextCue) {
+    return destination;
+  }
+
+  const [cve] = extractArticleCves(article);
+  return cve ? `${destination}#${cve.toLowerCase()}` : destination;
+}
+
 function deriveAgeBucket(articleDate, generatedAt = new Date()) {
   const date = new Date(articleDate);
   const now = new Date(generatedAt);
@@ -281,6 +298,7 @@ function collectOperatorLanes(newsItems) {
       count: matchingArticles.length,
       latestTitle: latestArticle ? latestArticle.title : '',
       latestLink: latestArticle ? safeArticleLink(latestArticle.link) : '#',
+      destination: getHandoffDestination(lane.cue, latestArticle),
     };
   }).filter((lane) => lane.count > 0);
 }
@@ -291,9 +309,10 @@ function renderSelectOptions(values) {
     .join('');
 }
 
-function renderSourceCoverage(newsItems, sourceHealth = [], digestLegend = '') {
-  const activeSources = sourceHealth.filter(({ itemCount }) => itemCount > 0);
-  const quietSources = sourceHealth.filter(({ itemCount }) => itemCount === 0);
+function renderSourceCoverage(newsItems, sourceHealth = [], digestLegend = '', generatedAt = new Date()) {
+  const describedSourceHealth = describeSourceHealth(sourceHealth, generatedAt);
+  const activeSources = describedSourceHealth.filter(({ status }) => status === 'active');
+  const quietSources = describedSourceHealth.filter(({ status }) => status !== 'active');
   if (activeSources.length === 0 && quietSources.length === 0) {
     return '';
   }
@@ -312,14 +331,17 @@ function renderSourceCoverage(newsItems, sourceHealth = [], digestLegend = '') {
     })
     .join('');
   const quietSourceItems = quietSources
-    .map(({ name, lastContributedAt }) => {
+    .map(({ name, lastContributedAt, status, quietForDays }) => {
       const safeName = escapeHtml(name);
       const safeNameAttr = escapeAttribute(name);
       const safeLastContributedAt = lastContributedAt ? escapeAttribute(lastContributedAt) : '';
-      const contributionLabel = lastContributedAt
-        ? `quiet since <time datetime="${safeLastContributedAt}">${escapeHtml(formatArticleDate(lastContributedAt))}</time>`
-        : 'quiet · no contribution recorded';
-      return `<span class="${SOURCE_COVERAGE_CONTRACT.healthNoteSelector.slice(1)}" ${SOURCE_COVERAGE_CONTRACT.quietSourceAttribute}="${safeNameAttr}" ${SOURCE_COVERAGE_CONTRACT.quietSourceLastContributedAttribute}="${safeLastContributedAt}">${safeName} ${contributionLabel}</span>`;
+      const contributionLabel = status === 'stale'
+        ? `no items in ${quietForDays} days; feed may have moved · last contribution <time datetime="${safeLastContributedAt}">${escapeHtml(formatArticleDate(lastContributedAt))}</time>`
+        : lastContributedAt
+          ? `quiet since <time datetime="${safeLastContributedAt}">${escapeHtml(formatArticleDate(lastContributedAt))}</time>`
+          : 'quiet · no contribution recorded; feed status unknown';
+      const safeQuietForDays = quietForDays === null ? '' : String(quietForDays);
+      return `<span class="${SOURCE_COVERAGE_CONTRACT.healthNoteSelector.slice(1)}" ${SOURCE_COVERAGE_CONTRACT.quietSourceAttribute}="${safeNameAttr}" ${SOURCE_COVERAGE_CONTRACT.quietSourceLastContributedAttribute}="${safeLastContributedAt}" ${SOURCE_COVERAGE_CONTRACT.healthStatusAttribute}="${status}" ${SOURCE_COVERAGE_CONTRACT.quietSourceDaysAttribute}="${safeQuietForDays}">${safeName} ${contributionLabel}</span>`;
     })
     .join('');
 
@@ -401,7 +423,7 @@ function renderOperatorLanes(newsItems) {
     const safeCueAttr = escapeAttribute(lane.cue);
     const safeLatestTitle = escapeHtml(lane.latestTitle);
     const safeLatestLink = escapeAttribute(lane.latestLink);
-    const safeDestination = escapeAttribute(HANDOFF_DESTINATION_CONTRACT.destinations[lane.cue]);
+    const safeDestination = escapeAttribute(lane.destination);
     const itemLabel = lane.count === 1 ? 'item' : 'items';
     const latestStory = lane.latestLink === '#'
       ? `<span class="operator-lane-story">${safeLatestTitle}</span>`
@@ -471,7 +493,7 @@ function formatArticleDate(value) {
   return `${formatted} UTC`;
 }
 
-function renderSummary(summary, index) {
+function renderSummary(summary, index, options = {}) {
   if (!summary) {
     return '';
   }
@@ -482,7 +504,11 @@ function renderSummary(summary, index) {
       && !/[.!?…](?:["'’”)\]}]*)$/.test(summary.trim())
       ? `${summary.trim().replace(/[.,;:!?]+$/g, '')}…`
       : summary;
-    return `<p class="news-summary">${escapeHtml(visibleSummary)}</p>`;
+    const isTruncated = visibleSummary.trim().endsWith('…');
+    const continuation = isTruncated && options.articleLink && options.articleLink !== '#'
+      ? `<a class="summary-continuation" href="${escapeAttribute(options.articleLink)}" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at ${escapeAttribute(options.source)}">Continues at ${escapeHtml(options.source)} <span aria-hidden="true">→</span></a>`
+      : '';
+    return `<p class="news-summary">${escapeHtml(visibleSummary)}</p>${continuation}`;
   }
 
   const safePreview = escapeHtml(summaryParts.preview);
@@ -542,14 +568,17 @@ function renderArticleCard(article, index = 0, generatedAt = new Date(), options
   const safeAgeDetail = escapeHtml(ageBucket.detail);
   const vendorChips = facets.vendors.map((vendor) => `<span class="chip">${escapeHtml(vendor)}</span>`).join('');
   const tagChips = facets.tags.map((tag) => `<span class="chip">${escapeHtml(tag)}</span>`).join('');
-  const handoffCueChips = handoffCues.map((cue) => `<a class="handoff-cue" href="${escapeAttribute(HANDOFF_DESTINATION_CONTRACT.destinations[cue])}" target="_blank" rel="noopener noreferrer" aria-label="Open ${escapeAttribute(cue.split(':')[0])}">${escapeHtml(cue)}</a>`).join('');
+  const handoffCueChips = handoffCues.map((cue) => `<a class="handoff-cue" href="${escapeAttribute(getHandoffDestination(cue, article))}" target="_blank" rel="noopener noreferrer" aria-label="Open ${escapeAttribute(cue.split(':')[0])}">${escapeHtml(cue)}</a>`).join('');
   const sourceSignalChip = options.showSourceSignal
     ? `\n            <span class="chip">${safeSourceSignal}</span>`
     : '';
   const newBadge = isNew ? `\n            <span class="badge-new">NEW</span>` : '';
   const facetRow = (vendorChips || tagChips) ? `\n          <div class="facet-row">${vendorChips}${tagChips}</div>` : '';
   const handoffRow = `\n          <div class="handoff-row" aria-label="Downstream handoff cues">${handoffCueChips}</div>`;
-  const summary = renderSummary(article.summary, index);
+  const summary = renderSummary(article.summary, index, {
+    articleLink,
+    source: article.source,
+  });
   const renderedTitle = articleLink === '#'
     ? `<span>${safeTitle}</span>`
     : `<a href="${safeLink}" target="_blank" rel="noopener">${safeTitle}</a>`;
@@ -642,7 +671,7 @@ function generateHTML(newsItems, options = {}) {
   const handoffOptions = renderSelectOptions(filterOptions.handoffCues);
   const totalArticleLabel = totalItems === 1 ? 'article' : 'articles';
   const digestLegend = renderDigestLegend(newsItems);
-  const sourceCoverage = renderSourceCoverage(newsItems, sourceHealth, digestLegend);
+  const sourceCoverage = renderSourceCoverage(newsItems, sourceHealth, digestLegend, generatedAt);
   const operatorLanes = renderOperatorLanes(newsItems);
   const issueStrip = renderIssueStrip(totalItems, uniqueSources.length, generatedAt);
   const issueTrail = renderIssueTrail(generatedAt);
@@ -772,6 +801,7 @@ function generateHTML(newsItems, options = {}) {
     .source-health-summary strong { color: var(--fg); }
     .source-quiet-feeds { color: var(--muted); display: flex; flex: 1 1 100%; flex-wrap: wrap; font-size: 12px; gap: 6px 12px; }
     .source-health-note { display: inline-flex; gap: 4px; }
+    .source-health-note[data-health-status="stale"] { color: var(--fg); font-weight: 650; }
     .source-filter-status { color: var(--muted); flex: 0 1 auto; font-size: 12px; font-weight: 700; }
     .source-coverage a { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
     .source-coverage a:hover { text-decoration: underline; }
@@ -834,6 +864,9 @@ function generateHTML(newsItems, options = {}) {
     details[open] .summary-action { display: none; }
     .summary-toggle:hover .summary-action { text-decoration: underline; }
     .summary-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .summary-continuation { align-items: center; color: var(--accent); display: inline-flex; font-size: 0.85rem; font-weight: 650; gap: 4px; margin-top: 4px; text-decoration: none; }
+    .summary-continuation:hover { text-decoration: underline; }
+    .summary-continuation:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
     footer { border-top: 1px solid var(--card-border); color: var(--muted); font-size: 0.9rem; padding: 18px 0; margin-top: 22px; }
     @media (max-width: 640px) {
       .container { padding: 16px; }
@@ -1321,8 +1354,10 @@ module.exports = {
   deriveArticleFacets,
   deriveHandoffCues,
   escapeHtml,
+  extractArticleCves,
   formatArticleDate,
   generateHTML,
+  getHandoffDestination,
   getSummaryPreview,
   renderArticleCard,
   safeArticleLink,

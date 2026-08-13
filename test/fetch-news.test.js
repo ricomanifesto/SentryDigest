@@ -880,6 +880,7 @@ test('collectOperatorLanes returns deterministic lane counts and latest articles
       count: 2,
       latestTitle: 'Ransomware crew steals credentials from exchange',
       latestLink: 'https://example.com/incident',
+      destination: 'https://ricomanifesto.github.io/SentryInsight/',
     },
     {
       cue: 'SentryInsight: vuln triage',
@@ -887,6 +888,7 @@ test('collectOperatorLanes returns deterministic lane counts and latest articles
       count: 1,
       latestTitle: 'Cisco VPN vulnerability patched by vendor',
       latestLink: 'https://example.com/vuln',
+      destination: 'https://ricomanifesto.github.io/SentryInsight/',
     },
     {
       cue: 'GRCInsight: governance watch',
@@ -894,6 +896,7 @@ test('collectOperatorLanes returns deterministic lane counts and latest articles
       count: 1,
       latestTitle: 'Regulator opens privacy compliance audit',
       latestLink: 'https://example.com/grc',
+      destination: 'https://ricomanifesto.github.io/GRCInsight/',
     },
   ]);
 });
@@ -1293,7 +1296,7 @@ test('generateHTML keeps non-contributing feeds visible as inert health metadata
   });
 
   assert.ok(html.includes(`<button class="source-count" type="button" ${SOURCE_COVERAGE_CONTRACT.buttonDataAttribute}="Example &lt;Security&gt;" aria-label="Filter to Example &lt;Security&gt; source, 1 article" aria-pressed="false">Example &lt;Security&gt; <strong>1</strong></button>`));
-  assert.match(html, /Quiet &lt;Feed&gt; quiet · no contribution recorded/);
+  assert.match(html, /data-health-status="unobserved" data-quiet-for-days="">Quiet &lt;Feed&gt; quiet · no contribution recorded; feed status unknown/);
   assert.ok(html.includes('<div class="source-health-summary" data-active-sources="1" data-quiet-sources="1">'));
   assert.ok(html.includes('<span><strong>1</strong> active feed</span>'));
   assert.ok(html.includes('<span><strong>1</strong> quiet feed</span>'));

@@ -59,7 +59,24 @@ test('rendered digest shows cards and preserves its core interactions', async ({
     expect((await plainSummaries.first().innerText()).trim().length).toBeGreaterThan(0);
   }
 
+  const continuations = page.locator('a.summary-continuation:visible');
+  expect(await continuations.count()).toBeGreaterThan(0);
+  const continuation = continuations.first();
+  const continuationCard = continuation.locator('xpath=ancestor::article[1]');
+  await expect(continuation).toHaveAttribute('href', await continuationCard.locator('.news-title a').getAttribute('href'));
+  await expect(continuation).toHaveAccessibleName(/^Continue reading at /);
+  await continuation.evaluate((link) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      link.dataset.exercised = 'true';
+    }, { once: true });
+  });
+  await continuation.click();
+  await expect(continuation).toHaveAttribute('data-exercised', 'true');
+
   await expect(page.locator('a.handoff-cue').first()).toHaveAttribute('href', /SentryInsight|GRCInsight/);
+  await expect(page.locator('a.handoff-cue[href*="#cve-"]').first()).toHaveAttribute('href', /SentryInsight\/#cve-\d{4}-\d{4,}$/);
+  await expect(page.locator('.source-health-note[data-health-status="quiet"]').first()).toContainText(/quiet since .* UTC/);
   expect(runtimeFailures).toEqual([]);
   await page.screenshot({ path: path.join(screenshotDirectory, 'digest-desktop.png'), fullPage: true });
 });
