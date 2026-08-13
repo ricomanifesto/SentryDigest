@@ -1495,7 +1495,7 @@ test('generateHTML recovers focus after source shortcut toggling', () => {
 });
 
 test('generateHTML renders long summaries as accessible expandable content', () => {
-  const longSummary = `${'Security teams should prioritize exposed VPN appliances. '.repeat(6)}<script>alert(1)</script>`;
+  const longSummary = `${'Security teams should prioritize exposed VPN appliances. '.repeat(6)}<script>alert(1)</script> Review complete.`;
   const html = generateHTML([
     {
       title: 'VPN exploitation campaign expands',

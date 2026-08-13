@@ -135,6 +135,15 @@ test('hollow summary remainders do not create disclosure controls', () => {
   assert.match(html, /<p class="news-summary">/);
 });
 
+test('feed summaries cut off mid-sentence stay visible without a hollow disclosure promise', () => {
+  const incompleteSummary = `${'Security teams are reviewing exposed systems while responders correlate active exploitation across affected environments. '.repeat(3)}The investigation also`;
+  const html = generateHTML([article({ summary: incompleteSummary })], { generatedAt: GENERATED_AT });
+
+  assert.doesNotMatch(html, /<details class="summary-disclosure">/);
+  assert.doesNotMatch(html, /Show full summary/);
+  assert.match(html, new RegExp(`<p class="news-summary">${incompleteSummary}</p>`));
+});
+
 test('rolling feed wording and machine-readable identity stay honest', () => {
   const html = generateHTML([article()], { generatedAt: GENERATED_AT });
 

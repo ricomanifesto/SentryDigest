@@ -407,6 +407,7 @@ const SUMMARY_PREVIEW_LENGTH = 160;
 const SUMMARY_WORD_BOUNDARY_MIN = 120;
 const SUMMARY_REMAINDER_MIN_LENGTH = 48;
 const SUMMARY_REMAINDER_MIN_WORDS = 6;
+const COMPLETE_SUMMARY_ENDING_PATTERN = /[.!?…](?:["'’”)\]}]*)$/;
 
 function getSummaryPreview(summary) {
   const parts = getSummaryParts(summary);
@@ -414,7 +415,10 @@ function getSummaryPreview(summary) {
 }
 
 function getSummaryParts(summary) {
-  if (summary.length <= SUMMARY_PREVIEW_LENGTH) {
+  if (
+    summary.length <= SUMMARY_PREVIEW_LENGTH
+    || !COMPLETE_SUMMARY_ENDING_PATTERN.test(summary.trim())
+  ) {
     return null;
   }
 
