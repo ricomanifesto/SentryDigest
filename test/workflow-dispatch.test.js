@@ -91,6 +91,7 @@ test('update workflow installs Chromium and preserves rendered-page screenshots'
   assert.match(workflow, /actions\/setup-node@v6/);
   assert.match(workflow, /node-version: '24'/);
   assert.match(workflow, /run: npx playwright install chromium --with-deps/);
-  assert.match(workflow, /uses: actions\/upload-artifact@v4/);
+  assert.match(workflow, /uses: actions\/upload-artifact@v7/);
+  assert.equal((workflow.match(/uses: peter-evans\/repository-dispatch@v4/g) || []).length, 2);
   assert.match(workflow, /path: test-results\/screenshots/);
 });
