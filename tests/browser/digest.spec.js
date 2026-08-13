@@ -43,6 +43,22 @@ test('rendered digest shows cards and preserves its core interactions', async ({
   await expect.poll(() => new URL(page.url()).searchParams.get('source')).toBe(sourceName);
   expect(await page.locator('article.news-item:visible').count()).toBeLessThanOrEqual(totalCards);
 
+  const disclosures = page.locator('details.summary-disclosure:visible');
+  const disclosureCount = await disclosures.count();
+  if (disclosureCount > 0) {
+    const disclosure = disclosures.first();
+    await disclosure.locator('summary').click();
+    await expect(disclosure).toHaveAttribute('open', '');
+    const remainder = await disclosure.locator('.summary-full').innerText();
+    expect(remainder.trim().split(/\s+/).length).toBeGreaterThanOrEqual(6);
+  } else {
+    const plainSummaries = page.locator('article.news-item:visible p.news-summary');
+    const plainSummaryCount = await plainSummaries.count();
+    expect(plainSummaryCount).toBeGreaterThan(0);
+    await expect(plainSummaries.first()).toBeVisible();
+    expect((await plainSummaries.first().innerText()).trim().length).toBeGreaterThan(0);
+  }
+
   await expect(page.locator('a.handoff-cue').first()).toHaveAttribute('href', /SentryInsight|GRCInsight/);
   expect(runtimeFailures).toEqual([]);
   await page.screenshot({ path: path.join(screenshotDirectory, 'digest-desktop.png'), fullPage: true });
