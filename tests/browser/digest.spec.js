@@ -8,6 +8,7 @@ const retainedContextFixture = path.join(process.cwd(), 'test-results/retained-c
 const staleContextFixture = path.join(process.cwd(), 'test-results/stale-context.html');
 const cadenceFixture = path.join(process.cwd(), 'test-results/cadence.html');
 const summaryBehaviorFixture = path.join(process.cwd(), 'test-results/summary-behavior.html');
+const sourceHealthFixture = path.join(process.cwd(), 'test-results/source-health.html');
 
 function observeRuntimeFailures(page) {
   const failures = [];
@@ -49,6 +50,22 @@ test.beforeAll(() => {
     summary: 'Responders are still tracing the campaign across affected organizations…',
   }], {
     generatedAt: new Date('2026-08-14T10:00:00.000Z'),
+    retainedIssueDates: ['2026-08-13', '2026-08-14'],
+  }).replace('<head>', '<head>\n  <base href="../">'));
+  fs.writeFileSync(sourceHealthFixture, generateHTML([newsItems[0]], {
+    generatedAt: new Date('2026-08-14T10:00:00.000Z'),
+    sourceHealth: [
+      {
+        name: newsItems[0].source,
+        itemCount: 1,
+        lastContributedAt: '2026-08-14T09:00:00.000Z',
+      },
+      {
+        name: 'Quiet Source',
+        itemCount: 0,
+        lastContributedAt: '2026-08-10T10:00:00.000Z',
+      },
+    ],
     retainedIssueDates: ['2026-08-13', '2026-08-14'],
   }).replace('<head>', '<head>\n  <base href="../">'));
 });
@@ -109,9 +126,25 @@ test('rendered digest shows cards and preserves its core interactions', async ({
 
   await expect(page.locator('a.handoff-cue').first()).toHaveAttribute('href', /SentryInsight|GRCInsight/);
   await expect(page.locator('a.handoff-cue[href*="#cve-"]').first()).toHaveAttribute('href', /SentryInsight\/#cve-\d{4}-\d{4,}$/);
-  await expect(page.locator('.source-health-note[data-health-status="quiet"]').first()).toContainText(/quiet since .* UTC/);
   expect(runtimeFailures).toEqual([]);
   await page.screenshot({ path: path.join(screenshotDirectory, 'digest-desktop.png'), fullPage: true });
+});
+
+test('quiet-source behavior does not depend on the daily feed mix', async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false, locale: 'en-US', timezoneId: 'UTC' });
+  const page = await context.newPage();
+  const runtimeFailures = observeRuntimeFailures(page);
+  const response = await page.goto('http://127.0.0.1:4173/test-results/source-health.html');
+
+  expect(response?.ok()).toBeTruthy();
+  const coverage = page.locator('.source-health-summary');
+  await expect(coverage).toHaveAttribute('data-active-sources', '1');
+  await expect(coverage).toHaveAttribute('data-quiet-sources', '1');
+  const quietSource = page.locator('.source-health-note[data-health-status="quiet"]');
+  await expect(quietSource).toContainText(/Quiet Source quiet since .* UTC/);
+  await expect(page.locator('[data-source-filter="Quiet Source"]')).toHaveCount(0);
+  expect(runtimeFailures).toEqual([]);
+  await context.close();
 });
 
 test('mobile digest has no horizontal overflow', async ({ page }) => {
