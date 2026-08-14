@@ -31,6 +31,8 @@ test('reporting identity contract documents owner-first version adoption', () =>
   assert.match(runbook, /SentryInsight/);
   assert.match(runbook, /GRCInsight/);
   assert.match(runbook, /CI rejects/i);
+  assert.match(runbook, /unavailab(?:le|ility)/i);
+  assert.match(runbook, /byte drift/i);
   assert.match(runbook, /retire/i);
 });
 

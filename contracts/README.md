@@ -12,7 +12,9 @@ and release the owner first while the prior version remains available. Then
 vendor the new file byte for byte into SentryInsight and GRCInsight, update each
 consumer implementation, test pin, and workflow URL, and release the consumers.
 Consumer CI rejects both a missing canonical copy and bytes that differ from the
-selected version. Roll back a consumer to its previous contract selection
+selected version. Canonical-source unavailability and byte drift are distinct
+operational failures and should be reported separately; both fail closed. Roll
+back a consumer to its previous contract selection
 rather than rewriting a released contract. Retire an old version only after no
 consumer workflow references it and historical public artifacts remain
 verifiable with their original semantics.

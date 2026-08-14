@@ -39,6 +39,8 @@ The GitHub Actions workflow runs on a schedule, on source configuration changes,
 - [SentryInsight](https://github.com/ricomanifesto/SentryInsight)
 - [GRCInsight](https://github.com/ricomanifesto/GRCInsight)
 
+SentryDigest owns the versioned reporting-card identity used by those downstream handoffs. The [reporting identity runbook](contracts/README.md) defines immutable versioning, consumer adoption order, rollback behavior, and the current family gate inventory.
+
 ## Setup
 
 ```bash
