@@ -82,6 +82,7 @@
     .issue-trail a:hover { text-decoration: underline; }
     .issue-trail a::before, .issue-trail-meta::before { color: var(--muted); content: "›"; font-weight: 400; margin-right: 10px; }
     .issue-trail-meta { color: var(--muted); font-weight: 500; }
+    .issue-trail-cadence[data-cadence-state="overdue"] { color: var(--fg); font-weight: 650; }
     .anchor-target { display: block; scroll-margin-top: 96px; }
     .filter-insights { align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; padding: 10px 12px; }
     .filter-insights[hidden] { display: none; }
@@ -254,8 +255,8 @@
       <a class="previous-issue" href="./archive/2026-08-13/" aria-label="Open digest issue for August 13, 2026"><time datetime="2026-08-13T00:00:00.000Z">Aug 13</time></a>
       <a href="./feed.xml" aria-label="Open generated RSS feed">RSS feed</a>
       <a href="#sourceCoverage">Source coverage</a>
-      <span class="issue-trail-meta">Updated <time datetime="2026-08-14T10:07:50.900Z">10:07 UTC · Aug 14</time></span>
-      <span class="issue-trail-meta">3h cadence</span>
+      <span class="issue-trail-meta">Updated <time class="issue-trail-updated" datetime="2026-08-14T10:07:50.900Z">10:07 UTC · Aug 14</time></span>
+      <span class="issue-trail-meta issue-trail-cadence" data-cadence-hours="3" data-cadence-state="scheduled" role="status" aria-live="polite" aria-atomic="true"><span data-cadence-label>3h cadence</span></span>
     </nav>
     <div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true" hidden></div>
     <span id="sourceCoverage" class="anchor-target" aria-hidden="true"></span>
@@ -724,7 +725,7 @@
 
   <footer>
     <div class="container">
-      A Rico Manifesto project by <a href="https://ricomanifesto.com/">Michael Rico</a> • Powered by GitHub Actions • Updates every 3 hours • <a data-rss-link href="./feed.xml" aria-label="Open generated RSS feed">RSS Feed</a>
+      A Rico Manifesto project by <a href="https://ricomanifesto.com/">Michael Rico</a> • Powered by GitHub Actions • Scheduled every 3 hours • <a data-rss-link href="./feed.xml" aria-label="Open generated RSS feed">RSS Feed</a>
     </div>
   </footer>
 
@@ -764,6 +765,9 @@
       const sourceCoverageButtons = qa('[data-source-filter]');
       const stats = q('#stats');
       const cards = qa('.news-item');
+      const cadenceStatus = q('.issue-trail-cadence');
+      const cadenceLabel = cadenceStatus && cadenceStatus.querySelector('[data-cadence-label]');
+      const digestUpdatedTime = q('.issue-trail-updated');
       const filterParams = {
         search: 'q',
         sourceFilter: 'source',
@@ -986,6 +990,17 @@
 
       const freshHours = 6;
 
+      function updateCadenceHealth(){
+        if (!cadenceStatus || !cadenceLabel || !digestUpdatedTime) return;
+        const updatedAt = Date.parse(digestUpdatedTime.getAttribute('datetime') || '');
+        const cadenceHours = Number(cadenceStatus.getAttribute('data-cadence-hours'));
+        if (!Number.isFinite(updatedAt) || !Number.isFinite(cadenceHours) || cadenceHours <= 0) return;
+        const cadenceDeadlineMs = cadenceHours * 60 * 60 * 1000;
+        const isOverdue = Date.now() - updatedAt > cadenceDeadlineMs;
+        cadenceStatus.setAttribute('data-cadence-state', isOverdue ? 'overdue' : 'current');
+        cadenceLabel.textContent = isOverdue ? 'running behind its 3h cadence' : '3h cadence';
+      }
+
       function getAgeState(publishedAt){
         const publishedTime = new Date(publishedAt).getTime();
         if (!Number.isFinite(publishedTime) || publishedTime === 0) {
@@ -1099,9 +1114,11 @@
       if (emptyResetFilters) emptyResetFilters.addEventListener('click', function(){ clearFilters({ focusRecoveryTarget: true }); });
 
       applyQueryState();
+      updateCadenceHealth();
       updateFreshness();
       update();
       window.setInterval(function(){
+        updateCadenceHealth();
         updateFreshness();
         if (ageFilter && ageFilter.value) update();
       }, 60 * 1000);

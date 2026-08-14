@@ -85,10 +85,21 @@ test('severity treats explicit data-theft campaigns as critical impact', () => {
 test('generated digest uses explicit UTC labels and never rewrites them to viewer locale', () => {
   const html = generateHTML([article()], { generatedAt: GENERATED_AT });
 
-  assert.match(html, /Updated <time datetime="2026-08-13T16:01:10\.160Z">16:01 UTC · Aug 13<\/time>/);
+  assert.match(html, /Updated <time class="issue-trail-updated" datetime="2026-08-13T16:01:10\.160Z">16:01 UTC · Aug 13<\/time>/);
   assert.match(html, /<time datetime="2026-08-13T15:13:00\.000Z">August 13, 2026 at 3:13 PM UTC<\/time>/);
   assert.doesNotMatch(html, /toLocaleString/);
   assert.doesNotMatch(html, /Last updated/);
+});
+
+test('cadence health stays quiet on schedule and names an overdue digest', () => {
+  const html = generateHTML([article()], { generatedAt: GENERATED_AT });
+
+  assert.match(html, /data-cadence-hours="3"/);
+  assert.match(html, /data-cadence-state="scheduled"/);
+  assert.match(html, /const cadenceDeadlineMs = cadenceHours \* 60 \* 60 \* 1000/);
+  assert.match(html, /const isOverdue = Date\.now\(\) - updatedAt > cadenceDeadlineMs/);
+  assert.match(html, /cadenceLabel\.textContent = isOverdue \? 'running behind its 3h cadence' : '3h cadence'/);
+  assert.match(html, /cadenceStatus\.setAttribute\('data-cadence-state', isOverdue \? 'overdue' : 'current'\)/);
 });
 
 test('freshness is live, uses a six-hour window, and NEW follows firstSeen', () => {

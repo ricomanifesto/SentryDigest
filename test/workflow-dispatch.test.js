@@ -2,6 +2,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const test = require('node:test');
+const { ISSUE_TRAIL_CONTRACT } = require('../scripts/generated-artifact-contracts');
 
 const workflowPath = path.join(__dirname, '../.github/workflows/update-news.yml');
 const gitignorePath = path.join(__dirname, '../.gitignore');
@@ -10,6 +11,15 @@ const lockfilePath = path.join(__dirname, '../package-lock.json');
 function readWorkflow() {
   return fs.readFileSync(workflowPath, 'utf8');
 }
+
+test('reader cadence matches the scheduled workflow interval', () => {
+  const workflow = readWorkflow();
+
+  assert.match(
+    workflow,
+    new RegExp(`cron: ['"]0 \\*\\/${ISSUE_TRAIL_CONTRACT.cadenceHours} \\* \\* \\*['"]`),
+  );
+});
 
 test('update workflow dispatches the committed artifact SHA downstream', () => {
   const workflow = readWorkflow();

@@ -220,7 +220,9 @@ function validateIssueTrailContract(indexHtml, failures, issueDates = [], genera
   const sourceCoverageAnchor = $(`#${ISSUE_TRAIL_CONTRACT.sourceCoverageAnchorId}`);
   const feedLink = trail.find(`a[href="${ISSUE_TRAIL_CONTRACT.feedHref}"]`);
   const sourceCoverageLink = trail.find(`a[href="${ISSUE_TRAIL_CONTRACT.sourceCoverageHref}"]`);
-  const updatedTime = trail.find('time[datetime]');
+  const updatedTime = trail.find(ISSUE_TRAIL_CONTRACT.updatedTimeSelector);
+  const cadenceStatus = trail.find(ISSUE_TRAIL_CONTRACT.cadenceSelector);
+  const cadenceLabel = cadenceStatus.find(ISSUE_TRAIL_CONTRACT.cadenceLabelSelector);
   const trailText = trail.text().replace(/\s+/g, ' ').trim();
   const currentIssueDate = isValidDate(generatedAt)
     ? new Date(generatedAt).toISOString().slice(0, 10)
@@ -236,8 +238,16 @@ function validateIssueTrailContract(indexHtml, failures, issueDates = [], genera
     || feedLink.length === 0
     || sourceCoverageLink.length === 0
     || sourceCoverageAnchor.length === 0
-    || updatedTime.length === 0
+    || updatedTime.length !== 1
     || !isValidDate(updatedTime.attr('datetime'))
+    || cadenceStatus.length !== 1
+    || cadenceStatus.attr(ISSUE_TRAIL_CONTRACT.cadenceHoursAttribute) !== String(ISSUE_TRAIL_CONTRACT.cadenceHours)
+    || cadenceStatus.attr(ISSUE_TRAIL_CONTRACT.cadenceStateAttribute) !== ISSUE_TRAIL_CONTRACT.cadenceScheduledState
+    || cadenceStatus.attr('role') !== 'status'
+    || cadenceStatus.attr('aria-live') !== 'polite'
+    || cadenceStatus.attr('aria-atomic') !== 'true'
+    || cadenceLabel.length !== 1
+    || cadenceLabel.text().trim() !== ISSUE_TRAIL_CONTRACT.cadenceText
     || !trailText.includes(ISSUE_TRAIL_CONTRACT.cadenceText)
     || (previousIssueDate && (previousIssues.length !== 1 || previousIssue.length !== 1))
   ) {

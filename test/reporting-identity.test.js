@@ -34,6 +34,12 @@ test('reporting identity contract documents owner-first version adoption', () =>
   assert.match(runbook, /unavailab(?:le|ility)/i);
   assert.match(runbook, /byte drift/i);
   assert.match(runbook, /retire/i);
+  assert.match(runbook, /closed retained issue/i);
+  assert.match(runbook, /articles array is immutable/i);
+  assert.match(runbook, /field values, identities, and order/i);
+  assert.match(runbook, /additive provenance/i);
+  assert.match(runbook, /schema\s+version/i);
+  assert.match(runbook, /never infer missing\s+provenance/i);
 });
 
 for (const vector of contract.accepted) {

@@ -6,6 +6,8 @@ const { generateHTML } = require('../../scripts/render-news-html');
 const screenshotDirectory = path.join(process.cwd(), 'test-results/screenshots');
 const retainedContextFixture = path.join(process.cwd(), 'test-results/retained-context.html');
 const staleContextFixture = path.join(process.cwd(), 'test-results/stale-context.html');
+const cadenceFixture = path.join(process.cwd(), 'test-results/cadence.html');
+const summaryBehaviorFixture = path.join(process.cwd(), 'test-results/summary-behavior.html');
 
 function observeRuntimeFailures(page) {
   const failures = [];
@@ -36,6 +38,19 @@ test.beforeAll(() => {
   }).replace('<head>', '<head>\n  <base href="../">');
   fs.writeFileSync(retainedContextFixture, renderFixture('retained'));
   fs.writeFileSync(staleContextFixture, renderFixture('stale'));
+  fs.writeFileSync(cadenceFixture, generateHTML(newsItems, {
+    generatedAt: new Date('2026-08-14T10:00:00.000Z'),
+    retainedIssueDates: ['2026-08-13', '2026-08-14'],
+  }).replace('<head>', '<head>\n  <base href="../">'));
+  fs.writeFileSync(summaryBehaviorFixture, generateHTML([{
+    ...newsItems[0],
+    link: 'https://publisher.example/security-story',
+    source: 'Publisher Example',
+    summary: 'Responders are still tracing the campaign across affected organizations…',
+  }], {
+    generatedAt: new Date('2026-08-14T10:00:00.000Z'),
+    retainedIssueDates: ['2026-08-13', '2026-08-14'],
+  }).replace('<head>', '<head>\n  <base href="../">'));
 });
 
 test('rendered digest shows cards and preserves its core interactions', async ({ page }) => {
@@ -85,19 +100,12 @@ test('rendered digest shows cards and preserves its core interactions', async ({
   }
 
   const continuations = page.locator('a.summary-continuation:visible');
-  expect(await continuations.count()).toBeGreaterThan(0);
-  const continuation = continuations.first();
-  const continuationCard = continuation.locator('xpath=ancestor::article[1]');
-  await expect(continuation).toHaveAttribute('href', await continuationCard.locator('.news-title a').getAttribute('href'));
-  await expect(continuation).toHaveAccessibleName(/^Continue reading at /);
-  await continuation.evaluate((link) => {
-    link.addEventListener('click', (event) => {
-      event.preventDefault();
-      link.dataset.exercised = 'true';
-    }, { once: true });
-  });
-  await continuation.click();
-  await expect(continuation).toHaveAttribute('data-exercised', 'true');
+  if ((await continuations.count()) > 0) {
+    const continuation = continuations.first();
+    const continuationCard = continuation.locator('xpath=ancestor::article[1]');
+    await expect(continuation).toHaveAttribute('href', await continuationCard.locator('.news-title a').getAttribute('href'));
+    await expect(continuation).toHaveAccessibleName(/^Continue reading at /);
+  }
 
   await expect(page.locator('a.handoff-cue').first()).toHaveAttribute('href', /SentryInsight|GRCInsight/);
   await expect(page.locator('a.handoff-cue[href*="#cve-"]').first()).toHaveAttribute('href', /SentryInsight\/#cve-\d{4}-\d{4,}$/);
@@ -134,22 +142,70 @@ test('pre-rendered cards remain readable without JavaScript', async ({ browser }
   const firstCard = page.locator('article.news-item').first();
   const firstCardId = await firstCard.getAttribute('id');
   await expect(firstCard.locator('a.item-permalink')).toHaveAttribute('href', `#${firstCardId}`);
-  const continuations = page.locator('a.summary-continuation');
-  expect(await continuations.count()).toBeGreaterThan(0);
-  const continuation = continuations.first();
-  const card = continuation.locator('xpath=ancestor::article[1]');
-  await expect(continuation).toBeVisible();
-  await expect(continuation).toHaveAccessibleName(/^Continue reading at /);
-  await expect(continuation).toHaveAttribute(
-    'href',
-    await card.locator('.news-title a').getAttribute('href'),
-  );
+  await expect(page.locator('.issue-trail-cadence')).toHaveAttribute('data-cadence-state', 'scheduled');
+  await expect(page.locator('[data-cadence-label]')).toHaveText('3h cadence');
   const previousIssues = page.locator('a.previous-issues');
   await expect(previousIssues).toBeVisible();
   await previousIssues.click();
   await expect(page.locator('h1')).toHaveText('Previous issues');
   await expect(page.locator('main ol a').first()).toBeVisible();
   expect(runtimeFailures).toEqual([]);
+  await context.close();
+});
+
+test('summary continuation behavior does not depend on the daily feed mix', async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false, locale: 'en-US', timezoneId: 'UTC' });
+  const page = await context.newPage();
+  const runtimeFailures = observeRuntimeFailures(page);
+  await context.route('https://publisher.example/security-story', async (route) => {
+    await route.fulfill({ status: 200, contentType: 'text/html', body: '<title>Publisher story</title>' });
+  });
+  const response = await page.goto('http://127.0.0.1:4173/test-results/summary-behavior.html');
+
+  expect(response?.ok()).toBeTruthy();
+  const continuation = page.locator('a.summary-continuation');
+  await expect(continuation).toBeVisible();
+  await expect(continuation).toHaveAccessibleName('Continue reading at Publisher Example');
+  await expect(continuation).toHaveAttribute('href', 'https://publisher.example/security-story');
+  const destinationPromise = context.waitForEvent('page');
+  await continuation.click();
+  const destination = await destinationPromise;
+  await expect(destination).toHaveURL('https://publisher.example/security-story');
+  await destination.close();
+  expect(runtimeFailures).toEqual([]);
+  await context.close();
+});
+
+test('cadence stays current at the exact schedule boundary', async ({ browser }) => {
+  const context = await browser.newContext({ locale: 'en-US', timezoneId: 'UTC' });
+  const page = await context.newPage();
+  const runtimeFailures = observeRuntimeFailures(page);
+  await page.clock.setFixedTime('2026-08-14T13:00:00.000Z');
+  const response = await page.goto('http://127.0.0.1:4173/test-results/cadence.html');
+
+  expect(response?.ok()).toBeTruthy();
+  const cadence = page.locator('.issue-trail-cadence');
+  await expect(cadence).toHaveAttribute('data-cadence-state', 'current');
+  await expect(cadence.locator('[data-cadence-label]')).toHaveText('3h cadence');
+  expect(runtimeFailures).toEqual([]);
+  await context.close();
+});
+
+test('an open digest names when its cadence falls behind', async ({ browser }) => {
+  const context = await browser.newContext({ locale: 'en-US', timezoneId: 'UTC' });
+  const page = await context.newPage();
+  const runtimeFailures = observeRuntimeFailures(page);
+  await page.clock.install({ time: '2026-08-14T12:59:30.000Z' });
+  const response = await page.goto('http://127.0.0.1:4173/test-results/cadence.html');
+
+  expect(response?.ok()).toBeTruthy();
+  const cadence = page.locator('.issue-trail-cadence');
+  await expect(cadence).toHaveAttribute('data-cadence-state', 'current');
+  await page.clock.runFor('01:30');
+  await expect(cadence).toHaveAttribute('data-cadence-state', 'overdue');
+  await expect(cadence.locator('[data-cadence-label]')).toHaveText('running behind its 3h cadence');
+  expect(runtimeFailures).toEqual([]);
+  await page.screenshot({ path: path.join(screenshotDirectory, 'digest-overdue-cadence.png'), fullPage: true });
   await context.close();
 });
 

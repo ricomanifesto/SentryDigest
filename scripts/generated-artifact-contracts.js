@@ -56,14 +56,26 @@ const DASHBOARD_RSS_LINK_CONTRACT = Object.freeze({
   ]),
 });
 
+const DIGEST_CADENCE_HOURS = 3;
+
 const ISSUE_TRAIL_CONTRACT = Object.freeze({
   archiveHref: './archive/',
-  cadenceText: '3h cadence',
+  cadenceCurrentState: 'current',
+  cadenceHours: DIGEST_CADENCE_HOURS,
+  cadenceHoursAttribute: 'data-cadence-hours',
+  cadenceLabelSelector: '[data-cadence-label]',
+  cadenceOverdueState: 'overdue',
+  cadenceOverdueText: `running behind its ${DIGEST_CADENCE_HOURS}h cadence`,
+  cadenceScheduledState: 'scheduled',
+  cadenceSelector: '.issue-trail-cadence',
+  cadenceStateAttribute: 'data-cadence-state',
+  cadenceText: `${DIGEST_CADENCE_HOURS}h cadence`,
   feedHref: DASHBOARD_RSS_LINK_CONTRACT.feedHref,
   navClass: 'issue-trail',
   navSelector: '.issue-trail',
   sourceCoverageAnchorId: SOURCE_COVERAGE_ANCHOR_ID,
   sourceCoverageHref: `#${SOURCE_COVERAGE_ANCHOR_ID}`,
+  updatedTimeSelector: '.issue-trail-updated',
 });
 
 const OPERATOR_LANE_CONTRACT = Object.freeze({
@@ -118,7 +130,7 @@ const SUMMARY_CONTINUATION_CONTRACT = Object.freeze({
 
 const FEED_METADATA_CONTRACT = Object.freeze({
   issueStripTimeSelector: '.issue-strip time[datetime]',
-  issueTrailTimeSelector: `${ISSUE_TRAIL_CONTRACT.navSelector} .issue-trail-meta time[datetime]`,
+  issueTrailTimeSelector: `${ISSUE_TRAIL_CONTRACT.navSelector} ${ISSUE_TRAIL_CONTRACT.updatedTimeSelector}`,
   maxTimestampDriftMs: 5 * 60 * 1000,
 });
 

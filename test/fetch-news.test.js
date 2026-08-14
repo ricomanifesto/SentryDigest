@@ -1032,7 +1032,7 @@ test('generateHTML renders shareable filter query state wiring', () => {
   assert.match(html, /control\.value = value/);
   assert.match(html, /function syncQueryState\(\)/);
   assert.match(html, /window\.history\.replaceState\(null, '', nextUrl\)/);
-  assert.match(html, /applyQueryState\(\);\s+updateFreshness\(\);\s+update\(\);/);
+  assert.match(html, /applyQueryState\(\);\s+updateCadenceHealth\(\);\s+updateFreshness\(\);\s+update\(\);/);
 });
 
 test('generateHTML renders active filter summary and reset wiring', () => {
@@ -1231,8 +1231,14 @@ test('generateHTML renders feed update cadence with a UTC day label', () => {
     },
   ], { generatedAt: new Date('2026-06-17T18:05:00.000Z') });
 
-  assert.match(html, /<span class="issue-trail-meta">Updated <time datetime="2026-06-17T18:05:00.000Z">18:05 UTC · Jun 17<\/time><\/span>/);
-  assert.ok(html.includes(`<span class="issue-trail-meta">${ISSUE_TRAIL_CONTRACT.cadenceText}</span>`));
+  assert.match(html, /<span class="issue-trail-meta">Updated <time class="issue-trail-updated" datetime="2026-06-17T18:05:00.000Z">18:05 UTC · Jun 17<\/time><\/span>/);
+  assert.ok(html.includes(
+    `<span class="issue-trail-meta issue-trail-cadence" data-cadence-hours="${ISSUE_TRAIL_CONTRACT.cadenceHours}" data-cadence-state="scheduled" role="status" aria-live="polite" aria-atomic="true"><span data-cadence-label>${ISSUE_TRAIL_CONTRACT.cadenceText}</span></span>`,
+  ));
+  assert.match(html, /function updateCadenceHealth\(\)/);
+  assert.match(html, /updateCadenceHealth\(\);[\s\S]*window\.setInterval/);
+  assert.match(html, /Scheduled every 3 hours/);
+  assert.doesNotMatch(html, /Updates every 3 hours/);
 });
 
 test('generateHTML renders escaped source coverage and RSS clarity', () => {

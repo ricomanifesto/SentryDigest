@@ -35,8 +35,8 @@ function renderArchiveTrail() {
       <span class="issue-trail-current" aria-current="page">Current digest</span>
       <a href="${ISSUE_TRAIL_CONTRACT.feedHref}">RSS feed</a>
       <a href="${ISSUE_TRAIL_CONTRACT.sourceCoverageHref}">Source coverage</a>
-      <span class="issue-trail-meta">Updated <time datetime="2026-06-17T18:30:00.000Z">18:30 UTC</time></span>
-      <span class="issue-trail-meta">${ISSUE_TRAIL_CONTRACT.cadenceText}</span>
+      <span class="issue-trail-meta">Updated <time class="issue-trail-updated" datetime="2026-06-17T18:30:00.000Z">18:30 UTC</time></span>
+      <span class="issue-trail-meta issue-trail-cadence" data-cadence-hours="${ISSUE_TRAIL_CONTRACT.cadenceHours}" data-cadence-state="scheduled" role="status" aria-live="polite" aria-atomic="true"><span data-cadence-label>${ISSUE_TRAIL_CONTRACT.cadenceText}</span></span>
     </nav>
     <span id="${ISSUE_TRAIL_CONTRACT.sourceCoverageAnchorId}" class="anchor-target" aria-hidden="true"></span>`;
 }
@@ -990,6 +990,20 @@ test('validateArtifacts rejects a missing generated archive trail contract', () 
       <article class="news-item"><a href="https://example.com/older">Older item</a></article>
     </body></html>`,
   });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(result.failures.join('\n'), /index\.html must render the digest archive trail contract/);
+});
+
+test('validateArtifacts rejects cadence metadata that cannot age in the browser', () => {
+  const repoRoot = createFixture();
+  const indexPath = path.join(repoRoot, 'index.html');
+  fs.writeFileSync(
+    indexPath,
+    fs.readFileSync(indexPath, 'utf8').replace(` data-cadence-hours="${ISSUE_TRAIL_CONTRACT.cadenceHours}"`, ''),
+  );
 
   const result = validateArtifacts(repoRoot);
 

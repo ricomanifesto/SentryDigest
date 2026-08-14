@@ -18,3 +18,15 @@ back a consumer to its previous contract selection
 rather than rewriting a released contract. Retire an old version only after no
 consumer workflow references it and historical public artifacts remain
 verifiable with their original semantics.
+
+## Retained digest issues
+
+A closed retained issue is an archive date older than the active UTC issue. Its
+articles array is immutable: item count, field values, identities, and order
+never change. The active UTC issue may continue accumulating that day's items
+until a newer issue is published.
+
+A closed issue may gain additive provenance only through an explicit schema
+version bump with corresponding validation and rendering support. Historical
+schemas remain readable under their released rules and never infer missing
+provenance.

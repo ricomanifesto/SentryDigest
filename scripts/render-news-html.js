@@ -679,8 +679,8 @@ function renderIssueTrail(generatedAt, retainedIssueDates = []) {
       <span class="issue-trail-current" aria-current="page">Current digest</span>${archiveLinks}
       <a href="${ISSUE_TRAIL_CONTRACT.feedHref}" aria-label="Open generated RSS feed">RSS feed</a>
       <a href="${ISSUE_TRAIL_CONTRACT.sourceCoverageHref}">Source coverage</a>
-      <span class="issue-trail-meta">Updated <time datetime="${issueDate.toISOString()}">${formatUtcTime(issueDate)}</time></span>
-      <span class="issue-trail-meta">${ISSUE_TRAIL_CONTRACT.cadenceText}</span>
+      <span class="issue-trail-meta">Updated <time class="issue-trail-updated" datetime="${issueDate.toISOString()}">${formatUtcTime(issueDate)}</time></span>
+      <span class="issue-trail-meta issue-trail-cadence" data-cadence-hours="${ISSUE_TRAIL_CONTRACT.cadenceHours}" data-cadence-state="${ISSUE_TRAIL_CONTRACT.cadenceScheduledState}" role="status" aria-live="polite" aria-atomic="true"><span data-cadence-label>${ISSUE_TRAIL_CONTRACT.cadenceText}</span></span>
     </nav>`;
 }
 
@@ -838,6 +838,7 @@ function generateHTML(newsItems, options = {}) {
     .issue-trail a:hover { text-decoration: underline; }
     .issue-trail a::before, .issue-trail-meta::before { color: var(--muted); content: "›"; font-weight: 400; margin-right: 10px; }
     .issue-trail-meta { color: var(--muted); font-weight: 500; }
+    .issue-trail-cadence[data-cadence-state="overdue"] { color: var(--fg); font-weight: 650; }
     .anchor-target { display: block; scroll-margin-top: 96px; }
     .filter-insights { align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; padding: 10px 12px; }
     .filter-insights[hidden] { display: none; }
@@ -1015,7 +1016,7 @@ function generateHTML(newsItems, options = {}) {
 
   <footer>
     <div class="container">
-      A Rico Manifesto project by <a href="${SITE_METADATA_CONTRACT.authorUrl}">${SITE_METADATA_CONTRACT.authorName}</a> • Powered by GitHub Actions • Updates every 3 hours • <a data-rss-link href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}" aria-label="Open generated RSS feed">RSS Feed</a>
+      A Rico Manifesto project by <a href="${SITE_METADATA_CONTRACT.authorUrl}">${SITE_METADATA_CONTRACT.authorName}</a> • Powered by GitHub Actions • Scheduled every 3 hours • <a data-rss-link href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}" aria-label="Open generated RSS feed">RSS Feed</a>
     </div>
   </footer>
 
@@ -1055,6 +1056,9 @@ function generateHTML(newsItems, options = {}) {
       const sourceCoverageButtons = qa('${SOURCE_COVERAGE_CONTRACT.buttonSelector}');
       const stats = q('#stats');
       const cards = qa('.news-item');
+      const cadenceStatus = q('${ISSUE_TRAIL_CONTRACT.cadenceSelector}');
+      const cadenceLabel = cadenceStatus && cadenceStatus.querySelector('${ISSUE_TRAIL_CONTRACT.cadenceLabelSelector}');
+      const digestUpdatedTime = q('${ISSUE_TRAIL_CONTRACT.updatedTimeSelector}');
       const filterParams = {
         search: 'q',
         sourceFilter: 'source',
@@ -1277,6 +1281,17 @@ function generateHTML(newsItems, options = {}) {
 
       const freshHours = 6;
 
+      function updateCadenceHealth(){
+        if (!cadenceStatus || !cadenceLabel || !digestUpdatedTime) return;
+        const updatedAt = Date.parse(digestUpdatedTime.getAttribute('datetime') || '');
+        const cadenceHours = Number(cadenceStatus.getAttribute('${ISSUE_TRAIL_CONTRACT.cadenceHoursAttribute}'));
+        if (!Number.isFinite(updatedAt) || !Number.isFinite(cadenceHours) || cadenceHours <= 0) return;
+        const cadenceDeadlineMs = cadenceHours * 60 * 60 * 1000;
+        const isOverdue = Date.now() - updatedAt > cadenceDeadlineMs;
+        cadenceStatus.setAttribute('${ISSUE_TRAIL_CONTRACT.cadenceStateAttribute}', isOverdue ? '${ISSUE_TRAIL_CONTRACT.cadenceOverdueState}' : '${ISSUE_TRAIL_CONTRACT.cadenceCurrentState}');
+        cadenceLabel.textContent = isOverdue ? '${ISSUE_TRAIL_CONTRACT.cadenceOverdueText}' : '${ISSUE_TRAIL_CONTRACT.cadenceText}';
+      }
+
       function getAgeState(publishedAt){
         const publishedTime = new Date(publishedAt).getTime();
         if (!Number.isFinite(publishedTime) || publishedTime === ${INVALID_FEED_DATE_FALLBACK_TIME}) {
@@ -1390,9 +1405,11 @@ function generateHTML(newsItems, options = {}) {
       if (emptyResetFilters) emptyResetFilters.addEventListener('click', function(){ clearFilters({ focusRecoveryTarget: true }); });
 
       applyQueryState();
+      updateCadenceHealth();
       updateFreshness();
       update();
       window.setInterval(function(){
+        updateCadenceHealth();
         updateFreshness();
         if (ageFilter && ageFilter.value) update();
       }, 60 * 1000);
