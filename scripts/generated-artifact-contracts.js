@@ -57,6 +57,7 @@ const DASHBOARD_RSS_LINK_CONTRACT = Object.freeze({
 });
 
 const ISSUE_TRAIL_CONTRACT = Object.freeze({
+  archiveHref: './archive/',
   cadenceText: '3h cadence',
   feedHref: DASHBOARD_RSS_LINK_CONTRACT.feedHref,
   navClass: 'issue-trail',
@@ -117,7 +118,7 @@ const SUMMARY_CONTINUATION_CONTRACT = Object.freeze({
 
 const FEED_METADATA_CONTRACT = Object.freeze({
   issueStripTimeSelector: '.issue-strip time[datetime]',
-  issueTrailTimeSelector: `${ISSUE_TRAIL_CONTRACT.navSelector} time[datetime]`,
+  issueTrailTimeSelector: `${ISSUE_TRAIL_CONTRACT.navSelector} .issue-trail-meta time[datetime]`,
   maxTimestampDriftMs: 5 * 60 * 1000,
 });
 

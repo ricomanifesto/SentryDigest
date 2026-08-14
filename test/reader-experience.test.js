@@ -285,6 +285,42 @@ test('rolling article cards expose their stable reporting identity as a permalin
   );
 });
 
+test('issue trail makes retained history visible beside the current digest', () => {
+  const html = generateHTML([article()], {
+    generatedAt: new Date('2026-08-14T02:20:21.072Z'),
+    retainedIssueDates: ['2026-08-13', '2026-08-14'],
+  });
+
+  assert.match(html, /class="previous-issues" href="\.\/archive\/"/);
+  assert.match(html, /class="previous-issue" href="\.\/archive\/2026-08-13\/"/);
+  assert.match(html, /<time datetime="2026-08-13T00:00:00\.000Z">Aug 13<\/time>/);
+});
+
+test('only non-current SentryInsight context is named on the reader surface', () => {
+  const base = {
+    schema_version: 1,
+    checked_at: '2026-08-14T02:20:21.072Z',
+    report_date: '2026-08-13',
+    manifest_generated_at: '2026-08-13T21:54:18Z',
+  };
+  const current = generateHTML([article()], {
+    generatedAt: GENERATED_AT,
+    insightContext: { ...base, mode: 'current' },
+  });
+  const retained = generateHTML([article()], {
+    generatedAt: GENERATED_AT,
+    insightContext: { ...base, mode: 'retained' },
+  });
+  const stale = generateHTML([article()], {
+    generatedAt: GENERATED_AT,
+    insightContext: { ...base, mode: 'stale' },
+  });
+
+  assert.doesNotMatch(current, /class="insight-context"/);
+  assert.match(retained, /data-context-mode="retained"[^>]*>SentryInsight context retained as of <time datetime="2026-08-13T21:54:18Z">August 13, 2026 at 9:54 PM UTC<\/time>/);
+  assert.match(stale, /data-context-mode="stale"[^>]*>SentryInsight context as of .* is stale; CVE handoffs use the first-mentioned CVE\./);
+});
+
 test('reader contracts reject an incident handoff that drops available CVE context', () => {
   const articles = [article({
     title: 'CVE-2026-59310 exploited in a ransomware intrusion',

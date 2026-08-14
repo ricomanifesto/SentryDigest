@@ -9,6 +9,7 @@ const {
   getCurrentInsightCves,
 } = require('../scripts/current-insight-findings');
 const { syncCurrentInsightFindings } = require('../scripts/sync-insight-findings');
+const { loadInsightSyncContext } = require('../scripts/insight-sync-context');
 
 const MANIFEST = {
   schema_version: 1,
@@ -74,6 +75,7 @@ test('sync retains a last-known-good snapshot when the public manifest is unavai
 
   assert.equal(result.retained, true);
   assert.deepEqual(JSON.parse(fs.readFileSync(outputPath, 'utf8')), MANIFEST);
+  assert.equal(loadInsightSyncContext(path.join(root, 'sentryinsight-context.json')).mode, 'retained');
   assert.match(warnings.join('\n'), /retaining last-known-good snapshot/);
 });
 
@@ -91,6 +93,7 @@ test('sync atomically replaces a valid current snapshot', async () => {
   assert.equal(result.changed, true);
   assert.deepEqual(JSON.parse(fs.readFileSync(outputPath, 'utf8')), MANIFEST);
   assert.equal(fs.existsSync(`${outputPath}.tmp`), false);
+  assert.equal(loadInsightSyncContext(path.join(root, 'sentryinsight-context.json')).mode, 'current');
 });
 
 test('sync never replaces a newer current-finding snapshot with older state', async () => {
@@ -112,4 +115,35 @@ test('sync never replaces a newer current-finding snapshot with older state', as
   assert.equal(result.changed, false);
   assert.equal(result.retained, true);
   assert.deepEqual(JSON.parse(fs.readFileSync(outputPath, 'utf8')), newer);
+  assert.equal(loadInsightSyncContext(path.join(root, 'sentryinsight-context.json')).mode, 'retained');
+});
+
+test('sync names stale retained context separately from an unavailable snapshot', async () => {
+  const staleRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'sentrydigest-insight-stale-'));
+  const staleOutput = path.join(staleRoot, 'sentryinsight-findings.json');
+  fs.writeFileSync(staleOutput, `${JSON.stringify(MANIFEST, null, 2)}\n`);
+
+  await syncCurrentInsightFindings({
+    outputPath: staleOutput,
+    now: new Date('2026-08-16T00:00:00Z'),
+    fetchImpl: async () => { throw new Error('offline'); },
+    logger: { log() {}, warn() {} },
+  });
+  assert.equal(
+    loadInsightSyncContext(path.join(staleRoot, 'sentryinsight-context.json')).mode,
+    'stale',
+  );
+
+  const emptyRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'sentrydigest-insight-empty-'));
+  await syncCurrentInsightFindings({
+    outputPath: path.join(emptyRoot, 'sentryinsight-findings.json'),
+    now: new Date('2026-08-16T00:00:00Z'),
+    fetchImpl: async () => { throw new Error('offline'); },
+    logger: { log() {}, warn() {} },
+  });
+  const unavailable = loadInsightSyncContext(
+    path.join(emptyRoot, 'sentryinsight-context.json'),
+  );
+  assert.equal(unavailable.mode, 'unavailable');
+  assert.equal(unavailable.manifest_generated_at, null);
 });

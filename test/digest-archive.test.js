@@ -55,6 +55,7 @@ test('dated digest archives accumulate a UTC day and render stable no-JS evidenc
   const issueRoot = path.join(root, 'archive', '2026-08-13');
   const manifest = JSON.parse(fs.readFileSync(path.join(issueRoot, 'index.json')));
   const html = fs.readFileSync(path.join(issueRoot, 'index.html'), 'utf8');
+  const archiveIndex = fs.readFileSync(path.join(root, 'archive', 'index.html'), 'utf8');
 
   assert.equal(manifest.schema_version, 1);
   assert.equal(manifest.issue_date, '2026-08-13');
@@ -64,6 +65,9 @@ test('dated digest archives accumulate a UTC day and render stable no-JS evidenc
   assert.match(html, /href="https:\/\/example\.com\/security\/advisory"/);
   assert.match(html, /rel="noopener noreferrer"/);
   assert.doesNotMatch(html, /fetch\(/);
+  assert.match(archiveIndex, /Previous issues/);
+  assert.match(archiveIndex, /href="\.\/2026-08-13\/"/);
+  assert.doesNotMatch(archiveIndex, /<script/);
 });
 
 test('dated digest archive output is byte-identical for the same inputs', () => {

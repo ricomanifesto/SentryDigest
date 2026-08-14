@@ -20,6 +20,7 @@ const {
   collectSourceCoverage,
   deriveArticleFacets,
   getHandoffDestination,
+  renderInsightContext,
 } = require('./render-news-html');
 const {
   DEFAULT_MAX_NEWS_ITEMS,
@@ -35,6 +36,7 @@ const {
   assertCurrentInsightFindings,
   getCurrentInsightCves,
 } = require('./current-insight-findings');
+const { assertInsightSyncContext } = require('./insight-sync-context');
 
 function readText(label, filePath, repoRoot, failures) {
   if (!fs.existsSync(filePath)) {
@@ -212,7 +214,7 @@ function assertFeedItemMetadataMatchesNewsData(feedItems, newsData, failures) {
   });
 }
 
-function validateIssueTrailContract(indexHtml, failures) {
+function validateIssueTrailContract(indexHtml, failures, issueDates = [], generatedAt = null) {
   const $ = cheerio.load(indexHtml);
   const trail = $(ISSUE_TRAIL_CONTRACT.navSelector);
   const sourceCoverageAnchor = $(`#${ISSUE_TRAIL_CONTRACT.sourceCoverageAnchorId}`);
@@ -220,6 +222,14 @@ function validateIssueTrailContract(indexHtml, failures) {
   const sourceCoverageLink = trail.find(`a[href="${ISSUE_TRAIL_CONTRACT.sourceCoverageHref}"]`);
   const updatedTime = trail.find('time[datetime]');
   const trailText = trail.text().replace(/\s+/g, ' ').trim();
+  const currentIssueDate = isValidDate(generatedAt)
+    ? new Date(generatedAt).toISOString().slice(0, 10)
+    : '';
+  const previousIssueDate = issueDates.filter((value) => value < currentIssueDate).at(-1);
+  const previousIssues = trail.find(`a[href="${ISSUE_TRAIL_CONTRACT.archiveHref}"]`);
+  const previousIssue = previousIssueDate
+    ? trail.find(`a[href="./archive/${previousIssueDate}/"]`)
+    : cheerio.load('<span></span>')('missing');
 
   if (
     trail.length === 0
@@ -229,6 +239,7 @@ function validateIssueTrailContract(indexHtml, failures) {
     || updatedTime.length === 0
     || !isValidDate(updatedTime.attr('datetime'))
     || !trailText.includes(ISSUE_TRAIL_CONTRACT.cadenceText)
+    || (previousIssueDate && (previousIssues.length !== 1 || previousIssue.length !== 1))
   ) {
     fail(failures, 'index.html must render the digest archive trail contract');
   }
@@ -786,11 +797,14 @@ function validateSiteMetadata(indexHtml, sitemapXml, failures) {
 function validateDigestArchives(repoRoot, sitemapXml, failures) {
   const archiveRoot = path.join(repoRoot, 'archive');
   if (!fs.existsSync(archiveRoot)) {
-    return;
+    return [];
   }
   const entries = fs.readdirSync(archiveRoot, { withFileTypes: true });
   const issueDates = [];
   for (const entry of entries) {
+    if (entry.isFile() && entry.name === 'index.html') {
+      continue;
+    }
     if (!entry.isDirectory() || !/^\d{4}-\d{2}-\d{2}$/.test(entry.name)) {
       fail(failures, `archive contains unexpected entry ${entry.name}`);
       continue;
@@ -863,6 +877,28 @@ function validateDigestArchives(repoRoot, sitemapXml, failures) {
       }
     });
   }
+  const archiveIndex = readText(
+    'archive/index.html',
+    path.join(archiveRoot, 'index.html'),
+    repoRoot,
+    failures,
+  );
+  if (archiveIndex) {
+    const $ = cheerio.load(archiveIndex);
+    if ($('link[rel="canonical"]').attr('href') !== `${SITE_METADATA_CONTRACT.publicSiteUrl}archive/`
+        || $('script').length !== 0
+        || archiveIndex.includes('fetch(')) {
+      fail(failures, 'archive/index.html must be a canonical no-JavaScript issue index');
+    }
+    const actualDates = $('main ol a[href]')
+      .map((_, element) => $(element).attr('href'))
+      .get()
+      .map((href) => /^\.\/(\d{4}-\d{2}-\d{2})\/$/.exec(href)?.[1])
+      .filter(Boolean);
+    if (JSON.stringify(actualDates) !== JSON.stringify(issueDates.slice().sort().reverse())) {
+      fail(failures, 'archive/index.html links must match retained digest issues newest first');
+    }
+  }
   if (sitemapXml) {
     const expected = issueDates
       .sort()
@@ -875,6 +911,29 @@ function validateDigestArchives(repoRoot, sitemapXml, failures) {
     if (JSON.stringify(actual) !== JSON.stringify(expected)) {
       fail(failures, 'sitemap.xml dated URLs must match retained digest archive directories');
     }
+  }
+  return issueDates.sort();
+}
+
+function validateInsightContextContract(indexHtml, context, findings, failures) {
+  if (!context || !indexHtml) {
+    return;
+  }
+  try {
+    const validated = assertInsightSyncContext(context);
+    if (validated.mode !== 'unavailable' && (
+      validated.report_date !== findings?.report_date
+      || validated.manifest_generated_at !== findings?.generated_at
+    )) {
+      fail(failures, 'sentryinsight-context.json provenance must match the retained findings snapshot');
+    }
+    const expected = renderInsightContext(validated);
+    const hasContextLine = indexHtml.includes('class="insight-context"');
+    if (validated.mode === 'current' ? hasContextLine : !indexHtml.includes(expected)) {
+      fail(failures, 'index.html must name non-current SentryInsight context and hide current mode');
+    }
+  } catch (error) {
+    fail(failures, `sentryinsight-context.json is invalid: ${error.message}`);
   }
 }
 
@@ -1053,6 +1112,7 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
     feedXml: path.join(repoRoot, 'feed.xml'),
     indexHtml: path.join(repoRoot, 'index.html'),
     insightFindings: path.join(repoRoot, 'sentryinsight-findings.json'),
+    insightContext: path.join(repoRoot, 'sentryinsight-context.json'),
     sitemapXml: path.join(repoRoot, 'sitemap.xml'),
   };
   const failures = [];
@@ -1064,6 +1124,12 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
   const insightFindings = readJson(
     'sentryinsight-findings.json',
     artifacts.insightFindings,
+    repoRoot,
+    failures,
+  );
+  const insightContext = readJson(
+    'sentryinsight-context.json',
+    artifacts.insightContext,
     repoRoot,
     failures,
   );
@@ -1084,10 +1150,11 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
     indexHtml,
     Array.isArray(newsData) ? newsData : [],
     failures,
-    { currentInsightCves },
+    { currentInsightCves, insightContext },
   );
+  validateInsightContextContract(indexHtml, insightContext, insightFindings, failures);
   validateSiteMetadata(indexHtml, sitemapXml, failures);
-  validateDigestArchives(repoRoot, sitemapXml, failures);
+  const issueDates = validateDigestArchives(repoRoot, sitemapXml, failures);
 
   let enabledSources = [];
   let maxNewsItems = DEFAULT_MAX_NEWS_ITEMS;
@@ -1174,7 +1241,7 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
       fail(failures, 'index.html must link to feed.xml');
     }
     validateDashboardRssLinkContract(indexHtml, failures);
-    validateIssueTrailContract(indexHtml, failures);
+    validateIssueTrailContract(indexHtml, failures, issueDates, feedInfo?.lastUpdated);
     validateFilterInsightsContract(indexHtml, failures);
     validateDigestLegendContract(indexHtml, newsData, failures);
     validateOperatorLaneContract(indexHtml, newsData, failures, currentInsightCves);

@@ -253,9 +253,7 @@ function createFixture(overrides = {}) {
     },
   });
   writeJson(path.join(repoRoot, 'news-data.json'), newsData);
-  writeJson(
-    path.join(repoRoot, 'sentryinsight-findings.json'),
-    overrides.insightFindings || {
+  const insightFindings = overrides.insightFindings || {
       schema_version: 1,
       report_date: '2026-06-17',
       generated_at: '2026-06-17T18:20:00Z',
@@ -263,6 +261,16 @@ function createFixture(overrides = {}) {
       finding_count: 1,
       complete_cve_count: 1,
       cve_ids: ['CVE-2026-1234'],
+    };
+  writeJson(path.join(repoRoot, 'sentryinsight-findings.json'), insightFindings);
+  writeJson(
+    path.join(repoRoot, 'sentryinsight-context.json'),
+    overrides.insightContext || {
+      schema_version: 1,
+      mode: 'current',
+      checked_at: feedInfoLastUpdated,
+      report_date: insightFindings.report_date,
+      manifest_generated_at: insightFindings.generated_at,
     },
   );
   writeJson(path.join(repoRoot, 'feed-info.json'), {

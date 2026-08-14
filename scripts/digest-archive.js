@@ -46,6 +46,56 @@ function formatIssueDate(issueDate) {
   }).format(new Date(`${issueDate}T00:00:00.000Z`));
 }
 
+function listDigestIssueDates(outputRoot) {
+  const archiveRoot = path.join(outputRoot, 'archive');
+  return fs.existsSync(archiveRoot)
+    ? fs.readdirSync(archiveRoot, { withFileTypes: true })
+      .filter((entry) => entry.isDirectory() && /^\d{4}-\d{2}-\d{2}$/.test(entry.name))
+      .map((entry) => entry.name)
+      .sort()
+    : [];
+}
+
+function renderArchiveIndex(issues) {
+  const items = issues.slice().reverse().map((issue) => `
+      <li>
+        <a href="./${escapeHtml(issue.issue_date)}/">${escapeHtml(formatIssueDate(issue.issue_date))}</a>
+        <span>${issue.article_count} reporting item${issue.article_count === 1 ? '' : 's'}</span>
+      </li>`).join('');
+  return `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Previous Issues | SentryDigest</title>
+  <meta name="description" content="Dated SentryDigest issues retained for reader and downstream context.">
+  <link rel="canonical" href="${PUBLIC_ROOT}archive/">
+  <style>
+    :root{color-scheme:light dark;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}body{margin:0;background:#f7f8fa;color:#172033}main,header,footer{max-width:760px;margin:auto;padding:1.25rem}ol{list-style:none;padding:0}li{align-items:baseline;background:#fff;border:1px solid #d9deea;border-radius:12px;display:flex;justify-content:space-between;margin:.75rem 0;padding:1rem}li span{color:#59647a;font-size:.9rem}a{color:#1458c0;font-weight:650}@media(prefers-color-scheme:dark){body{background:#0b1020;color:#e5e7eb}li{background:#141b2f;border-color:#26304a}li span{color:#aeb8cd}a{color:#8bb8ff}}@media(max-width:520px){li{align-items:flex-start;flex-direction:column;gap:.35rem}}
+  </style>
+</head>
+<body>
+  <header><p><a href="../">SentryDigest</a> · retained daily context</p><h1>Previous issues</h1><p>Every dated issue keeps the reporting positions used by downstream handoffs.</p></header>
+  <main><ol>${items}</ol></main>
+  <footer><a href="../feed.xml">Rolling RSS feed</a></footer>
+</body>
+</html>
+`;
+}
+
+function writeArchiveIndex(outputRoot) {
+  const issueDates = listDigestIssueDates(outputRoot);
+  const issues = issueDates.map((issueDate) => {
+    const manifest = JSON.parse(fs.readFileSync(
+      path.join(outputRoot, 'archive', issueDate, 'index.json'),
+      'utf8',
+    ));
+    return { issue_date: issueDate, article_count: manifest.articles.length };
+  });
+  fs.writeFileSync(path.join(outputRoot, 'archive', 'index.html'), renderArchiveIndex(issues));
+  return issueDates;
+}
+
 function renderArchivePage(manifest) {
   const issueLabel = formatIssueDate(manifest.issue_date);
   const cards = manifest.articles.map((article) => `
@@ -93,13 +143,7 @@ function loadExistingManifest(manifestPath, issueDate) {
 }
 
 function writeSitemap(outputRoot) {
-  const archiveRoot = path.join(outputRoot, 'archive');
-  const issueDates = fs.existsSync(archiveRoot)
-    ? fs.readdirSync(archiveRoot, { withFileTypes: true })
-      .filter((entry) => entry.isDirectory() && /^\d{4}-\d{2}-\d{2}$/.test(entry.name))
-      .map((entry) => entry.name)
-      .sort()
-    : [];
+  const issueDates = listDigestIssueDates(outputRoot);
   const urls = [PUBLIC_ROOT, ...issueDates.map((date) => `${PUBLIC_ROOT}archive/${date}/`)];
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((url) => `  <url>\n    <loc>${escapeHtml(url)}</loc>\n    <changefreq>daily</changefreq>\n  </url>`).join('\n')}\n</urlset>\n`;
   fs.writeFileSync(path.join(outputRoot, 'sitemap.xml'), xml);
@@ -131,8 +175,9 @@ function writeDigestArchive({ newsItems, outputRoot, generatedAt }) {
   };
   fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
   fs.writeFileSync(path.join(issueRoot, 'index.html'), renderArchivePage(manifest));
+  const issueDates = writeArchiveIndex(outputRoot);
   writeSitemap(outputRoot);
-  return { issueDate, issueRoot, articleCount: articles.length };
+  return { issueDate, issueRoot, issueDates, articleCount: articles.length };
 }
 
 function main() {
@@ -145,10 +190,25 @@ function main() {
     generatedAt: new Date(feedInfo.lastUpdated),
   });
   const { generateHTML } = require('./render-news-html');
+  const {
+    getCurrentInsightCves,
+    loadCurrentInsightFindings,
+  } = require('./current-insight-findings');
+  const { loadInsightSyncContext } = require('./insight-sync-context');
+  const insightSnapshotPath = path.join(outputRoot, 'sentryinsight-findings.json');
+  const insightContextPath = path.join(outputRoot, 'sentryinsight-context.json');
+  const generatedAt = new Date(feedInfo.lastUpdated);
   fs.writeFileSync(
     path.join(outputRoot, 'index.html'),
     generateHTML(newsItems, {
-      generatedAt: new Date(feedInfo.lastUpdated),
+      currentInsightCves: fs.existsSync(insightSnapshotPath)
+        ? getCurrentInsightCves(loadCurrentInsightFindings(insightSnapshotPath), generatedAt)
+        : null,
+      generatedAt,
+      insightContext: fs.existsSync(insightContextPath)
+        ? loadInsightSyncContext(insightContextPath)
+        : null,
+      retainedIssueDates: result.issueDates,
       sourceHealth: feedInfo.sourceHealth,
     }),
   );
@@ -166,7 +226,9 @@ if (require.main === module) {
 
 module.exports = {
   articleFragment,
+  listDigestIssueDates,
   normalizeArticleUrl,
+  renderArchiveIndex,
   renderArchivePage,
   writeDigestArchive,
 };

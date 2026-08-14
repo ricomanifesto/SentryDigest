@@ -73,7 +73,7 @@ jobs:
       - name: Commit and push if changes
         id: commit
         run: |
-          git add index.html news-data.json feed.xml feed-info.json sentryinsight-findings.json config/news-sources.json archive sitemap.xml
+          git add index.html news-data.json feed.xml feed-info.json sentryinsight-findings.json sentryinsight-context.json config/news-sources.json archive sitemap.xml
           if git diff --quiet && git diff --staged --quiet; then
             echo "No changes to commit"
             echo "changes_made=false" >> $GITHUB_OUTPUT

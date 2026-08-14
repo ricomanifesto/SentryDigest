@@ -30,6 +30,7 @@ test('update workflow only stages generated artifacts and config metadata', () =
     'feed.xml',
     'feed-info.json',
     'sentryinsight-findings.json',
+    'sentryinsight-context.json',
     'config/news-sources.json',
     'archive',
     'sitemap.xml',

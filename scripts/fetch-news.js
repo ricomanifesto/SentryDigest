@@ -8,6 +8,8 @@ const {
   getCurrentInsightCves,
   loadCurrentInsightFindings,
 } = require('./current-insight-findings');
+const { loadInsightSyncContext } = require('./insight-sync-context');
+const { listDigestIssueDates } = require('./digest-archive');
 const {
   newestContributionTimestamp,
   updateSourceContributionHistory,
@@ -277,6 +279,8 @@ function writeGeneratedNewsArtifacts(options) {
     previousNewsItems,
     sourceContributions = [],
     currentInsightCves = null,
+    insightContext = null,
+    retainedIssueDates = [],
   } = options;
   const config = sourceConfig.config;
   const sources = sourceConfig.enabledRssSources;
@@ -302,6 +306,8 @@ function writeGeneratedNewsArtifacts(options) {
   const html = generateHTML(generatedNewsItems, {
     currentInsightCves,
     generatedAt: now,
+    insightContext,
+    retainedIssueDates,
     sourceHealth,
   });
 
@@ -330,13 +336,18 @@ async function main() {
     console.log(`Fetched ${snapshot.newsItems.length} news items from ${sources.length} active sources`);
 
     const insightSnapshotPath = path.join(__dirname, '../sentryinsight-findings.json');
+    const insightContextPath = path.join(__dirname, '../sentryinsight-context.json');
     const currentInsightCves = fs.existsSync(insightSnapshotPath)
       ? getCurrentInsightCves(loadCurrentInsightFindings(insightSnapshotPath), now)
       : null;
     writeGeneratedNewsArtifacts({
       currentInsightCves,
+      insightContext: fs.existsSync(insightContextPath)
+        ? loadInsightSyncContext(insightContextPath)
+        : null,
       newsItems: snapshot.newsItems,
       now,
+      retainedIssueDates: listDigestIssueDates(path.resolve(__dirname, '..')),
       sourceConfig,
       sourceContributions: snapshot.sourceContributions,
     });

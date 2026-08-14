@@ -639,6 +639,14 @@ function formatUtcTime(date) {
   return `${hours}:${minutes} UTC · ${issueDay}`;
 }
 
+function formatIssueShortDate(issueDate) {
+  return new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    day: 'numeric',
+    timeZone: 'UTC',
+  }).format(new Date(`${issueDate}T00:00:00.000Z`));
+}
+
 function renderIssueStrip(totalItems, sourceCount, generatedAt) {
   const issueDate = new Date(generatedAt);
   const articleLabel = totalItems === 1 ? 'article' : 'articles';
@@ -653,16 +661,41 @@ function renderIssueStrip(totalItems, sourceCount, generatedAt) {
     </section>`;
 }
 
-function renderIssueTrail(generatedAt) {
+function renderIssueTrail(generatedAt, retainedIssueDates = []) {
   const issueDate = new Date(generatedAt);
+  const currentIssueDate = issueDate.toISOString().slice(0, 10);
+  const previousIssueDate = retainedIssueDates
+    .filter((value) => /^\d{4}-\d{2}-\d{2}$/.test(value) && value < currentIssueDate)
+    .sort()
+    .at(-1);
+  const archiveLinks = previousIssueDate
+    ? `
+      <a class="previous-issues" href="${ISSUE_TRAIL_CONTRACT.archiveHref}" aria-label="Open previous digest issues">Previous issues</a>
+      <a class="previous-issue" href="./archive/${previousIssueDate}/" aria-label="Open digest issue for ${formatIssueDate(new Date(`${previousIssueDate}T00:00:00.000Z`))}"><time datetime="${previousIssueDate}T00:00:00.000Z">${formatIssueShortDate(previousIssueDate)}</time></a>`
+    : '';
 
   return `<nav class="${ISSUE_TRAIL_CONTRACT.navClass}" aria-label="Digest navigation">
-      <span class="issue-trail-current" aria-current="page">Current digest</span>
+      <span class="issue-trail-current" aria-current="page">Current digest</span>${archiveLinks}
       <a href="${ISSUE_TRAIL_CONTRACT.feedHref}" aria-label="Open generated RSS feed">RSS feed</a>
       <a href="${ISSUE_TRAIL_CONTRACT.sourceCoverageHref}">Source coverage</a>
       <span class="issue-trail-meta">Updated <time datetime="${issueDate.toISOString()}">${formatUtcTime(issueDate)}</time></span>
       <span class="issue-trail-meta">${ISSUE_TRAIL_CONTRACT.cadenceText}</span>
     </nav>`;
+}
+
+function renderInsightContext(context) {
+  if (!context || context.mode === 'current') {
+    return '';
+  }
+  const reference = context.manifest_generated_at || context.checked_at;
+  const safeMode = escapeAttribute(context.mode);
+  const renderedTime = `<time datetime="${escapeAttribute(reference)}">${escapeHtml(formatArticleDate(reference))}</time>`;
+  const message = context.mode === 'retained'
+    ? `SentryInsight context retained as of ${renderedTime}.`
+    : context.mode === 'stale'
+      ? `SentryInsight context as of ${renderedTime} is stale; CVE handoffs use the first-mentioned CVE.`
+      : `SentryInsight context unavailable as of ${renderedTime}; CVE handoffs use the first-mentioned CVE.`;
+  return `<p class="insight-context" data-context-mode="${safeMode}" role="status">${message}</p>`;
 }
 
 function generateHTML(newsItems, options = {}) {
@@ -689,7 +722,8 @@ function generateHTML(newsItems, options = {}) {
     : new Set(options.currentInsightCves);
   const operatorLanes = renderOperatorLanes(newsItems, currentInsightCves);
   const issueStrip = renderIssueStrip(totalItems, uniqueSources.length, generatedAt);
-  const issueTrail = renderIssueTrail(generatedAt);
+  const issueTrail = renderIssueTrail(generatedAt, options.retainedIssueDates);
+  const insightContext = renderInsightContext(options.insightContext);
   const structuredData = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'WebSite',
@@ -820,6 +854,7 @@ function generateHTML(newsItems, options = {}) {
     .source-quiet-feeds { color: var(--muted); display: flex; flex: 1 1 100%; flex-wrap: wrap; font-size: 12px; gap: 6px 12px; }
     .source-health-note { display: inline-flex; gap: 4px; }
     .source-health-note[data-health-status="stale"] { color: var(--fg); font-weight: 650; }
+    .insight-context { color: var(--muted); font-size: 12px; margin: 8px 0 0; }
     .source-filter-status { color: var(--muted); flex: 0 1 auto; font-size: 12px; font-weight: 700; }
     .source-coverage a { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
     .source-coverage a:hover { text-decoration: underline; }
@@ -959,7 +994,7 @@ function generateHTML(newsItems, options = {}) {
     </div>
     <div class="stats" id="stats">Showing ${totalItems} of ${totalItems} articles from ${uniqueSources.length} sources</div>
     ${issueStrip}
-    ${issueTrail}
+    ${issueTrail}${insightContext ? `\n    ${insightContext}` : ''}
     <div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true" hidden></div>
     <span id="${ISSUE_TRAIL_CONTRACT.sourceCoverageAnchorId}" class="anchor-target" aria-hidden="true"></span>
     ${sourceCoverage}
@@ -1380,5 +1415,6 @@ module.exports = {
   getHandoffDestination,
   getSummaryPreview,
   renderArticleCard,
+  renderInsightContext,
   safeArticleLink,
 };

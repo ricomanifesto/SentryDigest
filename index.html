@@ -101,6 +101,7 @@
     .source-quiet-feeds { color: var(--muted); display: flex; flex: 1 1 100%; flex-wrap: wrap; font-size: 12px; gap: 6px 12px; }
     .source-health-note { display: inline-flex; gap: 4px; }
     .source-health-note[data-health-status="stale"] { color: var(--fg); font-weight: 650; }
+    .insight-context { color: var(--muted); font-size: 12px; margin: 8px 0 0; }
     .source-filter-status { color: var(--muted); flex: 0 1 auto; font-size: 12px; font-weight: 700; }
     .source-coverage a { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
     .source-coverage a:hover { text-decoration: underline; }
@@ -248,6 +249,8 @@
     </section>
     <nav class="issue-trail" aria-label="Digest navigation">
       <span class="issue-trail-current" aria-current="page">Current digest</span>
+      <a class="previous-issues" href="./archive/" aria-label="Open previous digest issues">Previous issues</a>
+      <a class="previous-issue" href="./archive/2026-08-13/" aria-label="Open digest issue for August 13, 2026"><time datetime="2026-08-13T00:00:00.000Z">Aug 13</time></a>
       <a href="./feed.xml" aria-label="Open generated RSS feed">RSS feed</a>
       <a href="#sourceCoverage">Source coverage</a>
       <span class="issue-trail-meta">Updated <time datetime="2026-08-14T04:51:41.873Z">04:51 UTC · Aug 14</time></span>
