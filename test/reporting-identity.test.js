@@ -21,6 +21,19 @@ test('reporting identity contract v1 is immutable', () => {
   assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'), CONTRACT_SHA256);
 });
 
+test('reporting identity contract documents owner-first version adoption', () => {
+  const runbook = fs.readFileSync(path.join(__dirname, '../contracts/README.md'), 'utf8');
+
+  assert.match(runbook, /SentryDigest owns/i);
+  assert.match(runbook, /versions are immutable/i);
+  assert.match(runbook, /reporting-identity-v2\.json/);
+  assert.match(runbook, /owner first/i);
+  assert.match(runbook, /SentryInsight/);
+  assert.match(runbook, /GRCInsight/);
+  assert.match(runbook, /CI rejects/i);
+  assert.match(runbook, /retire/i);
+});
+
 for (const vector of contract.accepted) {
   test(`reporting identity contract accepts ${vector.name}`, () => {
     assert.equal(normalizeArticleUrl(vector.input), vector.normalized);
