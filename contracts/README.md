@@ -41,6 +41,12 @@ version bump with corresponding validation and rendering support. Historical
 schemas remain readable under their released rules and never infer missing
 provenance.
 
+The same retention doctrine applies across the product family. Released
+SentryInsight report snapshots and GRCInsight dated publication pages keep
+their reader-visible evidence immutable under the published schema. Corrections
+or added provenance publish as a new dated artifact or explicit schema version
+rather than rewriting historical evidence in place.
+
 ## Current family gate inventory
 
 The current contract and verifier are enforced by these six consumer workflows:

@@ -40,6 +40,10 @@ test('reporting identity contract documents owner-first version adoption', () =>
   assert.match(runbook, /additive provenance/i);
   assert.match(runbook, /schema\s+version/i);
   assert.match(runbook, /never infer missing\s+provenance/i);
+  assert.match(runbook, /SentryInsight report snapshots/i);
+  assert.match(runbook, /GRCInsight dated publication pages/i);
+  assert.match(runbook, /new dated artifact or explicit schema version/i);
+  assert.match(runbook, /rather than rewriting historical evidence in place/i);
 });
 
 for (const vector of contract.accepted) {
