@@ -102,6 +102,16 @@ test('pre-rendered cards remain readable without JavaScript', async ({ browser }
   expect(response?.ok()).toBeTruthy();
   expect(await page.locator('article.news-item').count()).toBeGreaterThan(0);
   await expect(page.locator('article.news-item').first()).toBeVisible();
+  const continuations = page.locator('a.summary-continuation');
+  expect(await continuations.count()).toBeGreaterThan(0);
+  const continuation = continuations.first();
+  const card = continuation.locator('xpath=ancestor::article[1]');
+  await expect(continuation).toBeVisible();
+  await expect(continuation).toHaveAccessibleName(/^Continue reading at /);
+  await expect(continuation).toHaveAttribute(
+    'href',
+    await card.locator('.news-title a').getAttribute('href'),
+  );
   await context.close();
 });
 
