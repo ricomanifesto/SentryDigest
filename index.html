@@ -227,7 +227,7 @@
       </select>
       <select id="ageFilter" class="select" aria-label="Filter by article age">
         <option value="">Any age</option>
-        <option value="Recent">Recent</option>
+        <option value="Fresh">Fresh</option><option value="Recent">Recent</option>
       </select>
       <select id="handoffFilter" class="select" aria-label="Filter by downstream handoff cue">
         <option value="">All handoff cues</option>
@@ -242,7 +242,7 @@
     <div class="stats" id="stats">Showing 30 of 30 articles from 3 sources</div>
     <section class="issue-strip" aria-label="Digest issue metadata">
       <span class="issue-label">Current issue</span>
-      <time datetime="2026-08-14T07:38:32.160Z">August 14, 2026</time>
+      <time datetime="2026-08-14T10:07:50.900Z">August 14, 2026</time>
       <span class="issue-stat"><strong>30</strong> articles</span>
       <span class="issue-stat"><strong>3</strong> sources</span>
       <a class="issue-link" href="./feed.xml" aria-label="Open rolling RSS feed">Rolling RSS feed</a>
@@ -253,7 +253,7 @@
       <a class="previous-issue" href="./archive/2026-08-13/" aria-label="Open digest issue for August 13, 2026"><time datetime="2026-08-13T00:00:00.000Z">Aug 13</time></a>
       <a href="./feed.xml" aria-label="Open generated RSS feed">RSS feed</a>
       <a href="#sourceCoverage">Source coverage</a>
-      <span class="issue-trail-meta">Updated <time datetime="2026-08-14T07:38:32.160Z">07:38 UTC · Aug 14</time></span>
+      <span class="issue-trail-meta">Updated <time datetime="2026-08-14T10:07:50.900Z">10:07 UTC · Aug 14</time></span>
       <span class="issue-trail-meta">3h cadence</span>
     </nav>
     <div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true" hidden></div>
@@ -286,8 +286,8 @@
     <section class="operator-lanes" aria-label="Operator scan lanes">
       <article class="operator-lane" data-lane="Incident watch" data-lane-cue="SentryInsight: incident watch">
         <a class="operator-lane-heading" data-lane-destination href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">Incident watch</a>
-        <span class="operator-lane-count" data-lane-count><strong>12</strong> items</span>
-        <a href="https://www.bleepingcomputer.com/news/security/akira-hackers-disable-edr-with-safe-mode-steal-data-but-fail-to-encrypt/" class="operator-lane-link" data-lane-link>Akira hackers disable EDR with Safe Mode, steal data but fail to encrypt</a>
+        <span class="operator-lane-count" data-lane-count><strong>13</strong> items</span>
+        <a href="https://www.bleepingcomputer.com/news/security/data-analyst-sent-to-prison-for-stealing-data-extorting-employer/" class="operator-lane-link" data-lane-link>Data analyst sent to prison for stealing data, extorting employer</a>
         <span class="operator-lane-empty" data-lane-empty hidden>No current match</span>
       </article><article class="operator-lane" data-lane="Vulnerability triage" data-lane-cue="SentryInsight: vuln triage">
         <a class="operator-lane-heading" data-lane-destination href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">Vulnerability triage</a>
@@ -303,11 +303,26 @@
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" id="reporting-de4f35c2e82c" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Data analyst sent to prison for stealing data, extorting employer" data-summary="A former data analyst contractor for Brightly Software has been sentenced to two years in prison for targeting his employer in a $2.5 million extortion scheme…" data-severity="Critical" data-tags="Ransomware" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Fresh" data-published-at="2026-08-14T08:27:18.000Z">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip"><span class="dot"></span>Bleeping Computer · bleepingcomputer.com</span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>1h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/data-analyst-sent-to-prison-for-stealing-data-extorting-employer/" target="_blank" rel="noopener">Data analyst sent to prison for stealing data, extorting employer</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-08-14T08:27:18.000Z">August 14, 2026 at 8:27 AM UTC</time>
+            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-de4f35c2e82c" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Ransomware</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a></div>
+          <p class="news-summary">A former data analyst contractor for Brightly Software has been sentenced to two years in prison for targeting his employer in a $2.5 million extortion scheme…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/data-analyst-sent-to-prison-for-stealing-data-extorting-employer/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
         <article class="news-item" id="reporting-df1d901c6dd9" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Apple sends new ‘Threat Notification’ alerts over mercenary spyware attacks" data-summary="You&#39;re not alone if you just received an &quot;Apple Threat Notification&quot; saying it detected a &quot;mercenary spyware attack targeted at your iPhone.&quot;…" data-severity="Elevated" data-tags="Malware" data-vendors="Apple" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-08-14T01:19:12.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip"><span class="dot"></span>Bleeping Computer · bleepingcomputer.com</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>6h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>8h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/apple/apple-sends-new-threat-notification-alerts-over-mercenary-spyware-attacks/" target="_blank" rel="noopener">Apple sends new ‘Threat Notification’ alerts over mercenary spyware attacks</a></h2>
           <div class="news-meta">
@@ -321,7 +336,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip"><span class="dot"></span>Bleeping Computer · bleepingcomputer.com</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>10h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>12h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/ukraine-shuts-down-94-fraudulent-call-centers-seize-millions-in-cash/" target="_blank" rel="noopener">Ukraine shuts down 94 fraudulent call centers, seize millions in cash</a></h2>
           <div class="news-meta">
@@ -334,7 +349,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip"><span class="dot"></span>Bleeping Computer · bleepingcomputer.com</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>10h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>13h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/akira-hackers-disable-edr-with-safe-mode-steal-data-but-fail-to-encrypt/" target="_blank" rel="noopener">Akira hackers disable EDR with Safe Mode, steal data but fail to encrypt</a></h2>
           <div class="news-meta">
@@ -348,7 +363,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip"><span class="dot"></span>Dark Reading · darkreading.com</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>10h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>13h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/global-threat-campaign-critical-vmware-vcenter-flaw" target="_blank" rel="noopener">Global Threat Campaign Hits Critical VMware vCenter Flaw</a></h2>
           <div class="news-meta">
@@ -362,7 +377,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip"><span class="dot"></span>Bleeping Computer · bleepingcomputer.com</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>13h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>15h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hackers-breach-govt-webmail-while-running-parallel-crypto-fraud/" target="_blank" rel="noopener">Hackers breach govt webmail while running parallel crypto fraud</a></h2>
           <div class="news-meta">
@@ -376,7 +391,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip"><span class="dot"></span>Bleeping Computer · bleepingcomputer.com</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>13h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>16h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-patches-legacyhive-windows-zero-day-vulnerability/" target="_blank" rel="noopener">Microsoft patches LegacyHive Windows zero-day vulnerability</a></h2>
           <div class="news-meta">
@@ -390,7 +405,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip"><span class="dot"></span>Bleeping Computer · bleepingcomputer.com</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>14h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>16h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/ai-watermark-removers-flood-the-web-almost-none-can-prove-they-work/" target="_blank" rel="noopener">AI &#39;watermark removers&#39; flood the web. Almost none can prove they work.</a></h2>
           <div class="news-meta">
@@ -404,7 +419,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip"><span class="dot"></span>Bleeping Computer · bleepingcomputer.com</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>14h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>17h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/critical-vmware-vcenter-rce-flaw-exploited-for-reverse-ssh-access/" target="_blank" rel="noopener">Critical VMware vCenter RCE flaw exploited for reverse SSH access</a></h2>
           <div class="news-meta">
@@ -418,7 +433,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip"><span class="dot"></span>Bleeping Computer · bleepingcomputer.com</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>16h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>18h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/trezor-discloses-data-breach-affecting-nearly-14-000-customers/" target="_blank" rel="noopener">Trezor discloses data breach affecting nearly 14,000 customers</a></h2>
           <div class="news-meta">
@@ -432,7 +447,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip"><span class="dot"></span>Bleeping Computer · bleepingcomputer.com</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>17h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>20h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/who-vets-ais-code-the-scale-challenge-facing-open-source-ingestion/" target="_blank" rel="noopener">Who Vets AI’s Code? The Scale Challenge Facing Open Source Ingestion</a></h2>
           <div class="news-meta">
@@ -446,7 +461,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip"><span class="dot"></span>Bleeping Computer · bleepingcomputer.com</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>18h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>20h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/white-house-taps-security-firms-for-offensive-hack-back-operations/" target="_blank" rel="noopener">White House taps security firms for offensive hack-back operations</a></h2>
           <div class="news-meta">
@@ -459,7 +474,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip"><span class="dot"></span>Bleeping Computer · bleepingcomputer.com</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>19h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>22h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/whatsapp-rolls-out-new-feature-that-flags-potential-scam-messages/" target="_blank" rel="noopener">WhatsApp rolls out new feature that flags potential scam messages</a></h2>
           <div class="news-meta">
@@ -473,7 +488,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip"><span class="dot"></span>Dark Reading · darkreading.com</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>21h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/jewelbug-apt-state-espionage-cryptocurrency-theft" target="_blank" rel="noopener">&#39;Jewelbug&#39; APT Balances State Espionage &amp; Cryptocurrency Theft</a></h2>
           <div class="news-meta">
@@ -565,20 +580,6 @@
           <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/#cve-2026-71362" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vuln triage</a></div>
           <p class="news-summary">Attempts to exploit a critical vulnerability (CVE-2026-71362) in Adobe&#39;s Commerce and Magento e-commerce platforms have been detected, potentially allowing attackers to hijack customer accounts…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/hackers-exploit-critical-adobe-commerce-flaw-to-hijack-customer-accounts/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
-        </article>
-        <article class="news-item" id="reporting-fb395f64dd22" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Hundreds of fake Chrome VPN extensions route traffic through a proxy" data-summary="More than 737 browser extensions published on the Chrome Web Store impersonated well-known VPN and proxy services while routing users&#39; traffic through SOCKS5 proxies operated by a single provider…" data-severity="Monitor" data-tags="" data-vendors="Google" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-08-12T18:54:57.000Z">
-          <div class="chips">
-            <span class="severity severity-monitor">Monitor</span>
-            <span class="chip"><span class="dot"></span>Bleeping Computer · bleepingcomputer.com</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hundreds-of-fake-chrome-vpn-extensions-route-traffic-through-a-proxy/" target="_blank" rel="noopener">Hundreds of fake Chrome VPN extensions route traffic through a proxy</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-08-12T18:54:57.000Z">August 12, 2026 at 6:54 PM UTC</time><a class="item-permalink" href="#reporting-fb395f64dd22" aria-label="Permalink to this reporting item">Permalink</a>
-          </div>
-          <div class="facet-row"><span class="chip">Google</span></div>
-          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vendor watch</a></div>
-          <p class="news-summary">More than 737 browser extensions published on the Chrome Web Store impersonated well-known VPN and proxy services while routing users&#39; traffic through SOCKS5 proxies operated by a single provider…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/hundreds-of-fake-chrome-vpn-extensions-route-traffic-through-a-proxy/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
         </article>
         <article class="news-item" id="reporting-3fd53cb513b8" data-source="The Hacker News" data-host="thehackernews.com" data-title="Lazarus Exploits Windows Zero-Day to Gain SYSTEM Access and Deploy Backdoor" data-summary="The North Korean threat actor known as Lazarus Group has been attributed to the zero-day exploitation of a newly patched security flaw impacting Microsoft Windows to deliver a never-before-seen backdoor targeting defense and aerospace companies across France, Germany, Brazil, and India. The activity, per Check Point Research, is part of Operation Dream Job, a long-running cyber espionage and…" data-severity="Critical" data-tags="Vulnerability,Exploitation,Malware" data-vendors="Microsoft" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-08-12T17:39:27.000Z">
           <div class="chips">
@@ -693,7 +694,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip"><span class="dot"></span>The Hacker News · thehackernews.com</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/attackers-exploit-vmware-vcenter.html" target="_blank" rel="noopener">Attackers Exploit VMware vCenter Vulnerability to Gain Persistent Remote Access</a></h2>
           <div class="news-meta">
@@ -707,7 +708,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip"><span class="dot"></span>The Hacker News · thehackernews.com</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/malicious-litellm-releases-tied-to.html" target="_blank" rel="noopener">Malicious LiteLLM Releases Tied to Trivy Hack May Have Exposed 2,100+ Organizations</a></h2>
           <div class="news-meta">
