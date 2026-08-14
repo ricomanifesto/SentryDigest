@@ -153,7 +153,9 @@
     .news-title { font-size: 1.06rem; margin: 6px 0 8px; }
     .news-title a { color: var(--fg); text-decoration: none; }
     .news-title a:hover { text-decoration: underline; }
-    .news-meta { color: var(--muted); font-size: 0.85rem; display: flex; gap: 8px; align-items: baseline; }
+    .news-meta { color: var(--muted); font-size: 0.85rem; display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; }
+    .item-permalink { color: var(--accent); font-weight: 600; text-decoration: none; }
+    .item-permalink:hover, .item-permalink:focus-visible { text-decoration: underline; }
     .badge-new { color: #16a34a; font-weight: 600; font-size: 0.8rem; }
     .news-summary { margin-top: 8px; color: var(--fg); opacity: 0.9; }
     .summary-disclosure { margin-top: 8px; }
@@ -307,7 +309,7 @@
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/apple/apple-sends-new-threat-notification-alerts-over-mercenary-spyware-attacks/" target="_blank" rel="noopener">Apple sends new ‘Threat Notification’ alerts over mercenary spyware attacks</a></h2>
           <div class="news-meta">
             <time datetime="2026-08-14T01:19:12.000Z">August 14, 2026 at 1:19 AM UTC</time>
-            <span class="badge-new">NEW</span>
+            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-df1d901c6dd9" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Apple</span><span class="chip">Malware</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vendor watch</a></div>
@@ -321,7 +323,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/ukraine-shuts-down-94-fraudulent-call-centers-seize-millions-in-cash/" target="_blank" rel="noopener">Ukraine shuts down 94 fraudulent call centers, seize millions in cash</a></h2>
           <div class="news-meta">
-            <time datetime="2026-08-13T21:12:47.000Z">August 13, 2026 at 9:12 PM UTC</time>
+            <time datetime="2026-08-13T21:12:47.000Z">August 13, 2026 at 9:12 PM UTC</time><a class="item-permalink" href="#reporting-2ef1deb56f00" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: monitor</a></div>
           <p class="news-summary">Authorities in Ukraine shut down 94 fraudulent call centers across the country that lured people into investment scams or tried to obtain access to bank accounts…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/ukraine-shuts-down-94-fraudulent-call-centers-seize-millions-in-cash/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
@@ -334,7 +336,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/akira-hackers-disable-edr-with-safe-mode-steal-data-but-fail-to-encrypt/" target="_blank" rel="noopener">Akira hackers disable EDR with Safe Mode, steal data but fail to encrypt</a></h2>
           <div class="news-meta">
-            <time datetime="2026-08-13T20:47:02.000Z">August 13, 2026 at 8:47 PM UTC</time>
+            <time datetime="2026-08-13T20:47:02.000Z">August 13, 2026 at 8:47 PM UTC</time><a class="item-permalink" href="#reporting-dace2be75c67" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Ransomware</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a></div>
@@ -348,7 +350,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/global-threat-campaign-critical-vmware-vcenter-flaw" target="_blank" rel="noopener">Global Threat Campaign Hits Critical VMware vCenter Flaw</a></h2>
           <div class="news-meta">
-            <time datetime="2026-08-13T20:45:17.000Z">August 13, 2026 at 8:45 PM UTC</time>
+            <time datetime="2026-08-13T20:45:17.000Z">August 13, 2026 at 8:45 PM UTC</time><a class="item-permalink" href="#reporting-7a20fee85e3d" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">VMware</span><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vuln triage</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vendor watch</a></div>
@@ -362,7 +364,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hackers-breach-govt-webmail-while-running-parallel-crypto-fraud/" target="_blank" rel="noopener">Hackers breach govt webmail while running parallel crypto fraud</a></h2>
           <div class="news-meta">
-            <time datetime="2026-08-13T18:15:19.000Z">August 13, 2026 at 6:15 PM UTC</time>
+            <time datetime="2026-08-13T18:15:19.000Z">August 13, 2026 at 6:15 PM UTC</time><a class="item-permalink" href="#reporting-209727c80af4" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Data Breach</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a></div>
@@ -376,7 +378,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-patches-legacyhive-windows-zero-day-vulnerability/" target="_blank" rel="noopener">Microsoft patches LegacyHive Windows zero-day vulnerability</a></h2>
           <div class="news-meta">
-            <time datetime="2026-08-13T17:46:20.000Z">August 13, 2026 at 5:46 PM UTC</time>
+            <time datetime="2026-08-13T17:46:20.000Z">August 13, 2026 at 5:46 PM UTC</time><a class="item-permalink" href="#reporting-8e33415aceb9" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Microsoft</span><span class="chip">Vulnerability</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vuln triage</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vendor watch</a></div>
@@ -390,7 +392,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/ai-watermark-removers-flood-the-web-almost-none-can-prove-they-work/" target="_blank" rel="noopener">AI &#39;watermark removers&#39; flood the web. Almost none can prove they work.</a></h2>
           <div class="news-meta">
-            <time datetime="2026-08-13T17:33:28.000Z">August 13, 2026 at 5:33 PM UTC</time>
+            <time datetime="2026-08-13T17:33:28.000Z">August 13, 2026 at 5:33 PM UTC</time><a class="item-permalink" href="#reporting-00e63bf6755c" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">GitHub</span><span class="chip">AI Security</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vendor watch</a></div>
@@ -404,7 +406,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/critical-vmware-vcenter-rce-flaw-exploited-for-reverse-ssh-access/" target="_blank" rel="noopener">Critical VMware vCenter RCE flaw exploited for reverse SSH access</a></h2>
           <div class="news-meta">
-            <time datetime="2026-08-13T16:40:23.000Z">August 13, 2026 at 4:40 PM UTC</time>
+            <time datetime="2026-08-13T16:40:23.000Z">August 13, 2026 at 4:40 PM UTC</time><a class="item-permalink" href="#reporting-a4f4d669c4c8" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">VMware</span><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/#cve-2026-59310" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vuln triage</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vendor watch</a></div>
@@ -418,7 +420,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/trezor-discloses-data-breach-affecting-nearly-14-000-customers/" target="_blank" rel="noopener">Trezor discloses data breach affecting nearly 14,000 customers</a></h2>
           <div class="news-meta">
-            <time datetime="2026-08-13T15:13:19.000Z">August 13, 2026 at 3:13 PM UTC</time>
+            <time datetime="2026-08-13T15:13:19.000Z">August 13, 2026 at 3:13 PM UTC</time><a class="item-permalink" href="#reporting-edfb56fa72f5" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Data Breach</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a></div>
@@ -432,7 +434,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/who-vets-ais-code-the-scale-challenge-facing-open-source-ingestion/" target="_blank" rel="noopener">Who Vets AI’s Code? The Scale Challenge Facing Open Source Ingestion</a></h2>
           <div class="news-meta">
-            <time datetime="2026-08-13T14:00:10.000Z">August 13, 2026 at 2:00 PM UTC</time>
+            <time datetime="2026-08-13T14:00:10.000Z">August 13, 2026 at 2:00 PM UTC</time><a class="item-permalink" href="#reporting-93f55ea09cbb" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">AI Security</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: monitor</a></div>
@@ -446,7 +448,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/white-house-taps-security-firms-for-offensive-hack-back-operations/" target="_blank" rel="noopener">White House taps security firms for offensive hack-back operations</a></h2>
           <div class="news-meta">
-            <time datetime="2026-08-13T13:30:53.000Z">August 13, 2026 at 1:30 PM UTC</time>
+            <time datetime="2026-08-13T13:30:53.000Z">August 13, 2026 at 1:30 PM UTC</time><a class="item-permalink" href="#reporting-9e7d15923e3e" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: monitor</a></div>
           <p class="news-summary">A new White House memo signed by U.S. President Donald Trump instructs the National Coordination Center (NCC) to establish a program that would allow private security companies to apply for approval to hack foreign cybercrime organizations…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/white-house-taps-security-firms-for-offensive-hack-back-operations/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
@@ -459,7 +461,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/whatsapp-rolls-out-new-feature-that-flags-potential-scam-messages/" target="_blank" rel="noopener">WhatsApp rolls out new feature that flags potential scam messages</a></h2>
           <div class="news-meta">
-            <time datetime="2026-08-13T11:50:22.000Z">August 13, 2026 at 11:50 AM UTC</time>
+            <time datetime="2026-08-13T11:50:22.000Z">August 13, 2026 at 11:50 AM UTC</time><a class="item-permalink" href="#reporting-cbd654156986" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">AI Security</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: monitor</a></div>
@@ -473,7 +475,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/jewelbug-apt-state-espionage-cryptocurrency-theft" target="_blank" rel="noopener">&#39;Jewelbug&#39; APT Balances State Espionage &amp; Cryptocurrency Theft</a></h2>
           <div class="news-meta">
-            <time datetime="2026-08-13T10:00:00.000Z">August 13, 2026 at 10:00 AM UTC</time>
+            <time datetime="2026-08-13T10:00:00.000Z">August 13, 2026 at 10:00 AM UTC</time><a class="item-permalink" href="#reporting-0d9304a57c79" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: monitor</a></div>
           <p class="news-summary">Researchers discovered hackers-for-hire performing cyber espionage and financially motivated heists from the same Web panel.</p>
@@ -486,7 +488,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/application-security/belgium-eid-authentication-citizen-accounts-rce" target="_blank" rel="noopener">Belgium&#39;s eID Authentication Opens Citizen Accounts to RCE</a></h2>
           <div class="news-meta">
-            <time datetime="2026-08-13T07:00:00.000Z">August 13, 2026 at 7:00 AM UTC</time>
+            <time datetime="2026-08-13T07:00:00.000Z">August 13, 2026 at 7:00 AM UTC</time><a class="item-permalink" href="#reporting-6ad3c57e750e" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Vulnerability</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vuln triage</a></div>
@@ -500,7 +502,7 @@
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/attackers-exploit-sharepoint.html" target="_blank" rel="noopener">Attackers Exploit SharePoint Authentication Bypass After Public PoC Release</a></h2>
           <div class="news-meta">
-            <time datetime="2026-08-13T06:09:48.000Z">August 13, 2026 at 6:09 AM UTC</time>
+            <time datetime="2026-08-13T06:09:48.000Z">August 13, 2026 at 6:09 AM UTC</time><a class="item-permalink" href="#reporting-3c5ef5fa5324" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Microsoft</span><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vuln triage</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vendor watch</a></div>
@@ -514,7 +516,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/city-forum-data-theft-attacks-target-salesforce-servicenow-portals/" target="_blank" rel="noopener">&quot;City-Forum&quot; data-theft attacks target Salesforce, ServiceNow portals</a></h2>
           <div class="news-meta">
-            <time datetime="2026-08-12T23:07:23.000Z">August 12, 2026 at 11:07 PM UTC</time>
+            <time datetime="2026-08-12T23:07:23.000Z">August 12, 2026 at 11:07 PM UTC</time><a class="item-permalink" href="#reporting-1d2292fea9dd" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Data Breach</span><span class="chip">Cloud</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a></div>
@@ -528,7 +530,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/android-malware-combo-takes-out-loans-and-relays-victims-credit-cards/" target="_blank" rel="noopener">Android malware combo takes out loans and relays victims&#39; credit cards</a></h2>
           <div class="news-meta">
-            <time datetime="2026-08-12T22:22:57.000Z">August 12, 2026 at 10:22 PM UTC</time>
+            <time datetime="2026-08-12T22:22:57.000Z">August 12, 2026 at 10:22 PM UTC</time><a class="item-permalink" href="#reporting-f2480e43b37d" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Google</span><span class="chip">Malware</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vendor watch</a></div>
@@ -542,7 +544,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/long-running-data-theft-campaign-salesforce-servicenow" target="_blank" rel="noopener">Long-running Data Theft Campaign Targeting Salesforce, ServiceNow</a></h2>
           <div class="news-meta">
-            <time datetime="2026-08-12T21:08:54.000Z">August 12, 2026 at 9:08 PM UTC</time>
+            <time datetime="2026-08-12T21:08:54.000Z">August 12, 2026 at 9:08 PM UTC</time><a class="item-permalink" href="#reporting-5c0ecb74e8a5" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Data Breach</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a></div>
@@ -556,7 +558,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hackers-exploit-critical-adobe-commerce-flaw-to-hijack-customer-accounts/" target="_blank" rel="noopener">Hackers exploit critical Adobe Commerce flaw to hijack customer accounts</a></h2>
           <div class="news-meta">
-            <time datetime="2026-08-12T20:54:59.000Z">August 12, 2026 at 8:54 PM UTC</time>
+            <time datetime="2026-08-12T20:54:59.000Z">August 12, 2026 at 8:54 PM UTC</time><a class="item-permalink" href="#reporting-815318592eae" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/#cve-2026-71362" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vuln triage</a></div>
@@ -570,7 +572,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hundreds-of-fake-chrome-vpn-extensions-route-traffic-through-a-proxy/" target="_blank" rel="noopener">Hundreds of fake Chrome VPN extensions route traffic through a proxy</a></h2>
           <div class="news-meta">
-            <time datetime="2026-08-12T18:54:57.000Z">August 12, 2026 at 6:54 PM UTC</time>
+            <time datetime="2026-08-12T18:54:57.000Z">August 12, 2026 at 6:54 PM UTC</time><a class="item-permalink" href="#reporting-fb395f64dd22" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Google</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vendor watch</a></div>
@@ -584,7 +586,7 @@
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/lazarus-exploits-windows-zero-day-to.html" target="_blank" rel="noopener">Lazarus Exploits Windows Zero-Day to Gain SYSTEM Access and Deploy Backdoor</a></h2>
           <div class="news-meta">
-            <time datetime="2026-08-12T17:39:27.000Z">August 12, 2026 at 5:39 PM UTC</time>
+            <time datetime="2026-08-12T17:39:27.000Z">August 12, 2026 at 5:39 PM UTC</time><a class="item-permalink" href="#reporting-3fd53cb513b8" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Microsoft</span><span class="chip">Vulnerability</span><span class="chip">Exploitation</span><span class="chip">Malware</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vuln triage</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vendor watch</a></div>
@@ -598,7 +600,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/walmart-trusted-agent-approach-purple-teaming" target="_blank" rel="noopener">Walmart Takes a &#39;Trusted Agent&#39; Approach to Purple Teaming</a></h2>
           <div class="news-meta">
-            <time datetime="2026-08-12T16:28:04.000Z">August 12, 2026 at 4:28 PM UTC</time>
+            <time datetime="2026-08-12T16:28:04.000Z">August 12, 2026 at 4:28 PM UTC</time><a class="item-permalink" href="#reporting-64f0c9a81850" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: monitor</a></div>
           <p class="news-summary">Walmart colocates red and blue teams to build trust and improve security through collaborative purple teaming exercises</p>
@@ -611,7 +613,7 @@
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/737-chrome-vpn-extensions-caught.html" target="_blank" rel="noopener">737 Chrome VPN Extensions Caught Routing Traffic Through Proxies. Check If You Have One</a></h2>
           <div class="news-meta">
-            <time datetime="2026-08-12T14:09:50.000Z">August 12, 2026 at 2:09 PM UTC</time>
+            <time datetime="2026-08-12T14:09:50.000Z">August 12, 2026 at 2:09 PM UTC</time><a class="item-permalink" href="#reporting-dc7fe6e1bf20" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Google</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vendor watch</a></div>
@@ -625,7 +627,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/ransomware-hits-colombian-justice-ministry-presidential-transition" target="_blank" rel="noopener">Ransomware Hits Colombian Justice Ministry Days Before Presidential Transition</a></h2>
           <div class="news-meta">
-            <time datetime="2026-08-12T14:00:00.000Z">August 12, 2026 at 2:00 PM UTC</time>
+            <time datetime="2026-08-12T14:00:00.000Z">August 12, 2026 at 2:00 PM UTC</time><a class="item-permalink" href="#reporting-724af19cb2b3" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Ransomware</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a></div>
@@ -639,7 +641,7 @@
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/walmart-leaders-transform-security-operations-without-going-bananas" target="_blank" rel="noopener">Walmart Leaders Transform Security Operations Without Going Bananas</a></h2>
           <div class="news-meta">
-            <time datetime="2026-08-12T12:41:03.000Z">August 12, 2026 at 12:41 PM UTC</time>
+            <time datetime="2026-08-12T12:41:03.000Z">August 12, 2026 at 12:41 PM UTC</time><a class="item-permalink" href="#reporting-61ed7624ab7f" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: monitor</a></div>
           <p class="news-summary">The big-box giant has scaled its defenses by encouraging trust and innovation. Good communications, transparency, and team spirit are key factors.</p>
@@ -652,7 +654,7 @@
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/openai-anthropic-google-api-flaw-let.html" target="_blank" rel="noopener">OpenAI, Anthropic, Google API Flaw Let Weaker AI Models Decode Stronger Models&#39; Reasoning</a></h2>
           <div class="news-meta">
-            <time datetime="2026-08-12T11:47:38.000Z">August 12, 2026 at 11:47 AM UTC</time>
+            <time datetime="2026-08-12T11:47:38.000Z">August 12, 2026 at 11:47 AM UTC</time><a class="item-permalink" href="#reporting-685f5af5505e" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Google</span><span class="chip">OpenAI</span><span class="chip">Vulnerability</span><span class="chip">Identity</span><span class="chip">AI Security</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vuln triage</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vendor watch</a></div>
@@ -666,7 +668,7 @@
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/enterprise-defenses-recovered-at-edge.html" target="_blank" rel="noopener">Enterprise Defenses Recovered at the Edge and Collapsed Inside</a></h2>
           <div class="news-meta">
-            <time datetime="2026-08-12T11:41:34.000Z">August 12, 2026 at 11:41 AM UTC</time>
+            <time datetime="2026-08-12T11:41:34.000Z">August 12, 2026 at 11:41 AM UTC</time><a class="item-permalink" href="#reporting-45d8ead53c3f" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: monitor</a></div>
           <p class="news-summary">Enterprise defenses are tuned to catch the attacks that make noise. This year&#39;s data shows attackers winning by making none. According to Picus Labs&#39; new Blue Report 2026, which measured more than 338 million real attack simulations across actual client production environments in the first half of 2026, defenses are having one of their strongest years yet. Average prevention effectiveness…</p><a class="summary-continuation" href="https://thehackernews.com/2026/08/enterprise-defenses-recovered-at-edge.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
@@ -679,7 +681,7 @@
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/adobe-patches-three-cvss-100-coldfusion.html" target="_blank" rel="noopener">Adobe Patches Three CVSS 10.0 ColdFusion and Campaign Classic Flaws</a></h2>
           <div class="news-meta">
-            <time datetime="2026-08-12T11:13:03.000Z">August 12, 2026 at 11:13 AM UTC</time>
+            <time datetime="2026-08-12T11:13:03.000Z">August 12, 2026 at 11:13 AM UTC</time><a class="item-permalink" href="#reporting-ee8b70611ea8" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vuln triage</a></div>
@@ -693,7 +695,7 @@
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/attackers-exploit-vmware-vcenter.html" target="_blank" rel="noopener">Attackers Exploit VMware vCenter Vulnerability to Gain Persistent Remote Access</a></h2>
           <div class="news-meta">
-            <time datetime="2026-08-12T09:01:54.000Z">August 12, 2026 at 9:01 AM UTC</time>
+            <time datetime="2026-08-12T09:01:54.000Z">August 12, 2026 at 9:01 AM UTC</time><a class="item-permalink" href="#reporting-76131b338445" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">VMware</span><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vuln triage</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vendor watch</a></div>
@@ -707,7 +709,7 @@
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/malicious-litellm-releases-tied-to.html" target="_blank" rel="noopener">Malicious LiteLLM Releases Tied to Trivy Hack May Have Exposed 2,100+ Organizations</a></h2>
           <div class="news-meta">
-            <time datetime="2026-08-12T08:04:52.000Z">August 12, 2026 at 8:04 AM UTC</time>
+            <time datetime="2026-08-12T08:04:52.000Z">August 12, 2026 at 8:04 AM UTC</time><a class="item-permalink" href="#reporting-ef7a70b327b6" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Kubernetes</span><span class="chip">Identity</span><span class="chip">Cloud</span><span class="chip">Supply Chain</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vendor watch</a></div>

@@ -5,6 +5,10 @@ const { generateHTML } = require('./render-news-html');
 const { assertNewsDataContract } = require('./news-data-contract');
 const { assertSourceConfigContract } = require('./source-config-contract');
 const {
+  getCurrentInsightCves,
+  loadCurrentInsightFindings,
+} = require('./current-insight-findings');
+const {
   newestContributionTimestamp,
   updateSourceContributionHistory,
   collectSourceHealth,
@@ -272,6 +276,7 @@ function writeGeneratedNewsArtifacts(options) {
     now = new Date(),
     previousNewsItems,
     sourceContributions = [],
+    currentInsightCves = null,
   } = options;
   const config = sourceConfig.config;
   const sources = sourceConfig.enabledRssSources;
@@ -295,6 +300,7 @@ function writeGeneratedNewsArtifacts(options) {
   const sourceHealth = collectSourceHealth(generatedNewsItems, sources);
 
   const html = generateHTML(generatedNewsItems, {
+    currentInsightCves,
     generatedAt: now,
     sourceHealth,
   });
@@ -314,6 +320,7 @@ function writeGeneratedNewsArtifacts(options) {
 // Main function
 async function main() {
   try {
+    const now = new Date();
     const sourceConfig = loadSourceConfig();
     const sources = sourceConfig.enabledRssSources;
     
@@ -322,8 +329,14 @@ async function main() {
     const snapshot = await fetchNewsSnapshot({ sourceConfig });
     console.log(`Fetched ${snapshot.newsItems.length} news items from ${sources.length} active sources`);
 
+    const insightSnapshotPath = path.join(__dirname, '../sentryinsight-findings.json');
+    const currentInsightCves = fs.existsSync(insightSnapshotPath)
+      ? getCurrentInsightCves(loadCurrentInsightFindings(insightSnapshotPath), now)
+      : null;
     writeGeneratedNewsArtifacts({
+      currentInsightCves,
       newsItems: snapshot.newsItems,
+      now,
       sourceConfig,
       sourceContributions: snapshot.sourceContributions,
     });

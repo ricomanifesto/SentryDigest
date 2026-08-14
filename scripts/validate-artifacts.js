@@ -31,6 +31,10 @@ const {
 } = require('./news-data-contract');
 const { collectSourceHealth, describeSourceHealth } = require('./source-health');
 const { articleFragment, normalizeArticleUrl } = require('./reporting-identity');
+const {
+  assertCurrentInsightFindings,
+  getCurrentInsightCves,
+} = require('./current-insight-findings');
 
 function readText(label, filePath, repoRoot, failures) {
   if (!fs.existsSync(filePath)) {
@@ -123,7 +127,7 @@ function extractArticleHrefs(indexHtml) {
   while ((articleMatch = articlePattern.exec(indexHtml)) !== null) {
     let anchorMatch;
     while ((anchorMatch = anchorPattern.exec(articleMatch[0])) !== null) {
-      if (/\bclass\s*=\s*(["'])[^"']*\b(?:handoff-cue|summary-continuation)\b[^"']*\1/i.test(anchorMatch[1])) {
+      if (/\bclass\s*=\s*(["'])[^"']*\b(?:handoff-cue|item-permalink|summary-continuation)\b[^"']*\1/i.test(anchorMatch[1])) {
         continue;
       }
       const hrefMatch = hrefPattern.exec(anchorMatch[1]);
@@ -378,13 +382,13 @@ function validateDigestLegendContract(indexHtml, newsData, failures) {
   }, failures);
 }
 
-function validateOperatorLaneContract(indexHtml, newsData, failures) {
+function validateOperatorLaneContract(indexHtml, newsData, failures, currentInsightCves = null) {
   const validArticles = newsData.filter((article) => (
     article
     && typeof article === 'object'
     && !Array.isArray(article)
   ));
-  const expectedLanes = collectOperatorLanes(validArticles);
+  const expectedLanes = collectOperatorLanes(validArticles, currentInsightCves);
   const shouldRenderLanes = expectedLanes.length > 0;
   const $ = cheerio.load(indexHtml);
   const section = $(OPERATOR_LANE_CONTRACT.sectionSelector).first();
@@ -877,7 +881,7 @@ function validateDigestArchives(repoRoot, sitemapXml, failures) {
 const ENCODED_HTML_ENTITY_PATTERN = /&(?:amp|quot|apos|lt|gt|#\d+|#x[0-9a-f]+);/i;
 const FEED_TRUNCATION_PATTERN = /\[(?:\.{3}|…)]/;
 
-function validateReaderExperience(indexHtml, newsData = [], failures = []) {
+function validateReaderExperience(indexHtml, newsData = [], failures = [], options = {}) {
   newsData.forEach((article, index) => {
     if (!article || typeof article !== 'object' || Array.isArray(article)) {
       return;
@@ -973,7 +977,7 @@ function validateReaderExperience(indexHtml, newsData = [], failures = []) {
         element,
         cue,
         `card ${cardIndex + 1} handoff cue ${cueIndex + 1}`,
-        getHandoffDestination(cue, article),
+        getHandoffDestination(cue, article, options.currentInsightCves),
       );
     });
   });
@@ -983,7 +987,8 @@ function validateReaderExperience(indexHtml, newsData = [], failures = []) {
   });
   const expectedLaneDestinations = new Map(
     collectOperatorLanes(
-      newsData.filter((article) => article && typeof article === 'object' && !Array.isArray(article))
+      newsData.filter((article) => article && typeof article === 'object' && !Array.isArray(article)),
+      options.currentInsightCves,
     ).map((lane) => [lane.cue, lane.destination])
   );
   $('.operator-lane-heading').each((index, element) => {
@@ -1011,6 +1016,35 @@ function validateReaderExperience(indexHtml, newsData = [], failures = []) {
   return failures;
 }
 
+function validateRollingPermalinks(indexHtml, newsData, failures) {
+  const $ = cheerio.load(indexHtml);
+  const cards = $('article.news-item');
+  cards.each((index, element) => {
+    const article = newsData[index];
+    if (!article || typeof article.link !== 'string') {
+      return;
+    }
+    let expectedId;
+    try {
+      expectedId = articleFragment(article.link);
+    } catch {
+      expectedId = `article-${index}`;
+    }
+    const card = $(element);
+    const permalink = card.find('a.item-permalink');
+    if (card.attr('id') !== expectedId) {
+      fail(failures, `index.html article ${index + 1} must expose stable id ${expectedId}`);
+    }
+    if (permalink.length !== 1
+        || permalink.attr('href') !== `#${expectedId}`
+        || permalink.attr('aria-label') !== 'Permalink to this reporting item'
+        || permalink.text().trim() !== 'Permalink'
+        || permalink.attr('target')) {
+      fail(failures, `index.html article ${index + 1} must expose one same-page reporting permalink`);
+    }
+  });
+}
+
 function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
   const artifacts = {
     config: path.join(repoRoot, 'config/news-sources.json'),
@@ -1018,6 +1052,7 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
     feedInfo: path.join(repoRoot, 'feed-info.json'),
     feedXml: path.join(repoRoot, 'feed.xml'),
     indexHtml: path.join(repoRoot, 'index.html'),
+    insightFindings: path.join(repoRoot, 'sentryinsight-findings.json'),
     sitemapXml: path.join(repoRoot, 'sitemap.xml'),
   };
   const failures = [];
@@ -1026,9 +1061,31 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
   const feedInfo = readJson('feed-info.json', artifacts.feedInfo, repoRoot, failures);
   const feedXml = readText('feed.xml', artifacts.feedXml, repoRoot, failures);
   const indexHtml = readText('index.html', artifacts.indexHtml, repoRoot, failures);
+  const insightFindings = readJson(
+    'sentryinsight-findings.json',
+    artifacts.insightFindings,
+    repoRoot,
+    failures,
+  );
   const sitemapXml = readText('sitemap.xml', artifacts.sitemapXml, repoRoot, failures);
 
-  validateReaderExperience(indexHtml, Array.isArray(newsData) ? newsData : [], failures);
+  let currentInsightCves = null;
+  if (insightFindings) {
+    try {
+      const manifest = assertCurrentInsightFindings(insightFindings);
+      const generatedAt = feedInfo?.lastUpdated || config?.settings?.lastUpdated || new Date(0);
+      currentInsightCves = getCurrentInsightCves(manifest, generatedAt);
+    } catch (error) {
+      fail(failures, `sentryinsight-findings.json is invalid: ${error.message}`);
+    }
+  }
+
+  validateReaderExperience(
+    indexHtml,
+    Array.isArray(newsData) ? newsData : [],
+    failures,
+    { currentInsightCves },
+  );
   validateSiteMetadata(indexHtml, sitemapXml, failures);
   validateDigestArchives(repoRoot, sitemapXml, failures);
 
@@ -1120,13 +1177,14 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
     validateIssueTrailContract(indexHtml, failures);
     validateFilterInsightsContract(indexHtml, failures);
     validateDigestLegendContract(indexHtml, newsData, failures);
-    validateOperatorLaneContract(indexHtml, newsData, failures);
+    validateOperatorLaneContract(indexHtml, newsData, failures, currentInsightCves);
     validateSourceCoverageContract(indexHtml, newsData, enabledSources, failures);
 
     const articleCount = countMatches(indexHtml, /<article class="news-item"/g);
     if (newsData.length > 0 && articleCount !== newsData.length) {
       fail(failures, `index.html renders ${articleCount} article cards, expected ${newsData.length}`);
     }
+    validateRollingPermalinks(indexHtml, newsData, failures);
 
     const articleHrefs = extractArticleHrefs(indexHtml);
     articleHrefs.forEach((href) => {

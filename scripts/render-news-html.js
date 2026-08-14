@@ -163,13 +163,21 @@ function extractArticleCves(article) {
   ));
 }
 
-function getHandoffDestination(cue, article) {
+function getHandoffDestination(cue, article, currentInsightCves = null) {
   const destination = HANDOFF_DESTINATION_CONTRACT.destinations[cue];
   if (!destination || cue !== HANDOFF_DESTINATION_CONTRACT.cveContextCue) {
     return destination;
   }
 
-  const [cve] = extractArticleCves(article);
+  const cves = extractArticleCves(article);
+  const knownCves = currentInsightCves === null || currentInsightCves === undefined
+    ? null
+    : currentInsightCves instanceof Set
+      ? currentInsightCves
+      : new Set(currentInsightCves);
+  const cve = knownCves === null
+    ? cves[0]
+    : cves.find((candidate) => knownCves.has(candidate));
   return cve ? `${destination}#${cve.toLowerCase()}` : destination;
 }
 
@@ -286,7 +294,7 @@ function collectHandoffCueLegend(newsItems) {
     }));
 }
 
-function collectOperatorLanes(newsItems) {
+function collectOperatorLanes(newsItems, currentInsightCves = null) {
   return OPERATOR_LANE_RULES.map((lane) => {
     const matchingArticles = newsItems
       .filter((article) => deriveHandoffCues(article).includes(lane.cue))
@@ -299,7 +307,7 @@ function collectOperatorLanes(newsItems) {
       count: matchingArticles.length,
       latestTitle: latestArticle ? latestArticle.title : '',
       latestLink: latestArticle ? safeArticleLink(latestArticle.link) : '#',
-      destination: getHandoffDestination(lane.cue, latestArticle),
+      destination: getHandoffDestination(lane.cue, latestArticle, currentInsightCves),
     };
   }).filter((lane) => lane.count > 0);
 }
@@ -412,8 +420,8 @@ function renderDigestLegend(newsItems) {
     </details>`;
 }
 
-function renderOperatorLanes(newsItems) {
-  const lanes = collectOperatorLanes(newsItems);
+function renderOperatorLanes(newsItems, currentInsightCves = null) {
+  const lanes = collectOperatorLanes(newsItems, currentInsightCves);
   if (lanes.length === 0) {
     return '';
   }
@@ -570,7 +578,7 @@ function renderArticleCard(article, index = 0, generatedAt = new Date(), options
   const safeAgeDetail = escapeHtml(ageBucket.detail);
   const vendorChips = facets.vendors.map((vendor) => `<span class="chip">${escapeHtml(vendor)}</span>`).join('');
   const tagChips = facets.tags.map((tag) => `<span class="chip">${escapeHtml(tag)}</span>`).join('');
-  const handoffCueChips = handoffCues.map((cue) => `<a class="handoff-cue" href="${escapeAttribute(getHandoffDestination(cue, article))}" target="_blank" rel="noopener noreferrer" aria-label="Open ${escapeAttribute(cue.split(':')[0])}">${escapeHtml(cue)}</a>`).join('');
+  const handoffCueChips = handoffCues.map((cue) => `<a class="handoff-cue" href="${escapeAttribute(getHandoffDestination(cue, article, options.currentInsightCves))}" target="_blank" rel="noopener noreferrer" aria-label="Open ${escapeAttribute(cue.split(':')[0])}">${escapeHtml(cue)}</a>`).join('');
   const sourceSignalChip = options.showSourceSignal
     ? `\n            <span class="chip">${safeSourceSignal}</span>`
     : '';
@@ -584,6 +592,7 @@ function renderArticleCard(article, index = 0, generatedAt = new Date(), options
   const renderedTitle = articleLink === '#'
     ? `<span>${safeTitle}</span>`
     : `<a href="${safeLink}" target="_blank" rel="noopener">${safeTitle}</a>`;
+  const permalink = `<a class="item-permalink" href="#${stableFragment}" aria-label="Permalink to this reporting item">Permalink</a>`;
 
   return `
         <article class="news-item" id="${stableFragment}" data-source="${safeSourceAttr}" data-host="${safeHostAttr}" data-title="${safeTitleAttr}" data-summary="${safeSummaryAttr}" data-severity="${safeSeverityAttr}" data-tags="${safeTagsAttr}" data-vendors="${safeVendorsAttr}" data-source-signal="${safeSourceSignalAttr}" data-handoff-cues="${safeHandoffCuesAttr}" data-age-bucket="${safeAgeBucketAttr}" data-published-at="${dateIso}">
@@ -594,7 +603,7 @@ function renderArticleCard(article, index = 0, generatedAt = new Date(), options
           </div>
           <h2 class="news-title">${renderedTitle}</h2>
           <div class="news-meta">
-            <time datetime="${dateIso}">${dateText}</time>${newBadge}
+            <time datetime="${dateIso}">${dateText}</time>${newBadge}${permalink}
           </div>${facetRow}${handoffRow}
           ${summary}
         </article>`;
@@ -674,7 +683,11 @@ function generateHTML(newsItems, options = {}) {
   const totalArticleLabel = totalItems === 1 ? 'article' : 'articles';
   const digestLegend = renderDigestLegend(newsItems);
   const sourceCoverage = renderSourceCoverage(newsItems, sourceHealth, digestLegend, generatedAt);
-  const operatorLanes = renderOperatorLanes(newsItems);
+  const currentInsightCves = options.currentInsightCves === null
+    || options.currentInsightCves === undefined
+    ? null
+    : new Set(options.currentInsightCves);
+  const operatorLanes = renderOperatorLanes(newsItems, currentInsightCves);
   const issueStrip = renderIssueStrip(totalItems, uniqueSources.length, generatedAt);
   const issueTrail = renderIssueTrail(generatedAt);
   const structuredData = JSON.stringify({
@@ -698,7 +711,10 @@ function generateHTML(newsItems, options = {}) {
   const sourceSignals = new Set(newsItems.map((article) => deriveArticleFacets(article).sourceSignal));
   const showSourceSignal = sourceSignals.size > 1;
   const articleCards = newsItems.length > 0
-    ? newsItems.map((article, index) => renderArticleCard(article, index, generatedAt, { showSourceSignal })).join('')
+    ? newsItems.map((article, index) => renderArticleCard(article, index, generatedAt, {
+      currentInsightCves,
+      showSourceSignal,
+    })).join('')
     : renderEmptyState();
 
   return `
@@ -856,7 +872,9 @@ function generateHTML(newsItems, options = {}) {
     .news-title { font-size: 1.06rem; margin: 6px 0 8px; }
     .news-title a { color: var(--fg); text-decoration: none; }
     .news-title a:hover { text-decoration: underline; }
-    .news-meta { color: var(--muted); font-size: 0.85rem; display: flex; gap: 8px; align-items: baseline; }
+    .news-meta { color: var(--muted); font-size: 0.85rem; display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; }
+    .item-permalink { color: var(--accent); font-weight: 600; text-decoration: none; }
+    .item-permalink:hover, .item-permalink:focus-visible { text-decoration: underline; }
     .badge-new { color: #16a34a; font-weight: 600; font-size: 0.8rem; }
     .news-summary { margin-top: 8px; color: var(--fg); opacity: 0.9; }
     .summary-disclosure { margin-top: 8px; }

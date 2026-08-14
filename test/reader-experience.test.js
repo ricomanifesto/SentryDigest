@@ -261,6 +261,30 @@ test('incident handoffs carry complete CVE context while generic and GRC links k
   assert.match(genericHtml, /<a class="handoff-cue" href="https:\/\/ricomanifesto\.github\.io\/SentryInsight\/"[^>]*>SentryInsight: incident watch<\/a>/);
 });
 
+test('incident handoffs prefer the first CVE present in the current Insight report', () => {
+  const html = generateHTML([
+    article({
+      title: 'CVE-2026-00001 and CVE-2026-59310 exploited in one intrusion',
+      summary: 'Incident response teams are investigating stolen credentials.',
+    }),
+  ], {
+    generatedAt: GENERATED_AT,
+    currentInsightCves: ['CVE-2026-59310'],
+  });
+
+  assert.match(html, /SentryInsight\/#cve-2026-59310/);
+  assert.doesNotMatch(html, /SentryInsight\/#cve-2026-00001/);
+});
+
+test('rolling article cards expose their stable reporting identity as a permalink', () => {
+  const html = generateHTML([article()], { generatedAt: GENERATED_AT });
+
+  assert.match(
+    html,
+    /<a class="item-permalink" href="#reporting-[0-9a-f]{12}" aria-label="Permalink to this reporting item">Permalink<\/a>/,
+  );
+});
+
 test('reader contracts reject an incident handoff that drops available CVE context', () => {
   const articles = [article({
     title: 'CVE-2026-59310 exploited in a ransomware intrusion',

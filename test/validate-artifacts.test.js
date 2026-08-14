@@ -4,6 +4,7 @@ const os = require('node:os');
 const path = require('node:path');
 const test = require('node:test');
 const { writeDigestArchive } = require('../scripts/digest-archive');
+const { articleFragment } = require('../scripts/reporting-identity');
 
 const {
   DIGEST_LEGEND_CONTRACT,
@@ -252,6 +253,18 @@ function createFixture(overrides = {}) {
     },
   });
   writeJson(path.join(repoRoot, 'news-data.json'), newsData);
+  writeJson(
+    path.join(repoRoot, 'sentryinsight-findings.json'),
+    overrides.insightFindings || {
+      schema_version: 1,
+      report_date: '2026-06-17',
+      generated_at: '2026-06-17T18:20:00Z',
+      report_url: 'https://ricomanifesto.github.io/SentryInsight/',
+      finding_count: 1,
+      complete_cve_count: 1,
+      cve_ids: ['CVE-2026-1234'],
+    },
+  );
   writeJson(path.join(repoRoot, 'feed-info.json'), {
     title: FEED_INFO_CONTRACT.title,
     url: FEED_INFO_CONTRACT.publicFeedUrl,
@@ -279,7 +292,10 @@ function createFixture(overrides = {}) {
         ${renderArchiveTrail()}
         ${renderFilterInsights()}
         ${renderFixtureSourceControls(newsData, sourceNames)}
-        ${newsData.map((item) => `<article class="news-item"><a href="${item.link}">${item.title}</a></article>`).join('\n')}
+        ${newsData.map((item) => {
+          const id = articleFragment(item.link);
+          return `<article class="news-item" id="${id}"><a href="${item.link}">${item.title}</a><a class="item-permalink" href="#${id}" aria-label="Permalink to this reporting item">Permalink</a></article>`;
+        }).join('\n')}
         ${renderDashboardRssFooter()}
       </body></html>`
   );
@@ -623,7 +639,7 @@ test('validateArtifacts accepts RSS pubDate second precision', () => {
           source: 'Example Security',
         },
       ], ['Example Security'])}
-      <article class="news-item"><a href="https://example.com/millisecond">Millisecond item</a></article>
+      <article class="news-item" id="${articleFragment(newsData[0].link)}"><a href="https://example.com/millisecond">Millisecond item</a><a class="item-permalink" href="#${articleFragment(newsData[0].link)}" aria-label="Permalink to this reporting item">Permalink</a></article>
       ${renderDashboardRssFooter()}
     </body></html>`,
   });
@@ -1309,7 +1325,7 @@ test('validateArtifacts accepts escaped generated HTML article hrefs', () => {
           source: 'Example Security',
         },
       ], ['Example Security'])}
-      <article class="news-item"><a href="https://example.com/article?x=1&amp;y=2">Query item</a></article>
+      <article class="news-item" id="${articleFragment('https://example.com/article?x=1&y=2')}"><a href="https://example.com/article?x=1&amp;y=2">Query item</a><a class="item-permalink" href="#${articleFragment('https://example.com/article?x=1&y=2')}" aria-label="Permalink to this reporting item">Permalink</a></article>
       ${renderDashboardRssFooter()}
     </body></html>`,
   });
@@ -1346,7 +1362,7 @@ test('validateArtifacts accepts renderer-normalized generated HTML article hrefs
           source: 'Example Security',
         },
       ], ['Example Security'])}
-      <article class="news-item"><a href="https://example.com/">Normalized item</a></article>
+      <article class="news-item" id="${articleFragment('https://example.com')}"><a href="https://example.com/">Normalized item</a><a class="item-permalink" href="#${articleFragment('https://example.com')}" aria-label="Permalink to this reporting item">Permalink</a></article>
       ${renderDashboardRssFooter()}
     </body></html>`,
   });

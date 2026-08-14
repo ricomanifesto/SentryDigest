@@ -31,6 +31,13 @@ test('rendered digest shows cards and preserves its core interactions', async ({
   expect(totalCards).toBeGreaterThan(0);
   await expect(cards.first()).toBeVisible();
   await expect(cards.first().locator('time')).toContainText('UTC');
+  const firstCardId = await cards.first().getAttribute('id');
+  const permalink = cards.first().locator('a.item-permalink');
+  await expect(permalink).toBeVisible();
+  await expect(permalink).toHaveAccessibleName('Permalink to this reporting item');
+  await expect(permalink).toHaveAttribute('href', `#${firstCardId}`);
+  await permalink.click();
+  await expect.poll(() => new URL(page.url()).hash).toBe(`#${firstCardId}`);
 
   const themeToggle = page.locator('#themeToggle');
   await themeToggle.click();
@@ -88,6 +95,9 @@ test('mobile digest has no horizontal overflow', async ({ page }) => {
 
   expect(response?.ok()).toBeTruthy();
   await expect(page.locator('article.news-item').first()).toBeVisible();
+  const firstCard = page.locator('article.news-item').first();
+  const firstCardId = await firstCard.getAttribute('id');
+  await expect(firstCard.locator('a.item-permalink')).toHaveAttribute('href', `#${firstCardId}`);
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
   expect(overflow).toBeLessThanOrEqual(1);
   expect(runtimeFailures).toEqual([]);
@@ -102,6 +112,9 @@ test('pre-rendered cards remain readable without JavaScript', async ({ browser }
   expect(response?.ok()).toBeTruthy();
   expect(await page.locator('article.news-item').count()).toBeGreaterThan(0);
   await expect(page.locator('article.news-item').first()).toBeVisible();
+  const firstCard = page.locator('article.news-item').first();
+  const firstCardId = await firstCard.getAttribute('id');
+  await expect(firstCard.locator('a.item-permalink')).toHaveAttribute('href', `#${firstCardId}`);
   const continuations = page.locator('a.summary-continuation');
   expect(await continuations.count()).toBeGreaterThan(0);
   const continuation = continuations.first();

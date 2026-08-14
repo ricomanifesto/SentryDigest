@@ -19,7 +19,13 @@ function articleFragment(value) {
   return `reporting-${crypto.createHash('sha256').update(normalized).digest('hex').slice(0, 12)}`;
 }
 
+function articleSourceKey(value) {
+  const normalized = normalizeArticleUrl(value);
+  return `source-${crypto.createHash('sha256').update(normalized).digest('hex').slice(0, 12)}`;
+}
+
 module.exports = {
   articleFragment,
+  articleSourceKey,
   normalizeArticleUrl,
 };

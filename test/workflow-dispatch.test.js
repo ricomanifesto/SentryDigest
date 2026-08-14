@@ -29,6 +29,7 @@ test('update workflow only stages generated artifacts and config metadata', () =
     'news-data.json',
     'feed.xml',
     'feed-info.json',
+    'sentryinsight-findings.json',
     'config/news-sources.json',
     'archive',
     'sitemap.xml',
@@ -36,6 +37,15 @@ test('update workflow only stages generated artifacts and config metadata', () =
 
   assert.doesNotMatch(workflow, /^\s*git add \.\s*$/m);
   assert.match(workflow, new RegExp(`^\\s*git add ${generatedFiles.join(' ')}\\s*$`, 'm'));
+});
+
+test('update workflow refreshes current Insight membership before rendering', () => {
+  const workflow = readWorkflow();
+
+  assert.match(
+    workflow,
+    /- name: Refresh current SentryInsight findings\n\s+run: node scripts\/sync-insight-findings\.js[\s\S]*?- name: Fetch news and build site/,
+  );
 });
 
 test('update workflow retains dated context before testing and dispatching', () => {

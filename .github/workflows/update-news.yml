@@ -40,6 +40,9 @@ jobs:
 
       - name: Install Chromium for rendered-page tests
         run: npx playwright install chromium --with-deps
+
+      - name: Refresh current SentryInsight findings
+        run: node scripts/sync-insight-findings.js
       
       - name: Fetch news and build site
         run: node scripts/fetch-news.js
@@ -70,7 +73,7 @@ jobs:
       - name: Commit and push if changes
         id: commit
         run: |
-          git add index.html news-data.json feed.xml feed-info.json config/news-sources.json archive sitemap.xml
+          git add index.html news-data.json feed.xml feed-info.json sentryinsight-findings.json config/news-sources.json archive sitemap.xml
           if git diff --quiet && git diff --staged --quiet; then
             echo "No changes to commit"
             echo "changes_made=false" >> $GITHUB_OUTPUT
