@@ -794,7 +794,9 @@ function validateSiteMetadata(indexHtml, sitemapXml, failures) {
   }
 }
 
-function validateDigestArchives(repoRoot, sitemapXml, failures) {
+function validateDigestArchives(repoRoot, sitemapXml, failures, options = {}) {
+  const currentInsightContext = options.currentInsightContext || null;
+  const currentIssueDate = options.currentIssueDate || null;
   const archiveRoot = path.join(repoRoot, 'archive');
   if (!fs.existsSync(archiveRoot)) {
     return [];
@@ -827,13 +829,18 @@ function validateDigestArchives(repoRoot, sitemapXml, failures) {
     if (!manifest || !issueHtml) {
       continue;
     }
+    const schemaVersion = manifest.schema_version;
+    const expectedKeys = schemaVersion === 1
+      ? ['articles', 'generated_at', 'issue_date', 'schema_version']
+      : ['articles', 'generated_at', 'insight_context', 'issue_date', 'schema_version'];
     if (
-      manifest.schema_version !== 1
+      ![1, 2].includes(schemaVersion)
+      || JSON.stringify(Object.keys(manifest).sort()) !== JSON.stringify(expectedKeys)
       || manifest.issue_date !== issueDate
       || !isValidDate(manifest.generated_at)
       || !Array.isArray(manifest.articles)
     ) {
-      fail(failures, `archive/${issueDate}/index.json must satisfy dated archive schema version 1`);
+      fail(failures, `archive/${issueDate}/index.json must satisfy a supported dated archive schema`);
       continue;
     }
     if (!manifest.generated_at.startsWith(`${issueDate}T`)) {
@@ -846,6 +853,27 @@ function validateDigestArchives(repoRoot, sitemapXml, failures) {
     }
     if ($('script').length !== 0 || issueHtml.includes('fetch(')) {
       fail(failures, `archive/${issueDate}/index.html must remain meaningful without JavaScript`);
+    }
+    if (schemaVersion === 1 && issueDate === currentIssueDate) {
+      fail(failures, `archive/${issueDate}/index.json must stamp current SentryInsight context using schema version 2`);
+    }
+    if (schemaVersion === 2) {
+      try {
+        const archiveContext = assertInsightSyncContext(manifest.insight_context);
+        const expectedContextLine = renderInsightContext(archiveContext);
+        const hasContextLine = issueHtml.includes('class="insight-context"');
+        if (archiveContext.mode === 'current' ? hasContextLine : !issueHtml.includes(expectedContextLine)) {
+          fail(failures, `archive/${issueDate}/index.html must render its stamped SentryInsight context honestly`);
+        }
+        if (
+          issueDate === currentIssueDate
+          && JSON.stringify(archiveContext) !== JSON.stringify(currentInsightContext)
+        ) {
+          fail(failures, `archive/${issueDate}/index.json context must match sentryinsight-context.json`);
+        }
+      } catch (error) {
+        fail(failures, `archive/${issueDate}/index.json insight context is invalid: ${error.message}`);
+      }
     }
     if ($('article.reporting-item').length !== manifest.articles.length) {
       fail(failures, `archive/${issueDate}/index.html article count must match index.json`);
@@ -924,6 +952,7 @@ function validateInsightContextContract(indexHtml, context, findings, failures) 
     if (validated.mode !== 'unavailable' && (
       validated.report_date !== findings?.report_date
       || validated.manifest_generated_at !== findings?.generated_at
+      || validated.report_url !== findings?.report_url
     )) {
       fail(failures, 'sentryinsight-context.json provenance must match the retained findings snapshot');
     }
@@ -1154,7 +1183,13 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
   );
   validateInsightContextContract(indexHtml, insightContext, insightFindings, failures);
   validateSiteMetadata(indexHtml, sitemapXml, failures);
-  const issueDates = validateDigestArchives(repoRoot, sitemapXml, failures);
+  const currentIssueDate = feedInfo && isValidDate(feedInfo.lastUpdated)
+    ? new Date(feedInfo.lastUpdated).toISOString().slice(0, 10)
+    : null;
+  const issueDates = validateDigestArchives(repoRoot, sitemapXml, failures, {
+    currentInsightContext: insightContext,
+    currentIssueDate,
+  });
 
   let enabledSources = [];
   let maxNewsItems = DEFAULT_MAX_NEWS_ITEMS;

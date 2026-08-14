@@ -5,6 +5,7 @@ const { generateHTML } = require('../../scripts/render-news-html');
 
 const screenshotDirectory = path.join(process.cwd(), 'test-results/screenshots');
 const retainedContextFixture = path.join(process.cwd(), 'test-results/retained-context.html');
+const staleContextFixture = path.join(process.cwd(), 'test-results/stale-context.html');
 
 function observeRuntimeFailures(page) {
   const failures = [];
@@ -21,18 +22,20 @@ function observeRuntimeFailures(page) {
 test.beforeAll(() => {
   fs.mkdirSync(screenshotDirectory, { recursive: true });
   const newsItems = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'news-data.json'), 'utf8'));
-  const retainedHtml = generateHTML(newsItems, {
+  const baseContext = {
+    schema_version: 2,
+    checked_at: '2026-08-14T02:20:21.072Z',
+    report_date: '2026-08-13',
+    manifest_generated_at: '2026-08-13T21:54:18Z',
+    report_url: 'https://ricomanifesto.github.io/SentryInsight/',
+  };
+  const renderFixture = (mode) => generateHTML(newsItems, {
     generatedAt: new Date('2026-08-14T02:20:21.072Z'),
-    insightContext: {
-      schema_version: 1,
-      mode: 'retained',
-      checked_at: '2026-08-14T02:20:21.072Z',
-      report_date: '2026-08-13',
-      manifest_generated_at: '2026-08-13T21:54:18Z',
-    },
+    insightContext: { ...baseContext, mode },
     retainedIssueDates: ['2026-08-13', '2026-08-14'],
   }).replace('<head>', '<head>\n  <base href="../">');
-  fs.writeFileSync(retainedContextFixture, retainedHtml);
+  fs.writeFileSync(retainedContextFixture, renderFixture('retained'));
+  fs.writeFileSync(staleContextFixture, renderFixture('stale'));
 });
 
 test('rendered digest shows cards and preserves its core interactions', async ({ page }) => {
@@ -161,7 +164,29 @@ test('retained upstream context stays visible without JavaScript', async ({ brow
   await expect(contextLine).toBeVisible();
   await expect(contextLine).toContainText('SentryInsight context retained as of');
   await expect(contextLine.locator('time')).toContainText('UTC');
+  const reportLink = contextLine.locator('a.insight-context-link');
+  await expect(reportLink).toHaveAttribute('href', 'https://ricomanifesto.github.io/SentryInsight/');
+  await expect(reportLink).toHaveAttribute('rel', 'noopener noreferrer');
   expect(runtimeFailures).toEqual([]);
+  await context.close();
+});
+
+test('first degraded day stays actionable without JavaScript', async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false, locale: 'en-US', timezoneId: 'UTC' });
+  const page = await context.newPage();
+  const runtimeFailures = observeRuntimeFailures(page);
+  const response = await page.goto('http://127.0.0.1:4173/test-results/stale-context.html');
+
+  expect(response?.ok()).toBeTruthy();
+  const contextLine = page.locator('.insight-context[data-context-mode="stale"]');
+  await expect(contextLine).toBeVisible();
+  await expect(contextLine).toContainText('is stale; CVE handoffs use the first-mentioned CVE');
+  await expect(contextLine.locator('a.insight-context-link')).toHaveAttribute(
+    'href',
+    'https://ricomanifesto.github.io/SentryInsight/',
+  );
+  expect(runtimeFailures).toEqual([]);
+  await page.screenshot({ path: path.join(screenshotDirectory, 'digest-stale-context.png'), fullPage: true });
   await context.close();
 });
 
@@ -175,6 +200,12 @@ test('dated digest context resolves stable item links without JavaScript', async
     fs.readFileSync(path.join(archiveRoot, issueDate, 'index.json'), 'utf8')
   );
   const article = manifest.articles[0];
+  expect(manifest.schema_version).toBe(2);
+  expect(manifest.insight_context).toMatchObject({
+    schema_version: 2,
+    mode: 'current',
+    report_url: 'https://ricomanifesto.github.io/SentryInsight/',
+  });
   const context = await browser.newContext({
     javaScriptEnabled: false,
     locale: 'en-US',

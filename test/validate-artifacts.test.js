@@ -266,11 +266,12 @@ function createFixture(overrides = {}) {
   writeJson(
     path.join(repoRoot, 'sentryinsight-context.json'),
     overrides.insightContext || {
-      schema_version: 1,
+      schema_version: 2,
       mode: 'current',
       checked_at: feedInfoLastUpdated,
       report_date: insightFindings.report_date,
       manifest_generated_at: insightFindings.generated_at,
+      report_url: insightFindings.report_url,
     },
   );
   writeJson(path.join(repoRoot, 'feed-info.json'), {
@@ -365,6 +366,9 @@ test('validateArtifacts cross-checks retained archive manifests and rendered fra
     ],
     outputRoot: repoRoot,
     generatedAt: new Date('2026-06-17T18:30:00.000Z'),
+    insightContext: JSON.parse(
+      fs.readFileSync(path.join(repoRoot, 'sentryinsight-context.json'), 'utf8'),
+    ),
   });
   const issueHtmlPath = path.join(repoRoot, 'archive/2026-06-17/index.html');
   fs.writeFileSync(
@@ -376,6 +380,72 @@ test('validateArtifacts cross-checks retained archive manifests and rendered fra
 
   assert.equal(result.valid, false);
   assert.match(result.failures.join('\n'), /missing its rendered stable fragment/);
+});
+
+test('validateArtifacts rejects archive context that drifts from its rendered issue', () => {
+  const repoRoot = createFixture();
+  const insightContext = JSON.parse(
+    fs.readFileSync(path.join(repoRoot, 'sentryinsight-context.json'), 'utf8'),
+  );
+  writeDigestArchive({
+    newsItems: [{
+      title: 'Retained report',
+      link: 'https://example.com/retained-report',
+      date: '2026-06-17T18:00:00.000Z',
+      source: 'Example Security',
+      summary: 'Retained evidence.',
+    }],
+    outputRoot: repoRoot,
+    generatedAt: new Date('2026-06-17T18:30:00.000Z'),
+    insightContext,
+  });
+  const manifestPath = path.join(repoRoot, 'archive/2026-06-17/index.json');
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+  writeJson(manifestPath, {
+    ...manifest,
+    insight_context: {
+      ...manifest.insight_context,
+      report_url: 'https://example.com/report',
+    },
+  });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(result.failures.join('\n'), /archive\/2026-06-17\/index\.json insight context is invalid/);
+});
+
+test('validateArtifacts rejects valid archive context that drifts from the current sidecar', () => {
+  const repoRoot = createFixture();
+  const insightContext = JSON.parse(
+    fs.readFileSync(path.join(repoRoot, 'sentryinsight-context.json'), 'utf8'),
+  );
+  writeDigestArchive({
+    newsItems: [{
+      title: 'Retained report',
+      link: 'https://example.com/retained-report',
+      date: '2026-06-17T18:00:00.000Z',
+      source: 'Example Security',
+      summary: 'Retained evidence.',
+    }],
+    outputRoot: repoRoot,
+    generatedAt: new Date('2026-06-17T18:30:00.000Z'),
+    insightContext,
+  });
+  const manifestPath = path.join(repoRoot, 'archive/2026-06-17/index.json');
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+  writeJson(manifestPath, {
+    ...manifest,
+    insight_context: {
+      ...manifest.insight_context,
+      checked_at: '2026-06-17T18:29:59.000Z',
+    },
+  });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(result.failures.join('\n'), /context must match sentryinsight-context\.json/);
 });
 
 test('validateArtifacts rejects a missing project sitemap', () => {

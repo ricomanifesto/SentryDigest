@@ -89,5 +89,6 @@ module.exports = {
   assertCurrentInsightFindings,
   CURRENT_FINDINGS_URL,
   getCurrentInsightCves,
+  INSIGHT_REPORT_URL,
   loadCurrentInsightFindings,
 };

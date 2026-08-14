@@ -9,7 +9,10 @@ const {
   getCurrentInsightCves,
 } = require('../scripts/current-insight-findings');
 const { syncCurrentInsightFindings } = require('../scripts/sync-insight-findings');
-const { loadInsightSyncContext } = require('../scripts/insight-sync-context');
+const {
+  assertInsightSyncContext,
+  loadInsightSyncContext,
+} = require('../scripts/insight-sync-context');
 
 const MANIFEST = {
   schema_version: 1,
@@ -75,7 +78,17 @@ test('sync retains a last-known-good snapshot when the public manifest is unavai
 
   assert.equal(result.retained, true);
   assert.deepEqual(JSON.parse(fs.readFileSync(outputPath, 'utf8')), MANIFEST);
-  assert.equal(loadInsightSyncContext(path.join(root, 'sentryinsight-context.json')).mode, 'retained');
+  assert.deepEqual(
+    loadInsightSyncContext(path.join(root, 'sentryinsight-context.json')),
+    {
+      schema_version: 2,
+      mode: 'retained',
+      checked_at: '2026-08-13T23:00:00.000Z',
+      report_date: MANIFEST.report_date,
+      manifest_generated_at: MANIFEST.generated_at,
+      report_url: MANIFEST.report_url,
+    },
+  );
   assert.match(warnings.join('\n'), /retaining last-known-good snapshot/);
 });
 
@@ -146,4 +159,35 @@ test('sync names stale retained context separately from an unavailable snapshot'
   );
   assert.equal(unavailable.mode, 'unavailable');
   assert.equal(unavailable.manifest_generated_at, null);
+  assert.equal(unavailable.report_url, null);
+});
+
+test('sync context requires the attested report URL only when a snapshot exists', () => {
+  const retained = {
+    schema_version: 2,
+    mode: 'retained',
+    checked_at: '2026-08-14T02:20:21.072Z',
+    report_date: MANIFEST.report_date,
+    manifest_generated_at: MANIFEST.generated_at,
+    report_url: MANIFEST.report_url,
+  };
+
+  assert.equal(assertInsightSyncContext(retained), retained);
+  assert.throws(
+    () => assertInsightSyncContext({ ...retained, report_url: 'https://example.com/report' }),
+    /canonical SentryInsight report/,
+  );
+  assert.throws(
+    () => assertInsightSyncContext({ ...retained, report_url: null }),
+    /snapshot provenance/,
+  );
+  assert.throws(
+    () => assertInsightSyncContext({
+      ...retained,
+      mode: 'unavailable',
+      report_date: null,
+      manifest_generated_at: null,
+    }),
+    /cannot claim snapshot provenance/,
+  );
 });

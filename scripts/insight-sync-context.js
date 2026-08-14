@@ -1,7 +1,8 @@
 const fs = require('node:fs');
 const path = require('node:path');
+const { INSIGHT_REPORT_URL } = require('./current-insight-findings');
 
-const SCHEMA_VERSION = 1;
+const SCHEMA_VERSION = 2;
 const MODES = new Set(['current', 'retained', 'stale', 'unavailable']);
 
 function isUtcTimestamp(value) {
@@ -19,13 +20,14 @@ function assertInsightSyncContext(value) {
     'manifest_generated_at',
     'mode',
     'report_date',
+    'report_url',
     'schema_version',
   ];
   if (JSON.stringify(Object.keys(value).sort()) !== JSON.stringify(expectedKeys)) {
     throw new Error('SentryInsight sync context has an unexpected shape');
   }
   if (value.schema_version !== SCHEMA_VERSION || !MODES.has(value.mode)) {
-    throw new Error('SentryInsight sync context must use schema version 1 and a known mode');
+    throw new Error('SentryInsight sync context must use schema version 2 and a known mode');
   }
   if (!isUtcTimestamp(value.checked_at)) {
     throw new Error('SentryInsight sync context checked_at must be a UTC timestamp');
@@ -37,7 +39,14 @@ function assertInsightSyncContext(value) {
         || !/^\d{4}-\d{2}-\d{2}$/.test(value.report_date)) {
       throw new Error('SentryInsight sync context snapshot provenance is invalid');
     }
-  } else if (value.manifest_generated_at !== null || value.report_date !== null) {
+    if (value.report_url !== INSIGHT_REPORT_URL) {
+      throw new Error('SentryInsight sync context snapshot provenance must include the canonical SentryInsight report');
+    }
+  } else if (
+    value.manifest_generated_at !== null
+    || value.report_date !== null
+    || value.report_url !== null
+  ) {
     throw new Error('Unavailable SentryInsight sync context cannot claim snapshot provenance');
   }
   return value;
@@ -50,6 +59,7 @@ function createInsightSyncContext({ mode, checkedAt, manifest = null }) {
     checked_at: new Date(checkedAt).toISOString(),
     report_date: manifest?.report_date ?? null,
     manifest_generated_at: manifest?.generated_at ?? null,
+    report_url: manifest?.report_url ?? null,
   });
 }
 

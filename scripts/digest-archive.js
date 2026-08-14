@@ -2,6 +2,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const { articleFragment, normalizeArticleUrl } = require('./reporting-identity');
+const { assertInsightSyncContext, loadInsightSyncContext } = require('./insight-sync-context');
+const { renderInsightContext } = require('./render-news-html');
 
 const PUBLIC_ROOT = 'https://ricomanifesto.github.io/SentryDigest/';
 
@@ -98,6 +100,9 @@ function writeArchiveIndex(outputRoot) {
 
 function renderArchivePage(manifest) {
   const issueLabel = formatIssueDate(manifest.issue_date);
+  const insightContext = manifest.schema_version >= 2
+    ? renderInsightContext(assertInsightSyncContext(manifest.insight_context))
+    : '';
   const cards = manifest.articles.map((article) => `
       <article class="reporting-item" id="${escapeHtml(article.id)}">
         <p class="source">${escapeHtml(article.source)} · <time datetime="${escapeHtml(article.date)}">${escapeHtml(article.date.slice(0, 10))}</time></p>
@@ -122,7 +127,7 @@ function renderArchivePage(manifest) {
   <header>
     <p><a href="../../">SentryDigest</a> · retained daily context</p>
     <h1>Digest for ${escapeHtml(issueLabel)}</h1>
-    <p>${manifest.articles.length} reporting item${manifest.articles.length === 1 ? '' : 's'} retained from the rolling digest on this UTC day.</p>
+    <p>${manifest.articles.length} reporting item${manifest.articles.length === 1 ? '' : 's'} retained from the rolling digest on this UTC day.</p>${insightContext ? `\n    ${insightContext}` : ''}
   </header>
   <main>${cards}</main>
   <footer><p>Original publisher links are preserved for traceability. <a href="index.json">Machine-readable issue data</a>.</p></footer>
@@ -136,8 +141,13 @@ function loadExistingManifest(manifestPath, issueDate) {
     return { schema_version: 1, issue_date: issueDate, generated_at: '', articles: [] };
   }
   const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
-  if (manifest.schema_version !== 1 || manifest.issue_date !== issueDate || !Array.isArray(manifest.articles)) {
-    throw new Error(`Existing digest archive ${issueDate} does not satisfy schema version 1`);
+  if (![1, 2].includes(manifest.schema_version)
+      || manifest.issue_date !== issueDate
+      || !Array.isArray(manifest.articles)) {
+    throw new Error(`Existing digest archive ${issueDate} does not satisfy a supported schema version`);
+  }
+  if (manifest.schema_version === 2) {
+    assertInsightSyncContext(manifest.insight_context);
   }
   return manifest;
 }
@@ -149,7 +159,7 @@ function writeSitemap(outputRoot) {
   fs.writeFileSync(path.join(outputRoot, 'sitemap.xml'), xml);
 }
 
-function writeDigestArchive({ newsItems, outputRoot, generatedAt }) {
+function writeDigestArchive({ newsItems, outputRoot, generatedAt, insightContext }) {
   if (!Array.isArray(newsItems)) {
     throw new Error('Digest archive input must be an array');
   }
@@ -157,6 +167,7 @@ function writeDigestArchive({ newsItems, outputRoot, generatedAt }) {
   if (!Number.isFinite(generated.getTime())) {
     throw new Error('Digest archive generatedAt must be a valid timestamp');
   }
+  const validatedInsightContext = assertInsightSyncContext(insightContext);
   const issueDate = generated.toISOString().slice(0, 10);
   const issueRoot = path.join(outputRoot, 'archive', issueDate);
   const manifestPath = path.join(issueRoot, 'index.json');
@@ -168,9 +179,10 @@ function writeDigestArchive({ newsItems, outputRoot, generatedAt }) {
     right.date.localeCompare(left.date) || left.link.localeCompare(right.link)
   ));
   const manifest = {
-    schema_version: 1,
+    schema_version: 2,
     issue_date: issueDate,
     generated_at: generated.toISOString(),
+    insight_context: validatedInsightContext,
     articles,
   };
   fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
@@ -184,19 +196,20 @@ function main() {
   const outputRoot = path.resolve(__dirname, '..');
   const newsItems = JSON.parse(fs.readFileSync(path.join(outputRoot, 'news-data.json'), 'utf8'));
   const feedInfo = JSON.parse(fs.readFileSync(path.join(outputRoot, 'feed-info.json'), 'utf8'));
+  const insightSnapshotPath = path.join(outputRoot, 'sentryinsight-findings.json');
+  const insightContextPath = path.join(outputRoot, 'sentryinsight-context.json');
+  const insightContext = loadInsightSyncContext(insightContextPath);
   const result = writeDigestArchive({
     newsItems,
     outputRoot,
     generatedAt: new Date(feedInfo.lastUpdated),
+    insightContext,
   });
   const { generateHTML } = require('./render-news-html');
   const {
     getCurrentInsightCves,
     loadCurrentInsightFindings,
   } = require('./current-insight-findings');
-  const { loadInsightSyncContext } = require('./insight-sync-context');
-  const insightSnapshotPath = path.join(outputRoot, 'sentryinsight-findings.json');
-  const insightContextPath = path.join(outputRoot, 'sentryinsight-context.json');
   const generatedAt = new Date(feedInfo.lastUpdated);
   fs.writeFileSync(
     path.join(outputRoot, 'index.html'),
@@ -205,9 +218,7 @@ function main() {
         ? getCurrentInsightCves(loadCurrentInsightFindings(insightSnapshotPath), generatedAt)
         : null,
       generatedAt,
-      insightContext: fs.existsSync(insightContextPath)
-        ? loadInsightSyncContext(insightContextPath)
-        : null,
+      insightContext,
       retainedIssueDates: result.issueDates,
       sourceHealth: feedInfo.sourceHealth,
     }),

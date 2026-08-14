@@ -298,10 +298,11 @@ test('issue trail makes retained history visible beside the current digest', () 
 
 test('only non-current SentryInsight context is named on the reader surface', () => {
   const base = {
-    schema_version: 1,
+    schema_version: 2,
     checked_at: '2026-08-14T02:20:21.072Z',
     report_date: '2026-08-13',
     manifest_generated_at: '2026-08-13T21:54:18Z',
+    report_url: 'https://ricomanifesto.github.io/SentryInsight/',
   };
   const current = generateHTML([article()], {
     generatedAt: GENERATED_AT,
@@ -315,10 +316,22 @@ test('only non-current SentryInsight context is named on the reader surface', ()
     generatedAt: GENERATED_AT,
     insightContext: { ...base, mode: 'stale' },
   });
+  const unavailable = generateHTML([article()], {
+    generatedAt: GENERATED_AT,
+    insightContext: {
+      schema_version: 2,
+      mode: 'unavailable',
+      checked_at: '2026-08-14T02:20:21.072Z',
+      report_date: null,
+      manifest_generated_at: null,
+      report_url: null,
+    },
+  });
 
   assert.doesNotMatch(current, /class="insight-context"/);
-  assert.match(retained, /data-context-mode="retained"[^>]*>SentryInsight context retained as of <time datetime="2026-08-13T21:54:18Z">August 13, 2026 at 9:54 PM UTC<\/time>/);
-  assert.match(stale, /data-context-mode="stale"[^>]*>SentryInsight context as of .* is stale; CVE handoffs use the first-mentioned CVE\./);
+  assert.match(retained, /data-context-mode="retained"[^>]*><a class="insight-context-link" href="https:\/\/ricomanifesto\.github\.io\/SentryInsight\/" target="_blank" rel="noopener noreferrer">SentryInsight context<\/a> retained as of <time datetime="2026-08-13T21:54:18Z">August 13, 2026 at 9:54 PM UTC<\/time>/);
+  assert.match(stale, /data-context-mode="stale"[^>]*><a class="insight-context-link"[^>]+>SentryInsight context<\/a> as of .* is stale; CVE handoffs use the first-mentioned CVE\./);
+  assert.match(unavailable, /data-context-mode="unavailable"[^>]*><a class="insight-context-link" href="https:\/\/ricomanifesto\.github\.io\/SentryInsight\/"[^>]*>SentryInsight context<\/a> unavailable as of .*; CVE handoffs use the first-mentioned CVE\./);
 });
 
 test('reader contracts reject an incident handoff that drops available CVE context', () => {

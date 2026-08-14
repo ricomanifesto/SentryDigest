@@ -11,6 +11,7 @@ const {
 } = require('./generated-artifact-contracts');
 const { collectSourceHealth, describeSourceHealth } = require('./source-health');
 const { articleFragment } = require('./reporting-identity');
+const { INSIGHT_REPORT_URL } = require('./current-insight-findings');
 
 function escapeHtml(value) {
   return String(value ?? '')
@@ -689,12 +690,14 @@ function renderInsightContext(context) {
   }
   const reference = context.manifest_generated_at || context.checked_at;
   const safeMode = escapeAttribute(context.mode);
+  const reportUrl = escapeAttribute(context.report_url || INSIGHT_REPORT_URL);
+  const contextLink = `<a class="insight-context-link" href="${reportUrl}" target="_blank" rel="noopener noreferrer">SentryInsight context</a>`;
   const renderedTime = `<time datetime="${escapeAttribute(reference)}">${escapeHtml(formatArticleDate(reference))}</time>`;
   const message = context.mode === 'retained'
-    ? `SentryInsight context retained as of ${renderedTime}.`
+    ? `${contextLink} retained as of ${renderedTime}.`
     : context.mode === 'stale'
-      ? `SentryInsight context as of ${renderedTime} is stale; CVE handoffs use the first-mentioned CVE.`
-      : `SentryInsight context unavailable as of ${renderedTime}; CVE handoffs use the first-mentioned CVE.`;
+      ? `${contextLink} as of ${renderedTime} is stale; CVE handoffs use the first-mentioned CVE.`
+      : `${contextLink} unavailable as of ${renderedTime}; CVE handoffs use the first-mentioned CVE.`;
   return `<p class="insight-context" data-context-mode="${safeMode}" role="status">${message}</p>`;
 }
 
@@ -855,6 +858,7 @@ function generateHTML(newsItems, options = {}) {
     .source-health-note { display: inline-flex; gap: 4px; }
     .source-health-note[data-health-status="stale"] { color: var(--fg); font-weight: 650; }
     .insight-context { color: var(--muted); font-size: 12px; margin: 8px 0 0; }
+    .insight-context-link { color: var(--accent); font-weight: 650; }
     .source-filter-status { color: var(--muted); flex: 0 1 auto; font-size: 12px; font-weight: 700; }
     .source-coverage a { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
     .source-coverage a:hover { text-decoration: underline; }
