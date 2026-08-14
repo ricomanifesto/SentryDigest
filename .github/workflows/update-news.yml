@@ -47,6 +47,9 @@ jobs:
       - name: Generate RSS feed
         run: node scripts/generate-rss.js
 
+      - name: Retain dated digest context
+        run: node scripts/digest-archive.js
+
       - name: Test generated site
         run: npm test
 
@@ -67,7 +70,7 @@ jobs:
       - name: Commit and push if changes
         id: commit
         run: |
-          git add index.html news-data.json feed.xml feed-info.json config/news-sources.json
+          git add index.html news-data.json feed.xml feed-info.json config/news-sources.json archive sitemap.xml
           if git diff --quiet && git diff --staged --quiet; then
             echo "No changes to commit"
             echo "changes_made=false" >> $GITHUB_OUTPUT

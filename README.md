@@ -30,6 +30,7 @@ Sources are configured in `config/news-sources.json`.
 - `feed.xml` - generated RSS feed
 - `news-data.json` - normalized news data
 - `feed-info.json` - feed metadata
+- `archive/YYYY-MM-DD/` - retained UTC-day context with stable per-item links
 
 ## Automation
 
@@ -52,10 +53,11 @@ npx playwright install chromium
 ```bash
 npm run fetch
 npm run generate-rss
+npm run generate-archive
 npm test
 ```
 
-`npm run fetch` fetches news and generates the dashboard artifacts. `npm run generate-rss` writes the RSS feed. Truncated summaries include a source-named continuation link, and incident handoffs carry a complete CVE fragment when one is available. `npm test` validates the generated output and renders it in Chromium before publishing.
+`npm run fetch` fetches news and generates the dashboard artifacts. `npm run generate-rss` writes the RSS feed. `npm run generate-archive` retains that run in the UTC-day archive and rebuilds stable article anchors. Truncated summaries include a source-named continuation link, and incident handoffs carry a complete CVE fragment when one is available. `npm test` validates the generated output and renders it in Chromium before publishing.
 
 ## Configuration
 

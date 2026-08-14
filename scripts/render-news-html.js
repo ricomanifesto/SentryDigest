@@ -10,6 +10,7 @@ const {
   SOURCE_COVERAGE_CONTRACT,
 } = require('./generated-artifact-contracts');
 const { collectSourceHealth, describeSourceHealth } = require('./source-health');
+const { articleFragment } = require('./reporting-identity');
 
 function escapeHtml(value) {
   return String(value ?? '')
@@ -524,6 +525,7 @@ function renderSummary(summary, index, options = {}) {
 
 function renderArticleCard(article, index = 0, generatedAt = new Date(), options = {}) {
   const articleLink = safeArticleLink(article.link);
+  const stableFragment = articleLink === '#' ? `article-${index}` : articleFragment(articleLink);
   const facets = deriveArticleFacets(article);
   const handoffCues = deriveHandoffCues(article);
   const ageBucket = deriveAgeBucket(article.date, generatedAt);
@@ -584,7 +586,7 @@ function renderArticleCard(article, index = 0, generatedAt = new Date(), options
     : `<a href="${safeLink}" target="_blank" rel="noopener">${safeTitle}</a>`;
 
   return `
-        <article class="news-item" data-source="${safeSourceAttr}" data-host="${safeHostAttr}" data-title="${safeTitleAttr}" data-summary="${safeSummaryAttr}" data-severity="${safeSeverityAttr}" data-tags="${safeTagsAttr}" data-vendors="${safeVendorsAttr}" data-source-signal="${safeSourceSignalAttr}" data-handoff-cues="${safeHandoffCuesAttr}" data-age-bucket="${safeAgeBucketAttr}" data-published-at="${dateIso}">
+        <article class="news-item" id="${stableFragment}" data-source="${safeSourceAttr}" data-host="${safeHostAttr}" data-title="${safeTitleAttr}" data-summary="${safeSummaryAttr}" data-severity="${safeSeverityAttr}" data-tags="${safeTagsAttr}" data-vendors="${safeVendorsAttr}" data-source-signal="${safeSourceSignalAttr}" data-handoff-cues="${safeHandoffCuesAttr}" data-age-bucket="${safeAgeBucketAttr}" data-published-at="${dateIso}">
           <div class="chips">
             <span class="severity severity-${safeSeverityClass}">${safeSeverity}</span>
             <span class="chip"><span class="dot"></span>${safeSourceDisplay}</span>${sourceSignalChip}

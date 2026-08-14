@@ -3,6 +3,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const test = require('node:test');
+const { writeDigestArchive } = require('../scripts/digest-archive');
 
 const {
   DIGEST_LEGEND_CONTRACT,
@@ -296,6 +297,61 @@ test('validateArtifacts passes when generated artifacts agree', () => {
   assert.deepEqual(result.failures, []);
   assert.equal(result.itemCount, 2);
   assert.equal(result.enabledSourceCount, 1);
+});
+
+test('validateArtifacts accepts stable dated digest URLs in the sitemap', () => {
+  const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>${SITE_METADATA_CONTRACT.publicSiteUrl}</loc></url>
+  <url><loc>${SITE_METADATA_CONTRACT.publicSiteUrl}archive/2026-08-12/</loc></url>
+  <url><loc>${SITE_METADATA_CONTRACT.publicSiteUrl}archive/2026-08-13/</loc></url>
+</urlset>`;
+  const repoRoot = createFixture({ sitemapXml });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, true, result.failures.join('\n'));
+});
+
+test('validateArtifacts rejects rolling or malformed sitemap handoffs', () => {
+  const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>${SITE_METADATA_CONTRACT.publicSiteUrl}</loc></url>
+  <url><loc>${SITE_METADATA_CONTRACT.publicSiteUrl}archive/latest/</loc></url>
+</urlset>`;
+  const repoRoot = createFixture({ sitemapXml });
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(result.failures.join('\n'), /unique dated archive URLs/);
+});
+
+test('validateArtifacts cross-checks retained archive manifests and rendered fragments', () => {
+  const repoRoot = createFixture();
+  writeDigestArchive({
+    newsItems: [
+      {
+        title: 'Retained report',
+        link: 'https://example.com/retained-report',
+        date: '2026-06-17T18:00:00.000Z',
+        source: 'Example Security',
+        summary: 'Retained evidence.',
+      },
+    ],
+    outputRoot: repoRoot,
+    generatedAt: new Date('2026-06-17T18:30:00.000Z'),
+  });
+  const issueHtmlPath = path.join(repoRoot, 'archive/2026-06-17/index.html');
+  fs.writeFileSync(
+    issueHtmlPath,
+    fs.readFileSync(issueHtmlPath, 'utf8').replace('id="reporting-', 'id="drifted-'),
+  );
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, false);
+  assert.match(result.failures.join('\n'), /missing its rendered stable fragment/);
 });
 
 test('validateArtifacts rejects a missing project sitemap', () => {

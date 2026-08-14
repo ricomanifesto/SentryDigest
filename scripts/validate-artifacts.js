@@ -30,6 +30,7 @@ const {
   isValidDate,
 } = require('./news-data-contract');
 const { collectSourceHealth, describeSourceHealth } = require('./source-health');
+const { articleFragment, normalizeArticleUrl } = require('./reporting-identity');
 
 function readText(label, filePath, repoRoot, failures) {
   if (!fs.existsSync(filePath)) {
@@ -761,8 +762,114 @@ function validateSiteMetadata(indexHtml, sitemapXml, failures) {
     const locations = $xml('urlset > url > loc')
       .map((_, element) => $xml(element).text().trim())
       .get();
-    if (locations.length !== 1 || locations[0] !== SITE_METADATA_CONTRACT.publicSiteUrl) {
-      fail(failures, 'sitemap.xml must contain only the canonical SentryDigest project URL');
+    const archivePattern = new RegExp(`^${SITE_METADATA_CONTRACT.publicSiteUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}archive/\\d{4}-\\d{2}-\\d{2}/$`);
+    const expectedOrder = [
+      SITE_METADATA_CONTRACT.publicSiteUrl,
+      ...locations.slice(1).sort(),
+    ];
+    if (
+      locations.length === 0
+      || locations[0] !== SITE_METADATA_CONTRACT.publicSiteUrl
+      || locations.slice(1).some((location) => !archivePattern.test(location))
+      || new Set(locations).size !== locations.length
+      || locations.some((location, index) => location !== expectedOrder[index])
+    ) {
+      fail(failures, 'sitemap.xml must contain the canonical project URL followed by unique dated archive URLs');
+    }
+  }
+}
+
+function validateDigestArchives(repoRoot, sitemapXml, failures) {
+  const archiveRoot = path.join(repoRoot, 'archive');
+  if (!fs.existsSync(archiveRoot)) {
+    return;
+  }
+  const entries = fs.readdirSync(archiveRoot, { withFileTypes: true });
+  const issueDates = [];
+  for (const entry of entries) {
+    if (!entry.isDirectory() || !/^\d{4}-\d{2}-\d{2}$/.test(entry.name)) {
+      fail(failures, `archive contains unexpected entry ${entry.name}`);
+      continue;
+    }
+    const issueDate = entry.name;
+    issueDates.push(issueDate);
+    const issueRoot = path.join(archiveRoot, issueDate);
+    const manifest = readJson(
+      `archive/${issueDate}/index.json`,
+      path.join(issueRoot, 'index.json'),
+      repoRoot,
+      failures,
+    );
+    const issueHtml = readText(
+      `archive/${issueDate}/index.html`,
+      path.join(issueRoot, 'index.html'),
+      repoRoot,
+      failures,
+    );
+    if (!manifest || !issueHtml) {
+      continue;
+    }
+    if (
+      manifest.schema_version !== 1
+      || manifest.issue_date !== issueDate
+      || !isValidDate(manifest.generated_at)
+      || !Array.isArray(manifest.articles)
+    ) {
+      fail(failures, `archive/${issueDate}/index.json must satisfy dated archive schema version 1`);
+      continue;
+    }
+    if (!manifest.generated_at.startsWith(`${issueDate}T`)) {
+      fail(failures, `archive/${issueDate}/index.json generated_at must use its UTC issue date`);
+    }
+    const $ = cheerio.load(issueHtml);
+    const expectedCanonical = `${SITE_METADATA_CONTRACT.publicSiteUrl}archive/${issueDate}/`;
+    if ($('link[rel="canonical"]').attr('href') !== expectedCanonical) {
+      fail(failures, `archive/${issueDate}/index.html must publish its dated canonical URL`);
+    }
+    if ($('script').length !== 0 || issueHtml.includes('fetch(')) {
+      fail(failures, `archive/${issueDate}/index.html must remain meaningful without JavaScript`);
+    }
+    if ($('article.reporting-item').length !== manifest.articles.length) {
+      fail(failures, `archive/${issueDate}/index.html article count must match index.json`);
+    }
+    const seenIds = new Set();
+    manifest.articles.forEach((article, index) => {
+      const label = `archive/${issueDate} article ${index + 1}`;
+      try {
+        const normalizedLink = normalizeArticleUrl(article.link);
+        const expectedId = articleFragment(normalizedLink);
+        if (article.id !== expectedId || seenIds.has(expectedId)) {
+          fail(failures, `${label} must use a unique URL-derived reporting ID`);
+        }
+        seenIds.add(expectedId);
+        const card = $(`article#${expectedId}`);
+        if (card.length !== 1) {
+          fail(failures, `${label} is missing its rendered stable fragment`);
+          return;
+        }
+        const sourceLink = card.find('h2 a').first();
+        if (
+          normalizeArticleUrl(sourceLink.attr('href')) !== normalizedLink
+          || sourceLink.attr('rel') !== 'noopener noreferrer'
+        ) {
+          fail(failures, `${label} rendered source link must match its safe original URL`);
+        }
+      } catch (error) {
+        fail(failures, `${label} is invalid: ${error.message}`);
+      }
+    });
+  }
+  if (sitemapXml) {
+    const expected = issueDates
+      .sort()
+      .map((date) => `${SITE_METADATA_CONTRACT.publicSiteUrl}archive/${date}/`);
+    const $xml = cheerio.load(sitemapXml, { xmlMode: true });
+    const actual = $xml('urlset > url > loc')
+      .map((_, element) => $xml(element).text().trim())
+      .get()
+      .slice(1);
+    if (JSON.stringify(actual) !== JSON.stringify(expected)) {
+      fail(failures, 'sitemap.xml dated URLs must match retained digest archive directories');
     }
   }
 }
@@ -923,6 +1030,7 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
 
   validateReaderExperience(indexHtml, Array.isArray(newsData) ? newsData : [], failures);
   validateSiteMetadata(indexHtml, sitemapXml, failures);
+  validateDigestArchives(repoRoot, sitemapXml, failures);
 
   let enabledSources = [];
   let maxNewsItems = DEFAULT_MAX_NEWS_ITEMS;

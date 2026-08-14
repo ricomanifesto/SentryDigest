@@ -30,10 +30,21 @@ test('update workflow only stages generated artifacts and config metadata', () =
     'feed.xml',
     'feed-info.json',
     'config/news-sources.json',
+    'archive',
+    'sitemap.xml',
   ];
 
   assert.doesNotMatch(workflow, /^\s*git add \.\s*$/m);
   assert.match(workflow, new RegExp(`^\\s*git add ${generatedFiles.join(' ')}\\s*$`, 'm'));
+});
+
+test('update workflow retains dated context before testing and dispatching', () => {
+  const workflow = readWorkflow();
+
+  assert.match(
+    workflow,
+    /- name: Generate RSS feed[\s\S]*?- name: Retain dated digest context\n\s+run: node scripts\/digest-archive\.js[\s\S]*?- name: Test generated site/
+  );
 });
 
 test('update workflow installs dependencies from the lockfile', () => {

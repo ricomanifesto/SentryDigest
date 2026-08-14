@@ -104,3 +104,40 @@ test('pre-rendered cards remain readable without JavaScript', async ({ browser }
   await expect(page.locator('article.news-item').first()).toBeVisible();
   await context.close();
 });
+
+test('dated digest context resolves stable item links without JavaScript', async ({ browser }) => {
+  const archiveRoot = path.join(process.cwd(), 'archive');
+  const issueDate = fs.readdirSync(archiveRoot)
+    .filter((name) => /^\d{4}-\d{2}-\d{2}$/.test(name))
+    .sort()
+    .at(-1);
+  const manifest = JSON.parse(
+    fs.readFileSync(path.join(archiveRoot, issueDate, 'index.json'), 'utf8')
+  );
+  const article = manifest.articles[0];
+  const context = await browser.newContext({
+    javaScriptEnabled: false,
+    locale: 'en-US',
+    timezoneId: 'UTC',
+    viewport: { width: 390, height: 844 },
+  });
+  const page = await context.newPage();
+  const runtimeFailures = observeRuntimeFailures(page);
+  const response = await page.goto(
+    `http://127.0.0.1:4173/archive/${issueDate}/#${article.id}`
+  );
+
+  expect(response?.ok()).toBeTruthy();
+  await expect(page.locator(`#${article.id}`)).toBeVisible();
+  await expect(page.locator(`#${article.id} a`).first()).toHaveAttribute('href', article.link);
+  const overflow = await page.evaluate(
+    () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+  );
+  expect(overflow).toBeLessThanOrEqual(1);
+  expect(runtimeFailures).toEqual([]);
+  await page.screenshot({
+    path: path.join(screenshotDirectory, 'digest-archive-mobile.png'),
+    fullPage: true,
+  });
+  await context.close();
+});
