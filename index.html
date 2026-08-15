@@ -33,6 +33,9 @@
       --accent: #2563eb; 
       --accent-contrast: #ffffff; 
       --chip: #e5e7eb;
+      --text-small: 0.875rem;
+      --text-body: 1rem;
+      --text-title: 1.125rem;
     }
     [data-theme="dark"] {
       --bg: #0b1020;
@@ -45,38 +48,43 @@
       --chip: #1f2937;
     }
     * { box-sizing: border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--fg); margin: 0; background: radial-gradient(1200px 600px at 20% -10%, rgba(37,99,235,.08), transparent 50%), var(--bg); }
+    body { background: var(--bg); color: var(--fg); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: var(--text-body); line-height: 1.55; margin: 0; }
     .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
-    header.site-header { background: linear-gradient(180deg, rgba(37,99,235,0.15), rgba(37,99,235,0.0)); border-bottom: 1px solid var(--card-border); position: sticky; top: 0; z-index: 10; backdrop-filter: saturate(140%) blur(8px); }
+    header.site-header { background: var(--bg); border-bottom: 1px solid var(--card-border); position: sticky; top: 0; z-index: 10; }
     .masthead { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; }
     .brand { display: flex; align-items: center; gap: 10px; }
     .brand img { width: 28px; height: 28px; border-radius: 6px; }
-    .brand .title { font-size: inherit; font-weight: 700; letter-spacing: 0.2px; margin: 0; }
-    .brand .subtitle { color: var(--muted); font-size: 0.9rem; }
+    .brand .title { font-size: var(--text-title); font-weight: 700; letter-spacing: -0.01em; margin: 0; }
+    .brand .subtitle { color: var(--muted); font-size: var(--text-small); }
     .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-    .filter-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
-    .filter-status { align-items: center; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .advanced-filters { margin-top: 12px; }
+    .advanced-filters-summary, .source-coverage-summary { color: var(--fg); cursor: pointer; font-size: var(--text-small); font-weight: 700; width: fit-content; }
+    .advanced-filters-summary:hover, .source-coverage-summary:hover { color: var(--accent); }
+    .advanced-filters-summary:focus-visible, .source-coverage-summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .filter-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+    .filter-status { align-items: center; display: flex; flex-wrap: wrap; gap: 8px; }
     .sr-only { clip: rect(0 0 0 0); border: 0; height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; white-space: nowrap; width: 1px; }
     .active-filters { display: flex; flex-wrap: wrap; gap: 8px; }
     .active-filters[hidden] { display: none; }
-    .active-filter-chip { align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 999px; color: var(--fg); display: inline-flex; font-size: 12px; gap: 6px; min-height: 28px; padding: 4px 8px 4px 10px; }
+    .active-filter-chip { align-items: center; background: var(--chip); border-radius: 999px; color: var(--fg); display: inline-flex; font-size: var(--text-small); gap: 6px; min-height: 28px; padding: 4px 8px 4px 10px; }
     .active-filter-clear { align-items: center; background: transparent; border: 0; border-radius: 999px; color: var(--muted); cursor: pointer; display: inline-flex; font: inherit; height: 18px; justify-content: center; line-height: 1; padding: 0; width: 18px; }
     .active-filter-clear:hover, .active-filter-clear:focus-visible { background: var(--chip); color: var(--accent); outline: 2px solid var(--accent); outline-offset: 1px; }
     .search { display: flex; align-items: center; gap: 8px; background: var(--card); border: 1px solid var(--card-border); padding: 8px 10px; border-radius: 10px; }
-    .search:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(37,99,235,0.15); outline: 2px solid var(--accent); outline-offset: 2px; }
-    .search input { border: none; outline: none; background: transparent; color: var(--fg); min-width: 220px; }
-    .select { border: 1px solid var(--card-border); background: var(--card); color: var(--fg); padding: 8px 10px; border-radius: 10px; }
-    .btn { border: 1px solid var(--card-border); background: var(--card); color: var(--fg); padding: 8px 10px; border-radius: 10px; cursor: pointer; }
+    .search:focus-within { border-color: var(--accent); outline: 2px solid var(--accent); outline-offset: 2px; }
+    .search input { background: transparent; border: none; color: var(--fg); font: inherit; font-size: var(--text-small); min-width: 220px; outline: none; }
+    .select { background: var(--card); border: 1px solid var(--card-border); border-radius: 8px; color: var(--fg); font: inherit; font-size: var(--text-small); padding: 8px 10px; }
+    .btn { background: var(--card); border: 1px solid var(--card-border); border-radius: 8px; color: var(--fg); cursor: pointer; font: inherit; font-size: var(--text-small); padding: 8px 10px; }
     .btn:hover { border-color: var(--accent); }
-    .select:focus-visible, .btn:focus-visible { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(37,99,235,0.15); outline: 2px solid var(--accent); outline-offset: 2px; }
-    .stats { color: var(--muted); font-size: 0.9rem; margin-top: 6px; }
-    .issue-strip { align-items: center; color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px 10px; margin-top: 10px; }
-    .issue-label { color: var(--fg); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
-    .issue-stat { background: var(--chip); border-radius: 999px; color: var(--fg); font-size: 12px; padding: 3px 8px; }
+    .select:focus-visible, .btn:focus-visible { border-color: var(--accent); outline: 2px solid var(--accent); outline-offset: 2px; }
+    .stats { color: var(--muted); font-size: var(--text-small); margin-top: 8px; }
+    .stats[hidden] { display: none; }
+    .issue-strip { align-items: center; color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px 10px; }
+    .issue-label { color: var(--fg); font-size: var(--text-small); font-weight: 700; }
+    .issue-stat { background: var(--chip); border-radius: 999px; color: var(--fg); font-size: var(--text-small); padding: 3px 8px; }
     .issue-stat strong { color: var(--accent); }
-    .issue-link { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
+    .issue-link { color: var(--accent); font-size: var(--text-small); font-weight: 600; text-decoration: none; }
     .issue-link:hover { text-decoration: underline; }
-    .issue-trail { align-items: center; color: var(--muted); display: flex; flex-wrap: wrap; font-size: 0.82rem; gap: 6px 10px; margin-top: 6px; }
+    .issue-trail { align-items: center; color: var(--muted); display: flex; flex-wrap: wrap; font-size: var(--text-small); gap: 6px 10px; margin-top: 6px; }
     .issue-trail-current { color: var(--fg); font-weight: 600; }
     .issue-trail a { color: var(--accent); font-weight: 600; text-decoration: none; }
     .issue-trail a:hover { text-decoration: underline; }
@@ -84,65 +92,65 @@
     .issue-trail-meta { color: var(--muted); font-weight: 500; }
     .issue-trail-cadence[data-cadence-state="overdue"] { color: var(--fg); font-weight: 650; }
     .anchor-target { display: block; scroll-margin-top: 96px; }
-    .filter-insights { align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; padding: 10px 12px; }
+    .filter-insights { align-items: center; background: var(--card); border-radius: 8px; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; padding: 10px 12px; }
     .filter-insights[hidden] { display: none; }
-    .filter-insights-label { color: var(--muted); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
-    .filter-insight-chip { background: var(--chip); border-radius: 999px; color: var(--fg); font-size: 12px; padding: 4px 10px; }
-    .source-coverage { align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: flex; flex-wrap: wrap; gap: 10px 12px; margin-top: 12px; padding: 10px 12px; }
-    .source-coverage-label { color: var(--muted); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
+    .filter-insights-label { color: var(--muted); font-size: var(--text-small); font-weight: 700; }
+    .filter-insight-chip { background: var(--chip); border-radius: 999px; color: var(--fg); font-size: var(--text-small); padding: 4px 10px; }
+    .source-coverage { margin-top: 12px; }
+    .source-coverage-summary span { color: var(--muted); font-weight: 500; margin-left: 6px; }
+    .source-coverage-body { align-items: center; background: var(--card); border-radius: 8px; display: flex; flex-wrap: wrap; gap: 10px 12px; margin-top: 10px; padding: 12px; }
     .source-counts { display: flex; flex: 1 1 260px; flex-wrap: wrap; gap: 8px; }
     .source-coverage-actions { align-items: center; display: flex; flex: 1 1 280px; flex-wrap: wrap; gap: 8px 12px; justify-content: flex-end; min-width: 0; }
-    .source-count { background: var(--chip); border: 1px solid transparent; border-radius: 999px; color: var(--fg); cursor: pointer; font: inherit; font-size: 12px; padding: 4px 10px; }
-    .source-count:hover, .source-count:focus-visible, .source-count[aria-pressed="true"] { border-color: var(--accent); }
-    .source-count:focus-visible { box-shadow: 0 0 0 3px rgba(37,99,235,0.15); outline: 2px solid var(--accent); outline-offset: 2px; }
+    .source-count { background: var(--chip); border: 0; border-radius: 999px; color: var(--fg); cursor: pointer; font: inherit; font-size: var(--text-small); padding: 4px 10px; }
+    .source-count:hover, .source-count[aria-pressed="true"] { color: var(--accent); }
+    .source-count:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     .source-count strong { color: var(--accent); margin-left: 4px; }
-    .source-health-summary { align-items: center; color: var(--muted); display: flex; flex: 0 1 auto; flex-wrap: wrap; font-size: 12px; gap: 6px; }
-    .source-health-summary span { background: var(--bg); border: 1px solid var(--card-border); border-radius: 999px; padding: 3px 8px; }
+    .source-health-summary { align-items: center; color: var(--muted); display: flex; flex: 0 1 auto; flex-wrap: wrap; font-size: var(--text-small); gap: 6px; }
+    .source-health-summary span { background: var(--chip); border-radius: 999px; padding: 3px 8px; }
     .source-health-summary strong { color: var(--fg); }
-    .source-quiet-feeds { color: var(--muted); display: flex; flex: 1 1 100%; flex-wrap: wrap; font-size: 12px; gap: 6px 12px; }
+    .source-quiet-feeds { color: var(--muted); display: flex; flex: 1 1 100%; flex-wrap: wrap; font-size: var(--text-small); gap: 6px 12px; }
     .source-health-note { display: inline-flex; gap: 4px; }
     .source-health-note[data-health-status="stale"] { color: var(--fg); font-weight: 650; }
-    .insight-context { color: var(--muted); font-size: 12px; margin: 8px 0 0; }
+    .insight-context { color: var(--muted); font-size: var(--text-small); margin: 8px 0 0; }
     .insight-context-link { color: var(--accent); font-weight: 650; }
-    .source-filter-status { color: var(--muted); flex: 0 1 auto; font-size: 12px; font-weight: 700; }
-    .source-coverage a { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
+    .source-filter-status { color: var(--muted); flex: 0 1 auto; font-size: var(--text-small); font-weight: 700; }
+    .source-coverage a { color: var(--accent); font-size: var(--text-small); font-weight: 600; text-decoration: none; }
     .source-coverage a:hover { text-decoration: underline; }
     .feed-link { align-items: center; display: inline-flex; gap: 6px; }
-    .feed-link-count { background: var(--chip); border-radius: 999px; color: var(--muted); font-size: 12px; padding: 2px 8px; }
-    .digest-legend { background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; margin-top: 12px; padding: 10px 12px; }
-    .digest-legend-summary { color: var(--fg); cursor: pointer; font-size: 0.9rem; font-weight: 700; }
+    .feed-link-count { background: var(--chip); border-radius: 999px; color: var(--muted); font-size: var(--text-small); padding: 2px 8px; }
+    .digest-legend { background: var(--card); border: 0; margin-top: 12px; padding: 0; }
+    .digest-legend-summary { color: var(--fg); cursor: pointer; font-size: var(--text-small); font-weight: 700; }
     .digest-legend-summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
     .digest-legend-body { display: grid; gap: 10px; grid-template-columns: minmax(180px, 0.6fr) minmax(0, 1.4fr); margin-top: 10px; }
     .source-coverage .digest-legend { background: transparent; border: 0; flex: 1 1 260px; margin-top: 0; padding: 0; }
     .digest-legend-group { align-content: start; display: grid; gap: 8px; min-width: 0; }
-    .digest-legend-heading { color: var(--muted); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
+    .digest-legend-heading { color: var(--muted); font-size: var(--text-small); font-weight: 700; }
     .source-signal-items { display: flex; flex: 1 1 260px; flex-wrap: wrap; gap: 8px; }
     .source-signal-chip { align-items: baseline; background: var(--chip); border-radius: 999px; display: inline-flex; gap: 6px; padding: 4px 10px; }
-    .source-signal-name { color: var(--fg); font-size: 12px; font-weight: 700; }
-    .source-signal-detail { color: var(--muted); font-size: 12px; }
+    .source-signal-name { color: var(--fg); font-size: var(--text-small); font-weight: 700; }
+    .source-signal-detail { color: var(--muted); font-size: var(--text-small); }
     .handoff-cue-legend-items { display: flex; flex: 1 1 260px; flex-wrap: wrap; gap: 8px; }
     .handoff-cue-legend-chip { align-items: baseline; background: var(--chip); border-radius: 999px; display: inline-flex; gap: 6px; padding: 4px 10px; text-decoration: none; }
-    .handoff-cue-legend-chip:hover, .handoff-cue-legend-chip:focus-visible { box-shadow: 0 0 0 2px var(--accent); text-decoration: none; }
-    .handoff-cue-name { color: var(--fg); font-size: 12px; font-weight: 700; }
-    .handoff-cue-detail { color: var(--muted); font-size: 12px; }
+    .handoff-cue-legend-chip:hover, .handoff-cue-legend-chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; text-decoration: none; }
+    .handoff-cue-name { color: var(--fg); font-size: var(--text-small); font-weight: 700; }
+    .handoff-cue-detail { color: var(--muted); font-size: var(--text-small); }
     .operator-lanes { display: grid; gap: 12px; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 14px; }
-    .operator-lane { background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: grid; gap: 6px; padding: 12px; }
-    .operator-lane-heading { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
-    .operator-lane-count { color: var(--muted); font-size: 0.85rem; }
+    .operator-lane { background: var(--card); border-radius: 8px; display: grid; gap: 6px; padding: 12px; }
+    .operator-lane-heading { color: var(--accent); font-size: var(--text-small); font-weight: 700; text-decoration: none; }
+    .operator-lane-heading:hover { text-decoration: underline; }
+    .operator-lane-count { color: var(--muted); font-size: var(--text-small); }
     .operator-lane-count strong { color: var(--accent); }
-    .operator-lane-link { color: var(--fg); font-size: 0.92rem; line-height: 1.35; text-decoration: none; }
+    .operator-lane-link { color: var(--fg); font-size: var(--text-small); line-height: 1.4; text-decoration: none; }
     .operator-lane-link:hover { color: var(--accent); text-decoration: underline; }
-    .empty-filtered { background: var(--card); border: 1px dashed var(--card-border); border-radius: 10px; color: var(--muted); margin-top: 18px; padding: 18px; text-align: center; }
+    .empty-filtered { background: var(--card); border-radius: 8px; color: var(--muted); margin-top: 18px; padding: 18px; text-align: center; }
     .empty-filtered[hidden] { display: none; }
     .empty-filtered-message { margin: 0 0 12px; }
     .empty-reset-filters { background: var(--accent); color: var(--accent-contrast); }
-    .news-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin-top: 18px; }
-    .news-item { background: var(--card); border: 1px solid var(--card-border); border-radius: 14px; padding: 16px; transition: transform .2s ease, box-shadow .2s ease; }
-    .news-item:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(2,8,23,0.08); }
+    .news-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 16px; margin-top: 14px; }
+    .news-item { background: var(--card); border-radius: 8px; padding: 16px; }
     .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
-    .chip { display: inline-flex; align-items: center; gap: 6px; background: var(--chip); color: var(--fg); border-radius: 999px; padding: 4px 10px; font-size: 12px; }
-    .chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
-    .severity { display: inline-flex; align-items: center; border-radius: 999px; padding: 4px 10px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0; }
+    .chip { align-items: center; background: var(--chip); border-radius: 999px; color: var(--fg); display: inline-flex; font-size: var(--text-small); gap: 6px; padding: 4px 10px; }
+    .severity { align-items: center; border-radius: 999px; display: inline-flex; font-size: var(--text-small); font-weight: 700; padding: 4px 10px; text-transform: uppercase; }
     .severity-critical { background: #fee2e2; color: #991b1b; }
     .severity-elevated { background: #fef3c7; color: #92400e; }
     .severity-monitor { background: #e0f2fe; color: #075985; }
@@ -151,27 +159,27 @@
     [data-theme="dark"] .severity-monitor { background: rgba(14,165,233,0.18); color: #bae6fd; }
     .facet-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
     .handoff-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-    .handoff-cue { border: 1px solid var(--card-border); border-radius: 6px; color: var(--muted); display: inline-flex; font-size: 12px; padding: 3px 8px; text-decoration: none; }
-    .handoff-cue:hover, .handoff-cue:focus-visible { border-color: var(--accent); color: var(--accent); text-decoration: none; }
-    .news-title { font-size: 1.06rem; margin: 6px 0 8px; }
+    .handoff-cue { background: var(--chip); border-radius: 4px; color: var(--muted); display: inline-flex; font-size: var(--text-small); padding: 3px 8px; text-decoration: none; }
+    .handoff-cue:hover, .handoff-cue:focus-visible { color: var(--accent); outline: 2px solid var(--accent); outline-offset: 1px; text-decoration: none; }
+    .news-title { font-size: var(--text-title); line-height: 1.35; margin: 6px 0 8px; }
     .news-title a { color: var(--fg); text-decoration: none; }
     .news-title a:hover { text-decoration: underline; }
-    .news-meta { color: var(--muted); font-size: 0.85rem; display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; }
+    .news-meta { align-items: baseline; color: var(--muted); display: flex; flex-wrap: wrap; font-size: var(--text-small); gap: 8px; }
     .item-permalink { color: var(--accent); font-weight: 600; text-decoration: none; }
     .item-permalink:hover, .item-permalink:focus-visible { text-decoration: underline; }
-    .badge-new { color: #16a34a; font-weight: 600; font-size: 0.8rem; }
+    .badge-new { color: #16a34a; font-size: var(--text-small); font-weight: 600; }
     .news-summary { margin-top: 8px; color: var(--fg); opacity: 0.9; }
     .summary-disclosure { margin-top: 8px; }
-    .summary-toggle { color: var(--fg); cursor: pointer; font: inherit; font-size: 0.95rem; opacity: 0.9; }
-    .summary-action { color: var(--accent); font-size: 0.9rem; margin-left: 6px; white-space: nowrap; }
+    .summary-toggle { color: var(--fg); cursor: pointer; font: inherit; font-size: var(--text-body); opacity: 0.9; }
+    .summary-action { color: var(--accent); font-size: var(--text-small); margin-left: 6px; white-space: nowrap; }
     details[open] .summary-ellipsis { display: none; }
     details[open] .summary-action { display: none; }
     .summary-toggle:hover .summary-action { text-decoration: underline; }
     .summary-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-    .summary-continuation { align-items: center; color: var(--accent); display: inline-flex; font-size: 0.85rem; font-weight: 650; gap: 4px; margin-top: 4px; text-decoration: none; }
+    .summary-continuation { align-items: center; color: var(--accent); display: inline-flex; font-size: var(--text-small); font-weight: 650; gap: 4px; margin-top: 4px; text-decoration: none; }
     .summary-continuation:hover { text-decoration: underline; }
     .summary-continuation:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-    footer { border-top: 1px solid var(--card-border); color: var(--muted); font-size: 0.9rem; padding: 18px 0; margin-top: 22px; }
+    footer { border-top: 1px solid var(--card-border); color: var(--muted); font-size: var(--text-small); padding: 18px 0; margin-top: 22px; }
     @media (max-width: 640px) {
       .container { padding: 16px; }
       .masthead { align-items: stretch; flex-direction: column; }
@@ -184,7 +192,7 @@
       .digest-legend-body { grid-template-columns: minmax(0, 1fr); }
       .operator-lanes { grid-template-columns: minmax(0, 1fr); }
       .news-container { grid-template-columns: minmax(0, 1fr); }
-      .news-item { border-radius: 10px; }
+      .news-item { border-radius: 6px; }
     }
   </style>
 </head>
@@ -214,34 +222,6 @@
   </header>
 
   <main class="container">
-    <div class="filter-row" aria-label="Article filters">
-      <select id="severityFilter" class="select" aria-label="Filter by severity">
-        <option value="">All severities</option>
-        <option value="Critical">Critical</option><option value="Elevated">Elevated</option><option value="Monitor">Monitor</option>
-      </select>
-      <select id="tagFilter" class="select" aria-label="Filter by topic tag">
-        <option value="">All topics</option>
-        <option value="AI Security">AI Security</option><option value="Cloud">Cloud</option><option value="Data Breach">Data Breach</option><option value="Exploitation">Exploitation</option><option value="Identity">Identity</option><option value="Malware">Malware</option><option value="Ransomware">Ransomware</option><option value="Vulnerability">Vulnerability</option>
-      </select>
-      <select id="vendorFilter" class="select" aria-label="Filter by affected vendor">
-        <option value="">All vendors</option>
-        <option value="Apple">Apple</option><option value="GitHub">GitHub</option><option value="Google">Google</option><option value="Microsoft">Microsoft</option><option value="VMware">VMware</option>
-      </select>
-      <select id="ageFilter" class="select" aria-label="Filter by article age">
-        <option value="">Any age</option>
-        <option value="Recent">Recent</option>
-      </select>
-      <select id="handoffFilter" class="select" aria-label="Filter by downstream handoff cue">
-        <option value="">All handoff cues</option>
-        <option value="SentryInsight: incident watch">SentryInsight: incident watch</option><option value="SentryInsight: vuln triage">SentryInsight: vuln triage</option><option value="SentryInsight: vendor watch">SentryInsight: vendor watch</option><option value="GRCInsight: governance watch">GRCInsight: governance watch</option><option value="SentryInsight: monitor">SentryInsight: monitor</option>
-      </select>
-    </div>
-    <div class="filter-status" aria-label="Active filters">
-      <div id="activeFilters" class="active-filters" role="list" aria-label="Active filter chips" hidden></div>
-      <div id="filterStatusAnnouncement" class="sr-only" role="status" aria-live="polite" aria-atomic="true">Showing 30 of 30 articles.</div>
-      <button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters</button>
-    </div>
-    <div class="stats" id="stats">Showing 30 of 30 articles from 4 sources</div>
     <section class="issue-strip" aria-label="Digest issue metadata">
       <span class="issue-label">Current issue</span>
       <time datetime="2026-08-15T12:46:04.332Z">August 15, 2026</time>
@@ -258,20 +238,53 @@
       <span class="issue-trail-meta">Updated <time class="issue-trail-updated" datetime="2026-08-15T12:46:04.332Z">12:46 UTC · Aug 15</time></span>
       <span class="issue-trail-meta issue-trail-cadence" data-cadence-hours="3" data-cadence-state="scheduled" role="status" aria-live="polite" aria-atomic="true"><span data-cadence-label>3h cadence</span></span>
     </nav>
+    <details id="advancedFilters" class="advanced-filters">
+      <summary class="advanced-filters-summary">Refine digest</summary>
+      <div class="filter-row" aria-label="Article filters">
+        <select id="severityFilter" class="select" aria-label="Filter by severity">
+          <option value="">All severities</option>
+          <option value="Critical">Critical</option><option value="Elevated">Elevated</option><option value="Monitor">Monitor</option>
+        </select>
+        <select id="tagFilter" class="select" aria-label="Filter by topic tag">
+          <option value="">All topics</option>
+          <option value="AI Security">AI Security</option><option value="Cloud">Cloud</option><option value="Data Breach">Data Breach</option><option value="Exploitation">Exploitation</option><option value="Identity">Identity</option><option value="Malware">Malware</option><option value="Ransomware">Ransomware</option><option value="Vulnerability">Vulnerability</option>
+        </select>
+        <select id="vendorFilter" class="select" aria-label="Filter by affected vendor">
+          <option value="">All vendors</option>
+          <option value="Apple">Apple</option><option value="GitHub">GitHub</option><option value="Google">Google</option><option value="Microsoft">Microsoft</option><option value="VMware">VMware</option>
+        </select>
+        <select id="ageFilter" class="select" aria-label="Filter by article age">
+          <option value="">Any age</option>
+          <option value="Recent">Recent</option>
+        </select>
+        <select id="handoffFilter" class="select" aria-label="Filter by downstream handoff cue">
+          <option value="">All handoff cues</option>
+          <option value="SentryInsight: incident watch">SentryInsight: incident watch</option><option value="SentryInsight: vuln triage">SentryInsight: vuln triage</option><option value="SentryInsight: vendor watch">SentryInsight: vendor watch</option><option value="GRCInsight: governance watch">GRCInsight: governance watch</option><option value="SentryInsight: monitor">SentryInsight: monitor</option>
+        </select>
+      </div>
+    </details>
+    <div class="filter-status" aria-label="Active filters">
+      <div id="activeFilters" class="active-filters" role="list" aria-label="Active filter chips" hidden></div>
+      <div id="filterStatusAnnouncement" class="sr-only" role="status" aria-live="polite" aria-atomic="true">Showing 30 of 30 articles.</div>
+      <button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters</button>
+    </div>
+    <div class="stats" id="stats" hidden>Showing 30 of 30 articles from 4 sources</div>
     <div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true" hidden></div>
     <span id="sourceCoverage" class="anchor-target" aria-hidden="true"></span>
     <section class="source-coverage" aria-label="RSS source coverage">
-      <div class="source-coverage-label">RSS source coverage</div>
-      <div class="source-counts"><button class="source-count" type="button" data-source-filter="Krebs on Security" aria-label="Filter to Krebs on Security source, 1 article" aria-pressed="false">Krebs on Security <strong>1</strong></button><button class="source-count" type="button" data-source-filter="The Hacker News" aria-label="Filter to The Hacker News source, 3 articles" aria-pressed="false">The Hacker News <strong>3</strong></button><button class="source-count" type="button" data-source-filter="Bleeping Computer" aria-label="Filter to Bleeping Computer source, 15 articles" aria-pressed="false">Bleeping Computer <strong>15</strong></button><button class="source-count" type="button" data-source-filter="Dark Reading" aria-label="Filter to Dark Reading source, 11 articles" aria-pressed="false">Dark Reading <strong>11</strong></button></div>
-      <div class="source-health-summary" data-active-sources="4" data-quiet-sources="0">
-        <span><strong>4</strong> active feeds</span>
-        <span><strong>0</strong> quiet feeds</span>
-      </div>
-      <div class="source-quiet-feeds" aria-label="Quiet RSS sources"></div>
-      <div class="source-filter-status" data-source-filter-status role="status" aria-live="polite" aria-atomic="true">All contributing feeds (30 articles)</div>
-      <div class="source-coverage-actions">
-        <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with 30 latest articles">RSS feed <span class="feed-link-count">30 items</span></a>
-        <details class="digest-legend" aria-label="Digest legend">
+      <details class="source-coverage-details">
+        <summary class="source-coverage-summary">Source coverage <span>4 active feeds · 30 articles</span></summary>
+        <div class="source-coverage-body">
+          <div class="source-counts"><button class="source-count" type="button" data-source-filter="Krebs on Security" aria-label="Filter to Krebs on Security source, 1 article" aria-pressed="false">Krebs on Security <strong>1</strong></button><button class="source-count" type="button" data-source-filter="The Hacker News" aria-label="Filter to The Hacker News source, 3 articles" aria-pressed="false">The Hacker News <strong>3</strong></button><button class="source-count" type="button" data-source-filter="Bleeping Computer" aria-label="Filter to Bleeping Computer source, 15 articles" aria-pressed="false">Bleeping Computer <strong>15</strong></button><button class="source-count" type="button" data-source-filter="Dark Reading" aria-label="Filter to Dark Reading source, 11 articles" aria-pressed="false">Dark Reading <strong>11</strong></button></div>
+          <div class="source-health-summary" data-active-sources="4" data-quiet-sources="0">
+            <span><strong>4</strong> active feeds</span>
+            <span><strong>0</strong> quiet feeds</span>
+          </div>
+          <div class="source-quiet-feeds" aria-label="Quiet RSS sources"></div>
+          <div class="source-filter-status" data-source-filter-status role="status" aria-live="polite" aria-atomic="true">All contributing feeds (30 articles)</div>
+          <div class="source-coverage-actions">
+            <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with 30 latest articles">RSS feed <span class="feed-link-count">30 items</span></a>
+            <details class="digest-legend" aria-label="Digest legend">
       <summary class="digest-legend-summary">Digest legend: source signals and handoff cues</summary>
       <div class="digest-legend-body">
         <div class="digest-legend-group source-signal-legend" aria-label="Source signal legend">
@@ -283,7 +296,9 @@
     </div>
       </div>
     </details>
-      </div>
+          </div>
+        </div>
+      </details>
     </section>
     <section class="operator-lanes" aria-label="Operator scan lanes">
       <article class="operator-lane" data-lane="Incident watch" data-lane-cue="SentryInsight: incident watch">
@@ -308,7 +323,7 @@
         <article class="news-item" id="reporting-adf27a5de8bb" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="How Anthropic plans to watermark Claude&#39;s AI-generated text" data-summary="It could soon become easier to identify AI-generated content, even if it&#39;s not the usual &quot;It&#39;s Not X, it&#39;s Y&quot; type of post you&#39;d come across on LinkedIn and other socials…" data-severity="Monitor" data-tags="AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-08-14T23:24:17.000Z">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
-            <span class="chip"><span class="dot"></span>Bleeping Computer · bleepingcomputer.com</span>
+            <span class="chip source-chip">Bleeping Computer</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>13h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/how-anthropic-plans-to-watermark-claudes-ai-generated-text/" target="_blank" rel="noopener">How Anthropic plans to watermark Claude&#39;s AI-generated text</a></h2>
@@ -322,7 +337,7 @@
         <article class="news-item" id="reporting-4ae5bf990f47" data-source="Dark Reading" data-host="darkreading.com" data-title="Mission-Driven Security: Inside a Global Bank&#39;s Defense" data-summary="In this video interview, Standard Chartered&#39;s group CISO shares insights on transitioning from technical roles to strategic leadership, the importance of business-savvy security executives, and how AI is reshaping both defensive capabilities and adversarial tactics in banking." data-severity="Monitor" data-tags="AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-08-14T19:24:18.000Z">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
-            <span class="chip"><span class="dot"></span>Dark Reading · darkreading.com</span>
+            <span class="chip source-chip">Dark Reading</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>17h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/mission-driven-security-inside-global-bank-defense" target="_blank" rel="noopener">Mission-Driven Security: Inside a Global Bank&#39;s Defense</a></h2>
@@ -342,7 +357,7 @@
         <article class="news-item" id="reporting-f425d96c2c87" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Hackers arrested over €30M bank fraud exploiting service provider flaw" data-summary="Four cybercriminals were arrested in Brazil, and three others were charged in Europe over allegations that they exploited a vulnerability at a service provider, allowing them to withdraw funds from Commerzbank customers&#39; bank accounts…" data-severity="Elevated" data-tags="Vulnerability,Exploitation" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-08-14T18:04:26.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
-            <span class="chip"><span class="dot"></span>Bleeping Computer · bleepingcomputer.com</span>
+            <span class="chip source-chip">Bleeping Computer</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>18h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hackers-arrested-over-30m-bank-fraud-exploiting-service-provider-flaw/" target="_blank" rel="noopener">Hackers arrested over €30M bank fraud exploiting service provider flaw</a></h2>
@@ -356,7 +371,7 @@
         <article class="news-item" id="reporting-f9fa1931bdf6" data-source="Dark Reading" data-host="darkreading.com" data-title="Amid AI-Driven Bug-Hunt Tsunami, NIST Looks to … AI" data-summary="Driven by AI-augmented research and scanning, vulnerability volumes continue to surge, driving the National Institute of Standards and Technology to ask whether AI could be the answer." data-severity="Elevated" data-tags="Vulnerability,AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-08-14T17:32:46.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
-            <span class="chip"><span class="dot"></span>Dark Reading · darkreading.com</span>
+            <span class="chip source-chip">Dark Reading</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>19h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/ai-driven-bug-tsunami-nist-looks-to-ai" target="_blank" rel="noopener">Amid AI-Driven Bug-Hunt Tsunami, NIST Looks to … AI</a></h2>
@@ -370,7 +385,7 @@
         <article class="news-item" id="reporting-9f7d0a43b985" data-source="Dark Reading" data-host="darkreading.com" data-title="Scottish Govt Suffers Potentially Widening Data Breach at Prosecutor&#39;s Office" data-summary="One Caledonian government agency reported a breach, thanks to a third party that may have serviced other agencies as well." data-severity="Critical" data-tags="Data Breach" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Recent" data-published-at="2026-08-14T15:58:50.000Z">
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
-            <span class="chip"><span class="dot"></span>Dark Reading · darkreading.com</span>
+            <span class="chip source-chip">Dark Reading</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>20h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/scottish-govt-data-breach-prosecutors-office" target="_blank" rel="noopener">Scottish Govt Suffers Potentially Widening Data Breach at Prosecutor&#39;s Office</a></h2>
@@ -384,7 +399,7 @@
         <article class="news-item" id="reporting-f3d1727276b9" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Hackers exploit macOS Screen Sharing flaw to deploy Monero miner" data-summary="The Netherlands&#39; National Cyber Security Centre (NCSC) is warning that hackers are actively exploiting a macOS authentication bypass vulnerability after public exploit code emerged…" data-severity="Elevated" data-tags="Vulnerability,Exploitation" data-vendors="Apple" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-08-14T14:59:55.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
-            <span class="chip"><span class="dot"></span>Bleeping Computer · bleepingcomputer.com</span>
+            <span class="chip source-chip">Bleeping Computer</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>21h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hackers-exploit-macos-screen-sharing-flaw-to-deploy-monero-miner/" target="_blank" rel="noopener">Hackers exploit macOS Screen Sharing flaw to deploy Monero miner</a></h2>
@@ -398,7 +413,7 @@
         <article class="news-item" id="reporting-4c9d6b022a5d" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="The Modern Attack Chain: Rethinking Google Workspace Security in the Age of AI" data-summary="Google Workspace attacks do not always begin with phishing. Stolen OAuth tokens can provide another path into Gmail, Drive, and connected systems. Material Security explains why organizations need defenses that cover the entire Workspace attack chain…" data-severity="Elevated" data-tags="Identity,AI Security" data-vendors="Google" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-08-14T14:00:10.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
-            <span class="chip"><span class="dot"></span>Bleeping Computer · bleepingcomputer.com</span>
+            <span class="chip source-chip">Bleeping Computer</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>22h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/the-modern-attack-chain-rethinking-google-workspace-security-in-the-age-of-ai/" target="_blank" rel="noopener">The Modern Attack Chain: Rethinking Google Workspace Security in the Age of AI</a></h2>
@@ -412,7 +427,7 @@
         <article class="news-item" id="reporting-f9f5eb360a33" data-source="Dark Reading" data-host="darkreading.com" data-title="What Boards Need to Know About Tech Risk" data-summary="Why do so many boards underestimate technology risk until it becomes a crisis?" data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-08-14T14:00:00.000Z">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
-            <span class="chip"><span class="dot"></span>Dark Reading · darkreading.com</span>
+            <span class="chip source-chip">Dark Reading</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>22h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/what-boards-must-know-tech-risk" target="_blank" rel="noopener">What Boards Need to Know About Tech Risk</a></h2>
@@ -425,7 +440,7 @@
         <article class="news-item" id="reporting-99dadd313b8c" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Max severity SAP Commerce Cloud flaw now targeted in attacks" data-summary="A maximum-severity SAP Commerce Cloud remote code execution vulnerability patched three days ago is already being targeted in attacks, according to threat intelligence company Defused…" data-severity="Elevated" data-tags="Vulnerability,Cloud" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-08-14T13:45:18.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
-            <span class="chip"><span class="dot"></span>Bleeping Computer · bleepingcomputer.com</span>
+            <span class="chip source-chip">Bleeping Computer</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>23h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/max-severity-sap-commerce-cloud-flaw-now-targeted-in-attacks/" target="_blank" rel="noopener">Max severity SAP Commerce Cloud flaw now targeted in attacks</a></h2>
@@ -439,7 +454,7 @@
         <article class="news-item" id="reporting-5bfa349da239" data-source="Dark Reading" data-host="darkreading.com" data-title="Cyera&#39;s Oasis Security Buy Is All About AI Agent Control" data-summary="The $1 billion deal aims to converge data security and identity into a single control plane for agents, with privileged access redefined around business context rather than static roles." data-severity="Elevated" data-tags="Identity,AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Recent" data-published-at="2026-08-14T12:17:21.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
-            <span class="chip"><span class="dot"></span>Dark Reading · darkreading.com</span>
+            <span class="chip source-chip">Dark Reading</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/identity-access-management-security/cyera-oasis-security-acquisition-ai-agent-control" target="_blank" rel="noopener">Cyera&#39;s Oasis Security Buy Is All About AI Agent Control</a></h2>
@@ -453,7 +468,7 @@
         <article class="news-item" id="reporting-ba32a4944ff6" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Shell investigates &#39;potential incident&#39; after Clop data theft claims" data-summary="Oil giant Shell has confirmed it is investigating a potential security incident after the Clop ransomware gang claimed it stole 89GB of data…" data-severity="Critical" data-tags="Ransomware,Data Breach" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Recent" data-published-at="2026-08-14T11:55:45.000Z">
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
-            <span class="chip"><span class="dot"></span>Bleeping Computer · bleepingcomputer.com</span>
+            <span class="chip source-chip">Bleeping Computer</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/shell-investigates-potential-incident-after-clop-data-theft-claims/" target="_blank" rel="noopener">Shell investigates &#39;potential incident&#39; after Clop data theft claims</a></h2>
@@ -467,7 +482,7 @@
         <article class="news-item" id="reporting-669791ec854c" data-source="Krebs on Security" data-host="krebsonsecurity.com" data-title="Who’s Tracking You? Use This New Service to Find Out" data-summary="It can be daunting to determine who&#39;s responsible for showing ads on the websites we visit, or who&#39;s harvesting data from the mobile apps we use every day. That information is already semi-public, but it is not easily parsed and traditionally much of it has remained walled away in the hands of large advertising platforms. Not anymore: A powerful and free new service called DecryptAds scrapes and correlates this adtech data and makes it simple to quickly learn a great deal about the entities that are tracking you." data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-08-14T11:24:35.000Z">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
-            <span class="chip"><span class="dot"></span>Krebs on Security · krebsonsecurity.com</span>
+            <span class="chip source-chip">Krebs on Security</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://krebsonsecurity.com/2026/08/whos-tracking-you-use-this-new-service-to-find-out/" target="_blank" rel="noopener">Who’s Tracking You? Use This New Service to Find Out</a></h2>
@@ -486,7 +501,7 @@
         <article class="news-item" id="reporting-815fb64a5a95" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="RingCentral data breach exposed info of 1.6 million accounts" data-summary="The ShinyHunters extortion group stole personal information from 1.6 million RingCentral accounts after hacking the company in July, according to the data breach notification service Have I Been Pwned…" data-severity="Critical" data-tags="Ransomware,Data Breach" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Recent" data-published-at="2026-08-14T10:52:05.000Z">
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
-            <span class="chip"><span class="dot"></span>Bleeping Computer · bleepingcomputer.com</span>
+            <span class="chip source-chip">Bleeping Computer</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/ringcentral-data-breach-exposed-info-of-16-million-accounts/" target="_blank" rel="noopener">RingCentral data breach exposed info of 1.6 million accounts</a></h2>
@@ -500,7 +515,7 @@
         <article class="news-item" id="reporting-de4f35c2e82c" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Data analyst sent to prison for stealing data, extorting employer" data-summary="A former data analyst contractor for Brightly Software has been sentenced to two years in prison for targeting his employer in a $2.5 million extortion scheme…" data-severity="Critical" data-tags="Ransomware" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Recent" data-published-at="2026-08-14T08:27:18.000Z">
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
-            <span class="chip"><span class="dot"></span>Bleeping Computer · bleepingcomputer.com</span>
+            <span class="chip source-chip">Bleeping Computer</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/data-analyst-sent-to-prison-for-stealing-data-extorting-employer/" target="_blank" rel="noopener">Data analyst sent to prison for stealing data, extorting employer</a></h2>
@@ -514,7 +529,7 @@
         <article class="news-item" id="reporting-df1d901c6dd9" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Apple sends new ‘Threat Notification’ alerts over mercenary spyware attacks" data-summary="You&#39;re not alone if you just received an &quot;Apple Threat Notification&quot; saying it detected a &quot;mercenary spyware attack targeted at your iPhone.&quot;…" data-severity="Elevated" data-tags="Malware" data-vendors="Apple" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-08-14T01:19:12.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
-            <span class="chip"><span class="dot"></span>Bleeping Computer · bleepingcomputer.com</span>
+            <span class="chip source-chip">Bleeping Computer</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/apple/apple-sends-new-threat-notification-alerts-over-mercenary-spyware-attacks/" target="_blank" rel="noopener">Apple sends new ‘Threat Notification’ alerts over mercenary spyware attacks</a></h2>
@@ -528,7 +543,7 @@
         <article class="news-item" id="reporting-2ef1deb56f00" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Ukraine shuts down 94 fraudulent call centers, seize millions in cash" data-summary="Authorities in Ukraine shut down 94 fraudulent call centers across the country that lured people into investment scams or tried to obtain access to bank accounts…" data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-08-13T21:12:47.000Z">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
-            <span class="chip"><span class="dot"></span>Bleeping Computer · bleepingcomputer.com</span>
+            <span class="chip source-chip">Bleeping Computer</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/ukraine-shuts-down-94-fraudulent-call-centers-seize-millions-in-cash/" target="_blank" rel="noopener">Ukraine shuts down 94 fraudulent call centers, seize millions in cash</a></h2>
@@ -541,7 +556,7 @@
         <article class="news-item" id="reporting-dace2be75c67" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Akira hackers disable EDR with Safe Mode, steal data but fail to encrypt" data-summary="An Akira ransomware affiliate disabled the endpoint detection and response (EDR) solution on a compromised system by restarting the machine into Safe Mode with Networking…" data-severity="Critical" data-tags="Ransomware" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Recent" data-published-at="2026-08-13T20:47:02.000Z">
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
-            <span class="chip"><span class="dot"></span>Bleeping Computer · bleepingcomputer.com</span>
+            <span class="chip source-chip">Bleeping Computer</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/akira-hackers-disable-edr-with-safe-mode-steal-data-but-fail-to-encrypt/" target="_blank" rel="noopener">Akira hackers disable EDR with Safe Mode, steal data but fail to encrypt</a></h2>
@@ -555,7 +570,7 @@
         <article class="news-item" id="reporting-7a20fee85e3d" data-source="Dark Reading" data-host="darkreading.com" data-title="Global Threat Campaign Hits Critical VMware vCenter Flaw" data-summary="Exploitation against CVE-2026–59310 began earlier this month, and patching the vulnerability may not be enough to fully mitigate the threat." data-severity="Elevated" data-tags="Vulnerability,Exploitation" data-vendors="VMware" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-08-13T20:45:17.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
-            <span class="chip"><span class="dot"></span>Dark Reading · darkreading.com</span>
+            <span class="chip source-chip">Dark Reading</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/global-threat-campaign-critical-vmware-vcenter-flaw" target="_blank" rel="noopener">Global Threat Campaign Hits Critical VMware vCenter Flaw</a></h2>
@@ -569,7 +584,7 @@
         <article class="news-item" id="reporting-209727c80af4" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Hackers breach govt webmail while running parallel crypto fraud" data-summary="The Jewelbug hacker group has been carrying out espionage operations targeting governments and militaries while also engaging in cryptocurrency fraud…" data-severity="Critical" data-tags="Data Breach" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Recent" data-published-at="2026-08-13T18:15:19.000Z">
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
-            <span class="chip"><span class="dot"></span>Bleeping Computer · bleepingcomputer.com</span>
+            <span class="chip source-chip">Bleeping Computer</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hackers-breach-govt-webmail-while-running-parallel-crypto-fraud/" target="_blank" rel="noopener">Hackers breach govt webmail while running parallel crypto fraud</a></h2>
@@ -583,7 +598,7 @@
         <article class="news-item" id="reporting-8e33415aceb9" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft patches LegacyHive Windows zero-day vulnerability" data-summary="Microsoft has released security patches to address a Windows zero-day vulnerability known as &quot;LegacyHive,&quot; disclosed after the July 2026 Patch Tuesday…" data-severity="Critical" data-tags="Vulnerability" data-vendors="Microsoft" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-08-13T17:46:20.000Z">
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
-            <span class="chip"><span class="dot"></span>Bleeping Computer · bleepingcomputer.com</span>
+            <span class="chip source-chip">Bleeping Computer</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-patches-legacyhive-windows-zero-day-vulnerability/" target="_blank" rel="noopener">Microsoft patches LegacyHive Windows zero-day vulnerability</a></h2>
@@ -597,7 +612,7 @@
         <article class="news-item" id="reporting-00e63bf6755c" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="AI &#39;watermark removers&#39; flood the web. Almost none can prove they work." data-summary="Multiple &#39;watermark removers&#39; have surfaced days after Anthropic began watermarking text generated by Claude, including an open source project with over 4,500 GitHub stars and paid AI detection evasion services. None of the tools&#39; claims about defeating the text watermark can be verified, as Anthropic has not released a detector…" data-severity="Monitor" data-tags="AI Security" data-vendors="GitHub" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-08-13T17:33:28.000Z">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
-            <span class="chip"><span class="dot"></span>Bleeping Computer · bleepingcomputer.com</span>
+            <span class="chip source-chip">Bleeping Computer</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/ai-watermark-removers-flood-the-web-almost-none-can-prove-they-work/" target="_blank" rel="noopener">AI &#39;watermark removers&#39; flood the web. Almost none can prove they work.</a></h2>
@@ -611,7 +626,7 @@
         <article class="news-item" id="reporting-a4f4d669c4c8" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Critical VMware vCenter RCE flaw exploited for reverse SSH access" data-summary="A recently patched critical vulnerability (CVE-2026-59310) in VMware vCenter Syslog Server is being exploited in an active campaign to deploy a reverse SSH tool for persistence and remote access…" data-severity="Critical" data-tags="Vulnerability,Exploitation" data-vendors="VMware" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-08-13T16:40:23.000Z">
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
-            <span class="chip"><span class="dot"></span>Bleeping Computer · bleepingcomputer.com</span>
+            <span class="chip source-chip">Bleeping Computer</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/critical-vmware-vcenter-rce-flaw-exploited-for-reverse-ssh-access/" target="_blank" rel="noopener">Critical VMware vCenter RCE flaw exploited for reverse SSH access</a></h2>
@@ -625,7 +640,7 @@
         <article class="news-item" id="reporting-0d9304a57c79" data-source="Dark Reading" data-host="darkreading.com" data-title="&#39;Jewelbug&#39; APT Balances State Espionage &amp; Cryptocurrency Theft" data-summary="Researchers discovered hackers-for-hire performing cyber espionage and financially motivated heists from the same Web panel." data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-08-13T10:00:00.000Z">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
-            <span class="chip"><span class="dot"></span>Dark Reading · darkreading.com</span>
+            <span class="chip source-chip">Dark Reading</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/jewelbug-apt-state-espionage-cryptocurrency-theft" target="_blank" rel="noopener">&#39;Jewelbug&#39; APT Balances State Espionage &amp; Cryptocurrency Theft</a></h2>
@@ -638,7 +653,7 @@
         <article class="news-item" id="reporting-6ad3c57e750e" data-source="Dark Reading" data-host="darkreading.com" data-title="Belgium&#39;s eID Authentication Opens Citizen Accounts to RCE" data-summary="The trust framework underlying Belgium&#39;s electronic ID system was fully compromised by severe vulnerabilities in a key browser extension, showcasing bigger problems with extensions in general." data-severity="Elevated" data-tags="Vulnerability" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-08-13T07:00:00.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
-            <span class="chip"><span class="dot"></span>Dark Reading · darkreading.com</span>
+            <span class="chip source-chip">Dark Reading</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/application-security/belgium-eid-authentication-citizen-accounts-rce" target="_blank" rel="noopener">Belgium&#39;s eID Authentication Opens Citizen Accounts to RCE</a></h2>
@@ -652,7 +667,7 @@
         <article class="news-item" id="reporting-3c5ef5fa5324" data-source="The Hacker News" data-host="thehackernews.com" data-title="Attackers Exploit SharePoint Authentication Bypass After Public PoC Release" data-summary="Threat actors have begun to exploit a newly disclosed Microsoft SharePoint vulnerability following the release of a proof-of-concept (PoC) code. The vulnerability in question is CVE-2026-55040 (CVSS score: 9.1), which refers to a critical security feature bypass that stems from weak authentication. It was patched by Microsoft as part of its July 2026 Patch Tuesday updates. &quot;The authentication…" data-severity="Elevated" data-tags="Vulnerability,Exploitation" data-vendors="Microsoft" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-08-13T06:09:48.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
-            <span class="chip"><span class="dot"></span>The Hacker News · thehackernews.com</span>
+            <span class="chip source-chip">The Hacker News</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/attackers-exploit-sharepoint.html" target="_blank" rel="noopener">Attackers Exploit SharePoint Authentication Bypass After Public PoC Release</a></h2>
@@ -666,7 +681,7 @@
         <article class="news-item" id="reporting-5c0ecb74e8a5" data-source="Dark Reading" data-host="darkreading.com" data-title="Long-running Data Theft Campaign Targeting Salesforce, ServiceNow" data-summary="The &quot;City-Forum&quot; campaign has been active since at least March 2025 and has targeted organizations across multiple sectors with custom tooling." data-severity="Critical" data-tags="Data Breach" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Recent" data-published-at="2026-08-12T21:08:54.000Z">
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
-            <span class="chip"><span class="dot"></span>Dark Reading · darkreading.com</span>
+            <span class="chip source-chip">Dark Reading</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/long-running-data-theft-campaign-salesforce-servicenow" target="_blank" rel="noopener">Long-running Data Theft Campaign Targeting Salesforce, ServiceNow</a></h2>
@@ -680,7 +695,7 @@
         <article class="news-item" id="reporting-3fd53cb513b8" data-source="The Hacker News" data-host="thehackernews.com" data-title="Lazarus Exploits Windows Zero-Day to Gain SYSTEM Access and Deploy Backdoor" data-summary="The North Korean threat actor known as Lazarus Group has been attributed to the zero-day exploitation of a newly patched security flaw impacting Microsoft Windows to deliver a never-before-seen backdoor targeting defense and aerospace companies across France, Germany, Brazil, and India. The activity, per Check Point Research, is part of Operation Dream Job, a long-running cyber espionage and…" data-severity="Critical" data-tags="Vulnerability,Exploitation,Malware" data-vendors="Microsoft" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-08-12T17:39:27.000Z">
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
-            <span class="chip"><span class="dot"></span>The Hacker News · thehackernews.com</span>
+            <span class="chip source-chip">The Hacker News</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/lazarus-exploits-windows-zero-day-to.html" target="_blank" rel="noopener">Lazarus Exploits Windows Zero-Day to Gain SYSTEM Access and Deploy Backdoor</a></h2>
@@ -694,7 +709,7 @@
         <article class="news-item" id="reporting-64f0c9a81850" data-source="Dark Reading" data-host="darkreading.com" data-title="Walmart Takes a &#39;Trusted Agent&#39; Approach to Purple Teaming" data-summary="Walmart colocates red and blue teams to build trust and improve security through collaborative purple teaming exercises" data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-08-12T16:28:04.000Z">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
-            <span class="chip"><span class="dot"></span>Dark Reading · darkreading.com</span>
+            <span class="chip source-chip">Dark Reading</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/walmart-trusted-agent-approach-purple-teaming" target="_blank" rel="noopener">Walmart Takes a &#39;Trusted Agent&#39; Approach to Purple Teaming</a></h2>
@@ -707,7 +722,7 @@
         <article class="news-item" id="reporting-dc7fe6e1bf20" data-source="The Hacker News" data-host="thehackernews.com" data-title="737 Chrome VPN Extensions Caught Routing Traffic Through Proxies. Check If You Have One" data-summary="A massive set of 737 free VPN and proxy extensions have been found to mainly target Russian-speaking users seeking access to blocked services with an aim to intercept browser traffic and route them through a proxy infrastructure. The extensions, published across at least 40 Chrome Web Store developer accounts, racked up 75,486 installs. Of those identified, 274 have been found to impersonate 66…" data-severity="Monitor" data-tags="" data-vendors="Google" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-08-12T14:09:50.000Z">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
-            <span class="chip"><span class="dot"></span>The Hacker News · thehackernews.com</span>
+            <span class="chip source-chip">The Hacker News</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/08/737-chrome-vpn-extensions-caught.html" target="_blank" rel="noopener">737 Chrome VPN Extensions Caught Routing Traffic Through Proxies. Check If You Have One</a></h2>
@@ -721,7 +736,7 @@
         <article class="news-item" id="reporting-724af19cb2b3" data-source="Dark Reading" data-host="darkreading.com" data-title="Ransomware Hits Colombian Justice Ministry Days Before Presidential Transition" data-summary="Attackers continue to target critical infrastructure and government-linked organizations in the country, mirroring the increased activity across Latin America." data-severity="Critical" data-tags="Ransomware" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Recent" data-published-at="2026-08-12T14:00:00.000Z">
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
-            <span class="chip"><span class="dot"></span>Dark Reading · darkreading.com</span>
+            <span class="chip source-chip">Dark Reading</span>
             <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/ransomware-hits-colombian-justice-ministry-presidential-transition" target="_blank" rel="noopener">Ransomware Hits Colombian Justice Ministry Days Before Presidential Transition</a></h2>
@@ -771,6 +786,7 @@
       const filterStatusAnnouncement = q('#filterStatusAnnouncement');
       const resetFilters = q('#resetFilters');
       const emptyResetFilters = q('#emptyResetFilters');
+      const advancedFilters = q('#advancedFilters');
       const filterInsights = q('#filterInsights');
       const sourceFilterStatus = q('[data-source-filter-status]');
       const operatorLanes = qa('.operator-lane');
@@ -900,11 +916,11 @@
         });
       }
 
-      function renderFilterInsights(visibleCards){
+      function renderFilterInsights(visibleCards, hasAnyFilter){
         if (!filterInsights) return;
         filterInsights.textContent = '';
-        filterInsights.hidden = visibleCards.length === 0;
-        if (visibleCards.length === 0) return;
+        filterInsights.hidden = visibleCards.length === 0 || !hasAnyFilter;
+        if (visibleCards.length === 0 || !hasAnyFilter) return;
         const label = document.createElement('span');
         label.className = 'filter-insights-label';
         label.textContent = 'Current results';
@@ -1067,9 +1083,15 @@
         const srcCount = 4;
         const articleLabel = visible === 1 ? 'article' : 'articles';
         const hasComposedFilters = Boolean(term || severity || tag || vendor || age || handoff);
+        const hasAdvancedFilters = Boolean(severity || tag || vendor || age || handoff);
+        const hasAnyFilter = Boolean(term || src || hasAdvancedFilters);
         const safeStatusActionLabel = typeof statusActionLabel === 'string' ? statusActionLabel : '';
         const emptyFilteredStatusText = visible === 0 ? getEmptyFilteredMessage(src, hasComposedFilters) : '';
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources';
+        if (stats) {
+          stats.hidden = !hasAnyFilter;
+          stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources';
+        }
+        if (advancedFilters && hasAdvancedFilters) advancedFilters.open = true;
         if (filterStatusAnnouncement) filterStatusAnnouncement.textContent = getFilterStatusText(visible, total, safeStatusActionLabel, emptyFilteredStatusText);
         renderEmptyFilteredState(visible, src, hasComposedFilters);
         sourceCoverageButtons.forEach(function(button){
@@ -1080,7 +1102,7 @@
           sourceFilterStatus.textContent = (src ? 'Source filter: ' + getControlLabel(sourceFilter) : 'All contributing feeds') + ' (' + visible + ' ' + countLabel + ')';
         }
         renderActiveFilters();
-        renderFilterInsights(visibleCards);
+        renderFilterInsights(visibleCards, hasAnyFilter);
         updateOperatorLanes(visibleCards);
         syncQueryState();
       }

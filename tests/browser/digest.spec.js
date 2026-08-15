@@ -7,6 +7,7 @@ const screenshotDirectory = path.join(process.cwd(), 'test-results/screenshots')
 const retainedContextFixture = path.join(process.cwd(), 'test-results/retained-context.html');
 const staleContextFixture = path.join(process.cwd(), 'test-results/stale-context.html');
 const cadenceFixture = path.join(process.cwd(), 'test-results/cadence.html');
+const cveHandoffFixture = path.join(process.cwd(), 'test-results/cve-handoff.html');
 const summaryBehaviorFixture = path.join(process.cwd(), 'test-results/summary-behavior.html');
 const sourceHealthFixture = path.join(process.cwd(), 'test-results/source-health.html');
 
@@ -41,6 +42,17 @@ test.beforeAll(() => {
   fs.writeFileSync(staleContextFixture, renderFixture('stale'));
   fs.writeFileSync(cadenceFixture, generateHTML(newsItems, {
     generatedAt: new Date('2026-08-14T10:00:00.000Z'),
+    retainedIssueDates: ['2026-08-13', '2026-08-14'],
+  }).replace('<head>', '<head>\n  <base href="../">'));
+  fs.writeFileSync(cveHandoffFixture, generateHTML([{
+    ...newsItems[0],
+    title: 'CVE-2026-59310 exploited in active intrusions',
+    link: 'https://publisher.example/cve-2026-59310',
+    source: 'Publisher Example',
+    summary: 'Incident response teams are investigating active exploitation and stolen credentials.',
+  }], {
+    generatedAt: new Date('2026-08-14T10:00:00.000Z'),
+    currentInsightCves: ['CVE-2026-59310'],
     retainedIssueDates: ['2026-08-13', '2026-08-14'],
   }).replace('<head>', '<head>\n  <base href="../">'));
   fs.writeFileSync(summaryBehaviorFixture, generateHTML([{
@@ -93,6 +105,7 @@ test('rendered digest shows cards and preserves its core interactions', async ({
   await themeToggle.click();
   await expect(page.locator('html')).toHaveAttribute('data-theme', /dark|light/);
 
+  await page.locator('.source-coverage-summary').click();
   const sourceShortcut = page.locator('[data-source-filter]').first();
   const sourceName = await sourceShortcut.getAttribute('data-source-filter');
   await sourceShortcut.click();
@@ -125,9 +138,68 @@ test('rendered digest shows cards and preserves its core interactions', async ({
   }
 
   await expect(page.locator('a.handoff-cue').first()).toHaveAttribute('href', /SentryInsight|GRCInsight/);
-  await expect(page.locator('a.handoff-cue[href*="#cve-"]').first()).toHaveAttribute('href', /SentryInsight\/#cve-\d{4}-\d{4,}$/);
   expect(runtimeFailures).toEqual([]);
   await page.screenshot({ path: path.join(screenshotDirectory, 'digest-desktop.png'), fullPage: true });
+});
+
+test('default digest avoids the generic dashboard visual tells', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  const response = await page.goto('/');
+
+  expect(response?.ok()).toBeTruthy();
+  await expect(page.locator('#advancedFilters')).not.toHaveAttribute('open', '');
+  await expect(page.locator('.source-coverage-details')).not.toHaveAttribute('open', '');
+  await expect(page.locator('#filterInsights')).toBeHidden();
+  const visualSignals = await page.evaluate(() => {
+    const visibleElements = Array.from(document.querySelectorAll('body *')).filter((element) => {
+      const style = getComputedStyle(element);
+      const bounds = element.getBoundingClientRect();
+      return style.display !== 'none' && style.visibility !== 'hidden' && bounds.width > 0 && bounds.height > 0;
+    });
+    return {
+      bodyBackgroundImage: getComputedStyle(document.body).backgroundImage,
+      headerBackgroundImage: getComputedStyle(document.querySelector('header')).backgroundImage,
+      fontFamilies: Array.from(new Set(visibleElements.map((element) => getComputedStyle(element).fontFamily))),
+      fontSizes: Array.from(new Set(visibleElements.map((element) => getComputedStyle(element).fontSize))),
+      borderedElements: visibleElements.filter((element) => {
+        const style = getComputedStyle(element);
+        return style.borderTopStyle !== 'none' && Number.parseFloat(style.borderTopWidth) > 0;
+      }).length,
+    };
+  });
+
+  expect(visualSignals.bodyBackgroundImage).toBe('none');
+  expect(visualSignals.headerBackgroundImage).toBe('none');
+  expect(visualSignals.fontFamilies).toHaveLength(1);
+  expect(visualSignals.fontSizes.length).toBeLessThanOrEqual(3);
+  expect(visualSignals.borderedElements).toBeLessThanOrEqual(20);
+  const sourceChips = await page.locator('article.news-item .source-chip').allTextContents();
+  expect(sourceChips.length).toBeGreaterThan(0);
+  expect(sourceChips.every((label) => !label.includes('.com'))).toBe(true);
+
+  await page.evaluate(() => document.documentElement.setAttribute('data-theme', 'dark'));
+  const darkLaneHeading = await page.locator('.operator-lane-heading').first().evaluate((element) => {
+    const headingColor = getComputedStyle(element).color;
+    const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+    const textTransform = getComputedStyle(element).textTransform;
+    return { accentColor, headingColor, textTransform };
+  });
+  expect(darkLaneHeading.headingColor).toBe('rgb(96, 165, 250)');
+  expect(darkLaneHeading.accentColor).toBe('#60a5fa');
+  expect(darkLaneHeading.textTransform).toBe('none');
+});
+
+test('CVE handoff links do not depend on the daily feed mix', async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false, locale: 'en-US', timezoneId: 'UTC' });
+  const page = await context.newPage();
+  const response = await page.goto('http://127.0.0.1:4173/test-results/cve-handoff.html');
+
+  expect(response?.ok()).toBeTruthy();
+  await expect(page.locator('a.handoff-cue[href*="#cve-"]')).toHaveAttribute(
+    'href',
+    /SentryInsight\/#cve-2026-59310$/,
+  );
+  await context.close();
 });
 
 test('quiet-source behavior does not depend on the daily feed mix', async ({ browser }) => {
@@ -159,6 +231,8 @@ test('mobile digest has no horizontal overflow', async ({ page }) => {
   await expect(firstCard.locator('a.item-permalink')).toHaveAttribute('href', `#${firstCardId}`);
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
   expect(overflow).toBeLessThanOrEqual(1);
+  const firstCardTop = await firstCard.evaluate((element) => element.getBoundingClientRect().top);
+  expect(firstCardTop).toBeLessThan(844);
   expect(runtimeFailures).toEqual([]);
   await page.screenshot({ path: path.join(screenshotDirectory, 'digest-mobile.png'), fullPage: true });
 });

@@ -358,18 +358,22 @@ function renderSourceCoverage(newsItems, sourceHealth = [], digestLegend = '', g
   const defaultStatus = formatSourceShortcutStatus(SOURCE_COVERAGE_CONTRACT.statusAllSourcesText, newsItems.length);
 
   return `<section class="${SOURCE_COVERAGE_CONTRACT.sectionClass}" aria-label="RSS source coverage">
-      <div class="source-coverage-label">RSS source coverage</div>
-      <div class="source-counts">${sourceCountItems}</div>
-      <div class="source-health-summary" ${SOURCE_COVERAGE_CONTRACT.activeSourcesAttribute}="${activeSourceCount}" ${SOURCE_COVERAGE_CONTRACT.quietSourcesAttribute}="${quietSourceCount}">
-        <span><strong>${activeSourceCount}</strong> ${activeFeedLabel}</span>
-        <span><strong>${quietSourceCount}</strong> ${quietFeedLabel}</span>
-      </div>
-      <div class="source-quiet-feeds" aria-label="Quiet RSS sources">${quietSourceItems}</div>
-      <div class="source-filter-status" data-source-filter-status role="status" aria-live="polite" aria-atomic="true">${defaultStatus}</div>
-      <div class="source-coverage-actions">
-        <a class="feed-link" href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}" aria-label="Open RSS feed with ${feedArticleLabel}">RSS feed <span class="feed-link-count">${feedItemLabel}</span></a>
-        ${digestLegend}
-      </div>
+      <details class="source-coverage-details">
+        <summary class="source-coverage-summary">Source coverage <span>${activeSourceCount} ${activeFeedLabel} · ${newsItems.length} ${newsItems.length === 1 ? 'article' : 'articles'}</span></summary>
+        <div class="source-coverage-body">
+          <div class="source-counts">${sourceCountItems}</div>
+          <div class="source-health-summary" ${SOURCE_COVERAGE_CONTRACT.activeSourcesAttribute}="${activeSourceCount}" ${SOURCE_COVERAGE_CONTRACT.quietSourcesAttribute}="${quietSourceCount}">
+            <span><strong>${activeSourceCount}</strong> ${activeFeedLabel}</span>
+            <span><strong>${quietSourceCount}</strong> ${quietFeedLabel}</span>
+          </div>
+          <div class="source-quiet-feeds" aria-label="Quiet RSS sources">${quietSourceItems}</div>
+          <div class="source-filter-status" data-source-filter-status role="status" aria-live="polite" aria-atomic="true">${defaultStatus}</div>
+          <div class="source-coverage-actions">
+            <a class="feed-link" href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}" aria-label="Open RSS feed with ${feedArticleLabel}">RSS feed <span class="feed-link-count">${feedItemLabel}</span></a>
+            ${digestLegend}
+          </div>
+        </div>
+      </details>
     </section>`;
 }
 
@@ -557,11 +561,7 @@ function renderArticleCard(article, index = 0, generatedAt = new Date(), options
   const dateIso = new Date(article.date).toISOString();
   const safeSource = escapeHtml(article.source);
   const safeSourceAttr = escapeAttribute(article.source);
-  const safeHost = escapeHtml(hostname);
   const safeHostAttr = escapeAttribute(hostname);
-  const safeSourceDisplay = hostname
-    ? `${safeSource} · ${safeHost}`
-    : safeSource;
   const safeTitle = escapeHtml(article.title);
   const safeTitleAttr = escapeAttribute(article.title);
   const safeSummaryAttr = escapeAttribute(article.summary);
@@ -599,7 +599,7 @@ function renderArticleCard(article, index = 0, generatedAt = new Date(), options
         <article class="news-item" id="${stableFragment}" data-source="${safeSourceAttr}" data-host="${safeHostAttr}" data-title="${safeTitleAttr}" data-summary="${safeSummaryAttr}" data-severity="${safeSeverityAttr}" data-tags="${safeTagsAttr}" data-vendors="${safeVendorsAttr}" data-source-signal="${safeSourceSignalAttr}" data-handoff-cues="${safeHandoffCuesAttr}" data-age-bucket="${safeAgeBucketAttr}" data-published-at="${dateIso}">
           <div class="chips">
             <span class="severity severity-${safeSeverityClass}">${safeSeverity}</span>
-            <span class="chip"><span class="dot"></span>${safeSourceDisplay}</span>${sourceSignalChip}
+            <span class="chip source-chip">${safeSource}</span>${sourceSignalChip}
             <span class="chip age-chip"><span data-age-label>${safeAgeBucket}</span> · <span data-age-detail>${safeAgeDetail}</span></span>
           </div>
           <h2 class="news-title">${renderedTitle}</h2>
@@ -789,6 +789,9 @@ function generateHTML(newsItems, options = {}) {
       --accent: #2563eb; 
       --accent-contrast: #ffffff; 
       --chip: #e5e7eb;
+      --text-small: 0.875rem;
+      --text-body: 1rem;
+      --text-title: 1.125rem;
     }
     [data-theme="dark"] {
       --bg: #0b1020;
@@ -801,38 +804,43 @@ function generateHTML(newsItems, options = {}) {
       --chip: #1f2937;
     }
     * { box-sizing: border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--fg); margin: 0; background: radial-gradient(1200px 600px at 20% -10%, rgba(37,99,235,.08), transparent 50%), var(--bg); }
+    body { background: var(--bg); color: var(--fg); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: var(--text-body); line-height: 1.55; margin: 0; }
     .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
-    header.site-header { background: linear-gradient(180deg, rgba(37,99,235,0.15), rgba(37,99,235,0.0)); border-bottom: 1px solid var(--card-border); position: sticky; top: 0; z-index: 10; backdrop-filter: saturate(140%) blur(8px); }
+    header.site-header { background: var(--bg); border-bottom: 1px solid var(--card-border); position: sticky; top: 0; z-index: 10; }
     .masthead { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; }
     .brand { display: flex; align-items: center; gap: 10px; }
     .brand img { width: 28px; height: 28px; border-radius: 6px; }
-    .brand .title { font-size: inherit; font-weight: 700; letter-spacing: 0.2px; margin: 0; }
-    .brand .subtitle { color: var(--muted); font-size: 0.9rem; }
+    .brand .title { font-size: var(--text-title); font-weight: 700; letter-spacing: -0.01em; margin: 0; }
+    .brand .subtitle { color: var(--muted); font-size: var(--text-small); }
     .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-    .filter-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
-    .filter-status { align-items: center; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .advanced-filters { margin-top: 12px; }
+    .advanced-filters-summary, .source-coverage-summary { color: var(--fg); cursor: pointer; font-size: var(--text-small); font-weight: 700; width: fit-content; }
+    .advanced-filters-summary:hover, .source-coverage-summary:hover { color: var(--accent); }
+    .advanced-filters-summary:focus-visible, .source-coverage-summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .filter-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+    .filter-status { align-items: center; display: flex; flex-wrap: wrap; gap: 8px; }
     .sr-only { clip: rect(0 0 0 0); border: 0; height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; white-space: nowrap; width: 1px; }
     .active-filters { display: flex; flex-wrap: wrap; gap: 8px; }
     .active-filters[hidden] { display: none; }
-    .active-filter-chip { align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 999px; color: var(--fg); display: inline-flex; font-size: 12px; gap: 6px; min-height: 28px; padding: 4px 8px 4px 10px; }
+    .active-filter-chip { align-items: center; background: var(--chip); border-radius: 999px; color: var(--fg); display: inline-flex; font-size: var(--text-small); gap: 6px; min-height: 28px; padding: 4px 8px 4px 10px; }
     .active-filter-clear { align-items: center; background: transparent; border: 0; border-radius: 999px; color: var(--muted); cursor: pointer; display: inline-flex; font: inherit; height: 18px; justify-content: center; line-height: 1; padding: 0; width: 18px; }
     .active-filter-clear:hover, .active-filter-clear:focus-visible { background: var(--chip); color: var(--accent); outline: 2px solid var(--accent); outline-offset: 1px; }
     .search { display: flex; align-items: center; gap: 8px; background: var(--card); border: 1px solid var(--card-border); padding: 8px 10px; border-radius: 10px; }
-    .search:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(37,99,235,0.15); outline: 2px solid var(--accent); outline-offset: 2px; }
-    .search input { border: none; outline: none; background: transparent; color: var(--fg); min-width: 220px; }
-    .select { border: 1px solid var(--card-border); background: var(--card); color: var(--fg); padding: 8px 10px; border-radius: 10px; }
-    .btn { border: 1px solid var(--card-border); background: var(--card); color: var(--fg); padding: 8px 10px; border-radius: 10px; cursor: pointer; }
+    .search:focus-within { border-color: var(--accent); outline: 2px solid var(--accent); outline-offset: 2px; }
+    .search input { background: transparent; border: none; color: var(--fg); font: inherit; font-size: var(--text-small); min-width: 220px; outline: none; }
+    .select { background: var(--card); border: 1px solid var(--card-border); border-radius: 8px; color: var(--fg); font: inherit; font-size: var(--text-small); padding: 8px 10px; }
+    .btn { background: var(--card); border: 1px solid var(--card-border); border-radius: 8px; color: var(--fg); cursor: pointer; font: inherit; font-size: var(--text-small); padding: 8px 10px; }
     .btn:hover { border-color: var(--accent); }
-    .select:focus-visible, .btn:focus-visible { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(37,99,235,0.15); outline: 2px solid var(--accent); outline-offset: 2px; }
-    .stats { color: var(--muted); font-size: 0.9rem; margin-top: 6px; }
-    .issue-strip { align-items: center; color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px 10px; margin-top: 10px; }
-    .issue-label { color: var(--fg); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
-    .issue-stat { background: var(--chip); border-radius: 999px; color: var(--fg); font-size: 12px; padding: 3px 8px; }
+    .select:focus-visible, .btn:focus-visible { border-color: var(--accent); outline: 2px solid var(--accent); outline-offset: 2px; }
+    .stats { color: var(--muted); font-size: var(--text-small); margin-top: 8px; }
+    .stats[hidden] { display: none; }
+    .issue-strip { align-items: center; color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px 10px; }
+    .issue-label { color: var(--fg); font-size: var(--text-small); font-weight: 700; }
+    .issue-stat { background: var(--chip); border-radius: 999px; color: var(--fg); font-size: var(--text-small); padding: 3px 8px; }
     .issue-stat strong { color: var(--accent); }
-    .issue-link { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
+    .issue-link { color: var(--accent); font-size: var(--text-small); font-weight: 600; text-decoration: none; }
     .issue-link:hover { text-decoration: underline; }
-    .issue-trail { align-items: center; color: var(--muted); display: flex; flex-wrap: wrap; font-size: 0.82rem; gap: 6px 10px; margin-top: 6px; }
+    .issue-trail { align-items: center; color: var(--muted); display: flex; flex-wrap: wrap; font-size: var(--text-small); gap: 6px 10px; margin-top: 6px; }
     .issue-trail-current { color: var(--fg); font-weight: 600; }
     .issue-trail a { color: var(--accent); font-weight: 600; text-decoration: none; }
     .issue-trail a:hover { text-decoration: underline; }
@@ -840,65 +848,65 @@ function generateHTML(newsItems, options = {}) {
     .issue-trail-meta { color: var(--muted); font-weight: 500; }
     .issue-trail-cadence[data-cadence-state="overdue"] { color: var(--fg); font-weight: 650; }
     .anchor-target { display: block; scroll-margin-top: 96px; }
-    .filter-insights { align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; padding: 10px 12px; }
+    .filter-insights { align-items: center; background: var(--card); border-radius: 8px; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; padding: 10px 12px; }
     .filter-insights[hidden] { display: none; }
-    .filter-insights-label { color: var(--muted); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
-    .filter-insight-chip { background: var(--chip); border-radius: 999px; color: var(--fg); font-size: 12px; padding: 4px 10px; }
-    .source-coverage { align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: flex; flex-wrap: wrap; gap: 10px 12px; margin-top: 12px; padding: 10px 12px; }
-    .source-coverage-label { color: var(--muted); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
+    .filter-insights-label { color: var(--muted); font-size: var(--text-small); font-weight: 700; }
+    .filter-insight-chip { background: var(--chip); border-radius: 999px; color: var(--fg); font-size: var(--text-small); padding: 4px 10px; }
+    .source-coverage { margin-top: 12px; }
+    .source-coverage-summary span { color: var(--muted); font-weight: 500; margin-left: 6px; }
+    .source-coverage-body { align-items: center; background: var(--card); border-radius: 8px; display: flex; flex-wrap: wrap; gap: 10px 12px; margin-top: 10px; padding: 12px; }
     .source-counts { display: flex; flex: 1 1 260px; flex-wrap: wrap; gap: 8px; }
     .source-coverage-actions { align-items: center; display: flex; flex: 1 1 280px; flex-wrap: wrap; gap: 8px 12px; justify-content: flex-end; min-width: 0; }
-    .source-count { background: var(--chip); border: 1px solid transparent; border-radius: 999px; color: var(--fg); cursor: pointer; font: inherit; font-size: 12px; padding: 4px 10px; }
-    .source-count:hover, .source-count:focus-visible, .source-count[aria-pressed="true"] { border-color: var(--accent); }
-    .source-count:focus-visible { box-shadow: 0 0 0 3px rgba(37,99,235,0.15); outline: 2px solid var(--accent); outline-offset: 2px; }
+    .source-count { background: var(--chip); border: 0; border-radius: 999px; color: var(--fg); cursor: pointer; font: inherit; font-size: var(--text-small); padding: 4px 10px; }
+    .source-count:hover, .source-count[aria-pressed="true"] { color: var(--accent); }
+    .source-count:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     .source-count strong { color: var(--accent); margin-left: 4px; }
-    .source-health-summary { align-items: center; color: var(--muted); display: flex; flex: 0 1 auto; flex-wrap: wrap; font-size: 12px; gap: 6px; }
-    .source-health-summary span { background: var(--bg); border: 1px solid var(--card-border); border-radius: 999px; padding: 3px 8px; }
+    .source-health-summary { align-items: center; color: var(--muted); display: flex; flex: 0 1 auto; flex-wrap: wrap; font-size: var(--text-small); gap: 6px; }
+    .source-health-summary span { background: var(--chip); border-radius: 999px; padding: 3px 8px; }
     .source-health-summary strong { color: var(--fg); }
-    .source-quiet-feeds { color: var(--muted); display: flex; flex: 1 1 100%; flex-wrap: wrap; font-size: 12px; gap: 6px 12px; }
+    .source-quiet-feeds { color: var(--muted); display: flex; flex: 1 1 100%; flex-wrap: wrap; font-size: var(--text-small); gap: 6px 12px; }
     .source-health-note { display: inline-flex; gap: 4px; }
     .source-health-note[data-health-status="stale"] { color: var(--fg); font-weight: 650; }
-    .insight-context { color: var(--muted); font-size: 12px; margin: 8px 0 0; }
+    .insight-context { color: var(--muted); font-size: var(--text-small); margin: 8px 0 0; }
     .insight-context-link { color: var(--accent); font-weight: 650; }
-    .source-filter-status { color: var(--muted); flex: 0 1 auto; font-size: 12px; font-weight: 700; }
-    .source-coverage a { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
+    .source-filter-status { color: var(--muted); flex: 0 1 auto; font-size: var(--text-small); font-weight: 700; }
+    .source-coverage a { color: var(--accent); font-size: var(--text-small); font-weight: 600; text-decoration: none; }
     .source-coverage a:hover { text-decoration: underline; }
     .feed-link { align-items: center; display: inline-flex; gap: 6px; }
-    .feed-link-count { background: var(--chip); border-radius: 999px; color: var(--muted); font-size: 12px; padding: 2px 8px; }
-    .digest-legend { background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; margin-top: 12px; padding: 10px 12px; }
-    .digest-legend-summary { color: var(--fg); cursor: pointer; font-size: 0.9rem; font-weight: 700; }
+    .feed-link-count { background: var(--chip); border-radius: 999px; color: var(--muted); font-size: var(--text-small); padding: 2px 8px; }
+    .digest-legend { background: var(--card); border: 0; margin-top: 12px; padding: 0; }
+    .digest-legend-summary { color: var(--fg); cursor: pointer; font-size: var(--text-small); font-weight: 700; }
     .digest-legend-summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
     .digest-legend-body { display: grid; gap: 10px; grid-template-columns: minmax(180px, 0.6fr) minmax(0, 1.4fr); margin-top: 10px; }
     .source-coverage .digest-legend { background: transparent; border: 0; flex: 1 1 260px; margin-top: 0; padding: 0; }
     .digest-legend-group { align-content: start; display: grid; gap: 8px; min-width: 0; }
-    .digest-legend-heading { color: var(--muted); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
+    .digest-legend-heading { color: var(--muted); font-size: var(--text-small); font-weight: 700; }
     .source-signal-items { display: flex; flex: 1 1 260px; flex-wrap: wrap; gap: 8px; }
     .source-signal-chip { align-items: baseline; background: var(--chip); border-radius: 999px; display: inline-flex; gap: 6px; padding: 4px 10px; }
-    .source-signal-name { color: var(--fg); font-size: 12px; font-weight: 700; }
-    .source-signal-detail { color: var(--muted); font-size: 12px; }
+    .source-signal-name { color: var(--fg); font-size: var(--text-small); font-weight: 700; }
+    .source-signal-detail { color: var(--muted); font-size: var(--text-small); }
     .handoff-cue-legend-items { display: flex; flex: 1 1 260px; flex-wrap: wrap; gap: 8px; }
     .handoff-cue-legend-chip { align-items: baseline; background: var(--chip); border-radius: 999px; display: inline-flex; gap: 6px; padding: 4px 10px; text-decoration: none; }
-    .handoff-cue-legend-chip:hover, .handoff-cue-legend-chip:focus-visible { box-shadow: 0 0 0 2px var(--accent); text-decoration: none; }
-    .handoff-cue-name { color: var(--fg); font-size: 12px; font-weight: 700; }
-    .handoff-cue-detail { color: var(--muted); font-size: 12px; }
+    .handoff-cue-legend-chip:hover, .handoff-cue-legend-chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; text-decoration: none; }
+    .handoff-cue-name { color: var(--fg); font-size: var(--text-small); font-weight: 700; }
+    .handoff-cue-detail { color: var(--muted); font-size: var(--text-small); }
     .operator-lanes { display: grid; gap: 12px; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 14px; }
-    .operator-lane { background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; display: grid; gap: 6px; padding: 12px; }
-    .operator-lane-heading { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
-    .operator-lane-count { color: var(--muted); font-size: 0.85rem; }
+    .operator-lane { background: var(--card); border-radius: 8px; display: grid; gap: 6px; padding: 12px; }
+    .operator-lane-heading { color: var(--accent); font-size: var(--text-small); font-weight: 700; text-decoration: none; }
+    .operator-lane-heading:hover { text-decoration: underline; }
+    .operator-lane-count { color: var(--muted); font-size: var(--text-small); }
     .operator-lane-count strong { color: var(--accent); }
-    .operator-lane-link { color: var(--fg); font-size: 0.92rem; line-height: 1.35; text-decoration: none; }
+    .operator-lane-link { color: var(--fg); font-size: var(--text-small); line-height: 1.4; text-decoration: none; }
     .operator-lane-link:hover { color: var(--accent); text-decoration: underline; }
-    .empty-filtered { background: var(--card); border: 1px dashed var(--card-border); border-radius: 10px; color: var(--muted); margin-top: 18px; padding: 18px; text-align: center; }
+    .empty-filtered { background: var(--card); border-radius: 8px; color: var(--muted); margin-top: 18px; padding: 18px; text-align: center; }
     .empty-filtered[hidden] { display: none; }
     .empty-filtered-message { margin: 0 0 12px; }
     .empty-reset-filters { background: var(--accent); color: var(--accent-contrast); }
-    .news-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin-top: 18px; }
-    .news-item { background: var(--card); border: 1px solid var(--card-border); border-radius: 14px; padding: 16px; transition: transform .2s ease, box-shadow .2s ease; }
-    .news-item:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(2,8,23,0.08); }
+    .news-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 16px; margin-top: 14px; }
+    .news-item { background: var(--card); border-radius: 8px; padding: 16px; }
     .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
-    .chip { display: inline-flex; align-items: center; gap: 6px; background: var(--chip); color: var(--fg); border-radius: 999px; padding: 4px 10px; font-size: 12px; }
-    .chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
-    .severity { display: inline-flex; align-items: center; border-radius: 999px; padding: 4px 10px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0; }
+    .chip { align-items: center; background: var(--chip); border-radius: 999px; color: var(--fg); display: inline-flex; font-size: var(--text-small); gap: 6px; padding: 4px 10px; }
+    .severity { align-items: center; border-radius: 999px; display: inline-flex; font-size: var(--text-small); font-weight: 700; padding: 4px 10px; text-transform: uppercase; }
     .severity-critical { background: #fee2e2; color: #991b1b; }
     .severity-elevated { background: #fef3c7; color: #92400e; }
     .severity-monitor { background: #e0f2fe; color: #075985; }
@@ -907,27 +915,27 @@ function generateHTML(newsItems, options = {}) {
     [data-theme="dark"] .severity-monitor { background: rgba(14,165,233,0.18); color: #bae6fd; }
     .facet-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
     .handoff-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-    .handoff-cue { border: 1px solid var(--card-border); border-radius: 6px; color: var(--muted); display: inline-flex; font-size: 12px; padding: 3px 8px; text-decoration: none; }
-    .handoff-cue:hover, .handoff-cue:focus-visible { border-color: var(--accent); color: var(--accent); text-decoration: none; }
-    .news-title { font-size: 1.06rem; margin: 6px 0 8px; }
+    .handoff-cue { background: var(--chip); border-radius: 4px; color: var(--muted); display: inline-flex; font-size: var(--text-small); padding: 3px 8px; text-decoration: none; }
+    .handoff-cue:hover, .handoff-cue:focus-visible { color: var(--accent); outline: 2px solid var(--accent); outline-offset: 1px; text-decoration: none; }
+    .news-title { font-size: var(--text-title); line-height: 1.35; margin: 6px 0 8px; }
     .news-title a { color: var(--fg); text-decoration: none; }
     .news-title a:hover { text-decoration: underline; }
-    .news-meta { color: var(--muted); font-size: 0.85rem; display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; }
+    .news-meta { align-items: baseline; color: var(--muted); display: flex; flex-wrap: wrap; font-size: var(--text-small); gap: 8px; }
     .item-permalink { color: var(--accent); font-weight: 600; text-decoration: none; }
     .item-permalink:hover, .item-permalink:focus-visible { text-decoration: underline; }
-    .badge-new { color: #16a34a; font-weight: 600; font-size: 0.8rem; }
+    .badge-new { color: #16a34a; font-size: var(--text-small); font-weight: 600; }
     .news-summary { margin-top: 8px; color: var(--fg); opacity: 0.9; }
     .summary-disclosure { margin-top: 8px; }
-    .summary-toggle { color: var(--fg); cursor: pointer; font: inherit; font-size: 0.95rem; opacity: 0.9; }
-    .summary-action { color: var(--accent); font-size: 0.9rem; margin-left: 6px; white-space: nowrap; }
+    .summary-toggle { color: var(--fg); cursor: pointer; font: inherit; font-size: var(--text-body); opacity: 0.9; }
+    .summary-action { color: var(--accent); font-size: var(--text-small); margin-left: 6px; white-space: nowrap; }
     details[open] .summary-ellipsis { display: none; }
     details[open] .summary-action { display: none; }
     .summary-toggle:hover .summary-action { text-decoration: underline; }
     .summary-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-    .summary-continuation { align-items: center; color: var(--accent); display: inline-flex; font-size: 0.85rem; font-weight: 650; gap: 4px; margin-top: 4px; text-decoration: none; }
+    .summary-continuation { align-items: center; color: var(--accent); display: inline-flex; font-size: var(--text-small); font-weight: 650; gap: 4px; margin-top: 4px; text-decoration: none; }
     .summary-continuation:hover { text-decoration: underline; }
     .summary-continuation:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-    footer { border-top: 1px solid var(--card-border); color: var(--muted); font-size: 0.9rem; padding: 18px 0; margin-top: 22px; }
+    footer { border-top: 1px solid var(--card-border); color: var(--muted); font-size: var(--text-small); padding: 18px 0; margin-top: 22px; }
     @media (max-width: 640px) {
       .container { padding: 16px; }
       .masthead { align-items: stretch; flex-direction: column; }
@@ -940,7 +948,7 @@ function generateHTML(newsItems, options = {}) {
       .digest-legend-body { grid-template-columns: minmax(0, 1fr); }
       .operator-lanes { grid-template-columns: minmax(0, 1fr); }
       .news-container { grid-template-columns: minmax(0, 1fr); }
-      .news-item { border-radius: 10px; }
+      .news-item { border-radius: 6px; }
     }
   </style>
 </head>
@@ -970,36 +978,39 @@ function generateHTML(newsItems, options = {}) {
   </header>
 
   <main class="container">
-    <div class="filter-row" aria-label="Article filters">
-      <select id="severityFilter" class="select" aria-label="Filter by severity">
-        <option value="">All severities</option>
-        ${severityOptions}
-      </select>
-      <select id="tagFilter" class="select" aria-label="Filter by topic tag">
-        <option value="">All topics</option>
-        ${tagOptions}
-      </select>
-      <select id="vendorFilter" class="select" aria-label="Filter by affected vendor">
-        <option value="">All vendors</option>
-        ${vendorOptions}
-      </select>
-      <select id="ageFilter" class="select" aria-label="Filter by article age">
-        <option value="">Any age</option>
-        ${ageOptions}
-      </select>
-      <select id="handoffFilter" class="select" aria-label="Filter by downstream handoff cue">
-        <option value="">All handoff cues</option>
-        ${handoffOptions}
-      </select>
-    </div>
+    ${issueStrip}
+    ${issueTrail}${insightContext ? `\n    ${insightContext}` : ''}
+    <details id="advancedFilters" class="advanced-filters">
+      <summary class="advanced-filters-summary">Refine digest</summary>
+      <div class="filter-row" aria-label="Article filters">
+        <select id="severityFilter" class="select" aria-label="Filter by severity">
+          <option value="">All severities</option>
+          ${severityOptions}
+        </select>
+        <select id="tagFilter" class="select" aria-label="Filter by topic tag">
+          <option value="">All topics</option>
+          ${tagOptions}
+        </select>
+        <select id="vendorFilter" class="select" aria-label="Filter by affected vendor">
+          <option value="">All vendors</option>
+          ${vendorOptions}
+        </select>
+        <select id="ageFilter" class="select" aria-label="Filter by article age">
+          <option value="">Any age</option>
+          ${ageOptions}
+        </select>
+        <select id="handoffFilter" class="select" aria-label="Filter by downstream handoff cue">
+          <option value="">All handoff cues</option>
+          ${handoffOptions}
+        </select>
+      </div>
+    </details>
     <div class="filter-status" aria-label="Active filters">
       <div id="activeFilters" class="active-filters" role="list" aria-label="Active filter chips" hidden></div>
       <div id="filterStatusAnnouncement" class="sr-only" role="status" aria-live="polite" aria-atomic="true">Showing ${totalItems} of ${totalItems} ${totalArticleLabel}.</div>
       <button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters</button>
     </div>
-    <div class="stats" id="stats">Showing ${totalItems} of ${totalItems} articles from ${uniqueSources.length} sources</div>
-    ${issueStrip}
-    ${issueTrail}${insightContext ? `\n    ${insightContext}` : ''}
+    <div class="stats" id="stats" hidden>Showing ${totalItems} of ${totalItems} articles from ${uniqueSources.length} sources</div>
     <div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true" hidden></div>
     <span id="${ISSUE_TRAIL_CONTRACT.sourceCoverageAnchorId}" class="anchor-target" aria-hidden="true"></span>
     ${sourceCoverage}
@@ -1050,6 +1061,7 @@ function generateHTML(newsItems, options = {}) {
       const filterStatusAnnouncement = q('#filterStatusAnnouncement');
       const resetFilters = q('#resetFilters');
       const emptyResetFilters = q('#emptyResetFilters');
+      const advancedFilters = q('#advancedFilters');
       const filterInsights = q('#filterInsights');
       const sourceFilterStatus = q('${SOURCE_COVERAGE_CONTRACT.statusSelector}');
       const operatorLanes = qa('.operator-lane');
@@ -1179,11 +1191,11 @@ function generateHTML(newsItems, options = {}) {
         });
       }
 
-      function renderFilterInsights(visibleCards){
+      function renderFilterInsights(visibleCards, hasAnyFilter){
         if (!filterInsights) return;
         filterInsights.textContent = '';
-        filterInsights.hidden = visibleCards.length === 0;
-        if (visibleCards.length === 0) return;
+        filterInsights.hidden = visibleCards.length === 0 || !hasAnyFilter;
+        if (visibleCards.length === 0 || !hasAnyFilter) return;
         const label = document.createElement('span');
         label.className = 'filter-insights-label';
         label.textContent = 'Current results';
@@ -1346,9 +1358,15 @@ function generateHTML(newsItems, options = {}) {
         const srcCount = ${uniqueSources.length};
         const articleLabel = visible === 1 ? 'article' : 'articles';
         const hasComposedFilters = Boolean(term || severity || tag || vendor || age || handoff);
+        const hasAdvancedFilters = Boolean(severity || tag || vendor || age || handoff);
+        const hasAnyFilter = Boolean(term || src || hasAdvancedFilters);
         const safeStatusActionLabel = typeof statusActionLabel === 'string' ? statusActionLabel : '';
         const emptyFilteredStatusText = visible === 0 ? getEmptyFilteredMessage(src, hasComposedFilters) : '';
-        if (stats) stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources';
+        if (stats) {
+          stats.hidden = !hasAnyFilter;
+          stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources';
+        }
+        if (advancedFilters && hasAdvancedFilters) advancedFilters.open = true;
         if (filterStatusAnnouncement) filterStatusAnnouncement.textContent = getFilterStatusText(visible, total, safeStatusActionLabel, emptyFilteredStatusText);
         renderEmptyFilteredState(visible, src, hasComposedFilters);
         sourceCoverageButtons.forEach(function(button){
@@ -1359,7 +1377,7 @@ function generateHTML(newsItems, options = {}) {
           sourceFilterStatus.textContent = (src ? '${SOURCE_COVERAGE_CONTRACT.statusTextPrefix}' + getControlLabel(sourceFilter) : '${SOURCE_COVERAGE_CONTRACT.statusAllSourcesText}') + ' (' + visible + ' ' + countLabel + ')';
         }
         renderActiveFilters();
-        renderFilterInsights(visibleCards);
+        renderFilterInsights(visibleCards, hasAnyFilter);
         updateOperatorLanes(visibleCards);
         syncQueryState();
       }

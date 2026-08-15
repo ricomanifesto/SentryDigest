@@ -11,6 +11,7 @@ const {
   loadSourceConfig,
   normalizeArticleDate,
   normalizeFeedDate,
+  normalizeSummary,
   updateConfigLastUpdated,
   writeGeneratedNewsArtifacts,
 } = require('../scripts/fetch-news');
@@ -187,6 +188,16 @@ test('normalizeArticleDate uses isoDate when pubDate is missing', () => {
   });
 
   assert.equal(date.toISOString(), '2026-06-18T15:45:00.000Z');
+});
+
+test('normalizeSummary drops embedded feed styling and executable content', () => {
+  const summary = normalizeSummary(`
+    <style>/* Container */ .td-wrap { display: grid; }</style>
+    <p>Security teams are reviewing the incident.</p>
+    <script>alert('not summary content')</script>
+  `);
+
+  assert.equal(summary, 'Security teams are reviewing the incident.');
 });
 
 test('normalizeArticleDate uses parser date before the stable old fallback', () => {
@@ -1083,7 +1094,7 @@ test('generateHTML renders active filter summary and reset wiring', () => {
   assert.match(html, /const clearedValue = filterControls\[key\] \? getControlLabel\(filterControls\[key\]\) : ''/);
   assert.match(html, /const clearedStatus = clearedValue \? 'Cleared ' \+ clearedLabel \+ ': ' \+ clearedValue \+ ' filter\.' : 'Cleared ' \+ clearedLabel \+ ' filter\.'/);
   assert.match(html, /update\(clearedStatus\)/);
-  assert.match(html, /renderActiveFilters\(\);\s+renderFilterInsights\(visibleCards\);\s+updateOperatorLanes\(visibleCards\);\s+syncQueryState\(\);/);
+  assert.match(html, /renderActiveFilters\(\);\s+renderFilterInsights\(visibleCards, hasAnyFilter\);\s+updateOperatorLanes\(visibleCards\);\s+syncQueryState\(\);/);
 });
 
 test('generateHTML renders explicit keyboard focus states for filter controls', () => {
@@ -1098,8 +1109,8 @@ test('generateHTML renders explicit keyboard focus states for filter controls', 
     }
   ], { sourceNames: ['Example Source'] });
 
-  assert.match(html, /\.search:focus-within \{ border-color: var\(--accent\); box-shadow: 0 0 0 3px rgba\(37,99,235,0\.15\); outline: 2px solid var\(--accent\); outline-offset: 2px; \}/);
-  assert.match(html, /\.select:focus-visible, \.btn:focus-visible \{ border-color: var\(--accent\); box-shadow: 0 0 0 3px rgba\(37,99,235,0\.15\); outline: 2px solid var\(--accent\); outline-offset: 2px; \}/);
+  assert.match(html, /\.search:focus-within \{ border-color: var\(--accent\); outline: 2px solid var\(--accent\); outline-offset: 2px; \}/);
+  assert.match(html, /\.select:focus-visible, \.btn:focus-visible \{ border-color: var\(--accent\); outline: 2px solid var\(--accent\); outline-offset: 2px; \}/);
   assert.match(html, /\.active-filter-clear:hover, \.active-filter-clear:focus-visible \{ background: var\(--chip\); color: var\(--accent\); outline: 2px solid var\(--accent\); outline-offset: 1px; \}/);
 });
 
@@ -1115,8 +1126,8 @@ test('generateHTML renders explicit keyboard focus states for source shortcuts',
     }
   ], { sourceNames: ['Example Source'] });
 
-  assert.match(html, /\.source-count:hover, \.source-count:focus-visible, \.source-count\[aria-pressed="true"\] \{ border-color: var\(--accent\); \}/);
-  assert.match(html, /\.source-count:focus-visible \{ box-shadow: 0 0 0 3px rgba\(37,99,235,0\.15\); outline: 2px solid var\(--accent\); outline-offset: 2px; \}/);
+  assert.match(html, /\.source-count:hover, \.source-count\[aria-pressed="true"\] \{ color: var\(--accent\); \}/);
+  assert.match(html, /\.source-count:focus-visible \{ outline: 2px solid var\(--accent\); outline-offset: 2px; \}/);
   assert.doesNotMatch(html, /\.source-count-empty/);
 });
 
@@ -1143,13 +1154,14 @@ test('generateHTML renders visible result context wiring', () => {
   assert.match(html, /function incrementCount\(counts, value\)/);
   assert.match(html, /function collectListCounts\(counts, rawValue\)/);
   assert.match(html, /function appendInsightGroup\(label, counts, limit\)/);
-  assert.match(html, /function renderFilterInsights\(visibleCards\)/);
+  assert.match(html, /function renderFilterInsights\(visibleCards, hasAnyFilter\)/);
+  assert.match(html, /filterInsights\.hidden = visibleCards\.length === 0 \|\| !hasAnyFilter/);
   assert.match(html, /const visibleCards = \[\]/);
   assert.match(html, /if \(show\) \{\s+visible\+\+;\s+visibleCards\.push\(card\);/);
   assert.match(html, /collectListCounts\(topicCounts, card\.getAttribute\('data-tags'\)\)/);
   assert.match(html, /collectListCounts\(vendorCounts, card\.getAttribute\('data-vendors'\)\)/);
   assert.match(html, /collectListCounts\(handoffCounts, card\.getAttribute\('data-handoff-cues'\)\)/);
-  assert.match(html, /renderFilterInsights\(visibleCards\)/);
+  assert.match(html, /renderFilterInsights\(visibleCards, hasAnyFilter\)/);
 });
 
 test('generateHTML renders a compact digest issue metadata bar', () => {
@@ -1410,7 +1422,7 @@ test('generateHTML renders filter-aware operator lane wiring', () => {
   assert.match(html, /linkTarget\.hidden = !latestLink/);
   assert.match(html, /linkTarget\.removeAttribute\('href'\)/);
   assert.match(html, /if \(emptyTarget\) emptyTarget\.hidden = Boolean\(latestLink\)/);
-  assert.match(html, /renderFilterInsights\(visibleCards\);\s+updateOperatorLanes\(visibleCards\);\s+syncQueryState\(\);/);
+  assert.match(html, /renderFilterInsights\(visibleCards, hasAnyFilter\);\s+updateOperatorLanes\(visibleCards\);\s+syncQueryState\(\);/);
 });
 
 test('generateHTML treats the malformed feed date fallback as undated', () => {

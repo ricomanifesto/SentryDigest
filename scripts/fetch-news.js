@@ -145,7 +145,9 @@ function normalizeFeedText(value) {
   let normalized = String(value ?? '');
 
   for (let pass = 0; pass < 3; pass += 1) {
-    const decoded = cheerio.load(normalized, null, false).text();
+    const document = cheerio.load(normalized, null, false);
+    document('style, script, noscript, template').remove();
+    const decoded = document.text();
     if (decoded === normalized) {
       break;
     }

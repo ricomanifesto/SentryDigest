@@ -133,17 +133,31 @@ test('taxonomy remains legible while zero-result lanes stay off stage', () => {
   assert.doesNotMatch(html, /href="#"[^>]*>No current match/);
 });
 
-test('cards merge source and domain and omit a non-varying source signal', () => {
+test('cards show each source once, retain host metadata, and omit decorative dots', () => {
   const html = generateHTML([
     article(),
     article({ title: 'Second media story', link: 'https://www.darkreading.com/example', source: 'Dark Reading' }),
   ], { generatedAt: GENERATED_AT });
 
-  assert.match(html, /Bleeping Computer · bleepingcomputer\.com/);
+  assert.match(html, /data-host="bleepingcomputer\.com"/);
+  assert.match(html, /<span class="chip source-chip">Bleeping Computer<\/span>/);
+  assert.doesNotMatch(html, /Bleeping Computer · bleepingcomputer\.com/);
+  assert.doesNotMatch(html, /class="dot"/);
   assert.doesNotMatch(html, /<span class="chip">Industry media<\/span>/);
   assert.doesNotMatch(html, />HEALTH ONLY</i);
   assert.doesNotMatch(html, />Visible mix</);
   assert.doesNotMatch(html, />Source shortcut/);
+});
+
+test('default digest keeps advanced controls and source diagnostics off the front stage', () => {
+  const html = generateHTML([article()], { generatedAt: GENERATED_AT });
+
+  assert.match(html, /<details id="advancedFilters" class="advanced-filters">/);
+  assert.match(html, /<summary class="advanced-filters-summary">Refine digest<\/summary>/);
+  assert.match(html, /<details class="source-coverage-details">/);
+  assert.match(html, /<div class="stats" id="stats" hidden>/);
+  assert.doesNotMatch(html, /radial-gradient|linear-gradient|backdrop-filter/);
+  assert.doesNotMatch(html, /font-size:\s*(?:12px|0\.8rem|0\.82rem|0\.85rem|0\.9rem|0\.92rem|0\.95rem|1\.06rem)/);
 });
 
 test('hollow summary remainders do not create disclosure controls', () => {
