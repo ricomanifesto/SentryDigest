@@ -11,13 +11,14 @@ Two files make up version 1:
 
 Released contract versions are immutable: do not edit `reporting-identity-v1.json` or reuse version 1 for different URL behavior. Historical reports must remain verifiable with the rules that created them.
 
-The verifier retries canonical fetches four times with bounded reads. It exits with:
+The verifier retries canonical fetches four times with bounded reads. Its success result depends on the subcommand:
 
-- `0` when the local and canonical files match.
-- `2` when the canonical file cannot be verified. Exit 2 means the canonical artifact is unavailable or could not be checked.
-- `3` when the canonical file is available but the local copy differs. Exit 3 means canonical bytes were fetched and the local copy has byte drift.
+- `fetch` exits `0` when it retrieves and writes the canonical file. It does not inspect the local copy.
+- `compare` exits `0` when the local and fetched canonical files match.
+- Either subcommand exits `2` when the canonical file is unavailable or cannot be checked. Exit 2 means the canonical artifact could not be verified.
+- `compare` exits `3` when the canonical file is available but the local copy differs. Exit 3 means canonical bytes were fetched and the local copy has byte drift.
 
-Consumer CI rejects both failure cases. They remain separate exit codes so an unavailable source is not mistaken for contract drift.
+Consumer CI rejects either failure code after running both subcommands. The codes remain separate so an unavailable source is not mistaken for contract drift.
 
 ## Releasing a New Version
 
