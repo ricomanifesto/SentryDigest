@@ -1,55 +1,44 @@
-# Reporting identity contracts
+# Reporting Identity Contract
 
-SentryDigest owns the canonical reporting-identity contract used to derive
-stable source keys and item fragments across the Sentry product family.
-Contract versions are immutable: never edit a released
-`reporting-identity-v1.json` file or reuse its version number for new URL
-semantics.
+SentryDigest owns the shared rules that turn a source article URL into a stable report link. SentryInsight and GRCInsight use the same rules so a link created in one repository lands on the same article in another.
 
-SentryDigest also owns the versioned, standard-library verifier at
-`contracts/reporting-identity-verifier-v1.py`. Consumers vendor that file byte
-for byte at the same path and use it to verify the verifier's canonical bytes
-and the selected JSON contract. The verifier retries canonical fetches four
-times with exponential backoff and bounded reads. Exit 2 means the canonical
-artifact could not be verified; exit 3 means canonical bytes were fetched and
-the local artifact drifted. Both conditions fail closed and carry distinct
-Actions error annotations.
+Two files make up version 1:
 
-For a revision, add a new file such as `reporting-identity-v2.json` beside the
-existing version, update the SentryDigest implementation and conformance tests,
-and release the owner first while the prior version remains available. Then
-vendor the new contract and its matching verifier byte for byte into
-SentryInsight and GRCInsight, update each consumer implementation, test pin, and
-workflow URL, and release the consumers.
-Consumer CI rejects both a missing canonical copy and bytes that differ from the
-selected version. Canonical-source unavailability and byte drift are distinct
-operational failures and should be reported separately; both fail closed. Roll
-back a consumer to its previous contract selection
-rather than rewriting a released contract. Retire an old version only after no
-consumer workflow references it and historical public artifacts remain
-verifiable with their original semantics.
+- `reporting-identity-v1.json` contains examples and expected results.
+- `reporting-identity-verifier-v1.py` checks that each consumer has an exact copy of the released files.
 
-## Retained digest issues
+## Rules for Released Versions
 
-A closed retained issue is an archive date older than the active UTC issue. Its
-articles array is immutable: item count, field values, identities, and order
-never change. The active UTC issue may continue accumulating that day's items
-until a newer issue is published.
+Released contract versions are immutable: do not edit `reporting-identity-v1.json` or reuse version 1 for different URL behavior. Historical reports must remain verifiable with the rules that created them.
 
-A closed issue may gain additive provenance only through an explicit schema
-version bump with corresponding validation and rendering support. Historical
-schemas remain readable under their released rules and never infer missing
-provenance.
+The verifier retries canonical fetches four times with bounded reads. It exits with:
 
-The same retention doctrine applies across the product family. Released
-SentryInsight report snapshots and GRCInsight dated publication pages keep
-their reader-visible evidence immutable under the published schema. Corrections
-or added provenance publish as a new dated artifact or explicit schema version
-rather than rewriting historical evidence in place.
+- `0` when the local and canonical files match.
+- `2` when the canonical file cannot be verified. Exit 2 means the canonical artifact is unavailable or could not be checked.
+- `3` when the canonical file is available but the local copy differs. Exit 3 means canonical bytes were fetched and the local copy has byte drift.
 
-## Current family gate inventory
+Consumer CI rejects both failure cases. They remain separate exit codes so an unavailable source is not mistaken for contract drift.
 
-The current contract and verifier are enforced by these six consumer workflows:
+## Releasing a New Version
+
+1. Add a new file, such as `reporting-identity-v2.json`. Keep version 1 unchanged.
+2. Update SentryDigest and its conformance tests.
+3. Release the owner first: publish SentryDigest while the old version remains available.
+4. Copy the new contract and matching verifier byte for byte into SentryInsight and GRCInsight.
+5. Update each consumer's code, tests, and workflow URLs.
+6. Retire an old version only after no workflow uses it and old public reports can still be checked.
+
+If a consumer must roll back, point it to the previous version. Never rewrite a released contract.
+
+## Retained Reports
+
+A closed retained issue is a dated SentryDigest issue older than the active UTC date. Its articles array is immutable: item count, field values, identities, and order do not change. The active issue may keep collecting articles until the next date is published.
+
+A closed issue may gain additive provenance only through an explicit schema version change with matching validation and rendering support. Older schemas stay readable under their original rules and never infer missing provenance.
+
+The same rule applies to released SentryInsight report snapshots and GRCInsight dated publication pages: publish a new dated artifact or explicit schema version rather than rewriting historical evidence in place.
+
+## Workflows That Enforce Version 1
 
 - SentryInsight: `.github/workflows/validate.yml`
 - SentryInsight: `.github/workflows/generate-report.yml`
@@ -58,5 +47,4 @@ The current contract and verifier are enforced by these six consumer workflows:
 - GRCInsight: `.github/workflows/deploy-lambda.yml`
 - GRCInsight: `.github/workflows/lambda-report-generation.yml`
 
-Update this inventory in the owner repository whenever a consumer gate is added,
-renamed, or retired.
+Update this list when a consumer workflow is added, renamed, or removed.
