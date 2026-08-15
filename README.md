@@ -7,63 +7,41 @@
   </picture>
 </p>
 
-SentryDigest turns noisy security feeds into a daily analyst-ready briefing, with source links, severity cues, and clean HTML output you can inspect before sharing.
+SentryDigest collects security news from four RSS feeds and turns it into one short, source-linked briefing.
 
-**[Live Dashboard](https://ricomanifesto.github.io/SentryDigest/)**
+**[Read the latest digest](https://ricomanifesto.github.io/SentryDigest/)**
 
-## What It Does
+## What You Get
 
-SentryDigest collects security news from multiple RSS sources, normalizes the feed data, and publishes a browsable dashboard plus RSS output. It is built for quick review: source names, links, timestamps, ordering, and generated artifacts stay visible and testable.
+- A dashboard with the newest 30 items, timestamps, source links, and feed-health notes.
+- An RSS feed at [`feed.xml`](feed.xml).
+- Dated issues under [`archive/`](archive/) so old links keep their original context.
+- Stable article links used by [SentryInsight](https://github.com/ricomanifesto/SentryInsight) and [GRCInsight](https://github.com/ricomanifesto/GRCInsight).
 
-## Sources
+The current sources are Krebs on Security, The Hacker News, Bleeping Computer, and Dark Reading. Their URLs and enabled state live in [`config/news-sources.json`](config/news-sources.json).
 
-- Krebs on Security
-- The Hacker News
-- Bleeping Computer
-- Dark Reading
+## Run It Locally
 
-Sources are configured in `config/news-sources.json`.
-
-## Outputs
-
-- `index.html` - generated dashboard
-- `feed.xml` - generated RSS feed
-- `news-data.json` - normalized news data
-- `feed-info.json` - feed metadata
-- `archive/YYYY-MM-DD/` - retained UTC-day context with stable per-item links
-
-## Automation
-
-The GitHub Actions workflow runs on a schedule, on source configuration changes, and by manual trigger. Successful updates can dispatch downstream analysis in:
-
-- [SentryInsight](https://github.com/ricomanifesto/SentryInsight)
-- [GRCInsight](https://github.com/ricomanifesto/GRCInsight)
-
-SentryDigest owns the versioned reporting-card identity used by those downstream handoffs. The [reporting identity runbook](contracts/README.md) defines immutable versioning, consumer adoption order, rollback behavior, and the current family gate inventory.
-
-## Setup
+Use Node.js 24 and install Chromium for the browser checks:
 
 ```bash
-git clone https://github.com/ricomanifesto/SentryDigest.git
-cd SentryDigest
-npm install
+npm ci
 npx playwright install chromium
 ```
 
-## Usage
+Fetch the feeds and rebuild the published files:
 
 ```bash
 npm run fetch
 npm run generate-rss
 npm run generate-archive
-npm test
 ```
 
-`npm run fetch` fetches news and generates the dashboard artifacts. `npm run generate-rss` writes the RSS feed. `npm run generate-archive` retains that run in the UTC-day archive and rebuilds stable article anchors. Truncated summaries include a source-named continuation link, and incident handoffs carry a complete CVE fragment when one is available. `npm test` validates the generated output and renders it in Chromium before publishing.
+These commands update `index.html`, `news-data.json`, `feed.xml`, `feed-info.json`, and the dated archive. They require network access to the configured feeds.
 
 ## Configuration
 
-Define sources in `config/news-sources.json`:
+Each entry in `config/news-sources.json` has this shape:
 
 ```json
 {
@@ -75,8 +53,18 @@ Define sources in `config/news-sources.json`:
 }
 ```
 
-Set `maxNewsItems` to control the generated item count. The fetch job maintains `lastContributedAt`; leave it `null` for a newly added source. `feed-info.json` derives each source's `active`, `quiet`, `stale`, or `unobserved` status at generation time. A non-contributing source becomes stale after 30 days without changing its durable configuration history. The workflow rebuilds when source configuration changes.
+`settings.maxNewsItems` sets the dashboard limit. The fetch job maintains `lastContributedAt`; leave it `null` when adding a source. A source is marked stale after 30 days without a new item.
+
+## Automation
+
+GitHub Actions runs every three hours, after source-configuration changes on `main`, or by manual trigger. A successful run rebuilds and validates the site. When the output changes, the workflow commits the generated files and tells SentryInsight and GRCInsight that a new digest is ready.
+
+The cross-repository article-link rules live in [`contracts/README.md`](contracts/README.md).
 
 ## Validation
 
-`npm test` runs the Node test suite, checks JavaScript syntax, validates the generated artifacts, and exercises the rendered page in Chromium. The validator checks cross-artifact counts, dates, URLs, source health, summary continuation destinations, contextual downstream handoffs, and newest-first ordering. It also rejects reader-facing regressions such as feed truncation markers, encoded title entities, hash-only controls, hollow summary disclosures, and unlabeled clock times. CI preserves desktop and mobile screenshots from the rendered-page gate.
+```bash
+npm test
+```
+
+This runs unit tests, JavaScript syntax checks, generated-file validation, and Chromium tests at desktop and mobile sizes. It checks counts, dates, URLs, source health, archive links, downstream handoffs, ordering, and common reader-facing regressions.
