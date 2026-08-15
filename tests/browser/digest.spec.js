@@ -142,6 +142,22 @@ test('rendered digest shows cards and preserves its core interactions', async ({
   await page.screenshot({ path: path.join(screenshotDirectory, 'digest-desktop.png'), fullPage: true });
 });
 
+test('defaults to light when the operating system prefers dark', async ({ browser }) => {
+  const context = await browser.newContext({ colorScheme: 'dark' });
+  const page = await context.newPage();
+  await page.setViewportSize({ width: 1440, height: 1000 });
+
+  await page.goto('/');
+
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+  await page.screenshot({ path: path.join(screenshotDirectory, 'digest-desktop-light.png'), fullPage: true });
+  await page.locator('#themeToggle').click();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+  await page.reload();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+  await context.close();
+});
+
 test('default digest avoids the generic dashboard visual tells', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   const response = await page.goto('/');

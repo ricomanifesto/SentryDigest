@@ -1036,9 +1036,7 @@ function generateHTML(newsItems, options = {}) {
       const root = document.documentElement;
       const themeKey = 'sentrydigest:theme';
       const saved = localStorage.getItem(themeKey);
-      if (saved === 'dark' || (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        root.setAttribute('data-theme','dark');
-      }
+      root.setAttribute('data-theme', saved === 'dark' ? 'dark' : 'light');
       const btn = document.getElementById('themeToggle');
       btn && btn.addEventListener('click', function(){
         const dark = root.getAttribute('data-theme') === 'dark';

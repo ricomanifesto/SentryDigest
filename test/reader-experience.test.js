@@ -160,6 +160,14 @@ test('default digest keeps advanced controls and source diagnostics off the fron
   assert.doesNotMatch(html, /font-size:\s*(?:12px|0\.8rem|0\.82rem|0\.85rem|0\.9rem|0\.92rem|0\.95rem|1\.06rem)/);
 });
 
+test('generated digest defaults to light while preserving an explicit dark choice', () => {
+  const html = generateHTML([article()], { generatedAt: GENERATED_AT });
+
+  assert.match(html, /const saved = localStorage\.getItem\(themeKey\)/);
+  assert.match(html, /root\.setAttribute\('data-theme', saved === 'dark' \? 'dark' : 'light'\)/);
+  assert.doesNotMatch(html, /prefers-color-scheme/);
+});
+
 test('hollow summary remainders do not create disclosure controls', () => {
   const summary = `${'A'.repeat(150)} hacked [...]...`;
   const html = generateHTML([article({ summary })], { generatedAt: GENERATED_AT });
