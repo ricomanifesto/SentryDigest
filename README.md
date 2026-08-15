@@ -57,7 +57,7 @@ Each entry in `config/news-sources.json` has this shape:
 
 ## Automation
 
-GitHub Actions runs every three hours, after source-configuration changes on `main`, or by manual trigger. A successful run rebuilds and validates the site, commits changed output, and tells SentryInsight and GRCInsight that a new digest is ready.
+GitHub Actions runs every three hours, after source-configuration changes on `main`, or by manual trigger. A successful run rebuilds and validates the site. When the output changes, the workflow commits the generated files and tells SentryInsight and GRCInsight that a new digest is ready.
 
 The cross-repository article-link rules live in [`contracts/README.md`](contracts/README.md).
 
