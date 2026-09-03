@@ -382,10 +382,13 @@ test('dated digest context resolves stable item links without JavaScript', async
   expect(manifest.schema_version).toBe(2);
   expect(manifest.insight_context).toMatchObject({
     schema_version: 2,
-    report_url: 'https://ricomanifesto.github.io/SentryInsight/',
   });
-  expect(['current', 'retained', 'stale', 'unavailable']).toContain(
-    manifest.insight_context.mode,
+  const insightMode = manifest.insight_context.mode;
+  expect(['current', 'retained', 'stale', 'unavailable']).toContain(insightMode);
+  expect(manifest.insight_context.report_url).toBe(
+    insightMode === 'unavailable'
+      ? null
+      : 'https://ricomanifesto.github.io/SentryInsight/',
   );
   const context = await browser.newContext({
     javaScriptEnabled: false,
