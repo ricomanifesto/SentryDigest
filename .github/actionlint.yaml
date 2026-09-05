@@ -1,0 +1,6 @@
+paths:
+  .github/workflows/update-news.yml:
+    ignore:
+      # TODO(actionlint-queue): Remove when actionlint supports concurrency.queue.
+      # GitHub supports queue: max; keep checking every other key and shell step.
+      - '^unexpected key "queue" for "concurrency" section\. expected one of "cancel-in-progress", "group"$'
