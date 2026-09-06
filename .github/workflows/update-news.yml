@@ -76,12 +76,12 @@ jobs:
           git add index.html news-data.json feed.xml feed-info.json sentryinsight-findings.json sentryinsight-context.json config/news-sources.json archive sitemap.xml
           if git diff --quiet && git diff --staged --quiet; then
             echo "No changes to commit"
-            echo "changes_made=false" >> $GITHUB_OUTPUT
+            echo "changes_made=false" >> "$GITHUB_OUTPUT"
           else
             git commit -m "Update cybersecurity news [automated]"
             git push
-            echo "changes_made=true" >> $GITHUB_OUTPUT
-            echo "commit_sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+            echo "changes_made=true" >> "$GITHUB_OUTPUT"
+            echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           fi
       
       # Trigger downstream analysis tools if changes were made

@@ -24,7 +24,7 @@ test('reader cadence matches the scheduled workflow interval', () => {
 test('update workflow dispatches the committed artifact SHA downstream', () => {
   const workflow = readWorkflow();
 
-  assert.match(workflow, /echo "commit_sha=\$\(git rev-parse HEAD\)" >> \$GITHUB_OUTPUT/);
+  assert.match(workflow, /echo "commit_sha=\$\(git rev-parse HEAD\)" >> "\$GITHUB_OUTPUT"/);
   assert.doesNotMatch(workflow, /"sha": "\$\{\{ github\.sha \}\}"/);
   assert.equal(
     (workflow.match(/"sha": "\$\{\{ steps\.commit\.outputs\.commit_sha \}\}"/g) || []).length,
