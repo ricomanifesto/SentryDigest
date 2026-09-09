@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const cheerio = require('cheerio');
+const { isVirtualEventPromotion, normalizeFeedText } = require('./feed-content-policy');
 const { generateHTML } = require('./render-news-html');
 const { assertNewsDataContract } = require('./news-data-contract');
 const { assertSourceConfigContract } = require('./source-config-contract');
@@ -141,22 +141,6 @@ function normalizeArticleDate(article) {
   return INVALID_FEED_DATE_FALLBACK;
 }
 
-function normalizeFeedText(value) {
-  let normalized = String(value ?? '');
-
-  for (let pass = 0; pass < 3; pass += 1) {
-    const document = cheerio.load(normalized, null, false);
-    document('style, script, noscript, template').remove();
-    const decoded = document.text();
-    if (decoded === normalized) {
-      break;
-    }
-    normalized = decoded;
-  }
-
-  return normalized.replace(/\s+/g, ' ').trim();
-}
-
 function normalizeSummary(value) {
   const normalized = normalizeFeedText(value);
   const truncationMarker = /\[(?:\.{3}|…)]/g;
@@ -233,11 +217,12 @@ async function fetchNewsSnapshot(options = {}) {
 
   fetchResults.forEach((result, index) => {
     if (result.status === 'fulfilled') {
-      allNewsArrays.push(result.value);
+      const eligibleArticles = result.value.filter((article) => !isVirtualEventPromotion(article));
+      allNewsArrays.push(eligibleArticles);
       sourceContributions.push({
         name: sources[index].name,
         lastContributedAt: newestContributionTimestamp(
-          Array.isArray(result.value) ? result.value.map((article) => article?.date) : []
+          eligibleArticles.map((article) => article?.date)
         ),
       });
       return;
@@ -252,6 +237,10 @@ async function fetchNewsSnapshot(options = {}) {
   
   // Flatten the array of arrays into a single array
   let allNews = allNewsArrays.flat();
+
+  if (allNews.length === 0) {
+    throw new Error('No publishable news remains after feed content exclusions; retaining existing artifacts');
+  }
   
   // Sort by date and cap to max
   allNews.sort((a, b) => b.date - a.date);

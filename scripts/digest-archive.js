@@ -4,6 +4,7 @@ const path = require('node:path');
 const { articleFragment, normalizeArticleUrl } = require('./reporting-identity');
 const { assertInsightSyncContext, loadInsightSyncContext } = require('./insight-sync-context');
 const { renderInsightContext } = require('./render-news-html');
+const { assertNoVirtualEventPromotions } = require('./feed-content-policy');
 
 const PUBLIC_ROOT = 'https://ricomanifesto.github.io/SentryDigest/';
 
@@ -17,6 +18,7 @@ function escapeHtml(value) {
 }
 
 function validateArticle(article, index) {
+  assertNoVirtualEventPromotions([article]);
   const label = `Digest article ${index + 1}`;
   for (const field of ['title', 'source', 'link', 'date']) {
     if (!String(article?.[field] ?? '').trim()) {
@@ -99,6 +101,7 @@ function writeArchiveIndex(outputRoot) {
 }
 
 function renderArchivePage(manifest) {
+  assertNoVirtualEventPromotions(manifest.articles);
   const issueLabel = formatIssueDate(manifest.issue_date);
   const insightContext = manifest.schema_version >= 2
     ? renderInsightContext(assertInsightSyncContext(manifest.insight_context))
@@ -163,6 +166,9 @@ function writeDigestArchive({ newsItems, outputRoot, generatedAt, insightContext
   if (!Array.isArray(newsItems)) {
     throw new Error('Digest archive input must be an array');
   }
+  if (newsItems.length === 0) {
+    throw new Error('Digest archive input must be a non-empty array');
+  }
   const generated = new Date(generatedAt);
   if (!Number.isFinite(generated.getTime())) {
     throw new Error('Digest archive generatedAt must be a valid timestamp');
@@ -171,7 +177,6 @@ function writeDigestArchive({ newsItems, outputRoot, generatedAt, insightContext
   const issueDate = generated.toISOString().slice(0, 10);
   const issueRoot = path.join(outputRoot, 'archive', issueDate);
   const manifestPath = path.join(issueRoot, 'index.json');
-  fs.mkdirSync(issueRoot, { recursive: true });
   const previous = loadExistingManifest(manifestPath, issueDate);
   const byLink = new Map(previous.articles.map((article) => [normalizeArticleUrl(article.link), validateArticle(article, 0)]));
   newsItems.map(validateArticle).forEach((article) => byLink.set(article.link, article));
@@ -185,8 +190,10 @@ function writeDigestArchive({ newsItems, outputRoot, generatedAt, insightContext
     insight_context: validatedInsightContext,
     articles,
   };
+  const html = renderArchivePage(manifest);
+  fs.mkdirSync(issueRoot, { recursive: true });
   fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
-  fs.writeFileSync(path.join(issueRoot, 'index.html'), renderArchivePage(manifest));
+  fs.writeFileSync(path.join(issueRoot, 'index.html'), html);
   const issueDates = writeArchiveIndex(outputRoot);
   writeSitemap(outputRoot);
   return { issueDate, issueRoot, issueDates, articleCount: articles.length };

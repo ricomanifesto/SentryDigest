@@ -2,6 +2,7 @@ const {
   isValidHttpUrl,
   normalizeSourceName,
 } = require('./source-config-contract');
+const { isVirtualEventPromotion } = require('./feed-content-policy');
 
 function isValidDate(value) {
   return !Number.isNaN(new Date(value).getTime());
@@ -9,6 +10,10 @@ function isValidDate(value) {
 
 function collectNewsDataCollectionFailures(newsData, maxNewsItems) {
   const failures = [];
+
+  if (newsData.length === 0) {
+    failures.push('news-data.json must be a non-empty array');
+  }
 
   if (newsData.length > maxNewsItems) {
     failures.push(`news-data.json has ${newsData.length} items, which exceeds maxNewsItems ${maxNewsItems}`);
@@ -54,6 +59,9 @@ function collectNewsDataItemFailures(item, index, enabledSourceNames) {
 
   if (!item.title || typeof item.title !== 'string') {
     failures.push(`${label} must have a string title`);
+  }
+  if (isVirtualEventPromotion(item)) {
+    failures.push(`${label} is a virtual event promotion and must be excluded as a whole record`);
   }
   if (!item.link || !isValidHttpUrl(item.link)) {
     failures.push(`${label} must have an http(s) link`);

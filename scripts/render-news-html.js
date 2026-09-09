@@ -702,6 +702,8 @@ function renderInsightContext(context) {
 }
 
 function generateHTML(newsItems, options = {}) {
+  const { assertNoVirtualEventPromotions } = require('./feed-content-policy');
+  assertNoVirtualEventPromotions(newsItems);
   const generatedAt = options.generatedAt || new Date();
   const sourceNames = Array.isArray(options.sourceNames) ? options.sourceNames : [];
   const sourceHealth = Array.isArray(options.sourceHealth)

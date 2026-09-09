@@ -37,6 +37,7 @@ const {
   getCurrentInsightCves,
 } = require('./current-insight-findings');
 const { assertInsightSyncContext } = require('./insight-sync-context');
+const { isVirtualEventPromotion } = require('./feed-content-policy');
 
 function readText(label, filePath, repoRoot, failures) {
   if (!fs.existsSync(filePath)) {
@@ -49,6 +50,33 @@ function readText(label, filePath, repoRoot, failures) {
 
 function fail(failures, message) {
   failures.push(message);
+}
+
+function validateHtmlPromotionExclusions($, label, failures) {
+  $('article.news-item, article.reporting-item').each((index, element) => {
+    const card = $(element);
+    if (isVirtualEventPromotion({
+      title: card.find('h2').text(),
+      summary: card.text(),
+      link: card.find('h2 a').first().attr('href'),
+    })) {
+      fail(failures, `${label} article ${index + 1} must exclude virtual event promotions as whole records`);
+    }
+  });
+}
+
+function validateRssPromotionExclusions(feedXml, failures) {
+  const $ = cheerio.load(feedXml, { xmlMode: true });
+  $('item').each((index, element) => {
+    const item = $(element);
+    if (isVirtualEventPromotion({
+      title: item.find('title').text(),
+      summary: item.find('description').text(),
+      link: item.find('link').text(),
+    })) {
+      fail(failures, `feed.xml item ${index + 1} must exclude virtual event promotions as whole records`);
+    }
+  });
 }
 
 function parseArtifactCount(value) {
@@ -857,6 +885,7 @@ function validateDigestArchives(repoRoot, sitemapXml, failures, options = {}) {
       fail(failures, `archive/${issueDate}/index.json generated_at must use its UTC issue date`);
     }
     const $ = cheerio.load(issueHtml);
+    validateHtmlPromotionExclusions($, `archive/${issueDate}/index.html`, failures);
     const expectedCanonical = `${SITE_METADATA_CONTRACT.publicSiteUrl}archive/${issueDate}/`;
     if ($('link[rel="canonical"]').attr('href') !== expectedCanonical) {
       fail(failures, `archive/${issueDate}/index.html must publish its dated canonical URL`);
@@ -891,6 +920,9 @@ function validateDigestArchives(repoRoot, sitemapXml, failures, options = {}) {
     const seenIds = new Set();
     manifest.articles.forEach((article, index) => {
       const label = `archive/${issueDate} article ${index + 1}`;
+      if (isVirtualEventPromotion(article)) {
+        fail(failures, `${label} must exclude virtual event promotions as whole records`);
+      }
       try {
         const normalizedLink = normalizeArticleUrl(article.link);
         const expectedId = articleFragment(normalizedLink);
@@ -980,6 +1012,7 @@ const ENCODED_HTML_ENTITY_PATTERN = /&(?:amp|quot|apos|lt|gt|#\d+|#x[0-9a-f]+);/
 const FEED_TRUNCATION_PATTERN = /\[(?:\.{3}|…)]/;
 
 function validateReaderExperience(indexHtml, newsData = [], failures = [], options = {}) {
+  if (indexHtml) validateHtmlPromotionExclusions(cheerio.load(indexHtml), 'index.html', failures);
   newsData.forEach((article, index) => {
     if (!article || typeof article !== 'object' || Array.isArray(article)) {
       return;
@@ -1173,6 +1206,7 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
     failures,
   );
   const sitemapXml = readText('sitemap.xml', artifacts.sitemapXml, repoRoot, failures);
+  if (feedXml) validateRssPromotionExclusions(feedXml, failures);
 
   let currentInsightCves = null;
   if (insightFindings) {
