@@ -224,7 +224,7 @@
   <main class="container">
     <section class="issue-strip" aria-label="Digest issue metadata">
       <span class="issue-label">Current issue</span>
-      <time datetime="2026-09-13T04:09:21.057Z">September 13, 2026</time>
+      <time datetime="2026-09-13T11:26:56.348Z">September 13, 2026</time>
       <span class="issue-stat"><strong>30</strong> articles</span>
       <span class="issue-stat"><strong>3</strong> sources</span>
       <a class="issue-link" href="./feed.xml" aria-label="Open rolling RSS feed">Rolling RSS feed</a>
@@ -235,7 +235,7 @@
       <a class="previous-issue" href="./archive/2026-09-12/" aria-label="Open digest issue for September 12, 2026"><time datetime="2026-09-12T00:00:00.000Z">Sep 12</time></a>
       <a href="./feed.xml" aria-label="Open generated RSS feed">RSS feed</a>
       <a href="#sourceCoverage">Source coverage</a>
-      <span class="issue-trail-meta">Updated <time class="issue-trail-updated" datetime="2026-09-13T04:09:21.057Z">04:09 UTC · Sep 13</time></span>
+      <span class="issue-trail-meta">Updated <time class="issue-trail-updated" datetime="2026-09-13T11:26:56.348Z">11:26 UTC · Sep 13</time></span>
       <span class="issue-trail-meta issue-trail-cadence" data-cadence-hours="3" data-cadence-state="scheduled" role="status" aria-live="polite" aria-atomic="true"><span data-cadence-label>3h cadence</span></span>
     </nav>
     <details id="advancedFilters" class="advanced-filters">
@@ -255,7 +255,7 @@
         </select>
         <select id="ageFilter" class="select" aria-label="Filter by article age">
           <option value="">Any age</option>
-          <option value="Recent">Recent</option>
+          <option value="Fresh">Fresh</option><option value="Recent">Recent</option>
         </select>
         <select id="handoffFilter" class="select" aria-label="Filter by downstream handoff cue">
           <option value="">All handoff cues</option>
@@ -275,7 +275,7 @@
       <details class="source-coverage-details">
         <summary class="source-coverage-summary">Source coverage <span>3 active feeds · 30 articles</span></summary>
         <div class="source-coverage-body">
-          <div class="source-counts"><button class="source-count" type="button" data-source-filter="The Hacker News" aria-label="Filter to The Hacker News source, 12 articles" aria-pressed="false">The Hacker News <strong>12</strong></button><button class="source-count" type="button" data-source-filter="Bleeping Computer" aria-label="Filter to Bleeping Computer source, 11 articles" aria-pressed="false">Bleeping Computer <strong>11</strong></button><button class="source-count" type="button" data-source-filter="Dark Reading" aria-label="Filter to Dark Reading source, 7 articles" aria-pressed="false">Dark Reading <strong>7</strong></button></div>
+          <div class="source-counts"><button class="source-count" type="button" data-source-filter="The Hacker News" aria-label="Filter to The Hacker News source, 13 articles" aria-pressed="false">The Hacker News <strong>13</strong></button><button class="source-count" type="button" data-source-filter="Bleeping Computer" aria-label="Filter to Bleeping Computer source, 11 articles" aria-pressed="false">Bleeping Computer <strong>11</strong></button><button class="source-count" type="button" data-source-filter="Dark Reading" aria-label="Filter to Dark Reading source, 6 articles" aria-pressed="false">Dark Reading <strong>6</strong></button></div>
           <div class="source-health-summary" data-active-sources="3" data-quiet-sources="1">
             <span><strong>3</strong> active feeds</span>
             <span><strong>1</strong> quiet feed</span>
@@ -302,13 +302,13 @@
     </section>
     <section class="operator-lanes" aria-label="Operator scan lanes">
       <article class="operator-lane" data-lane="Incident watch" data-lane-cue="SentryInsight: incident watch">
-        <a class="operator-lane-heading" data-lane-destination href="https://ricomanifesto.github.io/SentryInsight/#cve-2026-42016" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">Incident watch</a>
+        <a class="operator-lane-heading" data-lane-destination href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">Incident watch</a>
         <span class="operator-lane-count" data-lane-count><strong>14</strong> items</span>
-        <a href="https://thehackernews.com/2026/09/cisa-adds-5-actively-exploited.html" class="operator-lane-link" data-lane-link>CISA Adds 5 Actively Exploited Artifactory, ScreenConnect, and RouterOS Flaws to KEV</a>
+        <a href="https://thehackernews.com/2026/09/attackers-use-passkey-phishing-to.html" class="operator-lane-link" data-lane-link>Attackers Use Passkey Phishing to Hijack Microsoft Cloud Accounts and Exfiltrate Data</a>
         <span class="operator-lane-empty" data-lane-empty hidden>No current match</span>
       </article><article class="operator-lane" data-lane="Vulnerability triage" data-lane-cue="SentryInsight: vuln triage">
         <a class="operator-lane-heading" data-lane-destination href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">Vulnerability triage</a>
-        <span class="operator-lane-count" data-lane-count><strong>12</strong> items</span>
+        <span class="operator-lane-count" data-lane-count><strong>11</strong> items</span>
         <a href="https://thehackernews.com/2026/09/cisa-adds-5-actively-exploited.html" class="operator-lane-link" data-lane-link>CISA Adds 5 Actively Exploited Artifactory, ScreenConnect, and RouterOS Flaws to KEV</a>
         <span class="operator-lane-empty" data-lane-empty hidden>No current match</span>
       </article><article class="operator-lane" data-lane="Governance watch" data-lane-cue="GRCInsight: governance watch">
@@ -325,11 +325,26 @@
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" id="reporting-fa59062d0b2f" data-source="The Hacker News" data-host="thehackernews.com" data-title="Attackers Use Passkey Phishing to Hijack Microsoft Cloud Accounts and Exfiltrate Data" data-summary="Microsoft has disclosed details of two campaigns in which threat actors are abusing third-party email delivery infrastructure to blast financial fraud scam messages and using passkey-themed social engineering to breach cloud environments. The first campaign, per the tech giant, involved sending over a million scam emails between August 3 and 5, 2026, by masquerading as chief executive officers…" data-severity="Critical" data-tags="Data Breach,Identity,Cloud" data-vendors="Microsoft" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vendor watch" data-age-bucket="Fresh" data-published-at="2026-09-13T10:11:48.000Z">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>1h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/09/attackers-use-passkey-phishing-to.html" target="_blank" rel="noopener">Attackers Use Passkey Phishing to Hijack Microsoft Cloud Accounts and Exfiltrate Data</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-13T10:11:48.000Z">September 13, 2026 at 10:11 AM UTC</time>
+            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-fa59062d0b2f" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Microsoft</span><span class="chip">Data Breach</span><span class="chip">Identity</span><span class="chip">Cloud</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vendor watch</a></div>
+          <p class="news-summary">Microsoft has disclosed details of two campaigns in which threat actors are abusing third-party email delivery infrastructure to blast financial fraud scam messages and using passkey-themed social engineering to breach cloud environments. The first campaign, per the tech giant, involved sending over a million scam emails between August 3 and 5, 2026, by masquerading as chief executive officers…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/attackers-use-passkey-phishing-to.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
         <article class="news-item" id="reporting-0ddc7c58e041" data-source="The Hacker News" data-host="thehackernews.com" data-title="CISA Adds 5 Actively Exploited Artifactory, ScreenConnect, and RouterOS Flaws to KEV" data-summary="The U.S. Cybersecurity and Infrastructure Security Agency (CISA) has added five security flaws impacting JFrog Artifactory, ConnectWise ScreenConnect, and MikroTik RouterOS to its Known Exploited Vulnerabilities (KEV) catalog, following reports of active exploitation in the wild. Details of the vulnerabilities are as follows - CVE-2026-42016 (CVSS score: 8.1) - An incorrect authorization…" data-severity="Critical" data-tags="Vulnerability,Exploitation" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-09-12T15:54:45.000Z">
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>12h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>19h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/09/cisa-adds-5-actively-exploited.html" target="_blank" rel="noopener">CISA Adds 5 Actively Exploited Artifactory, ScreenConnect, and RouterOS Flaws to KEV</a></h2>
           <div class="news-meta">
@@ -343,7 +358,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>13h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>21h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/dutch-ncsc-critical-check-point-vpn-flaws-exploitation-is-imminent/" target="_blank" rel="noopener">Dutch NCSC: Critical Check Point VPN flaws exploitation is imminent</a></h2>
           <div class="news-meta">
@@ -357,7 +372,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>17h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/09/when-whole-company-adopts-ai-what-it.html" target="_blank" rel="noopener">When the Whole Company Adopts AI: What It Does to Your SOC</a></h2>
           <div class="news-meta">
@@ -371,7 +386,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>19h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/09/openai-agents-linked-to-rubygems.html" target="_blank" rel="noopener">OpenAI Agents Linked to RubyGems Campaign That Gained RCE on RubyDoc Servers</a></h2>
           <div class="news-meta">
@@ -595,7 +610,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/gitlab-urges-users-to-patch-max-severity-path-traversal-flaw/" target="_blank" rel="noopener">GitLab urges users to patch max severity path traversal flaw</a></h2>
           <div class="news-meta">
@@ -609,7 +624,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-fixes-teams-outlook-launch-failures-on-arm-windows-pcs/" target="_blank" rel="noopener">Microsoft fixes Teams, Outlook launch failures on ARM Windows PCs</a></h2>
           <div class="news-meta">
@@ -623,7 +638,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/trezor-347-000-users-targeted-in-phishing-attacks-after-brevo-breach/" target="_blank" rel="noopener">Trezor: 347,000 users targeted in phishing attacks after Brevo breach</a></h2>
           <div class="news-meta">
@@ -637,7 +652,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/09/attackers-chain-jfrog-artifactory-flaws.html" target="_blank" rel="noopener">Attackers Chain JFrog Artifactory Flaws to Gain Admin Control and Plant Backdoors</a></h2>
           <div class="news-meta">
@@ -646,18 +661,18 @@
           <div class="facet-row"><span class="chip">Cloud</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: monitor</a></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-22">
+            <summary class="summary-toggle" aria-controls="summary-full-23">
               <span class="summary-preview-text">Attackers have chained two flaws in JFrog Artifactory, the repository that software build pipelines pull from, to take administrator control of self-hosted</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-22">servers and plant backdoors, cloud security company Wiz said in a report. Wiz saw the attacks between August 15 and September 8. JFrog had fixed both flaws before then, so only servers that had not been updated were open to them.</p>
+            <p class="news-summary summary-full" id="summary-full-23">servers and plant backdoors, cloud security company Wiz said in a report. Wiz saw the attacks between August 15 and September 8. JFrog had fixed both flaws before then, so only servers that had not been updated were open to them.</p>
           </details>
         </article>
         <article class="news-item" id="reporting-11c8b517d375" data-source="The Hacker News" data-host="thehackernews.com" data-title="China-Linked UNC3569 Exploited Sogou Input Method Flaw to Deploy GRAYRABBIT Backdoor" data-summary="A China-linked hacking group exploited a flaw in Sogou Input Method, one of the most widely used tools for typing Chinese characters on Windows, to install a backdoor on victims&#39; computers, security company Gen Digital said in research published Thursday. The attack started with a crafted link and ended with the attacker able to do anything the logged-in user could do. Tencent, which owns…" data-severity="Elevated" data-tags="Vulnerability,Exploitation,Malware" data-vendors="Microsoft" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-11T07:14:09.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/09/china-linked-unc3569-exploited-sogou.html" target="_blank" rel="noopener">China-Linked UNC3569 Exploited Sogou Input Method Flaw to Deploy GRAYRABBIT Backdoor</a></h2>
           <div class="news-meta">
@@ -671,7 +686,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/conti-ransomware-gang-member-sentenced-to-four-years-in-prison/" target="_blank" rel="noopener">Conti ransomware gang member sentenced to 4 years in prison</a></h2>
           <div class="news-meta">
@@ -685,7 +700,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/09/papercut-replaces-emergency-patches.html" target="_blank" rel="noopener">PaperCut Replaces Emergency Patches With Fixes for Two Actively Exploited Flaws</a></h2>
           <div class="news-meta">
@@ -699,7 +714,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/09/cisco-fmc-flaws-exploited-to-steal.html" target="_blank" rel="noopener">Cisco FMC Flaws Exploited to Steal Credentials and Deploy Qilin Ransomware</a></h2>
           <div class="news-meta">
@@ -736,20 +751,6 @@
           <div class="facet-row"><span class="chip">Google</span><span class="chip">Ransomware</span><span class="chip">Malware</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vendor watch</a></div>
           <p class="news-summary">A new Android malware strain called Mantax Otax combines ransomware and spyware capabilities to encrypt files, steal sensitive data, and spam and harass victims…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/new-android-malware-encrypts-files-steals-data-and-harasses-victims/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
-        </article>
-        <article class="news-item" id="reporting-432786c4f1ef" data-source="Dark Reading" data-host="darkreading.com" data-title="Voice Callers Exploit BYOD to Reach Microsoft 365, Corporate Data" data-summary="Threat actors are leveraging Microsoft&#39;s Graph API to identify lucrative targets, then passing their access to extortion groups like ShinyHunters." data-severity="Critical" data-tags="Ransomware,Exploitation" data-vendors="Microsoft" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-10T20:36:03.000Z">
-          <div class="chips">
-            <span class="severity severity-critical">Critical</span>
-            <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/voice-callers-exploit-byod-microsoft-365-corporate-data" target="_blank" rel="noopener">Voice Callers Exploit BYOD to Reach Microsoft 365, Corporate Data</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-09-10T20:36:03.000Z">September 10, 2026 at 8:36 PM UTC</time><a class="item-permalink" href="#reporting-432786c4f1ef" aria-label="Permalink to this reporting item">Permalink</a>
-          </div>
-          <div class="facet-row"><span class="chip">Microsoft</span><span class="chip">Ransomware</span><span class="chip">Exploitation</span></div>
-          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vuln triage</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vendor watch</a></div>
-          <p class="news-summary">Threat actors are leveraging Microsoft&#39;s Graph API to identify lucrative targets, then passing their access to extortion groups like ShinyHunters.</p>
         </article>
     </div>
   </main>
