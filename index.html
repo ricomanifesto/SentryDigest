@@ -213,7 +213,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
+          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml" aria-label="Open generated RSS feed">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -224,7 +224,7 @@
   <main class="container">
     <section class="issue-strip" aria-label="Digest issue metadata">
       <span class="issue-label">Current issue</span>
-      <time datetime="2026-09-14T19:46:44.106Z">September 14, 2026</time>
+      <time datetime="2026-09-14T23:45:56.166Z">September 14, 2026</time>
       <span class="issue-stat"><strong>30</strong> articles</span>
       <span class="issue-stat"><strong>3</strong> sources</span>
       <a class="issue-link" href="./feed.xml" aria-label="Open rolling RSS feed">Rolling RSS feed</a>
@@ -235,7 +235,7 @@
       <a class="previous-issue" href="./archive/2026-09-13/" aria-label="Open digest issue for September 13, 2026"><time datetime="2026-09-13T00:00:00.000Z">Sep 13</time></a>
       <a href="./feed.xml" aria-label="Open generated RSS feed">RSS feed</a>
       <a href="#sourceCoverage">Source coverage</a>
-      <span class="issue-trail-meta">Updated <time class="issue-trail-updated" datetime="2026-09-14T19:46:44.106Z">19:46 UTC · Sep 14</time></span>
+      <span class="issue-trail-meta">Updated <time class="issue-trail-updated" datetime="2026-09-14T23:45:56.166Z">23:45 UTC · Sep 14</time></span>
       <span class="issue-trail-meta issue-trail-cadence" data-cadence-hours="3" data-cadence-state="scheduled" role="status" aria-live="polite" aria-atomic="true"><span data-cadence-label>3h cadence</span></span>
     </nav>
     <details id="advancedFilters" class="advanced-filters">
@@ -251,7 +251,7 @@
         </select>
         <select id="vendorFilter" class="select" aria-label="Filter by affected vendor">
           <option value="">All vendors</option>
-          <option value="Apple">Apple</option><option value="AWS">AWS</option><option value="Google">Google</option><option value="Microsoft">Microsoft</option><option value="OpenAI">OpenAI</option>
+          <option value="Apple">Apple</option><option value="AWS">AWS</option><option value="Cisco">Cisco</option><option value="Google">Google</option><option value="Microsoft">Microsoft</option><option value="OpenAI">OpenAI</option>
         </select>
         <select id="ageFilter" class="select" aria-label="Filter by article age">
           <option value="">Any age</option>
@@ -275,12 +275,12 @@
       <details class="source-coverage-details">
         <summary class="source-coverage-summary">Source coverage <span>3 active feeds · 30 articles</span></summary>
         <div class="source-coverage-body">
-          <div class="source-counts"><button class="source-count" type="button" data-source-filter="The Hacker News" aria-label="Filter to The Hacker News source, 12 articles" aria-pressed="false">The Hacker News <strong>12</strong></button><button class="source-count" type="button" data-source-filter="Bleeping Computer" aria-label="Filter to Bleeping Computer source, 13 articles" aria-pressed="false">Bleeping Computer <strong>13</strong></button><button class="source-count" type="button" data-source-filter="Dark Reading" aria-label="Filter to Dark Reading source, 5 articles" aria-pressed="false">Dark Reading <strong>5</strong></button></div>
+          <div class="source-counts"><button class="source-count" type="button" data-source-filter="The Hacker News" aria-label="Filter to The Hacker News source, 12 articles" aria-pressed="false">The Hacker News <strong>12</strong></button><button class="source-count" type="button" data-source-filter="Bleeping Computer" aria-label="Filter to Bleeping Computer source, 15 articles" aria-pressed="false">Bleeping Computer <strong>15</strong></button><button class="source-count" type="button" data-source-filter="Dark Reading" aria-label="Filter to Dark Reading source, 3 articles" aria-pressed="false">Dark Reading <strong>3</strong></button></div>
           <div class="source-health-summary" data-active-sources="3" data-quiet-sources="1">
             <span><strong>3</strong> active feeds</span>
             <span><strong>1</strong> quiet feed</span>
           </div>
-          <div class="source-quiet-feeds" aria-label="Quiet RSS sources"><span class="source-health-note" data-source-name="Krebs on Security" data-last-contributed-at="2026-09-08T21:44:22.000Z" data-health-status="quiet" data-quiet-for-days="5">Krebs on Security quiet since <time datetime="2026-09-08T21:44:22.000Z">September 8, 2026 at 9:44 PM UTC</time></span></div>
+          <div class="source-quiet-feeds" aria-label="Quiet RSS sources"><span class="source-health-note" data-source-name="Krebs on Security" data-last-contributed-at="2026-09-08T21:44:22.000Z" data-health-status="quiet" data-quiet-for-days="6">Krebs on Security quiet since <time datetime="2026-09-08T21:44:22.000Z">September 8, 2026 at 9:44 PM UTC</time></span></div>
           <div class="source-filter-status" data-source-filter-status role="status" aria-live="polite" aria-atomic="true">All contributing feeds (30 articles)</div>
           <div class="source-coverage-actions">
             <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with 30 latest articles">RSS feed <span class="feed-link-count">30 items</span></a>
@@ -303,18 +303,13 @@
     <section class="operator-lanes" aria-label="Operator scan lanes">
       <article class="operator-lane" data-lane="Incident watch" data-lane-cue="SentryInsight: incident watch">
         <a class="operator-lane-heading" data-lane-destination href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">Incident watch</a>
-        <span class="operator-lane-count" data-lane-count><strong>14</strong> items</span>
-        <a href="https://www.bleepingcomputer.com/news/security/twitch-extension-with-30k-installs-exposes-users-oauth-tokens/" class="operator-lane-link" data-lane-link>Twitch extension with 30K installs exposes users’ OAuth tokens</a>
+        <span class="operator-lane-count" data-lane-count><strong>11</strong> items</span>
+        <a href="https://www.bleepingcomputer.com/news/security/japans-digital-agency-says-vpn-flaw-exposed-246-000-personnel-records/" class="operator-lane-link" data-lane-link>Japan&#39;s Digital Agency says VPN flaw exposed 246,000 personnel records</a>
         <span class="operator-lane-empty" data-lane-empty hidden>No current match</span>
       </article><article class="operator-lane" data-lane="Vulnerability triage" data-lane-cue="SentryInsight: vuln triage">
         <a class="operator-lane-heading" data-lane-destination href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">Vulnerability triage</a>
-        <span class="operator-lane-count" data-lane-count><strong>10</strong> items</span>
-        <a href="https://thehackernews.com/2026/09/telegram-desktop-flaw-lets-hidden.html" class="operator-lane-link" data-lane-link>Telegram Desktop Flaw Lets Hidden JavaScript Exfiltrate Messages From HTML Exports</a>
-        <span class="operator-lane-empty" data-lane-empty hidden>No current match</span>
-      </article><article class="operator-lane" data-lane="Governance watch" data-lane-cue="GRCInsight: governance watch">
-        <a class="operator-lane-heading" data-lane-destination href="https://ricomanifesto.github.io/GRCInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open GRCInsight">Governance watch</a>
-        <span class="operator-lane-count" data-lane-count><strong>1</strong> item</span>
-        <a href="https://www.darkreading.com/cyber-risk/cisa-calls-for-more-guidance-less-spin-as-cyber-outages-escalate" class="operator-lane-link" data-lane-link>CISA Calls for More Guidance, Less Spin, as Cyber Outages Escalate</a>
+        <span class="operator-lane-count" data-lane-count><strong>13</strong> items</span>
+        <a href="https://www.darkreading.com/cyberattacks-data-breaches/sandworm-chains-cisco-vulnerabilities-cyclops-blink" class="operator-lane-link" data-lane-link>&#39;Sandworm&#39; Chains Cisco Vulnerabilities to Deploy Cyclops Blink</a>
         <span class="operator-lane-empty" data-lane-empty hidden>No current match</span>
       </article>
     </section>
@@ -325,16 +320,90 @@
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" id="reporting-caf5df445550" data-source="Dark Reading" data-host="darkreading.com" data-title="&#39;Sandworm&#39; Chains Cisco Vulnerabilities to Deploy Cyclops Blink" data-summary="The notorious Russian threat group is spreading an upgraded version of the botnet malware, which the FBI disrupted in 2022." data-severity="Elevated" data-tags="Vulnerability,Malware" data-vendors="Cisco" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Fresh" data-published-at="2026-09-14T21:37:28.000Z">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip source-chip">Dark Reading</span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>2h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/sandworm-chains-cisco-vulnerabilities-cyclops-blink" target="_blank" rel="noopener">&#39;Sandworm&#39; Chains Cisco Vulnerabilities to Deploy Cyclops Blink</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-14T21:37:28.000Z">September 14, 2026 at 9:37 PM UTC</time>
+            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-caf5df445550" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Cisco</span><span class="chip">Vulnerability</span><span class="chip">Malware</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vuln triage</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vendor watch</a></div>
+          <p class="news-summary">The notorious Russian threat group is spreading an upgraded version of the botnet malware, which the FBI disrupted in 2022.</p>
+        </article>
+        <article class="news-item" id="reporting-89e52df0d44d" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft releases emergency Windows updates to fix RDS failures" data-summary="Microsoft has released emergency out-of-band Windows updates to fix Remote Desktop Services failures caused by this month&#39;s security updates, along with Hyper-V and USB audio problems on some Windows versions…" data-severity="Monitor" data-tags="" data-vendors="Microsoft" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Fresh" data-published-at="2026-09-14T20:52:18.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>2h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-releases-emergency-windows-updates-to-fix-rds-failures/" target="_blank" rel="noopener">Microsoft releases emergency Windows updates to fix RDS failures</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-14T20:52:18.000Z">September 14, 2026 at 8:52 PM UTC</time>
+            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-89e52df0d44d" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Microsoft</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vendor watch</a></div>
+          <p class="news-summary">Microsoft has released emergency out-of-band Windows updates to fix Remote Desktop Services failures caused by this month&#39;s security updates, along with Hyper-V and USB audio problems on some Windows versions…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/microsoft/microsoft-releases-emergency-windows-updates-to-fix-rds-failures/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item" id="reporting-bc6f1b881d2b" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Japan&#39;s Digital Agency says VPN flaw exposed 246,000 personnel records" data-summary="Japan&#39;s Digital Agency has discovered a data breach that may have exposed around 246,000 record rows containing personal information of government employees…" data-severity="Critical" data-tags="Vulnerability,Data Breach" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage" data-age-bucket="Fresh" data-published-at="2026-09-14T20:36:02.000Z">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>3h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/japans-digital-agency-says-vpn-flaw-exposed-246-000-personnel-records/" target="_blank" rel="noopener">Japan&#39;s Digital Agency says VPN flaw exposed 246,000 personnel records</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-14T20:36:02.000Z">September 14, 2026 at 8:36 PM UTC</time>
+            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-bc6f1b881d2b" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Data Breach</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vuln triage</a></div>
+          <p class="news-summary">Japan&#39;s Digital Agency has discovered a data breach that may have exposed around 246,000 record rows containing personal information of government employees…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/japans-digital-agency-says-vpn-flaw-exposed-246-000-personnel-records/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item" id="reporting-238d9d5bfc83" data-source="Dark Reading" data-host="darkreading.com" data-title="Maximum Severity GitLab Flaw Puts Supply Chains at Risk" data-summary="CVE-2026-85706 is a path traversal vulnerability with a 10 out of 10 CVSS score, affecting both GitLab Community Edition and Enterprise Edition instances." data-severity="Elevated" data-tags="Vulnerability" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Fresh" data-published-at="2026-09-14T20:19:22.000Z">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip source-chip">Dark Reading</span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>3h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/maximum-severity-gitlab-flaw-supply-chains-risk" target="_blank" rel="noopener">Maximum Severity GitLab Flaw Puts Supply Chains at Risk</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-14T20:19:22.000Z">September 14, 2026 at 8:19 PM UTC</time>
+            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-238d9d5bfc83" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Vulnerability</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vuln triage</a></div>
+          <p class="news-summary">CVE-2026-85706 is a path traversal vulnerability with a 10 out of 10 CVSS score, affecting both GitLab Community Edition and Enterprise Edition instances.</p>
+        </article>
+        <article class="news-item" id="reporting-f635bd0fb914" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Homebrew 7.0.0 gets built-in GUI, better security controls" data-summary="Homebrew package manager version 7.0.0 has been released with a built-in vulnerability scanner, stronger security controls, and the full release of its native BrewUI graphical interface…" data-severity="Elevated" data-tags="Vulnerability" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Fresh" data-published-at="2026-09-14T19:51:04.000Z">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>3h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/homebrew-700-gets-built-in-gui-better-security-controls/" target="_blank" rel="noopener">Homebrew 7.0.0 gets built-in GUI, better security controls</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-14T19:51:04.000Z">September 14, 2026 at 7:51 PM UTC</time>
+            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-f635bd0fb914" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Vulnerability</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vuln triage</a></div>
+          <p class="news-summary">Homebrew package manager version 7.0.0 has been released with a built-in vulnerability scanner, stronger security controls, and the full release of its native BrewUI graphical interface…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/homebrew-700-gets-built-in-gui-better-security-controls/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
         <article class="news-item" id="reporting-0c060fb984f7" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Twitch extension with 30K installs exposes users’ OAuth tokens" data-summary="A browser extension called Twitch Enhanced Viewer | JeetBot, available in the official Chrome and Firefox stores, sends users&#39; Twitch OAuth session tokens to a commercial bot service…" data-severity="Elevated" data-tags="Identity" data-vendors="Google" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vendor watch" data-age-bucket="Fresh" data-published-at="2026-09-14T19:03:51.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>42m old</span></span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>4h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/twitch-extension-with-30k-installs-exposes-users-oauth-tokens/" target="_blank" rel="noopener">Twitch extension with 30K installs exposes users’ OAuth tokens</a></h2>
           <div class="news-meta">
-            <time datetime="2026-09-14T19:03:51.000Z">September 14, 2026 at 7:03 PM UTC</time>
-            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-0c060fb984f7" aria-label="Permalink to this reporting item">Permalink</a>
+            <time datetime="2026-09-14T19:03:51.000Z">September 14, 2026 at 7:03 PM UTC</time><a class="item-permalink" href="#reporting-0c060fb984f7" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Google</span><span class="chip">Identity</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vendor watch</a></div>
@@ -344,12 +413,11 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>1h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>5h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hackers-hijack-hbo-max-reddit-account-to-push-malware-in-clickfix-ads/" target="_blank" rel="noopener">Hackers hijack HBO Max Reddit account to push malware in ClickFix ads</a></h2>
           <div class="news-meta">
-            <time datetime="2026-09-14T18:34:16.000Z">September 14, 2026 at 6:34 PM UTC</time>
-            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-6aad7771fb49" aria-label="Permalink to this reporting item">Permalink</a>
+            <time datetime="2026-09-14T18:34:16.000Z">September 14, 2026 at 6:34 PM UTC</time><a class="item-permalink" href="#reporting-6aad7771fb49" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Microsoft</span><span class="chip">Apple</span><span class="chip">Malware</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vendor watch</a></div>
@@ -359,12 +427,11 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>1h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>5h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/09/new-ddrop-attack-breaks-intel-tdx-and.html" target="_blank" rel="noopener">New DDRop Attack Breaks Intel TDX and AMD SEV-SNP Confidential Computing</a></h2>
           <div class="news-meta">
-            <time datetime="2026-09-14T18:02:13.000Z">September 14, 2026 at 6:02 PM UTC</time>
-            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-d1e3ec219567" aria-label="Permalink to this reporting item">Permalink</a>
+            <time datetime="2026-09-14T18:02:13.000Z">September 14, 2026 at 6:02 PM UTC</time><a class="item-permalink" href="#reporting-d1e3ec219567" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: monitor</a></div>
           <p class="news-summary">Researchers have disclosed a new hardware attack, called DDRop, that breaks the memory protection in Intel and AMD confidential computing by silently dropping writes to a server&#39;s memory, so the processor keeps reading old encrypted data as if it were current. The attack requires an attacker who already controls the server&#39;s software and can briefly access the machine to insert a small circuit…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/new-ddrop-attack-breaks-intel-tdx-and.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
@@ -373,12 +440,11 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>1h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>5h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/09/3bb-attacker-used-meshcentral-backdoor.html" target="_blank" rel="noopener">3BB Attacker Used MeshCentral Backdoor for Root Access, Targeted Subscriber Credentials</a></h2>
           <div class="news-meta">
-            <time datetime="2026-09-14T18:01:49.000Z">September 14, 2026 at 6:01 PM UTC</time>
-            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-2e4ea22accc3" aria-label="Permalink to this reporting item">Permalink</a>
+            <time datetime="2026-09-14T18:01:49.000Z">September 14, 2026 at 6:01 PM UTC</time><a class="item-permalink" href="#reporting-2e4ea22accc3" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Identity</span><span class="chip">Malware</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a></div>
@@ -388,101 +454,94 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>1h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>5h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/09/telegram-desktop-flaw-lets-hidden.html" target="_blank" rel="noopener">Telegram Desktop Flaw Lets Hidden JavaScript Exfiltrate Messages From HTML Exports</a></h2>
           <div class="news-meta">
-            <time datetime="2026-09-14T17:58:16.000Z">September 14, 2026 at 5:58 PM UTC</time>
-            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-7b20c25c5672" aria-label="Permalink to this reporting item">Permalink</a>
+            <time datetime="2026-09-14T17:58:16.000Z">September 14, 2026 at 5:58 PM UTC</time><a class="item-permalink" href="#reporting-7b20c25c5672" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Vulnerability</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vuln triage</a></div>
           <p class="news-summary">A flaw in Telegram Desktop let a bot&#39;s message plant hidden JavaScript inside chats that users exported to HTML files, security researchers at ExPatch said in a writeup published on September 12. In Telegram, the message looked ordinary, with a link button, and the script ran only when someone opened the export file in a web browser. It could then copy every message in that file to…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/telegram-desktop-flaw-lets-hidden.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
         </article>
-        <article class="news-item" id="reporting-09d1dd4eafdf" data-source="The Hacker News" data-host="thehackernews.com" data-title="Red Heron Exploits Gitea RCE to Compromise 13 Organizations Across Six Countries" data-summary="A suspected Chinese threat actor tracked as Red Heron has been attributed to the rapid exploitation of a recently disclosed security vulnerability in Gitea to compromise internet-facing instances as part of a multi-national campaign. &quot;Red Heron scanned 1,386 Gitea instances across seven countries and maintained a separate dataset of 477 Taiwan-based systems,&quot; Acronis Threat Research Unit (TRU)…" data-severity="Elevated" data-tags="Vulnerability,Exploitation" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage" data-age-bucket="Fresh" data-published-at="2026-09-14T16:56:30.000Z">
+        <article class="news-item" id="reporting-09d1dd4eafdf" data-source="The Hacker News" data-host="thehackernews.com" data-title="Red Heron Exploits Gitea RCE to Compromise 13 Organizations Across Six Countries" data-summary="A suspected Chinese threat actor tracked as Red Heron has been attributed to the rapid exploitation of a recently disclosed security vulnerability in Gitea to compromise internet-facing instances as part of a multi-national campaign. &quot;Red Heron scanned 1,386 Gitea instances across seven countries and maintained a separate dataset of 477 Taiwan-based systems,&quot; Acronis Threat Research Unit (TRU)…" data-severity="Elevated" data-tags="Vulnerability,Exploitation" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-09-14T16:56:30.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>2h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>6h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/09/red-heron-exploits-gitea-rce-to.html" target="_blank" rel="noopener">Red Heron Exploits Gitea RCE to Compromise 13 Organizations Across Six Countries</a></h2>
           <div class="news-meta">
-            <time datetime="2026-09-14T16:56:30.000Z">September 14, 2026 at 4:56 PM UTC</time>
-            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-09d1dd4eafdf" aria-label="Permalink to this reporting item">Permalink</a>
+            <time datetime="2026-09-14T16:56:30.000Z">September 14, 2026 at 4:56 PM UTC</time><a class="item-permalink" href="#reporting-09d1dd4eafdf" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vuln triage</a></div>
           <p class="news-summary">A suspected Chinese threat actor tracked as Red Heron has been attributed to the rapid exploitation of a recently disclosed security vulnerability in Gitea to compromise internet-facing instances as part of a multi-national campaign. &quot;Red Heron scanned 1,386 Gitea instances across seven countries and maintained a separate dataset of 477 Taiwan-based systems,&quot; Acronis Threat Research Unit (TRU)…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/red-heron-exploits-gitea-rce-to.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
         </article>
-        <article class="news-item" id="reporting-722811b86b4d" data-source="Dark Reading" data-host="darkreading.com" data-title="Anthropic CEO: Time to Shift From Improving to Controlling AI" data-summary="Dario Amodei says it&#39;s time to slow the pace of frontier AI improvements so that security and risk prevention efforts can catch up. What does this mean for enterprises?" data-severity="Monitor" data-tags="AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh" data-published-at="2026-09-14T16:41:10.000Z">
+        <article class="news-item" id="reporting-722811b86b4d" data-source="Dark Reading" data-host="darkreading.com" data-title="Anthropic CEO: Time to Shift From Improving to Controlling AI" data-summary="Dario Amodei says it&#39;s time to slow the pace of frontier AI improvements so that security and risk prevention efforts can catch up. What does this mean for enterprises?" data-severity="Monitor" data-tags="AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-09-14T16:41:10.000Z">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>3h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>7h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/anthropic-ceo-shift-from-improving-to-controlling-ai" target="_blank" rel="noopener">Anthropic CEO: Time to Shift From Improving to Controlling AI</a></h2>
           <div class="news-meta">
-            <time datetime="2026-09-14T16:41:10.000Z">September 14, 2026 at 4:41 PM UTC</time>
-            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-722811b86b4d" aria-label="Permalink to this reporting item">Permalink</a>
+            <time datetime="2026-09-14T16:41:10.000Z">September 14, 2026 at 4:41 PM UTC</time><a class="item-permalink" href="#reporting-722811b86b4d" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">AI Security</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: monitor</a></div>
           <p class="news-summary">Dario Amodei says it&#39;s time to slow the pace of frontier AI improvements so that security and risk prevention efforts can catch up. What does this mean for enterprises?</p>
         </article>
-        <article class="news-item" id="reporting-5aa4d6dc4864" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Hackers target exposed Vite dev servers to steal AWS, Azure secrets" data-summary="A mass-scanning campaign targeting internet-exposed Vite development servers is attempting to steal cloud credentials and configurations from AWS and Azure deployments…" data-severity="Elevated" data-tags="Identity,Cloud" data-vendors="Microsoft,AWS" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vendor watch" data-age-bucket="Fresh" data-published-at="2026-09-14T16:15:58.000Z">
+        <article class="news-item" id="reporting-5aa4d6dc4864" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Hackers target exposed Vite dev servers to steal AWS, Azure secrets" data-summary="A mass-scanning campaign targeting internet-exposed Vite development servers is attempting to steal cloud credentials and configurations from AWS and Azure deployments…" data-severity="Elevated" data-tags="Identity,Cloud" data-vendors="Microsoft,AWS" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-14T16:15:58.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>3h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>7h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hackers-target-exposed-vite-dev-servers-to-steal-aws-azure-secrets/" target="_blank" rel="noopener">Hackers target exposed Vite dev servers to steal AWS, Azure secrets</a></h2>
           <div class="news-meta">
-            <time datetime="2026-09-14T16:15:58.000Z">September 14, 2026 at 4:15 PM UTC</time>
-            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-5aa4d6dc4864" aria-label="Permalink to this reporting item">Permalink</a>
+            <time datetime="2026-09-14T16:15:58.000Z">September 14, 2026 at 4:15 PM UTC</time><a class="item-permalink" href="#reporting-5aa4d6dc4864" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Microsoft</span><span class="chip">AWS</span><span class="chip">Identity</span><span class="chip">Cloud</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vendor watch</a></div>
           <p class="news-summary">A mass-scanning campaign targeting internet-exposed Vite development servers is attempting to steal cloud credentials and configurations from AWS and Azure deployments…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/hackers-target-exposed-vite-dev-servers-to-steal-aws-azure-secrets/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
         </article>
-        <article class="news-item" id="reporting-0c1a781fba3e" data-source="The Hacker News" data-host="thehackernews.com" data-title="WordPress Adds Automated Plugin Reviews to Block High-Risk Updates Before Distribution" data-summary="WordPress has announced it&#39;s launching an automated security review for every release of a plugin before it&#39;s distributed through the WordPress.org update API so as to analyze it for potential security issues and ensure there are no risks involved. &quot;New plugins are reviewed before they enter the directory, but updates ship continuously after that,&quot; David Perez, WordPress Official Plugin…" data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh" data-published-at="2026-09-14T16:00:04.000Z">
+        <article class="news-item" id="reporting-0c1a781fba3e" data-source="The Hacker News" data-host="thehackernews.com" data-title="WordPress Adds Automated Plugin Reviews to Block High-Risk Updates Before Distribution" data-summary="WordPress has announced it&#39;s launching an automated security review for every release of a plugin before it&#39;s distributed through the WordPress.org update API so as to analyze it for potential security issues and ensure there are no risks involved. &quot;New plugins are reviewed before they enter the directory, but updates ship continuously after that,&quot; David Perez, WordPress Official Plugin…" data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-09-14T16:00:04.000Z">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>3h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>7h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/09/wordpress-adds-automated-plugin-reviews.html" target="_blank" rel="noopener">WordPress Adds Automated Plugin Reviews to Block High-Risk Updates Before Distribution</a></h2>
           <div class="news-meta">
-            <time datetime="2026-09-14T16:00:04.000Z">September 14, 2026 at 4:00 PM UTC</time>
-            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-0c1a781fba3e" aria-label="Permalink to this reporting item">Permalink</a>
+            <time datetime="2026-09-14T16:00:04.000Z">September 14, 2026 at 4:00 PM UTC</time><a class="item-permalink" href="#reporting-0c1a781fba3e" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: monitor</a></div>
           <p class="news-summary">WordPress has announced it&#39;s launching an automated security review for every release of a plugin before it&#39;s distributed through the WordPress.org update API so as to analyze it for potential security issues and ensure there are no risks involved. &quot;New plugins are reviewed before they enter the directory, but updates ship continuously after that,&quot; David Perez, WordPress Official Plugin…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/wordpress-adds-automated-plugin-reviews.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
         </article>
-        <article class="news-item" id="reporting-161dd11ccccf" data-source="The Hacker News" data-host="thehackernews.com" data-title="⚡ Weekly Recap: Rogue AI Agents, WeChat Worm, PaperCut Attacks, AI Espionage, and Rootkits" data-summary="AI keeps showing up in the wrong places. Attackers are using it to speed up exploits, test defenses, and automate more of the job. Some models are also crossing lines on their own. That is not a great combination. The rest of the week is more familiar: old bugs still working, fresh exploit chains, exposed systems, weak defaults, and simple paths that should have been harder to abuse. A few of…" data-severity="Elevated" data-tags="Exploitation,AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Fresh" data-published-at="2026-09-14T14:40:34.000Z">
+        <article class="news-item" id="reporting-161dd11ccccf" data-source="The Hacker News" data-host="thehackernews.com" data-title="⚡ Weekly Recap: Rogue AI Agents, WeChat Worm, PaperCut Attacks, AI Espionage, and Rootkits" data-summary="AI keeps showing up in the wrong places. Attackers are using it to speed up exploits, test defenses, and automate more of the job. Some models are also crossing lines on their own. That is not a great combination. The rest of the week is more familiar: old bugs still working, fresh exploit chains, exposed systems, weak defaults, and simple paths that should have been harder to abuse. A few of…" data-severity="Elevated" data-tags="Exploitation,AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-09-14T14:40:34.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>5h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>9h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/09/weekly-recap-rogue-ai-agents-wechat.html" target="_blank" rel="noopener">⚡ Weekly Recap: Rogue AI Agents, WeChat Worm, PaperCut Attacks, AI Espionage, and Rootkits</a></h2>
           <div class="news-meta">
-            <time datetime="2026-09-14T14:40:34.000Z">September 14, 2026 at 2:40 PM UTC</time>
-            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-161dd11ccccf" aria-label="Permalink to this reporting item">Permalink</a>
+            <time datetime="2026-09-14T14:40:34.000Z">September 14, 2026 at 2:40 PM UTC</time><a class="item-permalink" href="#reporting-161dd11ccccf" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Exploitation</span><span class="chip">AI Security</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vuln triage</a></div>
           <p class="news-summary">AI keeps showing up in the wrong places. Attackers are using it to speed up exploits, test defenses, and automate more of the job. Some models are also crossing lines on their own. That is not a great combination. The rest of the week is more familiar: old bugs still working, fresh exploit chains, exposed systems, weak defaults, and simple paths that should have been harder to abuse. A few of…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/weekly-recap-rogue-ai-agents-wechat.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
         </article>
-        <article class="news-item" id="reporting-5240973ddd6b" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Why Patch Automation Needs Brakes, Not Just an Accelerator" data-summary="Patch automation can help IT teams keep pace with growing update volumes, but deploying faster also means bad updates can spread faster. Action1 explains how update rings, predefined success criteria, and human oversight can make automated patching faster without sacrificing control…" data-severity="Elevated" data-tags="Vulnerability" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Fresh" data-published-at="2026-09-14T14:01:11.000Z">
+        <article class="news-item" id="reporting-5240973ddd6b" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Why Patch Automation Needs Brakes, Not Just an Accelerator" data-summary="Patch automation can help IT teams keep pace with growing update volumes, but deploying faster also means bad updates can spread faster. Action1 explains how update rings, predefined success criteria, and human oversight can make automated patching faster without sacrificing control…" data-severity="Elevated" data-tags="Vulnerability" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-09-14T14:01:11.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>5h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>9h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/why-patch-automation-needs-brakes-not-just-an-accelerator/" target="_blank" rel="noopener">Why Patch Automation Needs Brakes, Not Just an Accelerator</a></h2>
           <div class="news-meta">
-            <time datetime="2026-09-14T14:01:11.000Z">September 14, 2026 at 2:01 PM UTC</time>
-            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-5240973ddd6b" aria-label="Permalink to this reporting item">Permalink</a>
+            <time datetime="2026-09-14T14:01:11.000Z">September 14, 2026 at 2:01 PM UTC</time><a class="item-permalink" href="#reporting-5240973ddd6b" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Vulnerability</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vuln triage</a></div>
@@ -492,12 +551,11 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>7h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>11h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/webinar-how-malicious-oauth-apps-can-lead-to-google-workspace-breaches/" target="_blank" rel="noopener">Webinar: How malicious OAuth apps can lead to Google Workspace breaches</a></h2>
           <div class="news-meta">
-            <time datetime="2026-09-14T12:15:23.000Z">September 14, 2026 at 12:15 PM UTC</time>
-            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-0952b915a227" aria-label="Permalink to this reporting item">Permalink</a>
+            <time datetime="2026-09-14T12:15:23.000Z">September 14, 2026 at 12:15 PM UTC</time><a class="item-permalink" href="#reporting-0952b915a227" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Google</span><span class="chip">Identity</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vendor watch</a></div>
@@ -507,12 +565,11 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>7h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>11h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/09/ai-changed-exposure-problem-validation.html" target="_blank" rel="noopener">AI Changed the Exposure Problem. Validation Needs to Change With It.</a></h2>
           <div class="news-meta">
-            <time datetime="2026-09-14T11:58:00.000Z">September 14, 2026 at 11:58 AM UTC</time>
-            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-d82614babf1b" aria-label="Permalink to this reporting item">Permalink</a>
+            <time datetime="2026-09-14T11:58:00.000Z">September 14, 2026 at 11:58 AM UTC</time><a class="item-permalink" href="#reporting-d82614babf1b" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">AI Security</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vuln triage</a></div>
@@ -522,7 +579,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>9h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>13h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-september-updates-cause-rds-failures-on-windows-server/" target="_blank" rel="noopener">Microsoft: September updates cause RDS failures on Windows Server</a></h2>
           <div class="news-meta">
@@ -536,7 +593,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>10h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>14h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/revolut-discloses-data-breach-exposing-financial-info-passports/" target="_blank" rel="noopener">Revolut discloses data breach exposing financial info, passports</a></h2>
           <div class="news-meta">
@@ -550,7 +607,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>11h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>15h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-september-updates-break-audio-on-some-windows-pcs/" target="_blank" rel="noopener">Microsoft: September updates break audio on some Windows PCs</a></h2>
           <div class="news-meta">
@@ -564,7 +621,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>12h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>16h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/09/malicious-twitch-browser-extension.html" target="_blank" rel="noopener">Malicious Twitch Browser Extension Leaks OAuth Tokens From Nearly 31,000 Users</a></h2>
           <div class="news-meta">
@@ -578,7 +635,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>12h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>16h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cisa-hackers-now-exploit-max-severity-gitlab-flaw-in-attacks/" target="_blank" rel="noopener">CISA: Hackers now exploit max severity GitLab flaw in attacks</a></h2>
           <div class="news-meta">
@@ -676,7 +733,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>3d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hackers-abused-claude-to-extract-secrets-from-18m-android-apps/" target="_blank" rel="noopener">Hackers abused Claude to extract secrets from 1.8M Android apps</a></h2>
           <div class="news-meta">
@@ -685,77 +742,6 @@
           <div class="facet-row"><span class="chip">Google</span><span class="chip">AI Security</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vendor watch</a></div>
           <p class="news-summary">Anthropic says multiple threat groups, including the financially motivated and state-sponsored espionage groups linked to Russia and China, tried to abuse its Claude AI model for malicious purposes…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/hackers-abused-claude-to-extract-secrets-from-18m-android-apps/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
-        </article>
-        <article class="news-item" id="reporting-9846387cf4d2" data-source="Dark Reading" data-host="darkreading.com" data-title="Threat Actor Generates 1M Personalized Fraud Emails in 3 Days" data-summary="Cybercriminals behind malicious email campaigns no longer have to compromise volume for credibility, or vice versa, thanks to AI." data-severity="Monitor" data-tags="AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Recent" data-published-at="2026-09-11T19:21:08.000Z">
-          <div class="chips">
-            <span class="severity severity-monitor">Monitor</span>
-            <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>3d old</span></span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/1m-personalized-fraud-emails-3-days" target="_blank" rel="noopener">Threat Actor Generates 1M Personalized Fraud Emails in 3 Days</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-09-11T19:21:08.000Z">September 11, 2026 at 7:21 PM UTC</time><a class="item-permalink" href="#reporting-9846387cf4d2" aria-label="Permalink to this reporting item">Permalink</a>
-          </div>
-          <div class="facet-row"><span class="chip">AI Security</span></div>
-          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a></div>
-          <p class="news-summary">Cybercriminals behind malicious email campaigns no longer have to compromise volume for credibility, or vice versa, thanks to AI.</p>
-        </article>
-        <article class="news-item" id="reporting-a16d62911725" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Florida confirms DMV database breached via stolen police account" data-summary="The Florida Department of Highway Safety and Motor Vehicles (FLHSMV) has confirmed that its DAVID driver database suffered a data breach, saying the attackers gained access using credentials belonging to a police department employee…" data-severity="Critical" data-tags="Data Breach,Identity" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Recent" data-published-at="2026-09-11T19:00:29.000Z">
-          <div class="chips">
-            <span class="severity severity-critical">Critical</span>
-            <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>3d old</span></span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/florida-confirms-dmv-database-breached-via-stolen-police-account/" target="_blank" rel="noopener">Florida confirms DMV database breached via stolen police account</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-09-11T19:00:29.000Z">September 11, 2026 at 7:00 PM UTC</time><a class="item-permalink" href="#reporting-a16d62911725" aria-label="Permalink to this reporting item">Permalink</a>
-          </div>
-          <div class="facet-row"><span class="chip">Data Breach</span><span class="chip">Identity</span></div>
-          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a></div>
-          <p class="news-summary">The Florida Department of Highway Safety and Motor Vehicles (FLHSMV) has confirmed that its DAVID driver database suffered a data breach, saying the attackers gained access using credentials belonging to a police department employee…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/florida-confirms-dmv-database-breached-via-stolen-police-account/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
-        </article>
-        <article class="news-item" id="reporting-c299141b7513" data-source="Dark Reading" data-host="darkreading.com" data-title="CISA Calls for More Guidance, Less Spin, as Cyber Outages Escalate" data-summary="A new joint government advisory signals a regulatory shift, pressing organizations to adopt more transparent breach notification and incident response protocols." data-severity="Critical" data-tags="Data Breach" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,GRCInsight: governance watch" data-age-bucket="Recent" data-published-at="2026-09-11T18:44:03.000Z">
-          <div class="chips">
-            <span class="severity severity-critical">Critical</span>
-            <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>3d old</span></span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/cisa-calls-for-more-guidance-less-spin-as-cyber-outages-escalate" target="_blank" rel="noopener">CISA Calls for More Guidance, Less Spin, as Cyber Outages Escalate</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-09-11T18:44:03.000Z">September 11, 2026 at 6:44 PM UTC</time><a class="item-permalink" href="#reporting-c299141b7513" aria-label="Permalink to this reporting item">Permalink</a>
-          </div>
-          <div class="facet-row"><span class="chip">Data Breach</span></div>
-          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a><a class="handoff-cue" href="https://ricomanifesto.github.io/GRCInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open GRCInsight">GRCInsight: governance watch</a></div>
-          <p class="news-summary">A new joint government advisory signals a regulatory shift, pressing organizations to adopt more transparent breach notification and incident response protocols.</p>
-        </article>
-        <article class="news-item" id="reporting-c34563b630e5" data-source="Dark Reading" data-host="darkreading.com" data-title="SpiderSilk Hunts External Threats With AI-Based Scanner" data-summary="The Dubai-based threat detection startup uses artificial intelligence tools to scan billions of IP addresses to find exposed assets, leaked data, and zero-day vulnerabilities." data-severity="Critical" data-tags="Vulnerability,Data Breach,AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-09-11T18:27:28.000Z">
-          <div class="chips">
-            <span class="severity severity-critical">Critical</span>
-            <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>3d old</span></span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/endpoint-security/spidersilk-hunts-external-threats-ai-scanning" target="_blank" rel="noopener">SpiderSilk Hunts External Threats With AI-Based Scanner</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-09-11T18:27:28.000Z">September 11, 2026 at 6:27 PM UTC</time>
-            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-c34563b630e5" aria-label="Permalink to this reporting item">Permalink</a>
-          </div>
-          <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Data Breach</span><span class="chip">AI Security</span></div>
-          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vuln triage</a></div>
-          <p class="news-summary">The Dubai-based threat detection startup uses artificial intelligence tools to scan billions of IP addresses to find exposed assets, leaked data, and zero-day vulnerabilities.</p>
-        </article>
-        <article class="news-item" id="reporting-149efb9377d4" data-source="Dark Reading" data-host="darkreading.com" data-title="Why AI Is So Good at Scamming Humans" data-summary="Fred Heiding of Menlo Park Intelligence talks with the Dark Reading News Desk about his research on frontier models, and their ability to influence human behavior and create emotional dependency." data-severity="Monitor" data-tags="AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-09-11T18:14:06.000Z">
-          <div class="chips">
-            <span class="severity severity-monitor">Monitor</span>
-            <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>3d old</span></span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/ai-scamming-humans" target="_blank" rel="noopener">Why AI Is So Good at Scamming Humans</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-09-11T18:14:06.000Z">September 11, 2026 at 6:14 PM UTC</time><a class="item-permalink" href="#reporting-149efb9377d4" aria-label="Permalink to this reporting item">Permalink</a>
-          </div>
-          <div class="facet-row"><span class="chip">AI Security</span></div>
-          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: monitor</a></div>
-          <p class="news-summary">Fred Heiding of Menlo Park Intelligence talks with the Dark Reading News Desk about his research on frontier models, and their ability to influence human behavior and create emotional dependency.</p>
         </article>
     </div>
   </main>
