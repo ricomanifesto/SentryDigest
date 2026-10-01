@@ -213,7 +213,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
+          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml" aria-label="Open generated RSS feed">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -224,7 +224,7 @@
   <main class="container">
     <section class="issue-strip" aria-label="Digest issue metadata">
       <span class="issue-label">Current issue</span>
-      <time datetime="2026-09-30T21:16:24.070Z">September 30, 2026</time>
+      <time datetime="2026-10-01T00:56:29.449Z">October 1, 2026</time>
       <span class="issue-stat"><strong>30</strong> articles</span>
       <span class="issue-stat"><strong>3</strong> sources</span>
       <a class="issue-link" href="./feed.xml" aria-label="Open rolling RSS feed">Rolling RSS feed</a>
@@ -232,10 +232,10 @@
     <nav class="issue-trail" aria-label="Digest navigation">
       <span class="issue-trail-current" aria-current="page">Current digest</span>
       <a class="previous-issues" href="./archive/" aria-label="Open previous digest issues">Previous issues</a>
-      <a class="previous-issue" href="./archive/2026-09-29/" aria-label="Open digest issue for September 29, 2026"><time datetime="2026-09-29T00:00:00.000Z">Sep 29</time></a>
+      <a class="previous-issue" href="./archive/2026-09-30/" aria-label="Open digest issue for September 30, 2026"><time datetime="2026-09-30T00:00:00.000Z">Sep 30</time></a>
       <a href="./feed.xml" aria-label="Open generated RSS feed">RSS feed</a>
       <a href="#sourceCoverage">Source coverage</a>
-      <span class="issue-trail-meta">Updated <time class="issue-trail-updated" datetime="2026-09-30T21:16:24.070Z">21:16 UTC · Sep 30</time></span>
+      <span class="issue-trail-meta">Updated <time class="issue-trail-updated" datetime="2026-10-01T00:56:29.449Z">00:56 UTC · Oct 1</time></span>
       <span class="issue-trail-meta issue-trail-cadence" data-cadence-hours="3" data-cadence-state="scheduled" role="status" aria-live="polite" aria-atomic="true"><span data-cadence-label>3h cadence</span></span>
     </nav>
     <details id="advancedFilters" class="advanced-filters">
@@ -275,7 +275,7 @@
       <details class="source-coverage-details">
         <summary class="source-coverage-summary">Source coverage <span>3 active feeds · 30 articles</span></summary>
         <div class="source-coverage-body">
-          <div class="source-counts"><button class="source-count" type="button" data-source-filter="The Hacker News" aria-label="Filter to The Hacker News source, 10 articles" aria-pressed="false">The Hacker News <strong>10</strong></button><button class="source-count" type="button" data-source-filter="Bleeping Computer" aria-label="Filter to Bleeping Computer source, 15 articles" aria-pressed="false">Bleeping Computer <strong>15</strong></button><button class="source-count" type="button" data-source-filter="Dark Reading" aria-label="Filter to Dark Reading source, 5 articles" aria-pressed="false">Dark Reading <strong>5</strong></button></div>
+          <div class="source-counts"><button class="source-count" type="button" data-source-filter="The Hacker News" aria-label="Filter to The Hacker News source, 10 articles" aria-pressed="false">The Hacker News <strong>10</strong></button><button class="source-count" type="button" data-source-filter="Bleeping Computer" aria-label="Filter to Bleeping Computer source, 13 articles" aria-pressed="false">Bleeping Computer <strong>13</strong></button><button class="source-count" type="button" data-source-filter="Dark Reading" aria-label="Filter to Dark Reading source, 7 articles" aria-pressed="false">Dark Reading <strong>7</strong></button></div>
           <div class="source-health-summary" data-active-sources="3" data-quiet-sources="1">
             <span><strong>3</strong> active feeds</span>
             <span><strong>1</strong> quiet feed</span>
@@ -303,12 +303,12 @@
     <section class="operator-lanes" aria-label="Operator scan lanes">
       <article class="operator-lane" data-lane="Incident watch" data-lane-cue="SentryInsight: incident watch">
         <a class="operator-lane-heading" data-lane-destination href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">Incident watch</a>
-        <span class="operator-lane-count" data-lane-count><strong>17</strong> items</span>
+        <span class="operator-lane-count" data-lane-count><strong>15</strong> items</span>
         <a href="https://www.bleepingcomputer.com/news/security/divd-says-zammad-zero-days-enabled-ai-driven-network-breach/" class="operator-lane-link" data-lane-link>DIVD says Zammad zero-days enabled AI-driven network breach</a>
         <span class="operator-lane-empty" data-lane-empty hidden>No current match</span>
       </article><article class="operator-lane" data-lane="Vulnerability triage" data-lane-cue="SentryInsight: vuln triage">
         <a class="operator-lane-heading" data-lane-destination href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">Vulnerability triage</a>
-        <span class="operator-lane-count" data-lane-count><strong>13</strong> items</span>
+        <span class="operator-lane-count" data-lane-count><strong>12</strong> items</span>
         <a href="https://www.bleepingcomputer.com/news/security/divd-says-zammad-zero-days-enabled-ai-driven-network-breach/" class="operator-lane-link" data-lane-link>DIVD says Zammad zero-days enabled AI-driven network breach</a>
         <span class="operator-lane-empty" data-lane-empty hidden>No current match</span>
       </article>
@@ -320,16 +320,45 @@
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" id="reporting-298d890b9a3c" data-source="Dark Reading" data-host="darkreading.com" data-title="Malicious Custom GPTs Turn ChatGPT Into RAT Delivery Lure" data-summary="In yet another ClickFix-style campaign, threat actors abuse legitimate domains from OpenAI and Google to fool unsuspecting users." data-severity="Monitor" data-tags="" data-vendors="Google,OpenAI" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Fresh" data-published-at="2026-09-30T21:25:47.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">Dark Reading</span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>3h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/malicious-custom-gpts-chatgpt-rat-delivery-lure" target="_blank" rel="noopener">Malicious Custom GPTs Turn ChatGPT Into RAT Delivery Lure</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-30T21:25:47.000Z">September 30, 2026 at 9:25 PM UTC</time>
+            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-298d890b9a3c" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Google</span><span class="chip">OpenAI</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vendor watch</a></div>
+          <p class="news-summary">In yet another ClickFix-style campaign, threat actors abuse legitimate domains from OpenAI and Google to fool unsuspecting users.</p>
+        </article>
+        <article class="news-item" id="reporting-cb10f964c9d0" data-source="Dark Reading" data-host="darkreading.com" data-title="Trump, Tech Giants Strike Voluntary AI Safety Accord" data-summary="The new White House Accord on so-called &quot;Super Intelligence&quot; calls on companies to implement greater controls and oversight over AI safety." data-severity="Monitor" data-tags="AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh" data-published-at="2026-09-30T20:51:15.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">Dark Reading</span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>4h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/trump-tech-giants-strike-voluntary-ai-safety-accord" target="_blank" rel="noopener">Trump, Tech Giants Strike Voluntary AI Safety Accord</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-30T20:51:15.000Z">September 30, 2026 at 8:51 PM UTC</time>
+            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-cb10f964c9d0" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">AI Security</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: monitor</a></div>
+          <p class="news-summary">The new White House Accord on so-called &quot;Super Intelligence&quot; calls on companies to implement greater controls and oversight over AI safety.</p>
+        </article>
         <article class="news-item" id="reporting-2d28f457acee" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Russian state hackers use new RedFlick technique to push malware" data-summary="The Russian state actor Star Blizzard has been using a new malware installation tactic dubbed &quot;RedFlick&quot; to deploy its signature CosmicPulse backdoor…" data-severity="Elevated" data-tags="Malware" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh" data-published-at="2026-09-30T20:34:01.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>42m old</span></span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>4h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/russian-state-hackers-use-new-redflick-technique-to-push-malware/" target="_blank" rel="noopener">Russian state hackers use new RedFlick technique to push malware</a></h2>
           <div class="news-meta">
-            <time datetime="2026-09-30T20:34:01.000Z">September 30, 2026 at 8:34 PM UTC</time>
-            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-2d28f457acee" aria-label="Permalink to this reporting item">Permalink</a>
+            <time datetime="2026-09-30T20:34:01.000Z">September 30, 2026 at 8:34 PM UTC</time><a class="item-permalink" href="#reporting-2d28f457acee" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Malware</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: monitor</a></div>
@@ -339,12 +368,11 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>1h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>5h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/divd-says-zammad-zero-days-enabled-ai-driven-network-breach/" target="_blank" rel="noopener">DIVD says Zammad zero-days enabled AI-driven network breach</a></h2>
           <div class="news-meta">
-            <time datetime="2026-09-30T19:49:15.000Z">September 30, 2026 at 7:49 PM UTC</time>
-            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-3776ad1cae04" aria-label="Permalink to this reporting item">Permalink</a>
+            <time datetime="2026-09-30T19:49:15.000Z">September 30, 2026 at 7:49 PM UTC</time><a class="item-permalink" href="#reporting-3776ad1cae04" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span><span class="chip">Data Breach</span><span class="chip">AI Security</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vuln triage</a></div>
@@ -354,22 +382,21 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>2h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>5h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-careers/ai-reshapes-soc-career-ladder" target="_blank" rel="noopener">As AI Reshapes the SOC Career Ladder, Satisfaction Rises for 91%, but Entry Gets Harder for Nearly Half</a></h2>
           <div class="news-meta">
-            <time datetime="2026-09-30T18:56:56.000Z">September 30, 2026 at 6:56 PM UTC</time>
-            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-2cf02acd767a" aria-label="Permalink to this reporting item">Permalink</a>
+            <time datetime="2026-09-30T18:56:56.000Z">September 30, 2026 at 6:56 PM UTC</time><a class="item-permalink" href="#reporting-2cf02acd767a" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">AI Security</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: monitor</a></div>
           <p class="news-summary">New Swimlane research underscores a paradox: While AI detection and response is essential to giving defenders an edge, one in four security pros say AI limits their skill development.</p>
         </article>
-        <article class="news-item" id="reporting-2ebaae643cd3" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Over 543,000 valid credentials exposed in public GitHub repositories" data-summary="More than 543,000 credentials exposed in public GitHub repositories were still valid in July despite the platform&#39;s security measures to prevent accidental leaks of sensitive data…" data-severity="Critical" data-tags="Data Breach,Identity" data-vendors="GitHub" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vendor watch" data-age-bucket="Fresh" data-published-at="2026-09-30T18:08:34.000Z">
+        <article class="news-item" id="reporting-2ebaae643cd3" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Over 543,000 valid credentials exposed in public GitHub repositories" data-summary="More than 543,000 credentials exposed in public GitHub repositories were still valid in July despite the platform&#39;s security measures to prevent accidental leaks of sensitive data…" data-severity="Critical" data-tags="Data Breach,Identity" data-vendors="GitHub" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-30T18:08:34.000Z">
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>3h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>6h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/over-543-000-valid-credentials-exposed-in-public-github-repositories/" target="_blank" rel="noopener">Over 543,000 valid credentials exposed in public GitHub repositories</a></h2>
           <div class="news-meta">
@@ -379,11 +406,11 @@
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vendor watch</a></div>
           <p class="news-summary">More than 543,000 credentials exposed in public GitHub repositories were still valid in July despite the platform&#39;s security measures to prevent accidental leaks of sensitive data…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/over-543-000-valid-credentials-exposed-in-public-github-repositories/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
         </article>
-        <article class="news-item" id="reporting-fe95a2c38caf" data-source="The Hacker News" data-host="thehackernews.com" data-title="Attackers Exploit Zimbra Flaw to Deploy Web Shells and Harvest Authentication Secrets" data-summary="Threat actors have weaponized a now-patched security flaw in Zimbra Collaboration Suite (ZCS) to deploy web shells and access mailbox data, according to findings from the Microsoft Security Research team. The attack exploits CVE-2026-73570 (CVSS score: 8.9), an unauthenticated operating system command injection flaw that can lead to remote code execution when Simple Network Management Protocol…" data-severity="Elevated" data-tags="Vulnerability,Exploitation" data-vendors="Microsoft" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Fresh" data-published-at="2026-09-30T16:46:29.000Z">
+        <article class="news-item" id="reporting-fe95a2c38caf" data-source="The Hacker News" data-host="thehackernews.com" data-title="Attackers Exploit Zimbra Flaw to Deploy Web Shells and Harvest Authentication Secrets" data-summary="Threat actors have weaponized a now-patched security flaw in Zimbra Collaboration Suite (ZCS) to deploy web shells and access mailbox data, according to findings from the Microsoft Security Research team. The attack exploits CVE-2026-73570 (CVSS score: 8.9), an unauthenticated operating system command injection flaw that can lead to remote code execution when Simple Network Management Protocol…" data-severity="Elevated" data-tags="Vulnerability,Exploitation" data-vendors="Microsoft" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-30T16:46:29.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>4h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>8h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/09/attackers-exploit-zimbra-flaw-to-deploy.html" target="_blank" rel="noopener">Attackers Exploit Zimbra Flaw to Deploy Web Shells and Harvest Authentication Secrets</a></h2>
           <div class="news-meta">
@@ -393,11 +420,11 @@
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vuln triage</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vendor watch</a></div>
           <p class="news-summary">Threat actors have weaponized a now-patched security flaw in Zimbra Collaboration Suite (ZCS) to deploy web shells and access mailbox data, according to findings from the Microsoft Security Research team. The attack exploits CVE-2026-73570 (CVSS score: 8.9), an unauthenticated operating system command injection flaw that can lead to remote code execution when Simple Network Management Protocol…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/attackers-exploit-zimbra-flaw-to-deploy.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
         </article>
-        <article class="news-item" id="reporting-cb2af8d2a0d2" data-source="The Hacker News" data-host="thehackernews.com" data-title="Attackers Abuse MSP360 to Deploy ScreenConnect in Dual-RMM Phishing Attacks" data-summary="Microsoft has warned of phishing campaigns distributing an installer for the MSP360 Remote Monitoring and Management (RMM) software under the guise of meeting invitations, PDF-themed lures, software update prompts, and other social-engineering content. &quot;Once executed, the legitimate MSP360 installer, distributed under a deceptive file name established remote management access on affected…" data-severity="Elevated" data-tags="Identity" data-vendors="Microsoft" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vendor watch" data-age-bucket="Fresh" data-published-at="2026-09-30T16:32:59.000Z">
+        <article class="news-item" id="reporting-cb2af8d2a0d2" data-source="The Hacker News" data-host="thehackernews.com" data-title="Attackers Abuse MSP360 to Deploy ScreenConnect in Dual-RMM Phishing Attacks" data-summary="Microsoft has warned of phishing campaigns distributing an installer for the MSP360 Remote Monitoring and Management (RMM) software under the guise of meeting invitations, PDF-themed lures, software update prompts, and other social-engineering content. &quot;Once executed, the legitimate MSP360 installer, distributed under a deceptive file name established remote management access on affected…" data-severity="Elevated" data-tags="Identity" data-vendors="Microsoft" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-30T16:32:59.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>4h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>8h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/09/attackers-abuse-msp360-to-deploy.html" target="_blank" rel="noopener">Attackers Abuse MSP360 to Deploy ScreenConnect in Dual-RMM Phishing Attacks</a></h2>
           <div class="news-meta">
@@ -407,11 +434,11 @@
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vendor watch</a></div>
           <p class="news-summary">Microsoft has warned of phishing campaigns distributing an installer for the MSP360 Remote Monitoring and Management (RMM) software under the guise of meeting invitations, PDF-themed lures, software update prompts, and other social-engineering content. &quot;Once executed, the legitimate MSP360 installer, distributed under a deceptive file name established remote management access on affected…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/attackers-abuse-msp360-to-deploy.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
         </article>
-        <article class="news-item" id="reporting-37d3b9649bea" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="CISA warns of critical pre-auth RCE flaw in MikroTik RouterOS" data-summary="The U.S. Cybersecurity and Infrastructure Security Agency (CISA) is warning of a new critical vulnerability in MikroTik RouterOS that could lead to remote code execution or cause a denial-of-service condition…" data-severity="Critical" data-tags="Vulnerability" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage" data-age-bucket="Fresh" data-published-at="2026-09-30T15:49:29.000Z">
+        <article class="news-item" id="reporting-37d3b9649bea" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="CISA warns of critical pre-auth RCE flaw in MikroTik RouterOS" data-summary="The U.S. Cybersecurity and Infrastructure Security Agency (CISA) is warning of a new critical vulnerability in MikroTik RouterOS that could lead to remote code execution or cause a denial-of-service condition…" data-severity="Critical" data-tags="Vulnerability" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-09-30T15:49:29.000Z">
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>5h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>9h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cisa-warns-of-critical-pre-auth-rce-flaw-in-mikrotik-routeros/" target="_blank" rel="noopener">CISA warns of critical pre-auth RCE flaw in MikroTik RouterOS</a></h2>
           <div class="news-meta">
@@ -421,11 +448,11 @@
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vuln triage</a></div>
           <p class="news-summary">The U.S. Cybersecurity and Infrastructure Security Agency (CISA) is warning of a new critical vulnerability in MikroTik RouterOS that could lead to remote code execution or cause a denial-of-service condition…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/cisa-warns-of-critical-pre-auth-rce-flaw-in-mikrotik-routeros/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
         </article>
-        <article class="news-item" id="reporting-9475c717ac1e" data-source="The Hacker News" data-host="thehackernews.com" data-title="Cisco Warns of Attackers Exploiting Critical Authentication Bypass in SD-WAN Manager" data-summary="Attackers are exploiting a new critical zero-day flaw in Cisco Catalyst SD-WAN Manager, the system companies use to manage their Cisco SD-WAN networks, Cisco said in an advisory on September 30. The flaw, CVE-2026-76504, could allow a remote attacker with no login access to use the Manager&#39;s API as the admin user. Fixed releases are available, and there is no workaround. It carries a…" data-severity="Critical" data-tags="Vulnerability,Exploitation" data-vendors="Cisco" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Fresh" data-published-at="2026-09-30T15:24:54.000Z">
+        <article class="news-item" id="reporting-9475c717ac1e" data-source="The Hacker News" data-host="thehackernews.com" data-title="Cisco Warns of Attackers Exploiting Critical Authentication Bypass in SD-WAN Manager" data-summary="Attackers are exploiting a new critical zero-day flaw in Cisco Catalyst SD-WAN Manager, the system companies use to manage their Cisco SD-WAN networks, Cisco said in an advisory on September 30. The flaw, CVE-2026-76504, could allow a remote attacker with no login access to use the Manager&#39;s API as the admin user. Fixed releases are available, and there is no workaround. It carries a…" data-severity="Critical" data-tags="Vulnerability,Exploitation" data-vendors="Cisco" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-30T15:24:54.000Z">
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>5h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>9h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/09/cisco-warns-of-attackers-exploiting.html" target="_blank" rel="noopener">Cisco Warns of Attackers Exploiting Critical Authentication Bypass in SD-WAN Manager</a></h2>
           <div class="news-meta">
@@ -439,7 +466,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>6h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>9h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/russia-star-blizzard-apt-ditches-clickfix-widen-phishing-net" target="_blank" rel="noopener">Russia&#39;s Star Blizzard Ditches ClickFix to Widen Phishing Net</a></h2>
           <div class="news-meta">
@@ -453,7 +480,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>6h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>9h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/09/attackers-abuse-chatgpt-custom-gpts-to.html" target="_blank" rel="noopener">Attackers Abuse ChatGPT Custom GPTs to Deliver RAT via ClickFix Lures</a></h2>
           <div class="news-meta">
@@ -467,7 +494,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>6h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>10h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cisco-warns-of-new-sd-wan-authentication-bypass-zero-day-exploited-in-attacks/" target="_blank" rel="noopener">Cisco warns of new SD-WAN zero-day exploited in attacks</a></h2>
           <div class="news-meta">
@@ -481,7 +508,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>7h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>10h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/ais-third-wave-coworkers-break-the-security-model-that-worked-for-agents/" target="_blank" rel="noopener">AI&#39;s Third Wave: Coworkers Break the Security Model That Worked for Agents</a></h2>
           <div class="news-meta">
@@ -495,7 +522,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>7h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>11h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/microsoft-to-block-entra-id-script-injection-attacks-starting-october/" target="_blank" rel="noopener">Microsoft to block Entra ID script injection attacks starting October</a></h2>
           <div class="news-meta">
@@ -509,7 +536,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>8h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>12h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/teamviewer-urges-users-to-patch-severe-flaws-as-soon-as-possible/" target="_blank" rel="noopener">TeamViewer urges users to patch severe flaws “as soon as possible”</a></h2>
           <div class="news-meta">
@@ -523,7 +550,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>9h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>12h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/09/know-your-enemy-browser-based-attack.html" target="_blank" rel="noopener">Know Your Enemy: Browser-Based Attack Techniques in 2026</a></h2>
           <div class="news-meta">
@@ -531,18 +558,18 @@
           </div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: monitor</a></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-14">
+            <summary class="summary-toggle" aria-controls="summary-full-16">
               <span class="summary-preview-text">Given that the browser is where business apps are accessed and used, it makes sense that attacks are happening there too. Most breaches today begin in a</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-14">browser session. Often, they never leave it, with the entire attack chain from initial access to exfiltration playing out in the browser. Here are the six most dangerous techniques that should be on every security team&#39;s radar in 2026. 1.</p>
+            <p class="news-summary summary-full" id="summary-full-16">browser session. Often, they never leave it, with the entire attack chain from initial access to exfiltration playing out in the browser. Here are the six most dangerous techniques that should be on every security team&#39;s radar in 2026. 1.</p>
           </details>
         </article>
         <article class="news-item" id="reporting-d36b3ecb6626" data-source="The Hacker News" data-host="thehackernews.com" data-title="AI Coding Agents Exposed 13,000 Internal Images, Including Billing Records, on GitHub" data-summary="AI coding agents asked to share screenshots of code changes for review have put internal company images in public GitHub repositories, security company Glow said. Its researchers found more than 13,000 internal images from developers at over 300 organizations, including customer billing records and screens of features not yet released. In most cases, they sat under developers&#39; personal accounts…" data-severity="Monitor" data-tags="AI Security" data-vendors="GitHub" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-30T11:30:00.000Z">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>9h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>13h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/09/ai-coding-agents-exposed-13000-internal.html" target="_blank" rel="noopener">AI Coding Agents Exposed 13,000 Internal Images, Including Billing Records, on GitHub</a></h2>
           <div class="news-meta">
@@ -556,7 +583,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>10h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>13h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/bitget-hacked-via-zero-day-in-third-party-security-products/" target="_blank" rel="noopener">Bitget hacked via zero-day in third-party security products</a></h2>
           <div class="news-meta">
@@ -570,7 +597,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>10h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>14h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/09/us-focused-csuite-phishing-steals.html" target="_blank" rel="noopener">US-Focused CSuite Phishing Steals Microsoft 365 Sessions and Deploys RMM Tools for Remote Access</a></h2>
           <div class="news-meta">
@@ -584,7 +611,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>12h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>16h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/09/attackers-exploit-netscaler-flaw-for.html" target="_blank" rel="noopener">Attackers Exploit NetScaler Flaw for Root Access, Deploy WHIPSHOT and SLAPSHOT</a></h2>
           <div class="news-meta">
@@ -598,7 +625,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>13h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>16h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/09/openssl-fixes-high-severity-dtls-flaw.html" target="_blank" rel="noopener">OpenSSL Fixes High-Severity DTLS Flaw That Can Leak Heap Memory Unencrypted</a></h2>
           <div class="news-meta">
@@ -612,7 +639,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>14h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>17h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/south-africa-help-cyberattack-air-traffic-control" target="_blank" rel="noopener">South Africa Seeks Help After Cyberattack Targets Air Traffic Control</a></h2>
           <div class="news-meta">
@@ -626,7 +653,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>15h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>19h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/09/citrix-netscaler-cve-2026-88772-exploit.html" target="_blank" rel="noopener">Citrix NetScaler CVE-2026-88772 Exploit Details Show Pre-Auth Path to Shellcode Execution</a></h2>
           <div class="news-meta">
@@ -640,7 +667,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>20h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-is-rolling-out-linux-container-support-to-wsl/" target="_blank" rel="noopener">Microsoft is rolling out Linux container support to WSL</a></h2>
           <div class="news-meta">
@@ -654,7 +681,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>23h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/apple-zero-day-vulnerability-weaponized-targeted-attacks" target="_blank" rel="noopener">Apple Zero-Day Vulnerability Weaponized in Targeted Attacks</a></h2>
           <div class="news-meta">
@@ -668,7 +695,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>23h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/signal-adds-encypted-local-backup-support-to-ios-desktop-apps/" target="_blank" rel="noopener">Signal adds encypted local backup support to iOS, desktop apps</a></h2>
           <div class="news-meta">
@@ -719,34 +746,6 @@
           <div class="facet-row"><span class="chip">Ransomware</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a></div>
           <p class="news-summary">The FBI is warning members of the ShinyHunters extortion group to turn themselves in after Dutch police arrested a man the bureau described as one of the group&#39;s alleged leaders…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/fbi-tells-shinyhunters-members-to-turn-themselves-in-after-recent-arrest/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
-        </article>
-        <article class="news-item" id="reporting-3cb734ba29cf" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Hackers exploit Citrix NetScaler zero-day to deploy web shells" data-summary="Cybersecurity firms say attackers exploited the Citrix NetScaler CVE-2026-88772 zero-day to deploy custom web shells and tunneling malware, gain root access, steal credentials, and spread into internal networks…" data-severity="Critical" data-tags="Vulnerability,Exploitation,Data Breach,Identity" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-09-29T18:37:12.000Z">
-          <div class="chips">
-            <span class="severity severity-critical">Critical</span>
-            <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hackers-exploit-citrix-netscaler-zero-day-to-deploy-web-shells/" target="_blank" rel="noopener">Hackers exploit Citrix NetScaler zero-day to deploy web shells</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-09-29T18:37:12.000Z">September 29, 2026 at 6:37 PM UTC</time><a class="item-permalink" href="#reporting-3cb734ba29cf" aria-label="Permalink to this reporting item">Permalink</a>
-          </div>
-          <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span><span class="chip">Data Breach</span><span class="chip">Identity</span></div>
-          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/#cve-2026-88772" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vuln triage</a></div>
-          <p class="news-summary">Cybersecurity firms say attackers exploited the Citrix NetScaler CVE-2026-88772 zero-day to deploy custom web shells and tunneling malware, gain root access, steal credentials, and spread into internal networks…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/hackers-exploit-citrix-netscaler-zero-day-to-deploy-web-shells/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
-        </article>
-        <article class="news-item" id="reporting-c4e96687c614" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Former US Air Force members sent to prison over BEC attacks" data-summary="Two former members of the United States Air Force were sentenced to a combined 189 months in federal prison for their roles in a multi-year series of business email compromise (BEC) scams and phishing campaigns…" data-severity="Elevated" data-tags="Identity" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Recent" data-published-at="2026-09-29T18:09:39.000Z">
-          <div class="chips">
-            <span class="severity severity-elevated">Elevated</span>
-            <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/former-us-air-force-members-sent-to-prison-over-bec-attacks/" target="_blank" rel="noopener">Former US Air Force members sent to prison over BEC attacks</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-09-29T18:09:39.000Z">September 29, 2026 at 6:09 PM UTC</time><a class="item-permalink" href="#reporting-c4e96687c614" aria-label="Permalink to this reporting item">Permalink</a>
-          </div>
-          <div class="facet-row"><span class="chip">Identity</span></div>
-          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a></div>
-          <p class="news-summary">Two former members of the United States Air Force were sentenced to a combined 189 months in federal prison for their roles in a multi-year series of business email compromise (BEC) scams and phishing campaigns…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/former-us-air-force-members-sent-to-prison-over-bec-attacks/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
         </article>
     </div>
   </main>
