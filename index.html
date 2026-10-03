@@ -213,7 +213,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml" aria-label="Open generated RSS feed">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -224,7 +224,7 @@
   <main class="container">
     <section class="issue-strip" aria-label="Digest issue metadata">
       <span class="issue-label">Current issue</span>
-      <time datetime="2026-10-03T13:48:37.438Z">October 3, 2026</time>
+      <time datetime="2026-10-03T16:25:08.601Z">October 3, 2026</time>
       <span class="issue-stat"><strong>30</strong> articles</span>
       <span class="issue-stat"><strong>3</strong> sources</span>
       <a class="issue-link" href="./feed.xml" aria-label="Open rolling RSS feed">Rolling RSS feed</a>
@@ -235,7 +235,7 @@
       <a class="previous-issue" href="./archive/2026-10-02/" aria-label="Open digest issue for October 2, 2026"><time datetime="2026-10-02T00:00:00.000Z">Oct 2</time></a>
       <a href="./feed.xml" aria-label="Open generated RSS feed">RSS feed</a>
       <a href="#sourceCoverage">Source coverage</a>
-      <span class="issue-trail-meta">Updated <time class="issue-trail-updated" datetime="2026-10-03T13:48:37.438Z">13:48 UTC · Oct 3</time></span>
+      <span class="issue-trail-meta">Updated <time class="issue-trail-updated" datetime="2026-10-03T16:25:08.601Z">16:25 UTC · Oct 3</time></span>
       <span class="issue-trail-meta issue-trail-cadence" data-cadence-hours="3" data-cadence-state="scheduled" role="status" aria-live="polite" aria-atomic="true"><span data-cadence-label>3h cadence</span></span>
     </nav>
     <details id="advancedFilters" class="advanced-filters">
@@ -280,7 +280,7 @@
             <span><strong>3</strong> active feeds</span>
             <span><strong>1</strong> quiet feed</span>
           </div>
-          <div class="source-quiet-feeds" aria-label="Quiet RSS sources"><span class="source-health-note" data-source-name="Krebs on Security" data-last-contributed-at="2026-09-28T15:08:57.000Z" data-health-status="quiet" data-quiet-for-days="4">Krebs on Security quiet since <time datetime="2026-09-28T15:08:57.000Z">September 28, 2026 at 3:08 PM UTC</time></span></div>
+          <div class="source-quiet-feeds" aria-label="Quiet RSS sources"><span class="source-health-note" data-source-name="Krebs on Security" data-last-contributed-at="2026-09-28T15:08:57.000Z" data-health-status="quiet" data-quiet-for-days="5">Krebs on Security quiet since <time datetime="2026-09-28T15:08:57.000Z">September 28, 2026 at 3:08 PM UTC</time></span></div>
           <div class="source-filter-status" data-source-filter-status role="status" aria-live="polite" aria-atomic="true">All contributing feeds (30 articles)</div>
           <div class="source-coverage-actions">
             <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with 30 latest articles">RSS feed <span class="feed-link-count">30 items</span></a>
@@ -303,13 +303,13 @@
     <section class="operator-lanes" aria-label="Operator scan lanes">
       <article class="operator-lane" data-lane="Incident watch" data-lane-cue="SentryInsight: incident watch">
         <a class="operator-lane-heading" data-lane-destination href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">Incident watch</a>
-        <span class="operator-lane-count" data-lane-count><strong>13</strong> items</span>
-        <a href="https://www.bleepingcomputer.com/news/security/frontline-education-data-breach-impacts-school-district-employees/" class="operator-lane-link" data-lane-link>Frontline Education breach exposes school district employee data</a>
+        <span class="operator-lane-count" data-lane-count><strong>12</strong> items</span>
+        <a href="https://thehackernews.com/2026/10/warlock-exploits-sharepoint-flaws-to.html" class="operator-lane-link" data-lane-link>Warlock Exploits SharePoint Flaws to Disable Security Tools and Deploy Ransomware</a>
         <span class="operator-lane-empty" data-lane-empty hidden>No current match</span>
       </article><article class="operator-lane" data-lane="Vulnerability triage" data-lane-cue="SentryInsight: vuln triage">
         <a class="operator-lane-heading" data-lane-destination href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">Vulnerability triage</a>
         <span class="operator-lane-count" data-lane-count><strong>14</strong> items</span>
-        <a href="https://www.bleepingcomputer.com/news/security/frontline-education-data-breach-impacts-school-district-employees/" class="operator-lane-link" data-lane-link>Frontline Education breach exposes school district employee data</a>
+        <a href="https://thehackernews.com/2026/10/warlock-exploits-sharepoint-flaws-to.html" class="operator-lane-link" data-lane-link>Warlock Exploits SharePoint Flaws to Disable Security Tools and Deploy Ransomware</a>
         <span class="operator-lane-empty" data-lane-empty hidden>No current match</span>
       </article><article class="operator-lane" data-lane="Governance watch" data-lane-cue="GRCInsight: governance watch">
         <a class="operator-lane-heading" data-lane-destination href="https://ricomanifesto.github.io/GRCInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open GRCInsight">Governance watch</a>
@@ -325,16 +325,59 @@
 
     <div class="news-container" id="newsContainer">
       
+        <article class="news-item" id="reporting-515631664ea5" data-source="The Hacker News" data-host="thehackernews.com" data-title="MI5 Says China’s MSS Funded Research Involving 100+ U.K.-Linked Academics" data-summary="The U.K.&#39;s domestic intelligence and security agency has warned that more than 100 academics have helped China boost its intelligence gathering efforts on behalf of Beijing&#39;s state security service. In a &quot;Security Service Espionage Alert&quot; issued on September 30, 2026, MI5 said the &quot;primary purpose of the China General Technology Research Institute (CGTRI) 中国通用技术研究院 is to fund research that…" data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh" data-published-at="2026-10-03T14:38:46.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>1h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/10/mi5-says-chinas-mss-funded-research.html" target="_blank" rel="noopener">MI5 Says China’s MSS Funded Research Involving 100+ U.K.-Linked Academics</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-10-03T14:38:46.000Z">October 3, 2026 at 2:38 PM UTC</time>
+            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-515631664ea5" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: monitor</a></div>
+          <p class="news-summary">The U.K.&#39;s domestic intelligence and security agency has warned that more than 100 academics have helped China boost its intelligence gathering efforts on behalf of Beijing&#39;s state security service. In a &quot;Security Service Espionage Alert&quot; issued on September 30, 2026, MI5 said the &quot;primary purpose of the China General Technology Research Institute (CGTRI) 中国通用技术研究院 is to fund research that…</p><a class="summary-continuation" href="https://thehackernews.com/2026/10/mi5-says-chinas-mss-funded-research.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item" id="reporting-d5d7c3b1775b" data-source="The Hacker News" data-host="thehackernews.com" data-title="Warlock Exploits SharePoint Flaws to Disable Security Tools and Deploy Ransomware" data-summary="The suspected China-linked threat actor known as Warlock is still continuing to weaponize Microsoft SharePoint vulnerabilities, likely both old and new, in attacks targeting organizations in Portuguese- and Spanish-speaking countries. The activity, observed by the Symantec and Carbon Black Threat Hunter Team, has hit critical infrastructure, government, and education organizations. &quot;In the…" data-severity="Critical" data-tags="Ransomware,Vulnerability" data-vendors="Microsoft" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Fresh" data-published-at="2026-10-03T14:36:33.000Z">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>1h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/10/warlock-exploits-sharepoint-flaws-to.html" target="_blank" rel="noopener">Warlock Exploits SharePoint Flaws to Disable Security Tools and Deploy Ransomware</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-10-03T14:36:33.000Z">October 3, 2026 at 2:36 PM UTC</time>
+            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-d5d7c3b1775b" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Microsoft</span><span class="chip">Ransomware</span><span class="chip">Vulnerability</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vuln triage</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vendor watch</a></div>
+          <p class="news-summary">The suspected China-linked threat actor known as Warlock is still continuing to weaponize Microsoft SharePoint vulnerabilities, likely both old and new, in attacks targeting organizations in Portuguese- and Spanish-speaking countries. The activity, observed by the Symantec and Carbon Black Threat Hunter Team, has hit critical infrastructure, government, and education organizations. &quot;In the…</p><a class="summary-continuation" href="https://thehackernews.com/2026/10/warlock-exploits-sharepoint-flaws-to.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item" id="reporting-c24f61f66f61" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Danish university DTU breach exposes data of up to 200,000 people" data-summary="The Technical University of Denmark (DTU) says information belonging to up to 200,000 users may have been exposed after hackers accessed its identity and access management system and downloaded a large amount of data…" data-severity="Critical" data-tags="Data Breach,Identity" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Fresh" data-published-at="2026-10-03T14:35:20.000Z">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>1h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/danish-university-dtu-breach-exposes-data-of-up-to-200-000-people/" target="_blank" rel="noopener">Danish university DTU breach exposes data of up to 200,000 people</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-10-03T14:35:20.000Z">October 3, 2026 at 2:35 PM UTC</time>
+            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-c24f61f66f61" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Data Breach</span><span class="chip">Identity</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a></div>
+          <p class="news-summary">The Technical University of Denmark (DTU) says information belonging to up to 200,000 users may have been exposed after hackers accessed its identity and access management system and downloaded a large amount of data…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/danish-university-dtu-breach-exposes-data-of-up-to-200-000-people/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
         <article class="news-item" id="reporting-71c997ccf55f" data-source="The Hacker News" data-host="thehackernews.com" data-title="The State of Cybersecurity in 2026: Key Segments, Insights, and Innovations" data-summary="Featuring: Cybersecurity is being reshaped by the expansion of cloud infrastructure, AI, distributed systems, and increasingly complex digital environments. As organizations manage more identities, devices, data, and internet-facing infrastructure, security is shifting toward continuous visibility, control, and the ability to respond to risk at scale. This report examines how core areas of…" data-severity="Monitor" data-tags="Cloud,AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh" data-published-at="2026-10-03T11:00:00.000Z">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>2h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>5h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/10/the-state-of-cybersecurity-in-2026key.html" target="_blank" rel="noopener">The State of Cybersecurity in 2026: Key Segments, Insights, and Innovations</a></h2>
           <div class="news-meta">
-            <time datetime="2026-10-03T11:00:00.000Z">October 3, 2026 at 11:00 AM UTC</time>
-            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-71c997ccf55f" aria-label="Permalink to this reporting item">Permalink</a>
+            <time datetime="2026-10-03T11:00:00.000Z">October 3, 2026 at 11:00 AM UTC</time><a class="item-permalink" href="#reporting-71c997ccf55f" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Cloud</span><span class="chip">AI Security</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: monitor</a></div>
@@ -344,7 +387,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>17h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>20h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/remotethreat-bets-security-teams-need-to-test-what-happens-after-defenses-fail" target="_blank" rel="noopener">RemoteThreat Bets Security Teams Need to Test What Happens After Defenses Fail</a></h2>
           <div class="news-meta">
@@ -357,7 +400,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>18h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>21h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/frontline-education-data-breach-impacts-school-district-employees/" target="_blank" rel="noopener">Frontline Education breach exposes school district employee data</a></h2>
           <div class="news-meta">
@@ -371,7 +414,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>19h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>21h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/warlock-ransomware-breach-sharepoint-in-water-telecom-operator-attacks/" target="_blank" rel="noopener">Warlock ransomware breach SharePoint in water, telecom operator attacks</a></h2>
           <div class="news-meta">
@@ -385,7 +428,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>20h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>22h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/10/gitlab-patches-critical-self-hosted-ai.html" target="_blank" rel="noopener">GitLab Patches Critical 9.9 AI Gateway Flaw Allowing Command Execution on Self-Hosted Servers</a></h2>
           <div class="news-meta">
@@ -399,7 +442,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>20h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>22h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/10/antino-backdoor-uses-outlook-and.html" target="_blank" rel="noopener">Antino Backdoor Uses Outlook and OneDrive for C2 in China-Nexus Espionage Campaign</a></h2>
           <div class="news-meta">
@@ -413,7 +456,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>20h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>23h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/10/dell-csm-flaws-enable-unauthenticated.html" target="_blank" rel="noopener">Dell CSM Flaws Enable Unauthenticated Admin Access and Root on Kubernetes Nodes</a></h2>
           <div class="news-meta">
@@ -427,7 +470,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>20h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>23h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/kiteworks-citrix-incidents-challenges-zero-day-response" target="_blank" rel="noopener">Kiteworks &amp; Citrix Incidents Show Challenges of Zero-Day Response</a></h2>
           <div class="news-meta">
@@ -441,7 +484,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>21h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>23h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/swift-banking-govt-middleware-rce" target="_blank" rel="noopener">SWIFT Banking &amp; Government Middleware Enables RCE</a></h2>
           <div class="news-meta">
@@ -455,7 +498,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>21h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/gitlab-warns-of-critical-rce-vulnerability-in-ai-gateway-service/" target="_blank" rel="noopener">GitLab warns of critical RCE vulnerability in AI Gateway service</a></h2>
           <div class="news-meta">
@@ -469,7 +512,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>21h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/is-your-organization-ready-for-2027-s-ai-accountability-era-" target="_blank" rel="noopener">Is Your Organization Ready for 2027&#39;s AI Accountability Era?</a></h2>
           <div class="news-meta">
@@ -483,7 +526,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>21h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/insider-threats/blame-rogue-ai-security-failures" target="_blank" rel="noopener">Is It Fair to Blame &#39;Rogue&#39; AI for Security Failures?</a></h2>
           <div class="news-meta">
@@ -492,18 +535,18 @@
           <div class="facet-row"><span class="chip">AI Security</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: monitor</a></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-11">
+            <summary class="summary-toggle" aria-controls="summary-full-14">
               <span class="summary-preview-text">&quot;Rogue AI&quot; terminology anthropomorphizes LLMs and shifts risk responsibility from vendors. Defenders should treat agents as untrusted, nondeterministic</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-11">software systems, not sentient beings with malicious intent.</p>
+            <p class="news-summary summary-full" id="summary-full-14">software systems, not sentient beings with malicious intent.</p>
           </details>
         </article>
         <article class="news-item" id="reporting-5098f8e142a5" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="US sanctions Tren de Aragua gang members in ATM hacks crackdown" data-summary="The U.S. Treasury Department has sanctioned eight members of the Venezuelan gang Tren de Aragua (TdA) for their role in the theft of millions of dollars in ATM jackpotting attacks across the United States…" data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-10-02T15:20:53.000Z">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>22h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/us-sanctions-tren-de-aragua-members-in-atm-jackpotting-crackdown/" target="_blank" rel="noopener">US sanctions Tren de Aragua gang members in ATM hacks crackdown</a></h2>
           <div class="news-meta">
@@ -516,7 +559,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>23h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/the-edr-blind-spot-3-ways-browser-attacks-evade-endpoint-telemetry/" target="_blank" rel="noopener">The EDR blind spot: 3 ways browser attacks evade endpoint telemetry</a></h2>
           <div class="news-meta">
@@ -529,7 +572,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>23h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/vulnerability-backlogs-ownership-problem" target="_blank" rel="noopener">Vulnerability Backlogs Are an Ownership Problem</a></h2>
           <div class="news-meta">
@@ -705,48 +748,6 @@
           <div class="facet-row"><span class="chip">Ransomware</span><span class="chip">Data Breach</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a></div>
           <p class="news-summary">Police in Spain have arrested a 16-year-old whom investigators suspect of running the KillSec ransomware group. KillSec is accused of stealing data from organizations and threatening to publish it on its leak site unless they paid. The 16-year-old was one of 3 people arrested on September 30, when police also took control of that site. Investigators identified him as KillSec&#39;s suspected…</p><a class="summary-continuation" href="https://thehackernews.com/2026/10/police-arrest-16-year-old-suspected-of.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
-        </article>
-        <article class="news-item" id="reporting-ab51ae9f2bbe" data-source="The Hacker News" data-host="thehackernews.com" data-title="ThreatsDay: AI-Powered Zero-Day Chain, 543K Live Secrets, Model Inspection RCE and 13 More Stories" data-summary="This week, the useful words are boring ones: inspect, cache, compile, store, trust. Each sounds harmless. Each can become an attack path when a system does a little more than people expect. A model check can run code. A cache can mix up requests. A public secret can stay useful for years. That is the lesson running through the list. Attackers do not always need a brilliant new trick. They can…" data-severity="Critical" data-tags="Vulnerability,AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-10-01T16:45:38.000Z">
-          <div class="chips">
-            <span class="severity severity-critical">Critical</span>
-            <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/10/threatsday-ai-powered-zero-day-chain.html" target="_blank" rel="noopener">ThreatsDay: AI-Powered Zero-Day Chain, 543K Live Secrets, Model Inspection RCE and 13 More Stories</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-10-01T16:45:38.000Z">October 1, 2026 at 4:45 PM UTC</time><a class="item-permalink" href="#reporting-ab51ae9f2bbe" aria-label="Permalink to this reporting item">Permalink</a>
-          </div>
-          <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">AI Security</span></div>
-          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: vuln triage</a></div>
-          <p class="news-summary">This week, the useful words are boring ones: inspect, cache, compile, store, trust. Each sounds harmless. Each can become an attack path when a system does a little more than people expect. A model check can run code. A cache can mix up requests. A public secret can stay useful for years. That is the lesson running through the list. Attackers do not always need a brilliant new trick. They can…</p><a class="summary-continuation" href="https://thehackernews.com/2026/10/threatsday-ai-powered-zero-day-chain.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
-        </article>
-        <article class="news-item" id="reporting-dcd4b62c704a" data-source="The Hacker News" data-host="thehackernews.com" data-title="WordPress Backdoor Rebuilds Itself After Cleanup Using Files, Database, and Shared Memory" data-summary="Cybersecurity researchers have shed light on a WordPress compromise in which threat actors deployed multiple persistence mechanisms to ensure that the final payload kept returning without having to infect the site again. The backdoor has been codenamed SC after the &quot;SC_&quot; markers present in the injected content. Sucuri has described the malware as a &quot;self-healing mesh&quot; that&#39;s…" data-severity="Elevated" data-tags="Malware" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Recent" data-published-at="2026-10-01T14:37:35.000Z">
-          <div class="chips">
-            <span class="severity severity-elevated">Elevated</span>
-            <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/10/wordpress-backdoor-rebuilds-itself.html" target="_blank" rel="noopener">WordPress Backdoor Rebuilds Itself After Cleanup Using Files, Database, and Shared Memory</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-10-01T14:37:35.000Z">October 1, 2026 at 2:37 PM UTC</time><a class="item-permalink" href="#reporting-dcd4b62c704a" aria-label="Permalink to this reporting item">Permalink</a>
-          </div>
-          <div class="facet-row"><span class="chip">Malware</span></div>
-          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a></div>
-          <p class="news-summary">Cybersecurity researchers have shed light on a WordPress compromise in which threat actors deployed multiple persistence mechanisms to ensure that the final payload kept returning without having to infect the site again. The backdoor has been codenamed SC after the &quot;SC_&quot; markers present in the injected content. Sucuri has described the malware as a &quot;self-healing mesh&quot; that&#39;s…</p><a class="summary-continuation" href="https://thehackernews.com/2026/10/wordpress-backdoor-rebuilds-itself.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
-        </article>
-        <article class="news-item" id="reporting-624e1a7a0804" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Police dismantle KillSec ransomware gang allegedly led by 16-year-old" data-summary="An international law enforcement operation dubbed &quot;Operation KillSwitch&quot; seized the KillSec ransomware gang&#39;s data leak site and servers, led to three arrests, and identified a 16-year-old as the group&#39;s alleged administrator…" data-severity="Critical" data-tags="Ransomware,Data Breach" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Recent" data-published-at="2026-10-01T14:25:14.000Z">
-          <div class="chips">
-            <span class="severity severity-critical">Critical</span>
-            <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/police-dismantle-killsec-ransomware-gang-allegedly-led-by-16-year-old/" target="_blank" rel="noopener">Police dismantle KillSec ransomware gang allegedly led by 16-year-old</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-10-01T14:25:14.000Z">October 1, 2026 at 2:25 PM UTC</time><a class="item-permalink" href="#reporting-624e1a7a0804" aria-label="Permalink to this reporting item">Permalink</a>
-          </div>
-          <div class="facet-row"><span class="chip">Ransomware</span><span class="chip">Data Breach</span></div>
-          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight">SentryInsight: incident watch</a></div>
-          <p class="news-summary">An international law enforcement operation dubbed &quot;Operation KillSwitch&quot; seized the KillSec ransomware gang&#39;s data leak site and servers, led to three arrests, and identified a 16-year-old as the group&#39;s alleged administrator…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/police-dismantle-killsec-ransomware-gang-allegedly-led-by-16-year-old/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
         </article>
     </div>
   </main>
