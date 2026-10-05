@@ -85,7 +85,8 @@ test('dated digest archives accumulate a UTC day and render stable no-JS evidenc
   assert.doesNotMatch(html, /fetch\(/);
   assert.match(archiveIndex, /Previous issues/);
   assert.match(archiveIndex, /href="\.\/2026-08-13\/"/);
-  assert.doesNotMatch(archiveIndex, /<script/);
+  assert.match(archiveIndex, /<ol class="archive-issues">[\s\S]*href="\.\/2026-08-13\/"/);
+  assert.doesNotMatch(archiveIndex, /fetch\(/);
 });
 
 test('dated digest archive output is byte-identical for the same inputs', () => {

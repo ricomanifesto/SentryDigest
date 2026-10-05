@@ -1,232 +1,1250 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SentryDigest for September 27, 2026</title>
   <meta name="description" content="Reporting retained by SentryDigest on September 27, 2026.">
   <link rel="canonical" href="https://ricomanifesto.github.io/SentryDigest/archive/2026-09-27/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="SentryDigest for September 27, 2026">
+  <meta property="og:description" content="Reporting retained by SentryDigest on September 27, 2026.">
+  <meta property="og:url" content="https://ricomanifesto.github.io/SentryDigest/archive/2026-09-27/">
+  <meta property="og:image" content="https://ricomanifesto.github.io/SentryDigest/assets/social-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SentryDigest for September 27, 2026">
+  <meta name="twitter:description" content="Reporting retained by SentryDigest on September 27, 2026.">
+  <meta name="twitter:image" content="https://ricomanifesto.github.io/SentryDigest/assets/social-preview.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"SentryDigest","url":"https://ricomanifesto.github.io/SentryDigest/","description":"A fresh, scannable cybersecurity brief from trusted sources","author":{"@type":"Person","name":"Michael Rico","url":"https://ricomanifesto.com/"},"publisher":{"@type":"Organization","name":"Rico Manifesto","url":"https://ricomanifesto.com/"},"sameAs":"https://github.com/ricomanifesto/SentryDigest"}</script>
+  <link rel="alternate" type="application/rss+xml" title="SentryDigest RSS Feed" href="../../feed.xml" />
+  <link rel="icon" href="../../assets/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+  <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <meta name="theme-color" content="#2563eb">
   <style>
-    :root{color-scheme:light dark;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}body{margin:0;background:#f7f8fa;color:#172033}main,header,footer{max-width:900px;margin:auto;padding:1.25rem}.reporting-item{background:#fff;border:1px solid #d9deea;border-radius:12px;margin:1rem 0;padding:1rem;scroll-margin-top:1rem}.source,.permalink{color:#59647a;font-size:.9rem}h1,h2{line-height:1.2}h2{font-size:1.15rem}a{color:#1458c0}@media(prefers-color-scheme:dark){body{background:#0b1020;color:#e5e7eb}.reporting-item{background:#141b2f;border-color:#26304a}.source,.permalink{color:#aeb8cd}a{color:#8bb8ff}}
+    :root {
+      --bg: #f7f8fa;
+      --fg: #1f2937;
+      --muted: #6b7280;
+      --card: #ffffff;
+      --card-border: #e5e7eb;
+      --accent: #2563eb;
+      --accent-contrast: #ffffff;
+      --chip: #e5e7eb;
+      --text-small: 0.875rem;
+      --text-body: 1rem;
+      --text-title: 1.125rem;
+    }
+    [data-theme="dark"] {
+      --bg: #0b1020;
+      --fg: #e5e7eb;
+      --muted: #9ca3af;
+      --card: #141b2f;
+      --card-border: #26304a;
+      --accent: #60a5fa;
+      --accent-contrast: #0b1020;
+      --chip: #1f2937;
+    }
+    * { box-sizing: border-box; }
+    body { background: var(--bg); color: var(--fg); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: var(--text-body); line-height: 1.55; margin: 0; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+    header.site-header { background: var(--bg); border-bottom: 1px solid var(--card-border); position: sticky; top: 0; z-index: 10; }
+    .masthead { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand img { width: 28px; height: 28px; border-radius: 6px; }
+    .brand .title { font-size: var(--text-title); font-weight: 700; letter-spacing: -0.01em; margin: 0; }
+    .brand .subtitle { color: var(--muted); font-size: var(--text-small); }
+    .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .advanced-filters { margin-top: 12px; }
+    .advanced-filters-summary, .source-coverage-summary { color: var(--fg); cursor: pointer; font-size: var(--text-small); font-weight: 700; width: fit-content; }
+    .advanced-filters-summary:hover, .source-coverage-summary:hover { color: var(--accent); }
+    .advanced-filters-summary:focus-visible, .source-coverage-summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .filter-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+    .filter-status { align-items: center; display: flex; flex-wrap: wrap; gap: 8px; }
+    .sr-only { clip: rect(0 0 0 0); border: 0; height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; white-space: nowrap; width: 1px; }
+    .active-filters { display: flex; flex-wrap: wrap; gap: 8px; }
+    .active-filters[hidden] { display: none; }
+    .active-filter-chip { align-items: center; background: var(--chip); border-radius: 999px; color: var(--fg); display: inline-flex; font-size: var(--text-small); gap: 6px; min-height: 28px; padding: 4px 8px 4px 10px; }
+    .active-filter-clear { align-items: center; background: transparent; border: 0; border-radius: 999px; color: var(--muted); cursor: pointer; display: inline-flex; font: inherit; height: 18px; justify-content: center; line-height: 1; padding: 0; width: 18px; }
+    .active-filter-clear:hover, .active-filter-clear:focus-visible { background: var(--chip); color: var(--accent); outline: 2px solid var(--accent); outline-offset: 1px; }
+    .search { display: flex; align-items: center; gap: 8px; background: var(--card); border: 1px solid var(--card-border); padding: 8px 10px; border-radius: 10px; }
+    .search:focus-within { border-color: var(--accent); outline: 2px solid var(--accent); outline-offset: 2px; }
+    .search input { background: transparent; border: none; color: var(--fg); font: inherit; font-size: var(--text-small); min-width: 220px; outline: none; }
+    .select { background: var(--card); border: 1px solid var(--card-border); border-radius: 8px; color: var(--fg); font: inherit; font-size: var(--text-small); padding: 8px 10px; }
+    .btn { background: var(--card); border: 1px solid var(--card-border); border-radius: 8px; color: var(--fg); cursor: pointer; font: inherit; font-size: var(--text-small); padding: 8px 10px; }
+    .btn:hover { border-color: var(--accent); }
+    .select:focus-visible, .btn:focus-visible { border-color: var(--accent); outline: 2px solid var(--accent); outline-offset: 2px; }
+    .stats { color: var(--muted); font-size: var(--text-small); margin-top: 8px; }
+    .stats[hidden] { display: none; }
+    .issue-strip { align-items: center; color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px 10px; }
+    .issue-label { color: var(--fg); font-size: var(--text-small); font-weight: 700; }
+    .issue-stat { background: var(--chip); border-radius: 999px; color: var(--fg); font-size: var(--text-small); padding: 3px 8px; }
+    .issue-stat strong { color: var(--accent); }
+    .issue-link { color: var(--accent); font-size: var(--text-small); font-weight: 600; text-decoration: none; }
+    .issue-link:hover { text-decoration: underline; }
+    .issue-trail { align-items: center; color: var(--muted); display: flex; flex-wrap: wrap; font-size: var(--text-small); gap: 6px 10px; margin-top: 6px; }
+    .issue-trail-current { color: var(--fg); font-weight: 600; }
+    .issue-trail a { color: var(--accent); font-weight: 600; text-decoration: none; }
+    .issue-trail a:hover { text-decoration: underline; }
+    .issue-trail a::before, .issue-trail-meta::before { color: var(--muted); content: "›"; font-weight: 400; margin-right: 10px; }
+    .issue-trail-meta { color: var(--muted); font-weight: 500; }
+    .issue-trail-cadence[data-cadence-state="overdue"] { color: var(--fg); font-weight: 650; }
+    .anchor-target { display: block; scroll-margin-top: 96px; }
+    .filter-insights { align-items: center; background: var(--card); border-radius: 8px; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; padding: 10px 12px; }
+    .filter-insights[hidden] { display: none; }
+    .filter-insights-label { color: var(--muted); font-size: var(--text-small); font-weight: 700; }
+    .filter-insight-chip { background: var(--chip); border-radius: 999px; color: var(--fg); font-size: var(--text-small); padding: 4px 10px; }
+    .source-coverage { margin-top: 12px; }
+    .source-coverage-summary span { color: var(--muted); font-weight: 500; margin-left: 6px; }
+    .source-coverage-body { align-items: center; background: var(--card); border-radius: 8px; display: flex; flex-wrap: wrap; gap: 10px 12px; margin-top: 10px; padding: 12px; }
+    .source-counts { display: flex; flex: 1 1 260px; flex-wrap: wrap; gap: 8px; }
+    .source-coverage-actions { align-items: center; display: flex; flex: 1 1 280px; flex-wrap: wrap; gap: 8px 12px; justify-content: flex-end; min-width: 0; }
+    .source-count { background: var(--chip); border: 0; border-radius: 999px; color: var(--fg); cursor: pointer; font: inherit; font-size: var(--text-small); padding: 4px 10px; }
+    .source-count:hover, .source-count[aria-pressed="true"] { color: var(--accent); }
+    .source-count:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .source-count strong { color: var(--accent); margin-left: 4px; }
+    .source-health-summary { align-items: center; color: var(--muted); display: flex; flex: 0 1 auto; flex-wrap: wrap; font-size: var(--text-small); gap: 6px; }
+    .source-health-summary span { background: var(--chip); border-radius: 999px; padding: 3px 8px; }
+    .source-health-summary strong { color: var(--fg); }
+    .source-quiet-feeds { color: var(--muted); display: flex; flex: 1 1 100%; flex-wrap: wrap; font-size: var(--text-small); gap: 6px 12px; }
+    .source-health-note { display: inline-flex; gap: 4px; }
+    .source-health-note[data-health-status="stale"] { color: var(--fg); font-weight: 650; }
+    .insight-context { color: var(--muted); font-size: var(--text-small); margin: 8px 0 0; }
+    .insight-context-link { color: var(--accent); font-weight: 650; }
+    .source-filter-status { color: var(--muted); flex: 0 1 auto; font-size: var(--text-small); font-weight: 700; }
+    .source-coverage a { color: var(--accent); font-size: var(--text-small); font-weight: 600; text-decoration: none; }
+    .source-coverage a:hover { text-decoration: underline; }
+    .feed-link { align-items: center; display: inline-flex; gap: 6px; }
+    .feed-link-count { background: var(--chip); border-radius: 999px; color: var(--muted); font-size: var(--text-small); padding: 2px 8px; }
+    .digest-legend { background: var(--card); border: 0; margin-top: 12px; padding: 0; }
+    .digest-legend-summary { color: var(--fg); cursor: pointer; font-size: var(--text-small); font-weight: 700; }
+    .digest-legend-summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .digest-legend-body { display: grid; gap: 10px; grid-template-columns: minmax(180px, 0.6fr) minmax(0, 1.4fr); margin-top: 10px; }
+    .source-coverage .digest-legend { background: transparent; border: 0; flex: 1 1 260px; margin-top: 0; padding: 0; }
+    .digest-legend-group { align-content: start; display: grid; gap: 8px; min-width: 0; }
+    .digest-legend-heading { color: var(--muted); font-size: var(--text-small); font-weight: 700; }
+    .source-signal-items { display: flex; flex: 1 1 260px; flex-wrap: wrap; gap: 8px; }
+    .source-signal-chip { align-items: baseline; background: var(--chip); border-radius: 999px; display: inline-flex; gap: 6px; padding: 4px 10px; }
+    .source-signal-name { color: var(--fg); font-size: var(--text-small); font-weight: 700; }
+    .source-signal-detail { color: var(--muted); font-size: var(--text-small); }
+    .handoff-cue-legend-items { display: flex; flex: 1 1 260px; flex-wrap: wrap; gap: 8px; }
+    .handoff-cue-legend-chip { align-items: baseline; background: var(--chip); border-radius: 999px; display: inline-flex; gap: 6px; padding: 4px 10px; text-decoration: none; }
+    .handoff-cue-legend-chip:hover, .handoff-cue-legend-chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; text-decoration: none; }
+    .handoff-cue-name { color: var(--fg); font-size: var(--text-small); font-weight: 700; }
+    .handoff-cue-detail { color: var(--muted); font-size: var(--text-small); }
+    .operator-lanes { display: grid; gap: 12px; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 14px; }
+    .operator-lane { background: var(--card); border-radius: 8px; display: grid; gap: 6px; padding: 12px; }
+    .operator-lane-heading { color: var(--accent); font-size: var(--text-small); font-weight: 700; text-decoration: none; }
+    .operator-lane-heading:hover { text-decoration: underline; }
+    .operator-lane-count { color: var(--muted); font-size: var(--text-small); }
+    .operator-lane-count strong { color: var(--accent); }
+    .operator-lane-link { color: var(--fg); font-size: var(--text-small); line-height: 1.4; text-decoration: none; }
+    .operator-lane-link:hover { color: var(--accent); text-decoration: underline; }
+    .empty-filtered { background: var(--card); border-radius: 8px; color: var(--muted); margin-top: 18px; padding: 18px; text-align: center; }
+    .empty-filtered[hidden] { display: none; }
+    .empty-filtered-message { margin: 0 0 12px; }
+    .empty-reset-filters { background: var(--accent); color: var(--accent-contrast); }
+    .news-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 16px; margin-top: 14px; }
+    .news-item { background: var(--card); border-radius: 8px; padding: 16px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+    .chip { align-items: center; background: var(--chip); border-radius: 999px; color: var(--fg); display: inline-flex; font-size: var(--text-small); gap: 6px; padding: 4px 10px; }
+    .severity { align-items: center; border-radius: 999px; display: inline-flex; font-size: var(--text-small); font-weight: 700; padding: 4px 10px; text-transform: uppercase; }
+    .severity-critical { background: #fee2e2; color: #991b1b; }
+    .severity-elevated { background: #fef3c7; color: #92400e; }
+    .severity-monitor { background: #e0f2fe; color: #075985; }
+    [data-theme="dark"] .severity-critical { background: rgba(239,68,68,0.18); color: #fecaca; }
+    [data-theme="dark"] .severity-elevated { background: rgba(245,158,11,0.18); color: #fde68a; }
+    [data-theme="dark"] .severity-monitor { background: rgba(14,165,233,0.18); color: #bae6fd; }
+    .facet-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .handoff-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .handoff-cue { background: var(--chip); border-radius: 4px; color: var(--muted); display: inline-flex; font-size: var(--text-small); padding: 3px 8px; text-decoration: none; }
+    .handoff-cue:hover, .handoff-cue:focus-visible { color: var(--accent); outline: 2px solid var(--accent); outline-offset: 1px; text-decoration: none; }
+    .news-title { font-size: var(--text-title); line-height: 1.35; margin: 6px 0 8px; }
+    .news-title a { color: var(--fg); text-decoration: none; }
+    .news-title a:hover { text-decoration: underline; }
+    .news-meta { align-items: baseline; color: var(--muted); display: flex; flex-wrap: wrap; font-size: var(--text-small); gap: 8px; }
+    .archive-issues { list-style: none; padding: 0; }
+    .archive-issues li { display: flex; flex-wrap: wrap; gap: .5rem 2rem; padding: 1rem 0; border-bottom: 1px solid var(--card-border); }
+    .archive-issues a { color: var(--accent); font-weight: 600; }
+    .archive-issues span { color: var(--muted); }
+    .item-permalink { color: var(--accent); font-weight: 600; text-decoration: none; }
+    .item-permalink:hover, .item-permalink:focus-visible { text-decoration: underline; }
+    .badge-new { color: #16a34a; font-size: var(--text-small); font-weight: 600; }
+    .news-summary { margin-top: 8px; color: var(--fg); opacity: 0.9; }
+    .summary-disclosure { margin-top: 8px; }
+    .summary-toggle { color: var(--fg); cursor: pointer; font: inherit; font-size: var(--text-body); opacity: 0.9; }
+    .summary-action { color: var(--accent); font-size: var(--text-small); margin-left: 6px; white-space: nowrap; }
+    details[open] .summary-ellipsis { display: none; }
+    details[open] .summary-action { display: none; }
+    .summary-toggle:hover .summary-action { text-decoration: underline; }
+    .summary-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .summary-continuation { align-items: center; color: var(--accent); display: inline-flex; font-size: var(--text-small); font-weight: 650; gap: 4px; margin-top: 4px; text-decoration: none; }
+    .summary-continuation:hover { text-decoration: underline; }
+    .summary-continuation:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    footer { border-top: 1px solid var(--card-border); color: var(--muted); font-size: var(--text-small); padding: 18px 0; margin-top: 22px; }
+    @media (max-width: 640px) {
+      .container { padding: 16px; }
+      .masthead { align-items: stretch; flex-direction: column; }
+      .controls { align-items: stretch; }
+      .filter-row { align-items: stretch; flex-direction: column; }
+      .filter-status { align-items: stretch; flex-direction: column; }
+      .search { width: 100%; }
+      .search input { min-width: 0; width: 100%; }
+      .select, .btn { flex: 1 1 auto; }
+      .digest-legend-body { grid-template-columns: minmax(0, 1fr); }
+      .operator-lanes { grid-template-columns: minmax(0, 1fr); }
+      .news-container { grid-template-columns: minmax(0, 1fr); }
+      .news-item { border-radius: 6px; }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <p><a href="../../">SentryDigest</a> · retained daily context</p>
-    <h1>Digest for September 27, 2026</h1>
-    <p>35 reporting items retained from the rolling digest on this UTC day.</p>
+  <header class="site-header">
+    <div class="container masthead">
+      <div class="brand">
+        <img src="../../assets/icon.svg" alt="SentryDigest" />
+        <div>
+          <h1 class="title">SentryDigest</h1>
+          <div class="subtitle">Digest for September 27, 2026</div>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="10.5" cy="10.5" r="7.5" stroke="currentColor" stroke-width="2"/></svg>
+          <input id="search" type="text" placeholder="Search title or summary..." aria-label="Search" />
+        </div>
+        <select id="sourceFilter" class="select" aria-label="Filter by source">
+          <option value="">All sources</option>
+          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Krebs on Security">Krebs on Security</option><option value="Dark Reading">Dark Reading</option>
+        </select>
+        <a class="btn" href="../../feed.xml" aria-label="Open generated RSS feed">RSS</a>
+        <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
+      </div>
+    </div>
   </header>
-  <main>
-      <article class="reporting-item" id="reporting-0954e8dba9d8">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-27T16:02:37.000Z">2026-09-27</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/security/citrix-admins-warned-to-shut-down-netscalers-over-2-exploited-zero-days/" target="_blank" rel="noopener noreferrer">Citrix confirms two NetScaler RCE zero-days exploited in attacks</a></h2>
-        <p>Citrix has confirmed that two critical NetScaler remote code execution vulnerabilities, tracked as CVE-2026-88771 and CVE-2026-88772, are being exploited in attacks and that it has released security updates to fix the flaws…</p>
-        <a class="permalink" href="#reporting-0954e8dba9d8" aria-label="Link to this reporting item">Permalink</a>
+
+  <main class="container">
+    <section class="issue-strip" aria-label="Digest issue metadata">
+      <span class="issue-label">Retained issue</span>
+      <time datetime="2026-09-27T21:08:56.224Z">September 27, 2026</time>
+      <span class="issue-stat"><strong>35</strong> articles</span>
+      <span class="issue-stat"><strong>4</strong> sources</span>
+      <a class="issue-link" href="../../feed.xml" aria-label="Open rolling RSS feed">Rolling RSS feed</a>
+    </section>
+    <nav class="issue-trail" aria-label="Digest navigation">
+    <a href="../../">Current digest</a>
+    <a class="previous-issues" href="../">Previous issues</a>
+    <a rel="prev" href="../2026-09-26/">Previous issue · Sep 26</a>
+    <span aria-current="page">Sep 27</span>
+    <a rel="next" href="../2026-09-28/">Next issue · Sep 28</a>
+  </nav>
+    <details id="advancedFilters" class="advanced-filters">
+      <summary class="advanced-filters-summary">Refine digest</summary>
+      <div class="filter-row" aria-label="Article filters">
+        <select id="severityFilter" class="select" aria-label="Filter by severity">
+          <option value="">All severities</option>
+          <option value="Critical">Critical</option><option value="Elevated">Elevated</option><option value="Monitor">Monitor</option>
+        </select>
+        <select id="tagFilter" class="select" aria-label="Filter by topic tag">
+          <option value="">All topics</option>
+          <option value="AI Security">AI Security</option><option value="Cloud">Cloud</option><option value="Data Breach">Data Breach</option><option value="Exploitation">Exploitation</option><option value="Identity">Identity</option><option value="Malware">Malware</option><option value="Ransomware">Ransomware</option><option value="Supply Chain">Supply Chain</option><option value="Vulnerability">Vulnerability</option>
+        </select>
+        <select id="vendorFilter" class="select" aria-label="Filter by affected vendor">
+          <option value="">All vendors</option>
+          <option value="Apple">Apple</option><option value="GitHub">GitHub</option><option value="Google">Google</option><option value="Microsoft">Microsoft</option><option value="OpenAI">OpenAI</option>
+        </select>
+        <select id="ageFilter" class="select" aria-label="Filter by article age">
+          <option value="">Any age</option>
+          <option value="Fresh">Fresh</option><option value="Recent">Recent</option>
+        </select>
+        <select id="handoffFilter" class="select" aria-label="Filter by downstream handoff cue">
+          <option value="">All handoff cues</option>
+          <option value="SentryInsight: incident watch">SentryInsight: incident watch</option><option value="SentryInsight: vuln triage">SentryInsight: vuln triage</option><option value="SentryInsight: vendor watch">SentryInsight: vendor watch</option><option value="GRCInsight: governance watch">GRCInsight: governance watch</option><option value="SentryInsight: monitor">SentryInsight: monitor</option>
+        </select>
+      </div>
+    </details>
+    <div class="filter-status" aria-label="Active filters">
+      <div id="activeFilters" class="active-filters" role="list" aria-label="Active filter chips" hidden></div>
+      <div id="filterStatusAnnouncement" class="sr-only" role="status" aria-live="polite" aria-atomic="true">Showing 35 of 35 articles.</div>
+      <button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters</button>
+    </div>
+    <div class="stats" id="stats" hidden>Showing 35 of 35 articles from 4 sources</div>
+    <div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true" hidden></div>
+    <span id="sourceCoverage" class="anchor-target" aria-hidden="true"></span>
+    <section class="source-coverage" aria-label="RSS source coverage">
+      <details class="source-coverage-details">
+        <summary class="source-coverage-summary">Source coverage <span>4 active feeds · 35 articles</span></summary>
+        <div class="source-coverage-body">
+          <div class="source-counts"><button class="source-count" type="button" data-source-filter="Bleeping Computer" aria-label="Filter to Bleeping Computer source, 18 articles" aria-pressed="false">Bleeping Computer <strong>18</strong></button><button class="source-count" type="button" data-source-filter="The Hacker News" aria-label="Filter to The Hacker News source, 12 articles" aria-pressed="false">The Hacker News <strong>12</strong></button><button class="source-count" type="button" data-source-filter="Krebs on Security" aria-label="Filter to Krebs on Security source, 1 article" aria-pressed="false">Krebs on Security <strong>1</strong></button><button class="source-count" type="button" data-source-filter="Dark Reading" aria-label="Filter to Dark Reading source, 4 articles" aria-pressed="false">Dark Reading <strong>4</strong></button></div>
+          <div class="source-health-summary" data-active-sources="4" data-quiet-sources="0">
+            <span><strong>4</strong> active feeds</span>
+            <span><strong>0</strong> quiet feeds</span>
+          </div>
+          <div class="source-quiet-feeds" aria-label="Quiet RSS sources"></div>
+          <div class="source-filter-status" data-source-filter-status role="status" aria-live="polite" aria-atomic="true">All contributing feeds (35 articles)</div>
+          <div class="source-coverage-actions">
+            <a class="feed-link" href="../../feed.xml" aria-label="Open RSS feed with 35 latest articles">RSS feed <span class="feed-link-count">35 items</span></a>
+            <details class="digest-legend" aria-label="Digest legend">
+      <summary class="digest-legend-summary">Digest legend: source signals and handoff cues</summary>
+      <div class="digest-legend-body">
+        <div class="digest-legend-group source-signal-legend" aria-label="Source signal legend">
+      <div class="digest-legend-heading">Source signals</div>
+      <div class="source-signal-items"><span class="source-signal-chip"><span class="source-signal-name">Industry media</span><span class="source-signal-detail">Security news reporting</span></span></div>
+    </div><div class="digest-legend-group handoff-cue-legend" aria-label="Handoff cue legend">
+      <div class="digest-legend-heading">Handoff cues</div>
+      <div class="handoff-cue-legend-items"><a class="handoff-cue-legend-chip" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight general report"><span class="handoff-cue-name">SentryInsight: incident watch</span><span class="handoff-destination-label"> · general report</span><span class="handoff-cue-detail">Potential incident or compromise follow-up</span></a><a class="handoff-cue-legend-chip" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight general report"><span class="handoff-cue-name">SentryInsight: vuln triage</span><span class="handoff-destination-label"> · general report</span><span class="handoff-cue-detail">Vulnerability or exploitation review</span></a><a class="handoff-cue-legend-chip" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight general report"><span class="handoff-cue-name">SentryInsight: vendor watch</span><span class="handoff-destination-label"> · general report</span><span class="handoff-cue-detail">Vendor or product-owner tracking</span></a><a class="handoff-cue-legend-chip" href="https://ricomanifesto.github.io/GRCInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open GRCInsight general report"><span class="handoff-cue-name">GRCInsight: governance watch</span><span class="handoff-destination-label"> · general report</span><span class="handoff-cue-detail">Regulatory, privacy, or audit relevance</span></a><a class="handoff-cue-legend-chip" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight general report"><span class="handoff-cue-name">SentryInsight: monitor</span><span class="handoff-destination-label"> · general report</span><span class="handoff-cue-detail">Low-signal item worth monitoring</span></a></div>
+    </div>
+      </div>
+    </details>
+          </div>
+        </div>
+      </details>
+    </section>
+    <section class="operator-lanes" aria-label="Operator scan lanes">
+      <article class="operator-lane" data-lane="Incident watch" data-lane-cue="SentryInsight: incident watch">
+        <a class="operator-lane-heading" data-lane-destination href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer">Incident watch <span data-lane-destination-label>· general report</span></a>
+        <span class="operator-lane-count" data-lane-count><strong>12</strong> items</span>
+        <a href="https://thehackernews.com/2026/09/warning-two-unpatched-citrix-netscaler.html" class="operator-lane-link" data-lane-link>Warning: Two Unpatched Citrix NetScaler RCE Zero-Days Under Active Exploitation</a>
+        <span class="operator-lane-empty" data-lane-empty hidden>No current match</span>
+      </article><article class="operator-lane" data-lane="Vulnerability triage" data-lane-cue="SentryInsight: vuln triage">
+        <a class="operator-lane-heading" data-lane-destination href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer">Vulnerability triage <span data-lane-destination-label>· general report</span></a>
+        <span class="operator-lane-count" data-lane-count><strong>12</strong> items</span>
+        <a href="https://www.bleepingcomputer.com/news/security/citrix-admins-warned-to-shut-down-netscalers-over-2-exploited-zero-days/" class="operator-lane-link" data-lane-link>Citrix confirms two NetScaler RCE zero-days exploited in attacks</a>
+        <span class="operator-lane-empty" data-lane-empty hidden>No current match</span>
       </article>
-      <article class="reporting-item" id="reporting-cf659e9658b9">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-27T14:13:31.000Z">2026-09-27</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/security/cloudflare-fixes-containers-cross-tenant-flaw-exposing-customer-data/" target="_blank" rel="noopener noreferrer">Cloudflare fixes Containers cross-tenant flaw exposing customer data</a></h2>
-        <p>Cloudflare has fixed a vulnerability in Containers and Sandboxes that allowed customers with a Workers Paid account to recover residual data from other customers&#39; containers on the same physical host…</p>
-        <a class="permalink" href="#reporting-cf659e9658b9" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-b3dddf9b03fd">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-27T13:38:40.000Z">2026-09-27</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/anthropic-turns-claude-into-an-ai-marketplace-with-2-000-plus-plugins-and-connectors/" target="_blank" rel="noopener noreferrer">Anthropic turns Claude into an AI marketplace with 2,000+ plugins and connectors</a></h2>
-        <p>Anthropic has just announced a new Claude Marketplace, and it brings all AI-related tools into one place, including plugins, connectors, agents, and more…</p>
-        <a class="permalink" href="#reporting-b3dddf9b03fd" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-1e494cdab5bb">
-        <p class="source">The Hacker News · <time datetime="2026-09-27T07:47:57.000Z">2026-09-27</time></p>
-        <h2><a href="https://thehackernews.com/2026/09/warning-two-unpatched-citrix-netscaler.html" target="_blank" rel="noopener noreferrer">Warning: Two Unpatched Citrix NetScaler RCE Zero-Days Under Active Exploitation</a></h2>
-        <p>Two critical vulnerabilities in Citrix NetScaler ADC and NetScaler Gateway that allow remote code execution have been exploited in the wild, Citrix confirmed on September 27. It released fixes for both, along with six other flaws. One of the two affects every deployment on an affected version, including those in the default configuration. The bulletin came a day after security firm watchTowr…</p>
-        <a class="permalink" href="#reporting-1e494cdab5bb" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-77ddfbcd4e34">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-26T19:03:34.000Z">2026-09-26</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/security/shinyhunters-uses-waf-bypass-trick-in-oracle-peoplesoft-attacks/" target="_blank" rel="noopener noreferrer">ShinyHunters uses WAF bypass trick in Oracle PeopleSoft attacks</a></h2>
-        <p>The ShinyHunters extortion gang is using a URL-encoding trick to bypass web application firewall rules that mitigate the Oracle PeopleSoft CVE-2026-35273 flaw, allowing the threat actors to resume widespread exploitation of a flaw on vulnerable servers…</p>
-        <a class="permalink" href="#reporting-77ddfbcd4e34" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-9f09894f2cc8">
-        <p class="source">The Hacker News · <time datetime="2026-09-26T18:22:52.000Z">2026-09-26</time></p>
-        <h2><a href="https://thehackernews.com/2026/09/lunex-stealer-abuses-amd-driver-to.html" target="_blank" rel="noopener noreferrer">Lunex Stealer Abuses AMD Driver to Disable Security Monitoring and Steal Browser Credentials</a></h2>
-        <p>The Psychedelic Stealer malware distributed via compromised Ukrainian websites using ClickFix-style Cloudflare verification checks is part of a wider malware-as-a-service (MaaS) platform called Lunex. The new findings come from Ontinue, which described the activity as a four-stage attack chain aimed at targeting Ukrainian-speaking users. &quot;The attack chain begins with a fake CAPTCHA page and…</p>
-        <a class="permalink" href="#reporting-9f09894f2cc8" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-1d5487d8b2c1">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-26T16:26:58.000Z">2026-09-26</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/claude-opus-55-uses-95-percent-fewer-em-dashes-but-its-answers-are-getting-longer/" target="_blank" rel="noopener noreferrer">Claude Opus 5.5 uses 95% fewer em dashes, but its answers are getting longer</a></h2>
-        <p>Anthropic&#39;s Claude Opus 5.5 appears to be changing how it writes, with new analysis showing fewer obvious AI writing patterns, shorter sentences, and simpler wording compared with Opus 5…</p>
-        <a class="permalink" href="#reporting-1d5487d8b2c1" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-b597d5341c3f">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-26T15:50:38.000Z">2026-09-26</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-365-kb5002907-update-paused-after-office-license-deactivations/" target="_blank" rel="noopener noreferrer">Microsoft pauses KB5002907 update after Office license deactivations</a></h2>
-        <p>Microsoft has paused the rollout of the KB5002907 Microsoft 365 update after users report that it deactivated, or in some cases completely removed, perpetual Office 2016 and Office 2019 installations…</p>
-        <a class="permalink" href="#reporting-b597d5341c3f" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-fa5c037c6dc2">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-26T14:19:46.000Z">2026-09-26</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/security/github-actions-re-enabled-with-mini-shai-hulud-payload-still-active/" target="_blank" rel="noopener noreferrer">GitHub Actions re-enabled with Mini Shai-Hulud payload still active</a></h2>
-        <p>Two third-party GitHub Actions previously compromised in a Mini Shai-Hulud campaign were re-enabled by their maintainer and remained accessible for more than a week despite still pointing to malicious code…</p>
-        <a class="permalink" href="#reporting-fa5c037c6dc2" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-17579509bdfc">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-26T12:28:41.000Z">2026-09-26</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/openais-ai-agents-accidentally-uploaded-user-provided-images-to-third-party-sites/" target="_blank" rel="noopener noreferrer">OpenAI&#39;s AI agents accidentally uploaded user-provided images to third-party sites</a></h2>
-        <p>OpenAI says its AI agents uploaded user-provided images to third-party image-hosting services while carrying out research and evaluation tasks…</p>
-        <a class="permalink" href="#reporting-17579509bdfc" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-124ca5b2bbe4">
-        <p class="source">The Hacker News · <time datetime="2026-09-26T11:46:40.000Z">2026-09-26</time></p>
-        <h2><a href="https://thehackernews.com/2026/09/attackers-bypass-wafs-to-exploit-oracle.html" target="_blank" rel="noopener noreferrer">Attackers Bypass WAFs to Exploit Oracle PeopleSoft Flaw and Deploy Web Shells</a></h2>
-        <p>Google is warning of renewed mass exploitation of a known security vulnerability in Oracle PeopleSoft as part of a campaign targeting multiple sectors globally. The ShinyHunters-linked activity involves the weaponization of CVE-2026-35273 (CVSS score: 9.8), a critical security flaw that could result in unauthenticated remote code execution. The vulnerability was first exploited as a zero-day…</p>
-        <a class="permalink" href="#reporting-124ca5b2bbe4" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-3c874b7b99d0">
-        <p class="source">The Hacker News · <time datetime="2026-09-26T10:30:00.000Z">2026-09-26</time></p>
-        <h2><a href="https://thehackernews.com/2026/09/zero-trust-for-ai-agents-starts-with.html" target="_blank" rel="noopener noreferrer">Zero Trust for AI Agents Starts With Fixing Zero Visibility</a></h2>
-        <p>The way we talk about AI agents is shifting, and the way we implement them requires an even more fundamental shift. While earlier discourse focused on how quickly organizations could stand up agents and how much productivity they could promise, a string of recent incidents, including a widely discussed intrusion at Hugging Face during an evaluation of OpenAI agents, has spurred organizations to…</p>
-        <a class="permalink" href="#reporting-3c874b7b99d0" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-087d84aa6c29">
-        <p class="source">The Hacker News · <time datetime="2026-09-26T09:55:22.000Z">2026-09-26</time></p>
-        <h2><a href="https://thehackernews.com/2026/09/elementor-csrf-flaw-lets-attackers-take.html" target="_blank" rel="noopener noreferrer">Elementor CSRF Flaw Lets Attackers Take Over Sites After Admin Clicks Crafted Link</a></h2>
-        <p>Details have emerged about a high-severity security flaw in the Elementor Website Builder WordPress plugin that could be exploited by an unauthenticated attacker to create rogue administrator accounts and take control of a site. The cross-site request forgery (CSRF) vulnerability, which has yet to be assigned a CVE identifier, carries a CVSS score of 8.8 out of 10.0. It only affects versions…</p>
-        <a class="permalink" href="#reporting-087d84aa6c29" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-049c4c6d156c">
-        <p class="source">The Hacker News · <time datetime="2026-09-26T08:49:53.000Z">2026-09-26</time></p>
-        <h2><a href="https://thehackernews.com/2026/09/sharepoint-rce-and-mikrotik-routeros.html" target="_blank" rel="noopener noreferrer">SharePoint RCE and MikroTik RouterOS Flaws Actively Exploited in the Wild</a></h2>
-        <p>The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Friday added two security flaws impacting Microsoft SharePoint and Mikrotik RouterOS to its Known Exploited Vulnerabilities (KEV) catalog, citing evidence of active exploitation. The vulnerabilities in question are as follows - CVE-2026-65660 (CVSS score: 8.8) - A code injection vulnerability in Microsoft Office SharePoint…</p>
-        <a class="permalink" href="#reporting-049c4c6d156c" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-16e6f1ff0925">
-        <p class="source">The Hacker News · <time datetime="2026-09-26T07:48:33.000Z">2026-09-26</time></p>
-        <h2><a href="https://thehackernews.com/2026/09/kiteworks-urges-customers-to-shut-down.html" target="_blank" rel="noopener noreferrer">Kiteworks Urges Customers to Shut Down Systems for 9 Hours Over Possible Cyber Attack</a></h2>
-        <p>Kiteworks (formerly Accellion) is urging customers to shut down their systems as a precautionary measure for nine hours over the weekend after it received threat intelligence about an imminent cyber attack. &quot;Kiteworks received credible threat intelligence from federal intelligence authorities indicating that a threat actor may attempt to target some Kiteworks systems,&quot; said Frank Balonis, Chief…</p>
-        <a class="permalink" href="#reporting-16e6f1ff0925" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-5569bca5352e">
-        <p class="source">Krebs on Security · <time datetime="2026-09-25T21:44:40.000Z">2026-09-25</time></p>
-        <h2><a href="https://krebsonsecurity.com/2026/09/u-s-soldier-gets-70-months-in-prison-for-att-verizon-extortions/" target="_blank" rel="noopener noreferrer">U.S. Soldier Gets 70 Months in Prison for AT&amp;T, Verizon Extortions</a></h2>
-        <p>A U.S. Army soldier who pleaded guilty to hacking into multiple telecommunications companies and stealing mobile call and text metadata for more than 100 million AT&amp;T customers in 2024 was sentenced to 70 months in federal prison today and ordered to pay nearly $300,000 in restitution to victims.</p>
-        <a class="permalink" href="#reporting-5569bca5352e" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-3e6437721d93">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-25T21:41:07.000Z">2026-09-25</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/security/kiteworks-urges-6-hour-server-shutdown-over-potential-zero-day-attacks/" target="_blank" rel="noopener noreferrer">Kiteworks urges 6-hour server shutdown over potential zero-day attacks</a></h2>
-        <p>Secure file-sharing software company Kiteworks is urging customers worldwide to temporarily shut down their servers on Saturday for a six-hour window after receiving threat intelligence warning of a potentially imminent cyberattack…</p>
-        <a class="permalink" href="#reporting-3e6437721d93" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-6e342a8a97cf">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-25T20:57:55.000Z">2026-09-25</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/security/shinyhunters-hacked-clop-leak-site-using-grav-cms-path-traversal-flaw/" target="_blank" rel="noopener noreferrer">ShinyHunters hacked Clop leak site using Grav CMS path traversal flaw</a></h2>
-        <p>The Clop ransomware gang has moved its data leak site to a new Tor address after confirming its previous server was compromised and defaced through an unpatched Grav CMS flaw that BleepingComputer has learned is an unauthenticated path traversal vulnerability…</p>
-        <a class="permalink" href="#reporting-6e342a8a97cf" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-3396a5a7c11d">
-        <p class="source">Dark Reading · <time datetime="2026-09-25T20:28:10.000Z">2026-09-25</time></p>
-        <h2><a href="https://www.darkreading.com/cyber-risk/how-to-manage-ciso-cfo-relationship-cybersecurity-success" target="_blank" rel="noopener noreferrer">How the CISO CFO Relationship is a Key to Cybersecurity Success</a></h2>
-        <p>Building a financial bridge: Organizations where CISOs and CFOs align on cybersecurity strategy to protect assets, manage risk and enable business growth are better prepared to face today&#39;s threat landscape.</p>
-        <a class="permalink" href="#reporting-3396a5a7c11d" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-b8cf2c66bdcb">
-        <p class="source">Dark Reading · <time datetime="2026-09-25T18:39:32.000Z">2026-09-25</time></p>
-        <h2><a href="https://www.darkreading.com/cyberattacks-data-breaches/ai-sandbox-escapes-forensic-readiness" target="_blank" rel="noopener noreferrer">AI Sandbox Escapes: Why Forensic Readiness Matters More Than Containment</a></h2>
-        <p>When autonomous AI agents &quot;escape the sandbox,&quot; the real story isn&#39;t rogue machines — it&#39;s the same access-control failures we&#39;ve seen for decades.</p>
-        <a class="permalink" href="#reporting-b8cf2c66bdcb" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-53c3f861257c">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-25T18:13:33.000Z">2026-09-25</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/security/elementor-wordpress-flaw-lets-attackers-create-admin-accounts/" target="_blank" rel="noopener noreferrer">Elementor WordPress flaw lets attackers create admin accounts</a></h2>
-        <p>A cross-site request forgery (CSRF) vulnerability in the Elementor plugin for WordPress could allow an unauthenticated attacker to create administrator accounts…</p>
-        <a class="permalink" href="#reporting-53c3f861257c" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-2776184929ae">
-        <p class="source">Dark Reading · <time datetime="2026-09-25T17:56:23.000Z">2026-09-25</time></p>
-        <h2><a href="https://www.darkreading.com/cyber-risk/what-we-missed-google-gemini-ai-escape-party" target="_blank" rel="noopener noreferrer">What We Missed: Google Gemini Joins the AI Escape Party</a></h2>
-        <p>In this video conversation, Dark Reading editors discuss some of the news they didn&#39;t get a chance to cover, from Google Gemini models breaking containment to ShinyHunters ratting on TeamPCP hackers.</p>
-        <a class="permalink" href="#reporting-2776184929ae" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-2e9b76e63d00">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-25T17:24:20.000Z">2026-09-25</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/security/cisa-warns-of-sharepoint-wso2-adobe-commerce-flaws-exploited-in-attacks/" target="_blank" rel="noopener noreferrer">CISA warns of Sharepoint, WSO2, Adobe Commerce flaws exploited in attacks</a></h2>
-        <p>The Cybersecurity and Infrastructure Security Agency (CISA) warns that hackers are exploiting a critical authentication bypass vulnerability (CVE-2026-5430) affecting multiple products from enterprise software provider WSO2…</p>
-        <a class="permalink" href="#reporting-2e9b76e63d00" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-5324567d954d">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-25T16:00:00.000Z">2026-09-25</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/anthropic-rolls-out-up-to-250-in-free-claude-code-credits-but-only-for-cloud-sessions/" target="_blank" rel="noopener noreferrer">Anthropic rolls out up to $250 in free Claude Code credits, but only for cloud sessions</a></h2>
-        <p>Anthropic now allows you to run Claude Code via cloud sessions without signing up for the research preview, and it&#39;s offering up to $250 in free usage credits, so more users can give it a try…</p>
-        <a class="permalink" href="#reporting-5324567d954d" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-9c3f4fd62157">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-25T14:54:33.000Z">2026-09-25</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/openai-is-preparing-a-500-chatgpt-pro-max-plan-with-faster-codex/" target="_blank" rel="noopener noreferrer">OpenAI is preparing a $500 ChatGPT Pro Max plan with faster Codex</a></h2>
-        <p>OpenAI appears to be preparing a new ChatGPT Pro Max subscription that could cost $500 per month, but it&#39;s unclear when it&#39;ll begin rolling out…</p>
-        <a class="permalink" href="#reporting-9c3f4fd62157" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-d6c9977600d4">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-25T14:51:10.000Z">2026-09-25</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/security/with-the-rise-of-ai-agents-soc-2-should-adapt-or-risk-irrelevance/" target="_blank" rel="noopener noreferrer">With the Rise of AI Agents, SOC 2 Should Adapt or Risk Irrelevance</a></h2>
-        <p>AI agents can operate through human credentials and take actions that existing SOC 2 controls may not distinguish from human activity. Token Security explains why SOC 2 needs to adapt to address the security gaps created by agent identities…</p>
-        <a class="permalink" href="#reporting-d6c9977600d4" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-fba7dac2bfe1">
-        <p class="source">Dark Reading · <time datetime="2026-09-25T14:46:13.000Z">2026-09-25</time></p>
-        <h2><a href="https://www.darkreading.com/cyber-risk/stopping-it-worker-scams-revamped-hr-process" target="_blank" rel="noopener noreferrer">Stopping IT Worker Scams Requires Revamped HR Process</a></h2>
-        <p>Training human-resource managers in the latest tactics and warning signs goes a long way toward blunting the threat, but automated analysis can help even more.</p>
-        <a class="permalink" href="#reporting-fba7dac2bfe1" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-6c0fd01aad01">
-        <p class="source">The Hacker News · <time datetime="2026-09-25T14:44:41.000Z">2026-09-25</time></p>
-        <h2><a href="https://thehackernews.com/2026/09/compromised-github-actions-came-back.html" target="_blank" rel="noopener noreferrer">Compromised GitHub Actions Came Back Online and Resumed Executing Mini Shai-Hulud Malware</a></h2>
-        <p>Two actions-cool GitHub Actions have been disabled for a second time after the repositories became accessible last week, months after they were compromised during the May 2026 Mini Shai-Hulud campaign. The affected GitHub Actions are listed below - actions-cool/issues-helper actions-cool/maintain-one-comment Visiting either of the repositories now shows the message: &quot;Access to this…</p>
-        <a class="permalink" href="#reporting-6c0fd01aad01" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-4731c385479b">
-        <p class="source">The Hacker News · <time datetime="2026-09-25T13:18:06.000Z">2026-09-25</time></p>
-        <h2><a href="https://thehackernews.com/2026/09/pamstealer-macos-malware-adds-live-c2.html" target="_blank" rel="noopener noreferrer">PamStealer macOS Malware Adds Live C2 Payload Decryption and Multi-Layer Persistence</a></h2>
-        <p>Cybersecurity researchers have flagged a new version of PamStealer that ensures that the main payload can only be recovered using a server-side decryption chain. The latest artifacts, per Jamf Threat Labs, continue to rely on the same JavaScript for Automation (JXA) dropper mechanism, but modify the lure and the delivery method. &quot;Where earlier variants embedded their payload key material…</p>
-        <a class="permalink" href="#reporting-4731c385479b" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-b77adcfbe2b6">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-25T12:40:59.000Z">2026-09-25</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-to-deprecate-windows-deployment-services-after-windows-server-2025/" target="_blank" rel="noopener noreferrer">Microsoft plans to deprecate Windows Deployment Services</a></h2>
-        <p>Microsoft announced it will deprecate the Windows Deployment Services (WDS) server role starting with the next Windows Server release…</p>
-        <a class="permalink" href="#reporting-b77adcfbe2b6" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-e20c79b40799">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-25T11:35:14.000Z">2026-09-25</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/security/rydox-marketplace-admin-pleads-guilty-faces-22-years-in-prison/" target="_blank" rel="noopener noreferrer">Rydox marketplace admin pleads guilty, faces 22 years in prison</a></h2>
-        <p>A Kosovar national has pleaded guilty to operating Rydox, a large illegal online marketplace that sold stolen personal information, login credentials, credit card details, and cybercrime tools…</p>
-        <a class="permalink" href="#reporting-e20c79b40799" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-5859ebb6f1f8">
-        <p class="source">The Hacker News · <time datetime="2026-09-25T11:30:00.000Z">2026-09-25</time></p>
-        <h2><a href="https://thehackernews.com/2026/09/the-soc-doesnt-need-to-start-over-with.html" target="_blank" rel="noopener noreferrer">The SOC Doesn&#39;t Need to Start Over with Every Alert</a></h2>
-        <p>Security leaders keep debating whether AI will produce an entirely new class of cyberattack. The nearer change is quieter and already visible: AI has made a failed attack cheap to retry. The routine version looks like this. An attacker lands on a low-privilege cloud account, and the first try at privilege escalation goes nowhere. That dead end used to cost hours of documentation reading…</p>
-        <a class="permalink" href="#reporting-5859ebb6f1f8" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-0fba6d21f983">
-        <p class="source">The Hacker News · <time datetime="2026-09-25T10:35:55.000Z">2026-09-25</time></p>
-        <h2><a href="https://thehackernews.com/2026/09/bitget-says-suspected-north-korean.html" target="_blank" rel="noopener noreferrer">Bitget Says Suspected North Korean Hackers Stole $351.6M After Backend Compromise</a></h2>
-        <p>Cryptocurrency exchange Bitget said suspected North Korean threat actors have stolen $351.6 million from its hot and warm wallets. &quot;At 18:31 UTC on September 24, 2026, Bitget&#39;s security systems identified unauthorized transfers involving a limited number of hot wallets,&quot; BitGet said in a post shared on X. &quot;Bitget&#39;s cold wallets and the overwhelming majority of platform assets remain…</p>
-        <a class="permalink" href="#reporting-0fba6d21f983" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-a32e62f50e70">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-25T10:30:38.000Z">2026-09-25</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-recent-windows-updates-cause-desktop-loading-issues/" target="_blank" rel="noopener noreferrer">Microsoft: Recent Windows updates cause desktop loading issues</a></h2>
-        <p>Microsoft has confirmed that some users may experience desktop loading issues, including black screens, after installing the August 2026 preview updates and subsequent updates…</p>
-        <a class="permalink" href="#reporting-a32e62f50e70" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-8479bfbd51e5">
-        <p class="source">The Hacker News · <time datetime="2026-09-25T10:14:02.000Z">2026-09-25</time></p>
-        <h2><a href="https://thehackernews.com/2026/09/roundcube-pre-auth-sql-injection-flaw.html" target="_blank" rel="noopener noreferrer">Roundcube Pre-Auth SQL Injection Flaw Actively Exploited in the Wild</a></h2>
-        <p>The Canadian Centre for Cyber Security has warned that a now-patched Roundcube Webmail vulnerability is being actively exploited in the wild. The vulnerability in question is CVE-2026-48842 (CVSS score: 8.1), a pre-authentication SQL injection in the virtuser_query plugin of Roundcube Webmail versions 1.6.x before 1.6.16 and 1.7.x before 1.7.1. The issue stems from a preg_replace() backslash…</p>
-        <a class="permalink" href="#reporting-8479bfbd51e5" aria-label="Link to this reporting item">Permalink</a>
-      </article></main>
-  <footer><p>Original publisher links are preserved for traceability. <a href="index.json">Machine-readable issue data</a>.</p></footer>
+    </section>
+    <div id="emptyFilteredState" class="empty-filtered" hidden>
+      <p id="emptyFilteredMessage" class="empty-filtered-message">No articles match the current filters.</p>
+      <button id="emptyResetFilters" class="btn empty-reset-filters" type="button">Reset filters</button>
+    </div>
+
+    <div class="news-container" id="newsContainer">
+
+        <article class="news-item reporting-item" id="reporting-0954e8dba9d8" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Citrix confirms two NetScaler RCE zero-days exploited in attacks" data-summary="Citrix has confirmed that two critical NetScaler remote code execution vulnerabilities, tracked as CVE-2026-88771 and CVE-2026-88772, are being exploited in attacks and that it has released security updates to fix the flaws…" data-severity="Elevated" data-tags="Vulnerability,Exploitation" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Fresh" data-published-at="2026-09-27T16:02:37.000Z">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>5h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/citrix-admins-warned-to-shut-down-netscalers-over-2-exploited-zero-days/" target="_blank" rel="noopener noreferrer">Citrix confirms two NetScaler RCE zero-days exploited in attacks</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-27T16:02:37.000Z">September 27, 2026 at 4:02 PM UTC</time><a class="item-permalink" href="#reporting-0954e8dba9d8" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a></div>
+          <p class="news-summary">Citrix has confirmed that two critical NetScaler remote code execution vulnerabilities, tracked as CVE-2026-88771 and CVE-2026-88772, are being exploited in attacks and that it has released security updates to fix the flaws…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/citrix-admins-warned-to-shut-down-netscalers-over-2-exploited-zero-days/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-cf659e9658b9" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Cloudflare fixes Containers cross-tenant flaw exposing customer data" data-summary="Cloudflare has fixed a vulnerability in Containers and Sandboxes that allowed customers with a Workers Paid account to recover residual data from other customers&#39; containers on the same physical host…" data-severity="Elevated" data-tags="Vulnerability" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-09-27T14:13:31.000Z">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>6h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cloudflare-fixes-containers-cross-tenant-flaw-exposing-customer-data/" target="_blank" rel="noopener noreferrer">Cloudflare fixes Containers cross-tenant flaw exposing customer data</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-27T14:13:31.000Z">September 27, 2026 at 2:13 PM UTC</time><a class="item-permalink" href="#reporting-cf659e9658b9" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Vulnerability</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a></div>
+          <p class="news-summary">Cloudflare has fixed a vulnerability in Containers and Sandboxes that allowed customers with a Workers Paid account to recover residual data from other customers&#39; containers on the same physical host…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/cloudflare-fixes-containers-cross-tenant-flaw-exposing-customer-data/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-b3dddf9b03fd" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Anthropic turns Claude into an AI marketplace with 2,000+ plugins and connectors" data-summary="Anthropic has just announced a new Claude Marketplace, and it brings all AI-related tools into one place, including plugins, connectors, agents, and more…" data-severity="Monitor" data-tags="AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-09-27T13:38:40.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>7h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/anthropic-turns-claude-into-an-ai-marketplace-with-2-000-plus-plugins-and-connectors/" target="_blank" rel="noopener noreferrer">Anthropic turns Claude into an AI marketplace with 2,000+ plugins and connectors</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-27T13:38:40.000Z">September 27, 2026 at 1:38 PM UTC</time><a class="item-permalink" href="#reporting-b3dddf9b03fd" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">AI Security</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: monitor" data-destination-label="general report">SentryInsight: monitor · general report</a></div>
+          <p class="news-summary">Anthropic has just announced a new Claude Marketplace, and it brings all AI-related tools into one place, including plugins, connectors, agents, and more…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/artificial-intelligence/anthropic-turns-claude-into-an-ai-marketplace-with-2-000-plus-plugins-and-connectors/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-1e494cdab5bb" data-source="The Hacker News" data-host="thehackernews.com" data-title="Warning: Two Unpatched Citrix NetScaler RCE Zero-Days Under Active Exploitation" data-summary="Two critical vulnerabilities in Citrix NetScaler ADC and NetScaler Gateway that allow remote code execution have been exploited in the wild, Citrix confirmed on September 27. It released fixes for both, along with six other flaws. One of the two affects every deployment on an affected version, including those in the default configuration. The bulletin came a day after security firm watchTowr…" data-severity="Critical" data-tags="Vulnerability,Exploitation" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-09-27T07:47:57.000Z">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>13h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/09/warning-two-unpatched-citrix-netscaler.html" target="_blank" rel="noopener noreferrer">Warning: Two Unpatched Citrix NetScaler RCE Zero-Days Under Active Exploitation</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-27T07:47:57.000Z">September 27, 2026 at 7:47 AM UTC</time><a class="item-permalink" href="#reporting-1e494cdab5bb" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a></div>
+          <p class="news-summary">Two critical vulnerabilities in Citrix NetScaler ADC and NetScaler Gateway that allow remote code execution have been exploited in the wild, Citrix confirmed on September 27. It released fixes for both, along with six other flaws. One of the two affects every deployment on an affected version, including those in the default configuration. The bulletin came a day after security firm watchTowr…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/warning-two-unpatched-citrix-netscaler.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-77ddfbcd4e34" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="ShinyHunters uses WAF bypass trick in Oracle PeopleSoft attacks" data-summary="The ShinyHunters extortion gang is using a URL-encoding trick to bypass web application firewall rules that mitigate the Oracle PeopleSoft CVE-2026-35273 flaw, allowing the threat actors to resume widespread exploitation of a flaw on vulnerable servers…" data-severity="Critical" data-tags="Ransomware,Vulnerability,Exploitation" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-09-26T19:03:34.000Z">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/shinyhunters-uses-waf-bypass-trick-in-oracle-peoplesoft-attacks/" target="_blank" rel="noopener noreferrer">ShinyHunters uses WAF bypass trick in Oracle PeopleSoft attacks</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-26T19:03:34.000Z">September 26, 2026 at 7:03 PM UTC</time><a class="item-permalink" href="#reporting-77ddfbcd4e34" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Ransomware</span><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/#cve-2026-35273" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="CVE reference: CVE-2026-35273">SentryInsight: incident watch · CVE reference: CVE-2026-35273</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a></div>
+          <p class="news-summary">The ShinyHunters extortion gang is using a URL-encoding trick to bypass web application firewall rules that mitigate the Oracle PeopleSoft CVE-2026-35273 flaw, allowing the threat actors to resume widespread exploitation of a flaw on vulnerable servers…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/shinyhunters-uses-waf-bypass-trick-in-oracle-peoplesoft-attacks/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-9f09894f2cc8" data-source="The Hacker News" data-host="thehackernews.com" data-title="Lunex Stealer Abuses AMD Driver to Disable Security Monitoring and Steal Browser Credentials" data-summary="The Psychedelic Stealer malware distributed via compromised Ukrainian websites using ClickFix-style Cloudflare verification checks is part of a wider malware-as-a-service (MaaS) platform called Lunex. The new findings come from Ontinue, which described the activity as a four-stage attack chain aimed at targeting Ukrainian-speaking users. &quot;The attack chain begins with a fake CAPTCHA page and…" data-severity="Elevated" data-tags="Identity,Malware" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Recent" data-published-at="2026-09-26T18:22:52.000Z">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/09/lunex-stealer-abuses-amd-driver-to.html" target="_blank" rel="noopener noreferrer">Lunex Stealer Abuses AMD Driver to Disable Security Monitoring and Steal Browser Credentials</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-26T18:22:52.000Z">September 26, 2026 at 6:22 PM UTC</time><a class="item-permalink" href="#reporting-9f09894f2cc8" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Identity</span><span class="chip">Malware</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a></div>
+          <p class="news-summary">The Psychedelic Stealer malware distributed via compromised Ukrainian websites using ClickFix-style Cloudflare verification checks is part of a wider malware-as-a-service (MaaS) platform called Lunex. The new findings come from Ontinue, which described the activity as a four-stage attack chain aimed at targeting Ukrainian-speaking users. &quot;The attack chain begins with a fake CAPTCHA page and…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/lunex-stealer-abuses-amd-driver-to.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-1d5487d8b2c1" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Claude Opus 5.5 uses 95% fewer em dashes, but its answers are getting longer" data-summary="Anthropic&#39;s Claude Opus 5.5 appears to be changing how it writes, with new analysis showing fewer obvious AI writing patterns, shorter sentences, and simpler wording compared with Opus 5…" data-severity="Monitor" data-tags="AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-09-26T16:26:58.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/claude-opus-55-uses-95-percent-fewer-em-dashes-but-its-answers-are-getting-longer/" target="_blank" rel="noopener noreferrer">Claude Opus 5.5 uses 95% fewer em dashes, but its answers are getting longer</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-26T16:26:58.000Z">September 26, 2026 at 4:26 PM UTC</time><a class="item-permalink" href="#reporting-1d5487d8b2c1" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">AI Security</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: monitor" data-destination-label="general report">SentryInsight: monitor · general report</a></div>
+          <p class="news-summary">Anthropic&#39;s Claude Opus 5.5 appears to be changing how it writes, with new analysis showing fewer obvious AI writing patterns, shorter sentences, and simpler wording compared with Opus 5…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/artificial-intelligence/claude-opus-55-uses-95-percent-fewer-em-dashes-but-its-answers-are-getting-longer/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-b597d5341c3f" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft pauses KB5002907 update after Office license deactivations" data-summary="Microsoft has paused the rollout of the KB5002907 Microsoft 365 update after users report that it deactivated, or in some cases completely removed, perpetual Office 2016 and Office 2019 installations…" data-severity="Monitor" data-tags="" data-vendors="Microsoft" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-26T15:50:38.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-365-kb5002907-update-paused-after-office-license-deactivations/" target="_blank" rel="noopener noreferrer">Microsoft pauses KB5002907 update after Office license deactivations</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-26T15:50:38.000Z">September 26, 2026 at 3:50 PM UTC</time><a class="item-permalink" href="#reporting-b597d5341c3f" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Microsoft</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
+          <p class="news-summary">Microsoft has paused the rollout of the KB5002907 Microsoft 365 update after users report that it deactivated, or in some cases completely removed, perpetual Office 2016 and Office 2019 installations…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/microsoft/microsoft-365-kb5002907-update-paused-after-office-license-deactivations/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-fa5c037c6dc2" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="GitHub Actions re-enabled with Mini Shai-Hulud payload still active" data-summary="Two third-party GitHub Actions previously compromised in a Mini Shai-Hulud campaign were re-enabled by their maintainer and remained accessible for more than a week despite still pointing to malicious code…" data-severity="Elevated" data-tags="Supply Chain" data-vendors="GitHub" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-26T14:19:46.000Z">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/github-actions-re-enabled-with-mini-shai-hulud-payload-still-active/" target="_blank" rel="noopener noreferrer">GitHub Actions re-enabled with Mini Shai-Hulud payload still active</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-26T14:19:46.000Z">September 26, 2026 at 2:19 PM UTC</time><a class="item-permalink" href="#reporting-fa5c037c6dc2" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">GitHub</span><span class="chip">Supply Chain</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
+          <p class="news-summary">Two third-party GitHub Actions previously compromised in a Mini Shai-Hulud campaign were re-enabled by their maintainer and remained accessible for more than a week despite still pointing to malicious code…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/github-actions-re-enabled-with-mini-shai-hulud-payload-still-active/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-17579509bdfc" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="OpenAI&#39;s AI agents accidentally uploaded user-provided images to third-party sites" data-summary="OpenAI says its AI agents uploaded user-provided images to third-party image-hosting services while carrying out research and evaluation tasks…" data-severity="Monitor" data-tags="AI Security" data-vendors="OpenAI" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-26T12:28:41.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/openais-ai-agents-accidentally-uploaded-user-provided-images-to-third-party-sites/" target="_blank" rel="noopener noreferrer">OpenAI&#39;s AI agents accidentally uploaded user-provided images to third-party sites</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-26T12:28:41.000Z">September 26, 2026 at 12:28 PM UTC</time><a class="item-permalink" href="#reporting-17579509bdfc" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">OpenAI</span><span class="chip">AI Security</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
+          <p class="news-summary">OpenAI says its AI agents uploaded user-provided images to third-party image-hosting services while carrying out research and evaluation tasks…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/artificial-intelligence/openais-ai-agents-accidentally-uploaded-user-provided-images-to-third-party-sites/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-124ca5b2bbe4" data-source="The Hacker News" data-host="thehackernews.com" data-title="Attackers Bypass WAFs to Exploit Oracle PeopleSoft Flaw and Deploy Web Shells" data-summary="Google is warning of renewed mass exploitation of a known security vulnerability in Oracle PeopleSoft as part of a campaign targeting multiple sectors globally. The ShinyHunters-linked activity involves the weaponization of CVE-2026-35273 (CVSS score: 9.8), a critical security flaw that could result in unauthenticated remote code execution. The vulnerability was first exploited as a zero-day…" data-severity="Critical" data-tags="Vulnerability,Exploitation" data-vendors="Google" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-26T11:46:40.000Z">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/09/attackers-bypass-wafs-to-exploit-oracle.html" target="_blank" rel="noopener noreferrer">Attackers Bypass WAFs to Exploit Oracle PeopleSoft Flaw and Deploy Web Shells</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-26T11:46:40.000Z">September 26, 2026 at 11:46 AM UTC</time><a class="item-permalink" href="#reporting-124ca5b2bbe4" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Google</span><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/#cve-2026-35273" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="CVE reference: CVE-2026-35273">SentryInsight: incident watch · CVE reference: CVE-2026-35273</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
+          <p class="news-summary">Google is warning of renewed mass exploitation of a known security vulnerability in Oracle PeopleSoft as part of a campaign targeting multiple sectors globally. The ShinyHunters-linked activity involves the weaponization of CVE-2026-35273 (CVSS score: 9.8), a critical security flaw that could result in unauthenticated remote code execution. The vulnerability was first exploited as a zero-day…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/attackers-bypass-wafs-to-exploit-oracle.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-3c874b7b99d0" data-source="The Hacker News" data-host="thehackernews.com" data-title="Zero Trust for AI Agents Starts With Fixing Zero Visibility" data-summary="The way we talk about AI agents is shifting, and the way we implement them requires an even more fundamental shift. While earlier discourse focused on how quickly organizations could stand up agents and how much productivity they could promise, a string of recent incidents, including a widely discussed intrusion at Hugging Face during an evaluation of OpenAI agents, has spurred organizations to…" data-severity="Monitor" data-tags="AI Security" data-vendors="OpenAI" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-26T10:30:00.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/09/zero-trust-for-ai-agents-starts-with.html" target="_blank" rel="noopener noreferrer">Zero Trust for AI Agents Starts With Fixing Zero Visibility</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-26T10:30:00.000Z">September 26, 2026 at 10:30 AM UTC</time><a class="item-permalink" href="#reporting-3c874b7b99d0" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">OpenAI</span><span class="chip">AI Security</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
+          <p class="news-summary">The way we talk about AI agents is shifting, and the way we implement them requires an even more fundamental shift. While earlier discourse focused on how quickly organizations could stand up agents and how much productivity they could promise, a string of recent incidents, including a widely discussed intrusion at Hugging Face during an evaluation of OpenAI agents, has spurred organizations to…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/zero-trust-for-ai-agents-starts-with.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-087d84aa6c29" data-source="The Hacker News" data-host="thehackernews.com" data-title="Elementor CSRF Flaw Lets Attackers Take Over Sites After Admin Clicks Crafted Link" data-summary="Details have emerged about a high-severity security flaw in the Elementor Website Builder WordPress plugin that could be exploited by an unauthenticated attacker to create rogue administrator accounts and take control of a site. The cross-site request forgery (CSRF) vulnerability, which has yet to be assigned a CVE identifier, carries a CVSS score of 8.8 out of 10.0. It only affects versions…" data-severity="Elevated" data-tags="Vulnerability,Exploitation" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-09-26T09:55:22.000Z">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/09/elementor-csrf-flaw-lets-attackers-take.html" target="_blank" rel="noopener noreferrer">Elementor CSRF Flaw Lets Attackers Take Over Sites After Admin Clicks Crafted Link</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-26T09:55:22.000Z">September 26, 2026 at 9:55 AM UTC</time><a class="item-permalink" href="#reporting-087d84aa6c29" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a></div>
+          <p class="news-summary">Details have emerged about a high-severity security flaw in the Elementor Website Builder WordPress plugin that could be exploited by an unauthenticated attacker to create rogue administrator accounts and take control of a site. The cross-site request forgery (CSRF) vulnerability, which has yet to be assigned a CVE identifier, carries a CVSS score of 8.8 out of 10.0. It only affects versions…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/elementor-csrf-flaw-lets-attackers-take.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-049c4c6d156c" data-source="The Hacker News" data-host="thehackernews.com" data-title="SharePoint RCE and MikroTik RouterOS Flaws Actively Exploited in the Wild" data-summary="The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Friday added two security flaws impacting Microsoft SharePoint and Mikrotik RouterOS to its Known Exploited Vulnerabilities (KEV) catalog, citing evidence of active exploitation. The vulnerabilities in question are as follows - CVE-2026-65660 (CVSS score: 8.8) - A code injection vulnerability in Microsoft Office SharePoint…" data-severity="Critical" data-tags="Vulnerability,Exploitation" data-vendors="Microsoft" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-26T08:49:53.000Z">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/09/sharepoint-rce-and-mikrotik-routeros.html" target="_blank" rel="noopener noreferrer">SharePoint RCE and MikroTik RouterOS Flaws Actively Exploited in the Wild</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-26T08:49:53.000Z">September 26, 2026 at 8:49 AM UTC</time><a class="item-permalink" href="#reporting-049c4c6d156c" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Microsoft</span><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/#cve-2026-65660" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="CVE reference: CVE-2026-65660">SentryInsight: incident watch · CVE reference: CVE-2026-65660</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
+          <p class="news-summary">The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Friday added two security flaws impacting Microsoft SharePoint and Mikrotik RouterOS to its Known Exploited Vulnerabilities (KEV) catalog, citing evidence of active exploitation. The vulnerabilities in question are as follows - CVE-2026-65660 (CVSS score: 8.8) - A code injection vulnerability in Microsoft Office SharePoint…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/sharepoint-rce-and-mikrotik-routeros.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-16e6f1ff0925" data-source="The Hacker News" data-host="thehackernews.com" data-title="Kiteworks Urges Customers to Shut Down Systems for 9 Hours Over Possible Cyber Attack" data-summary="Kiteworks (formerly Accellion) is urging customers to shut down their systems as a precautionary measure for nine hours over the weekend after it received threat intelligence about an imminent cyber attack. &quot;Kiteworks received credible threat intelligence from federal intelligence authorities indicating that a threat actor may attempt to target some Kiteworks systems,&quot; said Frank Balonis, Chief…" data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-09-26T07:48:33.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/09/kiteworks-urges-customers-to-shut-down.html" target="_blank" rel="noopener noreferrer">Kiteworks Urges Customers to Shut Down Systems for 9 Hours Over Possible Cyber Attack</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-26T07:48:33.000Z">September 26, 2026 at 7:48 AM UTC</time><a class="item-permalink" href="#reporting-16e6f1ff0925" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: monitor" data-destination-label="general report">SentryInsight: monitor · general report</a></div>
+          <p class="news-summary">Kiteworks (formerly Accellion) is urging customers to shut down their systems as a precautionary measure for nine hours over the weekend after it received threat intelligence about an imminent cyber attack. &quot;Kiteworks received credible threat intelligence from federal intelligence authorities indicating that a threat actor may attempt to target some Kiteworks systems,&quot; said Frank Balonis, Chief…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/kiteworks-urges-customers-to-shut-down.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-5569bca5352e" data-source="Krebs on Security" data-host="krebsonsecurity.com" data-title="U.S. Soldier Gets 70 Months in Prison for AT&amp;T, Verizon Extortions" data-summary="A U.S. Army soldier who pleaded guilty to hacking into multiple telecommunications companies and stealing mobile call and text metadata for more than 100 million AT&amp;T customers in 2024 was sentenced to 70 months in federal prison today and ordered to pay nearly $300,000 in restitution to victims." data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-09-25T21:44:40.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">Krebs on Security</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://krebsonsecurity.com/2026/09/u-s-soldier-gets-70-months-in-prison-for-att-verizon-extortions/" target="_blank" rel="noopener noreferrer">U.S. Soldier Gets 70 Months in Prison for AT&amp;T, Verizon Extortions</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-25T21:44:40.000Z">September 25, 2026 at 9:44 PM UTC</time><a class="item-permalink" href="#reporting-5569bca5352e" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: monitor" data-destination-label="general report">SentryInsight: monitor · general report</a></div>
+          <details class="summary-disclosure">
+            <summary class="summary-toggle" aria-controls="summary-full-15">
+              <span class="summary-preview-text">A U.S. Army soldier who pleaded guilty to hacking into multiple telecommunications companies and stealing mobile call and text metadata for more than 100</span><span class="summary-ellipsis" aria-hidden="true">...</span>
+              <span class="summary-action">Show full summary</span>
+            </summary>
+            <p class="news-summary summary-full" id="summary-full-15">million AT&amp;T customers in 2024 was sentenced to 70 months in federal prison today and ordered to pay nearly $300,000 in restitution to victims.</p>
+          </details>
+        </article>
+        <article class="news-item reporting-item" id="reporting-3e6437721d93" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Kiteworks urges 6-hour server shutdown over potential zero-day attacks" data-summary="Secure file-sharing software company Kiteworks is urging customers worldwide to temporarily shut down their servers on Saturday for a six-hour window after receiving threat intelligence warning of a potentially imminent cyberattack…" data-severity="Critical" data-tags="Vulnerability" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-09-25T21:41:07.000Z">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/kiteworks-urges-6-hour-server-shutdown-over-potential-zero-day-attacks/" target="_blank" rel="noopener noreferrer">Kiteworks urges 6-hour server shutdown over potential zero-day attacks</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-25T21:41:07.000Z">September 25, 2026 at 9:41 PM UTC</time><a class="item-permalink" href="#reporting-3e6437721d93" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Vulnerability</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a></div>
+          <p class="news-summary">Secure file-sharing software company Kiteworks is urging customers worldwide to temporarily shut down their servers on Saturday for a six-hour window after receiving threat intelligence warning of a potentially imminent cyberattack…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/kiteworks-urges-6-hour-server-shutdown-over-potential-zero-day-attacks/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-6e342a8a97cf" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="ShinyHunters hacked Clop leak site using Grav CMS path traversal flaw" data-summary="The Clop ransomware gang has moved its data leak site to a new Tor address after confirming its previous server was compromised and defaced through an unpatched Grav CMS flaw that BleepingComputer has learned is an unauthenticated path traversal vulnerability…" data-severity="Critical" data-tags="Ransomware,Vulnerability,Data Breach" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-09-25T20:57:55.000Z">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/shinyhunters-hacked-clop-leak-site-using-grav-cms-path-traversal-flaw/" target="_blank" rel="noopener noreferrer">ShinyHunters hacked Clop leak site using Grav CMS path traversal flaw</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-25T20:57:55.000Z">September 25, 2026 at 8:57 PM UTC</time><a class="item-permalink" href="#reporting-6e342a8a97cf" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Ransomware</span><span class="chip">Vulnerability</span><span class="chip">Data Breach</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a></div>
+          <p class="news-summary">The Clop ransomware gang has moved its data leak site to a new Tor address after confirming its previous server was compromised and defaced through an unpatched Grav CMS flaw that BleepingComputer has learned is an unauthenticated path traversal vulnerability…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/shinyhunters-hacked-clop-leak-site-using-grav-cms-path-traversal-flaw/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-3396a5a7c11d" data-source="Dark Reading" data-host="darkreading.com" data-title="How the CISO CFO Relationship is a Key to Cybersecurity Success" data-summary="Building a financial bridge: Organizations where CISOs and CFOs align on cybersecurity strategy to protect assets, manage risk and enable business growth are better prepared to face today&#39;s threat landscape." data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-09-25T20:28:10.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">Dark Reading</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/how-to-manage-ciso-cfo-relationship-cybersecurity-success" target="_blank" rel="noopener noreferrer">How the CISO CFO Relationship is a Key to Cybersecurity Success</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-25T20:28:10.000Z">September 25, 2026 at 8:28 PM UTC</time><a class="item-permalink" href="#reporting-3396a5a7c11d" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: monitor" data-destination-label="general report">SentryInsight: monitor · general report</a></div>
+          <details class="summary-disclosure">
+            <summary class="summary-toggle" aria-controls="summary-full-18">
+              <span class="summary-preview-text">Building a financial bridge: Organizations where CISOs and CFOs align on cybersecurity strategy to protect assets, manage risk and enable business growth are</span><span class="summary-ellipsis" aria-hidden="true">...</span>
+              <span class="summary-action">Show full summary</span>
+            </summary>
+            <p class="news-summary summary-full" id="summary-full-18">better prepared to face today&#39;s threat landscape.</p>
+          </details>
+        </article>
+        <article class="news-item reporting-item" id="reporting-b8cf2c66bdcb" data-source="Dark Reading" data-host="darkreading.com" data-title="AI Sandbox Escapes: Why Forensic Readiness Matters More Than Containment" data-summary="When autonomous AI agents &quot;escape the sandbox,&quot; the real story isn&#39;t rogue machines — it&#39;s the same access-control failures we&#39;ve seen for decades." data-severity="Monitor" data-tags="AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-09-25T18:39:32.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">Dark Reading</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/ai-sandbox-escapes-forensic-readiness" target="_blank" rel="noopener noreferrer">AI Sandbox Escapes: Why Forensic Readiness Matters More Than Containment</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-25T18:39:32.000Z">September 25, 2026 at 6:39 PM UTC</time><a class="item-permalink" href="#reporting-b8cf2c66bdcb" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">AI Security</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: monitor" data-destination-label="general report">SentryInsight: monitor · general report</a></div>
+          <p class="news-summary">When autonomous AI agents &quot;escape the sandbox,&quot; the real story isn&#39;t rogue machines — it&#39;s the same access-control failures we&#39;ve seen for decades.</p>
+        </article>
+        <article class="news-item reporting-item" id="reporting-53c3f861257c" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Elementor WordPress flaw lets attackers create admin accounts" data-summary="A cross-site request forgery (CSRF) vulnerability in the Elementor plugin for WordPress could allow an unauthenticated attacker to create administrator accounts…" data-severity="Elevated" data-tags="Vulnerability" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-09-25T18:13:33.000Z">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/elementor-wordpress-flaw-lets-attackers-create-admin-accounts/" target="_blank" rel="noopener noreferrer">Elementor WordPress flaw lets attackers create admin accounts</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-25T18:13:33.000Z">September 25, 2026 at 6:13 PM UTC</time><a class="item-permalink" href="#reporting-53c3f861257c" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Vulnerability</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a></div>
+          <p class="news-summary">A cross-site request forgery (CSRF) vulnerability in the Elementor plugin for WordPress could allow an unauthenticated attacker to create administrator accounts…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/elementor-wordpress-flaw-lets-attackers-create-admin-accounts/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-2776184929ae" data-source="Dark Reading" data-host="darkreading.com" data-title="What We Missed: Google Gemini Joins the AI Escape Party" data-summary="In this video conversation, Dark Reading editors discuss some of the news they didn&#39;t get a chance to cover, from Google Gemini models breaking containment to ShinyHunters ratting on TeamPCP hackers." data-severity="Monitor" data-tags="AI Security" data-vendors="Google" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-25T17:56:23.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">Dark Reading</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/what-we-missed-google-gemini-ai-escape-party" target="_blank" rel="noopener noreferrer">What We Missed: Google Gemini Joins the AI Escape Party</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-25T17:56:23.000Z">September 25, 2026 at 5:56 PM UTC</time><a class="item-permalink" href="#reporting-2776184929ae" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Google</span><span class="chip">AI Security</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
+          <p class="news-summary">In this video conversation, Dark Reading editors discuss some of the news they didn&#39;t get a chance to cover, from Google Gemini models breaking containment to ShinyHunters ratting on TeamPCP hackers.</p>
+        </article>
+        <article class="news-item reporting-item" id="reporting-2e9b76e63d00" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="CISA warns of Sharepoint, WSO2, Adobe Commerce flaws exploited in attacks" data-summary="The Cybersecurity and Infrastructure Security Agency (CISA) warns that hackers are exploiting a critical authentication bypass vulnerability (CVE-2026-5430) affecting multiple products from enterprise software provider WSO2…" data-severity="Elevated" data-tags="Vulnerability,Exploitation" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-09-25T17:24:20.000Z">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/cisa-warns-of-sharepoint-wso2-adobe-commerce-flaws-exploited-in-attacks/" target="_blank" rel="noopener noreferrer">CISA warns of Sharepoint, WSO2, Adobe Commerce flaws exploited in attacks</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-25T17:24:20.000Z">September 25, 2026 at 5:24 PM UTC</time><a class="item-permalink" href="#reporting-2e9b76e63d00" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a></div>
+          <p class="news-summary">The Cybersecurity and Infrastructure Security Agency (CISA) warns that hackers are exploiting a critical authentication bypass vulnerability (CVE-2026-5430) affecting multiple products from enterprise software provider WSO2…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/cisa-warns-of-sharepoint-wso2-adobe-commerce-flaws-exploited-in-attacks/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-5324567d954d" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Anthropic rolls out up to $250 in free Claude Code credits, but only for cloud sessions" data-summary="Anthropic now allows you to run Claude Code via cloud sessions without signing up for the research preview, and it&#39;s offering up to $250 in free usage credits, so more users can give it a try…" data-severity="Monitor" data-tags="Cloud" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-09-25T16:00:00.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/anthropic-rolls-out-up-to-250-in-free-claude-code-credits-but-only-for-cloud-sessions/" target="_blank" rel="noopener noreferrer">Anthropic rolls out up to $250 in free Claude Code credits, but only for cloud sessions</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-25T16:00:00.000Z">September 25, 2026 at 4:00 PM UTC</time><a class="item-permalink" href="#reporting-5324567d954d" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Cloud</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: monitor" data-destination-label="general report">SentryInsight: monitor · general report</a></div>
+          <p class="news-summary">Anthropic now allows you to run Claude Code via cloud sessions without signing up for the research preview, and it&#39;s offering up to $250 in free usage credits, so more users can give it a try…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/artificial-intelligence/anthropic-rolls-out-up-to-250-in-free-claude-code-credits-but-only-for-cloud-sessions/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-9c3f4fd62157" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="OpenAI is preparing a $500 ChatGPT Pro Max plan with faster Codex" data-summary="OpenAI appears to be preparing a new ChatGPT Pro Max subscription that could cost $500 per month, but it&#39;s unclear when it&#39;ll begin rolling out…" data-severity="Monitor" data-tags="" data-vendors="OpenAI" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-25T14:54:33.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/openai-is-preparing-a-500-chatgpt-pro-max-plan-with-faster-codex/" target="_blank" rel="noopener noreferrer">OpenAI is preparing a $500 ChatGPT Pro Max plan with faster Codex</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-25T14:54:33.000Z">September 25, 2026 at 2:54 PM UTC</time><a class="item-permalink" href="#reporting-9c3f4fd62157" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">OpenAI</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
+          <p class="news-summary">OpenAI appears to be preparing a new ChatGPT Pro Max subscription that could cost $500 per month, but it&#39;s unclear when it&#39;ll begin rolling out…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/artificial-intelligence/openai-is-preparing-a-500-chatgpt-pro-max-plan-with-faster-codex/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-d6c9977600d4" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="With the Rise of AI Agents, SOC 2 Should Adapt or Risk Irrelevance" data-summary="AI agents can operate through human credentials and take actions that existing SOC 2 controls may not distinguish from human activity. Token Security explains why SOC 2 needs to adapt to address the security gaps created by agent identities…" data-severity="Elevated" data-tags="Identity,AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Recent" data-published-at="2026-09-25T14:51:10.000Z">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/with-the-rise-of-ai-agents-soc-2-should-adapt-or-risk-irrelevance/" target="_blank" rel="noopener noreferrer">With the Rise of AI Agents, SOC 2 Should Adapt or Risk Irrelevance</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-25T14:51:10.000Z">September 25, 2026 at 2:51 PM UTC</time><a class="item-permalink" href="#reporting-d6c9977600d4" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Identity</span><span class="chip">AI Security</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a></div>
+          <p class="news-summary">AI agents can operate through human credentials and take actions that existing SOC 2 controls may not distinguish from human activity. Token Security explains why SOC 2 needs to adapt to address the security gaps created by agent identities…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/with-the-rise-of-ai-agents-soc-2-should-adapt-or-risk-irrelevance/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-fba7dac2bfe1" data-source="Dark Reading" data-host="darkreading.com" data-title="Stopping IT Worker Scams Requires Revamped HR Process" data-summary="Training human-resource managers in the latest tactics and warning signs goes a long way toward blunting the threat, but automated analysis can help even more." data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-09-25T14:46:13.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">Dark Reading</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/stopping-it-worker-scams-revamped-hr-process" target="_blank" rel="noopener noreferrer">Stopping IT Worker Scams Requires Revamped HR Process</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-25T14:46:13.000Z">September 25, 2026 at 2:46 PM UTC</time><a class="item-permalink" href="#reporting-fba7dac2bfe1" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: monitor" data-destination-label="general report">SentryInsight: monitor · general report</a></div>
+          <p class="news-summary">Training human-resource managers in the latest tactics and warning signs goes a long way toward blunting the threat, but automated analysis can help even more.</p>
+        </article>
+        <article class="news-item reporting-item" id="reporting-6c0fd01aad01" data-source="The Hacker News" data-host="thehackernews.com" data-title="Compromised GitHub Actions Came Back Online and Resumed Executing Mini Shai-Hulud Malware" data-summary="Two actions-cool GitHub Actions have been disabled for a second time after the repositories became accessible last week, months after they were compromised during the May 2026 Mini Shai-Hulud campaign. The affected GitHub Actions are listed below - actions-cool/issues-helper actions-cool/maintain-one-comment Visiting either of the repositories now shows the message: &quot;Access to this…" data-severity="Elevated" data-tags="Malware,Supply Chain" data-vendors="GitHub" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-25T14:44:41.000Z">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/09/compromised-github-actions-came-back.html" target="_blank" rel="noopener noreferrer">Compromised GitHub Actions Came Back Online and Resumed Executing Mini Shai-Hulud Malware</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-25T14:44:41.000Z">September 25, 2026 at 2:44 PM UTC</time><a class="item-permalink" href="#reporting-6c0fd01aad01" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">GitHub</span><span class="chip">Malware</span><span class="chip">Supply Chain</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
+          <p class="news-summary">Two actions-cool GitHub Actions have been disabled for a second time after the repositories became accessible last week, months after they were compromised during the May 2026 Mini Shai-Hulud campaign. The affected GitHub Actions are listed below - actions-cool/issues-helper actions-cool/maintain-one-comment Visiting either of the repositories now shows the message: &quot;Access to this…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/compromised-github-actions-came-back.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-4731c385479b" data-source="The Hacker News" data-host="thehackernews.com" data-title="PamStealer macOS Malware Adds Live C2 Payload Decryption and Multi-Layer Persistence" data-summary="Cybersecurity researchers have flagged a new version of PamStealer that ensures that the main payload can only be recovered using a server-side decryption chain. The latest artifacts, per Jamf Threat Labs, continue to rely on the same JavaScript for Automation (JXA) dropper mechanism, but modify the lure and the delivery method. &quot;Where earlier variants embedded their payload key material…" data-severity="Elevated" data-tags="Malware" data-vendors="Apple" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-25T13:18:06.000Z">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/09/pamstealer-macos-malware-adds-live-c2.html" target="_blank" rel="noopener noreferrer">PamStealer macOS Malware Adds Live C2 Payload Decryption and Multi-Layer Persistence</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-25T13:18:06.000Z">September 25, 2026 at 1:18 PM UTC</time><a class="item-permalink" href="#reporting-4731c385479b" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Apple</span><span class="chip">Malware</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
+          <p class="news-summary">Cybersecurity researchers have flagged a new version of PamStealer that ensures that the main payload can only be recovered using a server-side decryption chain. The latest artifacts, per Jamf Threat Labs, continue to rely on the same JavaScript for Automation (JXA) dropper mechanism, but modify the lure and the delivery method. &quot;Where earlier variants embedded their payload key material…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/pamstealer-macos-malware-adds-live-c2.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-b77adcfbe2b6" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft plans to deprecate Windows Deployment Services" data-summary="Microsoft announced it will deprecate the Windows Deployment Services (WDS) server role starting with the next Windows Server release…" data-severity="Monitor" data-tags="" data-vendors="Microsoft" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-25T12:40:59.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-to-deprecate-windows-deployment-services-after-windows-server-2025/" target="_blank" rel="noopener noreferrer">Microsoft plans to deprecate Windows Deployment Services</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-25T12:40:59.000Z">September 25, 2026 at 12:40 PM UTC</time><a class="item-permalink" href="#reporting-b77adcfbe2b6" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Microsoft</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
+          <p class="news-summary">Microsoft announced it will deprecate the Windows Deployment Services (WDS) server role starting with the next Windows Server release…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/microsoft/microsoft-to-deprecate-windows-deployment-services-after-windows-server-2025/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-e20c79b40799" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Rydox marketplace admin pleads guilty, faces 22 years in prison" data-summary="A Kosovar national has pleaded guilty to operating Rydox, a large illegal online marketplace that sold stolen personal information, login credentials, credit card details, and cybercrime tools…" data-severity="Elevated" data-tags="Identity" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Recent" data-published-at="2026-09-25T11:35:14.000Z">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/rydox-marketplace-admin-pleads-guilty-faces-22-years-in-prison/" target="_blank" rel="noopener noreferrer">Rydox marketplace admin pleads guilty, faces 22 years in prison</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-25T11:35:14.000Z">September 25, 2026 at 11:35 AM UTC</time><a class="item-permalink" href="#reporting-e20c79b40799" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Identity</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a></div>
+          <p class="news-summary">A Kosovar national has pleaded guilty to operating Rydox, a large illegal online marketplace that sold stolen personal information, login credentials, credit card details, and cybercrime tools…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/rydox-marketplace-admin-pleads-guilty-faces-22-years-in-prison/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-5859ebb6f1f8" data-source="The Hacker News" data-host="thehackernews.com" data-title="The SOC Doesn&#39;t Need to Start Over with Every Alert" data-summary="Security leaders keep debating whether AI will produce an entirely new class of cyberattack. The nearer change is quieter and already visible: AI has made a failed attack cheap to retry. The routine version looks like this. An attacker lands on a low-privilege cloud account, and the first try at privilege escalation goes nowhere. That dead end used to cost hours of documentation reading…" data-severity="Monitor" data-tags="Cloud,AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-09-25T11:30:00.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/09/the-soc-doesnt-need-to-start-over-with.html" target="_blank" rel="noopener noreferrer">The SOC Doesn&#39;t Need to Start Over with Every Alert</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-25T11:30:00.000Z">September 25, 2026 at 11:30 AM UTC</time><a class="item-permalink" href="#reporting-5859ebb6f1f8" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Cloud</span><span class="chip">AI Security</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: monitor" data-destination-label="general report">SentryInsight: monitor · general report</a></div>
+          <p class="news-summary">Security leaders keep debating whether AI will produce an entirely new class of cyberattack. The nearer change is quieter and already visible: AI has made a failed attack cheap to retry. The routine version looks like this. An attacker lands on a low-privilege cloud account, and the first try at privilege escalation goes nowhere. That dead end used to cost hours of documentation reading…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/the-soc-doesnt-need-to-start-over-with.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-0fba6d21f983" data-source="The Hacker News" data-host="thehackernews.com" data-title="Bitget Says Suspected North Korean Hackers Stole $351.6M After Backend Compromise" data-summary="Cryptocurrency exchange Bitget said suspected North Korean threat actors have stolen $351.6 million from its hot and warm wallets. &quot;At 18:31 UTC on September 24, 2026, Bitget&#39;s security systems identified unauthorized transfers involving a limited number of hot wallets,&quot; BitGet said in a post shared on X. &quot;Bitget&#39;s cold wallets and the overwhelming majority of platform assets remain…" data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Recent" data-published-at="2026-09-25T10:35:55.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/09/bitget-says-suspected-north-korean.html" target="_blank" rel="noopener noreferrer">Bitget Says Suspected North Korean Hackers Stole $351.6M After Backend Compromise</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-25T10:35:55.000Z">September 25, 2026 at 10:35 AM UTC</time><a class="item-permalink" href="#reporting-0fba6d21f983" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a></div>
+          <p class="news-summary">Cryptocurrency exchange Bitget said suspected North Korean threat actors have stolen $351.6 million from its hot and warm wallets. &quot;At 18:31 UTC on September 24, 2026, Bitget&#39;s security systems identified unauthorized transfers involving a limited number of hot wallets,&quot; BitGet said in a post shared on X. &quot;Bitget&#39;s cold wallets and the overwhelming majority of platform assets remain…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/bitget-says-suspected-north-korean.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-a32e62f50e70" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft: Recent Windows updates cause desktop loading issues" data-summary="Microsoft has confirmed that some users may experience desktop loading issues, including black screens, after installing the August 2026 preview updates and subsequent updates…" data-severity="Monitor" data-tags="" data-vendors="Microsoft" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-25T10:30:38.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-recent-windows-updates-cause-desktop-loading-issues/" target="_blank" rel="noopener noreferrer">Microsoft: Recent Windows updates cause desktop loading issues</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-25T10:30:38.000Z">September 25, 2026 at 10:30 AM UTC</time><a class="item-permalink" href="#reporting-a32e62f50e70" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Microsoft</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
+          <p class="news-summary">Microsoft has confirmed that some users may experience desktop loading issues, including black screens, after installing the August 2026 preview updates and subsequent updates…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/microsoft/microsoft-recent-windows-updates-cause-desktop-loading-issues/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-8479bfbd51e5" data-source="The Hacker News" data-host="thehackernews.com" data-title="Roundcube Pre-Auth SQL Injection Flaw Actively Exploited in the Wild" data-summary="The Canadian Centre for Cyber Security has warned that a now-patched Roundcube Webmail vulnerability is being actively exploited in the wild. The vulnerability in question is CVE-2026-48842 (CVSS score: 8.1), a pre-authentication SQL injection in the virtuser_query plugin of Roundcube Webmail versions 1.6.x before 1.6.16 and 1.7.x before 1.7.1. The issue stems from a preg_replace() backslash…" data-severity="Critical" data-tags="Vulnerability,Exploitation" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-09-25T10:14:02.000Z">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/09/roundcube-pre-auth-sql-injection-flaw.html" target="_blank" rel="noopener noreferrer">Roundcube Pre-Auth SQL Injection Flaw Actively Exploited in the Wild</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-25T10:14:02.000Z">September 25, 2026 at 10:14 AM UTC</time><a class="item-permalink" href="#reporting-8479bfbd51e5" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/#cve-2026-48842" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="CVE reference: CVE-2026-48842">SentryInsight: incident watch · CVE reference: CVE-2026-48842</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a></div>
+          <p class="news-summary">The Canadian Centre for Cyber Security has warned that a now-patched Roundcube Webmail vulnerability is being actively exploited in the wild. The vulnerability in question is CVE-2026-48842 (CVSS score: 8.1), a pre-authentication SQL injection in the virtuser_query plugin of Roundcube Webmail versions 1.6.x before 1.6.16 and 1.7.x before 1.7.1. The issue stems from a preg_replace() backslash…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/roundcube-pre-auth-sql-injection-flaw.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      A Rico Manifesto project by <a href="https://ricomanifesto.com/">Michael Rico</a> • Retained issue · ages at retention · <a href="index.json">Issue data</a> • <a data-rss-link href="../../feed.xml" aria-label="Open generated RSS feed">RSS Feed</a>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const root = document.documentElement;
+      const themeKey = 'sentrydigest:theme';
+      const saved = localStorage.getItem(themeKey);
+      root.setAttribute('data-theme', saved === 'dark' ? 'dark' : 'light');
+      const btn = document.getElementById('themeToggle');
+      btn && btn.addEventListener('click', function(){
+        const dark = root.getAttribute('data-theme') === 'dark';
+        root.setAttribute('data-theme', dark ? 'light' : 'dark');
+        localStorage.setItem(themeKey, dark ? 'light' : 'dark');
+      });
+
+
+      const q = (sel) => document.querySelector(sel);
+      const qa = (sel) => Array.prototype.slice.call(document.querySelectorAll(sel));
+      const search = q('#search');
+      const sourceFilter = q('#sourceFilter');
+      const severityFilter = q('#severityFilter');
+      const tagFilter = q('#tagFilter');
+      const vendorFilter = q('#vendorFilter');
+      const ageFilter = q('#ageFilter');
+      const handoffFilter = q('#handoffFilter');
+      const emptyFilteredState = q('#emptyFilteredState');
+      const emptyFilteredMessage = q('#emptyFilteredMessage');
+      const activeFilters = q('#activeFilters');
+      const filterStatusAnnouncement = q('#filterStatusAnnouncement');
+      const resetFilters = q('#resetFilters');
+      const emptyResetFilters = q('#emptyResetFilters');
+      const advancedFilters = q('#advancedFilters');
+      const filterInsights = q('#filterInsights');
+      const sourceFilterStatus = q('[data-source-filter-status]');
+      const operatorLanes = qa('.operator-lane');
+      const sourceCoverageButtons = qa('[data-source-filter]');
+      const stats = q('#stats');
+      const cards = qa('article.news-item');
+      const cadenceStatus = q('.issue-trail-cadence');
+      const cadenceLabel = cadenceStatus && cadenceStatus.querySelector('[data-cadence-label]');
+      const digestUpdatedTime = q('.issue-trail-updated');
+      const filterParams = {
+        search: 'q',
+        sourceFilter: 'source',
+        severityFilter: 'severity',
+        tagFilter: 'tag',
+        vendorFilter: 'vendor',
+        ageFilter: 'age',
+        handoffFilter: 'handoff',
+      };
+      const filterControls = {
+        search,
+        sourceFilter,
+        severityFilter,
+        tagFilter,
+        vendorFilter,
+        ageFilter,
+        handoffFilter,
+      };
+      const filterLabels = {
+        search: 'Search',
+        sourceFilter: 'Source',
+        severityFilter: 'Severity',
+        tagFilter: 'Topic',
+        vendorFilter: 'Vendor',
+        ageFilter: 'Age',
+        handoffFilter: 'Handoff',
+      };
+
+      function applyQueryState(){
+        const params = new URLSearchParams(window.location.search);
+        Object.keys(filterParams).forEach(function(key){
+          const control = filterControls[key];
+          if (!control) return;
+          const value = params.get(filterParams[key]);
+          if (value !== null) control.value = value;
+        });
+      }
+
+      function syncQueryState(){
+        if (!window.history || !window.history.replaceState) return;
+        const params = new URLSearchParams(window.location.search);
+        Object.keys(filterParams).forEach(function(key){
+          const control = filterControls[key];
+          const value = control && control.value || '';
+          if (value) {
+            params.set(filterParams[key], value);
+          } else {
+            params.delete(filterParams[key]);
+          }
+        });
+        const nextSearch = params.toString();
+        const nextUrl = window.location.pathname + (nextSearch ? '?' + nextSearch : '') + window.location.hash;
+        window.history.replaceState(null, '', nextUrl);
+      }
+
+      function getControlLabel(control){
+        if (!control) return '';
+        if (control.tagName === 'SELECT' && control.selectedOptions && control.selectedOptions.length > 0) {
+          return control.selectedOptions[0].textContent || control.value;
+        }
+        return control.value || '';
+      }
+
+      function renderActiveFilters(){
+        if (!activeFilters) return;
+        const activeFiltersList = Object.keys(filterControls)
+          .map(function(key){
+            const control = filterControls[key];
+            const value = control && control.value || '';
+            const label = getControlLabel(control);
+            return value ? { key, label } : null;
+          })
+          .filter(Boolean);
+        activeFilters.textContent = '';
+        activeFilters.hidden = activeFiltersList.length === 0;
+        if (resetFilters) resetFilters.hidden = activeFiltersList.length === 0;
+        activeFiltersList.forEach(function(activeFilter){
+          const key = activeFilter.key;
+          const label = activeFilter.label;
+          const chip = document.createElement('span');
+          chip.className = 'active-filter-chip';
+          chip.setAttribute('role', 'listitem');
+          const chipText = document.createElement('span');
+          chipText.textContent = filterLabels[key] + ': ' + label;
+          const clearButton = document.createElement('button');
+          clearButton.className = 'active-filter-clear';
+          clearButton.type = 'button';
+          clearButton.setAttribute('data-filter-key', key);
+          clearButton.setAttribute('aria-label', 'Clear ' + filterLabels[key] + ': ' + label + ' filter');
+          clearButton.textContent = '×';
+          chip.appendChild(chipText);
+          chip.appendChild(clearButton);
+          activeFilters.appendChild(chip);
+        });
+      }
+
+      function incrementCount(counts, value){
+        if (!value) return;
+        counts[value] = (counts[value] || 0) + 1;
+      }
+
+      function collectListCounts(counts, rawValue){
+        (rawValue || '').split(',').filter(Boolean).forEach(function(value){
+          incrementCount(counts, value);
+        });
+      }
+
+      function appendInsightGroup(label, counts, limit){
+        const entries = Object.keys(counts)
+          .map(function(value){ return { value, count: counts[value] }; })
+          .sort(function(a, b){ return b.count - a.count || a.value.localeCompare(b.value); })
+          .slice(0, limit);
+        entries.forEach(function(entry){
+          const chip = document.createElement('span');
+          chip.className = 'filter-insight-chip';
+          chip.textContent = label + ': ' + entry.value + ' ' + entry.count;
+          filterInsights.appendChild(chip);
+        });
+      }
+
+      function renderFilterInsights(visibleCards, hasAnyFilter){
+        if (!filterInsights) return;
+        filterInsights.textContent = '';
+        filterInsights.hidden = visibleCards.length === 0 || !hasAnyFilter;
+        if (visibleCards.length === 0 || !hasAnyFilter) return;
+        const label = document.createElement('span');
+        label.className = 'filter-insights-label';
+        label.textContent = 'Current results';
+        filterInsights.appendChild(label);
+        const severityCounts = {};
+        const topicCounts = {};
+        const vendorCounts = {};
+        const handoffCounts = {};
+        visibleCards.forEach(function(card){
+          incrementCount(severityCounts, card.getAttribute('data-severity'));
+          collectListCounts(topicCounts, card.getAttribute('data-tags'));
+          collectListCounts(vendorCounts, card.getAttribute('data-vendors'));
+          collectListCounts(handoffCounts, card.getAttribute('data-handoff-cues'));
+        });
+        appendInsightGroup('Severity', severityCounts, 3);
+        appendInsightGroup('Topic', topicCounts, 3);
+        appendInsightGroup('Vendor', vendorCounts, 3);
+        appendInsightGroup('Handoff', handoffCounts, 2);
+      }
+
+      function getEmptyFilteredMessage(src, hasComposedFilters){
+        const sourceLabel = src ? getControlLabel(sourceFilter) : '';
+        return sourceLabel && hasComposedFilters ? 'No ' + sourceLabel + ' articles match the current filters.' : 'No articles match the current filters.';
+      }
+
+      function renderEmptyFilteredState(visible, src, hasComposedFilters){
+        if (!emptyFilteredState) return;
+        emptyFilteredState.hidden = visible !== 0;
+        if (visible !== 0) return;
+        const messageTarget = emptyFilteredMessage || emptyFilteredState;
+        messageTarget.textContent = getEmptyFilteredMessage(src, hasComposedFilters);
+      }
+
+      function getFilterStatusText(visible, total, actionLabel, emptyFilteredStatusText){
+        const totalArticleLabel = total === 1 ? 'article' : 'articles';
+        const resultText = emptyFilteredStatusText ? emptyFilteredStatusText + ' Showing ' + visible + ' of ' + total + ' ' + totalArticleLabel + '.' : 'Showing ' + visible + ' of ' + total + ' ' + totalArticleLabel + '.';
+        return actionLabel ? actionLabel + ' ' + resultText : resultText;
+      }
+
+      function focusFilterRecoveryTarget(){
+        if (search && typeof search.focus === 'function') search.focus();
+      }
+
+      function focusActiveFilterRecoveryTarget(preferredIndex){
+        const remainingClearButtons = activeFilters ? Array.from(activeFilters.querySelectorAll('.active-filter-clear')) : [];
+        const nextClearButton = remainingClearButtons[Math.min(preferredIndex, remainingClearButtons.length - 1)];
+        if (nextClearButton && typeof nextClearButton.focus === 'function') {
+          nextClearButton.focus();
+          return;
+        }
+        focusFilterRecoveryTarget();
+      }
+
+      function focusSourceShortcutRecoveryTarget(source){
+        const targetButton = sourceCoverageButtons.find(function(button){
+          return button.getAttribute('data-source-filter') === source;
+        });
+        if (targetButton && typeof targetButton.focus === 'function') {
+          targetButton.focus();
+          return;
+        }
+        focusFilterRecoveryTarget();
+      }
+
+      function updateOperatorLanes(visibleCards){
+        operatorLanes.forEach(function(lane){
+          const cue = lane.getAttribute('data-lane-cue');
+          const countTarget = lane.querySelector('[data-lane-count]');
+          const linkTarget = lane.querySelector('[data-lane-link]');
+          const emptyTarget = lane.querySelector('[data-lane-empty]');
+          const destinationTarget = lane.querySelector('[data-lane-destination]');
+          const destinationLabel = lane.querySelector('[data-lane-destination-label]');
+          const matchingCards = visibleCards.filter(function(card){
+            return card.getAttribute('data-handoff-cues').split(',').filter(Boolean).includes(cue);
+          });
+          const itemLabel = matchingCards.length === 1 ? 'item' : 'items';
+          const latestLink = matchingCards[0] && matchingCards[0].querySelector('.news-title a');
+          if (countTarget) {
+            const strongCount = document.createElement('strong');
+            strongCount.textContent = matchingCards.length;
+            countTarget.textContent = '';
+            countTarget.appendChild(strongCount);
+            countTarget.appendChild(document.createTextNode(' ' + itemLabel));
+          }
+          if (linkTarget) {
+            linkTarget.hidden = !latestLink;
+            linkTarget.textContent = latestLink ? latestLink.textContent : '';
+            if (latestLink) {
+              linkTarget.setAttribute('href', latestLink.getAttribute('href'));
+            } else {
+              linkTarget.removeAttribute('href');
+            }
+          }
+          const handoff = matchingCards[0] && Array.from(matchingCards[0].querySelectorAll('[data-handoff-cue]'))
+            .find(function(link){ return link.getAttribute('data-handoff-cue') === cue; });
+          if (destinationTarget) {
+            if (handoff) {
+              destinationTarget.setAttribute('href', handoff.getAttribute('href'));
+              if (destinationLabel) destinationLabel.textContent = '· ' + handoff.getAttribute('data-destination-label');
+            } else {
+              destinationTarget.removeAttribute('href');
+              if (destinationLabel) destinationLabel.textContent = '';
+            }
+          }
+          if (emptyTarget) emptyTarget.hidden = Boolean(latestLink);
+        });
+      }
+
+      const freshHours = 6;
+
+      function updateCadenceHealth(){
+        if (!cadenceStatus || !cadenceLabel || !digestUpdatedTime) return;
+        const updatedAt = Date.parse(digestUpdatedTime.getAttribute('datetime') || '');
+        const cadenceHours = Number(cadenceStatus.getAttribute('data-cadence-hours'));
+        if (!Number.isFinite(updatedAt) || !Number.isFinite(cadenceHours) || cadenceHours <= 0) return;
+        const cadenceDeadlineMs = cadenceHours * 60 * 60 * 1000;
+        const isOverdue = Date.now() - updatedAt > cadenceDeadlineMs;
+        cadenceStatus.setAttribute('data-cadence-state', isOverdue ? 'overdue' : 'current');
+        cadenceLabel.textContent = isOverdue ? 'running behind its 3h cadence' : '3h cadence';
+      }
+
+      function getAgeState(publishedAt){
+        const publishedTime = new Date(publishedAt).getTime();
+        if (!Number.isFinite(publishedTime) || publishedTime === 0) {
+          return { label: 'Undated', detail: 'date unavailable' };
+        }
+        const ageMs = Math.max(0, 1790543336224 - publishedTime);
+        const ageMinutes = Math.floor(ageMs / (60 * 1000));
+        const ageHours = Math.floor(ageMs / (60 * 60 * 1000));
+        const ageDays = Math.floor(ageMs / (24 * 60 * 60 * 1000));
+        const detail = ageHours < 1 ? ageMinutes + 'm old' : ageHours < 24 ? ageHours + 'h old' : ageDays + 'd old';
+        const label = ageHours < freshHours ? 'Fresh' : ageDays < 4 ? 'Recent' : 'Older';
+        return { label, detail };
+      }
+
+      function updateFreshness(){
+        cards.forEach(function(card){
+          const age = getAgeState(card.getAttribute('data-published-at'));
+          const labelTarget = card.querySelector('[data-age-label]');
+          const detailTarget = card.querySelector('[data-age-detail]');
+          card.setAttribute('data-age-bucket', age.label);
+          if (labelTarget) labelTarget.textContent = age.label;
+          if (detailTarget) detailTarget.textContent = age.detail;
+        });
+      }
+
+      function update(statusActionLabel){
+        const term = (search && search.value || '').toLowerCase().trim();
+        const src = sourceFilter && sourceFilter.value || '';
+        const severity = severityFilter && severityFilter.value || '';
+        const tag = tagFilter && tagFilter.value || '';
+        const vendor = vendorFilter && vendorFilter.value || '';
+        const age = ageFilter && ageFilter.value || '';
+        const handoff = handoffFilter && handoffFilter.value || '';
+        let visible = 0;
+        const visibleCards = [];
+        cards.forEach(card => {
+          const matchesText = !term || (card.getAttribute('data-title').toLowerCase().includes(term) || card.getAttribute('data-summary').toLowerCase().includes(term));
+          const matchesSource = !src || card.getAttribute('data-source') === src;
+          const matchesSeverity = !severity || card.getAttribute('data-severity') === severity;
+          const matchesTag = !tag || card.getAttribute('data-tags').split(',').filter(Boolean).includes(tag);
+          const matchesVendor = !vendor || card.getAttribute('data-vendors').split(',').filter(Boolean).includes(vendor);
+          const matchesAge = !age || card.getAttribute('data-age-bucket') === age;
+          const matchesHandoff = !handoff || card.getAttribute('data-handoff-cues').split(',').filter(Boolean).includes(handoff);
+          const show = matchesText && matchesSource && matchesSeverity && matchesTag && matchesVendor && matchesAge && matchesHandoff;
+          card.style.display = show ? '' : 'none';
+          if (show) {
+            visible++;
+            visibleCards.push(card);
+          }
+        });
+        const total = 35;
+        const srcCount = 4;
+        const articleLabel = visible === 1 ? 'article' : 'articles';
+        const hasComposedFilters = Boolean(term || severity || tag || vendor || age || handoff);
+        const hasAdvancedFilters = Boolean(severity || tag || vendor || age || handoff);
+        const hasAnyFilter = Boolean(term || src || hasAdvancedFilters);
+        const safeStatusActionLabel = typeof statusActionLabel === 'string' ? statusActionLabel : '';
+        const emptyFilteredStatusText = visible === 0 ? getEmptyFilteredMessage(src, hasComposedFilters) : '';
+        if (stats) {
+          stats.hidden = !hasAnyFilter;
+          stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources';
+        }
+        if (advancedFilters && hasAdvancedFilters) advancedFilters.open = true;
+        if (filterStatusAnnouncement) filterStatusAnnouncement.textContent = getFilterStatusText(visible, total, safeStatusActionLabel, emptyFilteredStatusText);
+        renderEmptyFilteredState(visible, src, hasComposedFilters);
+        sourceCoverageButtons.forEach(function(button){
+          button.setAttribute('aria-pressed', button.getAttribute('data-source-filter') === src ? 'true' : 'false');
+        });
+        if (sourceFilterStatus) {
+          const countLabel = hasComposedFilters ? (articleLabel === 'article' ? 'filtered article' : 'filtered articles') : articleLabel;
+          sourceFilterStatus.textContent = (src ? 'Source filter: ' + getControlLabel(sourceFilter) : 'All contributing feeds') + ' (' + visible + ' ' + countLabel + ')';
+        }
+        renderActiveFilters();
+        renderFilterInsights(visibleCards, hasAnyFilter);
+        updateOperatorLanes(visibleCards);
+        syncQueryState();
+      }
+      if (search) search.addEventListener('input', debounce(update, 120));
+      [sourceFilter, severityFilter, tagFilter, vendorFilter, ageFilter, handoffFilter].forEach(function(filter){
+        if (filter) filter.addEventListener('change', update);
+      });
+      sourceCoverageButtons.forEach(function(button){
+        button.addEventListener('click', function(){
+          if (!sourceFilter) return;
+          const source = button.getAttribute('data-source-filter') || '';
+          const nextSource = sourceFilter.value === source ? '' : source;
+          sourceFilter.value = nextSource;
+          const sourceFilterAction = nextSource ? 'Source filter: ' + getControlLabel(sourceFilter) + '.' : 'Source filter cleared.';
+          update(sourceFilterAction);
+          focusSourceShortcutRecoveryTarget(source);
+        });
+      });
+      function clearFilters(options){
+        Object.keys(filterControls).forEach(function(key){
+          const control = filterControls[key];
+          if (control) control.value = '';
+        });
+        const shouldFocusRecoveryTarget = options && options.focusRecoveryTarget;
+        update('Filters reset.');
+        if (shouldFocusRecoveryTarget) focusFilterRecoveryTarget();
+      }
+      if (activeFilters) activeFilters.addEventListener('click', function(event){
+        const target = event.target;
+        if (!target || !target.matches || !target.matches('.active-filter-clear')) return;
+        const key = target.getAttribute('data-filter-key');
+        const clearButtonsBefore = activeFilters ? Array.from(activeFilters.querySelectorAll('.active-filter-clear')) : [];
+        const clearedIndex = clearButtonsBefore.indexOf(target);
+        const hasRemainingActiveFilters = clearButtonsBefore.length > 1;
+        const clearedLabel = filterLabels[key] || 'Selected';
+        const clearedValue = filterControls[key] ? getControlLabel(filterControls[key]) : '';
+        const clearedStatus = clearedValue ? 'Cleared ' + clearedLabel + ': ' + clearedValue + ' filter.' : 'Cleared ' + clearedLabel + ' filter.';
+        if (filterControls[key]) filterControls[key].value = '';
+        update(clearedStatus);
+        hasRemainingActiveFilters ? focusActiveFilterRecoveryTarget(clearedIndex) : focusFilterRecoveryTarget();
+      });
+      if (resetFilters) resetFilters.addEventListener('click', function(){ clearFilters({ focusRecoveryTarget: true }); });
+      if (emptyResetFilters) emptyResetFilters.addEventListener('click', function(){ clearFilters({ focusRecoveryTarget: true }); });
+
+      window.addEventListener('pageshow', function(){ applyQueryState(); update(); });
+      window.addEventListener('popstate', function(){ applyQueryState(); update(); });
+      applyQueryState();
+      updateCadenceHealth();
+      updateFreshness();
+      update();
+      window.setInterval(function(){
+        updateCadenceHealth();
+        updateFreshness();
+        if (ageFilter && ageFilter.value) update();
+      }, 60 * 1000);
+
+      function debounce(fn, wait){ let t; return function(){ clearTimeout(t); t=setTimeout(fn, wait); } }
+    })();
+  </script>
 </body>
 </html>

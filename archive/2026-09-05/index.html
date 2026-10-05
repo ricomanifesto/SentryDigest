@@ -1,238 +1,1266 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SentryDigest for September 5, 2026</title>
   <meta name="description" content="Reporting retained by SentryDigest on September 5, 2026.">
   <link rel="canonical" href="https://ricomanifesto.github.io/SentryDigest/archive/2026-09-05/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="SentryDigest for September 5, 2026">
+  <meta property="og:description" content="Reporting retained by SentryDigest on September 5, 2026.">
+  <meta property="og:url" content="https://ricomanifesto.github.io/SentryDigest/archive/2026-09-05/">
+  <meta property="og:image" content="https://ricomanifesto.github.io/SentryDigest/assets/social-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SentryDigest for September 5, 2026">
+  <meta name="twitter:description" content="Reporting retained by SentryDigest on September 5, 2026.">
+  <meta name="twitter:image" content="https://ricomanifesto.github.io/SentryDigest/assets/social-preview.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"SentryDigest","url":"https://ricomanifesto.github.io/SentryDigest/","description":"A fresh, scannable cybersecurity brief from trusted sources","author":{"@type":"Person","name":"Michael Rico","url":"https://ricomanifesto.com/"},"publisher":{"@type":"Organization","name":"Rico Manifesto","url":"https://ricomanifesto.com/"},"sameAs":"https://github.com/ricomanifesto/SentryDigest"}</script>
+  <link rel="alternate" type="application/rss+xml" title="SentryDigest RSS Feed" href="../../feed.xml" />
+  <link rel="icon" href="../../assets/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+  <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <meta name="theme-color" content="#2563eb">
   <style>
-    :root{color-scheme:light dark;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}body{margin:0;background:#f7f8fa;color:#172033}main,header,footer{max-width:900px;margin:auto;padding:1.25rem}.reporting-item{background:#fff;border:1px solid #d9deea;border-radius:12px;margin:1rem 0;padding:1rem;scroll-margin-top:1rem}.source,.permalink{color:#59647a;font-size:.9rem}h1,h2{line-height:1.2}h2{font-size:1.15rem}a{color:#1458c0}@media(prefers-color-scheme:dark){body{background:#0b1020;color:#e5e7eb}.reporting-item{background:#141b2f;border-color:#26304a}.source,.permalink{color:#aeb8cd}a{color:#8bb8ff}}
+    :root {
+      --bg: #f7f8fa;
+      --fg: #1f2937;
+      --muted: #6b7280;
+      --card: #ffffff;
+      --card-border: #e5e7eb;
+      --accent: #2563eb;
+      --accent-contrast: #ffffff;
+      --chip: #e5e7eb;
+      --text-small: 0.875rem;
+      --text-body: 1rem;
+      --text-title: 1.125rem;
+    }
+    [data-theme="dark"] {
+      --bg: #0b1020;
+      --fg: #e5e7eb;
+      --muted: #9ca3af;
+      --card: #141b2f;
+      --card-border: #26304a;
+      --accent: #60a5fa;
+      --accent-contrast: #0b1020;
+      --chip: #1f2937;
+    }
+    * { box-sizing: border-box; }
+    body { background: var(--bg); color: var(--fg); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: var(--text-body); line-height: 1.55; margin: 0; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+    header.site-header { background: var(--bg); border-bottom: 1px solid var(--card-border); position: sticky; top: 0; z-index: 10; }
+    .masthead { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand img { width: 28px; height: 28px; border-radius: 6px; }
+    .brand .title { font-size: var(--text-title); font-weight: 700; letter-spacing: -0.01em; margin: 0; }
+    .brand .subtitle { color: var(--muted); font-size: var(--text-small); }
+    .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .advanced-filters { margin-top: 12px; }
+    .advanced-filters-summary, .source-coverage-summary { color: var(--fg); cursor: pointer; font-size: var(--text-small); font-weight: 700; width: fit-content; }
+    .advanced-filters-summary:hover, .source-coverage-summary:hover { color: var(--accent); }
+    .advanced-filters-summary:focus-visible, .source-coverage-summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .filter-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+    .filter-status { align-items: center; display: flex; flex-wrap: wrap; gap: 8px; }
+    .sr-only { clip: rect(0 0 0 0); border: 0; height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; white-space: nowrap; width: 1px; }
+    .active-filters { display: flex; flex-wrap: wrap; gap: 8px; }
+    .active-filters[hidden] { display: none; }
+    .active-filter-chip { align-items: center; background: var(--chip); border-radius: 999px; color: var(--fg); display: inline-flex; font-size: var(--text-small); gap: 6px; min-height: 28px; padding: 4px 8px 4px 10px; }
+    .active-filter-clear { align-items: center; background: transparent; border: 0; border-radius: 999px; color: var(--muted); cursor: pointer; display: inline-flex; font: inherit; height: 18px; justify-content: center; line-height: 1; padding: 0; width: 18px; }
+    .active-filter-clear:hover, .active-filter-clear:focus-visible { background: var(--chip); color: var(--accent); outline: 2px solid var(--accent); outline-offset: 1px; }
+    .search { display: flex; align-items: center; gap: 8px; background: var(--card); border: 1px solid var(--card-border); padding: 8px 10px; border-radius: 10px; }
+    .search:focus-within { border-color: var(--accent); outline: 2px solid var(--accent); outline-offset: 2px; }
+    .search input { background: transparent; border: none; color: var(--fg); font: inherit; font-size: var(--text-small); min-width: 220px; outline: none; }
+    .select { background: var(--card); border: 1px solid var(--card-border); border-radius: 8px; color: var(--fg); font: inherit; font-size: var(--text-small); padding: 8px 10px; }
+    .btn { background: var(--card); border: 1px solid var(--card-border); border-radius: 8px; color: var(--fg); cursor: pointer; font: inherit; font-size: var(--text-small); padding: 8px 10px; }
+    .btn:hover { border-color: var(--accent); }
+    .select:focus-visible, .btn:focus-visible { border-color: var(--accent); outline: 2px solid var(--accent); outline-offset: 2px; }
+    .stats { color: var(--muted); font-size: var(--text-small); margin-top: 8px; }
+    .stats[hidden] { display: none; }
+    .issue-strip { align-items: center; color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px 10px; }
+    .issue-label { color: var(--fg); font-size: var(--text-small); font-weight: 700; }
+    .issue-stat { background: var(--chip); border-radius: 999px; color: var(--fg); font-size: var(--text-small); padding: 3px 8px; }
+    .issue-stat strong { color: var(--accent); }
+    .issue-link { color: var(--accent); font-size: var(--text-small); font-weight: 600; text-decoration: none; }
+    .issue-link:hover { text-decoration: underline; }
+    .issue-trail { align-items: center; color: var(--muted); display: flex; flex-wrap: wrap; font-size: var(--text-small); gap: 6px 10px; margin-top: 6px; }
+    .issue-trail-current { color: var(--fg); font-weight: 600; }
+    .issue-trail a { color: var(--accent); font-weight: 600; text-decoration: none; }
+    .issue-trail a:hover { text-decoration: underline; }
+    .issue-trail a::before, .issue-trail-meta::before { color: var(--muted); content: "›"; font-weight: 400; margin-right: 10px; }
+    .issue-trail-meta { color: var(--muted); font-weight: 500; }
+    .issue-trail-cadence[data-cadence-state="overdue"] { color: var(--fg); font-weight: 650; }
+    .anchor-target { display: block; scroll-margin-top: 96px; }
+    .filter-insights { align-items: center; background: var(--card); border-radius: 8px; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; padding: 10px 12px; }
+    .filter-insights[hidden] { display: none; }
+    .filter-insights-label { color: var(--muted); font-size: var(--text-small); font-weight: 700; }
+    .filter-insight-chip { background: var(--chip); border-radius: 999px; color: var(--fg); font-size: var(--text-small); padding: 4px 10px; }
+    .source-coverage { margin-top: 12px; }
+    .source-coverage-summary span { color: var(--muted); font-weight: 500; margin-left: 6px; }
+    .source-coverage-body { align-items: center; background: var(--card); border-radius: 8px; display: flex; flex-wrap: wrap; gap: 10px 12px; margin-top: 10px; padding: 12px; }
+    .source-counts { display: flex; flex: 1 1 260px; flex-wrap: wrap; gap: 8px; }
+    .source-coverage-actions { align-items: center; display: flex; flex: 1 1 280px; flex-wrap: wrap; gap: 8px 12px; justify-content: flex-end; min-width: 0; }
+    .source-count { background: var(--chip); border: 0; border-radius: 999px; color: var(--fg); cursor: pointer; font: inherit; font-size: var(--text-small); padding: 4px 10px; }
+    .source-count:hover, .source-count[aria-pressed="true"] { color: var(--accent); }
+    .source-count:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .source-count strong { color: var(--accent); margin-left: 4px; }
+    .source-health-summary { align-items: center; color: var(--muted); display: flex; flex: 0 1 auto; flex-wrap: wrap; font-size: var(--text-small); gap: 6px; }
+    .source-health-summary span { background: var(--chip); border-radius: 999px; padding: 3px 8px; }
+    .source-health-summary strong { color: var(--fg); }
+    .source-quiet-feeds { color: var(--muted); display: flex; flex: 1 1 100%; flex-wrap: wrap; font-size: var(--text-small); gap: 6px 12px; }
+    .source-health-note { display: inline-flex; gap: 4px; }
+    .source-health-note[data-health-status="stale"] { color: var(--fg); font-weight: 650; }
+    .insight-context { color: var(--muted); font-size: var(--text-small); margin: 8px 0 0; }
+    .insight-context-link { color: var(--accent); font-weight: 650; }
+    .source-filter-status { color: var(--muted); flex: 0 1 auto; font-size: var(--text-small); font-weight: 700; }
+    .source-coverage a { color: var(--accent); font-size: var(--text-small); font-weight: 600; text-decoration: none; }
+    .source-coverage a:hover { text-decoration: underline; }
+    .feed-link { align-items: center; display: inline-flex; gap: 6px; }
+    .feed-link-count { background: var(--chip); border-radius: 999px; color: var(--muted); font-size: var(--text-small); padding: 2px 8px; }
+    .digest-legend { background: var(--card); border: 0; margin-top: 12px; padding: 0; }
+    .digest-legend-summary { color: var(--fg); cursor: pointer; font-size: var(--text-small); font-weight: 700; }
+    .digest-legend-summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .digest-legend-body { display: grid; gap: 10px; grid-template-columns: minmax(180px, 0.6fr) minmax(0, 1.4fr); margin-top: 10px; }
+    .source-coverage .digest-legend { background: transparent; border: 0; flex: 1 1 260px; margin-top: 0; padding: 0; }
+    .digest-legend-group { align-content: start; display: grid; gap: 8px; min-width: 0; }
+    .digest-legend-heading { color: var(--muted); font-size: var(--text-small); font-weight: 700; }
+    .source-signal-items { display: flex; flex: 1 1 260px; flex-wrap: wrap; gap: 8px; }
+    .source-signal-chip { align-items: baseline; background: var(--chip); border-radius: 999px; display: inline-flex; gap: 6px; padding: 4px 10px; }
+    .source-signal-name { color: var(--fg); font-size: var(--text-small); font-weight: 700; }
+    .source-signal-detail { color: var(--muted); font-size: var(--text-small); }
+    .handoff-cue-legend-items { display: flex; flex: 1 1 260px; flex-wrap: wrap; gap: 8px; }
+    .handoff-cue-legend-chip { align-items: baseline; background: var(--chip); border-radius: 999px; display: inline-flex; gap: 6px; padding: 4px 10px; text-decoration: none; }
+    .handoff-cue-legend-chip:hover, .handoff-cue-legend-chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; text-decoration: none; }
+    .handoff-cue-name { color: var(--fg); font-size: var(--text-small); font-weight: 700; }
+    .handoff-cue-detail { color: var(--muted); font-size: var(--text-small); }
+    .operator-lanes { display: grid; gap: 12px; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 14px; }
+    .operator-lane { background: var(--card); border-radius: 8px; display: grid; gap: 6px; padding: 12px; }
+    .operator-lane-heading { color: var(--accent); font-size: var(--text-small); font-weight: 700; text-decoration: none; }
+    .operator-lane-heading:hover { text-decoration: underline; }
+    .operator-lane-count { color: var(--muted); font-size: var(--text-small); }
+    .operator-lane-count strong { color: var(--accent); }
+    .operator-lane-link { color: var(--fg); font-size: var(--text-small); line-height: 1.4; text-decoration: none; }
+    .operator-lane-link:hover { color: var(--accent); text-decoration: underline; }
+    .empty-filtered { background: var(--card); border-radius: 8px; color: var(--muted); margin-top: 18px; padding: 18px; text-align: center; }
+    .empty-filtered[hidden] { display: none; }
+    .empty-filtered-message { margin: 0 0 12px; }
+    .empty-reset-filters { background: var(--accent); color: var(--accent-contrast); }
+    .news-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 16px; margin-top: 14px; }
+    .news-item { background: var(--card); border-radius: 8px; padding: 16px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+    .chip { align-items: center; background: var(--chip); border-radius: 999px; color: var(--fg); display: inline-flex; font-size: var(--text-small); gap: 6px; padding: 4px 10px; }
+    .severity { align-items: center; border-radius: 999px; display: inline-flex; font-size: var(--text-small); font-weight: 700; padding: 4px 10px; text-transform: uppercase; }
+    .severity-critical { background: #fee2e2; color: #991b1b; }
+    .severity-elevated { background: #fef3c7; color: #92400e; }
+    .severity-monitor { background: #e0f2fe; color: #075985; }
+    [data-theme="dark"] .severity-critical { background: rgba(239,68,68,0.18); color: #fecaca; }
+    [data-theme="dark"] .severity-elevated { background: rgba(245,158,11,0.18); color: #fde68a; }
+    [data-theme="dark"] .severity-monitor { background: rgba(14,165,233,0.18); color: #bae6fd; }
+    .facet-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .handoff-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .handoff-cue { background: var(--chip); border-radius: 4px; color: var(--muted); display: inline-flex; font-size: var(--text-small); padding: 3px 8px; text-decoration: none; }
+    .handoff-cue:hover, .handoff-cue:focus-visible { color: var(--accent); outline: 2px solid var(--accent); outline-offset: 1px; text-decoration: none; }
+    .news-title { font-size: var(--text-title); line-height: 1.35; margin: 6px 0 8px; }
+    .news-title a { color: var(--fg); text-decoration: none; }
+    .news-title a:hover { text-decoration: underline; }
+    .news-meta { align-items: baseline; color: var(--muted); display: flex; flex-wrap: wrap; font-size: var(--text-small); gap: 8px; }
+    .archive-issues { list-style: none; padding: 0; }
+    .archive-issues li { display: flex; flex-wrap: wrap; gap: .5rem 2rem; padding: 1rem 0; border-bottom: 1px solid var(--card-border); }
+    .archive-issues a { color: var(--accent); font-weight: 600; }
+    .archive-issues span { color: var(--muted); }
+    .item-permalink { color: var(--accent); font-weight: 600; text-decoration: none; }
+    .item-permalink:hover, .item-permalink:focus-visible { text-decoration: underline; }
+    .badge-new { color: #16a34a; font-size: var(--text-small); font-weight: 600; }
+    .news-summary { margin-top: 8px; color: var(--fg); opacity: 0.9; }
+    .summary-disclosure { margin-top: 8px; }
+    .summary-toggle { color: var(--fg); cursor: pointer; font: inherit; font-size: var(--text-body); opacity: 0.9; }
+    .summary-action { color: var(--accent); font-size: var(--text-small); margin-left: 6px; white-space: nowrap; }
+    details[open] .summary-ellipsis { display: none; }
+    details[open] .summary-action { display: none; }
+    .summary-toggle:hover .summary-action { text-decoration: underline; }
+    .summary-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .summary-continuation { align-items: center; color: var(--accent); display: inline-flex; font-size: var(--text-small); font-weight: 650; gap: 4px; margin-top: 4px; text-decoration: none; }
+    .summary-continuation:hover { text-decoration: underline; }
+    .summary-continuation:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    footer { border-top: 1px solid var(--card-border); color: var(--muted); font-size: var(--text-small); padding: 18px 0; margin-top: 22px; }
+    @media (max-width: 640px) {
+      .container { padding: 16px; }
+      .masthead { align-items: stretch; flex-direction: column; }
+      .controls { align-items: stretch; }
+      .filter-row { align-items: stretch; flex-direction: column; }
+      .filter-status { align-items: stretch; flex-direction: column; }
+      .search { width: 100%; }
+      .search input { min-width: 0; width: 100%; }
+      .select, .btn { flex: 1 1 auto; }
+      .digest-legend-body { grid-template-columns: minmax(0, 1fr); }
+      .operator-lanes { grid-template-columns: minmax(0, 1fr); }
+      .news-container { grid-template-columns: minmax(0, 1fr); }
+      .news-item { border-radius: 6px; }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <p><a href="../../">SentryDigest</a> · retained daily context</p>
-    <h1>Digest for September 5, 2026</h1>
-    <p>36 reporting items retained from the rolling digest on this UTC day.</p>
+  <header class="site-header">
+    <div class="container masthead">
+      <div class="brand">
+        <img src="../../assets/icon.svg" alt="SentryDigest" />
+        <div>
+          <h1 class="title">SentryDigest</h1>
+          <div class="subtitle">Digest for September 5, 2026</div>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="10.5" cy="10.5" r="7.5" stroke="currentColor" stroke-width="2"/></svg>
+          <input id="search" type="text" placeholder="Search title or summary..." aria-label="Search" />
+        </div>
+        <select id="sourceFilter" class="select" aria-label="Filter by source">
+          <option value="">All sources</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
+        </select>
+        <a class="btn" href="../../feed.xml" aria-label="Open generated RSS feed">RSS</a>
+        <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
+      </div>
+    </div>
   </header>
-  <main>
-      <article class="reporting-item" id="reporting-9eeec10be375">
-        <p class="source">The Hacker News · <time datetime="2026-09-05T20:14:47.000Z">2026-09-05</time></p>
-        <h2><a href="https://thehackernews.com/2026/09/unpatched-magento-and-adobe-commerce.html" target="_blank" rel="noopener noreferrer">Unpatched Magento and Adobe Commerce Zero-Day Exploited to Backdoor Online Stores</a></h2>
-        <p>Attackers are exploiting a new unpatched vulnerability in Magento Open Source and Adobe Commerce that lets them run malicious code on an online store&#39;s server without logging in, Dutch e-commerce security company Sansec said in an advisory published on September 5. Sansec, which discovered the flaw and named it StyleSmuggler, said attacks started on September 4. &quot;Sansec is…</p>
-        <a class="permalink" href="#reporting-9eeec10be375" aria-label="Link to this reporting item">Permalink</a>
+
+  <main class="container">
+    <section class="issue-strip" aria-label="Digest issue metadata">
+      <span class="issue-label">Retained issue</span>
+      <time datetime="2026-09-05T22:43:37.893Z">September 5, 2026</time>
+      <span class="issue-stat"><strong>36</strong> articles</span>
+      <span class="issue-stat"><strong>3</strong> sources</span>
+      <a class="issue-link" href="../../feed.xml" aria-label="Open rolling RSS feed">Rolling RSS feed</a>
+    </section>
+    <nav class="issue-trail" aria-label="Digest navigation">
+    <a href="../../">Current digest</a>
+    <a class="previous-issues" href="../">Previous issues</a>
+    <a rel="prev" href="../2026-09-04/">Previous issue · Sep 4</a>
+    <span aria-current="page">Sep 5</span>
+    <a rel="next" href="../2026-09-06/">Next issue · Sep 6</a>
+  </nav>
+    <details id="advancedFilters" class="advanced-filters">
+      <summary class="advanced-filters-summary">Refine digest</summary>
+      <div class="filter-row" aria-label="Article filters">
+        <select id="severityFilter" class="select" aria-label="Filter by severity">
+          <option value="">All severities</option>
+          <option value="Critical">Critical</option><option value="Elevated">Elevated</option><option value="Monitor">Monitor</option>
+        </select>
+        <select id="tagFilter" class="select" aria-label="Filter by topic tag">
+          <option value="">All topics</option>
+          <option value="AI Security">AI Security</option><option value="Data Breach">Data Breach</option><option value="Exploitation">Exploitation</option><option value="Identity">Identity</option><option value="Malware">Malware</option><option value="Vulnerability">Vulnerability</option>
+        </select>
+        <select id="vendorFilter" class="select" aria-label="Filter by affected vendor">
+          <option value="">All vendors</option>
+          <option value="AWS">AWS</option><option value="Cisco">Cisco</option><option value="Google">Google</option><option value="Microsoft">Microsoft</option><option value="OpenAI">OpenAI</option><option value="VMware">VMware</option>
+        </select>
+        <select id="ageFilter" class="select" aria-label="Filter by article age">
+          <option value="">Any age</option>
+          <option value="Fresh">Fresh</option><option value="Recent">Recent</option>
+        </select>
+        <select id="handoffFilter" class="select" aria-label="Filter by downstream handoff cue">
+          <option value="">All handoff cues</option>
+          <option value="SentryInsight: incident watch">SentryInsight: incident watch</option><option value="SentryInsight: vuln triage">SentryInsight: vuln triage</option><option value="SentryInsight: vendor watch">SentryInsight: vendor watch</option><option value="GRCInsight: governance watch">GRCInsight: governance watch</option><option value="SentryInsight: monitor">SentryInsight: monitor</option>
+        </select>
+      </div>
+    </details>
+    <div class="filter-status" aria-label="Active filters">
+      <div id="activeFilters" class="active-filters" role="list" aria-label="Active filter chips" hidden></div>
+      <div id="filterStatusAnnouncement" class="sr-only" role="status" aria-live="polite" aria-atomic="true">Showing 36 of 36 articles.</div>
+      <button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters</button>
+    </div>
+    <div class="stats" id="stats" hidden>Showing 36 of 36 articles from 3 sources</div>
+    <div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true" hidden></div>
+    <span id="sourceCoverage" class="anchor-target" aria-hidden="true"></span>
+    <section class="source-coverage" aria-label="RSS source coverage">
+      <details class="source-coverage-details">
+        <summary class="source-coverage-summary">Source coverage <span>3 active feeds · 36 articles</span></summary>
+        <div class="source-coverage-body">
+          <div class="source-counts"><button class="source-count" type="button" data-source-filter="The Hacker News" aria-label="Filter to The Hacker News source, 16 articles" aria-pressed="false">The Hacker News <strong>16</strong></button><button class="source-count" type="button" data-source-filter="Bleeping Computer" aria-label="Filter to Bleeping Computer source, 14 articles" aria-pressed="false">Bleeping Computer <strong>14</strong></button><button class="source-count" type="button" data-source-filter="Dark Reading" aria-label="Filter to Dark Reading source, 6 articles" aria-pressed="false">Dark Reading <strong>6</strong></button></div>
+          <div class="source-health-summary" data-active-sources="3" data-quiet-sources="0">
+            <span><strong>3</strong> active feeds</span>
+            <span><strong>0</strong> quiet feeds</span>
+          </div>
+          <div class="source-quiet-feeds" aria-label="Quiet RSS sources"></div>
+          <div class="source-filter-status" data-source-filter-status role="status" aria-live="polite" aria-atomic="true">All contributing feeds (36 articles)</div>
+          <div class="source-coverage-actions">
+            <a class="feed-link" href="../../feed.xml" aria-label="Open RSS feed with 36 latest articles">RSS feed <span class="feed-link-count">36 items</span></a>
+            <details class="digest-legend" aria-label="Digest legend">
+      <summary class="digest-legend-summary">Digest legend: source signals and handoff cues</summary>
+      <div class="digest-legend-body">
+        <div class="digest-legend-group source-signal-legend" aria-label="Source signal legend">
+      <div class="digest-legend-heading">Source signals</div>
+      <div class="source-signal-items"><span class="source-signal-chip"><span class="source-signal-name">Industry media</span><span class="source-signal-detail">Security news reporting</span></span></div>
+    </div><div class="digest-legend-group handoff-cue-legend" aria-label="Handoff cue legend">
+      <div class="digest-legend-heading">Handoff cues</div>
+      <div class="handoff-cue-legend-items"><a class="handoff-cue-legend-chip" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight general report"><span class="handoff-cue-name">SentryInsight: incident watch</span><span class="handoff-destination-label"> · general report</span><span class="handoff-cue-detail">Potential incident or compromise follow-up</span></a><a class="handoff-cue-legend-chip" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight general report"><span class="handoff-cue-name">SentryInsight: vuln triage</span><span class="handoff-destination-label"> · general report</span><span class="handoff-cue-detail">Vulnerability or exploitation review</span></a><a class="handoff-cue-legend-chip" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight general report"><span class="handoff-cue-name">SentryInsight: vendor watch</span><span class="handoff-destination-label"> · general report</span><span class="handoff-cue-detail">Vendor or product-owner tracking</span></a><a class="handoff-cue-legend-chip" href="https://ricomanifesto.github.io/GRCInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open GRCInsight general report"><span class="handoff-cue-name">GRCInsight: governance watch</span><span class="handoff-destination-label"> · general report</span><span class="handoff-cue-detail">Regulatory, privacy, or audit relevance</span></a><a class="handoff-cue-legend-chip" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" aria-label="Open SentryInsight general report"><span class="handoff-cue-name">SentryInsight: monitor</span><span class="handoff-destination-label"> · general report</span><span class="handoff-cue-detail">Low-signal item worth monitoring</span></a></div>
+    </div>
+      </div>
+    </details>
+          </div>
+        </div>
+      </details>
+    </section>
+    <section class="operator-lanes" aria-label="Operator scan lanes">
+      <article class="operator-lane" data-lane="Incident watch" data-lane-cue="SentryInsight: incident watch">
+        <a class="operator-lane-heading" data-lane-destination href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer">Incident watch <span data-lane-destination-label>· general report</span></a>
+        <span class="operator-lane-count" data-lane-count><strong>18</strong> items</span>
+        <a href="https://thehackernews.com/2026/09/unpatched-magento-and-adobe-commerce.html" class="operator-lane-link" data-lane-link>Unpatched Magento and Adobe Commerce Zero-Day Exploited to Backdoor Online Stores</a>
+        <span class="operator-lane-empty" data-lane-empty hidden>No current match</span>
+      </article><article class="operator-lane" data-lane="Vulnerability triage" data-lane-cue="SentryInsight: vuln triage">
+        <a class="operator-lane-heading" data-lane-destination href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer">Vulnerability triage <span data-lane-destination-label>· general report</span></a>
+        <span class="operator-lane-count" data-lane-count><strong>15</strong> items</span>
+        <a href="https://thehackernews.com/2026/09/unpatched-magento-and-adobe-commerce.html" class="operator-lane-link" data-lane-link>Unpatched Magento and Adobe Commerce Zero-Day Exploited to Backdoor Online Stores</a>
+        <span class="operator-lane-empty" data-lane-empty hidden>No current match</span>
       </article>
-      <article class="reporting-item" id="reporting-913cdf66682b">
-        <p class="source">The Hacker News · <time datetime="2026-09-05T16:52:33.000Z">2026-09-05</time></p>
-        <h2><a href="https://thehackernews.com/2026/09/attackers-breached-jetbrains-cadence.html" target="_blank" rel="noopener noreferrer">Attackers Breached JetBrains Cadence via Unpatched TeamCity, Extracting AWS Credentials</a></h2>
-        <p>JetBrains is urging Cadence users to revoke and rotate all credentials following a security incident last month in which unidentified threat actors exploited a recently disclosed critical vulnerability in TeamCity to breach its own environment. &quot;Cadence users should immediately revoke or rotate all credentials and secrets that may have been used to run their Cadence executions,&quot; JetBrains said.</p>
-        <a class="permalink" href="#reporting-913cdf66682b" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-e74c4bc78631">
-        <p class="source">The Hacker News · <time datetime="2026-09-05T16:05:08.000Z">2026-09-05</time></p>
-        <h2><a href="https://thehackernews.com/2026/09/critical-vmware-workstation-and-fusion.html" target="_blank" rel="noopener noreferrer">Critical VMware Workstation and Fusion Flaw Lets VM Admins Execute Host Code</a></h2>
-        <p>Broadcom has released security updates for two security flaws impacting VMware Workstation and Fusion, including one critical bug that could result in arbitrary code execution under certain conditions. The vulnerability, tracked as CVE-2026-59346 (CVSS score: 9.3), is an integer-overflow vulnerability that a local attacker with elevated privileges can exploit to run arbitrary code. &quot;A…</p>
-        <a class="permalink" href="#reporting-e74c4bc78631" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-1305dd241c30">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-05T14:29:13.000Z">2026-09-05</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/security/over-5-400-hacked-sites-serve-clickfix-payloads-stored-on-the-blockchain/" target="_blank" rel="noopener noreferrer">Over 5,400 hacked sites serve ClickFix payloads stored on the blockchain</a></h2>
-        <p>A massive cybercriminal operation is leveraging thousands of compromised small-business websites to deliver ClickFix payloads stored in smart contracts on the BNB Smart Chain (BSC)…</p>
-        <a class="permalink" href="#reporting-1305dd241c30" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-28549037149e">
-        <p class="source">The Hacker News · <time datetime="2026-09-05T14:17:02.000Z">2026-09-05</time></p>
-        <h2><a href="https://thehackernews.com/2026/09/trezor-says-shipmonk-breach-exposed.html" target="_blank" rel="noopener noreferrer">Trezor Says ShipMonk Breach Exposed 67,000 U.S. Customers&#39; Data It Said Was Deleted</a></h2>
-        <p>Hardware wallet manufacturer Trezor on Friday disclosed that another 67,000 customers from the U.S. have been impacted in a breach at its shipping provider ShipMonk. The exposed information includes customer names, email addresses, phone numbers, shipping addresses, and order numbers between November 2019 and August 2021. The breach does not affect the security of the company&#39;s hardware wallets…</p>
-        <a class="permalink" href="#reporting-28549037149e" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-1503c662885b">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-05T11:11:50.000Z">2026-09-05</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/security/openai-admits-it-didnt-disclose-rogue-ai-wiki-hijacking-incident/" target="_blank" rel="noopener noreferrer">OpenAI admits it didn&#39;t disclose rogue AI wiki hijacking incident</a></h2>
-        <p>OpenAI admits it did not disclose an incident where autonomous AI agents hijacked a German wiki, created 18,000 posts, shared answers, and bypassed restrictions, saying it treated the activity as model &quot;misalignment&quot; rather than a security breach…</p>
-        <a class="permalink" href="#reporting-1503c662885b" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-1c98993ec175">
-        <p class="source">The Hacker News · <time datetime="2026-09-05T07:55:10.000Z">2026-09-05</time></p>
-        <h2><a href="https://thehackernews.com/2026/09/thousands-of-openai-agents-quietly.html" target="_blank" rel="noopener noreferrer">Thousands of OpenAI Agents Quietly Turned an Abandoned Wiki Into Their Coordination Channel</a></h2>
-        <p>A group of AI safety researchers says a fleet of autonomous agents that identified themselves as OpenAI systems left about 18,000 posts on a dormant 25-year-old German wiki between May and July 2026, using the site as a shared board to pool answers to a timed web task and pass around a way out of their sandbox. The activity was concentrated on DSEwiki, a German software developer wiki that runs…</p>
-        <a class="permalink" href="#reporting-1c98993ec175" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-c08f05268e88">
-        <p class="source">The Hacker News · <time datetime="2026-09-05T07:31:53.000Z">2026-09-05</time></p>
-        <h2><a href="https://thehackernews.com/2026/09/attackers-exploit-papercut-flaws-to.html" target="_blank" rel="noopener noreferrer">Attackers Exploit PaperCut Flaws to Steal Credentials From Schools and Universities</a></h2>
-        <p>Threat actors are exploiting the newly disclosed PaperCut flaws to facilitate credential theft in attacks targeting the education sector in the U.S. and Europe. The Arctic Wolf Adversary Research Team said it observed attackers exploiting CVE-2026-81578 and CVE-2026-82078 – an authentication bypass and remote code execution chain – to conduct command execution and reconnaissance, as well as…</p>
-        <a class="permalink" href="#reporting-c08f05268e88" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-5c7b6ad938ba">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-04T16:56:45.000Z">2026-09-04</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/security/idscan-sued-over-alleged-data-breach-affecting-153-million-drivers/" target="_blank" rel="noopener noreferrer">IDScan sued over alleged data breach affecting 153 million drivers</a></h2>
-        <p>Multiple lawsuits have been filed against identity verification company IDScan after hackers allegedly breached the service and offered to sell more than 153 million driver&#39;s licenses…</p>
-        <a class="permalink" href="#reporting-5c7b6ad938ba" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-6b5b7c851b25">
-        <p class="source">Dark Reading · <time datetime="2026-09-04T15:57:31.000Z">2026-09-04</time></p>
-        <h2><a href="https://www.darkreading.com/cybersecurity-operations/companies-six-months-prepare-automated-attacks" target="_blank" rel="noopener noreferrer">Companies Have 6 Months to Prepare for Automated Attacks</a></h2>
-        <p>Frontier AI models have already demonstrated they can autonomously — and in some cases, inadvertently — conduct end-to-end compromises, but the situation will become more urgent very soon.</p>
-        <a class="permalink" href="#reporting-6b5b7c851b25" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-ffe72a79b189">
-        <p class="source">The Hacker News · <time datetime="2026-09-04T15:57:15.000Z">2026-09-04</time></p>
-        <h2><a href="https://thehackernews.com/2026/09/phishing-campaign-sends-millions-of.html" target="_blank" rel="noopener noreferrer">Phishing Campaign Sends Millions of Emails Using Invisible Unicode to Evade Filters</a></h2>
-        <p>Microsoft is alerting of a &quot;high-volume phishing campaign&quot; that&#39;s using invisible Unicode tag characters to bypass email filters. &quot;Instead of using these characters to hide instructions from people while exposing them to AI models, the attacker used them to split financial lure words such as &#39;funding&#39; to prevent email filters from parsing them,&quot; the Microsoft Security Research team said. The…</p>
-        <a class="permalink" href="#reporting-ffe72a79b189" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-7483ae5401bd">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-04T15:25:59.000Z">2026-09-04</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/security/hackers-target-critical-citrix-netscaler-auth-bypass-in-attacks/" target="_blank" rel="noopener noreferrer">Critical Citrix NetScaler auth bypass now leveraged in attacks</a></h2>
-        <p>Attackers have begun targeting a critical-severity Citrix NetScaler auth bypass flaw (CVE-2026-19490) in the wild, according to vulnerability intelligence company Previdian…</p>
-        <a class="permalink" href="#reporting-7483ae5401bd" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-d7ed15b40cfe">
-        <p class="source">The Hacker News · <time datetime="2026-09-04T15:20:19.000Z">2026-09-04</time></p>
-        <h2><a href="https://thehackernews.com/2026/09/postgresql-fixes-12-year-old-logical.html" target="_blank" rel="noopener noreferrer">PostgreSQL Fixes 12-Year-Old Logical Decoding Flaw Enabling Replication-Role Code Execution</a></h2>
-        <p>PostgreSQL has released updates to address a security flaw that allows an account with the REPLICATION attribute to run arbitrary code as the operating-system user running the database server. The flaw, tracked as CVE-2026-6471 (CVSS score: 7.2), has been present since logical decoding was introduced in PostgreSQL 9.4 in 2014. Versions before PostgreSQL 18.6, 17.11, 16.15, 15.19, and 14.24 are…</p>
-        <a class="permalink" href="#reporting-d7ed15b40cfe" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-b1ea25ffc370">
-        <p class="source">The Hacker News · <time datetime="2026-09-04T14:51:13.000Z">2026-09-04</time></p>
-        <h2><a href="https://thehackernews.com/2026/09/new-ted-backdoor-hides-inside-victims.html" target="_blank" rel="noopener noreferrer">New Ted Backdoor Hides Inside Victims&#39; Own HAProxy Builds to Intercept Web Traffic</a></h2>
-        <p>A previously undocumented Linux toolkit has been found compiled directly into the trojanized HAProxy load balancers of two South Korean organizations, where it intercepted web traffic and served altered pages to selected visitors. The attackers named the implant ted in debug strings left in the binary. It is not a HAProxy vulnerability, and installing it requires code execution on the host and…</p>
-        <a class="permalink" href="#reporting-b1ea25ffc370" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-fface7014a8e">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-04T14:30:15.000Z">2026-09-04</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-says-some-users-cant-open-the-teams-desktop-client/" target="_blank" rel="noopener noreferrer">Microsoft says some users can’t open the Teams desktop client</a></h2>
-        <p>Microsoft is working to resolve a known issue that causes delays or blocks some users from opening the Microsoft Teams desktop client on Windows systems…</p>
-        <a class="permalink" href="#reporting-fface7014a8e" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-a1caa1ba3e69">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-04T14:01:11.000Z">2026-09-04</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/security/39-new-methods-that-compromise-passkey-authentication/" target="_blank" rel="noopener noreferrer">39 New Methods That Compromise Passkey Authentication</a></h2>
-        <p>Passkeys eliminate many password-based attacks, but researchers have documented 39 methods for compromising authentication built around them. Token explains how attackers can abuse authentication prompts, synced credentials, enrollment, recovery, and other trust boundaries without breaking FIDO2 cryptography…</p>
-        <a class="permalink" href="#reporting-a1caa1ba3e69" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-beea4dd696f2">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-04T13:22:01.000Z">2026-09-04</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/security/new-crowdstrike-falconflank-zero-day-grants-system-privileges/" target="_blank" rel="noopener noreferrer">New CrowdStrike &#39;FalconFlank&#39; zero-day grants SYSTEM privileges</a></h2>
-        <p>An anonymous security researcher who uses the &quot;Nightmare Eclipse&quot; handle released a CrowdStrike Falcon zero-day exploit named &quot;FalconFlank&quot; that lets attackers escalate privileges on up-to-date Windows systems…</p>
-        <a class="permalink" href="#reporting-beea4dd696f2" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-e611d74c39b6">
-        <p class="source">Dark Reading · <time datetime="2026-09-04T13:00:00.000Z">2026-09-04</time></p>
-        <h2><a href="https://www.darkreading.com/vulnerabilities-threats/ai-ending-era-hidden-vulnerabilities-are-vendors-ready" target="_blank" rel="noopener noreferrer">AI Is Ending the Era of Hidden Vulnerabilities — Are Vendors Ready?</a></h2>
-        <p>A tidal wave of bug reports is overwhelming software vendors, exposing secure-by-design failures and creating disclosure bottlenecks.</p>
-        <a class="permalink" href="#reporting-e611d74c39b6" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-1fc275a61f10">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-04T12:22:30.000Z">2026-09-04</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/microsoft/exchange-online-outage-causes-email-delays-server-busy-errors/" target="_blank" rel="noopener noreferrer">Exchange Online outage causes email delays, &#39;Server busy&#39; errors</a></h2>
-        <p>Microsoft is working to resolve an ongoing Exchange Online outage that is delaying email sent to and received from external domains…</p>
-        <a class="permalink" href="#reporting-1fc275a61f10" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-ffe71b2571f9">
-        <p class="source">Dark Reading · <time datetime="2026-09-04T12:15:03.000Z">2026-09-04</time></p>
-        <h2><a href="https://www.darkreading.com/cyber-risk/insurers-search-answers-rogue-ai" target="_blank" rel="noopener noreferrer">Insurers Search for Answers to Rein in Rogue AI</a></h2>
-        <p>As incidents of unintended harm caused by rogue AI agents mount, CISOs and insurance firms are figuring out how to handle the fallout.</p>
-        <a class="permalink" href="#reporting-ffe71b2571f9" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-dc2f42c91d09">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-04T11:48:17.000Z">2026-09-04</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/security/google-warns-of-new-chrome-zero-day-flaw-exploited-in-attacks/" target="_blank" rel="noopener noreferrer">Google warns of new Chrome zero-day flaw exploited in attacks</a></h2>
-        <p>Google has updated the Chrome browser to address an actively exploited high-severity zero-day flaw in the V8 engine and 11 other vulnerabilities…</p>
-        <a class="permalink" href="#reporting-dc2f42c91d09" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-7eb26d7003dc">
-        <p class="source">The Hacker News · <time datetime="2026-09-04T08:48:45.000Z">2026-09-04</time></p>
-        <h2><a href="https://thehackernews.com/2026/09/over-440000-exploit-attempts-target.html" target="_blank" rel="noopener noreferrer">Over 440,000 Exploit Attempts Target Super Forms and Elementor Pro RCE Flaws</a></h2>
-        <p>Threat actors are exploiting two critical security flaws in WordPress plugins Super Forms and Elementor Pro, according to findings from Wordfence. The vulnerabilities in question are - CVE-2026-14894 (CVSS score: 9.8) - A missing file type validation vulnerability in Super Forms – Drag &amp; Drop Form Builder that allows unauthenticated attackers to upload files of any type, including…</p>
-        <a class="permalink" href="#reporting-7eb26d7003dc" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-08f9037c31db">
-        <p class="source">The Hacker News · <time datetime="2026-09-04T07:35:14.000Z">2026-09-04</time></p>
-        <h2><a href="https://thehackernews.com/2026/09/plex-urges-immediate-updates-after.html" target="_blank" rel="noopener noreferrer">Plex Urges Immediate Updates After Patching Multiple Undisclosed Security Flaws</a></h2>
-        <p>Plex is urging users to update their instances to the latest version following the release of an update that patches multiple security flaws. The fixes are available in Plex Media Server 1.43.3 and Plex Desktop 1.115.0. The streaming media service did not elaborate on what those issues are, but said CVE identifiers have been requested for them. &quot;We recommend all server owners and Desktop users…</p>
-        <a class="permalink" href="#reporting-08f9037c31db" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-49749711ba07">
-        <p class="source">The Hacker News · <time datetime="2026-09-04T07:18:47.000Z">2026-09-04</time></p>
-        <h2><a href="https://thehackernews.com/2026/09/google-releases-chrome-update-to-patch.html" target="_blank" rel="noopener noreferrer">Google Releases Chrome Update to Patch Actively Exploited V8 Zero-Day</a></h2>
-        <p>Google on Thursday released security updates to patch 12 vulnerabilities, including one that has come under active exploitation in the wild. The high-severity vulnerability, tracked as CVE-2026-85046 (CVSS score: 8.8), has been described as a type confusion bug in V8, Chrome&#39;s JavaScript and WebAssembly engine. &quot;Type confusion in V8 in Google Chrome prior to 152.0.7977.82 allowed a remote…</p>
-        <a class="permalink" href="#reporting-49749711ba07" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-09bf1e9a868f">
-        <p class="source">The Hacker News · <time datetime="2026-09-04T06:47:52.000Z">2026-09-04</time></p>
-        <h2><a href="https://thehackernews.com/2026/09/gpt-6-astra-scores-100-on-exploitbench.html" target="_blank" rel="noopener noreferrer">GPT-6 Astra Scores 100% on ExploitBench as OpenAI Blocks PoC Exploit Requests</a></h2>
-        <p>OpenAI on Thursday officially unveiled GPT‑6 Astra, which it described as the &quot;world&#39;s most intelligent and aligned model.&quot; The development comes days after the artificial intelligence (AI) company said the model had reached the &quot;Critical&quot; cybersecurity capability threshold under its Preparedness Framework. &quot;Astra is state-of-the-art on computer use, browsing, software engineering…</p>
-        <a class="permalink" href="#reporting-09bf1e9a868f" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-0310538b67d5">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-03T22:01:37.000Z">2026-09-03</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/security/french-hospital-fined-500-000-after-breach-exposes-data-of-727-000/" target="_blank" rel="noopener noreferrer">French hospital fined €500,000 after breach exposes data of 727,000</a></h2>
-        <p>France&#39;s data protection authority (CNIL) has fined Hôpital privé de la Loire €500,000 ($580,000) for failing to adequately protect patients&#39; and their relatives&#39; data…</p>
-        <a class="permalink" href="#reporting-0310538b67d5" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-b38f4c9e8193">
-        <p class="source">Dark Reading · <time datetime="2026-09-03T20:18:14.000Z">2026-09-03</time></p>
-        <h2><a href="https://www.darkreading.com/cyberattacks-data-breaches/large-enterprises-fake-merger-acquisition-scams" target="_blank" rel="noopener noreferrer">Large Enterprises Targeted in Fake Merger &amp; Acquisition Scams</a></h2>
-        <p>Threat actors behind the &quot;Phantom Deal&quot; campaign are studying companies in extreme detail, aiming to dupe midlevel employees into initiating large financial transfers.</p>
-        <a class="permalink" href="#reporting-b38f4c9e8193" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-25f09ace8141">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-03T20:04:24.000Z">2026-09-03</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/security/coders-registry-infrastructure-compromised-to-push-malicious-modules/" target="_blank" rel="noopener noreferrer">Coder&#39;s registry infrastructure compromised to push malicious modules</a></h2>
-        <p>Attackers compromised Coder&#39;s Cloudflare infrastructure and added unauthorized registry servers that delivered malicious Terraform modules containing credential-stealing code…</p>
-        <a class="permalink" href="#reporting-25f09ace8141" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-657cfe30a45c">
-        <p class="source">Dark Reading · <time datetime="2026-09-03T19:42:39.000Z">2026-09-03</time></p>
-        <h2><a href="https://www.darkreading.com/cybersecurity-operations/what-we-missed-did-shinyhunters-breach-reliaquest" target="_blank" rel="noopener noreferrer">What We Missed: Did ShinyHunters &#39;Breach&#39; ReliaQuest?</a></h2>
-        <p>In this video conversation, Dark Reading editors discuss some of the news they didn&#39;t get a chance to cover, from the latest antics of ShinyHunters to new research about the prevalence (or lack thereof) of AI-generated malware.</p>
-        <a class="permalink" href="#reporting-657cfe30a45c" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-d0cdf0878d94">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-03T18:28:12.000Z">2026-09-03</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/security/hpe-patches-critical-arubaos-cx-remote-code-execution-flaw/" target="_blank" rel="noopener noreferrer">HPE patches critical ArubaOS-CX remote code execution flaw</a></h2>
-        <p>Hewlett Packard Enterprise (HPE) has patched a critical vulnerability in the ArubaOS-CX network operating system that could lead to remote code execution…</p>
-        <a class="permalink" href="#reporting-d0cdf0878d94" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-eae08603ec40">
-        <p class="source">The Hacker News · <time datetime="2026-09-03T18:02:47.000Z">2026-09-03</time></p>
-        <h2><a href="https://thehackernews.com/2026/09/threatsday-ceo-phishing-kits-5k-dropbox.html" target="_blank" rel="noopener noreferrer">ThreatsDay: CEO Phishing Kits, 5K Dropbox Account Hacks, OAuth Traps + 17 More Stories</a></h2>
-        <p>The worst part is how normal these attacks look. A call from IT. A shared file. A trusted app. A simple request to click “Allow.” Why break in when someone might open the door? That idea runs through this edition. Attackers use real tools, fake login pages, old account links, and software guides that point to unsafe downloads. One wrong letter in a web address can be enough. There is also…</p>
-        <a class="permalink" href="#reporting-eae08603ec40" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-9f1cf6b5657f">
-        <p class="source">Dark Reading · <time datetime="2026-09-03T17:23:14.000Z">2026-09-03</time></p>
-        <h2><a href="https://www.darkreading.com/cyberattacks-data-breaches/ai-warning-letter-missed-people" target="_blank" rel="noopener noreferrer">What the AI Warning Letter Completely Missed</a></h2>
-        <p>The recent AI warning letter is right about the &quot;window,&quot; but it omits naming who is coming through it or, critically, who will close it.</p>
-        <a class="permalink" href="#reporting-9f1cf6b5657f" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-10869e1cb2f9">
-        <p class="source">The Hacker News · <time datetime="2026-09-03T15:52:07.000Z">2026-09-03</time></p>
-        <h2><a href="https://thehackernews.com/2026/09/critical-cisco-nexus-9000-flaw-lets.html" target="_blank" rel="noopener noreferrer">Critical Cisco Nexus 9000 Flaw Lets Unauthenticated Remote Attackers Run Code as Root</a></h2>
-        <p>Cisco has released patches to address a critical security flaw affecting 10 Silicon One-based Nexus 9000 switches that could allow an unauthenticated, remote attacker to execute code as root, alongside an IOS XR hardening release bundling 7 umbrella CVEs, 2 of which are rated 9.8, with no workaround for any IOS XR version. The Nexus vulnerability, tracked as CVE-2026-20212 (CVSS score: 9.8), is…</p>
-        <a class="permalink" href="#reporting-10869e1cb2f9" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-9d9736b815d5">
-        <p class="source">The Hacker News · <time datetime="2026-09-03T15:26:47.000Z">2026-09-03</time></p>
-        <h2><a href="https://thehackernews.com/2026/09/brazetsu-malware-turns-compromised.html" target="_blank" rel="noopener noreferrer">BraZetsu Malware Turns Compromised Windows Hosts Into Criminal Marketplace Inventory</a></h2>
-        <p>Cybersecurity researchers have disclosed details of a sophisticated Python-based Windows malware framework called BraZetsu that fuels an underground marketplace commercializing access to compromised hosts. &quot;Unlike the standard infostealer model, BraZetsu is a comprehensive master toolkit that empowers Initial Access Brokers (IABs) by turning compromised systems into highly valuable commercial…</p>
-        <a class="permalink" href="#reporting-9d9736b815d5" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-3ffce2a0f361">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-03T15:22:33.000Z">2026-09-03</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-kb5120998-mouse-reset-bug-affects-only-non-english-pcs/" target="_blank" rel="noopener noreferrer">Microsoft: KB5120998 mouse reset bug affects only non-English PCs</a></h2>
-        <p>Microsoft says a known issue that reverts mouse settings after installing the KB5120998 August 2026 preview update affects only non-English Windows 11 systems…</p>
-        <a class="permalink" href="#reporting-3ffce2a0f361" aria-label="Link to this reporting item">Permalink</a>
-      </article>
-      <article class="reporting-item" id="reporting-f413fd637fae">
-        <p class="source">Bleeping Computer · <time datetime="2026-09-03T15:13:29.000Z">2026-09-03</time></p>
-        <h2><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/openai-confirms-chatgpt-is-down-ahead-of-astra-model-launch/" target="_blank" rel="noopener noreferrer">OpenAI confirms ChatGPT is down ahead of &#39;Astra&#39; model launch</a></h2>
-        <p>ChatGPT and Codex are experiencing a major outage, with users reporting errors across nearly every major ChatGPT feature…</p>
-        <a class="permalink" href="#reporting-f413fd637fae" aria-label="Link to this reporting item">Permalink</a>
-      </article></main>
-  <footer><p>Original publisher links are preserved for traceability. <a href="index.json">Machine-readable issue data</a>.</p></footer>
+    </section>
+    <div id="emptyFilteredState" class="empty-filtered" hidden>
+      <p id="emptyFilteredMessage" class="empty-filtered-message">No articles match the current filters.</p>
+      <button id="emptyResetFilters" class="btn empty-reset-filters" type="button">Reset filters</button>
+    </div>
+
+    <div class="news-container" id="newsContainer">
+
+        <article class="news-item reporting-item" id="reporting-9eeec10be375" data-source="The Hacker News" data-host="thehackernews.com" data-title="Unpatched Magento and Adobe Commerce Zero-Day Exploited to Backdoor Online Stores" data-summary="Attackers are exploiting a new unpatched vulnerability in Magento Open Source and Adobe Commerce that lets them run malicious code on an online store&#39;s server without logging in, Dutch e-commerce security company Sansec said in an advisory published on September 5. Sansec, which discovered the flaw and named it StyleSmuggler, said attacks started on September 4. &quot;Sansec is…" data-severity="Critical" data-tags="Vulnerability,Exploitation,Malware" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage" data-age-bucket="Fresh" data-published-at="2026-09-05T20:14:47.000Z">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>2h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/09/unpatched-magento-and-adobe-commerce.html" target="_blank" rel="noopener noreferrer">Unpatched Magento and Adobe Commerce Zero-Day Exploited to Backdoor Online Stores</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-05T20:14:47.000Z">September 5, 2026 at 8:14 PM UTC</time><a class="item-permalink" href="#reporting-9eeec10be375" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span><span class="chip">Malware</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a></div>
+          <p class="news-summary">Attackers are exploiting a new unpatched vulnerability in Magento Open Source and Adobe Commerce that lets them run malicious code on an online store&#39;s server without logging in, Dutch e-commerce security company Sansec said in an advisory published on September 5. Sansec, which discovered the flaw and named it StyleSmuggler, said attacks started on September 4. &quot;Sansec is…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/unpatched-magento-and-adobe-commerce.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-913cdf66682b" data-source="The Hacker News" data-host="thehackernews.com" data-title="Attackers Breached JetBrains Cadence via Unpatched TeamCity, Extracting AWS Credentials" data-summary="JetBrains is urging Cadence users to revoke and rotate all credentials following a security incident last month in which unidentified threat actors exploited a recently disclosed critical vulnerability in TeamCity to breach its own environment. &quot;Cadence users should immediately revoke or rotate all credentials and secrets that may have been used to run their Cadence executions,&quot; JetBrains said." data-severity="Critical" data-tags="Vulnerability,Exploitation,Data Breach,Identity" data-vendors="AWS" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Fresh" data-published-at="2026-09-05T16:52:33.000Z">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>5h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/09/attackers-breached-jetbrains-cadence.html" target="_blank" rel="noopener noreferrer">Attackers Breached JetBrains Cadence via Unpatched TeamCity, Extracting AWS Credentials</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-05T16:52:33.000Z">September 5, 2026 at 4:52 PM UTC</time><a class="item-permalink" href="#reporting-913cdf66682b" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">AWS</span><span class="chip">Vulnerability</span><span class="chip">Exploitation</span><span class="chip">Data Breach</span><span class="chip">Identity</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
+          <details class="summary-disclosure">
+            <summary class="summary-toggle" aria-controls="summary-full-1">
+              <span class="summary-preview-text">JetBrains is urging Cadence users to revoke and rotate all credentials following a security incident last month in which unidentified threat actors exploited a</span><span class="summary-ellipsis" aria-hidden="true">...</span>
+              <span class="summary-action">Show full summary</span>
+            </summary>
+            <p class="news-summary summary-full" id="summary-full-1">recently disclosed critical vulnerability in TeamCity to breach its own environment. &quot;Cadence users should immediately revoke or rotate all credentials and secrets that may have been used to run their Cadence executions,&quot; JetBrains said.</p>
+          </details>
+        </article>
+        <article class="news-item reporting-item" id="reporting-e74c4bc78631" data-source="The Hacker News" data-host="thehackernews.com" data-title="Critical VMware Workstation and Fusion Flaw Lets VM Admins Execute Host Code" data-summary="Broadcom has released security updates for two security flaws impacting VMware Workstation and Fusion, including one critical bug that could result in arbitrary code execution under certain conditions. The vulnerability, tracked as CVE-2026-59346 (CVSS score: 9.3), is an integer-overflow vulnerability that a local attacker with elevated privileges can exploit to run arbitrary code. &quot;A…" data-severity="Critical" data-tags="Vulnerability,Exploitation" data-vendors="VMware" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-05T16:05:08.000Z">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>6h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/09/critical-vmware-workstation-and-fusion.html" target="_blank" rel="noopener noreferrer">Critical VMware Workstation and Fusion Flaw Lets VM Admins Execute Host Code</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-05T16:05:08.000Z">September 5, 2026 at 4:05 PM UTC</time><a class="item-permalink" href="#reporting-e74c4bc78631" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">VMware</span><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/#cve-2026-59346" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="CVE reference: CVE-2026-59346">SentryInsight: incident watch · CVE reference: CVE-2026-59346</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
+          <p class="news-summary">Broadcom has released security updates for two security flaws impacting VMware Workstation and Fusion, including one critical bug that could result in arbitrary code execution under certain conditions. The vulnerability, tracked as CVE-2026-59346 (CVSS score: 9.3), is an integer-overflow vulnerability that a local attacker with elevated privileges can exploit to run arbitrary code. &quot;A…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/critical-vmware-workstation-and-fusion.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-1305dd241c30" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Over 5,400 hacked sites serve ClickFix payloads stored on the blockchain" data-summary="A massive cybercriminal operation is leveraging thousands of compromised small-business websites to deliver ClickFix payloads stored in smart contracts on the BNB Smart Chain (BSC)…" data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-09-05T14:29:13.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>8h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/over-5-400-hacked-sites-serve-clickfix-payloads-stored-on-the-blockchain/" target="_blank" rel="noopener noreferrer">Over 5,400 hacked sites serve ClickFix payloads stored on the blockchain</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-05T14:29:13.000Z">September 5, 2026 at 2:29 PM UTC</time><a class="item-permalink" href="#reporting-1305dd241c30" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: monitor" data-destination-label="general report">SentryInsight: monitor · general report</a></div>
+          <p class="news-summary">A massive cybercriminal operation is leveraging thousands of compromised small-business websites to deliver ClickFix payloads stored in smart contracts on the BNB Smart Chain (BSC)…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/over-5-400-hacked-sites-serve-clickfix-payloads-stored-on-the-blockchain/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-28549037149e" data-source="The Hacker News" data-host="thehackernews.com" data-title="Trezor Says ShipMonk Breach Exposed 67,000 U.S. Customers&#39; Data It Said Was Deleted" data-summary="Hardware wallet manufacturer Trezor on Friday disclosed that another 67,000 customers from the U.S. have been impacted in a breach at its shipping provider ShipMonk. The exposed information includes customer names, email addresses, phone numbers, shipping addresses, and order numbers between November 2019 and August 2021. The breach does not affect the security of the company&#39;s hardware wallets…" data-severity="Critical" data-tags="Data Breach" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Recent" data-published-at="2026-09-05T14:17:02.000Z">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>8h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/09/trezor-says-shipmonk-breach-exposed.html" target="_blank" rel="noopener noreferrer">Trezor Says ShipMonk Breach Exposed 67,000 U.S. Customers&#39; Data It Said Was Deleted</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-05T14:17:02.000Z">September 5, 2026 at 2:17 PM UTC</time><a class="item-permalink" href="#reporting-28549037149e" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Data Breach</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a></div>
+          <p class="news-summary">Hardware wallet manufacturer Trezor on Friday disclosed that another 67,000 customers from the U.S. have been impacted in a breach at its shipping provider ShipMonk. The exposed information includes customer names, email addresses, phone numbers, shipping addresses, and order numbers between November 2019 and August 2021. The breach does not affect the security of the company&#39;s hardware wallets…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/trezor-says-shipmonk-breach-exposed.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-1503c662885b" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="OpenAI admits it didn&#39;t disclose rogue AI wiki hijacking incident" data-summary="OpenAI admits it did not disclose an incident where autonomous AI agents hijacked a German wiki, created 18,000 posts, shared answers, and bypassed restrictions, saying it treated the activity as model &quot;misalignment&quot; rather than a security breach…" data-severity="Critical" data-tags="Data Breach,AI Security" data-vendors="OpenAI" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-05T11:11:50.000Z">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>11h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/openai-admits-it-didnt-disclose-rogue-ai-wiki-hijacking-incident/" target="_blank" rel="noopener noreferrer">OpenAI admits it didn&#39;t disclose rogue AI wiki hijacking incident</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-05T11:11:50.000Z">September 5, 2026 at 11:11 AM UTC</time><a class="item-permalink" href="#reporting-1503c662885b" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">OpenAI</span><span class="chip">Data Breach</span><span class="chip">AI Security</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
+          <p class="news-summary">OpenAI admits it did not disclose an incident where autonomous AI agents hijacked a German wiki, created 18,000 posts, shared answers, and bypassed restrictions, saying it treated the activity as model &quot;misalignment&quot; rather than a security breach…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/openai-admits-it-didnt-disclose-rogue-ai-wiki-hijacking-incident/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-1c98993ec175" data-source="The Hacker News" data-host="thehackernews.com" data-title="Thousands of OpenAI Agents Quietly Turned an Abandoned Wiki Into Their Coordination Channel" data-summary="A group of AI safety researchers says a fleet of autonomous agents that identified themselves as OpenAI systems left about 18,000 posts on a dormant 25-year-old German wiki between May and July 2026, using the site as a shared board to pool answers to a timed web task and pass around a way out of their sandbox. The activity was concentrated on DSEwiki, a German software developer wiki that runs…" data-severity="Monitor" data-tags="AI Security" data-vendors="OpenAI" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-05T07:55:10.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>14h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/09/thousands-of-openai-agents-quietly.html" target="_blank" rel="noopener noreferrer">Thousands of OpenAI Agents Quietly Turned an Abandoned Wiki Into Their Coordination Channel</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-05T07:55:10.000Z">September 5, 2026 at 7:55 AM UTC</time><a class="item-permalink" href="#reporting-1c98993ec175" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">OpenAI</span><span class="chip">AI Security</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
+          <p class="news-summary">A group of AI safety researchers says a fleet of autonomous agents that identified themselves as OpenAI systems left about 18,000 posts on a dormant 25-year-old German wiki between May and July 2026, using the site as a shared board to pool answers to a timed web task and pass around a way out of their sandbox. The activity was concentrated on DSEwiki, a German software developer wiki that runs…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/thousands-of-openai-agents-quietly.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-c08f05268e88" data-source="The Hacker News" data-host="thehackernews.com" data-title="Attackers Exploit PaperCut Flaws to Steal Credentials From Schools and Universities" data-summary="Threat actors are exploiting the newly disclosed PaperCut flaws to facilitate credential theft in attacks targeting the education sector in the U.S. and Europe. The Arctic Wolf Adversary Research Team said it observed attackers exploiting CVE-2026-81578 and CVE-2026-82078 – an authentication bypass and remote code execution chain – to conduct command execution and reconnaissance, as well as…" data-severity="Critical" data-tags="Vulnerability,Exploitation,Data Breach,Identity" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-09-05T07:31:53.000Z">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>15h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/09/attackers-exploit-papercut-flaws-to.html" target="_blank" rel="noopener noreferrer">Attackers Exploit PaperCut Flaws to Steal Credentials From Schools and Universities</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-05T07:31:53.000Z">September 5, 2026 at 7:31 AM UTC</time><a class="item-permalink" href="#reporting-c08f05268e88" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span><span class="chip">Data Breach</span><span class="chip">Identity</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/#cve-2026-81578" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="CVE reference: CVE-2026-81578">SentryInsight: incident watch · CVE reference: CVE-2026-81578</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a></div>
+          <p class="news-summary">Threat actors are exploiting the newly disclosed PaperCut flaws to facilitate credential theft in attacks targeting the education sector in the U.S. and Europe. The Arctic Wolf Adversary Research Team said it observed attackers exploiting CVE-2026-81578 and CVE-2026-82078 – an authentication bypass and remote code execution chain – to conduct command execution and reconnaissance, as well as…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/attackers-exploit-papercut-flaws-to.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-5c7b6ad938ba" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="IDScan sued over alleged data breach affecting 153 million drivers" data-summary="Multiple lawsuits have been filed against identity verification company IDScan after hackers allegedly breached the service and offered to sell more than 153 million driver&#39;s licenses…" data-severity="Critical" data-tags="Data Breach,Identity" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Recent" data-published-at="2026-09-04T16:56:45.000Z">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/idscan-sued-over-alleged-data-breach-affecting-153-million-drivers/" target="_blank" rel="noopener noreferrer">IDScan sued over alleged data breach affecting 153 million drivers</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-04T16:56:45.000Z">September 4, 2026 at 4:56 PM UTC</time><a class="item-permalink" href="#reporting-5c7b6ad938ba" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Data Breach</span><span class="chip">Identity</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a></div>
+          <p class="news-summary">Multiple lawsuits have been filed against identity verification company IDScan after hackers allegedly breached the service and offered to sell more than 153 million driver&#39;s licenses…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/idscan-sued-over-alleged-data-breach-affecting-153-million-drivers/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-6b5b7c851b25" data-source="Dark Reading" data-host="darkreading.com" data-title="Companies Have 6 Months to Prepare for Automated Attacks" data-summary="Frontier AI models have already demonstrated they can autonomously — and in some cases, inadvertently — conduct end-to-end compromises, but the situation will become more urgent very soon." data-severity="Monitor" data-tags="AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-09-04T15:57:31.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">Dark Reading</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/companies-six-months-prepare-automated-attacks" target="_blank" rel="noopener noreferrer">Companies Have 6 Months to Prepare for Automated Attacks</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-04T15:57:31.000Z">September 4, 2026 at 3:57 PM UTC</time><a class="item-permalink" href="#reporting-6b5b7c851b25" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">AI Security</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: monitor" data-destination-label="general report">SentryInsight: monitor · general report</a></div>
+          <p class="news-summary">Frontier AI models have already demonstrated they can autonomously — and in some cases, inadvertently — conduct end-to-end compromises, but the situation will become more urgent very soon.</p>
+        </article>
+        <article class="news-item reporting-item" id="reporting-ffe72a79b189" data-source="The Hacker News" data-host="thehackernews.com" data-title="Phishing Campaign Sends Millions of Emails Using Invisible Unicode to Evade Filters" data-summary="Microsoft is alerting of a &quot;high-volume phishing campaign&quot; that&#39;s using invisible Unicode tag characters to bypass email filters. &quot;Instead of using these characters to hide instructions from people while exposing them to AI models, the attacker used them to split financial lure words such as &#39;funding&#39; to prevent email filters from parsing them,&quot; the Microsoft Security Research team said. The…" data-severity="Elevated" data-tags="Identity,AI Security" data-vendors="Microsoft" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-04T15:57:15.000Z">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/09/phishing-campaign-sends-millions-of.html" target="_blank" rel="noopener noreferrer">Phishing Campaign Sends Millions of Emails Using Invisible Unicode to Evade Filters</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-04T15:57:15.000Z">September 4, 2026 at 3:57 PM UTC</time><a class="item-permalink" href="#reporting-ffe72a79b189" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Microsoft</span><span class="chip">Identity</span><span class="chip">AI Security</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
+          <p class="news-summary">Microsoft is alerting of a &quot;high-volume phishing campaign&quot; that&#39;s using invisible Unicode tag characters to bypass email filters. &quot;Instead of using these characters to hide instructions from people while exposing them to AI models, the attacker used them to split financial lure words such as &#39;funding&#39; to prevent email filters from parsing them,&quot; the Microsoft Security Research team said. The…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/phishing-campaign-sends-millions-of.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-7483ae5401bd" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Critical Citrix NetScaler auth bypass now leveraged in attacks" data-summary="Attackers have begun targeting a critical-severity Citrix NetScaler auth bypass flaw (CVE-2026-19490) in the wild, according to vulnerability intelligence company Previdian…" data-severity="Critical" data-tags="Vulnerability,Exploitation" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-09-04T15:25:59.000Z">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hackers-target-critical-citrix-netscaler-auth-bypass-in-attacks/" target="_blank" rel="noopener noreferrer">Critical Citrix NetScaler auth bypass now leveraged in attacks</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-04T15:25:59.000Z">September 4, 2026 at 3:25 PM UTC</time><a class="item-permalink" href="#reporting-7483ae5401bd" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/#cve-2026-19490" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="CVE reference: CVE-2026-19490">SentryInsight: incident watch · CVE reference: CVE-2026-19490</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a></div>
+          <p class="news-summary">Attackers have begun targeting a critical-severity Citrix NetScaler auth bypass flaw (CVE-2026-19490) in the wild, according to vulnerability intelligence company Previdian…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/hackers-target-critical-citrix-netscaler-auth-bypass-in-attacks/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-d7ed15b40cfe" data-source="The Hacker News" data-host="thehackernews.com" data-title="PostgreSQL Fixes 12-Year-Old Logical Decoding Flaw Enabling Replication-Role Code Execution" data-summary="PostgreSQL has released updates to address a security flaw that allows an account with the REPLICATION attribute to run arbitrary code as the operating-system user running the database server. The flaw, tracked as CVE-2026-6471 (CVSS score: 7.2), has been present since logical decoding was introduced in PostgreSQL 9.4 in 2014. Versions before PostgreSQL 18.6, 17.11, 16.15, 15.19, and 14.24 are…" data-severity="Elevated" data-tags="Vulnerability" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-09-04T15:20:19.000Z">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/09/postgresql-fixes-12-year-old-logical.html" target="_blank" rel="noopener noreferrer">PostgreSQL Fixes 12-Year-Old Logical Decoding Flaw Enabling Replication-Role Code Execution</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-04T15:20:19.000Z">September 4, 2026 at 3:20 PM UTC</time><a class="item-permalink" href="#reporting-d7ed15b40cfe" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Vulnerability</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a></div>
+          <p class="news-summary">PostgreSQL has released updates to address a security flaw that allows an account with the REPLICATION attribute to run arbitrary code as the operating-system user running the database server. The flaw, tracked as CVE-2026-6471 (CVSS score: 7.2), has been present since logical decoding was introduced in PostgreSQL 9.4 in 2014. Versions before PostgreSQL 18.6, 17.11, 16.15, 15.19, and 14.24 are…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/postgresql-fixes-12-year-old-logical.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-b1ea25ffc370" data-source="The Hacker News" data-host="thehackernews.com" data-title="New Ted Backdoor Hides Inside Victims&#39; Own HAProxy Builds to Intercept Web Traffic" data-summary="A previously undocumented Linux toolkit has been found compiled directly into the trojanized HAProxy load balancers of two South Korean organizations, where it intercepted web traffic and served altered pages to selected visitors. The attackers named the implant ted in debug strings left in the binary. It is not a HAProxy vulnerability, and installing it requires code execution on the host and…" data-severity="Elevated" data-tags="Vulnerability,Malware" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-09-04T14:51:13.000Z">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/09/new-ted-backdoor-hides-inside-victims.html" target="_blank" rel="noopener noreferrer">New Ted Backdoor Hides Inside Victims&#39; Own HAProxy Builds to Intercept Web Traffic</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-04T14:51:13.000Z">September 4, 2026 at 2:51 PM UTC</time><a class="item-permalink" href="#reporting-b1ea25ffc370" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Malware</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a></div>
+          <p class="news-summary">A previously undocumented Linux toolkit has been found compiled directly into the trojanized HAProxy load balancers of two South Korean organizations, where it intercepted web traffic and served altered pages to selected visitors. The attackers named the implant ted in debug strings left in the binary. It is not a HAProxy vulnerability, and installing it requires code execution on the host and…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/new-ted-backdoor-hides-inside-victims.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-fface7014a8e" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft says some users can’t open the Teams desktop client" data-summary="Microsoft is working to resolve a known issue that causes delays or blocks some users from opening the Microsoft Teams desktop client on Windows systems…" data-severity="Monitor" data-tags="" data-vendors="Microsoft" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-04T14:30:15.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-says-some-users-cant-open-the-teams-desktop-client/" target="_blank" rel="noopener noreferrer">Microsoft says some users can’t open the Teams desktop client</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-04T14:30:15.000Z">September 4, 2026 at 2:30 PM UTC</time><a class="item-permalink" href="#reporting-fface7014a8e" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Microsoft</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
+          <p class="news-summary">Microsoft is working to resolve a known issue that causes delays or blocks some users from opening the Microsoft Teams desktop client on Windows systems…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/microsoft/microsoft-says-some-users-cant-open-the-teams-desktop-client/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-a1caa1ba3e69" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="39 New Methods That Compromise Passkey Authentication" data-summary="Passkeys eliminate many password-based attacks, but researchers have documented 39 methods for compromising authentication built around them. Token explains how attackers can abuse authentication prompts, synced credentials, enrollment, recovery, and other trust boundaries without breaking FIDO2 cryptography…" data-severity="Elevated" data-tags="Identity" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Recent" data-published-at="2026-09-04T14:01:11.000Z">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/39-new-methods-that-compromise-passkey-authentication/" target="_blank" rel="noopener noreferrer">39 New Methods That Compromise Passkey Authentication</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-04T14:01:11.000Z">September 4, 2026 at 2:01 PM UTC</time><a class="item-permalink" href="#reporting-a1caa1ba3e69" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Identity</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a></div>
+          <p class="news-summary">Passkeys eliminate many password-based attacks, but researchers have documented 39 methods for compromising authentication built around them. Token explains how attackers can abuse authentication prompts, synced credentials, enrollment, recovery, and other trust boundaries without breaking FIDO2 cryptography…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/39-new-methods-that-compromise-passkey-authentication/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-beea4dd696f2" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="New CrowdStrike &#39;FalconFlank&#39; zero-day grants SYSTEM privileges" data-summary="An anonymous security researcher who uses the &quot;Nightmare Eclipse&quot; handle released a CrowdStrike Falcon zero-day exploit named &quot;FalconFlank&quot; that lets attackers escalate privileges on up-to-date Windows systems…" data-severity="Critical" data-tags="Vulnerability,Exploitation" data-vendors="Microsoft" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-04T13:22:01.000Z">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/new-crowdstrike-falconflank-zero-day-grants-system-privileges/" target="_blank" rel="noopener noreferrer">New CrowdStrike &#39;FalconFlank&#39; zero-day grants SYSTEM privileges</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-04T13:22:01.000Z">September 4, 2026 at 1:22 PM UTC</time><a class="item-permalink" href="#reporting-beea4dd696f2" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Microsoft</span><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
+          <p class="news-summary">An anonymous security researcher who uses the &quot;Nightmare Eclipse&quot; handle released a CrowdStrike Falcon zero-day exploit named &quot;FalconFlank&quot; that lets attackers escalate privileges on up-to-date Windows systems…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/new-crowdstrike-falconflank-zero-day-grants-system-privileges/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-e611d74c39b6" data-source="Dark Reading" data-host="darkreading.com" data-title="AI Is Ending the Era of Hidden Vulnerabilities — Are Vendors Ready?" data-summary="A tidal wave of bug reports is overwhelming software vendors, exposing secure-by-design failures and creating disclosure bottlenecks." data-severity="Elevated" data-tags="Vulnerability,AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-09-04T13:00:00.000Z">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip source-chip">Dark Reading</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/ai-ending-era-hidden-vulnerabilities-are-vendors-ready" target="_blank" rel="noopener noreferrer">AI Is Ending the Era of Hidden Vulnerabilities — Are Vendors Ready?</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-04T13:00:00.000Z">September 4, 2026 at 1:00 PM UTC</time><a class="item-permalink" href="#reporting-e611d74c39b6" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">AI Security</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a></div>
+          <p class="news-summary">A tidal wave of bug reports is overwhelming software vendors, exposing secure-by-design failures and creating disclosure bottlenecks.</p>
+        </article>
+        <article class="news-item reporting-item" id="reporting-1fc275a61f10" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Exchange Online outage causes email delays, &#39;Server busy&#39; errors" data-summary="Microsoft is working to resolve an ongoing Exchange Online outage that is delaying email sent to and received from external domains…" data-severity="Monitor" data-tags="" data-vendors="Microsoft" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-04T12:22:30.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/exchange-online-outage-causes-email-delays-server-busy-errors/" target="_blank" rel="noopener noreferrer">Exchange Online outage causes email delays, &#39;Server busy&#39; errors</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-04T12:22:30.000Z">September 4, 2026 at 12:22 PM UTC</time><a class="item-permalink" href="#reporting-1fc275a61f10" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Microsoft</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
+          <p class="news-summary">Microsoft is working to resolve an ongoing Exchange Online outage that is delaying email sent to and received from external domains…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/microsoft/exchange-online-outage-causes-email-delays-server-busy-errors/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-ffe71b2571f9" data-source="Dark Reading" data-host="darkreading.com" data-title="Insurers Search for Answers to Rein in Rogue AI" data-summary="As incidents of unintended harm caused by rogue AI agents mount, CISOs and insurance firms are figuring out how to handle the fallout." data-severity="Monitor" data-tags="AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-09-04T12:15:03.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">Dark Reading</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/insurers-search-answers-rogue-ai" target="_blank" rel="noopener noreferrer">Insurers Search for Answers to Rein in Rogue AI</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-04T12:15:03.000Z">September 4, 2026 at 12:15 PM UTC</time><a class="item-permalink" href="#reporting-ffe71b2571f9" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">AI Security</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: monitor" data-destination-label="general report">SentryInsight: monitor · general report</a></div>
+          <p class="news-summary">As incidents of unintended harm caused by rogue AI agents mount, CISOs and insurance firms are figuring out how to handle the fallout.</p>
+        </article>
+        <article class="news-item reporting-item" id="reporting-dc2f42c91d09" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Google warns of new Chrome zero-day flaw exploited in attacks" data-summary="Google has updated the Chrome browser to address an actively exploited high-severity zero-day flaw in the V8 engine and 11 other vulnerabilities…" data-severity="Critical" data-tags="Vulnerability,Exploitation" data-vendors="Google" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-04T11:48:17.000Z">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/google-warns-of-new-chrome-zero-day-flaw-exploited-in-attacks/" target="_blank" rel="noopener noreferrer">Google warns of new Chrome zero-day flaw exploited in attacks</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-04T11:48:17.000Z">September 4, 2026 at 11:48 AM UTC</time><a class="item-permalink" href="#reporting-dc2f42c91d09" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Google</span><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
+          <p class="news-summary">Google has updated the Chrome browser to address an actively exploited high-severity zero-day flaw in the V8 engine and 11 other vulnerabilities…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/google-warns-of-new-chrome-zero-day-flaw-exploited-in-attacks/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-7eb26d7003dc" data-source="The Hacker News" data-host="thehackernews.com" data-title="Over 440,000 Exploit Attempts Target Super Forms and Elementor Pro RCE Flaws" data-summary="Threat actors are exploiting two critical security flaws in WordPress plugins Super Forms and Elementor Pro, according to findings from Wordfence. The vulnerabilities in question are - CVE-2026-14894 (CVSS score: 9.8) - A missing file type validation vulnerability in Super Forms – Drag &amp; Drop Form Builder that allows unauthenticated attackers to upload files of any type, including…" data-severity="Elevated" data-tags="Vulnerability,Exploitation" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-09-04T08:48:45.000Z">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/09/over-440000-exploit-attempts-target.html" target="_blank" rel="noopener noreferrer">Over 440,000 Exploit Attempts Target Super Forms and Elementor Pro RCE Flaws</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-04T08:48:45.000Z">September 4, 2026 at 8:48 AM UTC</time><a class="item-permalink" href="#reporting-7eb26d7003dc" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a></div>
+          <p class="news-summary">Threat actors are exploiting two critical security flaws in WordPress plugins Super Forms and Elementor Pro, according to findings from Wordfence. The vulnerabilities in question are - CVE-2026-14894 (CVSS score: 9.8) - A missing file type validation vulnerability in Super Forms – Drag &amp; Drop Form Builder that allows unauthenticated attackers to upload files of any type, including…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/over-440000-exploit-attempts-target.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-08f9037c31db" data-source="The Hacker News" data-host="thehackernews.com" data-title="Plex Urges Immediate Updates After Patching Multiple Undisclosed Security Flaws" data-summary="Plex is urging users to update their instances to the latest version following the release of an update that patches multiple security flaws. The fixes are available in Plex Media Server 1.43.3 and Plex Desktop 1.115.0. The streaming media service did not elaborate on what those issues are, but said CVE identifiers have been requested for them. &quot;We recommend all server owners and Desktop users…" data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-09-04T07:35:14.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/09/plex-urges-immediate-updates-after.html" target="_blank" rel="noopener noreferrer">Plex Urges Immediate Updates After Patching Multiple Undisclosed Security Flaws</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-04T07:35:14.000Z">September 4, 2026 at 7:35 AM UTC</time><a class="item-permalink" href="#reporting-08f9037c31db" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: monitor" data-destination-label="general report">SentryInsight: monitor · general report</a></div>
+          <p class="news-summary">Plex is urging users to update their instances to the latest version following the release of an update that patches multiple security flaws. The fixes are available in Plex Media Server 1.43.3 and Plex Desktop 1.115.0. The streaming media service did not elaborate on what those issues are, but said CVE identifiers have been requested for them. &quot;We recommend all server owners and Desktop users…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/plex-urges-immediate-updates-after.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-49749711ba07" data-source="The Hacker News" data-host="thehackernews.com" data-title="Google Releases Chrome Update to Patch Actively Exploited V8 Zero-Day" data-summary="Google on Thursday released security updates to patch 12 vulnerabilities, including one that has come under active exploitation in the wild. The high-severity vulnerability, tracked as CVE-2026-85046 (CVSS score: 8.8), has been described as a type confusion bug in V8, Chrome&#39;s JavaScript and WebAssembly engine. &quot;Type confusion in V8 in Google Chrome prior to 152.0.7977.82 allowed a remote…" data-severity="Critical" data-tags="Vulnerability,Exploitation" data-vendors="Google" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-04T07:18:47.000Z">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/09/google-releases-chrome-update-to-patch.html" target="_blank" rel="noopener noreferrer">Google Releases Chrome Update to Patch Actively Exploited V8 Zero-Day</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-04T07:18:47.000Z">September 4, 2026 at 7:18 AM UTC</time><a class="item-permalink" href="#reporting-49749711ba07" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Google</span><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/#cve-2026-85046" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="CVE reference: CVE-2026-85046">SentryInsight: incident watch · CVE reference: CVE-2026-85046</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
+          <p class="news-summary">Google on Thursday released security updates to patch 12 vulnerabilities, including one that has come under active exploitation in the wild. The high-severity vulnerability, tracked as CVE-2026-85046 (CVSS score: 8.8), has been described as a type confusion bug in V8, Chrome&#39;s JavaScript and WebAssembly engine. &quot;Type confusion in V8 in Google Chrome prior to 152.0.7977.82 allowed a remote…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/google-releases-chrome-update-to-patch.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-09bf1e9a868f" data-source="The Hacker News" data-host="thehackernews.com" data-title="GPT-6 Astra Scores 100% on ExploitBench as OpenAI Blocks PoC Exploit Requests" data-summary="OpenAI on Thursday officially unveiled GPT‑6 Astra, which it described as the &quot;world&#39;s most intelligent and aligned model.&quot; The development comes days after the artificial intelligence (AI) company said the model had reached the &quot;Critical&quot; cybersecurity capability threshold under its Preparedness Framework. &quot;Astra is state-of-the-art on computer use, browsing, software engineering…" data-severity="Elevated" data-tags="Exploitation,AI Security" data-vendors="OpenAI" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-04T06:47:52.000Z">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/09/gpt-6-astra-scores-100-on-exploitbench.html" target="_blank" rel="noopener noreferrer">GPT-6 Astra Scores 100% on ExploitBench as OpenAI Blocks PoC Exploit Requests</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-04T06:47:52.000Z">September 4, 2026 at 6:47 AM UTC</time><a class="item-permalink" href="#reporting-09bf1e9a868f" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">OpenAI</span><span class="chip">Exploitation</span><span class="chip">AI Security</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
+          <p class="news-summary">OpenAI on Thursday officially unveiled GPT‑6 Astra, which it described as the &quot;world&#39;s most intelligent and aligned model.&quot; The development comes days after the artificial intelligence (AI) company said the model had reached the &quot;Critical&quot; cybersecurity capability threshold under its Preparedness Framework. &quot;Astra is state-of-the-art on computer use, browsing, software engineering…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/gpt-6-astra-scores-100-on-exploitbench.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-0310538b67d5" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="French hospital fined €500,000 after breach exposes data of 727,000" data-summary="France&#39;s data protection authority (CNIL) has fined Hôpital privé de la Loire €500,000 ($580,000) for failing to adequately protect patients&#39; and their relatives&#39; data…" data-severity="Critical" data-tags="Data Breach" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Recent" data-published-at="2026-09-03T22:01:37.000Z">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/french-hospital-fined-500-000-after-breach-exposes-data-of-727-000/" target="_blank" rel="noopener noreferrer">French hospital fined €500,000 after breach exposes data of 727,000</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-03T22:01:37.000Z">September 3, 2026 at 10:01 PM UTC</time><a class="item-permalink" href="#reporting-0310538b67d5" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Data Breach</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a></div>
+          <p class="news-summary">France&#39;s data protection authority (CNIL) has fined Hôpital privé de la Loire €500,000 ($580,000) for failing to adequately protect patients&#39; and their relatives&#39; data…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/french-hospital-fined-500-000-after-breach-exposes-data-of-727-000/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-b38f4c9e8193" data-source="Dark Reading" data-host="darkreading.com" data-title="Large Enterprises Targeted in Fake Merger &amp; Acquisition Scams" data-summary="Threat actors behind the &quot;Phantom Deal&quot; campaign are studying companies in extreme detail, aiming to dupe midlevel employees into initiating large financial transfers." data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-09-03T20:18:14.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">Dark Reading</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/large-enterprises-fake-merger-acquisition-scams" target="_blank" rel="noopener noreferrer">Large Enterprises Targeted in Fake Merger &amp; Acquisition Scams</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-03T20:18:14.000Z">September 3, 2026 at 8:18 PM UTC</time><a class="item-permalink" href="#reporting-b38f4c9e8193" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: monitor" data-destination-label="general report">SentryInsight: monitor · general report</a></div>
+          <p class="news-summary">Threat actors behind the &quot;Phantom Deal&quot; campaign are studying companies in extreme detail, aiming to dupe midlevel employees into initiating large financial transfers.</p>
+        </article>
+        <article class="news-item reporting-item" id="reporting-25f09ace8141" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Coder&#39;s registry infrastructure compromised to push malicious modules" data-summary="Attackers compromised Coder&#39;s Cloudflare infrastructure and added unauthorized registry servers that delivered malicious Terraform modules containing credential-stealing code…" data-severity="Elevated" data-tags="Identity" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Recent" data-published-at="2026-09-03T20:04:24.000Z">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/coders-registry-infrastructure-compromised-to-push-malicious-modules/" target="_blank" rel="noopener noreferrer">Coder&#39;s registry infrastructure compromised to push malicious modules</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-03T20:04:24.000Z">September 3, 2026 at 8:04 PM UTC</time><a class="item-permalink" href="#reporting-25f09ace8141" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Identity</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a></div>
+          <p class="news-summary">Attackers compromised Coder&#39;s Cloudflare infrastructure and added unauthorized registry servers that delivered malicious Terraform modules containing credential-stealing code…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/coders-registry-infrastructure-compromised-to-push-malicious-modules/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-657cfe30a45c" data-source="Dark Reading" data-host="darkreading.com" data-title="What We Missed: Did ShinyHunters &#39;Breach&#39; ReliaQuest?" data-summary="In this video conversation, Dark Reading editors discuss some of the news they didn&#39;t get a chance to cover, from the latest antics of ShinyHunters to new research about the prevalence (or lack thereof) of AI-generated malware." data-severity="Critical" data-tags="Data Breach,Malware,AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Recent" data-published-at="2026-09-03T19:42:39.000Z">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip source-chip">Dark Reading</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/what-we-missed-did-shinyhunters-breach-reliaquest" target="_blank" rel="noopener noreferrer">What We Missed: Did ShinyHunters &#39;Breach&#39; ReliaQuest?</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-03T19:42:39.000Z">September 3, 2026 at 7:42 PM UTC</time><a class="item-permalink" href="#reporting-657cfe30a45c" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Data Breach</span><span class="chip">Malware</span><span class="chip">AI Security</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a></div>
+          <details class="summary-disclosure">
+            <summary class="summary-toggle" aria-controls="summary-full-28">
+              <span class="summary-preview-text">In this video conversation, Dark Reading editors discuss some of the news they didn&#39;t get a chance to cover, from the latest antics of ShinyHunters to new</span><span class="summary-ellipsis" aria-hidden="true">...</span>
+              <span class="summary-action">Show full summary</span>
+            </summary>
+            <p class="news-summary summary-full" id="summary-full-28">research about the prevalence (or lack thereof) of AI-generated malware.</p>
+          </details>
+        </article>
+        <article class="news-item reporting-item" id="reporting-d0cdf0878d94" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="HPE patches critical ArubaOS-CX remote code execution flaw" data-summary="Hewlett Packard Enterprise (HPE) has patched a critical vulnerability in the ArubaOS-CX network operating system that could lead to remote code execution…" data-severity="Critical" data-tags="Vulnerability" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-09-03T18:28:12.000Z">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hpe-patches-critical-arubaos-cx-remote-code-execution-flaw/" target="_blank" rel="noopener noreferrer">HPE patches critical ArubaOS-CX remote code execution flaw</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-03T18:28:12.000Z">September 3, 2026 at 6:28 PM UTC</time><a class="item-permalink" href="#reporting-d0cdf0878d94" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Vulnerability</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a></div>
+          <p class="news-summary">Hewlett Packard Enterprise (HPE) has patched a critical vulnerability in the ArubaOS-CX network operating system that could lead to remote code execution…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/hpe-patches-critical-arubaos-cx-remote-code-execution-flaw/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-eae08603ec40" data-source="The Hacker News" data-host="thehackernews.com" data-title="ThreatsDay: CEO Phishing Kits, 5K Dropbox Account Hacks, OAuth Traps + 17 More Stories" data-summary="The worst part is how normal these attacks look. A call from IT. A shared file. A trusted app. A simple request to click “Allow.” Why break in when someone might open the door? That idea runs through this edition. Attackers use real tools, fake login pages, old account links, and software guides that point to unsafe downloads. One wrong letter in a web address can be enough. There is also…" data-severity="Elevated" data-tags="Identity" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Recent" data-published-at="2026-09-03T18:02:47.000Z">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/09/threatsday-ceo-phishing-kits-5k-dropbox.html" target="_blank" rel="noopener noreferrer">ThreatsDay: CEO Phishing Kits, 5K Dropbox Account Hacks, OAuth Traps + 17 More Stories</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-03T18:02:47.000Z">September 3, 2026 at 6:02 PM UTC</time><a class="item-permalink" href="#reporting-eae08603ec40" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Identity</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a></div>
+          <p class="news-summary">The worst part is how normal these attacks look. A call from IT. A shared file. A trusted app. A simple request to click “Allow.” Why break in when someone might open the door? That idea runs through this edition. Attackers use real tools, fake login pages, old account links, and software guides that point to unsafe downloads. One wrong letter in a web address can be enough. There is also…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/threatsday-ceo-phishing-kits-5k-dropbox.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-9f1cf6b5657f" data-source="Dark Reading" data-host="darkreading.com" data-title="What the AI Warning Letter Completely Missed" data-summary="The recent AI warning letter is right about the &quot;window,&quot; but it omits naming who is coming through it or, critically, who will close it." data-severity="Monitor" data-tags="AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-09-03T17:23:14.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">Dark Reading</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/ai-warning-letter-missed-people" target="_blank" rel="noopener noreferrer">What the AI Warning Letter Completely Missed</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-03T17:23:14.000Z">September 3, 2026 at 5:23 PM UTC</time><a class="item-permalink" href="#reporting-9f1cf6b5657f" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">AI Security</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: monitor" data-destination-label="general report">SentryInsight: monitor · general report</a></div>
+          <p class="news-summary">The recent AI warning letter is right about the &quot;window,&quot; but it omits naming who is coming through it or, critically, who will close it.</p>
+        </article>
+        <article class="news-item reporting-item" id="reporting-10869e1cb2f9" data-source="The Hacker News" data-host="thehackernews.com" data-title="Critical Cisco Nexus 9000 Flaw Lets Unauthenticated Remote Attackers Run Code as Root" data-summary="Cisco has released patches to address a critical security flaw affecting 10 Silicon One-based Nexus 9000 switches that could allow an unauthenticated, remote attacker to execute code as root, alongside an IOS XR hardening release bundling 7 umbrella CVEs, 2 of which are rated 9.8, with no workaround for any IOS XR version. The Nexus vulnerability, tracked as CVE-2026-20212 (CVSS score: 9.8), is…" data-severity="Elevated" data-tags="Vulnerability" data-vendors="Cisco" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-03T15:52:07.000Z">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/09/critical-cisco-nexus-9000-flaw-lets.html" target="_blank" rel="noopener noreferrer">Critical Cisco Nexus 9000 Flaw Lets Unauthenticated Remote Attackers Run Code as Root</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-03T15:52:07.000Z">September 3, 2026 at 3:52 PM UTC</time><a class="item-permalink" href="#reporting-10869e1cb2f9" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Cisco</span><span class="chip">Vulnerability</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
+          <p class="news-summary">Cisco has released patches to address a critical security flaw affecting 10 Silicon One-based Nexus 9000 switches that could allow an unauthenticated, remote attacker to execute code as root, alongside an IOS XR hardening release bundling 7 umbrella CVEs, 2 of which are rated 9.8, with no workaround for any IOS XR version. The Nexus vulnerability, tracked as CVE-2026-20212 (CVSS score: 9.8), is…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/critical-cisco-nexus-9000-flaw-lets.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-9d9736b815d5" data-source="The Hacker News" data-host="thehackernews.com" data-title="BraZetsu Malware Turns Compromised Windows Hosts Into Criminal Marketplace Inventory" data-summary="Cybersecurity researchers have disclosed details of a sophisticated Python-based Windows malware framework called BraZetsu that fuels an underground marketplace commercializing access to compromised hosts. &quot;Unlike the standard infostealer model, BraZetsu is a comprehensive master toolkit that empowers Initial Access Brokers (IABs) by turning compromised systems into highly valuable commercial…" data-severity="Elevated" data-tags="Malware,AI Security" data-vendors="Microsoft" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-03T15:26:47.000Z">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/09/brazetsu-malware-turns-compromised.html" target="_blank" rel="noopener noreferrer">BraZetsu Malware Turns Compromised Windows Hosts Into Criminal Marketplace Inventory</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-03T15:26:47.000Z">September 3, 2026 at 3:26 PM UTC</time><a class="item-permalink" href="#reporting-9d9736b815d5" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Microsoft</span><span class="chip">Malware</span><span class="chip">AI Security</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
+          <p class="news-summary">Cybersecurity researchers have disclosed details of a sophisticated Python-based Windows malware framework called BraZetsu that fuels an underground marketplace commercializing access to compromised hosts. &quot;Unlike the standard infostealer model, BraZetsu is a comprehensive master toolkit that empowers Initial Access Brokers (IABs) by turning compromised systems into highly valuable commercial…</p><a class="summary-continuation" href="https://thehackernews.com/2026/09/brazetsu-malware-turns-compromised.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-3ffce2a0f361" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft: KB5120998 mouse reset bug affects only non-English PCs" data-summary="Microsoft says a known issue that reverts mouse settings after installing the KB5120998 August 2026 preview update affects only non-English Windows 11 systems…" data-severity="Monitor" data-tags="" data-vendors="Microsoft" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-03T15:22:33.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-kb5120998-mouse-reset-bug-affects-only-non-english-pcs/" target="_blank" rel="noopener noreferrer">Microsoft: KB5120998 mouse reset bug affects only non-English PCs</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-03T15:22:33.000Z">September 3, 2026 at 3:22 PM UTC</time><a class="item-permalink" href="#reporting-3ffce2a0f361" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Microsoft</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
+          <p class="news-summary">Microsoft says a known issue that reverts mouse settings after installing the KB5120998 August 2026 preview update affects only non-English Windows 11 systems…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/microsoft/microsoft-kb5120998-mouse-reset-bug-affects-only-non-english-pcs/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item reporting-item" id="reporting-f413fd637fae" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="OpenAI confirms ChatGPT is down ahead of &#39;Astra&#39; model launch" data-summary="ChatGPT and Codex are experiencing a major outage, with users reporting errors across nearly every major ChatGPT feature…" data-severity="Monitor" data-tags="AI Security" data-vendors="OpenAI" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-09-03T15:13:29.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/openai-confirms-chatgpt-is-down-ahead-of-astra-model-launch/" target="_blank" rel="noopener noreferrer">OpenAI confirms ChatGPT is down ahead of &#39;Astra&#39; model launch</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-09-03T15:13:29.000Z">September 3, 2026 at 3:13 PM UTC</time><a class="item-permalink" href="#reporting-f413fd637fae" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">OpenAI</span><span class="chip">AI Security</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
+          <p class="news-summary">ChatGPT and Codex are experiencing a major outage, with users reporting errors across nearly every major ChatGPT feature…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/artificial-intelligence/openai-confirms-chatgpt-is-down-ahead-of-astra-model-launch/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      A Rico Manifesto project by <a href="https://ricomanifesto.com/">Michael Rico</a> • Retained issue · ages at retention · <a href="index.json">Issue data</a> • <a data-rss-link href="../../feed.xml" aria-label="Open generated RSS feed">RSS Feed</a>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const root = document.documentElement;
+      const themeKey = 'sentrydigest:theme';
+      const saved = localStorage.getItem(themeKey);
+      root.setAttribute('data-theme', saved === 'dark' ? 'dark' : 'light');
+      const btn = document.getElementById('themeToggle');
+      btn && btn.addEventListener('click', function(){
+        const dark = root.getAttribute('data-theme') === 'dark';
+        root.setAttribute('data-theme', dark ? 'light' : 'dark');
+        localStorage.setItem(themeKey, dark ? 'light' : 'dark');
+      });
+
+
+      const q = (sel) => document.querySelector(sel);
+      const qa = (sel) => Array.prototype.slice.call(document.querySelectorAll(sel));
+      const search = q('#search');
+      const sourceFilter = q('#sourceFilter');
+      const severityFilter = q('#severityFilter');
+      const tagFilter = q('#tagFilter');
+      const vendorFilter = q('#vendorFilter');
+      const ageFilter = q('#ageFilter');
+      const handoffFilter = q('#handoffFilter');
+      const emptyFilteredState = q('#emptyFilteredState');
+      const emptyFilteredMessage = q('#emptyFilteredMessage');
+      const activeFilters = q('#activeFilters');
+      const filterStatusAnnouncement = q('#filterStatusAnnouncement');
+      const resetFilters = q('#resetFilters');
+      const emptyResetFilters = q('#emptyResetFilters');
+      const advancedFilters = q('#advancedFilters');
+      const filterInsights = q('#filterInsights');
+      const sourceFilterStatus = q('[data-source-filter-status]');
+      const operatorLanes = qa('.operator-lane');
+      const sourceCoverageButtons = qa('[data-source-filter]');
+      const stats = q('#stats');
+      const cards = qa('article.news-item');
+      const cadenceStatus = q('.issue-trail-cadence');
+      const cadenceLabel = cadenceStatus && cadenceStatus.querySelector('[data-cadence-label]');
+      const digestUpdatedTime = q('.issue-trail-updated');
+      const filterParams = {
+        search: 'q',
+        sourceFilter: 'source',
+        severityFilter: 'severity',
+        tagFilter: 'tag',
+        vendorFilter: 'vendor',
+        ageFilter: 'age',
+        handoffFilter: 'handoff',
+      };
+      const filterControls = {
+        search,
+        sourceFilter,
+        severityFilter,
+        tagFilter,
+        vendorFilter,
+        ageFilter,
+        handoffFilter,
+      };
+      const filterLabels = {
+        search: 'Search',
+        sourceFilter: 'Source',
+        severityFilter: 'Severity',
+        tagFilter: 'Topic',
+        vendorFilter: 'Vendor',
+        ageFilter: 'Age',
+        handoffFilter: 'Handoff',
+      };
+
+      function applyQueryState(){
+        const params = new URLSearchParams(window.location.search);
+        Object.keys(filterParams).forEach(function(key){
+          const control = filterControls[key];
+          if (!control) return;
+          const value = params.get(filterParams[key]);
+          if (value !== null) control.value = value;
+        });
+      }
+
+      function syncQueryState(){
+        if (!window.history || !window.history.replaceState) return;
+        const params = new URLSearchParams(window.location.search);
+        Object.keys(filterParams).forEach(function(key){
+          const control = filterControls[key];
+          const value = control && control.value || '';
+          if (value) {
+            params.set(filterParams[key], value);
+          } else {
+            params.delete(filterParams[key]);
+          }
+        });
+        const nextSearch = params.toString();
+        const nextUrl = window.location.pathname + (nextSearch ? '?' + nextSearch : '') + window.location.hash;
+        window.history.replaceState(null, '', nextUrl);
+      }
+
+      function getControlLabel(control){
+        if (!control) return '';
+        if (control.tagName === 'SELECT' && control.selectedOptions && control.selectedOptions.length > 0) {
+          return control.selectedOptions[0].textContent || control.value;
+        }
+        return control.value || '';
+      }
+
+      function renderActiveFilters(){
+        if (!activeFilters) return;
+        const activeFiltersList = Object.keys(filterControls)
+          .map(function(key){
+            const control = filterControls[key];
+            const value = control && control.value || '';
+            const label = getControlLabel(control);
+            return value ? { key, label } : null;
+          })
+          .filter(Boolean);
+        activeFilters.textContent = '';
+        activeFilters.hidden = activeFiltersList.length === 0;
+        if (resetFilters) resetFilters.hidden = activeFiltersList.length === 0;
+        activeFiltersList.forEach(function(activeFilter){
+          const key = activeFilter.key;
+          const label = activeFilter.label;
+          const chip = document.createElement('span');
+          chip.className = 'active-filter-chip';
+          chip.setAttribute('role', 'listitem');
+          const chipText = document.createElement('span');
+          chipText.textContent = filterLabels[key] + ': ' + label;
+          const clearButton = document.createElement('button');
+          clearButton.className = 'active-filter-clear';
+          clearButton.type = 'button';
+          clearButton.setAttribute('data-filter-key', key);
+          clearButton.setAttribute('aria-label', 'Clear ' + filterLabels[key] + ': ' + label + ' filter');
+          clearButton.textContent = '×';
+          chip.appendChild(chipText);
+          chip.appendChild(clearButton);
+          activeFilters.appendChild(chip);
+        });
+      }
+
+      function incrementCount(counts, value){
+        if (!value) return;
+        counts[value] = (counts[value] || 0) + 1;
+      }
+
+      function collectListCounts(counts, rawValue){
+        (rawValue || '').split(',').filter(Boolean).forEach(function(value){
+          incrementCount(counts, value);
+        });
+      }
+
+      function appendInsightGroup(label, counts, limit){
+        const entries = Object.keys(counts)
+          .map(function(value){ return { value, count: counts[value] }; })
+          .sort(function(a, b){ return b.count - a.count || a.value.localeCompare(b.value); })
+          .slice(0, limit);
+        entries.forEach(function(entry){
+          const chip = document.createElement('span');
+          chip.className = 'filter-insight-chip';
+          chip.textContent = label + ': ' + entry.value + ' ' + entry.count;
+          filterInsights.appendChild(chip);
+        });
+      }
+
+      function renderFilterInsights(visibleCards, hasAnyFilter){
+        if (!filterInsights) return;
+        filterInsights.textContent = '';
+        filterInsights.hidden = visibleCards.length === 0 || !hasAnyFilter;
+        if (visibleCards.length === 0 || !hasAnyFilter) return;
+        const label = document.createElement('span');
+        label.className = 'filter-insights-label';
+        label.textContent = 'Current results';
+        filterInsights.appendChild(label);
+        const severityCounts = {};
+        const topicCounts = {};
+        const vendorCounts = {};
+        const handoffCounts = {};
+        visibleCards.forEach(function(card){
+          incrementCount(severityCounts, card.getAttribute('data-severity'));
+          collectListCounts(topicCounts, card.getAttribute('data-tags'));
+          collectListCounts(vendorCounts, card.getAttribute('data-vendors'));
+          collectListCounts(handoffCounts, card.getAttribute('data-handoff-cues'));
+        });
+        appendInsightGroup('Severity', severityCounts, 3);
+        appendInsightGroup('Topic', topicCounts, 3);
+        appendInsightGroup('Vendor', vendorCounts, 3);
+        appendInsightGroup('Handoff', handoffCounts, 2);
+      }
+
+      function getEmptyFilteredMessage(src, hasComposedFilters){
+        const sourceLabel = src ? getControlLabel(sourceFilter) : '';
+        return sourceLabel && hasComposedFilters ? 'No ' + sourceLabel + ' articles match the current filters.' : 'No articles match the current filters.';
+      }
+
+      function renderEmptyFilteredState(visible, src, hasComposedFilters){
+        if (!emptyFilteredState) return;
+        emptyFilteredState.hidden = visible !== 0;
+        if (visible !== 0) return;
+        const messageTarget = emptyFilteredMessage || emptyFilteredState;
+        messageTarget.textContent = getEmptyFilteredMessage(src, hasComposedFilters);
+      }
+
+      function getFilterStatusText(visible, total, actionLabel, emptyFilteredStatusText){
+        const totalArticleLabel = total === 1 ? 'article' : 'articles';
+        const resultText = emptyFilteredStatusText ? emptyFilteredStatusText + ' Showing ' + visible + ' of ' + total + ' ' + totalArticleLabel + '.' : 'Showing ' + visible + ' of ' + total + ' ' + totalArticleLabel + '.';
+        return actionLabel ? actionLabel + ' ' + resultText : resultText;
+      }
+
+      function focusFilterRecoveryTarget(){
+        if (search && typeof search.focus === 'function') search.focus();
+      }
+
+      function focusActiveFilterRecoveryTarget(preferredIndex){
+        const remainingClearButtons = activeFilters ? Array.from(activeFilters.querySelectorAll('.active-filter-clear')) : [];
+        const nextClearButton = remainingClearButtons[Math.min(preferredIndex, remainingClearButtons.length - 1)];
+        if (nextClearButton && typeof nextClearButton.focus === 'function') {
+          nextClearButton.focus();
+          return;
+        }
+        focusFilterRecoveryTarget();
+      }
+
+      function focusSourceShortcutRecoveryTarget(source){
+        const targetButton = sourceCoverageButtons.find(function(button){
+          return button.getAttribute('data-source-filter') === source;
+        });
+        if (targetButton && typeof targetButton.focus === 'function') {
+          targetButton.focus();
+          return;
+        }
+        focusFilterRecoveryTarget();
+      }
+
+      function updateOperatorLanes(visibleCards){
+        operatorLanes.forEach(function(lane){
+          const cue = lane.getAttribute('data-lane-cue');
+          const countTarget = lane.querySelector('[data-lane-count]');
+          const linkTarget = lane.querySelector('[data-lane-link]');
+          const emptyTarget = lane.querySelector('[data-lane-empty]');
+          const destinationTarget = lane.querySelector('[data-lane-destination]');
+          const destinationLabel = lane.querySelector('[data-lane-destination-label]');
+          const matchingCards = visibleCards.filter(function(card){
+            return card.getAttribute('data-handoff-cues').split(',').filter(Boolean).includes(cue);
+          });
+          const itemLabel = matchingCards.length === 1 ? 'item' : 'items';
+          const latestLink = matchingCards[0] && matchingCards[0].querySelector('.news-title a');
+          if (countTarget) {
+            const strongCount = document.createElement('strong');
+            strongCount.textContent = matchingCards.length;
+            countTarget.textContent = '';
+            countTarget.appendChild(strongCount);
+            countTarget.appendChild(document.createTextNode(' ' + itemLabel));
+          }
+          if (linkTarget) {
+            linkTarget.hidden = !latestLink;
+            linkTarget.textContent = latestLink ? latestLink.textContent : '';
+            if (latestLink) {
+              linkTarget.setAttribute('href', latestLink.getAttribute('href'));
+            } else {
+              linkTarget.removeAttribute('href');
+            }
+          }
+          const handoff = matchingCards[0] && Array.from(matchingCards[0].querySelectorAll('[data-handoff-cue]'))
+            .find(function(link){ return link.getAttribute('data-handoff-cue') === cue; });
+          if (destinationTarget) {
+            if (handoff) {
+              destinationTarget.setAttribute('href', handoff.getAttribute('href'));
+              if (destinationLabel) destinationLabel.textContent = '· ' + handoff.getAttribute('data-destination-label');
+            } else {
+              destinationTarget.removeAttribute('href');
+              if (destinationLabel) destinationLabel.textContent = '';
+            }
+          }
+          if (emptyTarget) emptyTarget.hidden = Boolean(latestLink);
+        });
+      }
+
+      const freshHours = 6;
+
+      function updateCadenceHealth(){
+        if (!cadenceStatus || !cadenceLabel || !digestUpdatedTime) return;
+        const updatedAt = Date.parse(digestUpdatedTime.getAttribute('datetime') || '');
+        const cadenceHours = Number(cadenceStatus.getAttribute('data-cadence-hours'));
+        if (!Number.isFinite(updatedAt) || !Number.isFinite(cadenceHours) || cadenceHours <= 0) return;
+        const cadenceDeadlineMs = cadenceHours * 60 * 60 * 1000;
+        const isOverdue = Date.now() - updatedAt > cadenceDeadlineMs;
+        cadenceStatus.setAttribute('data-cadence-state', isOverdue ? 'overdue' : 'current');
+        cadenceLabel.textContent = isOverdue ? 'running behind its 3h cadence' : '3h cadence';
+      }
+
+      function getAgeState(publishedAt){
+        const publishedTime = new Date(publishedAt).getTime();
+        if (!Number.isFinite(publishedTime) || publishedTime === 0) {
+          return { label: 'Undated', detail: 'date unavailable' };
+        }
+        const ageMs = Math.max(0, 1788648217893 - publishedTime);
+        const ageMinutes = Math.floor(ageMs / (60 * 1000));
+        const ageHours = Math.floor(ageMs / (60 * 60 * 1000));
+        const ageDays = Math.floor(ageMs / (24 * 60 * 60 * 1000));
+        const detail = ageHours < 1 ? ageMinutes + 'm old' : ageHours < 24 ? ageHours + 'h old' : ageDays + 'd old';
+        const label = ageHours < freshHours ? 'Fresh' : ageDays < 4 ? 'Recent' : 'Older';
+        return { label, detail };
+      }
+
+      function updateFreshness(){
+        cards.forEach(function(card){
+          const age = getAgeState(card.getAttribute('data-published-at'));
+          const labelTarget = card.querySelector('[data-age-label]');
+          const detailTarget = card.querySelector('[data-age-detail]');
+          card.setAttribute('data-age-bucket', age.label);
+          if (labelTarget) labelTarget.textContent = age.label;
+          if (detailTarget) detailTarget.textContent = age.detail;
+        });
+      }
+
+      function update(statusActionLabel){
+        const term = (search && search.value || '').toLowerCase().trim();
+        const src = sourceFilter && sourceFilter.value || '';
+        const severity = severityFilter && severityFilter.value || '';
+        const tag = tagFilter && tagFilter.value || '';
+        const vendor = vendorFilter && vendorFilter.value || '';
+        const age = ageFilter && ageFilter.value || '';
+        const handoff = handoffFilter && handoffFilter.value || '';
+        let visible = 0;
+        const visibleCards = [];
+        cards.forEach(card => {
+          const matchesText = !term || (card.getAttribute('data-title').toLowerCase().includes(term) || card.getAttribute('data-summary').toLowerCase().includes(term));
+          const matchesSource = !src || card.getAttribute('data-source') === src;
+          const matchesSeverity = !severity || card.getAttribute('data-severity') === severity;
+          const matchesTag = !tag || card.getAttribute('data-tags').split(',').filter(Boolean).includes(tag);
+          const matchesVendor = !vendor || card.getAttribute('data-vendors').split(',').filter(Boolean).includes(vendor);
+          const matchesAge = !age || card.getAttribute('data-age-bucket') === age;
+          const matchesHandoff = !handoff || card.getAttribute('data-handoff-cues').split(',').filter(Boolean).includes(handoff);
+          const show = matchesText && matchesSource && matchesSeverity && matchesTag && matchesVendor && matchesAge && matchesHandoff;
+          card.style.display = show ? '' : 'none';
+          if (show) {
+            visible++;
+            visibleCards.push(card);
+          }
+        });
+        const total = 36;
+        const srcCount = 3;
+        const articleLabel = visible === 1 ? 'article' : 'articles';
+        const hasComposedFilters = Boolean(term || severity || tag || vendor || age || handoff);
+        const hasAdvancedFilters = Boolean(severity || tag || vendor || age || handoff);
+        const hasAnyFilter = Boolean(term || src || hasAdvancedFilters);
+        const safeStatusActionLabel = typeof statusActionLabel === 'string' ? statusActionLabel : '';
+        const emptyFilteredStatusText = visible === 0 ? getEmptyFilteredMessage(src, hasComposedFilters) : '';
+        if (stats) {
+          stats.hidden = !hasAnyFilter;
+          stats.textContent = 'Showing ' + visible + ' of ' + total + ' articles from ' + srcCount + ' sources';
+        }
+        if (advancedFilters && hasAdvancedFilters) advancedFilters.open = true;
+        if (filterStatusAnnouncement) filterStatusAnnouncement.textContent = getFilterStatusText(visible, total, safeStatusActionLabel, emptyFilteredStatusText);
+        renderEmptyFilteredState(visible, src, hasComposedFilters);
+        sourceCoverageButtons.forEach(function(button){
+          button.setAttribute('aria-pressed', button.getAttribute('data-source-filter') === src ? 'true' : 'false');
+        });
+        if (sourceFilterStatus) {
+          const countLabel = hasComposedFilters ? (articleLabel === 'article' ? 'filtered article' : 'filtered articles') : articleLabel;
+          sourceFilterStatus.textContent = (src ? 'Source filter: ' + getControlLabel(sourceFilter) : 'All contributing feeds') + ' (' + visible + ' ' + countLabel + ')';
+        }
+        renderActiveFilters();
+        renderFilterInsights(visibleCards, hasAnyFilter);
+        updateOperatorLanes(visibleCards);
+        syncQueryState();
+      }
+      if (search) search.addEventListener('input', debounce(update, 120));
+      [sourceFilter, severityFilter, tagFilter, vendorFilter, ageFilter, handoffFilter].forEach(function(filter){
+        if (filter) filter.addEventListener('change', update);
+      });
+      sourceCoverageButtons.forEach(function(button){
+        button.addEventListener('click', function(){
+          if (!sourceFilter) return;
+          const source = button.getAttribute('data-source-filter') || '';
+          const nextSource = sourceFilter.value === source ? '' : source;
+          sourceFilter.value = nextSource;
+          const sourceFilterAction = nextSource ? 'Source filter: ' + getControlLabel(sourceFilter) + '.' : 'Source filter cleared.';
+          update(sourceFilterAction);
+          focusSourceShortcutRecoveryTarget(source);
+        });
+      });
+      function clearFilters(options){
+        Object.keys(filterControls).forEach(function(key){
+          const control = filterControls[key];
+          if (control) control.value = '';
+        });
+        const shouldFocusRecoveryTarget = options && options.focusRecoveryTarget;
+        update('Filters reset.');
+        if (shouldFocusRecoveryTarget) focusFilterRecoveryTarget();
+      }
+      if (activeFilters) activeFilters.addEventListener('click', function(event){
+        const target = event.target;
+        if (!target || !target.matches || !target.matches('.active-filter-clear')) return;
+        const key = target.getAttribute('data-filter-key');
+        const clearButtonsBefore = activeFilters ? Array.from(activeFilters.querySelectorAll('.active-filter-clear')) : [];
+        const clearedIndex = clearButtonsBefore.indexOf(target);
+        const hasRemainingActiveFilters = clearButtonsBefore.length > 1;
+        const clearedLabel = filterLabels[key] || 'Selected';
+        const clearedValue = filterControls[key] ? getControlLabel(filterControls[key]) : '';
+        const clearedStatus = clearedValue ? 'Cleared ' + clearedLabel + ': ' + clearedValue + ' filter.' : 'Cleared ' + clearedLabel + ' filter.';
+        if (filterControls[key]) filterControls[key].value = '';
+        update(clearedStatus);
+        hasRemainingActiveFilters ? focusActiveFilterRecoveryTarget(clearedIndex) : focusFilterRecoveryTarget();
+      });
+      if (resetFilters) resetFilters.addEventListener('click', function(){ clearFilters({ focusRecoveryTarget: true }); });
+      if (emptyResetFilters) emptyResetFilters.addEventListener('click', function(){ clearFilters({ focusRecoveryTarget: true }); });
+
+      window.addEventListener('pageshow', function(){ applyQueryState(); update(); });
+      window.addEventListener('popstate', function(){ applyQueryState(); update(); });
+      applyQueryState();
+      updateCadenceHealth();
+      updateFreshness();
+      update();
+      window.setInterval(function(){
+        updateCadenceHealth();
+        updateFreshness();
+        if (ageFilter && ageFilter.value) update();
+      }, 60 * 1000);
+
+      function debounce(fn, wait){ let t; return function(){ clearTimeout(t); t=setTimeout(fn, wait); } }
+    })();
+  </script>
 </body>
 </html>

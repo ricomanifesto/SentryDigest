@@ -80,7 +80,7 @@ function cleanVirtualEventArtifacts({ outputRoot = path.resolve(__dirname, '..')
     fs.writeFileSync(path.join(stage, 'config/news-sources.json'), JSON.stringify(config, null, 2));
     for (const { relative, manifest } of archiveChanges) {
       fs.writeFileSync(path.join(stage, relative), `${JSON.stringify(manifest, null, 2)}\n`);
-      fs.writeFileSync(path.join(stage, path.dirname(relative), 'index.html'), renderArchivePage(manifest));
+      fs.writeFileSync(path.join(stage, path.dirname(relative), 'index.html'), renderArchivePage(manifest, issueDates));
     }
     fs.writeFileSync(path.join(stage, 'archive/index.html'), renderArchiveIndex(issues));
     const feedInfo = readJson('feed-info.json');

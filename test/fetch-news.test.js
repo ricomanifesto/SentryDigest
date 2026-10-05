@@ -555,8 +555,8 @@ test('generateHTML renders escaped downstream handoff cues on article cards', ()
 
   assert.match(html, /data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage,SentryInsight: vendor watch,GRCInsight: governance watch"/);
   assert.match(html, /<div class="handoff-row" aria-label="Downstream handoff cues">/);
-  assert.match(html, /<a class="handoff-cue" href="https:\/\/ricomanifesto\.github\.io\/SentryInsight\/"[^>]*>SentryInsight: incident watch<\/a>/);
-  assert.match(html, /<a class="handoff-cue" href="https:\/\/ricomanifesto\.github\.io\/GRCInsight\/"[^>]*>GRCInsight: governance watch<\/a>/);
+  assert.match(html, /<a class="handoff-cue" href="https:\/\/ricomanifesto\.github\.io\/SentryInsight\/"[^>]*>SentryInsight: incident watch · general report<\/a>/);
+  assert.match(html, /<a class="handoff-cue" href="https:\/\/ricomanifesto\.github\.io\/GRCInsight\/"[^>]*>GRCInsight: governance watch · general report<\/a>/);
 });
 
 test('generateHTML groups legend explanations into a compact digest legend', () => {
@@ -639,11 +639,11 @@ test('generateHTML renders a handoff cue legend for present cues', () => {
 
   assert.match(html, /<div class="digest-legend-group handoff-cue-legend" aria-label="Handoff cue legend">/);
   assert.match(html, /<div class="digest-legend-heading">Handoff cues<\/div>/);
-  assert.match(html, /<span class="handoff-cue-name">SentryInsight: incident watch<\/span><span class="handoff-cue-detail">Potential incident or compromise follow-up<\/span>/);
-  assert.match(html, /<span class="handoff-cue-name">SentryInsight: vuln triage<\/span><span class="handoff-cue-detail">Vulnerability or exploitation review<\/span>/);
-  assert.match(html, /<span class="handoff-cue-name">SentryInsight: vendor watch<\/span><span class="handoff-cue-detail">Vendor or product-owner tracking<\/span>/);
-  assert.match(html, /<span class="handoff-cue-name">GRCInsight: governance watch<\/span><span class="handoff-cue-detail">Regulatory, privacy, or audit relevance<\/span>/);
-  assert.match(html, /<span class="handoff-cue-name">SentryInsight: monitor<\/span><span class="handoff-cue-detail">Low-signal item worth monitoring<\/span>/);
+  assert.match(html, /<span class="handoff-cue-name">SentryInsight: incident watch<\/span><span class="handoff-destination-label"> · general report<\/span><span class="handoff-cue-detail">Potential incident or compromise follow-up<\/span>/);
+  assert.match(html, /<span class="handoff-cue-name">SentryInsight: vuln triage<\/span><span class="handoff-destination-label"> · general report<\/span><span class="handoff-cue-detail">Vulnerability or exploitation review<\/span>/);
+  assert.match(html, /<span class="handoff-cue-name">SentryInsight: vendor watch<\/span><span class="handoff-destination-label"> · general report<\/span><span class="handoff-cue-detail">Vendor or product-owner tracking<\/span>/);
+  assert.match(html, /<span class="handoff-cue-name">GRCInsight: governance watch<\/span><span class="handoff-destination-label"> · general report<\/span><span class="handoff-cue-detail">Regulatory, privacy, or audit relevance<\/span>/);
+  assert.match(html, /<span class="handoff-cue-name">SentryInsight: monitor<\/span><span class="handoff-destination-label"> · general report<\/span><span class="handoff-cue-detail">Low-signal item worth monitoring<\/span>/);
   assert.doesNotMatch(html, /Example <Security>/);
 });
 
@@ -892,6 +892,7 @@ test('collectOperatorLanes returns deterministic lane counts and latest articles
       latestTitle: 'Ransomware crew steals credentials from exchange',
       latestLink: 'https://example.com/incident',
       destination: 'https://ricomanifesto.github.io/SentryInsight/',
+      destinationLabel: 'general report',
     },
     {
       cue: 'SentryInsight: vuln triage',
@@ -900,6 +901,7 @@ test('collectOperatorLanes returns deterministic lane counts and latest articles
       latestTitle: 'Cisco VPN vulnerability patched by vendor',
       latestLink: 'https://example.com/vuln',
       destination: 'https://ricomanifesto.github.io/SentryInsight/',
+      destinationLabel: 'general report',
     },
     {
       cue: 'GRCInsight: governance watch',
@@ -908,6 +910,7 @@ test('collectOperatorLanes returns deterministic lane counts and latest articles
       latestTitle: 'Regulator opens privacy compliance audit',
       latestLink: 'https://example.com/grc',
       destination: 'https://ricomanifesto.github.io/GRCInsight/',
+      destinationLabel: 'general report',
     },
   ]);
 });
