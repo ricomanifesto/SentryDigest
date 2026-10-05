@@ -182,6 +182,13 @@ function getHandoffDestination(cue, article, currentInsightCves = null) {
   return cve ? `${destination}#${cve.toLowerCase()}` : destination;
 }
 
+function describeHandoffDestination(destination, currentInsightCves = null) {
+  const fragment = destination && new URL(destination).hash;
+  if (!fragment) return 'general report';
+  const cve = fragment.slice(1).toUpperCase();
+  return currentInsightCves == null ? `CVE reference: ${cve}` : `CVE analysis: ${cve}`;
+}
+
 function deriveAgeBucket(articleDate, generatedAt = new Date()) {
   const date = new Date(articleDate);
   const now = new Date(generatedAt);
@@ -301,6 +308,7 @@ function collectOperatorLanes(newsItems, currentInsightCves = null) {
       .filter((article) => deriveHandoffCues(article).includes(lane.cue))
       .sort((left, right) => getSortableArticleTime(right.date) - getSortableArticleTime(left.date));
     const latestArticle = matchingArticles[0];
+    const destination = getHandoffDestination(lane.cue, latestArticle, currentInsightCves);
 
     return {
       cue: lane.cue,
@@ -308,7 +316,8 @@ function collectOperatorLanes(newsItems, currentInsightCves = null) {
       count: matchingArticles.length,
       latestTitle: latestArticle ? latestArticle.title : '',
       latestLink: latestArticle ? safeArticleLink(latestArticle.link) : '#',
-      destination: getHandoffDestination(lane.cue, latestArticle, currentInsightCves),
+      destination,
+      destinationLabel: describeHandoffDestination(destination, currentInsightCves),
     };
   }).filter((lane) => lane.count > 0);
 }
@@ -400,7 +409,7 @@ function renderHandoffCueLegend(newsItems) {
   }
 
   const cueChips = cueItems
-    .map(({ label, detail }) => `<a class="handoff-cue-legend-chip" href="${escapeAttribute(HANDOFF_DESTINATION_CONTRACT.destinations[label])}" target="_blank" rel="noopener noreferrer" aria-label="Open ${escapeAttribute(label.split(':')[0])}"><span class="handoff-cue-name">${escapeHtml(label)}</span><span class="handoff-cue-detail">${escapeHtml(detail)}</span></a>`)
+    .map(({ label, detail }) => `<a class="handoff-cue-legend-chip" href="${escapeAttribute(HANDOFF_DESTINATION_CONTRACT.destinations[label])}" target="_blank" rel="noopener noreferrer" aria-label="Open ${escapeAttribute(label.split(':')[0])} general report"><span class="handoff-cue-name">${escapeHtml(label)}</span><span class="handoff-destination-label"> · general report</span><span class="handoff-cue-detail">${escapeHtml(detail)}</span></a>`)
     .join('');
 
   return `<div class="digest-legend-group handoff-cue-legend" aria-label="Handoff cue legend">
@@ -444,7 +453,7 @@ function renderOperatorLanes(newsItems, currentInsightCves = null) {
       : `<a href="${safeLatestLink}" class="operator-lane-link" data-lane-link>${safeLatestTitle}</a>`;
 
     return `<article class="operator-lane" data-lane="${safeLabelAttr}" data-lane-cue="${safeCueAttr}">
-        <a class="operator-lane-heading" data-lane-destination href="${safeDestination}" target="_blank" rel="noopener noreferrer" aria-label="Open ${escapeAttribute(lane.cue.split(':')[0])}">${safeLabel}</a>
+        <a class="operator-lane-heading" data-lane-destination href="${safeDestination}" target="_blank" rel="noopener noreferrer">${safeLabel} <span data-lane-destination-label>· ${escapeHtml(lane.destinationLabel)}</span></a>
         <span class="operator-lane-count" data-lane-count><strong>${lane.count}</strong> ${itemLabel}</span>
         ${latestStory}
         <span class="operator-lane-empty" data-lane-empty hidden>No current match</span>
@@ -553,7 +562,7 @@ function renderArticleCard(article, index = 0, generatedAt = new Date(), options
   const firstSeenTime = getArticleTime(article.firstSeen);
   const generatedAtTime = getArticleTime(generatedAt);
   const ageFromGeneratedAt = generatedAtTime - firstSeenTime;
-  const isNew = Number.isFinite(firstSeenTime)
+  const isNew = !options.retained && Number.isFinite(firstSeenTime)
     && Number.isFinite(generatedAtTime)
     && ageFromGeneratedAt >= 0
     && ageFromGeneratedAt < (5 * 60 * 1000);
@@ -579,7 +588,11 @@ function renderArticleCard(article, index = 0, generatedAt = new Date(), options
   const safeAgeDetail = escapeHtml(ageBucket.detail);
   const vendorChips = facets.vendors.map((vendor) => `<span class="chip">${escapeHtml(vendor)}</span>`).join('');
   const tagChips = facets.tags.map((tag) => `<span class="chip">${escapeHtml(tag)}</span>`).join('');
-  const handoffCueChips = handoffCues.map((cue) => `<a class="handoff-cue" href="${escapeAttribute(getHandoffDestination(cue, article, options.currentInsightCves))}" target="_blank" rel="noopener noreferrer" aria-label="Open ${escapeAttribute(cue.split(':')[0])}">${escapeHtml(cue)}</a>`).join('');
+  const handoffCueChips = handoffCues.map((cue) => {
+    const destination = getHandoffDestination(cue, article, options.currentInsightCves);
+    const label = describeHandoffDestination(destination, options.currentInsightCves);
+    return `<a class="handoff-cue" href="${escapeAttribute(destination)}" target="_blank" rel="noopener noreferrer" data-handoff-cue="${escapeAttribute(cue)}" data-destination-label="${escapeAttribute(label)}">${escapeHtml(cue)} · ${escapeHtml(label)}</a>`;
+  }).join('');
   const sourceSignalChip = options.showSourceSignal
     ? `\n            <span class="chip">${safeSourceSignal}</span>`
     : '';
@@ -592,11 +605,11 @@ function renderArticleCard(article, index = 0, generatedAt = new Date(), options
   });
   const renderedTitle = articleLink === '#'
     ? `<span>${safeTitle}</span>`
-    : `<a href="${safeLink}" target="_blank" rel="noopener">${safeTitle}</a>`;
+    : `<a href="${safeLink}" target="_blank" rel="noopener noreferrer">${safeTitle}</a>`;
   const permalink = `<a class="item-permalink" href="#${stableFragment}" aria-label="Permalink to this reporting item">Permalink</a>`;
 
   return `
-        <article class="news-item" id="${stableFragment}" data-source="${safeSourceAttr}" data-host="${safeHostAttr}" data-title="${safeTitleAttr}" data-summary="${safeSummaryAttr}" data-severity="${safeSeverityAttr}" data-tags="${safeTagsAttr}" data-vendors="${safeVendorsAttr}" data-source-signal="${safeSourceSignalAttr}" data-handoff-cues="${safeHandoffCuesAttr}" data-age-bucket="${safeAgeBucketAttr}" data-published-at="${dateIso}">
+        <article class="news-item${options.retained ? ' reporting-item' : ''}" id="${stableFragment}" data-source="${safeSourceAttr}" data-host="${safeHostAttr}" data-title="${safeTitleAttr}" data-summary="${safeSummaryAttr}" data-severity="${safeSeverityAttr}" data-tags="${safeTagsAttr}" data-vendors="${safeVendorsAttr}" data-source-signal="${safeSourceSignalAttr}" data-handoff-cues="${safeHandoffCuesAttr}" data-age-bucket="${safeAgeBucketAttr}" data-published-at="${dateIso}">
           <div class="chips">
             <span class="severity severity-${safeSeverityClass}">${safeSeverity}</span>
             <span class="chip source-chip">${safeSource}</span>${sourceSignalChip}
@@ -648,13 +661,13 @@ function formatIssueShortDate(issueDate) {
   }).format(new Date(`${issueDate}T00:00:00.000Z`));
 }
 
-function renderIssueStrip(totalItems, sourceCount, generatedAt) {
+function renderIssueStrip(totalItems, sourceCount, generatedAt, retained = false) {
   const issueDate = new Date(generatedAt);
   const articleLabel = totalItems === 1 ? 'article' : 'articles';
   const sourceLabel = sourceCount === 1 ? 'source' : 'sources';
 
   return `<section class="issue-strip" aria-label="Digest issue metadata">
-      <span class="issue-label">Current issue</span>
+      <span class="issue-label">${retained ? 'Retained issue' : 'Current issue'}</span>
       <time datetime="${issueDate.toISOString()}">${formatIssueDate(issueDate)}</time>
       <span class="issue-stat"><strong>${totalItems}</strong> ${articleLabel}</span>
       <span class="issue-stat"><strong>${sourceCount}</strong> ${sourceLabel}</span>
@@ -684,6 +697,19 @@ function renderIssueTrail(generatedAt, retainedIssueDates = []) {
     </nav>`;
 }
 
+function renderRetainedNavigation(issueDate, retainedIssueDates = []) {
+  const dates = retainedIssueDates.filter((date) => /^\d{4}-\d{2}-\d{2}$/.test(date)).sort();
+  const previous = dates.filter((date) => date < issueDate).at(-1);
+  const next = dates.find((date) => date > issueDate);
+  return `<nav class="issue-trail" aria-label="Digest navigation">
+    <a href="../../">Current digest</a>
+    <a class="previous-issues" href="../">Previous issues</a>
+    ${previous ? `<a rel="prev" href="../${previous}/">Previous issue · ${formatIssueShortDate(previous)}</a>` : ''}
+    <span aria-current="page">${formatIssueShortDate(issueDate)}</span>
+    ${next ? `<a rel="next" href="../${next}/">Next issue · ${formatIssueShortDate(next)}</a>` : ''}
+  </nav>`;
+}
+
 function renderInsightContext(context) {
   if (!context || context.mode === 'current') {
     return '';
@@ -701,10 +727,29 @@ function renderInsightContext(context) {
   return `<p class="insight-context" data-context-mode="${safeMode}" role="status">${message}</p>`;
 }
 
+/**
+ * Shared reader for the rolling digest, a retained issue, or the issue index.
+ * options.view: { kind: 'current' } | { kind: 'issue', issueDate: string }
+ *   | { kind: 'archive', issues: Array<{ issue_date: string, article_count: number }> }
+ * Retained callers supply the manifest generation time; no article data is fetched.
+ */
 function generateHTML(newsItems, options = {}) {
   const { assertNoVirtualEventPromotions } = require('./feed-content-policy');
   assertNoVirtualEventPromotions(newsItems);
-  const generatedAt = options.generatedAt || new Date();
+  const view = options.view || { kind: 'current' };
+  const retained = view.kind === 'issue';
+  const archiveIndex = view.kind === 'archive';
+  const rootPrefix = retained ? '../../' : archiveIndex ? '../' : './';
+  const generatedAt = options.generatedAt || (archiveIndex ? new Date(0) : new Date());
+  const pageTitle = retained ? `SentryDigest for ${formatIssueDate(new Date(`${view.issueDate}T00:00:00Z`))}`
+    : archiveIndex ? 'Previous Issues | SentryDigest' : SITE_METADATA_CONTRACT.title;
+  const canonical = SITE_METADATA_CONTRACT.publicSiteUrl + (retained ? `archive/${view.issueDate}/` : archiveIndex ? 'archive/' : '');
+  const description = retained ? `Reporting retained by SentryDigest on ${formatIssueDate(new Date(`${view.issueDate}T00:00:00Z`))}.`
+    : archiveIndex ? 'Dated SentryDigest issues retained for reader and downstream context.' : SITE_METADATA_CONTRACT.description;
+  const subtitle = retained ? `Digest for ${formatIssueDate(new Date(`${view.issueDate}T00:00:00Z`))}`
+    : archiveIndex ? 'SentryDigest · retained daily context' : 'Cybersecurity morning brief';
+  const issueList = archiveIndex ? `<nav class="issue-trail" aria-label="Digest navigation"><a href="../">Current digest</a></nav>
+    <ol class="archive-issues">${view.issues.slice().reverse().map((issue) => `<li><a href="./${escapeAttribute(issue.issue_date)}/">${formatIssueDate(new Date(`${issue.issue_date}T00:00:00Z`))}</a> <span>${issue.article_count} reporting item${issue.article_count === 1 ? '' : 's'}</span></li>`).join('')}</ol>` : '';
   const sourceNames = Array.isArray(options.sourceNames) ? options.sourceNames : [];
   const sourceHealth = Array.isArray(options.sourceHealth)
     ? options.sourceHealth
@@ -726,8 +771,8 @@ function generateHTML(newsItems, options = {}) {
     ? null
     : new Set(options.currentInsightCves);
   const operatorLanes = renderOperatorLanes(newsItems, currentInsightCves);
-  const issueStrip = renderIssueStrip(totalItems, uniqueSources.length, generatedAt);
-  const issueTrail = renderIssueTrail(generatedAt, options.retainedIssueDates);
+  const issueStrip = renderIssueStrip(totalItems, uniqueSources.length, generatedAt, retained);
+  const issueTrail = retained ? renderRetainedNavigation(view.issueDate, options.retainedIssueDates) : renderIssueTrail(generatedAt, options.retainedIssueDates);
   const insightContext = renderInsightContext(options.insightContext);
   const structuredData = JSON.stringify({
     '@context': 'https://schema.org',
@@ -753,26 +798,27 @@ function generateHTML(newsItems, options = {}) {
     ? newsItems.map((article, index) => renderArticleCard(article, index, generatedAt, {
       currentInsightCves,
       showSourceSignal,
+      retained,
     })).join('')
     : renderEmptyState();
 
-  return `
+  const html = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${SITE_METADATA_CONTRACT.title}</title>
-  <meta name="description" content="${SITE_METADATA_CONTRACT.description}">
-  <link rel="canonical" href="${SITE_METADATA_CONTRACT.publicSiteUrl}">
+  <title>${escapeHtml(pageTitle)}</title>
+  <meta name="description" content="${escapeAttribute(description)}">
+  <link rel="canonical" href="${escapeAttribute(canonical)}">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="${SITE_METADATA_CONTRACT.title}">
-  <meta property="og:description" content="${SITE_METADATA_CONTRACT.description}">
-  <meta property="og:url" content="${SITE_METADATA_CONTRACT.publicSiteUrl}">
+  <meta property="og:title" content="${escapeHtml(pageTitle)}">
+  <meta property="og:description" content="${escapeAttribute(description)}">
+  <meta property="og:url" content="${escapeAttribute(canonical)}">
   <meta property="og:image" content="${SITE_METADATA_CONTRACT.imageUrl}">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="${SITE_METADATA_CONTRACT.title}">
-  <meta name="twitter:description" content="${SITE_METADATA_CONTRACT.description}">
+  <meta name="twitter:title" content="${escapeHtml(pageTitle)}">
+  <meta name="twitter:description" content="${escapeAttribute(description)}">
   <meta name="twitter:image" content="${SITE_METADATA_CONTRACT.imageUrl}">
   <script type="application/ld+json">${structuredData}</script>
   <link rel="alternate" type="application/rss+xml" title="${FEED_INFO_CONTRACT.title}" href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}" />
@@ -782,14 +828,14 @@ function generateHTML(newsItems, options = {}) {
   <link rel="manifest" href="./site.webmanifest">
   <meta name="theme-color" content="#2563eb">
   <style>
-    :root { 
-      --bg: #f7f8fa; 
-      --fg: #1f2937; 
-      --muted: #6b7280; 
-      --card: #ffffff; 
-      --card-border: #e5e7eb; 
-      --accent: #2563eb; 
-      --accent-contrast: #ffffff; 
+    :root {
+      --bg: #f7f8fa;
+      --fg: #1f2937;
+      --muted: #6b7280;
+      --card: #ffffff;
+      --card-border: #e5e7eb;
+      --accent: #2563eb;
+      --accent-contrast: #ffffff;
       --chip: #e5e7eb;
       --text-small: 0.875rem;
       --text-body: 1rem;
@@ -923,6 +969,10 @@ function generateHTML(newsItems, options = {}) {
     .news-title a { color: var(--fg); text-decoration: none; }
     .news-title a:hover { text-decoration: underline; }
     .news-meta { align-items: baseline; color: var(--muted); display: flex; flex-wrap: wrap; font-size: var(--text-small); gap: 8px; }
+    .archive-issues { list-style: none; padding: 0; }
+    .archive-issues li { display: flex; flex-wrap: wrap; gap: .5rem 2rem; padding: 1rem 0; border-bottom: 1px solid var(--card-border); }
+    .archive-issues a { color: var(--accent); font-weight: 600; }
+    .archive-issues span { color: var(--muted); }
     .item-permalink { color: var(--accent); font-weight: 600; text-decoration: none; }
     .item-permalink:hover, .item-permalink:focus-visible { text-decoration: underline; }
     .badge-new { color: #16a34a; font-size: var(--text-small); font-weight: 600; }
@@ -960,19 +1010,19 @@ function generateHTML(newsItems, options = {}) {
       <div class="brand">
         <img src="./assets/icon.svg" alt="SentryDigest" />
         <div>
-          <h1 class="title">SentryDigest</h1>
-          <div class="subtitle">Cybersecurity morning brief</div>
+          <h1 class="title">${archiveIndex ? 'Previous issues' : 'SentryDigest'}</h1>
+          <div class="subtitle">${escapeHtml(subtitle)}</div>
         </div>
       </div>
       <div class="controls">
-        <div class="search">
+        ${archiveIndex ? '' : `<div class="search">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="10.5" cy="10.5" r="7.5" stroke="currentColor" stroke-width="2"/></svg>
           <input id="search" type="text" placeholder="Search title or summary..." aria-label="Search" />
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
           ${sourceOptions}
-        </select>
+        </select>`}
         <a class="btn" href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}" aria-label="Open generated RSS feed">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
       </div>
@@ -980,7 +1030,7 @@ function generateHTML(newsItems, options = {}) {
   </header>
 
   <main class="container">
-    ${issueStrip}
+    ${archiveIndex ? issueList : `${issueStrip}
     ${issueTrail}${insightContext ? `\n    ${insightContext}` : ''}
     <details id="advancedFilters" class="advanced-filters">
       <summary class="advanced-filters-summary">Refine digest</summary>
@@ -1024,12 +1074,12 @@ function generateHTML(newsItems, options = {}) {
 
     <div class="news-container" id="newsContainer">
       ${articleCards}
-    </div>
+    </div>`}
   </main>
 
   <footer>
     <div class="container">
-      A Rico Manifesto project by <a href="${SITE_METADATA_CONTRACT.authorUrl}">${SITE_METADATA_CONTRACT.authorName}</a> • Powered by GitHub Actions • Scheduled every 3 hours • <a data-rss-link href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}" aria-label="Open generated RSS feed">RSS Feed</a>
+      A Rico Manifesto project by <a href="${SITE_METADATA_CONTRACT.authorUrl}">${SITE_METADATA_CONTRACT.authorName}</a> • ${retained ? 'Retained issue · ages at retention · <a href="index.json">Issue data</a>' : archiveIndex ? 'Retained daily issues' : 'Powered by GitHub Actions • Scheduled every 3 hours'} • <a data-rss-link href="${DASHBOARD_RSS_LINK_CONTRACT.feedHref}" aria-label="Open generated RSS feed">RSS Feed</a>
     </div>
   </footer>
 
@@ -1046,6 +1096,7 @@ function generateHTML(newsItems, options = {}) {
         localStorage.setItem(themeKey, dark ? 'light' : 'dark');
       });
 
+      ${archiveIndex ? 'return;' : ''}
       const q = (sel) => document.querySelector(sel);
       const qa = (sel) => Array.prototype.slice.call(document.querySelectorAll(sel));
       const search = q('#search');
@@ -1067,7 +1118,7 @@ function generateHTML(newsItems, options = {}) {
       const operatorLanes = qa('.operator-lane');
       const sourceCoverageButtons = qa('${SOURCE_COVERAGE_CONTRACT.buttonSelector}');
       const stats = q('#stats');
-      const cards = qa('.news-item');
+      const cards = qa('article.news-item');
       const cadenceStatus = q('${ISSUE_TRAIL_CONTRACT.cadenceSelector}');
       const cadenceLabel = cadenceStatus && cadenceStatus.querySelector('${ISSUE_TRAIL_CONTRACT.cadenceLabelSelector}');
       const digestUpdatedTime = q('${ISSUE_TRAIL_CONTRACT.updatedTimeSelector}');
@@ -1266,6 +1317,8 @@ function generateHTML(newsItems, options = {}) {
           const countTarget = lane.querySelector('[data-lane-count]');
           const linkTarget = lane.querySelector('[data-lane-link]');
           const emptyTarget = lane.querySelector('[data-lane-empty]');
+          const destinationTarget = lane.querySelector('[data-lane-destination]');
+          const destinationLabel = lane.querySelector('[data-lane-destination-label]');
           const matchingCards = visibleCards.filter(function(card){
             return card.getAttribute('data-handoff-cues').split(',').filter(Boolean).includes(cue);
           });
@@ -1285,6 +1338,17 @@ function generateHTML(newsItems, options = {}) {
               linkTarget.setAttribute('href', latestLink.getAttribute('href'));
             } else {
               linkTarget.removeAttribute('href');
+            }
+          }
+          const handoff = matchingCards[0] && Array.from(matchingCards[0].querySelectorAll('[data-handoff-cue]'))
+            .find(function(link){ return link.getAttribute('data-handoff-cue') === cue; });
+          if (destinationTarget) {
+            if (handoff) {
+              destinationTarget.setAttribute('href', handoff.getAttribute('href'));
+              if (destinationLabel) destinationLabel.textContent = '· ' + handoff.getAttribute('data-destination-label');
+            } else {
+              destinationTarget.removeAttribute('href');
+              if (destinationLabel) destinationLabel.textContent = '';
             }
           }
           if (emptyTarget) emptyTarget.hidden = Boolean(latestLink);
@@ -1309,7 +1373,7 @@ function generateHTML(newsItems, options = {}) {
         if (!Number.isFinite(publishedTime) || publishedTime === ${INVALID_FEED_DATE_FALLBACK_TIME}) {
           return { label: 'Undated', detail: 'date unavailable' };
         }
-        const ageMs = Math.max(0, Date.now() - publishedTime);
+        const ageMs = Math.max(0, ${retained ? new Date(generatedAt).getTime() : 'Date.now()'} - publishedTime);
         const ageMinutes = Math.floor(ageMs / (60 * 1000));
         const ageHours = Math.floor(ageMs / (60 * 60 * 1000));
         const ageDays = Math.floor(ageMs / (24 * 60 * 60 * 1000));
@@ -1422,6 +1486,8 @@ function generateHTML(newsItems, options = {}) {
       if (resetFilters) resetFilters.addEventListener('click', function(){ clearFilters({ focusRecoveryTarget: true }); });
       if (emptyResetFilters) emptyResetFilters.addEventListener('click', function(){ clearFilters({ focusRecoveryTarget: true }); });
 
+      window.addEventListener('pageshow', function(){ applyQueryState(); update(); });
+      window.addEventListener('popstate', function(){ applyQueryState(); update(); });
       applyQueryState();
       updateCadenceHealth();
       updateFreshness();
@@ -1438,6 +1504,9 @@ function generateHTML(newsItems, options = {}) {
 </body>
 </html>
 `;
+  // Resolve shared root assets/feed URLs without changing local fragments or dated navigation.
+  return html.replace(/[ \t]+$/gm, '').replace(/(href|src)="\.\/(assets\/[^"]+|site\.webmanifest|feed\.xml)"/g,
+    (_, attribute, target) => `${attribute}="${rootPrefix}${target}"`);
 }
 
 module.exports = {
@@ -1447,6 +1516,7 @@ module.exports = {
   deriveAgeBucket,
   deriveArticleFacets,
   deriveHandoffCues,
+  describeHandoffDestination,
   escapeHtml,
   extractArticleCves,
   formatArticleDate,

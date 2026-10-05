@@ -20,6 +20,7 @@ const {
   collectSourceCoverage,
   deriveArticleFacets,
   getHandoffDestination,
+  describeHandoffDestination,
   renderInsightContext,
 } = require('./render-news-html');
 const {
@@ -465,7 +466,7 @@ function validateOperatorLaneContract(indexHtml, newsData, failures, currentInsi
   section.find(OPERATOR_LANE_CONTRACT.laneSelector).each((index, element) => {
     const lane = $(element);
     const label = lane.attr(OPERATOR_LANE_CONTRACT.labelAttribute) || '';
-    const heading = lane.find(OPERATOR_LANE_CONTRACT.headingSelector).first().text().trim();
+    const heading = lane.find(OPERATOR_LANE_CONTRACT.headingSelector).first().clone().children('[data-lane-destination-label]').remove().end().text().trim();
     const cue = lane.attr(OPERATOR_LANE_CONTRACT.cueAttribute) || '';
     const countText = lane.find(`${OPERATOR_LANE_CONTRACT.countSelector} strong`).first().text().trim();
     const count = parseArtifactCount(countText);
@@ -890,7 +891,7 @@ function validateDigestArchives(repoRoot, sitemapXml, failures, options = {}) {
     if ($('link[rel="canonical"]').attr('href') !== expectedCanonical) {
       fail(failures, `archive/${issueDate}/index.html must publish its dated canonical URL`);
     }
-    if ($('script').length !== 0 || issueHtml.includes('fetch(')) {
+    if (issueHtml.includes('fetch(') || $('main article h2 a').length !== manifest.articles.length) {
       fail(failures, `archive/${issueDate}/index.html must remain meaningful without JavaScript`);
     }
     if (schemaVersion === 1 && issueDate === currentIssueDate) {
@@ -956,7 +957,6 @@ function validateDigestArchives(repoRoot, sitemapXml, failures, options = {}) {
   if (archiveIndex) {
     const $ = cheerio.load(archiveIndex);
     if ($('link[rel="canonical"]').attr('href') !== `${SITE_METADATA_CONTRACT.publicSiteUrl}archive/`
-        || $('script').length !== 0
         || archiveIndex.includes('fetch(')) {
       fail(failures, 'archive/index.html must be a canonical no-JavaScript issue index');
     }
@@ -1103,7 +1103,12 @@ function validateReaderExperience(indexHtml, newsData = [], failures = [], optio
     }
 
     card.find('.handoff-cue').each((cueIndex, element) => {
-      const cue = $(element).text().trim();
+      const cue = $(element).attr('data-handoff-cue') || $(element).text().trim();
+      const destination = getHandoffDestination(cue, article, options.currentInsightCves);
+      const expectedLabel = `${cue} · ${describeHandoffDestination(destination, options.currentInsightCves)}`;
+      if ($(element).text().trim() !== expectedLabel) {
+        fail(failures, `card ${cardIndex + 1} handoff label must distinguish general reports and CVE destinations`);
+      }
       validateHandoffLink(
         element,
         cue,

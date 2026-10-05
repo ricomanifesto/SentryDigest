@@ -237,6 +237,9 @@ test('quiet-source behavior does not depend on the daily feed mix', async ({ bro
 
 test('mobile digest has no horizontal overflow', async ({ page }) => {
   const runtimeFailures = observeRuntimeFailures(page);
+  // Keep layout independent of when CI runs; overdue cadence has its own test.
+  const { lastUpdated } = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'feed-info.json'), 'utf8'));
+  await page.clock.setFixedTime(lastUpdated);
   await page.setViewportSize({ width: 390, height: 844 });
   const response = await page.goto('/');
 

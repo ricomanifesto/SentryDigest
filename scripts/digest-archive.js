@@ -3,7 +3,7 @@ const path = require('node:path');
 
 const { articleFragment, normalizeArticleUrl } = require('./reporting-identity');
 const { assertInsightSyncContext, loadInsightSyncContext } = require('./insight-sync-context');
-const { renderInsightContext } = require('./render-news-html');
+const { generateHTML } = require('./render-news-html');
 const { assertNoVirtualEventPromotions } = require('./feed-content-policy');
 
 const PUBLIC_ROOT = 'https://ricomanifesto.github.io/SentryDigest/';
@@ -41,15 +41,6 @@ function validateArticle(article, index) {
   };
 }
 
-function formatIssueDate(issueDate) {
-  return new Intl.DateTimeFormat('en-US', {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-    timeZone: 'UTC',
-  }).format(new Date(`${issueDate}T00:00:00.000Z`));
-}
-
 function listDigestIssueDates(outputRoot) {
   const archiveRoot = path.join(outputRoot, 'archive');
   return fs.existsSync(archiveRoot)
@@ -61,30 +52,7 @@ function listDigestIssueDates(outputRoot) {
 }
 
 function renderArchiveIndex(issues) {
-  const items = issues.slice().reverse().map((issue) => `
-      <li>
-        <a href="./${escapeHtml(issue.issue_date)}/">${escapeHtml(formatIssueDate(issue.issue_date))}</a>
-        <span>${issue.article_count} reporting item${issue.article_count === 1 ? '' : 's'}</span>
-      </li>`).join('');
-  return `<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Previous Issues | SentryDigest</title>
-  <meta name="description" content="Dated SentryDigest issues retained for reader and downstream context.">
-  <link rel="canonical" href="${PUBLIC_ROOT}archive/">
-  <style>
-    :root{color-scheme:light dark;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}body{margin:0;background:#f7f8fa;color:#172033}main,header,footer{max-width:760px;margin:auto;padding:1.25rem}ol{list-style:none;padding:0}li{align-items:baseline;background:#fff;border:1px solid #d9deea;border-radius:12px;display:flex;justify-content:space-between;margin:.75rem 0;padding:1rem}li span{color:#59647a;font-size:.9rem}a{color:#1458c0;font-weight:650}@media(prefers-color-scheme:dark){body{background:#0b1020;color:#e5e7eb}li{background:#141b2f;border-color:#26304a}li span{color:#aeb8cd}a{color:#8bb8ff}}@media(max-width:520px){li{align-items:flex-start;flex-direction:column;gap:.35rem}}
-  </style>
-</head>
-<body>
-  <header><p><a href="../">SentryDigest</a> · retained daily context</p><h1>Previous issues</h1><p>Every dated issue keeps the reporting positions used by downstream handoffs.</p></header>
-  <main><ol>${items}</ol></main>
-  <footer><a href="../feed.xml">Rolling RSS feed</a></footer>
-</body>
-</html>
-`;
+  return generateHTML([], { view: { kind: 'archive', issues } });
 }
 
 function writeArchiveIndex(outputRoot) {
@@ -100,43 +68,30 @@ function writeArchiveIndex(outputRoot) {
   return issueDates;
 }
 
-function renderArchivePage(manifest) {
-  assertNoVirtualEventPromotions(manifest.articles);
-  const issueLabel = formatIssueDate(manifest.issue_date);
+function renderArchivePage(manifest, retainedIssueDates = []) {
   const insightContext = manifest.schema_version >= 2
-    ? renderInsightContext(assertInsightSyncContext(manifest.insight_context))
-    : '';
-  const cards = manifest.articles.map((article) => `
-      <article class="reporting-item" id="${escapeHtml(article.id)}">
-        <p class="source">${escapeHtml(article.source)} · <time datetime="${escapeHtml(article.date)}">${escapeHtml(article.date.slice(0, 10))}</time></p>
-        <h2><a href="${escapeHtml(article.link)}" target="_blank" rel="noopener noreferrer">${escapeHtml(article.title)}</a></h2>
-        ${article.summary ? `<p>${escapeHtml(article.summary)}</p>` : ''}
-        <a class="permalink" href="#${escapeHtml(article.id)}" aria-label="Link to this reporting item">Permalink</a>
-      </article>`).join('');
-  const canonical = `${PUBLIC_ROOT}archive/${manifest.issue_date}/`;
-  return `<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SentryDigest for ${escapeHtml(issueLabel)}</title>
-  <meta name="description" content="Reporting retained by SentryDigest on ${escapeHtml(issueLabel)}.">
-  <link rel="canonical" href="${canonical}">
-  <style>
-    :root{color-scheme:light dark;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}body{margin:0;background:#f7f8fa;color:#172033}main,header,footer{max-width:900px;margin:auto;padding:1.25rem}.reporting-item{background:#fff;border:1px solid #d9deea;border-radius:12px;margin:1rem 0;padding:1rem;scroll-margin-top:1rem}.source,.permalink{color:#59647a;font-size:.9rem}h1,h2{line-height:1.2}h2{font-size:1.15rem}a{color:#1458c0}@media(prefers-color-scheme:dark){body{background:#0b1020;color:#e5e7eb}.reporting-item{background:#141b2f;border-color:#26304a}.source,.permalink{color:#aeb8cd}a{color:#8bb8ff}}
-  </style>
-</head>
-<body>
-  <header>
-    <p><a href="../../">SentryDigest</a> · retained daily context</p>
-    <h1>Digest for ${escapeHtml(issueLabel)}</h1>
-    <p>${manifest.articles.length} reporting item${manifest.articles.length === 1 ? '' : 's'} retained from the rolling digest on this UTC day.</p>${insightContext ? `\n    ${insightContext}` : ''}
-  </header>
-  <main>${cards}</main>
-  <footer><p>Original publisher links are preserved for traceability. <a href="index.json">Machine-readable issue data</a>.</p></footer>
-</body>
-</html>
-`;
+    ? assertInsightSyncContext(manifest.insight_context)
+    : undefined;
+  return generateHTML(manifest.articles, {
+    generatedAt: new Date(manifest.generated_at),
+    insightContext,
+    retainedIssueDates,
+    // Historical context stamps do not contain a verified current finding set.
+    currentInsightCves: null,
+    view: { kind: 'issue', issueDate: manifest.issue_date },
+  });
+}
+
+// Refresh presentation only. Retained manifests remain the source of truth.
+function refreshArchivePresentation(outputRoot) {
+  const issueDates = listDigestIssueDates(outputRoot);
+  for (const issueDate of issueDates) {
+    const issueRoot = path.join(outputRoot, 'archive', issueDate);
+    const manifest = loadExistingManifest(path.join(issueRoot, 'index.json'), issueDate);
+    fs.writeFileSync(path.join(issueRoot, 'index.html'), renderArchivePage(manifest, issueDates));
+  }
+  if (issueDates.length > 0) writeArchiveIndex(outputRoot);
+  return issueDates;
 }
 
 function loadExistingManifest(manifestPath, issueDate) {
@@ -190,11 +145,9 @@ function writeDigestArchive({ newsItems, outputRoot, generatedAt, insightContext
     insight_context: validatedInsightContext,
     articles,
   };
-  const html = renderArchivePage(manifest);
   fs.mkdirSync(issueRoot, { recursive: true });
   fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
-  fs.writeFileSync(path.join(issueRoot, 'index.html'), html);
-  const issueDates = writeArchiveIndex(outputRoot);
+  const issueDates = refreshArchivePresentation(outputRoot);
   writeSitemap(outputRoot);
   return { issueDate, issueRoot, issueDates, articleCount: articles.length };
 }
@@ -206,7 +159,9 @@ function main() {
   const insightSnapshotPath = path.join(outputRoot, 'sentryinsight-findings.json');
   const insightContextPath = path.join(outputRoot, 'sentryinsight-context.json');
   const insightContext = loadInsightSyncContext(insightContextPath);
-  const result = writeDigestArchive({
+  const result = process.argv.includes('--presentation-only') ? {
+    issueDates: refreshArchivePresentation(outputRoot),
+  } : writeDigestArchive({
     newsItems,
     outputRoot,
     generatedAt: new Date(feedInfo.lastUpdated),
@@ -230,7 +185,7 @@ function main() {
       sourceHealth: feedInfo.sourceHealth,
     }),
   );
-  console.log(`Generated dated digest archive ${result.issueDate} with ${result.articleCount} items`);
+  console.log(`Rendered reader and ${result.issueDates.length} retained issues`);
 }
 
 if (require.main === module) {
@@ -248,5 +203,6 @@ module.exports = {
   normalizeArticleUrl,
   renderArchiveIndex,
   renderArchivePage,
+  refreshArchivePresentation,
   writeDigestArchive,
 };

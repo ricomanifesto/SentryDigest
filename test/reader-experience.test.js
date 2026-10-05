@@ -288,10 +288,10 @@ test('incident handoffs carry complete CVE context while generic and GRC links k
     }),
   ], { generatedAt: GENERATED_AT });
 
-  assert.match(cveHtml, /<a class="handoff-cue" href="https:\/\/ricomanifesto\.github\.io\/SentryInsight\/#cve-2026-59310"[^>]*>SentryInsight: incident watch<\/a>/);
+  assert.match(cveHtml, /<a class="handoff-cue" href="https:\/\/ricomanifesto\.github\.io\/SentryInsight\/#cve-2026-59310"[^>]*>SentryInsight: incident watch · CVE reference: CVE-2026-59310<\/a>/);
   assert.match(cveHtml, /<a class="operator-lane-heading" data-lane-destination href="https:\/\/ricomanifesto\.github\.io\/SentryInsight\/#cve-2026-59310"/);
-  assert.match(cveHtml, /<a class="handoff-cue" href="https:\/\/ricomanifesto\.github\.io\/GRCInsight\/"[^>]*>GRCInsight: governance watch<\/a>/);
-  assert.match(genericHtml, /<a class="handoff-cue" href="https:\/\/ricomanifesto\.github\.io\/SentryInsight\/"[^>]*>SentryInsight: incident watch<\/a>/);
+  assert.match(cveHtml, /<a class="handoff-cue" href="https:\/\/ricomanifesto\.github\.io\/GRCInsight\/"[^>]*>GRCInsight: governance watch · general report<\/a>/);
+  assert.match(genericHtml, /<a class="handoff-cue" href="https:\/\/ricomanifesto\.github\.io\/SentryInsight\/"[^>]*>SentryInsight: incident watch · general report<\/a>/);
 });
 
 test('incident handoffs prefer the first CVE present in the current Insight report', () => {
