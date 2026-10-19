@@ -217,7 +217,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="../../feed.xml" aria-label="Open generated RSS feed">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -228,8 +228,8 @@
   <main class="container">
     <section class="issue-strip" aria-label="Digest issue metadata">
       <span class="issue-label">Retained issue</span>
-      <time datetime="2026-10-19T09:24:52.793Z">October 19, 2026</time>
-      <span class="issue-stat"><strong>33</strong> articles</span>
+      <time datetime="2026-10-19T12:26:18.010Z">October 19, 2026</time>
+      <span class="issue-stat"><strong>34</strong> articles</span>
       <span class="issue-stat"><strong>3</strong> sources</span>
       <a class="issue-link" href="../../feed.xml" aria-label="Open rolling RSS feed">Rolling RSS feed</a>
     </section>
@@ -254,7 +254,7 @@
         </select>
         <select id="vendorFilter" class="select" aria-label="Filter by affected vendor">
           <option value="">All vendors</option>
-          <option value="Cisco">Cisco</option><option value="Fortinet">Fortinet</option><option value="Google">Google</option><option value="Ivanti">Ivanti</option><option value="Microsoft">Microsoft</option><option value="OpenAI">OpenAI</option><option value="Palo Alto">Palo Alto</option>
+          <option value="Apple">Apple</option><option value="Cisco">Cisco</option><option value="Fortinet">Fortinet</option><option value="Google">Google</option><option value="Ivanti">Ivanti</option><option value="Microsoft">Microsoft</option><option value="OpenAI">OpenAI</option><option value="Palo Alto">Palo Alto</option>
         </select>
         <select id="ageFilter" class="select" aria-label="Filter by article age">
           <option value="">Any age</option>
@@ -268,25 +268,25 @@
     </details>
     <div class="filter-status" aria-label="Active filters">
       <div id="activeFilters" class="active-filters" role="list" aria-label="Active filter chips" hidden></div>
-      <div id="filterStatusAnnouncement" class="sr-only" role="status" aria-live="polite" aria-atomic="true">Showing 33 of 33 articles.</div>
+      <div id="filterStatusAnnouncement" class="sr-only" role="status" aria-live="polite" aria-atomic="true">Showing 34 of 34 articles.</div>
       <button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters</button>
     </div>
-    <div class="stats" id="stats" hidden>Showing 33 of 33 articles from 3 sources</div>
+    <div class="stats" id="stats" hidden>Showing 34 of 34 articles from 3 sources</div>
     <div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true" hidden></div>
     <span id="sourceCoverage" class="anchor-target" aria-hidden="true"></span>
     <section class="source-coverage" aria-label="RSS source coverage">
       <details class="source-coverage-details">
-        <summary class="source-coverage-summary">Source coverage <span>3 active feeds · 33 articles</span></summary>
+        <summary class="source-coverage-summary">Source coverage <span>3 active feeds · 34 articles</span></summary>
         <div class="source-coverage-body">
-          <div class="source-counts"><button class="source-count" type="button" data-source-filter="Bleeping Computer" aria-label="Filter to Bleeping Computer source, 11 articles" aria-pressed="false">Bleeping Computer <strong>11</strong></button><button class="source-count" type="button" data-source-filter="The Hacker News" aria-label="Filter to The Hacker News source, 13 articles" aria-pressed="false">The Hacker News <strong>13</strong></button><button class="source-count" type="button" data-source-filter="Dark Reading" aria-label="Filter to Dark Reading source, 9 articles" aria-pressed="false">Dark Reading <strong>9</strong></button></div>
+          <div class="source-counts"><button class="source-count" type="button" data-source-filter="The Hacker News" aria-label="Filter to The Hacker News source, 14 articles" aria-pressed="false">The Hacker News <strong>14</strong></button><button class="source-count" type="button" data-source-filter="Bleeping Computer" aria-label="Filter to Bleeping Computer source, 11 articles" aria-pressed="false">Bleeping Computer <strong>11</strong></button><button class="source-count" type="button" data-source-filter="Dark Reading" aria-label="Filter to Dark Reading source, 9 articles" aria-pressed="false">Dark Reading <strong>9</strong></button></div>
           <div class="source-health-summary" data-active-sources="3" data-quiet-sources="0">
             <span><strong>3</strong> active feeds</span>
             <span><strong>0</strong> quiet feeds</span>
           </div>
           <div class="source-quiet-feeds" aria-label="Quiet RSS sources"></div>
-          <div class="source-filter-status" data-source-filter-status role="status" aria-live="polite" aria-atomic="true">All contributing feeds (33 articles)</div>
+          <div class="source-filter-status" data-source-filter-status role="status" aria-live="polite" aria-atomic="true">All contributing feeds (34 articles)</div>
           <div class="source-coverage-actions">
-            <a class="feed-link" href="../../feed.xml" aria-label="Open RSS feed with 33 latest articles">RSS feed <span class="feed-link-count">33 items</span></a>
+            <a class="feed-link" href="../../feed.xml" aria-label="Open RSS feed with 34 latest articles">RSS feed <span class="feed-link-count">34 items</span></a>
             <details class="digest-legend" aria-label="Digest legend">
       <summary class="digest-legend-summary">Digest legend: source signals and handoff cues</summary>
       <div class="digest-legend-body">
@@ -323,11 +323,25 @@
 
     <div class="news-container" id="newsContainer">
 
+        <article class="news-item reporting-item" id="reporting-62badca6addc" data-source="The Hacker News" data-host="thehackernews.com" data-title="Fake Web3 Accelerator Uses npm Packages to Spread Malware and Hijack AI Agent Traffic" data-summary="A fake Web3 accelerator has been observed pushing information stealers and backdoors to Windows and macOS systems using malicious npm packages under the pretext of offering free artificial intelligence (AI) credits for Anthropic Claude and Google Gemini, coding tools, and security audits. &quot;The tools delivered information-stealing malware and backdoors for macOS and Windows machines,&quot; Elastic…" data-severity="Elevated" data-tags="Malware,Supply Chain,AI Security" data-vendors="Microsoft,Google,Apple" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Fresh" data-published-at="2026-10-19T10:06:40.000Z">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>2h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/10/fake-web3-accelerator-uses-npm-packages.html" target="_blank" rel="noopener noreferrer">Fake Web3 Accelerator Uses npm Packages to Spread Malware and Hijack AI Agent Traffic</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-10-19T10:06:40.000Z">October 19, 2026 at 10:06 AM UTC</time><a class="item-permalink" href="#reporting-62badca6addc" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Microsoft</span><span class="chip">Google</span><span class="chip">Apple</span><span class="chip">Malware</span><span class="chip">Supply Chain</span><span class="chip">AI Security</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
+          <p class="news-summary">A fake Web3 accelerator has been observed pushing information stealers and backdoors to Windows and macOS systems using malicious npm packages under the pretext of offering free artificial intelligence (AI) credits for Anthropic Claude and Google Gemini, coding tools, and security audits. &quot;The tools delivered information-stealing malware and backdoors for macOS and Windows machines,&quot; Elastic…</p><a class="summary-continuation" href="https://thehackernews.com/2026/10/fake-web3-accelerator-uses-npm-packages.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
         <article class="news-item reporting-item" id="reporting-d0d6e449ab45" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Microsoft: October Windows Server updates break Exchange sign-in, mail flow" data-summary="Microsoft has confirmed that this month&#39;s Windows Server security updates are causing OWA sign-in and mail delivery issues on some Exchange Server systems…" data-severity="Monitor" data-tags="" data-vendors="Microsoft" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Fresh" data-published-at="2026-10-19T08:58:41.000Z">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>26m old</span></span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>3h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-october-windows-server-updates-cause-exchange-issues/" target="_blank" rel="noopener noreferrer">Microsoft: October Windows Server updates break Exchange sign-in, mail flow</a></h2>
           <div class="news-meta">
@@ -341,7 +355,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>2h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>5h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/10/unpatched-broadcom-wi-fi-flaw-lets.html" target="_blank" rel="noopener noreferrer">Unpatched Broadcom Wi-Fi Flaw Lets Attackers in Range Run Code as Root on Routers</a></h2>
           <div class="news-meta">
@@ -351,11 +365,11 @@
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a></div>
           <p class="news-summary">A flaw in Broadcom&#39;s Wi-Fi setup software lets an attacker within radio range run code as root on Broadcom-based routers, without the network password or any pairing step, security researcher Quentin Kaiser disclosed on October 16. He showed the attack working against home gateways supplied by three Belgian internet providers, in one case reading the Wi-Fi password off the device…</p><a class="summary-continuation" href="https://thehackernews.com/2026/10/unpatched-broadcom-wi-fi-flaw-lets.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
         </article>
-        <article class="news-item reporting-item" id="reporting-6dda7c5d535a" data-source="The Hacker News" data-host="thehackernews.com" data-title="OpenCode Console Breach May Have Exposed OpenAI, Anthropic, and Google API Keys" data-summary="An intruder reached a legacy system at OpenCode on the night of October 16 and may have exposed the third-party AI provider keys that users had saved in OpenCode Console, the company said. Console is OpenCode&#39;s optional hosted service: a workspace saves its own OpenAI, Anthropic, or Google key there, and Console uses that key to call the provider so team members can use the models without…" data-severity="Critical" data-tags="Data Breach,AI Security" data-vendors="Google,OpenAI" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vendor watch" data-age-bucket="Fresh" data-published-at="2026-10-19T06:07:08.000Z">
+        <article class="news-item reporting-item" id="reporting-6dda7c5d535a" data-source="The Hacker News" data-host="thehackernews.com" data-title="OpenCode Console Breach May Have Exposed OpenAI, Anthropic, and Google API Keys" data-summary="An intruder reached a legacy system at OpenCode on the night of October 16 and may have exposed the third-party AI provider keys that users had saved in OpenCode Console, the company said. Console is OpenCode&#39;s optional hosted service: a workspace saves its own OpenAI, Anthropic, or Google key there, and Console uses that key to call the provider so team members can use the models without…" data-severity="Critical" data-tags="Data Breach,AI Security" data-vendors="Google,OpenAI" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-10-19T06:07:08.000Z">
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>3h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>6h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/10/opencode-console-breach-may-have.html" target="_blank" rel="noopener noreferrer">OpenCode Console Breach May Have Exposed OpenAI, Anthropic, and Google API Keys</a></h2>
           <div class="news-meta">
@@ -369,7 +383,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>19h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>22h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hackers-exploit-siteguard-waf-flaw-to-run-commands-as-system-root/" target="_blank" rel="noopener noreferrer">Hackers exploit SiteGuard WAF flaw to run commands as admins</a></h2>
           <div class="news-meta">
@@ -425,7 +439,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/10/malfex-npm-package-imgdecode-hides.html" target="_blank" rel="noopener noreferrer">MALFEX npm Package &#39;imgdecode&#39; Hides Shellcode Loader in Windows Native Addon</a></h2>
           <div class="news-meta">
@@ -648,7 +662,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>3d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/burger-king-japan-data-breach-exposes-11-million-customer-records/" target="_blank" rel="noopener noreferrer">Burger King Japan data breach exposes 11 million customer records</a></h2>
           <div class="news-meta">
@@ -662,7 +676,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>3d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/10/ai-decision-models-and-their-impact-on.html" target="_blank" rel="noopener noreferrer">AI Decision Models and Their Impact on AI SOC Platforms</a></h2>
           <div class="news-meta">
@@ -1080,7 +1094,7 @@
         if (!Number.isFinite(publishedTime) || publishedTime === 0) {
           return { label: 'Undated', detail: 'date unavailable' };
         }
-        const ageMs = Math.max(0, 1792401892793 - publishedTime);
+        const ageMs = Math.max(0, 1792412778010 - publishedTime);
         const ageMinutes = Math.floor(ageMs / (60 * 1000));
         const ageHours = Math.floor(ageMs / (60 * 60 * 1000));
         const ageDays = Math.floor(ageMs / (24 * 60 * 60 * 1000));
@@ -1125,7 +1139,7 @@
             visibleCards.push(card);
           }
         });
-        const total = 33;
+        const total = 34;
         const srcCount = 3;
         const articleLabel = visible === 1 ? 'article' : 'articles';
         const hasComposedFilters = Boolean(term || severity || tag || vendor || age || handoff);
