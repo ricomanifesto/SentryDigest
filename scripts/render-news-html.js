@@ -460,9 +460,12 @@ function renderOperatorLanes(newsItems, currentInsightCves = null) {
       </article>`;
   }).join('');
 
-  return `<section class="operator-lanes" aria-label="Operator scan lanes">
+  return `<details id="operatorScan" class="operator-scan">
+      <summary class="operator-scan-summary">Operator scan lanes</summary>
+      <section class="operator-lanes" aria-label="Operator scan lanes">
       ${laneCards}
-    </section>`;
+      </section>
+    </details>`;
 }
 
 const SUMMARY_PREVIEW_LENGTH = 160;
@@ -862,9 +865,9 @@ function generateHTML(newsItems, options = {}) {
     .brand .subtitle { color: var(--muted); font-size: var(--text-small); }
     .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
     .advanced-filters { margin-top: 12px; }
-    .advanced-filters-summary, .source-coverage-summary { color: var(--fg); cursor: pointer; font-size: var(--text-small); font-weight: 700; width: fit-content; }
-    .advanced-filters-summary:hover, .source-coverage-summary:hover { color: var(--accent); }
-    .advanced-filters-summary:focus-visible, .source-coverage-summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .advanced-filters-summary, .source-coverage-summary, .operator-scan-summary { color: var(--fg); cursor: pointer; font-size: var(--text-small); font-weight: 700; width: fit-content; }
+    .advanced-filters-summary:hover, .source-coverage-summary:hover, .operator-scan-summary:hover { color: var(--accent); }
+    .advanced-filters-summary:focus-visible, .source-coverage-summary:focus-visible, .operator-scan-summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
     .filter-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
     .filter-status { align-items: center; display: flex; flex-wrap: wrap; gap: 8px; }
     .sr-only { clip: rect(0 0 0 0); border: 0; height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; white-space: nowrap; width: 1px; }
@@ -938,7 +941,9 @@ function generateHTML(newsItems, options = {}) {
     .handoff-cue-legend-chip:hover, .handoff-cue-legend-chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; text-decoration: none; }
     .handoff-cue-name { color: var(--fg); font-size: var(--text-small); font-weight: 700; }
     .handoff-cue-detail { color: var(--muted); font-size: var(--text-small); }
-    .operator-lanes { display: grid; gap: 12px; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 14px; }
+    .operator-scan { margin-top: 14px; }
+    .operator-lanes { display: grid; gap: 12px; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 10px; }
+    .operator-lane, .news-item { overflow-wrap: anywhere; }
     .operator-lane { background: var(--card); border-radius: 8px; display: grid; gap: 6px; padding: 12px; }
     .operator-lane-heading { color: var(--accent); font-size: var(--text-small); font-weight: 700; text-decoration: none; }
     .operator-lane-heading:hover { text-decoration: underline; }
@@ -1116,6 +1121,9 @@ function generateHTML(newsItems, options = {}) {
       const filterInsights = q('#filterInsights');
       const sourceFilterStatus = q('${SOURCE_COVERAGE_CONTRACT.statusSelector}');
       const operatorLanes = qa('.operator-lane');
+      const operatorScan = q('#operatorScan');
+      // Start compact on mobile, including without JavaScript. Keep desktop's overview open.
+      if (operatorScan && window.matchMedia('(min-width: 641px)').matches) operatorScan.open = true;
       const sourceCoverageButtons = qa('${SOURCE_COVERAGE_CONTRACT.buttonSelector}');
       const stats = q('#stats');
       const cards = qa('article.news-item');
