@@ -58,9 +58,9 @@
     .brand .subtitle { color: var(--muted); font-size: var(--text-small); }
     .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
     .advanced-filters { margin-top: 12px; }
-    .advanced-filters-summary, .source-coverage-summary { color: var(--fg); cursor: pointer; font-size: var(--text-small); font-weight: 700; width: fit-content; }
-    .advanced-filters-summary:hover, .source-coverage-summary:hover { color: var(--accent); }
-    .advanced-filters-summary:focus-visible, .source-coverage-summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .advanced-filters-summary, .source-coverage-summary, .operator-scan-summary { color: var(--fg); cursor: pointer; font-size: var(--text-small); font-weight: 700; width: fit-content; }
+    .advanced-filters-summary:hover, .source-coverage-summary:hover, .operator-scan-summary:hover { color: var(--accent); }
+    .advanced-filters-summary:focus-visible, .source-coverage-summary:focus-visible, .operator-scan-summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
     .filter-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
     .filter-status { align-items: center; display: flex; flex-wrap: wrap; gap: 8px; }
     .sr-only { clip: rect(0 0 0 0); border: 0; height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; white-space: nowrap; width: 1px; }
@@ -134,7 +134,9 @@
     .handoff-cue-legend-chip:hover, .handoff-cue-legend-chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; text-decoration: none; }
     .handoff-cue-name { color: var(--fg); font-size: var(--text-small); font-weight: 700; }
     .handoff-cue-detail { color: var(--muted); font-size: var(--text-small); }
-    .operator-lanes { display: grid; gap: 12px; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 14px; }
+    .operator-scan { margin-top: 14px; }
+    .operator-lanes { display: grid; gap: 12px; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 10px; }
+    .operator-lane, .news-item { overflow-wrap: anywhere; }
     .operator-lane { background: var(--card); border-radius: 8px; display: grid; gap: 6px; padding: 12px; }
     .operator-lane-heading { color: var(--accent); font-size: var(--text-small); font-weight: 700; text-decoration: none; }
     .operator-lane-heading:hover { text-decoration: underline; }
@@ -303,7 +305,9 @@
         </div>
       </details>
     </section>
-    <section class="operator-lanes" aria-label="Operator scan lanes">
+    <details id="operatorScan" class="operator-scan">
+      <summary class="operator-scan-summary">Operator scan lanes</summary>
+      <section class="operator-lanes" aria-label="Operator scan lanes">
       <article class="operator-lane" data-lane="Incident watch" data-lane-cue="SentryInsight: incident watch">
         <a class="operator-lane-heading" data-lane-destination href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer">Incident watch <span data-lane-destination-label>· general report</span></a>
         <span class="operator-lane-count" data-lane-count><strong>10</strong> items</span>
@@ -315,7 +319,8 @@
         <a href="https://www.bleepingcomputer.com/news/security/hackers-exploit-siteguard-waf-flaw-to-run-commands-as-system-root/" class="operator-lane-link" data-lane-link>Hackers exploit SiteGuard WAF flaw to run commands as admins</a>
         <span class="operator-lane-empty" data-lane-empty hidden>No current match</span>
       </article>
-    </section>
+      </section>
+    </details>
     <div id="emptyFilteredState" class="empty-filtered" hidden>
       <p id="emptyFilteredMessage" class="empty-filtered-message">No articles match the current filters.</p>
       <button id="emptyResetFilters" class="btn empty-reset-filters" type="button">Reset filters</button>
@@ -809,6 +814,9 @@
       const filterInsights = q('#filterInsights');
       const sourceFilterStatus = q('[data-source-filter-status]');
       const operatorLanes = qa('.operator-lane');
+      const operatorScan = q('#operatorScan');
+      // Start compact on mobile, including without JavaScript. Keep desktop's overview open.
+      if (operatorScan && window.matchMedia('(min-width: 641px)').matches) operatorScan.open = true;
       const sourceCoverageButtons = qa('[data-source-filter]');
       const stats = q('#stats');
       const cards = qa('article.news-item');
