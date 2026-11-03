@@ -9,13 +9,13 @@
 
 SentryDigest collects security news from four RSS feeds and turns it into one short, source-linked briefing.
 
-**[Read the latest digest](https://ricomanifesto.github.io/SentryDigest/)**
+**[Read the latest digest](https://sentrydigest.ricomanifesto.com/)**
 
 ## What You Get
 
 - A dashboard with the newest 30 items, timestamps, source links, and feed-health notes.
-- An RSS feed at [`feed.xml`](feed.xml).
-- Dated issues under [`archive/`](archive/) so old links keep their original context.
+- An RSS feed at [`feed.xml`](https://sentrydigest.ricomanifesto.com/feed.xml).
+- Dated issues under [`archive/`](https://sentrydigest.ricomanifesto.com/archive/) so old links keep their original context.
 - Stable article links used by [SentryInsight](https://github.com/ricomanifesto/SentryInsight) and [GRCInsight](https://github.com/ricomanifesto/GRCInsight).
 
 The current sources are Krebs on Security, The Hacker News, Bleeping Computer, and Dark Reading. Their URLs and enabled state live in [`config/news-sources.json`](config/news-sources.json).
