@@ -6,7 +6,9 @@ const { assertInsightSyncContext, loadInsightSyncContext } = require('./insight-
 const { generateHTML } = require('./render-news-html');
 const { assertNoVirtualEventPromotions } = require('./feed-content-policy');
 
-const PUBLIC_ROOT = 'https://ricomanifesto.github.io/SentryDigest/';
+const { emittedOrigin } = require('./public-site');
+
+const PUBLIC_ROOT = emittedOrigin('SentryDigest');
 
 function escapeHtml(value) {
   return String(value ?? '')
@@ -198,7 +200,9 @@ if (require.main === module) {
 }
 
 module.exports = {
+  PUBLIC_ROOT,
   articleFragment,
+  canonicalArchiveArticle: validateArticle,
   listDigestIssueDates,
   normalizeArticleUrl,
   renderArchiveIndex,

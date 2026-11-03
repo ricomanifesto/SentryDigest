@@ -1,4 +1,9 @@
+const { emittedOrigin } = require('./public-site');
+
 const SOURCE_COVERAGE_ANCHOR_ID = 'sourceCoverage';
+const DIGEST_ROOT = emittedOrigin('SentryDigest');
+const INSIGHT_ROOT = emittedOrigin('SentryInsight');
+const GRC_ROOT = emittedOrigin('GRCInsight');
 
 const DIGEST_LEGEND_CONTRACT = Object.freeze({
   handoffCueDetails: Object.freeze({
@@ -29,11 +34,11 @@ const HANDOFF_DESTINATION_CONTRACT = Object.freeze({
   cveContextCue: 'SentryInsight: incident watch',
   cveFragmentPattern: '#cve-YYYY-NNNN',
   destinations: Object.freeze({
-    'SentryInsight: incident watch': 'https://ricomanifesto.github.io/SentryInsight/',
-    'SentryInsight: vuln triage': 'https://ricomanifesto.github.io/SentryInsight/',
-    'SentryInsight: vendor watch': 'https://ricomanifesto.github.io/SentryInsight/',
-    'GRCInsight: governance watch': 'https://ricomanifesto.github.io/GRCInsight/',
-    'SentryInsight: monitor': 'https://ricomanifesto.github.io/SentryInsight/',
+    'SentryInsight: incident watch': INSIGHT_ROOT,
+    'SentryInsight: vuln triage': INSIGHT_ROOT,
+    'SentryInsight: vendor watch': INSIGHT_ROOT,
+    'GRCInsight: governance watch': GRC_ROOT,
+    'SentryInsight: monitor': INSIGHT_ROOT,
   }),
   cardLinkSelector: 'a.handoff-cue',
   laneLinkSelector: 'a[data-lane-destination]',
@@ -135,15 +140,15 @@ const FEED_METADATA_CONTRACT = Object.freeze({
 });
 
 const FEED_INFO_CONTRACT = Object.freeze({
-  publicFeedUrl: 'https://ricomanifesto.github.io/SentryDigest/feed.xml',
+  publicFeedUrl: `${DIGEST_ROOT}feed.xml`,
   title: 'SentryDigest RSS Feed',
 });
 
 const RSS_CHANNEL_CONTRACT = Object.freeze({
   description: 'A fresh, scannable cybersecurity brief from trusted sources',
-  imageUrl: 'https://ricomanifesto.github.io/SentryDigest/assets/icon-512.png',
+  imageUrl: `${DIGEST_ROOT}assets/icon-512.png`,
   publicFeedUrl: FEED_INFO_CONTRACT.publicFeedUrl,
-  publicSiteUrl: 'https://ricomanifesto.github.io/SentryDigest/',
+  publicSiteUrl: DIGEST_ROOT,
   title: 'SentryDigest',
 });
 
@@ -152,7 +157,7 @@ const SITE_METADATA_CONTRACT = Object.freeze({
   authorUrl: 'https://ricomanifesto.com/',
   description: RSS_CHANNEL_CONTRACT.description,
   githubUrl: 'https://github.com/ricomanifesto/SentryDigest',
-  imageUrl: 'https://ricomanifesto.github.io/SentryDigest/assets/social-preview.png',
+  imageUrl: `${DIGEST_ROOT}assets/social-preview.png`,
   publicSiteUrl: RSS_CHANNEL_CONTRACT.publicSiteUrl,
   title: 'SentryDigest | Cybersecurity News',
 });

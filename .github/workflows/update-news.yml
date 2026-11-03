@@ -22,6 +22,9 @@ concurrency:
 jobs:
   update-news:
     runs-on: ubuntu-latest
+    outputs:
+      commit_sha: ${{ steps.commit.outputs.commit_sha }}
+      head_sha: ${{ steps.commit.outputs.head_sha }}
     
     steps:
       - name: Checkout repository
@@ -83,10 +86,20 @@ jobs:
             echo "changes_made=true" >> "$GITHUB_OUTPUT"
             echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           fi
+          # The pushed commit, or the unchanged head, for the publisher.
+          echo "head_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      # Notification authority is read fresh from the remote main head: once
+      # publication is active there, the publisher notifies consumers after
+      # the release is proved serving and the legacy dispatch is skipped.
+      - name: Read current notification authority
+        id: authority
+        if: steps.commit.outputs.changes_made == 'true'
+        run: node publication/cli.js authority
       
       # Trigger downstream analysis tools if changes were made
       - name: Trigger SentryInsight Analysis
-        if: steps.commit.outputs.changes_made == 'true'
+        if: steps.commit.outputs.changes_made == 'true' && steps.authority.outputs.mode != 'active'
         uses: peter-evans/repository-dispatch@v4
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
@@ -95,10 +108,21 @@ jobs:
           client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ steps.commit.outputs.commit_sha }}"}'
 
       - name: Trigger GRC Insight Analysis
-        if: steps.commit.outputs.changes_made == 'true'
+        if: steps.commit.outputs.changes_made == 'true' && steps.authority.outputs.mode != 'active'
         uses: peter-evans/repository-dispatch@v4
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           repository: ricomanifesto/GRCInsight
           event-type: sentrydigest-updated
           client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ steps.commit.outputs.commit_sha }}"}'
+
+  # Publishes the pushed commit, or resumes the current release when this run
+  # made no commit, so an interrupted publication is always picked up.
+  publish:
+    needs: update-news
+    uses: ./.github/workflows/publish-production.yml
+    with:
+      invocation: publish
+      source_sha: ${{ needs.update-news.outputs.head_sha }}
+    secrets:
+      REPO_ACCESS_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}

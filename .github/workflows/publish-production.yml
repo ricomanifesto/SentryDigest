@@ -1,0 +1,104 @@
+name: Publish Production
+
+# The only publisher of the production artifact branch. It is invoked by the
+# update workflow after its push, or manually. Every publish runs the
+# repository gate on the exact source revision first. While publication is
+# disabled in publication/site.json the publisher only builds and validates.
+
+on:
+  workflow_call:
+    inputs:
+      invocation:
+        type: string
+        required: true
+      source_sha:
+        type: string
+        required: false
+        default: ''
+    secrets:
+      REPO_ACCESS_TOKEN:
+        required: false
+  workflow_dispatch:
+    inputs:
+      invocation:
+        description: 'publish, resume, rollback, resolve or seed'
+        type: choice
+        options: [publish, resume, rollback, resolve, seed]
+        default: resume
+      source_sha:
+        description: 'Full source commit to publish (publish)'
+        required: false
+      release_key:
+        description: 'Target release key (rollback) or the tip release key (resolve)'
+        required: false
+      reason:
+        description: 'Rollback reason'
+        required: false
+      attestation:
+        description: 'Operator attestation (resolve, seed)'
+        required: false
+      seed_insight:
+        description: 'Digest commit of the last delivered SentryInsight dispatch, or none (seed)'
+        required: false
+      seed_grc:
+        description: 'Digest commit of the last delivered GRCInsight dispatch, or none (seed)'
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-production
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ inputs.source_sha || github.sha }}
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Chromium for rendered-page tests
+        if: inputs.invocation == 'publish'
+        run: npx playwright install chromium --with-deps
+
+      - name: Run repository gate
+        if: inputs.invocation == 'publish'
+        run: npm test
+
+      - name: Configure Git
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+
+      - name: Run publisher
+        env:
+          INVOCATION: ${{ inputs.invocation }}
+          SOURCE_SHA: ${{ inputs.source_sha || github.sha }}
+          RELEASE_KEY: ${{ inputs.release_key }}
+          REASON: ${{ inputs.reason }}
+          ATTESTATION: ${{ inputs.attestation }}
+          SEED_INSIGHT: ${{ inputs.seed_insight }}
+          SEED_GRC: ${{ inputs.seed_grc }}
+          REPO_ACCESS_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
+        run: |
+          case "$INVOCATION" in
+            publish) set -- --source "$SOURCE_SHA" ;;
+            resume) set -- ;;
+            rollback) set -- --target "$RELEASE_KEY" --reason "$REASON" ;;
+            resolve) set -- --release "$RELEASE_KEY" --attestation "$ATTESTATION" ;;
+            seed) set -- --consumer "SentryInsight=$SEED_INSIGHT" --consumer "GRCInsight=$SEED_GRC" --attestation "$ATTESTATION" ;;
+            *) echo "Unknown invocation $INVOCATION" >&2; exit 1 ;;
+          esac
+          node publication/cli.js "$INVOCATION" "$@"

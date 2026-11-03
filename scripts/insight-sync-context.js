@@ -1,6 +1,6 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const { INSIGHT_REPORT_URL } = require('./current-insight-findings');
+const { INSIGHT_REPORT_URLS } = require('./current-insight-findings');
 
 const SCHEMA_VERSION = 2;
 const MODES = new Set(['current', 'retained', 'stale', 'unavailable']);
@@ -39,7 +39,7 @@ function assertInsightSyncContext(value) {
         || !/^\d{4}-\d{2}-\d{2}$/.test(value.report_date)) {
       throw new Error('SentryInsight sync context snapshot provenance is invalid');
     }
-    if (value.report_url !== INSIGHT_REPORT_URL) {
+    if (!INSIGHT_REPORT_URLS.includes(value.report_url)) {
       throw new Error('SentryInsight sync context snapshot provenance must include the canonical SentryInsight report');
     }
   } else if (

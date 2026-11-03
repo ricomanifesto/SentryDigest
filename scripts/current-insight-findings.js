@@ -1,8 +1,13 @@
 const fs = require('node:fs');
 
+const { acceptedOrigins, emittedOrigin } = require('./public-site');
+
 const CURRENT_FINDINGS_SCHEMA_VERSION = 1;
-const CURRENT_FINDINGS_URL = 'https://ricomanifesto.github.io/SentryInsight/current-findings.json';
-const INSIGHT_REPORT_URL = 'https://ricomanifesto.github.io/SentryInsight/';
+// The emitted SentryInsight origin is where findings are fetched and linked;
+// either configured origin is an accepted report_url during the transition.
+const INSIGHT_REPORT_URL = emittedOrigin('SentryInsight');
+const INSIGHT_REPORT_URLS = Object.freeze(acceptedOrigins('SentryInsight'));
+const CURRENT_FINDINGS_URL = `${INSIGHT_REPORT_URL}current-findings.json`;
 const MAX_REPORT_AGE_DAYS = 2;
 const MAX_CLOCK_SKEW_MS = 5 * 60 * 1000;
 const CVE_PATTERN = /^CVE-\d{4}-\d{4,}$/;
@@ -39,7 +44,7 @@ function assertCurrentInsightFindings(value) {
       || Number.isNaN(Date.parse(value.generated_at))) {
     throw new Error('Current SentryInsight findings generated_at must be a UTC timestamp');
   }
-  if (value.report_url !== INSIGHT_REPORT_URL) {
+  if (!INSIGHT_REPORT_URLS.includes(value.report_url)) {
     throw new Error('Current SentryInsight findings report_url must use the canonical report');
   }
   if (!Number.isInteger(value.finding_count) || value.finding_count < 1) {
@@ -90,5 +95,6 @@ module.exports = {
   CURRENT_FINDINGS_URL,
   getCurrentInsightCves,
   INSIGHT_REPORT_URL,
+  INSIGHT_REPORT_URLS,
   loadCurrentInsightFindings,
 };
