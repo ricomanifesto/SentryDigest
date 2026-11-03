@@ -219,7 +219,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
+          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml" aria-label="Open generated RSS feed">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -230,7 +230,7 @@
   <main class="container">
     <section class="issue-strip" aria-label="Digest issue metadata">
       <span class="issue-label">Current issue</span>
-      <time datetime="2026-11-02T21:09:50.320Z">November 2, 2026</time>
+      <time datetime="2026-11-03T00:27:38.803Z">November 3, 2026</time>
       <span class="issue-stat"><strong>30</strong> articles</span>
       <span class="issue-stat"><strong>3</strong> sources</span>
       <a class="issue-link" href="./feed.xml" aria-label="Open rolling RSS feed">Rolling RSS feed</a>
@@ -238,10 +238,10 @@
     <nav class="issue-trail" aria-label="Digest navigation">
       <span class="issue-trail-current" aria-current="page">Current digest</span>
       <a class="previous-issues" href="./archive/" aria-label="Open previous digest issues">Previous issues</a>
-      <a class="previous-issue" href="./archive/2026-11-01/" aria-label="Open digest issue for November 1, 2026"><time datetime="2026-11-01T00:00:00.000Z">Nov 1</time></a>
+      <a class="previous-issue" href="./archive/2026-11-02/" aria-label="Open digest issue for November 2, 2026"><time datetime="2026-11-02T00:00:00.000Z">Nov 2</time></a>
       <a href="./feed.xml" aria-label="Open generated RSS feed">RSS feed</a>
       <a href="#sourceCoverage">Source coverage</a>
-      <span class="issue-trail-meta">Updated <time class="issue-trail-updated" datetime="2026-11-02T21:09:50.320Z">21:09 UTC · Nov 2</time></span>
+      <span class="issue-trail-meta">Updated <time class="issue-trail-updated" datetime="2026-11-03T00:27:38.803Z">00:27 UTC · Nov 3</time></span>
       <span class="issue-trail-meta issue-trail-cadence" data-cadence-hours="3" data-cadence-state="scheduled" role="status" aria-live="polite" aria-atomic="true"><span data-cadence-label>3h cadence</span></span>
     </nav>
     <p class="insight-context" data-context-mode="stale" role="status"><a class="insight-context-link" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer">SentryInsight context</a> as of <time datetime="2026-10-06T00:51:11Z">October 6, 2026 at 12:51 AM UTC</time> is stale; CVE handoffs use the first-mentioned CVE.</p>
@@ -282,7 +282,7 @@
       <details class="source-coverage-details">
         <summary class="source-coverage-summary">Source coverage <span>3 active feeds · 30 articles</span></summary>
         <div class="source-coverage-body">
-          <div class="source-counts"><button class="source-count" type="button" data-source-filter="The Hacker News" aria-label="Filter to The Hacker News source, 13 articles" aria-pressed="false">The Hacker News <strong>13</strong></button><button class="source-count" type="button" data-source-filter="Bleeping Computer" aria-label="Filter to Bleeping Computer source, 15 articles" aria-pressed="false">Bleeping Computer <strong>15</strong></button><button class="source-count" type="button" data-source-filter="Dark Reading" aria-label="Filter to Dark Reading source, 2 articles" aria-pressed="false">Dark Reading <strong>2</strong></button></div>
+          <div class="source-counts"><button class="source-count" type="button" data-source-filter="The Hacker News" aria-label="Filter to The Hacker News source, 12 articles" aria-pressed="false">The Hacker News <strong>12</strong></button><button class="source-count" type="button" data-source-filter="Bleeping Computer" aria-label="Filter to Bleeping Computer source, 15 articles" aria-pressed="false">Bleeping Computer <strong>15</strong></button><button class="source-count" type="button" data-source-filter="Dark Reading" aria-label="Filter to Dark Reading source, 3 articles" aria-pressed="false">Dark Reading <strong>3</strong></button></div>
           <div class="source-health-summary" data-active-sources="3" data-quiet-sources="1">
             <span><strong>3</strong> active feeds</span>
             <span><strong>1</strong> quiet feed</span>
@@ -313,7 +313,7 @@
       <article class="operator-lane" data-lane="Incident watch" data-lane-cue="SentryInsight: incident watch">
         <a class="operator-lane-heading" data-lane-destination href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer">Incident watch <span data-lane-destination-label>· general report</span></a>
         <span class="operator-lane-count" data-lane-count><strong>9</strong> items</span>
-        <a href="https://thehackernews.com/2026/11/weekly-recap-critical-cves-linux-ddos.html" class="operator-lane-link" data-lane-link>⚡ Weekly Recap: Critical CVEs, Linux DDoS Botnet, Device-Code Phishing, Android Spyware and More</a>
+        <a href="https://www.darkreading.com/cyberattacks-data-breaches/binance-hack-test-attack-paths" class="operator-lane-link" data-lane-link>One Compromised Laptop, Billions Lost: The Binance Attack-Path Warning</a>
         <span class="operator-lane-empty" data-lane-empty hidden>No current match</span>
       </article><article class="operator-lane" data-lane="Vulnerability triage" data-lane-cue="SentryInsight: vuln triage">
         <a class="operator-lane-heading" data-lane-destination href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer">Vulnerability triage <span data-lane-destination-label>· general report</span></a>
@@ -335,55 +335,82 @@
 
     <div class="news-container" id="newsContainer">
 
-        <article class="news-item" id="reporting-b728804dc951" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Fintech platform Sageworks taken offline after suspected cyberattack" data-summary="Financial technology company Abrigo has restored its Sageworks risk management application, except for borrower-facing capabilities, following an outage triggered by &quot;irregular activity&quot; in its environment…" data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh" data-published-at="2026-11-02T19:00:45.000Z">
+        <article class="news-item" id="reporting-7687771085e4" data-source="Dark Reading" data-host="darkreading.com" data-title="One Compromised Laptop, Billions Lost: The Binance Attack-Path Warning" data-summary="The record theft shows how weak system separation, inadequate controls, and untested attack possibilities can turn one breach into systemic loss." data-severity="Critical" data-tags="Data Breach" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Fresh" data-published-at="2026-11-02T22:27:24.000Z">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip source-chip">Dark Reading</span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>2h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/binance-hack-test-attack-paths" target="_blank" rel="noopener noreferrer">One Compromised Laptop, Billions Lost: The Binance Attack-Path Warning</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-11-02T22:27:24.000Z">November 2, 2026 at 10:27 PM UTC</time>
+            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-7687771085e4" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Data Breach</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a></div>
+          <p class="news-summary">The record theft shows how weak system separation, inadequate controls, and untested attack possibilities can turn one breach into systemic loss.</p>
+        </article>
+        <article class="news-item" id="reporting-6c6aea21f91d" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Chinese hackers use ARTEX AI in automated attacks against 200 orgs" data-summary="Chinese hackers used ARTEX, an open-source, multi-agent AI penetration-testing framework, in attacks against more than 200 organizations across 14 countries…" data-severity="Monitor" data-tags="AI Security" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh" data-published-at="2026-11-02T21:40:14.000Z">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
             <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>2h old</span></span>
           </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/chinese-hackers-use-artex-ai-in-automated-attacks-against-200-orgs/" target="_blank" rel="noopener noreferrer">Chinese hackers use ARTEX AI in automated attacks against 200 orgs</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-11-02T21:40:14.000Z">November 2, 2026 at 9:40 PM UTC</time>
+            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-6c6aea21f91d" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">AI Security</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: monitor" data-destination-label="general report">SentryInsight: monitor · general report</a></div>
+          <p class="news-summary">Chinese hackers used ARTEX, an open-source, multi-agent AI penetration-testing framework, in attacks against more than 200 organizations across 14 countries…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/chinese-hackers-use-artex-ai-in-automated-attacks-against-200-orgs/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item" id="reporting-b728804dc951" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Fintech platform Sageworks taken offline after suspected cyberattack" data-summary="Financial technology company Abrigo has restored its Sageworks risk management application, except for borrower-facing capabilities, following an outage triggered by &quot;irregular activity&quot; in its environment…" data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh" data-published-at="2026-11-02T19:00:45.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>5h old</span></span>
+          </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/fintech-platform-sageworks-taken-offline-after-suspected-cyberattack/" target="_blank" rel="noopener noreferrer">Fintech platform Sageworks taken offline after suspected cyberattack</a></h2>
           <div class="news-meta">
-            <time datetime="2026-11-02T19:00:45.000Z">November 2, 2026 at 7:00 PM UTC</time>
-            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-b728804dc951" aria-label="Permalink to this reporting item">Permalink</a>
+            <time datetime="2026-11-02T19:00:45.000Z">November 2, 2026 at 7:00 PM UTC</time><a class="item-permalink" href="#reporting-b728804dc951" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: monitor" data-destination-label="general report">SentryInsight: monitor · general report</a></div>
           <p class="news-summary">Financial technology company Abrigo has restored its Sageworks risk management application, except for borrower-facing capabilities, following an outage triggered by &quot;irregular activity&quot; in its environment…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/fintech-platform-sageworks-taken-offline-after-suspected-cyberattack/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
         </article>
-        <article class="news-item" id="reporting-540fcda80525" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Google disrupts million-device XCPE Android malware botnet, bans TV box maker" data-summary="Google and industry partners have dismantled the XCPE malware botnet consisting of more than 1.3 million Android TV streaming TV boxes that Google says its manufacturer intentionally infected with malware to generate revenue through cybercrime activities…" data-severity="Elevated" data-tags="Malware" data-vendors="Google" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Fresh" data-published-at="2026-11-02T18:16:34.000Z">
+        <article class="news-item" id="reporting-540fcda80525" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Google disrupts million-device XCPE Android malware botnet, bans TV box maker" data-summary="Google and industry partners have dismantled the XCPE malware botnet consisting of more than 1.3 million Android TV streaming TV boxes that Google says its manufacturer intentionally infected with malware to generate revenue through cybercrime activities…" data-severity="Elevated" data-tags="Malware" data-vendors="Google" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-11-02T18:16:34.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>2h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>6h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/google-disrupts-million-device-xcpe-android-malware-botnet-bans-tv-box-maker/" target="_blank" rel="noopener noreferrer">Google disrupts million-device XCPE Android malware botnet, bans TV box maker</a></h2>
           <div class="news-meta">
-            <time datetime="2026-11-02T18:16:34.000Z">November 2, 2026 at 6:16 PM UTC</time>
-            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-540fcda80525" aria-label="Permalink to this reporting item">Permalink</a>
+            <time datetime="2026-11-02T18:16:34.000Z">November 2, 2026 at 6:16 PM UTC</time><a class="item-permalink" href="#reporting-540fcda80525" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Google</span><span class="chip">Malware</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
           <p class="news-summary">Google and industry partners have dismantled the XCPE malware botnet consisting of more than 1.3 million Android TV streaming TV boxes that Google says its manufacturer intentionally infected with malware to generate revenue through cybercrime activities…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/google-disrupts-million-device-xcpe-android-malware-botnet-bans-tv-box-maker/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
         </article>
-        <article class="news-item" id="reporting-a3562df3fff9" data-source="The Hacker News" data-host="thehackernews.com" data-title="⚡ Weekly Recap: Critical CVEs, Linux DDoS Botnet, Device-Code Phishing, Android Spyware and More" data-summary="Some attacks this week didn&#39;t need much of a trick. A fake support call, a trusted extension, a shared link, or a device with no password. Small things that people barely think about. Yet each was enough to cause serious trouble. Then there were the bigger messes. Billions stolen, hidden networks of hacked devices, poisoned software, and attackers finding new ways to turn normal tools against…" data-severity="Elevated" data-tags="Identity,Malware" data-vendors="Google" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vendor watch" data-age-bucket="Fresh" data-published-at="2026-11-02T16:57:56.000Z">
+        <article class="news-item" id="reporting-a3562df3fff9" data-source="The Hacker News" data-host="thehackernews.com" data-title="⚡ Weekly Recap: Critical CVEs, Linux DDoS Botnet, Device-Code Phishing, Android Spyware and More" data-summary="Some attacks this week didn&#39;t need much of a trick. A fake support call, a trusted extension, a shared link, or a device with no password. Small things that people barely think about. Yet each was enough to cause serious trouble. Then there were the bigger messes. Billions stolen, hidden networks of hacked devices, poisoned software, and attackers finding new ways to turn normal tools against…" data-severity="Elevated" data-tags="Identity,Malware" data-vendors="Google" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-11-02T16:57:56.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>4h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>7h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/weekly-recap-critical-cves-linux-ddos.html" target="_blank" rel="noopener noreferrer">⚡ Weekly Recap: Critical CVEs, Linux DDoS Botnet, Device-Code Phishing, Android Spyware and More</a></h2>
           <div class="news-meta">
-            <time datetime="2026-11-02T16:57:56.000Z">November 2, 2026 at 4:57 PM UTC</time>
-            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-a3562df3fff9" aria-label="Permalink to this reporting item">Permalink</a>
+            <time datetime="2026-11-02T16:57:56.000Z">November 2, 2026 at 4:57 PM UTC</time><a class="item-permalink" href="#reporting-a3562df3fff9" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Google</span><span class="chip">Identity</span><span class="chip">Malware</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
           <p class="news-summary">Some attacks this week didn&#39;t need much of a trick. A fake support call, a trusted extension, a shared link, or a device with no password. Small things that people barely think about. Yet each was enough to cause serious trouble. Then there were the bigger messes. Billions stolen, hidden networks of hacked devices, poisoned software, and attackers finding new ways to turn normal tools against…</p><a class="summary-continuation" href="https://thehackernews.com/2026/11/weekly-recap-critical-cves-linux-ddos.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
         </article>
-        <article class="news-item" id="reporting-7a8b5fe3b630" data-source="The Hacker News" data-host="thehackernews.com" data-title="Google Disrupts 1.3 Million-Device Android Botnet, Says TV Box Maker Sold Criminal Access" data-summary="A botnet of more than 1.3 million Android devices, mostly TV set-top boxes, lost control of its servers in late October in a takedown led by Google. Google says it is highly confident that device maker Videostrong intentionally put a backdoor in the boxes and sold access to criminals. They used the boxes for ad fraud and to pass other people&#39;s internet traffic through owners&#39; home…" data-severity="Elevated" data-tags="Malware" data-vendors="Google" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Fresh" data-published-at="2026-11-02T15:50:26.000Z">
+        <article class="news-item" id="reporting-7a8b5fe3b630" data-source="The Hacker News" data-host="thehackernews.com" data-title="Google Disrupts 1.3 Million-Device Android Botnet, Says TV Box Maker Sold Criminal Access" data-summary="A botnet of more than 1.3 million Android devices, mostly TV set-top boxes, lost control of its servers in late October in a takedown led by Google. Google says it is highly confident that device maker Videostrong intentionally put a backdoor in the boxes and sold access to criminals. They used the boxes for ad fraud and to pass other people&#39;s internet traffic through owners&#39; home…" data-severity="Elevated" data-tags="Malware" data-vendors="Google" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-11-02T15:50:26.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>5h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>8h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/google-disrupts-13-million-device.html" target="_blank" rel="noopener noreferrer">Google Disrupts 1.3 Million-Device Android Botnet, Says TV Box Maker Sold Criminal Access</a></h2>
           <div class="news-meta">
@@ -397,7 +424,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>6h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>9h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/btcpay-server-warns-of-hot-wallet-thefts-targeting-outdated-instances/" target="_blank" rel="noopener noreferrer">BTCPay Server warns of hot wallet crypto thefts on outdated instances</a></h2>
           <div class="news-meta">
@@ -410,7 +437,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>6h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>9h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/your-mobile-carrier-stores-your-call-logs-for-years/" target="_blank" rel="noopener noreferrer">Your Mobile Carrier Stores Your Call Logs for Years</a></h2>
           <div class="news-meta">
@@ -424,7 +451,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>6h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>9h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/microsoft-ai-cyber-risk-report-miss" target="_blank" rel="noopener noreferrer">Microsoft&#39;s AI Risk Report Misses This Key Detail</a></h2>
           <div class="news-meta">
@@ -438,7 +465,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>6h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>9h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/darkblinders-compromises-israeli-target.html" target="_blank" rel="noopener noreferrer">DarkBlinders Compromises Israeli Target and Iraqi Kurdish Government Cloud Environment</a></h2>
           <div class="news-meta">
@@ -452,7 +479,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>6h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>9h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hackers-disrupt-refrigeration-systems-at-european-supermarkets/" target="_blank" rel="noopener noreferrer">Hackers disrupt refrigeration systems at European supermarkets</a></h2>
           <div class="news-meta">
@@ -465,7 +492,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>7h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>10h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/paprat-cyberespionage-campaign-bitter-south-asia" target="_blank" rel="noopener noreferrer">PapRAT Cyber-Espionage Campaign Leaves a &#39;Bitter&#39; Taste in South Asia</a></h2>
           <div class="news-meta">
@@ -479,7 +506,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>7h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>10h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-fixes-smart-app-control-broken-by-october-windows-update/" target="_blank" rel="noopener noreferrer">Microsoft fixes Smart App Control broken by October Windows update</a></h2>
           <div class="news-meta">
@@ -493,7 +520,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>8h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>11h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/over-1-000-gitlab-servers-vulnerable-to-code-execution-attacks/" target="_blank" rel="noopener noreferrer">Over 1,000 GitLab servers vulnerable to ongoing RCE attacks</a></h2>
           <div class="news-meta">
@@ -507,7 +534,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>9h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>12h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/critical-langflow-flaws-could-let.html" target="_blank" rel="noopener noreferrer">Critical Langflow Flaws Could Let Unauthenticated Attackers Run Code on Servers</a></h2>
           <div class="news-meta">
@@ -521,7 +548,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>9h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>12h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/is-your-soc-ready-for-ai-agents.html" target="_blank" rel="noopener noreferrer">Is Your SOC Ready for AI Agents? A Maturity Check Before You Deploy</a></h2>
           <div class="news-meta">
@@ -535,7 +562,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>9h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>12h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/synology-warns-customers-of-ongoing-c3rb3r-ransomware-attacks/" target="_blank" rel="noopener noreferrer">Synology warns of C3RB3R ransomware attacks targeting NAS devices</a></h2>
           <div class="news-meta">
@@ -549,7 +576,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>10h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>13h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/attackers-pose-as-it-support-on.html" target="_blank" rel="noopener noreferrer">Attackers Pose as IT Support on Microsoft Teams, Abuse AD CS to Steal Company Data</a></h2>
           <div class="news-meta">
@@ -563,7 +590,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>10h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>13h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/government-linux-servers-targeted-with.html" target="_blank" rel="noopener noreferrer">Government Linux Servers Targeted With SysGoRAT and Suspected AI-Generated Scripts</a></h2>
           <div class="news-meta">
@@ -577,7 +604,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>11h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>14h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/ivanti-patches-two-more-connect-secure-zero-days-chained-in-attacks/" target="_blank" rel="noopener noreferrer">Ivanti patches two more Connect Secure zero-days chained in attacks</a></h2>
           <div class="news-meta">
@@ -591,7 +618,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>15h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>18h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/new-volta-infostealer-uses-claude.html" target="_blank" rel="noopener noreferrer">New VOLTA Infostealer Uses Claude, Gemini, and Kimi AI to Rank Victims by Financial Value</a></h2>
           <div class="news-meta">
@@ -723,33 +750,6 @@
           <div class="facet-row"><span class="chip">Google</span><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
           <p class="news-summary">A security researcher has released a proof-of-concept exploit for a recently patched Android vulnerability, dubbed &quot;SMS of Death&quot; and tracked as CVE-2026-58882, that lets attackers remotely disrupt cellular service or crash phones by sending a specially crafted text message…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/new-android-sms-of-death-exploit-can-remotely-crash-unpatched-phones/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
-        </article>
-        <article class="news-item" id="reporting-dd695362ecd8" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Reddit to lock content behind logins to fight scrapers" data-summary="Reddit announced in a post by co-founder Steve Huffman that the site will gradually become a &quot;logged-in service,&quot; offering limited access to visitors without accounts…" data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-10-31T14:05:15.000Z">
-          <div class="chips">
-            <span class="severity severity-monitor">Monitor</span>
-            <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/reddit-to-lock-content-behind-logins-to-fight-scrapers/" target="_blank" rel="noopener noreferrer">Reddit to lock content behind logins to fight scrapers</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-10-31T14:05:15.000Z">October 31, 2026 at 2:05 PM UTC</time><a class="item-permalink" href="#reporting-dd695362ecd8" aria-label="Permalink to this reporting item">Permalink</a>
-          </div>
-          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: monitor" data-destination-label="general report">SentryInsight: monitor · general report</a></div>
-          <p class="news-summary">Reddit announced in a post by co-founder Steve Huffman that the site will gradually become a &quot;logged-in service,&quot; offering limited access to visitors without accounts…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/reddit-to-lock-content-behind-logins-to-fight-scrapers/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
-        </article>
-        <article class="news-item" id="reporting-b84dfe472134" data-source="The Hacker News" data-host="thehackernews.com" data-title="Chainalysis Confirms Intrusion Into Internal Tools and Exposure of Customer Identity Data" data-summary="American blockchain analysis firm Chainalysis said it was the target of a cybersecurity incident in which an external actor accessed non-sensitive customer data. However, the company noted that the breach did not result in unauthorized access to its investigation content, authentication credentials, or session tokens. &quot;This month, Chainalysis detected an external actor using offensive agentic…" data-severity="Critical" data-tags="Data Breach,Identity" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Recent" data-published-at="2026-10-31T12:01:56.000Z">
-          <div class="chips">
-            <span class="severity severity-critical">Critical</span>
-            <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/10/chainalysis-confirms-intrusion-into.html" target="_blank" rel="noopener noreferrer">Chainalysis Confirms Intrusion Into Internal Tools and Exposure of Customer Identity Data</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-10-31T12:01:56.000Z">October 31, 2026 at 12:01 PM UTC</time><a class="item-permalink" href="#reporting-b84dfe472134" aria-label="Permalink to this reporting item">Permalink</a>
-          </div>
-          <div class="facet-row"><span class="chip">Data Breach</span><span class="chip">Identity</span></div>
-          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://ricomanifesto.github.io/SentryInsight/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a></div>
-          <p class="news-summary">American blockchain analysis firm Chainalysis said it was the target of a cybersecurity incident in which an external actor accessed non-sensitive customer data. However, the company noted that the breach did not result in unauthorized access to its investigation content, authentication credentials, or session tokens. &quot;This month, Chainalysis detected an external actor using offensive agentic…</p><a class="summary-continuation" href="https://thehackernews.com/2026/10/chainalysis-confirms-intrusion-into.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
         </article>
     </div>
   </main>
