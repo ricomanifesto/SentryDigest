@@ -13,7 +13,7 @@ const { readCurrentBuild } = require('../../scripts/build-static-artifact');
 const { createArtifactServer } = require('../../scripts/serve-static-artifact');
 const { validateArtifacts } = require('../../scripts/validate-artifacts');
 
-const PUBLIC_ROOT = 'https://ricomanifesto.github.io/SentryDigest/';
+const PUBLIC_ROOT = require('../../scripts/public-site').emittedOrigin('SentryDigest');
 const STORE = process.env.STATIC_ARTIFACT_STORE;
 const SOURCE = process.env.STATIC_ARTIFACT_SOURCE;
 const PUBLISHED_FILES = new Set([

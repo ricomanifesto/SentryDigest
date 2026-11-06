@@ -1,3 +1,4 @@
+const { emittedOrigin } = require('../../scripts/public-site');
 const fs = require('node:fs');
 const path = require('node:path');
 const { expect, test } = require('@playwright/test');
@@ -137,7 +138,7 @@ test('rendered digest shows cards and preserves its core interactions', async ({
     await expect(continuation).toHaveAccessibleName(/^Continue reading at /);
   }
 
-  await expect(page.locator('a.handoff-cue').first()).toHaveAttribute('href', /SentryInsight|GRCInsight/);
+  await expect(page.locator('a.handoff-cue').first()).toHaveAttribute('href', /^https:\/\/(sentryinsight|grcinsight)\.ricomanifesto\.com\//);
   expect(runtimeFailures).toEqual([]);
   await page.screenshot({ path: path.join(screenshotDirectory, 'digest-desktop.png'), fullPage: true });
 });
@@ -213,7 +214,7 @@ test('CVE handoff links do not depend on the daily feed mix', async ({ browser }
   expect(response?.ok()).toBeTruthy();
   await expect(page.locator('a.handoff-cue[href*="#cve-"]')).toHaveAttribute(
     'href',
-    /SentryInsight\/#cve-2026-59310$/,
+    /sentryinsight\.ricomanifesto\.com\/#cve-2026-59310$/,
   );
   await context.close();
 });
@@ -347,7 +348,7 @@ test('retained upstream context stays visible without JavaScript', async ({ brow
   await expect(contextLine).toContainText('SentryInsight context retained as of');
   await expect(contextLine.locator('time')).toContainText('UTC');
   const reportLink = contextLine.locator('a.insight-context-link');
-  await expect(reportLink).toHaveAttribute('href', 'https://ricomanifesto.github.io/SentryInsight/');
+  await expect(reportLink).toHaveAttribute('href', emittedOrigin('SentryInsight'));
   await expect(reportLink).toHaveAttribute('rel', 'noopener noreferrer');
   expect(runtimeFailures).toEqual([]);
   await context.close();
@@ -365,7 +366,7 @@ test('first degraded day stays actionable without JavaScript', async ({ browser 
   await expect(contextLine).toContainText('is stale; CVE handoffs use the first-mentioned CVE');
   await expect(contextLine.locator('a.insight-context-link')).toHaveAttribute(
     'href',
-    'https://ricomanifesto.github.io/SentryInsight/',
+    emittedOrigin('SentryInsight'),
   );
   expect(runtimeFailures).toEqual([]);
   await page.screenshot({ path: path.join(screenshotDirectory, 'digest-stale-context.png'), fullPage: true });

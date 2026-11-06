@@ -719,7 +719,8 @@ function renderInsightContext(context) {
   }
   const reference = context.manifest_generated_at || context.checked_at;
   const safeMode = escapeAttribute(context.mode);
-  const reportUrl = escapeAttribute(context.report_url || INSIGHT_REPORT_URL);
+  // Snapshot URLs record provenance; reader links follow the current public origin.
+  const reportUrl = escapeAttribute(INSIGHT_REPORT_URL);
   const contextLink = `<a class="insight-context-link" href="${reportUrl}" target="_blank" rel="noopener noreferrer">SentryInsight context</a>`;
   const renderedTime = `<time datetime="${escapeAttribute(reference)}">${escapeHtml(formatArticleDate(reference))}</time>`;
   const message = context.mode === 'retained'

@@ -8,6 +8,8 @@ const { renderArchivePage, renderArchiveIndex, refreshArchivePresentation } = re
 const { generateHTML } = require('../scripts/render-news-html');
 const { articleFragment } = require('../scripts/reporting-identity');
 
+const { emittedOrigin } = require('../scripts/public-site');
+
 const article = {
   title: 'NetScaler CVE-2026-88779 actively exploited',
   summary: 'Incident response teams investigate stolen credentials.',
@@ -23,7 +25,7 @@ test('retained issues share reader controls and preserve dated evidence identity
   for (const selector of ['#search', '#sourceFilter', '#themeToggle', '#resetFilters', '#emptyResetFilters']) {
     assert.equal($(selector).length, 1, selector);
   }
-  assert.equal($('link[rel="canonical"]').attr('href'), 'https://ricomanifesto.github.io/SentryDigest/archive/2026-10-04/');
+  assert.equal($('link[rel="canonical"]').attr('href'), `${emittedOrigin('SentryDigest')}archive/2026-10-04/`);
   assert.equal($('article.news-item').attr('id'), manifest.articles[0].id);
   assert.equal($('.news-title a').attr('href'), article.link);
   assert.equal($('.news-title a').text(), article.title);
@@ -73,8 +75,28 @@ test('handoff labels distinguish general reports, verified CVEs, and unverified 
     const incident = $('.handoff-cue').filter((_, el) => $(el).text().includes('incident watch')).first();
     assert.match(incident.text(), new RegExp(expected));
     if (cves?.length) assert.match(incident.attr('href'), /#cve-2026-88779$/);
-    const grc = $('.handoff-cue[href="https://ricomanifesto.github.io/GRCInsight/"]');
+    const grc = $(`.handoff-cue[href="${emittedOrigin('GRCInsight')}"]`);
     assert.match(grc.text(), /general report/);
     assert.match($('[data-lane="Governance watch"] [data-lane-destination]').text(), /general report/);
   }
+});
+
+test('historical context links use the emitted origin without rewriting snapshot provenance', () => {
+  const historical = {
+    ...manifest,
+    schema_version: 2,
+    insight_context: {
+      schema_version: 2,
+      mode: 'retained',
+      checked_at: '2026-10-04T15:00:00.000Z',
+      report_date: '2026-10-03',
+      manifest_generated_at: '2026-10-03T12:00:00.000Z',
+      report_url: 'https://ricomanifesto.github.io/SentryInsight/',
+    },
+  };
+  const before = JSON.stringify(historical);
+  const $ = cheerio.load(renderArchivePage(historical));
+  assert.equal($('.insight-context-link').attr('href'), emittedOrigin('SentryInsight'));
+  assert.equal($('.insight-context time').attr('datetime'), historical.insight_context.manifest_generated_at);
+  assert.equal(JSON.stringify(historical), before);
 });

@@ -150,7 +150,7 @@ test('new issues stamp actionable context without rewriting historical schema-on
   assert.deepEqual(manifest.insight_context, STALE_INSIGHT_CONTEXT);
   assert.match(
     html,
-    /<a class="insight-context-link" href="https:\/\/ricomanifesto\.github\.io\/SentryInsight\/" target="_blank" rel="noopener noreferrer">SentryInsight context<\/a>/,
+    /<a class="insight-context-link" href="https:\/\/sentryinsight\.ricomanifesto\.com\/" target="_blank" rel="noopener noreferrer">SentryInsight context<\/a>/,
   );
   assert.match(html, /data-context-mode="stale"/);
 });

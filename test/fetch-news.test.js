@@ -1,3 +1,4 @@
+const { emittedOrigin } = require('../scripts/public-site');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const os = require('node:os');
@@ -328,11 +329,11 @@ test('generateHTML publishes discoverable project identity metadata', () => {
     generatedAt: new Date('2026-06-17T18:00:00.000Z'),
   });
 
-  assert.match(html, /<link rel="canonical" href="https:\/\/ricomanifesto\.github\.io\/SentryDigest\/">/);
-  assert.match(html, /<meta property="og:url" content="https:\/\/ricomanifesto\.github\.io\/SentryDigest\/">/);
-  assert.match(html, /<meta property="og:image" content="https:\/\/ricomanifesto\.github\.io\/SentryDigest\/assets\/social-preview\.png">/);
+  assert.match(html, /<link rel="canonical" href="https:\/\/sentrydigest\.ricomanifesto\.com\/">/);
+  assert.match(html, /<meta property="og:url" content="https:\/\/sentrydigest\.ricomanifesto\.com\/">/);
+  assert.match(html, /<meta property="og:image" content="https:\/\/sentrydigest\.ricomanifesto\.com\/assets\/social-preview\.png">/);
   assert.match(html, /<meta name="twitter:card" content="summary_large_image">/);
-  assert.match(html, /<meta name="twitter:image" content="https:\/\/ricomanifesto\.github\.io\/SentryDigest\/assets\/social-preview\.png">/);
+  assert.match(html, /<meta name="twitter:image" content="https:\/\/sentrydigest\.ricomanifesto\.com\/assets\/social-preview\.png">/);
   assert.match(html, /<script type="application\/ld\+json">[\s\S]*"@type":"WebSite"[\s\S]*"name":"Michael Rico"[\s\S]*<\/script>/);
   assert.match(html, /<a href="https:\/\/ricomanifesto\.com\/">Michael Rico<\/a>/);
   assert.doesNotMatch(html, /\/Users\//);
@@ -555,8 +556,8 @@ test('generateHTML renders escaped downstream handoff cues on article cards', ()
 
   assert.match(html, /data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage,SentryInsight: vendor watch,GRCInsight: governance watch"/);
   assert.match(html, /<div class="handoff-row" aria-label="Downstream handoff cues">/);
-  assert.match(html, /<a class="handoff-cue" href="https:\/\/ricomanifesto\.github\.io\/SentryInsight\/"[^>]*>SentryInsight: incident watch · general report<\/a>/);
-  assert.match(html, /<a class="handoff-cue" href="https:\/\/ricomanifesto\.github\.io\/GRCInsight\/"[^>]*>GRCInsight: governance watch · general report<\/a>/);
+  assert.match(html, /<a class="handoff-cue" href="https:\/\/sentryinsight\.ricomanifesto\.com\/"[^>]*>SentryInsight: incident watch · general report<\/a>/);
+  assert.match(html, /<a class="handoff-cue" href="https:\/\/grcinsight\.ricomanifesto\.com\/"[^>]*>GRCInsight: governance watch · general report<\/a>/);
 });
 
 test('generateHTML groups legend explanations into a compact digest legend', () => {
@@ -891,7 +892,7 @@ test('collectOperatorLanes returns deterministic lane counts and latest articles
       count: 2,
       latestTitle: 'Ransomware crew steals credentials from exchange',
       latestLink: 'https://example.com/incident',
-      destination: 'https://ricomanifesto.github.io/SentryInsight/',
+      destination: emittedOrigin('SentryInsight'),
       destinationLabel: 'general report',
     },
     {
@@ -900,7 +901,7 @@ test('collectOperatorLanes returns deterministic lane counts and latest articles
       count: 1,
       latestTitle: 'Cisco VPN vulnerability patched by vendor',
       latestLink: 'https://example.com/vuln',
-      destination: 'https://ricomanifesto.github.io/SentryInsight/',
+      destination: emittedOrigin('SentryInsight'),
       destinationLabel: 'general report',
     },
     {
@@ -909,7 +910,7 @@ test('collectOperatorLanes returns deterministic lane counts and latest articles
       count: 1,
       latestTitle: 'Regulator opens privacy compliance audit',
       latestLink: 'https://example.com/grc',
-      destination: 'https://ricomanifesto.github.io/GRCInsight/',
+      destination: emittedOrigin('GRCInsight'),
       destinationLabel: 'general report',
     },
   ]);

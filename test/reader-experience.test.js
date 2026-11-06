@@ -1,3 +1,4 @@
+const { emittedOrigin } = require('../scripts/public-site');
 const assert = require('node:assert/strict');
 const test = require('node:test');
 
@@ -288,10 +289,10 @@ test('incident handoffs carry complete CVE context while generic and GRC links k
     }),
   ], { generatedAt: GENERATED_AT });
 
-  assert.match(cveHtml, /<a class="handoff-cue" href="https:\/\/ricomanifesto\.github\.io\/SentryInsight\/#cve-2026-59310"[^>]*>SentryInsight: incident watch · CVE reference: CVE-2026-59310<\/a>/);
-  assert.match(cveHtml, /<a class="operator-lane-heading" data-lane-destination href="https:\/\/ricomanifesto\.github\.io\/SentryInsight\/#cve-2026-59310"/);
-  assert.match(cveHtml, /<a class="handoff-cue" href="https:\/\/ricomanifesto\.github\.io\/GRCInsight\/"[^>]*>GRCInsight: governance watch · general report<\/a>/);
-  assert.match(genericHtml, /<a class="handoff-cue" href="https:\/\/ricomanifesto\.github\.io\/SentryInsight\/"[^>]*>SentryInsight: incident watch · general report<\/a>/);
+  assert.match(cveHtml, /<a class="handoff-cue" href="https:\/\/sentryinsight\.ricomanifesto\.com\/#cve-2026-59310"[^>]*>SentryInsight: incident watch · CVE reference: CVE-2026-59310<\/a>/);
+  assert.match(cveHtml, /<a class="operator-lane-heading" data-lane-destination href="https:\/\/sentryinsight\.ricomanifesto\.com\/#cve-2026-59310"/);
+  assert.match(cveHtml, /<a class="handoff-cue" href="https:\/\/grcinsight\.ricomanifesto\.com\/"[^>]*>GRCInsight: governance watch · general report<\/a>/);
+  assert.match(genericHtml, /<a class="handoff-cue" href="https:\/\/sentryinsight\.ricomanifesto\.com\/"[^>]*>SentryInsight: incident watch · general report<\/a>/);
 });
 
 test('incident handoffs prefer the first CVE present in the current Insight report', () => {
@@ -305,8 +306,8 @@ test('incident handoffs prefer the first CVE present in the current Insight repo
     currentInsightCves: ['CVE-2026-59310'],
   });
 
-  assert.match(html, /SentryInsight\/#cve-2026-59310/);
-  assert.doesNotMatch(html, /SentryInsight\/#cve-2026-00001/);
+  assert.match(html, /sentryinsight\.ricomanifesto\.com\/#cve-2026-59310/);
+  assert.doesNotMatch(html, /sentryinsight\.ricomanifesto\.com\/#cve-2026-00001/);
 });
 
 test('rolling article cards expose their stable reporting identity as a permalink', () => {
@@ -362,9 +363,9 @@ test('only non-current SentryInsight context is named on the reader surface', ()
   });
 
   assert.doesNotMatch(current, /class="insight-context"/);
-  assert.match(retained, /data-context-mode="retained"[^>]*><a class="insight-context-link" href="https:\/\/ricomanifesto\.github\.io\/SentryInsight\/" target="_blank" rel="noopener noreferrer">SentryInsight context<\/a> retained as of <time datetime="2026-08-13T21:54:18Z">August 13, 2026 at 9:54 PM UTC<\/time>/);
+  assert.match(retained, /data-context-mode="retained"[^>]*><a class="insight-context-link" href="https:\/\/sentryinsight\.ricomanifesto\.com\/" target="_blank" rel="noopener noreferrer">SentryInsight context<\/a> retained as of <time datetime="2026-08-13T21:54:18Z">August 13, 2026 at 9:54 PM UTC<\/time>/);
   assert.match(stale, /data-context-mode="stale"[^>]*><a class="insight-context-link"[^>]+>SentryInsight context<\/a> as of .* is stale; CVE handoffs use the first-mentioned CVE\./);
-  assert.match(unavailable, /data-context-mode="unavailable"[^>]*><a class="insight-context-link" href="https:\/\/ricomanifesto\.github\.io\/SentryInsight\/"[^>]*>SentryInsight context<\/a> unavailable as of .*; CVE handoffs use the first-mentioned CVE\./);
+  assert.match(unavailable, /data-context-mode="unavailable"[^>]*><a class="insight-context-link" href="https:\/\/sentryinsight\.ricomanifesto\.com\/"[^>]*>SentryInsight context<\/a> unavailable as of .*; CVE handoffs use the first-mentioned CVE\./);
 });
 
 test('reader contracts reject an incident handoff that drops available CVE context', () => {
@@ -373,7 +374,7 @@ test('reader contracts reject an incident handoff that drops available CVE conte
     summary: 'Incident response teams are investigating stolen credentials.',
   })];
   const html = generateHTML(articles, { generatedAt: GENERATED_AT })
-    .replaceAll('https://ricomanifesto.github.io/SentryInsight/#cve-2026-59310', 'https://ricomanifesto.github.io/SentryInsight/');
+    .replaceAll(`${emittedOrigin('SentryInsight')}#cve-2026-59310`, emittedOrigin('SentryInsight'));
   const failures = [];
 
   validateReaderExperience(html, articles, failures);
