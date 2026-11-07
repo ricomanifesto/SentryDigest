@@ -3,6 +3,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { expect, test } = require('@playwright/test');
 const { generateHTML } = require('../../scripts/render-news-html');
+const { renderArchivePage } = require('../../scripts/digest-archive');
+const { assertInsightSyncContext } = require('../../scripts/insight-sync-context');
 
 const screenshotDirectory = path.join(process.cwd(), 'test-results/screenshots');
 const retainedContextFixture = path.join(process.cwd(), 'test-results/retained-context.html');
@@ -373,50 +375,64 @@ test('first degraded day stays actionable without JavaScript', async ({ browser 
   await context.close();
 });
 
-test('dated digest context resolves stable item links without JavaScript', async ({ browser }) => {
-  const archiveRoot = path.join(process.cwd(), 'archive');
-  const issueDate = fs.readdirSync(archiveRoot)
-    .filter((name) => /^\d{4}-\d{2}-\d{2}$/.test(name))
-    .sort()
-    .at(-1);
-  const manifest = JSON.parse(
-    fs.readFileSync(path.join(archiveRoot, issueDate, 'index.json'), 'utf8')
-  );
-  const article = manifest.articles[0];
-  expect(manifest.schema_version).toBe(2);
-  expect(manifest.insight_context).toMatchObject({
-    schema_version: 2,
-  });
-  const insightMode = manifest.insight_context.mode;
-  expect(['current', 'retained', 'stale', 'unavailable']).toContain(insightMode);
-  expect(manifest.insight_context.report_url).toBe(
-    insightMode === 'unavailable'
-      ? null
-      : 'https://ricomanifesto.github.io/SentryInsight/',
-  );
-  const context = await browser.newContext({
-    javaScriptEnabled: false,
-    locale: 'en-US',
-    timezoneId: 'UTC',
-    viewport: { width: 390, height: 844 },
-  });
-  const page = await context.newPage();
-  const runtimeFailures = observeRuntimeFailures(page);
-  const response = await page.goto(
-    `http://127.0.0.1:4173/archive/${issueDate}/#${article.id}`
-  );
+for (const provenance of ['retained', 'production']) {
+  test(`dated digest context resolves stable item links without JavaScript (${provenance} provenance)`, async ({ browser }) => {
+    const archiveRoot = path.join(process.cwd(), 'archive');
+    const issueDate = fs.readdirSync(archiveRoot)
+      .filter((name) => /^\d{4}-\d{2}-\d{2}$/.test(name))
+      .sort()
+      .at(-1);
+    const manifest = JSON.parse(
+      fs.readFileSync(path.join(archiveRoot, issueDate, 'index.json'), 'utf8')
+    );
+    let readerPath = `/archive/${issueDate}/`;
+    if (provenance === 'production') {
+      // Exercise a newly generated production-origin stamp even while the
+      // committed archive retains its original legacy provenance. Never edit it.
+      manifest.insight_context = {
+        schema_version: 2,
+        mode: 'retained',
+        checked_at: manifest.generated_at,
+        report_date: manifest.issue_date,
+        manifest_generated_at: manifest.generated_at,
+        report_url: emittedOrigin('SentryInsight'),
+      };
+      readerPath = '/test-results/production-archive.html';
+      fs.writeFileSync(path.join(process.cwd(), readerPath.slice(1)),
+        renderArchivePage(manifest).replace('<head>', `<head>\n  <base href="/archive/${issueDate}/">`));
+    }
+    const article = manifest.articles[0];
+    expect(manifest.schema_version).toBe(2);
+    expect(manifest.insight_context).toMatchObject({
+      schema_version: 2,
+    });
+    // Retained provenance may use either configured origin; new snapshots use
+    // production. Validate the same contract as the generator, not an old host.
+    expect(() => assertInsightSyncContext(manifest.insight_context)).not.toThrow();
+    const context = await browser.newContext({
+      javaScriptEnabled: false,
+      locale: 'en-US',
+      timezoneId: 'UTC',
+      viewport: { width: 390, height: 844 },
+    });
+    const page = await context.newPage();
+    const runtimeFailures = observeRuntimeFailures(page);
+    const response = await page.goto(
+      `http://127.0.0.1:4173${readerPath}#${article.id}`
+    );
 
-  expect(response?.ok()).toBeTruthy();
-  await expect(page.locator(`#${article.id}`)).toBeVisible();
-  await expect(page.locator(`#${article.id} a`).first()).toHaveAttribute('href', article.link);
-  const overflow = await page.evaluate(
-    () => document.documentElement.scrollWidth - document.documentElement.clientWidth
-  );
-  expect(overflow).toBeLessThanOrEqual(1);
-  expect(runtimeFailures).toEqual([]);
-  await page.screenshot({
-    path: path.join(screenshotDirectory, 'digest-archive-mobile.png'),
-    fullPage: true,
+    expect(response?.ok()).toBeTruthy();
+    await expect(page.locator(`#${article.id}`)).toBeVisible();
+    await expect(page.locator(`#${article.id} a`).first()).toHaveAttribute('href', article.link);
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+    );
+    expect(overflow).toBeLessThanOrEqual(1);
+    expect(runtimeFailures).toEqual([]);
+    await page.screenshot({
+      path: path.join(screenshotDirectory, `digest-archive-${provenance}-mobile.png`),
+      fullPage: true,
+    });
+    await context.close();
   });
-  await context.close();
-});
+}
