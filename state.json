@@ -5313,6 +5313,138 @@
       "source_revision": "0469ac127f69d682a703039d21104c87ffc95af0",
       "stage": "released",
       "tree_digest": "c11262834912b6932c4ea7d64b837fec5578025d954dcdcebb44a376331e1759"
+    },
+    {
+      "at": "2026-11-08T00:39:42.010Z",
+      "proof": {
+        "absent": [
+          {
+            "path": "_publication/build.js",
+            "status": 404
+          },
+          {
+            "path": "vercel.json",
+            "status": 404
+          }
+        ],
+        "checked_at": "2026-11-08T00:39:36.625Z",
+        "failures": [
+          "listing hash for archive/2026-11-07/index.html differs from the release",
+          "listing is missing archive/2026-11-08/index.html",
+          "listing is missing archive/2026-11-08/index.json",
+          "listing hash for archive/index.html differs from the release",
+          "listing hash for config/news-sources.json differs from the release",
+          "listing hash for feed-info.json differs from the release",
+          "listing hash for feed.xml differs from the release",
+          "listing hash for index.html differs from the release",
+          "listing hash for sentryinsight-context.json differs from the release",
+          "listing hash for sitemap.xml differs from the release",
+          "listing hash for _release/descriptor.json differs from the release",
+          "served descriptor differs from the release descriptor (served release f1a813c91b8f8546c60a3f2f42a93b874b4ae9dbecea1e64f3b845bdb4d8fa88)",
+          "build receipt release_key is \"f1a813c91b8f8546c60a3f2f42a93b874b4ae9dbecea1e64f3b845bdb4d8fa88\", expected a8a3751f15b8a0521fa49705f06e5a733000dfa34617238ac345a703cab8b39f",
+          "build receipt git_commit_sha is \"6b67c6900b208ba8daed319ca894c4849ba647a1\", expected 8cf2b9b7fe336c80d4982de4089610728ada122f",
+          "sample archive/2026-11-08/index.html (https://sentrydigest.ricomanifesto.com/archive/2026-11-08/) returned 404 with bytes that do not match the listing"
+        ],
+        "listing_digest": "e7464f924d68b23f2f8fe377876925c3e6db6ed4bcd8722d2f73f77f0644a876",
+        "ok": false,
+        "origin": "https://sentrydigest.ricomanifesto.com/",
+        "receipt": {
+          "environment": "production",
+          "git_commit_sha": "6b67c6900b208ba8daed319ca894c4849ba647a1",
+          "git_ref": "vercel-production",
+          "production_host": "sentrydigest.ricomanifesto.com",
+          "release_key": "f1a813c91b8f8546c60a3f2f42a93b874b4ae9dbecea1e64f3b845bdb4d8fa88",
+          "repository": "ricomanifesto/SentryDigest",
+          "schema_version": 1
+        },
+        "samples": [
+          {
+            "headers": {
+              "age": "12428",
+              "cache-control": "public, max-age=0, must-revalidate",
+              "content-type": "text/html; charset=utf-8",
+              "etag": "W/\"825900b85fc6b6e28e7771f93d18480f\""
+            },
+            "ok": true,
+            "path": "index.html",
+            "status": 200,
+            "url": "https://sentrydigest.ricomanifesto.com/"
+          },
+          {
+            "headers": {
+              "age": "12449",
+              "cache-control": "public, max-age=0, must-revalidate",
+              "content-type": "application/xml; charset=utf-8",
+              "etag": "W/\"cb2ad88902faae7ef0b4bdf1e1014ea2\""
+            },
+            "ok": true,
+            "path": "feed.xml",
+            "status": 200,
+            "url": "https://sentrydigest.ricomanifesto.com/feed.xml"
+          },
+          {
+            "headers": {
+              "cache-control": "public, max-age=0, must-revalidate",
+              "content-type": "text/plain; charset=utf-8"
+            },
+            "ok": false,
+            "path": "archive/2026-11-08/index.html",
+            "status": 404,
+            "url": "https://sentrydigest.ricomanifesto.com/archive/2026-11-08/"
+          },
+          {
+            "headers": {
+              "age": "12449",
+              "cache-control": "public, max-age=0, must-revalidate",
+              "content-type": "application/xml; charset=utf-8",
+              "etag": "W/\"294e29a9a026e09bbae3e980d20ccc43\""
+            },
+            "ok": true,
+            "path": "sitemap.xml",
+            "status": 200,
+            "url": "https://sentrydigest.ricomanifesto.com/sitemap.xml"
+          },
+          {
+            "headers": {
+              "age": "12449",
+              "cache-control": "public, max-age=0, must-revalidate",
+              "content-type": "image/svg+xml",
+              "etag": "W/\"15cd5af88ca1e31d12450160068d89ff\""
+            },
+            "ok": true,
+            "path": "assets/icon.svg",
+            "status": 200,
+            "url": "https://sentrydigest.ricomanifesto.com/assets/icon.svg"
+          },
+          {
+            "headers": {
+              "age": "12428",
+              "cache-control": "public, max-age=0, must-revalidate",
+              "content-type": "text/plain; charset=utf-8",
+              "etag": "W/\"41a0eaaffb3e47445b3f6aa609c54da4\""
+            },
+            "ok": true,
+            "path": "_release/served-inventory.txt",
+            "status": 200
+          },
+          {
+            "headers": {
+              "age": "12428",
+              "cache-control": "public, max-age=0, must-revalidate",
+              "content-type": "application/json; charset=utf-8",
+              "etag": "W/\"a8ce87caa62f7987284b99c3a1920d15\""
+            },
+            "ok": true,
+            "path": "_release/descriptor.json",
+            "status": 200
+          }
+        ],
+        "served_release_key": "f1a813c91b8f8546c60a3f2f42a93b874b4ae9dbecea1e64f3b845bdb4d8fa88",
+        "tls": true
+      },
+      "release_key": "a8a3751f15b8a0521fa49705f06e5a733000dfa34617238ac345a703cab8b39f",
+      "release_ref": "8cf2b9b7fe336c80d4982de4089610728ada122f",
+      "stage": "verification-failed"
     }
   ],
   "schema_version": 1,
