@@ -230,7 +230,7 @@
   <main class="container">
     <section class="issue-strip" aria-label="Digest issue metadata">
       <span class="issue-label">Current issue</span>
-      <time datetime="2026-11-08T00:30:17.636Z">November 8, 2026</time>
+      <time datetime="2026-11-08T17:39:25.918Z">November 8, 2026</time>
       <span class="issue-stat"><strong>30</strong> articles</span>
       <span class="issue-stat"><strong>3</strong> sources</span>
       <a class="issue-link" href="./feed.xml" aria-label="Open rolling RSS feed">Rolling RSS feed</a>
@@ -241,7 +241,7 @@
       <a class="previous-issue" href="./archive/2026-11-07/" aria-label="Open digest issue for November 7, 2026"><time datetime="2026-11-07T00:00:00.000Z">Nov 7</time></a>
       <a href="./feed.xml" aria-label="Open generated RSS feed">RSS feed</a>
       <a href="#sourceCoverage">Source coverage</a>
-      <span class="issue-trail-meta">Updated <time class="issue-trail-updated" datetime="2026-11-08T00:30:17.636Z">00:30 UTC · Nov 8</time></span>
+      <span class="issue-trail-meta">Updated <time class="issue-trail-updated" datetime="2026-11-08T17:39:25.918Z">17:39 UTC · Nov 8</time></span>
       <span class="issue-trail-meta issue-trail-cadence" data-cadence-hours="3" data-cadence-state="scheduled" role="status" aria-live="polite" aria-atomic="true"><span data-cadence-label>3h cadence</span></span>
     </nav>
     <details id="advancedFilters" class="advanced-filters">
@@ -253,15 +253,15 @@
         </select>
         <select id="tagFilter" class="select" aria-label="Filter by topic tag">
           <option value="">All topics</option>
-          <option value="AI Security">AI Security</option><option value="Data Breach">Data Breach</option><option value="Exploitation">Exploitation</option><option value="Identity">Identity</option><option value="Malware">Malware</option><option value="Vulnerability">Vulnerability</option>
+          <option value="AI Security">AI Security</option><option value="Cloud">Cloud</option><option value="Data Breach">Data Breach</option><option value="Exploitation">Exploitation</option><option value="Identity">Identity</option><option value="Malware">Malware</option><option value="Vulnerability">Vulnerability</option>
         </select>
         <select id="vendorFilter" class="select" aria-label="Filter by affected vendor">
           <option value="">All vendors</option>
-          <option value="GitHub">GitHub</option><option value="Google">Google</option><option value="Microsoft">Microsoft</option><option value="OpenAI">OpenAI</option>
+          <option value="GitHub">GitHub</option><option value="Microsoft">Microsoft</option><option value="OpenAI">OpenAI</option>
         </select>
         <select id="ageFilter" class="select" aria-label="Filter by article age">
           <option value="">Any age</option>
-          <option value="Recent">Recent</option>
+          <option value="Fresh">Fresh</option><option value="Recent">Recent</option>
         </select>
         <select id="handoffFilter" class="select" aria-label="Filter by downstream handoff cue">
           <option value="">All handoff cues</option>
@@ -286,7 +286,7 @@
             <span><strong>3</strong> active feeds</span>
             <span><strong>1</strong> quiet feed</span>
           </div>
-          <div class="source-quiet-feeds" aria-label="Quiet RSS sources"><span class="source-health-note" data-source-name="Krebs on Security" data-last-contributed-at="2026-11-05T04:36:17.000Z" data-health-status="quiet" data-quiet-for-days="2">Krebs on Security quiet since <time datetime="2026-11-05T04:36:17.000Z">November 5, 2026 at 4:36 AM UTC</time></span></div>
+          <div class="source-quiet-feeds" aria-label="Quiet RSS sources"><span class="source-health-note" data-source-name="Krebs on Security" data-last-contributed-at="2026-11-05T04:36:17.000Z" data-health-status="quiet" data-quiet-for-days="3">Krebs on Security quiet since <time datetime="2026-11-05T04:36:17.000Z">November 5, 2026 at 4:36 AM UTC</time></span></div>
           <div class="source-filter-status" data-source-filter-status role="status" aria-live="polite" aria-atomic="true">All contributing feeds (30 articles)</div>
           <div class="source-coverage-actions">
             <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with 30 latest articles">RSS feed <span class="feed-link-count">30 items</span></a>
@@ -312,7 +312,7 @@
       <article class="operator-lane" data-lane="Incident watch" data-lane-cue="SentryInsight: incident watch">
         <a class="operator-lane-heading" data-lane-destination href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer">Incident watch <span data-lane-destination-label>· general report</span></a>
         <span class="operator-lane-count" data-lane-count><strong>8</strong> items</span>
-        <a href="https://thehackernews.com/2026/11/claude-codes-dont-ask-again-file.html" class="operator-lane-link" data-lane-link>Claude Code&#39;s “Don&#39;t Ask Again” File Exposes Passwords and Keys in 1,122 Public Copies on GitHub</a>
+        <a href="https://www.bleepingcomputer.com/news/security/iris-ohyama-data-cloud-breach-exposes-info-of-77-million-customers/" class="operator-lane-link" data-lane-link>Iris Ohyama data cloud breach exposes info of 7.7 million customers</a>
         <span class="operator-lane-empty" data-lane-empty hidden>No current match</span>
       </article><article class="operator-lane" data-lane="Vulnerability triage" data-lane-cue="SentryInsight: vuln triage">
         <a class="operator-lane-heading" data-lane-destination href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer">Vulnerability triage <span data-lane-destination-label>· general report</span></a>
@@ -329,11 +329,26 @@
 
     <div class="news-container" id="newsContainer">
 
+        <article class="news-item" id="reporting-f3cdbd0ed892" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Iris Ohyama data cloud breach exposes info of 7.7 million customers" data-summary="Japanese manufacturer Iris Ohyama, the operator of the Iris Plaza shopping platform, disclosed that personal information belonging to about 7.7 million people may have been exposed after unauthorized access to a third-party cloud service the company used…" data-severity="Critical" data-tags="Data Breach,Cloud" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Fresh" data-published-at="2026-11-08T15:43:08.000Z">
+          <div class="chips">
+            <span class="severity severity-critical">Critical</span>
+            <span class="chip source-chip">Bleeping Computer</span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>1h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/iris-ohyama-data-cloud-breach-exposes-info-of-77-million-customers/" target="_blank" rel="noopener noreferrer">Iris Ohyama data cloud breach exposes info of 7.7 million customers</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-11-08T15:43:08.000Z">November 8, 2026 at 3:43 PM UTC</time>
+            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-f3cdbd0ed892" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Data Breach</span><span class="chip">Cloud</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a></div>
+          <p class="news-summary">Japanese manufacturer Iris Ohyama, the operator of the Iris Plaza shopping platform, disclosed that personal information belonging to about 7.7 million people may have been exposed after unauthorized access to a third-party cloud service the company used…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/iris-ohyama-data-cloud-breach-exposes-info-of-77-million-customers/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+        </article>
         <article class="news-item" id="reporting-afb29613d255" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Hackers pull off $133 million French bank heist via service provider" data-summary="French cooperative bank Crédit Mutuel Arkéa was targeted in a cyberattack that enabled fraudulent transactions of up to $133 million, forcing it to respond by suspending certain systems.v…" data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-11-07T15:25:35.000Z">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>9h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hackers-pull-off-133-million-french-bank-heist-via-service-provider/" target="_blank" rel="noopener noreferrer">Hackers pull off $133 million French bank heist via service provider</a></h2>
           <div class="news-meta">
@@ -346,7 +361,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>10h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/ctm360-exposes-fake-gift-card-scams-exploiting-trusted-brands/" target="_blank" rel="noopener noreferrer">CTM360 Exposes Fake Gift Card Scams Exploiting Trusted Brands</a></h2>
           <div class="news-meta">
@@ -360,7 +375,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>17h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/claude-codes-dont-ask-again-file.html" target="_blank" rel="noopener noreferrer">Claude Code&#39;s “Don&#39;t Ask Again” File Exposes Passwords and Keys in 1,122 Public Copies on GitHub</a></h2>
           <div class="news-meta">
@@ -458,7 +473,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/qnap-says-hackers-breaching-nas-devices-in-plex2shell-attacks/" target="_blank" rel="noopener noreferrer">QNAP says hackers breaching NAS devices in Plex2Shell attacks</a></h2>
           <div class="news-meta">
@@ -472,7 +487,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/installing-fix-for-exploited-wordpress.html" target="_blank" rel="noopener noreferrer">Installing the Fix for an Exploited WordPress Flaw Can Expose Some Sites One Last Time</a></h2>
           <div class="news-meta">
@@ -486,7 +501,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/veeam-software-appliance-vms-fail-to-boot-on-amd-epyc-hosts/" target="_blank" rel="noopener noreferrer">Veeam warns of Software Appliance boot failures on AMD EPYC hosts</a></h2>
           <div class="news-meta">
@@ -499,7 +514,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/hackers-exploited-openssh-sshole-flaw.html" target="_blank" rel="noopener noreferrer">Hackers Target OpenSSH SSHole Flaw Within Hours of Disclosure, Gain Root on Honeypot</a></h2>
           <div class="news-meta">
@@ -513,7 +528,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/imsi-vs-imei-what-your-phone-broadcasts-and-who-can-read-it/" target="_blank" rel="noopener noreferrer">IMSI vs IMEI: What Your Phone Broadcasts and Who Can Read It</a></h2>
           <div class="news-meta">
@@ -526,7 +541,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/openai-launches-gpt-6-cyber-after-ai.html" target="_blank" rel="noopener noreferrer">OpenAI Launches GPT-6 Cyber After AI Helps Find 81 Firefox Flaws, 948 Linux Exploits</a></h2>
           <div class="news-meta">
@@ -540,7 +555,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/chainalysis-says-breach-exposed-credentials-for-all-customers/" target="_blank" rel="noopener noreferrer">Chainalysis says breach exposed credentials for all customers</a></h2>
           <div class="news-meta">
@@ -554,7 +569,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/ics-ot-security/europes-freezer-hacks-spread-so-far-so-fast" target="_blank" rel="noopener noreferrer">Why Europe&#39;s Freezer Hacks Spread So Far, So Fast</a></h2>
           <div class="news-meta">
@@ -567,7 +582,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/d-link-warns-of-multiple-zero-days-in-dgs-3130-series-switches/" target="_blank" rel="noopener noreferrer">D-Link warns of multiple zero-days in DGS-3130 Series switches</a></h2>
           <div class="news-meta">
@@ -580,7 +595,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/microsoft-paint-rce-fix-now-available.html" target="_blank" rel="noopener noreferrer">Microsoft Paint RCE Fix Now Available, but Windows Update Won&#39;t Deliver It</a></h2>
           <div class="news-meta">
@@ -594,7 +609,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/malicious-browser-extensions-could-use.html" target="_blank" rel="noopener noreferrer">Malicious Browser Extensions Could Use Claude Dispatch to Run Code on Users&#39; Computers</a></h2>
           <div class="news-meta">
@@ -608,7 +623,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/the-flood-is-coming-and-pipes-were.html" target="_blank" rel="noopener noreferrer">The Flood is Coming And The Pipes Were Already Full</a></h2>
           <div class="news-meta">
@@ -621,7 +636,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/metamask-says-recent-attack-didnt-affect-wallet-infrastructure/" target="_blank" rel="noopener noreferrer">MetaMask says recent attack didn&#39;t affect wallet infrastructure</a></h2>
           <div class="news-meta">
@@ -634,7 +649,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/uk-warns-critical-infrastructure-grave-risk" target="_blank" rel="noopener noreferrer">UK Warns Its Critical Infrastructure Faces Grave Risk</a></h2>
           <div class="news-meta">
@@ -648,7 +663,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/chainalysis-breach-exposes-all-users.html" target="_blank" rel="noopener noreferrer">Chainalysis Breach Exposes All Users&#39; Credentials, Forces Shutdown of Key Services</a></h2>
           <div class="news-meta">
@@ -662,7 +677,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/hackers-hide-linux-backdoor-in-control.html" target="_blank" rel="noopener noreferrer">Hackers Hide Linux Backdoor in Control Web Panel Server to Execute Commands Without Logs</a></h2>
           <div class="news-meta">
@@ -671,18 +686,18 @@
           <div class="facet-row"><span class="chip">Malware</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: monitor" data-destination-label="general report">SentryInsight: monitor · general report</a></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-24">
+            <summary class="summary-toggle" aria-controls="summary-full-25">
               <span class="summary-preview-text">A backdoor has been found hiding in the web server that runs Control Web Panel (CWP), a free panel for managing Linux hosting servers, researchers at QiAnXin&#39;s</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-24">XLab said this week. The backdoored web server executes commands that attackers send via web requests, and those requests never appear in its access logs. Installing it takes root access, so the attackers must already control the server.</p>
+            <p class="news-summary summary-full" id="summary-full-25">XLab said this week. The backdoored web server executes commands that attackers send via web requests, and those requests never appear in its access logs. Installing it takes root access, so the attackers must already control the server.</p>
           </details>
         </article>
         <article class="news-item" id="reporting-985aa680f8ad" data-source="The Hacker News" data-host="thehackernews.com" data-title="Experts Demonstrate Barracuda Email Security Gateway Chain Enabling Root Access Without Login" data-summary="Two flaws in Barracuda&#39;s Email Security Gateway, an email-filtering appliance, can be chained to run commands on it as root, its highest level of access, with no login required. The company released patches on Monday, and the security firm watchTowr detailed the attack chain on Thursday. One flaw, CVE-2026-116606, is an authorization bypass. An unauthenticated attacker can use it to restore a…" data-severity="Elevated" data-tags="Vulnerability" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-11-06T05:39:10.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/experts-demonstrate-barracuda-email.html" target="_blank" rel="noopener noreferrer">Experts Demonstrate Barracuda Email Security Gateway Chain Enabling Root Access Without Login</a></h2>
           <div class="news-meta">
@@ -696,7 +711,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/fbi-cisa-warn-of-cyberattacks-targeting-refrigeration-systems/" target="_blank" rel="noopener noreferrer">FBI, CISA warn of cyberattacks targeting refrigeration systems</a></h2>
           <div class="news-meta">
@@ -717,11 +732,11 @@
           </div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: monitor" data-destination-label="general report">SentryInsight: monitor · general report</a></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-27">
+            <summary class="summary-toggle" aria-controls="summary-full-28">
               <span class="summary-preview-text">A operação, que contou com o uso de inteligência artificial, utilizou e-mails falsos, documentos governamentais falsificados e a criação de uma organização</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-27">local para atacar escolas no Peru e no Equador, entre outras ações.</p>
+            <p class="news-summary summary-full" id="summary-full-28">local para atacar escolas no Peru e no Equador, entre outras ações.</p>
           </details>
         </article>
         <article class="news-item" id="reporting-eef85790400f" data-source="Dark Reading" data-host="darkreading.com" data-title="US Government Email Systems Open to Abuse Thanks to Typos" data-summary="Erroneous or outdated DNS records can give attackers surprising powers over organizations&#39; email systems." data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-11-05T21:35:05.000Z">
@@ -736,20 +751,6 @@
           </div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: monitor" data-destination-label="general report">SentryInsight: monitor · general report</a></div>
           <p class="news-summary">Erroneous or outdated DNS records can give attackers surprising powers over organizations&#39; email systems.</p>
-        </article>
-        <article class="news-item" id="reporting-2ae34dc126e9" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Fake OpenAI, SpaceX events used to steal Microsoft, Google accounts" data-summary="Hackers are using fake OpenAI, SpaceX, and Anthropic event invitations to lure employees into phishing attacks, using two different phishing-as-a-service platforms to steal Microsoft and Google account credentials and authentication sessions…" data-severity="Elevated" data-tags="Identity" data-vendors="Microsoft,Google,OpenAI" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-11-05T21:30:30.000Z">
-          <div class="chips">
-            <span class="severity severity-elevated">Elevated</span>
-            <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>2d old</span></span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/fake-openai-spacex-events-used-to-steal-microsoft-google-accounts/" target="_blank" rel="noopener noreferrer">Fake OpenAI, SpaceX events used to steal Microsoft, Google accounts</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-11-05T21:30:30.000Z">November 5, 2026 at 9:30 PM UTC</time><a class="item-permalink" href="#reporting-2ae34dc126e9" aria-label="Permalink to this reporting item">Permalink</a>
-          </div>
-          <div class="facet-row"><span class="chip">Microsoft</span><span class="chip">Google</span><span class="chip">OpenAI</span><span class="chip">Identity</span></div>
-          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
-          <p class="news-summary">Hackers are using fake OpenAI, SpaceX, and Anthropic event invitations to lure employees into phishing attacks, using two different phishing-as-a-service platforms to steal Microsoft and Google account credentials and authentication sessions…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/fake-openai-spacex-events-used-to-steal-microsoft-google-accounts/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
         </article>
     </div>
   </main>
