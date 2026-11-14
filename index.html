@@ -219,7 +219,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option>
+          <option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option><option value="The Hacker News">The Hacker News</option>
         </select>
         <a class="btn" href="./feed.xml" aria-label="Open generated RSS feed">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -230,7 +230,7 @@
   <main class="container">
     <section class="issue-strip" aria-label="Digest issue metadata">
       <span class="issue-label">Current issue</span>
-      <time datetime="2026-11-13T21:08:03.211Z">November 13, 2026</time>
+      <time datetime="2026-11-14T00:27:11.355Z">November 14, 2026</time>
       <span class="issue-stat"><strong>30</strong> articles</span>
       <span class="issue-stat"><strong>3</strong> sources</span>
       <a class="issue-link" href="./feed.xml" aria-label="Open rolling RSS feed">Rolling RSS feed</a>
@@ -238,10 +238,10 @@
     <nav class="issue-trail" aria-label="Digest navigation">
       <span class="issue-trail-current" aria-current="page">Current digest</span>
       <a class="previous-issues" href="./archive/" aria-label="Open previous digest issues">Previous issues</a>
-      <a class="previous-issue" href="./archive/2026-11-12/" aria-label="Open digest issue for November 12, 2026"><time datetime="2026-11-12T00:00:00.000Z">Nov 12</time></a>
+      <a class="previous-issue" href="./archive/2026-11-13/" aria-label="Open digest issue for November 13, 2026"><time datetime="2026-11-13T00:00:00.000Z">Nov 13</time></a>
       <a href="./feed.xml" aria-label="Open generated RSS feed">RSS feed</a>
       <a href="#sourceCoverage">Source coverage</a>
-      <span class="issue-trail-meta">Updated <time class="issue-trail-updated" datetime="2026-11-13T21:08:03.211Z">21:08 UTC · Nov 13</time></span>
+      <span class="issue-trail-meta">Updated <time class="issue-trail-updated" datetime="2026-11-14T00:27:11.355Z">00:27 UTC · Nov 14</time></span>
       <span class="issue-trail-meta issue-trail-cadence" data-cadence-hours="3" data-cadence-state="scheduled" role="status" aria-live="polite" aria-atomic="true"><span data-cadence-label>3h cadence</span></span>
     </nav>
     <details id="advancedFilters" class="advanced-filters">
@@ -257,7 +257,7 @@
         </select>
         <select id="vendorFilter" class="select" aria-label="Filter by affected vendor">
           <option value="">All vendors</option>
-          <option value="GitHub">GitHub</option><option value="Microsoft">Microsoft</option><option value="VMware">VMware</option>
+          <option value="GitHub">GitHub</option><option value="Google">Google</option><option value="Microsoft">Microsoft</option><option value="VMware">VMware</option>
         </select>
         <select id="ageFilter" class="select" aria-label="Filter by article age">
           <option value="">Any age</option>
@@ -281,7 +281,7 @@
       <details class="source-coverage-details">
         <summary class="source-coverage-summary">Source coverage <span>3 active feeds · 30 articles</span></summary>
         <div class="source-coverage-body">
-          <div class="source-counts"><button class="source-count" type="button" data-source-filter="The Hacker News" aria-label="Filter to The Hacker News source, 13 articles" aria-pressed="false">The Hacker News <strong>13</strong></button><button class="source-count" type="button" data-source-filter="Bleeping Computer" aria-label="Filter to Bleeping Computer source, 13 articles" aria-pressed="false">Bleeping Computer <strong>13</strong></button><button class="source-count" type="button" data-source-filter="Dark Reading" aria-label="Filter to Dark Reading source, 4 articles" aria-pressed="false">Dark Reading <strong>4</strong></button></div>
+          <div class="source-counts"><button class="source-count" type="button" data-source-filter="The Hacker News" aria-label="Filter to The Hacker News source, 12 articles" aria-pressed="false">The Hacker News <strong>12</strong></button><button class="source-count" type="button" data-source-filter="Bleeping Computer" aria-label="Filter to Bleeping Computer source, 13 articles" aria-pressed="false">Bleeping Computer <strong>13</strong></button><button class="source-count" type="button" data-source-filter="Dark Reading" aria-label="Filter to Dark Reading source, 5 articles" aria-pressed="false">Dark Reading <strong>5</strong></button></div>
           <div class="source-health-summary" data-active-sources="3" data-quiet-sources="1">
             <span><strong>3</strong> active feeds</span>
             <span><strong>1</strong> quiet feed</span>
@@ -316,7 +316,7 @@
         <span class="operator-lane-empty" data-lane-empty hidden>No current match</span>
       </article><article class="operator-lane" data-lane="Vulnerability triage" data-lane-cue="SentryInsight: vuln triage">
         <a class="operator-lane-heading" data-lane-destination href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer">Vulnerability triage <span data-lane-destination-label>· general report</span></a>
-        <span class="operator-lane-count" data-lane-count><strong>9</strong> items</span>
+        <span class="operator-lane-count" data-lane-count><strong>8</strong> items</span>
         <a href="https://thehackernews.com/2026/11/postgresql-patches-52-flaws-including.html" class="operator-lane-link" data-lane-link>PostgreSQL Patches 52 Flaws, Including 22-Year-Old Bug Enabling Authenticated RCE</a>
         <span class="operator-lane-empty" data-lane-empty hidden>No current match</span>
       </article>
@@ -329,25 +329,39 @@
 
     <div class="news-container" id="newsContainer">
 
+        <article class="news-item" id="reporting-c281bea158b9" data-source="Dark Reading" data-host="darkreading.com" data-title="ArcticRAT Cybercrime Gang Profiles Victim Finances With AI" data-summary="The Android malware has expanded from focusing on crypto theft to full device control, and the attackers have added advanced analysis of stolen information." data-severity="Elevated" data-tags="Malware,AI Security" data-vendors="Google" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Fresh" data-published-at="2026-11-13T20:20:27.000Z">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip source-chip">Dark Reading</span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>4h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/mobile-security/arcticrat-cybercrime-gang-profiles-victim-finances-ai" target="_blank" rel="noopener noreferrer">ArcticRAT Cybercrime Gang Profiles Victim Finances With AI</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-11-13T20:20:27.000Z">November 13, 2026 at 8:20 PM UTC</time>
+            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-c281bea158b9" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Google</span><span class="chip">Malware</span><span class="chip">AI Security</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
+          <p class="news-summary">The Android malware has expanded from focusing on crypto theft to full device control, and the attackers have added advanced analysis of stolen information.</p>
+        </article>
         <article class="news-item" id="reporting-d2962957f52f" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Trezor confirms crypto-stealing implants in three wallets, releases fix" data-summary="Cryptocurrency hardware wallet maker Trezor has confirmed that three Safe 5 devices sold by Southeast Asian reseller CryptoBilis contained malicious hardware implants designed to steal wallet recovery phrases and send them to attackers over cellular networks…" data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh" data-published-at="2026-11-13T19:38:36.000Z">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>1h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>4h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/cryptocurrency/trezor-confirms-crypto-stealing-implants-in-three-wallets-releases-fix/" target="_blank" rel="noopener noreferrer">Trezor confirms crypto-stealing implants in three wallets, releases fix</a></h2>
           <div class="news-meta">
-            <time datetime="2026-11-13T19:38:36.000Z">November 13, 2026 at 7:38 PM UTC</time>
-            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-d2962957f52f" aria-label="Permalink to this reporting item">Permalink</a>
+            <time datetime="2026-11-13T19:38:36.000Z">November 13, 2026 at 7:38 PM UTC</time><a class="item-permalink" href="#reporting-d2962957f52f" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: monitor" data-destination-label="general report">SentryInsight: monitor · general report</a></div>
           <p class="news-summary">Cryptocurrency hardware wallet maker Trezor has confirmed that three Safe 5 devices sold by Southeast Asian reseller CryptoBilis contained malicious hardware implants designed to steal wallet recovery phrases and send them to attackers over cellular networks…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/cryptocurrency/trezor-confirms-crypto-stealing-implants-in-three-wallets-releases-fix/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
         </article>
-        <article class="news-item" id="reporting-6ce23a8d3c69" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="German military drone operations disrupted by cyberattack" data-summary="German defense technology company Quantum Systems confirmed that it detected an incident in late October that was part of an active cyberattack by &quot;hostile actors.&quot;…" data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh" data-published-at="2026-11-13T17:31:56.000Z">
+        <article class="news-item" id="reporting-6ce23a8d3c69" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="German military drone operations disrupted by cyberattack" data-summary="German defense technology company Quantum Systems confirmed that it detected an incident in late October that was part of an active cyberattack by &quot;hostile actors.&quot;…" data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-11-13T17:31:56.000Z">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>3h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>6h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/german-military-drone-operations-disrupted-by-cyberattack/" target="_blank" rel="noopener noreferrer">German military drone operations disrupted by cyberattack</a></h2>
           <div class="news-meta">
@@ -356,11 +370,11 @@
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: monitor" data-destination-label="general report">SentryInsight: monitor · general report</a></div>
           <p class="news-summary">German defense technology company Quantum Systems confirmed that it detected an incident in late October that was part of an active cyberattack by &quot;hostile actors.&quot;…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/german-military-drone-operations-disrupted-by-cyberattack/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
         </article>
-        <article class="news-item" id="reporting-d8cc2172e29e" data-source="The Hacker News" data-host="thehackernews.com" data-title="PostgreSQL Patches 52 Flaws, Including 22-Year-Old Bug Enabling Authenticated RCE" data-summary="A type confusion flaw in PostgreSQL lets a database user who can create objects run code on the server. Updates released yesterday fix it, along with 51 other security flaws. Full protection from this flaw also requires rebuilding any C-language extensions installed on the server. The flaw, tracked as CVE-2026-6460, has a CVSS score of 8.8. Any code run this way has the rights of the operating…" data-severity="Elevated" data-tags="Vulnerability" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Fresh" data-published-at="2026-11-13T16:53:08.000Z">
+        <article class="news-item" id="reporting-d8cc2172e29e" data-source="The Hacker News" data-host="thehackernews.com" data-title="PostgreSQL Patches 52 Flaws, Including 22-Year-Old Bug Enabling Authenticated RCE" data-summary="A type confusion flaw in PostgreSQL lets a database user who can create objects run code on the server. Updates released yesterday fix it, along with 51 other security flaws. Full protection from this flaw also requires rebuilding any C-language extensions installed on the server. The flaw, tracked as CVE-2026-6460, has a CVSS score of 8.8. Any code run this way has the rights of the operating…" data-severity="Elevated" data-tags="Vulnerability" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-11-13T16:53:08.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>4h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>7h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/postgresql-patches-52-flaws-including.html" target="_blank" rel="noopener noreferrer">PostgreSQL Patches 52 Flaws, Including 22-Year-Old Bug Enabling Authenticated RCE</a></h2>
           <div class="news-meta">
@@ -370,11 +384,11 @@
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a></div>
           <p class="news-summary">A type confusion flaw in PostgreSQL lets a database user who can create objects run code on the server. Updates released yesterday fix it, along with 51 other security flaws. Full protection from this flaw also requires rebuilding any C-language extensions installed on the server. The flaw, tracked as CVE-2026-6460, has a CVSS score of 8.8. Any code run this way has the rights of the operating…</p><a class="summary-continuation" href="https://thehackernews.com/2026/11/postgresql-patches-52-flaws-including.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
         </article>
-        <article class="news-item" id="reporting-97c01e9fc463" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Check Point gateways hacked via PHP2Shell to deploy VMware ESXi wiper" data-summary="Vulnerable Check Point Security Gateway instances have been targeted in PHP2Shell attacks that deployed data-wiping malware on VMware ESXi hosts…" data-severity="Elevated" data-tags="Malware" data-vendors="VMware" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Fresh" data-published-at="2026-11-13T16:21:43.000Z">
+        <article class="news-item" id="reporting-97c01e9fc463" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Check Point gateways hacked via PHP2Shell to deploy VMware ESXi wiper" data-summary="Vulnerable Check Point Security Gateway instances have been targeted in PHP2Shell attacks that deployed data-wiping malware on VMware ESXi hosts…" data-severity="Elevated" data-tags="Malware" data-vendors="VMware" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-11-13T16:21:43.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>4h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>8h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/check-point-gateways-hacked-via-php2shell-to-deploy-vmware-esxi-wiper/" target="_blank" rel="noopener noreferrer">Check Point gateways hacked via PHP2Shell to deploy VMware ESXi wiper</a></h2>
           <div class="news-meta">
@@ -384,11 +398,11 @@
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
           <p class="news-summary">Vulnerable Check Point Security Gateway instances have been targeted in PHP2Shell attacks that deployed data-wiping malware on VMware ESXi hosts…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/check-point-gateways-hacked-via-php2shell-to-deploy-vmware-esxi-wiper/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
         </article>
-        <article class="news-item" id="reporting-d93f5e12f3c1" data-source="The Hacker News" data-host="thehackernews.com" data-title="New Mior and Skyfall Attacks Let Rogue Cloud Hosts Steal Secrets From AMD SEV-SNP VMs" data-summary="Two attacks made public this week allow a malicious host to read data inside AMD SEV-SNP-protected virtual machines (VMs), which are built to keep the server&#39;s operator out. One of them, Mior, can also modify a VM&#39;s memory and fake the signed report confirming which software it runs. Both need control of the server&#39;s hypervisor, and Mior also needs control of the server&#39;s BIOS. Researchers…" data-severity="Monitor" data-tags="Cloud" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh" data-published-at="2026-11-13T15:27:05.000Z">
+        <article class="news-item" id="reporting-d93f5e12f3c1" data-source="The Hacker News" data-host="thehackernews.com" data-title="New Mior and Skyfall Attacks Let Rogue Cloud Hosts Steal Secrets From AMD SEV-SNP VMs" data-summary="Two attacks made public this week allow a malicious host to read data inside AMD SEV-SNP-protected virtual machines (VMs), which are built to keep the server&#39;s operator out. One of them, Mior, can also modify a VM&#39;s memory and fake the signed report confirming which software it runs. Both need control of the server&#39;s hypervisor, and Mior also needs control of the server&#39;s BIOS. Researchers…" data-severity="Monitor" data-tags="Cloud" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-11-13T15:27:05.000Z">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>5h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>9h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/new-mior-and-skyfall-attacks-let-rogue.html" target="_blank" rel="noopener noreferrer">New Mior and Skyfall Attacks Let Rogue Cloud Hosts Steal Secrets From AMD SEV-SNP VMs</a></h2>
           <div class="news-meta">
@@ -402,7 +416,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>6h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>9h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/how-one-ai-agent-exposed-five-critical-enterprise-security-gaps/" target="_blank" rel="noopener noreferrer">How one AI agent exposed five critical enterprise security gaps</a></h2>
           <div class="news-meta">
@@ -416,7 +430,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>6h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>9h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/fbi-says-north-korean-hackers-stole.html" target="_blank" rel="noopener noreferrer">FBI Says North Korean Hackers Stole Over $400 Million in Crypto Using Deepfake Video Calls</a></h2>
           <div class="news-meta">
@@ -430,7 +444,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>7h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>10h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/trezor-confirms-hidden-hardware.html" target="_blank" rel="noopener noreferrer">Trezor Confirms Hidden Implants in CryptoBilis-Sold Wallets That Can Steal Recovery Phrases</a></h2>
           <div class="news-meta">
@@ -443,7 +457,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>8h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>11h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/attackers-binance-breach-targeted-weakness-missing-controls" target="_blank" rel="noopener noreferrer">Attackers in Binance Breach Targeted Known Weakness, Missing Controls</a></h2>
           <div class="news-meta">
@@ -457,7 +471,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>8h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>11h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-says-november-security-updates-cause-printing-issues/" target="_blank" rel="noopener noreferrer">Microsoft says November security updates cause printing issues</a></h2>
           <div class="news-meta">
@@ -471,7 +485,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>9h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>12h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/when-ai-agent-goes-wrong-can-you-stop-it.html" target="_blank" rel="noopener noreferrer">When an AI Agent Goes Wrong, Can You Stop It?</a></h2>
           <div class="news-meta">
@@ -485,7 +499,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>9h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>13h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/silentair-hijacks-asian-telecom.html" target="_blank" rel="noopener noreferrer">SilentAir Hijacks Asian Telecom Networks to Intercept SMS 2FA Codes and Spy on Taiwanese Users</a></h2>
           <div class="news-meta">
@@ -498,7 +512,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>10h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>13h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/operation-endgame-takes-down-gootloader.html" target="_blank" rel="noopener noreferrer">Operation Endgame Takes Down Gootloader, CastleRAT and StealC Servers, Seizes 6.4M Stolen Logins</a></h2>
           <div class="news-meta">
@@ -512,7 +526,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>10h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>13h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/check-point-patches-zero-day-that-lets-hackers-get-root-access/" target="_blank" rel="noopener noreferrer">Check Point warns of zero-day flaw exploited for root access</a></h2>
           <div class="news-meta">
@@ -526,7 +540,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>11h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>14h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-confirms-windows-activation-failures-after-november-updates/" target="_blank" rel="noopener noreferrer">Microsoft confirms Windows activation failures after November updates</a></h2>
           <div class="news-meta">
@@ -540,7 +554,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>12h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>15h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/police-arrest-354-vendors-buyers-in-global-cybercrime-crackdown/" target="_blank" rel="noopener noreferrer">Police arrest 354 suspects in dark web cybercrime crackdown</a></h2>
           <div class="news-meta">
@@ -553,7 +567,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>13h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>16h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/hackers-exploit-php2shell-flaws-in.html" target="_blank" rel="noopener noreferrer">Hackers Exploit PHP2Shell Flaws in Check Point Gateways to Deploy TSGA Backdoor and Wipe ESXi Files</a></h2>
           <div class="news-meta">
@@ -567,7 +581,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>15h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>18h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/hackers-exploit-n-central-flaws-to.html" target="_blank" rel="noopener noreferrer">Hackers Exploit N-central Flaws to Infect 21 Servers, Including 19 Running Hotfix 2</a></h2>
           <div class="news-meta">
@@ -581,7 +595,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>22h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/new-worm-like-sckit-malware-targets-msps-in-screenconnect-attacks/" target="_blank" rel="noopener noreferrer">New worm-like &#39;SCKit&#39; malware targets MSPs in ScreenConnect attacks</a></h2>
           <div class="news-meta">
@@ -595,7 +609,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>22h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/getting-past-post-quantum-cryptography-discovery" target="_blank" rel="noopener noreferrer">Getting Past the Post-Quantum Cryptography Discovery Phase</a></h2>
           <div class="news-meta">
@@ -608,7 +622,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>22h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/hackers-compromise-4-800-github-accounts-to-steal-cloud-credentials/" target="_blank" rel="noopener noreferrer">Hackers compromise 4,800 GitHub accounts to steal cloud credentials</a></h2>
           <div class="news-meta">
@@ -622,7 +636,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>23h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cybersecurity-operations/cyber-experts-fight-artex-antifox" target="_blank" rel="noopener noreferrer">Cyber Experts Weigh In: How to Fight Artex &amp; AntiFox</a></h2>
           <div class="news-meta">
@@ -728,20 +742,6 @@
           <div class="facet-row"><span class="chip">Microsoft</span><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
           <p class="news-summary">Public exploit code released earlier this week claims that a local Windows user can gain SYSTEM privileges through the Common Log File System driver. The proof of concept, called SignDrop, targets a log-authentication feature added to the driver last year. It abuses how clfs.sys creates companion files when a privileged process opens a prepared log, using path redirection to take control of…</p><a class="summary-continuation" href="https://thehackernews.com/2026/11/new-signdrop-zero-day-exploit-turns.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
-        </article>
-        <article class="news-item" id="reporting-83f9d15e0e33" data-source="The Hacker News" data-host="thehackernews.com" data-title="Critical Red Hat Quay Flaw Lets Attackers Read and Overwrite All Private Container Images in a Registry" data-summary="A critical flaw in Red Hat Quay allows an attacker who can access a Quay registry to read and overwrite private container images in every repository. Quay enables anonymous access by default, and while it is enabled, the attacker needs no account. When it is off, anyone with a valid account can still exploit the flaw, Red Hat said yesterday. The company has released fixed builds for eight Quay…" data-severity="Elevated" data-tags="Vulnerability,Exploitation,Cloud" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-11-12T16:27:01.000Z">
-          <div class="chips">
-            <span class="severity severity-elevated">Elevated</span>
-            <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
-          </div>
-          <h2 class="news-title"><a href="https://thehackernews.com/2026/11/critical-red-hat-quay-flaw-lets.html" target="_blank" rel="noopener noreferrer">Critical Red Hat Quay Flaw Lets Attackers Read and Overwrite All Private Container Images in a Registry</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-11-12T16:27:01.000Z">November 12, 2026 at 4:27 PM UTC</time><a class="item-permalink" href="#reporting-83f9d15e0e33" aria-label="Permalink to this reporting item">Permalink</a>
-          </div>
-          <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span><span class="chip">Cloud</span></div>
-          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a></div>
-          <p class="news-summary">A critical flaw in Red Hat Quay allows an attacker who can access a Quay registry to read and overwrite private container images in every repository. Quay enables anonymous access by default, and while it is enabled, the attacker needs no account. When it is off, anyone with a valid account can still exploit the flaw, Red Hat said yesterday. The company has released fixed builds for eight Quay…</p><a class="summary-continuation" href="https://thehackernews.com/2026/11/critical-red-hat-quay-flaw-lets.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
         </article>
     </div>
   </main>
