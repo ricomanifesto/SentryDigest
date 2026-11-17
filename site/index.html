@@ -219,7 +219,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="The Hacker News">The Hacker News</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option>
         </select>
         <a class="btn" href="./feed.xml" aria-label="Open generated RSS feed">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -230,7 +230,7 @@
   <main class="container">
     <section class="issue-strip" aria-label="Digest issue metadata">
       <span class="issue-label">Current issue</span>
-      <time datetime="2026-11-17T03:12:51.852Z">November 17, 2026</time>
+      <time datetime="2026-11-17T06:18:18.884Z">November 17, 2026</time>
       <span class="issue-stat"><strong>30</strong> articles</span>
       <span class="issue-stat"><strong>3</strong> sources</span>
       <a class="issue-link" href="./feed.xml" aria-label="Open rolling RSS feed">Rolling RSS feed</a>
@@ -241,7 +241,7 @@
       <a class="previous-issue" href="./archive/2026-11-16/" aria-label="Open digest issue for November 16, 2026"><time datetime="2026-11-16T00:00:00.000Z">Nov 16</time></a>
       <a href="./feed.xml" aria-label="Open generated RSS feed">RSS feed</a>
       <a href="#sourceCoverage">Source coverage</a>
-      <span class="issue-trail-meta">Updated <time class="issue-trail-updated" datetime="2026-11-17T03:12:51.852Z">03:12 UTC · Nov 17</time></span>
+      <span class="issue-trail-meta">Updated <time class="issue-trail-updated" datetime="2026-11-17T06:18:18.884Z">06:18 UTC · Nov 17</time></span>
       <span class="issue-trail-meta issue-trail-cadence" data-cadence-hours="3" data-cadence-state="scheduled" role="status" aria-live="polite" aria-atomic="true"><span data-cadence-label>3h cadence</span></span>
     </nav>
     <p class="insight-context" data-context-mode="stale" role="status"><a class="insight-context-link" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer">SentryInsight context</a> as of <time datetime="2026-11-13T21:18:54Z">November 13, 2026 at 9:18 PM UTC</time> is stale; CVE handoffs use the first-mentioned CVE.</p>
@@ -282,7 +282,7 @@
       <details class="source-coverage-details">
         <summary class="source-coverage-summary">Source coverage <span>3 active feeds · 30 articles</span></summary>
         <div class="source-coverage-body">
-          <div class="source-counts"><button class="source-count" type="button" data-source-filter="The Hacker News" aria-label="Filter to The Hacker News source, 10 articles" aria-pressed="false">The Hacker News <strong>10</strong></button><button class="source-count" type="button" data-source-filter="Bleeping Computer" aria-label="Filter to Bleeping Computer source, 15 articles" aria-pressed="false">Bleeping Computer <strong>15</strong></button><button class="source-count" type="button" data-source-filter="Dark Reading" aria-label="Filter to Dark Reading source, 5 articles" aria-pressed="false">Dark Reading <strong>5</strong></button></div>
+          <div class="source-counts"><button class="source-count" type="button" data-source-filter="The Hacker News" aria-label="Filter to The Hacker News source, 11 articles" aria-pressed="false">The Hacker News <strong>11</strong></button><button class="source-count" type="button" data-source-filter="Bleeping Computer" aria-label="Filter to Bleeping Computer source, 15 articles" aria-pressed="false">Bleeping Computer <strong>15</strong></button><button class="source-count" type="button" data-source-filter="Dark Reading" aria-label="Filter to Dark Reading source, 4 articles" aria-pressed="false">Dark Reading <strong>4</strong></button></div>
           <div class="source-health-summary" data-active-sources="3" data-quiet-sources="1">
             <span><strong>3</strong> active feeds</span>
             <span><strong>1</strong> quiet feed</span>
@@ -317,8 +317,8 @@
         <span class="operator-lane-empty" data-lane-empty hidden>No current match</span>
       </article><article class="operator-lane" data-lane="Vulnerability triage" data-lane-cue="SentryInsight: vuln triage">
         <a class="operator-lane-heading" data-lane-destination href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer">Vulnerability triage <span data-lane-destination-label>· general report</span></a>
-        <span class="operator-lane-count" data-lane-count><strong>7</strong> items</span>
-        <a href="https://www.bleepingcomputer.com/news/security/optimizely-supply-chain-attack-infects-major-brands-sites-with-malware/" class="operator-lane-link" data-lane-link>Optimizely supply chain attack infects major brands&#39; sites with malware</a>
+        <span class="operator-lane-count" data-lane-count><strong>8</strong> items</span>
+        <a href="https://thehackernews.com/2026/11/n-able-patches-17-n-central-flaws-as.html" class="operator-lane-link" data-lane-link>N-able Patches 17 N-central Flaws as Attackers Exploit Earlier Bugs to Deploy Crypto Miners</a>
         <span class="operator-lane-empty" data-lane-empty hidden>No current match</span>
       </article><article class="operator-lane" data-lane="Governance watch" data-lane-cue="GRCInsight: governance watch">
         <a class="operator-lane-heading" data-lane-destination href="https://grcinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer">Governance watch <span data-lane-destination-label>· general report</span></a>
@@ -335,26 +335,41 @@
 
     <div class="news-container" id="newsContainer">
 
-        <article class="news-item" id="reporting-cb498b0e6083" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Optimizely supply chain attack infects major brands&#39; sites with malware" data-summary="A suspected supply chain attack targeting Optimizely has led to malicious JavaScript being loaded on numerous popular websites, including Zoom, CNN, Fox News, BBC, Salesforce, and GitLab, exposing visitors to scripts designed to steal cryptocurrency and payment information and exploit vulnerabilities in iOS devices…" data-severity="Elevated" data-tags="Vulnerability,Exploitation,Malware,Supply Chain" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Fresh" data-published-at="2026-11-17T02:12:17.000Z">
+        <article class="news-item" id="reporting-7d8a94de5f64" data-source="The Hacker News" data-host="thehackernews.com" data-title="N-able Patches 17 N-central Flaws as Attackers Exploit Earlier Bugs to Deploy Crypto Miners" data-summary="N-able has released a new security update to address additional critical security flaws impacting N-central. Describing N-central 2026.4 Hotfix 3 as a critical security update, the company said it includes a number of security patches and fixes that enhance the security of the Remote Monitoring and Management (RMM) and Unified Endpoint Management (UEM) platform. &quot;HF3 builds on the…" data-severity="Elevated" data-tags="Exploitation" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Fresh" data-published-at="2026-11-17T05:00:34.000Z">
+          <div class="chips">
+            <span class="severity severity-elevated">Elevated</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>1h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/11/n-able-patches-17-n-central-flaws-as.html" target="_blank" rel="noopener noreferrer">N-able Patches 17 N-central Flaws as Attackers Exploit Earlier Bugs to Deploy Crypto Miners</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-11-17T05:00:34.000Z">November 17, 2026 at 5:00 AM UTC</time>
+            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-7d8a94de5f64" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="facet-row"><span class="chip">Exploitation</span></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a></div>
+          <p class="news-summary">N-able has released a new security update to address additional critical security flaws impacting N-central. Describing N-central 2026.4 Hotfix 3 as a critical security update, the company said it includes a number of security patches and fixes that enhance the security of the Remote Monitoring and Management (RMM) and Unified Endpoint Management (UEM) platform. &quot;HF3 builds on the…</p><a class="summary-continuation" href="https://thehackernews.com/2026/11/n-able-patches-17-n-central-flaws-as.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item" id="reporting-b6e25351df53" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Optimizely hack infected CNN, Fox News, BBC, Salesforce sites with malware" data-summary="A suspected supply chain attack targeting Optimizely has led to malicious JavaScript being loaded on numerous popular websites, including Zoom, CNN, Fox News, BBC, Salesforce, and GitLab, exposing visitors to scripts designed to steal cryptocurrency and payment information and exploit vulnerabilities in iOS devices…" data-severity="Elevated" data-tags="Vulnerability,Exploitation,Malware,Supply Chain" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Fresh" data-published-at="2026-11-17T02:12:17.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>1h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>4h old</span></span>
           </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/optimizely-supply-chain-attack-infects-major-brands-sites-with-malware/" target="_blank" rel="noopener noreferrer">Optimizely supply chain attack infects major brands&#39; sites with malware</a></h2>
+          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/optimizely-supply-chain-attack-delivers-malware-to-cnn-fox-news-bbc-salesforce-sites/" target="_blank" rel="noopener noreferrer">Optimizely hack infected CNN, Fox News, BBC, Salesforce sites with malware</a></h2>
           <div class="news-meta">
             <time datetime="2026-11-17T02:12:17.000Z">November 17, 2026 at 2:12 AM UTC</time>
-            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-cb498b0e6083" aria-label="Permalink to this reporting item">Permalink</a>
+            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-b6e25351df53" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span><span class="chip">Malware</span><span class="chip">Supply Chain</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a></div>
-          <p class="news-summary">A suspected supply chain attack targeting Optimizely has led to malicious JavaScript being loaded on numerous popular websites, including Zoom, CNN, Fox News, BBC, Salesforce, and GitLab, exposing visitors to scripts designed to steal cryptocurrency and payment information and exploit vulnerabilities in iOS devices…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/optimizely-supply-chain-attack-infects-major-brands-sites-with-malware/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
+          <p class="news-summary">A suspected supply chain attack targeting Optimizely has led to malicious JavaScript being loaded on numerous popular websites, including Zoom, CNN, Fox News, BBC, Salesforce, and GitLab, exposing visitors to scripts designed to steal cryptocurrency and payment information and exploit vulnerabilities in iOS devices…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/optimizely-supply-chain-attack-delivers-malware-to-cnn-fox-news-bbc-salesforce-sites/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
         </article>
-        <article class="news-item" id="reporting-94c4d7b387b5" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Gemini AI agents repeatedly bypassed safeguards to attack real website" data-summary="Google&#39;s Gemini AI agents repeatedly attempted to hack a real organization&#39;s website during AI model safety testing, finding ways to circumvent increasingly restrictive security controls designed to prevent them from accessing live systems…" data-severity="Monitor" data-tags="AI Security" data-vendors="Google" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Fresh" data-published-at="2026-11-16T22:54:00.000Z">
+        <article class="news-item" id="reporting-94c4d7b387b5" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Gemini AI agents repeatedly bypassed safeguards to attack real website" data-summary="Google&#39;s Gemini AI agents repeatedly attempted to hack a real organization&#39;s website during AI model safety testing, finding ways to circumvent increasingly restrictive security controls designed to prevent them from accessing live systems…" data-severity="Monitor" data-tags="AI Security" data-vendors="Google" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-11-16T22:54:00.000Z">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>4h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>7h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/gemini-ai-agents-repeatedly-bypassed-safeguards-to-attack-real-website/" target="_blank" rel="noopener noreferrer">Gemini AI agents repeatedly bypassed safeguards to attack real website</a></h2>
           <div class="news-meta">
@@ -364,11 +379,11 @@
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
           <p class="news-summary">Google&#39;s Gemini AI agents repeatedly attempted to hack a real organization&#39;s website during AI model safety testing, finding ways to circumvent increasingly restrictive security controls designed to prevent them from accessing live systems…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/gemini-ai-agents-repeatedly-bypassed-safeguards-to-attack-real-website/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
         </article>
-        <article class="news-item" id="reporting-e0d39d73574d" data-source="Dark Reading" data-host="darkreading.com" data-title="Google Project Zero Slashes Bug Disclosure Deadlines, Splitting Experts" data-summary="One of the oldest running bug disclosure programs announced it would shorten public disclosure timelines to vendors from 120 days to 30 over the next 14 months." data-severity="Monitor" data-tags="" data-vendors="Google" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Fresh" data-published-at="2026-11-16T22:08:20.000Z">
+        <article class="news-item" id="reporting-e0d39d73574d" data-source="Dark Reading" data-host="darkreading.com" data-title="Google Project Zero Slashes Bug Disclosure Deadlines, Splitting Experts" data-summary="One of the oldest running bug disclosure programs announced it would shorten public disclosure timelines to vendors from 120 days to 30 over the next 14 months." data-severity="Monitor" data-tags="" data-vendors="Google" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-11-16T22:08:20.000Z">
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>5h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>8h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/google-project-zero-bug-disclosure-deadlines" target="_blank" rel="noopener noreferrer">Google Project Zero Slashes Bug Disclosure Deadlines, Splitting Experts</a></h2>
           <div class="news-meta">
@@ -378,11 +393,11 @@
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
           <p class="news-summary">One of the oldest running bug disclosure programs announced it would shorten public disclosure timelines to vendors from 120 days to 30 over the next 14 months.</p>
         </article>
-        <article class="news-item" id="reporting-90f34400313c" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Google Project Zero cuts bug disclosures to 30 days amid AI threats" data-summary="Google Project Zero will replace its &quot;90+30&quot; disclosure policy with shorter, fixed deadlines in response to AI-accelerated vulnerability discovery and exploitation…" data-severity="Elevated" data-tags="Vulnerability,Exploitation,AI Security" data-vendors="Google" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Fresh" data-published-at="2026-11-16T21:31:44.000Z">
+        <article class="news-item" id="reporting-90f34400313c" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Google Project Zero cuts bug disclosures to 30 days amid AI threats" data-summary="Google Project Zero will replace its &quot;90+30&quot; disclosure policy with shorter, fixed deadlines in response to AI-accelerated vulnerability discovery and exploitation…" data-severity="Elevated" data-tags="Vulnerability,Exploitation,AI Security" data-vendors="Google" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-11-16T21:31:44.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>5h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>8h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/google-project-zero-cuts-bug-disclosure-deadline-to-30-days-amid-ai-threats/" target="_blank" rel="noopener noreferrer">Google Project Zero cuts bug disclosures to 30 days amid AI threats</a></h2>
           <div class="news-meta">
@@ -396,7 +411,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>6h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>9h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/california-sues-openai-over-ai-agents-escaping-sandboxes-hacking-firms/" target="_blank" rel="noopener noreferrer">California sues OpenAI over AI agents escaping sandboxes, hacking firms</a></h2>
           <div class="news-meta">
@@ -410,7 +425,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>7h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>10h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/barracuda-links-cloud-breach-to-artex-ai-powered-cyberattack/" target="_blank" rel="noopener noreferrer">Barracuda links cloud breach to ARTEX AI-powered cyberattack</a></h2>
           <div class="news-meta">
@@ -424,7 +439,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>7h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>10h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/ransomware-attacks-increase-ai-payments-decline" target="_blank" rel="noopener noreferrer">Ransomware Attacks Increase Behind AI, But Payments Decline</a></h2>
           <div class="news-meta">
@@ -438,7 +453,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>8h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>11h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/sleeper-agent-tactic-payloads-open-weight-ai-models" target="_blank" rel="noopener noreferrer">&#39;Sleeper Agent&#39; Tactic Hides Payloads in Open-Weight AI Models</a></h2>
           <div class="news-meta">
@@ -452,7 +467,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>10h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>13h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-says-months-old-bug-caused-global-microsoft-365-outage/" target="_blank" rel="noopener noreferrer">Microsoft says months-old bug caused global Microsoft 365 outage</a></h2>
           <div class="news-meta">
@@ -466,7 +481,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>10h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>13h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/china-nexus-actors-breach-10-organizations-ai-driven-attacks" target="_blank" rel="noopener noreferrer">China-Nexus Actors Breach 10 Organizations in AI-Driven Attacks</a></h2>
           <div class="news-meta">
@@ -480,7 +495,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>11h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>14h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/fandango-says-hackers-stole-payment-card-details-from-checkout-pages/" target="_blank" rel="noopener noreferrer">Fandango says hackers stole payment card details from checkout pages</a></h2>
           <div class="news-meta">
@@ -494,7 +509,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>12h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>15h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/7-tips-for-complying-with-cjis-password-and-mfa-requirements/" target="_blank" rel="noopener noreferrer">7 Tips For Complying with CJIS Password and MFA Requirements</a></h2>
           <div class="news-meta">
@@ -508,7 +523,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>13h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>16h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/google-finds-hackers-using-ai-agents-to.html" target="_blank" rel="noopener noreferrer">Google Finds Hackers Using AI Agents to Build and Run Exploits From Software Patches</a></h2>
           <div class="news-meta">
@@ -522,7 +537,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>13h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>16h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/google-warns-that-fully-automated-ai-attacks-are-coming-soon/" target="_blank" rel="noopener noreferrer">Google warns that fully-automated AI attacks are coming soon</a></h2>
           <div class="news-meta">
@@ -536,7 +551,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>13h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>16h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/weekly-recap-n-able-0-days-windows-0.html" target="_blank" rel="noopener noreferrer">⚡ Weekly Recap: N-able 0-Days, Windows 0-Days, Chrome 0-Days, Fridge 0-Days, and More Bad Days</a></h2>
           <div class="news-meta">
@@ -550,7 +565,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>14h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>17h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-windows-server-2016-reaches-end-of-support-in-60-days/" target="_blank" rel="noopener noreferrer">Microsoft: Windows Server 2016 reaches end of support in 60 days</a></h2>
           <div class="news-meta">
@@ -564,7 +579,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>14h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>17h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/six-unpatched-danfoss-refrigeration.html" target="_blank" rel="noopener noreferrer">Six Unpatched Danfoss Refrigeration Controller Flaws Could Allow Remote Takeover Without Login</a></h2>
           <div class="news-meta">
@@ -578,7 +593,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>14h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>17h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/retadup-worm-resurfaces-7-years-after.html" target="_blank" rel="noopener noreferrer">Retadup Worm Resurfaces 7 Years After Takedown to Spread CoffeeLoader Malware</a></h2>
           <div class="news-meta">
@@ -592,7 +607,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>15h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>19h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/australian-retail-giant-coles-investigates-cybersecurity-incident/" target="_blank" rel="noopener noreferrer">Australian retail giant Coles investigates cybersecurity incident</a></h2>
           <div class="news-meta">
@@ -605,7 +620,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>16h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>19h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/artificial-intelligence/anthropics-claude-fable-52-blocks-fewer-security-tasks-while-mythos-gets-better-at-finding-bugs/" target="_blank" rel="noopener noreferrer">Anthropic’s Claude Fable 5.2 blocks fewer security tasks, while Mythos gets better at finding bugs</a></h2>
           <div class="news-meta">
@@ -618,7 +633,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>17h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>20h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/sansar-linux-cryptomining-malware-uses.html" target="_blank" rel="noopener noreferrer">SANSAR Linux Cryptomining Malware Uses Modified NVIDIA Library to Hide GPU Activity</a></h2>
           <div class="news-meta">
@@ -632,7 +647,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>17h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>20h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/linux/new-noisytcp-linux-kernel-flaw-lets-attackers-crash-servers/" target="_blank" rel="noopener noreferrer">New NoisyTCP vulnerability lets attackers crash Linux servers</a></h2>
           <div class="news-meta">
@@ -646,7 +661,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>18h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>21h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-new-windows-emergency-updates-fix-activation-licensing-failures/" target="_blank" rel="noopener noreferrer">Microsoft pushes Windows emergency updates to fix activation failures</a></h2>
           <div class="news-meta">
@@ -660,7 +675,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>19h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>22h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/amazon-uncovers-ai-agent-campaign.html" target="_blank" rel="noopener noreferrer">Amazon Uncovers AI Agent Campaign Targeting LiteLLM, Dify, and Other Apps for API Keys</a></h2>
           <div class="news-meta">
@@ -674,7 +689,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>20h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>23h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/bo-team-exploits-log4shell-in-vmware.html" target="_blank" rel="noopener noreferrer">BO Team Exploits Log4Shell in VMware vCenter, Compromises Russian Firm&#39;s Code-Signing Server</a></h2>
           <div class="news-meta">
@@ -739,20 +754,6 @@
           <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/#cve-2026-114713" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="CVE reference: CVE-2026-114713">SentryInsight: incident watch · CVE reference: CVE-2026-114713</a><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a></div>
           <p class="news-summary">The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Friday added a high-severity security flaw impacting UnrealIRCd, an open-source Internet Relay Chat (IRC) server, to its Known Exploited Vulnerabilities (KEV) catalog, following reports of active exploitation. The vulnerability, tracked as CVE-2026-114713 (CVSS score: 8.6), is a case of improper neutralization of delimiters…</p><a class="summary-continuation" href="https://thehackernews.com/2026/11/attackers-exploit-unrealircd-flaw-that.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
-        </article>
-        <article class="news-item" id="reporting-c281bea158b9" data-source="Dark Reading" data-host="darkreading.com" data-title="ArcticRAT Cybercrime Gang Profiles Victim Finances With AI" data-summary="The Android malware has expanded from focusing on cryptocurrency theft to full device control, and the attackers have added advanced analysis of stolen information." data-severity="Elevated" data-tags="Malware,AI Security" data-vendors="Google" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-11-13T20:20:27.000Z">
-          <div class="chips">
-            <span class="severity severity-elevated">Elevated</span>
-            <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>3d old</span></span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/mobile-security/arcticrat-cybercrime-gang-profiles-victim-finances-ai" target="_blank" rel="noopener noreferrer">ArcticRAT Cybercrime Gang Profiles Victim Finances With AI</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-11-13T20:20:27.000Z">November 13, 2026 at 8:20 PM UTC</time><a class="item-permalink" href="#reporting-c281bea158b9" aria-label="Permalink to this reporting item">Permalink</a>
-          </div>
-          <div class="facet-row"><span class="chip">Google</span><span class="chip">Malware</span><span class="chip">AI Security</span></div>
-          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
-          <p class="news-summary">The Android malware has expanded from focusing on cryptocurrency theft to full device control, and the attackers have added advanced analysis of stolen information.</p>
         </article>
     </div>
   </main>
