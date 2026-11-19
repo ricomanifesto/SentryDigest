@@ -219,7 +219,7 @@
         </div>
         <select id="sourceFilter" class="select" aria-label="Filter by source">
           <option value="">All sources</option>
-          <option value="The Hacker News">The Hacker News</option><option value="Bleeping Computer">Bleeping Computer</option><option value="Dark Reading">Dark Reading</option><option value="Krebs on Security">Krebs on Security</option>
+          <option value="The Hacker News">The Hacker News</option><option value="Dark Reading">Dark Reading</option><option value="Bleeping Computer">Bleeping Computer</option>
         </select>
         <a class="btn" href="./feed.xml" aria-label="Open generated RSS feed">RSS</a>
         <button id="themeToggle" class="btn" aria-label="Toggle theme">Theme</button>
@@ -230,9 +230,9 @@
   <main class="container">
     <section class="issue-strip" aria-label="Digest issue metadata">
       <span class="issue-label">Current issue</span>
-      <time datetime="2026-11-19T06:18:46.638Z">November 19, 2026</time>
+      <time datetime="2026-11-19T09:12:34.973Z">November 19, 2026</time>
       <span class="issue-stat"><strong>30</strong> articles</span>
-      <span class="issue-stat"><strong>4</strong> sources</span>
+      <span class="issue-stat"><strong>3</strong> sources</span>
       <a class="issue-link" href="./feed.xml" aria-label="Open rolling RSS feed">Rolling RSS feed</a>
     </section>
     <nav class="issue-trail" aria-label="Digest navigation">
@@ -241,7 +241,7 @@
       <a class="previous-issue" href="./archive/2026-11-18/" aria-label="Open digest issue for November 18, 2026"><time datetime="2026-11-18T00:00:00.000Z">Nov 18</time></a>
       <a href="./feed.xml" aria-label="Open generated RSS feed">RSS feed</a>
       <a href="#sourceCoverage">Source coverage</a>
-      <span class="issue-trail-meta">Updated <time class="issue-trail-updated" datetime="2026-11-19T06:18:46.638Z">06:18 UTC · Nov 19</time></span>
+      <span class="issue-trail-meta">Updated <time class="issue-trail-updated" datetime="2026-11-19T09:12:34.973Z">09:12 UTC · Nov 19</time></span>
       <span class="issue-trail-meta issue-trail-cadence" data-cadence-hours="3" data-cadence-state="scheduled" role="status" aria-live="polite" aria-atomic="true"><span data-cadence-label>3h cadence</span></span>
     </nav>
     <details id="advancedFilters" class="advanced-filters">
@@ -274,19 +274,19 @@
       <div id="filterStatusAnnouncement" class="sr-only" role="status" aria-live="polite" aria-atomic="true">Showing 30 of 30 articles.</div>
       <button id="resetFilters" class="btn reset-filters" type="button" hidden>Reset filters</button>
     </div>
-    <div class="stats" id="stats" hidden>Showing 30 of 30 articles from 4 sources</div>
+    <div class="stats" id="stats" hidden>Showing 30 of 30 articles from 3 sources</div>
     <div id="filterInsights" class="filter-insights" role="status" aria-live="polite" aria-atomic="true" hidden></div>
     <span id="sourceCoverage" class="anchor-target" aria-hidden="true"></span>
     <section class="source-coverage" aria-label="RSS source coverage">
       <details class="source-coverage-details">
-        <summary class="source-coverage-summary">Source coverage <span>4 active feeds · 30 articles</span></summary>
+        <summary class="source-coverage-summary">Source coverage <span>3 active feeds · 30 articles</span></summary>
         <div class="source-coverage-body">
-          <div class="source-counts"><button class="source-count" type="button" data-source-filter="Krebs on Security" aria-label="Filter to Krebs on Security source, 1 article" aria-pressed="false">Krebs on Security <strong>1</strong></button><button class="source-count" type="button" data-source-filter="The Hacker News" aria-label="Filter to The Hacker News source, 13 articles" aria-pressed="false">The Hacker News <strong>13</strong></button><button class="source-count" type="button" data-source-filter="Bleeping Computer" aria-label="Filter to Bleeping Computer source, 10 articles" aria-pressed="false">Bleeping Computer <strong>10</strong></button><button class="source-count" type="button" data-source-filter="Dark Reading" aria-label="Filter to Dark Reading source, 6 articles" aria-pressed="false">Dark Reading <strong>6</strong></button></div>
-          <div class="source-health-summary" data-active-sources="4" data-quiet-sources="0">
-            <span><strong>4</strong> active feeds</span>
-            <span><strong>0</strong> quiet feeds</span>
+          <div class="source-counts"><button class="source-count" type="button" data-source-filter="The Hacker News" aria-label="Filter to The Hacker News source, 15 articles" aria-pressed="false">The Hacker News <strong>15</strong></button><button class="source-count" type="button" data-source-filter="Bleeping Computer" aria-label="Filter to Bleeping Computer source, 9 articles" aria-pressed="false">Bleeping Computer <strong>9</strong></button><button class="source-count" type="button" data-source-filter="Dark Reading" aria-label="Filter to Dark Reading source, 6 articles" aria-pressed="false">Dark Reading <strong>6</strong></button></div>
+          <div class="source-health-summary" data-active-sources="3" data-quiet-sources="1">
+            <span><strong>3</strong> active feeds</span>
+            <span><strong>1</strong> quiet feed</span>
           </div>
-          <div class="source-quiet-feeds" aria-label="Quiet RSS sources"></div>
+          <div class="source-quiet-feeds" aria-label="Quiet RSS sources"><span class="source-health-note" data-source-name="Krebs on Security" data-last-contributed-at="2026-11-18T02:52:04.000Z" data-health-status="quiet" data-quiet-for-days="1">Krebs on Security quiet since <time datetime="2026-11-18T02:52:04.000Z">November 18, 2026 at 2:52 AM UTC</time></span></div>
           <div class="source-filter-status" data-source-filter-status role="status" aria-live="polite" aria-atomic="true">All contributing feeds (30 articles)</div>
           <div class="source-coverage-actions">
             <a class="feed-link" href="./feed.xml" aria-label="Open RSS feed with 30 latest articles">RSS feed <span class="feed-link-count">30 items</span></a>
@@ -311,12 +311,12 @@
       <section class="operator-lanes" aria-label="Operator scan lanes">
       <article class="operator-lane" data-lane="Incident watch" data-lane-cue="SentryInsight: incident watch">
         <a class="operator-lane-heading" data-lane-destination href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer">Incident watch <span data-lane-destination-label>· general report</span></a>
-        <span class="operator-lane-count" data-lane-count><strong>12</strong> items</span>
+        <span class="operator-lane-count" data-lane-count><strong>11</strong> items</span>
         <a href="https://www.bleepingcomputer.com/news/security/ukraine-fbi-arrest-ransomware-gang-members-tied-to-40m-in-ransoms/" class="operator-lane-link" data-lane-link>Ukraine, FBI arrest ransomware gang members tied to $40M in ransoms</a>
         <span class="operator-lane-empty" data-lane-empty hidden>No current match</span>
       </article><article class="operator-lane" data-lane="Vulnerability triage" data-lane-cue="SentryInsight: vuln triage">
         <a class="operator-lane-heading" data-lane-destination href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer">Vulnerability triage <span data-lane-destination-label>· general report</span></a>
-        <span class="operator-lane-count" data-lane-count><strong>13</strong> items</span>
+        <span class="operator-lane-count" data-lane-count><strong>11</strong> items</span>
         <a href="https://thehackernews.com/2026/11/php-warns-of-critical-security-flaws.html" class="operator-lane-link" data-lane-link>PHP Warns of Critical Security Flaws Affecting All Supported Versions, Fixes Coming November 19</a>
         <span class="operator-lane-empty" data-lane-empty hidden>No current match</span>
       </article><article class="operator-lane" data-lane="Governance watch" data-lane-cue="GRCInsight: governance watch">
@@ -334,32 +334,73 @@
 
     <div class="news-container" id="newsContainer">
 
+        <article class="news-item" id="reporting-29eb33240b0f" data-source="The Hacker News" data-host="thehackernews.com" data-title="Ruby Releases Fixes for 7 Regex and String Flaws, Warns 5 Have Proof-of-Concept RCE" data-summary="Ruby contains seven memory-safety flaws in its regular expression engine and its string case-conversion code. For five of them, its maintainers say, proof-of-concept exploits, or PoCs, have shown that crafted input can run code on the machine. &quot;We are aware of PoCs that prove some of them can be used to trigger remote code execution,&quot; the maintainers said. The project released fixed versions…" data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh" data-published-at="2026-11-19T08:42:11.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>30m old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/11/ruby-releases-fixes-for-7-regex-and.html" target="_blank" rel="noopener noreferrer">Ruby Releases Fixes for 7 Regex and String Flaws, Warns 5 Have Proof-of-Concept RCE</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-11-19T08:42:11.000Z">November 19, 2026 at 8:42 AM UTC</time>
+            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-29eb33240b0f" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: monitor" data-destination-label="general report">SentryInsight: monitor · general report</a></div>
+          <p class="news-summary">Ruby contains seven memory-safety flaws in its regular expression engine and its string case-conversion code. For five of them, its maintainers say, proof-of-concept exploits, or PoCs, have shown that crafted input can run code on the machine. &quot;We are aware of PoCs that prove some of them can be used to trigger remote code execution,&quot; the maintainers said. The project released fixed versions…</p><a class="summary-continuation" href="https://thehackernews.com/2026/11/ruby-releases-fixes-for-7-regex-and.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item" id="reporting-3914c4d93285" data-source="The Hacker News" data-host="thehackernews.com" data-title="Researcher Demonstrates Database RCE Exploits Affecting PostgreSQL, MySQL and Oracle" data-summary="Low-privilege database accounts that cannot read a single application table can still be used to run code on the database server itself, a researcher has shown, by reaching memory-corruption bugs in the engine code behind ordinary SQL. The exploits, published yesterday, are the researcher&#39;s proofs of concept against PostgreSQL, MySQL and ClickHouse, plus a separate Oracle chain that needs no…" data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh" data-published-at="2026-11-19T08:14:00.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">The Hacker News</span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>58m old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://thehackernews.com/2026/11/researcher-demonstrates-database-rce.html" target="_blank" rel="noopener noreferrer">Researcher Demonstrates Database RCE Exploits Affecting PostgreSQL, MySQL and Oracle</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-11-19T08:14:00.000Z">November 19, 2026 at 8:14 AM UTC</time>
+            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-3914c4d93285" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: monitor" data-destination-label="general report">SentryInsight: monitor · general report</a></div>
+          <p class="news-summary">Low-privilege database accounts that cannot read a single application table can still be used to run code on the database server itself, a researcher has shown, by reaching memory-corruption bugs in the engine code behind ordinary SQL. The exploits, published yesterday, are the researcher&#39;s proofs of concept against PostgreSQL, MySQL and ClickHouse, plus a separate Oracle chain that needs no…</p><a class="summary-continuation" href="https://thehackernews.com/2026/11/researcher-demonstrates-database-rce.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="news-item" id="reporting-78a07fb55a22" data-source="Dark Reading" data-host="darkreading.com" data-title="Africa Retakes Top Spot as Most Attacked Region, Led by Nigeria Surge" data-summary="Nigeria faced more than double the cyber threats of the previous year, with Angola and Kenya also in the top-5 most attacked countries globally." data-severity="Monitor" data-tags="" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Fresh" data-published-at="2026-11-19T08:00:00.000Z">
+          <div class="chips">
+            <span class="severity severity-monitor">Monitor</span>
+            <span class="chip source-chip">Dark Reading</span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>1h old</span></span>
+          </div>
+          <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/africa-top-spot-most-attacked-region-nigeria-surge" target="_blank" rel="noopener noreferrer">Africa Retakes Top Spot as Most Attacked Region, Led by Nigeria Surge</a></h2>
+          <div class="news-meta">
+            <time datetime="2026-11-19T08:00:00.000Z">November 19, 2026 at 8:00 AM UTC</time>
+            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-78a07fb55a22" aria-label="Permalink to this reporting item">Permalink</a>
+          </div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: monitor" data-destination-label="general report">SentryInsight: monitor · general report</a></div>
+          <p class="news-summary">Nigeria faced more than double the cyber threats of the previous year, with Angola and Kenya also in the top-5 most attacked countries globally.</p>
+        </article>
         <article class="news-item" id="reporting-75b5f9594128" data-source="The Hacker News" data-host="thehackernews.com" data-title="PHP Warns of Critical Security Flaws Affecting All Supported Versions, Fixes Coming November 19" data-summary="The maintainers of the PHP programming language on Wednesday issued an advisory announcing an upcoming security release that addresses critical flaws. The release is scheduled for November 19, 2026, between 2 and 2:30 p.m. UTC. &quot;These releases are part of PHP&#39;s regular four-week release cycle and will address security vulnerabilities affecting all supported PHP versions,&quot; the maintainers said." data-severity="Elevated" data-tags="Vulnerability" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Fresh" data-published-at="2026-11-19T04:33:46.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>1h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Fresh</span> · <span data-age-detail>4h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/php-warns-of-critical-security-flaws.html" target="_blank" rel="noopener noreferrer">PHP Warns of Critical Security Flaws Affecting All Supported Versions, Fixes Coming November 19</a></h2>
           <div class="news-meta">
-            <time datetime="2026-11-19T04:33:46.000Z">November 19, 2026 at 4:33 AM UTC</time>
-            <span class="badge-new">NEW</span><a class="item-permalink" href="#reporting-75b5f9594128" aria-label="Permalink to this reporting item">Permalink</a>
+            <time datetime="2026-11-19T04:33:46.000Z">November 19, 2026 at 4:33 AM UTC</time><a class="item-permalink" href="#reporting-75b5f9594128" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Vulnerability</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a></div>
           <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-0">
+            <summary class="summary-toggle" aria-controls="summary-full-3">
               <span class="summary-preview-text">The maintainers of the PHP programming language on Wednesday issued an advisory announcing an upcoming security release that addresses critical flaws. The</span><span class="summary-ellipsis" aria-hidden="true">...</span>
               <span class="summary-action">Show full summary</span>
             </summary>
-            <p class="news-summary summary-full" id="summary-full-0">release is scheduled for November 19, 2026, between 2 and 2:30 p.m. UTC. &quot;These releases are part of PHP&#39;s regular four-week release cycle and will address security vulnerabilities affecting all supported PHP versions,&quot; the maintainers said.</p>
+            <p class="news-summary summary-full" id="summary-full-3">release is scheduled for November 19, 2026, between 2 and 2:30 p.m. UTC. &quot;These releases are part of PHP&#39;s regular four-week release cycle and will address security vulnerabilities affecting all supported PHP versions,&quot; the maintainers said.</p>
           </details>
         </article>
         <article class="news-item" id="reporting-98624c3d23ee" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Ukraine, FBI arrest ransomware gang members tied to $40M in ransoms" data-summary="Ukrainian authorities, working with the FBI, have arrested four suspected members of an international ransomware organization linked to more than $40.5 million in ransom payments from at least 28 companies worldwide…" data-severity="Critical" data-tags="Ransomware" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch" data-age-bucket="Recent" data-published-at="2026-11-18T23:08:33.000Z">
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>7h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>10h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/ukraine-fbi-arrest-ransomware-gang-members-tied-to-40m-in-ransoms/" target="_blank" rel="noopener noreferrer">Ukraine, FBI arrest ransomware gang members tied to $40M in ransoms</a></h2>
           <div class="news-meta">
@@ -373,7 +414,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>8h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>11h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/cold-relic-turns-one-cloud-breach-into-another" target="_blank" rel="noopener noreferrer">Russia&#39;s Cold Relic APT Turns One Cloud Breach Into Another</a></h2>
           <div class="news-meta">
@@ -387,7 +428,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>9h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>12h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/coinbase-blocks-47-million-in-transfers-to-elon-musk-deepfake-scam/" target="_blank" rel="noopener noreferrer">Coinbase blocks $4.7 million in transfers to Elon Musk deepfake scam</a></h2>
           <div class="news-meta">
@@ -401,7 +442,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>9h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>12h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/strike-graph-launches-integration-ai-to-automate-continuous-compliance-evidence-using-any-existing-tool" target="_blank" rel="noopener noreferrer">Strike Graph Launches Integration AI to Automate Continuous Compliance Evidence Using Any Existing Tool</a></h2>
           <div class="news-meta">
@@ -415,7 +456,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>9h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>12h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/threat-intelligence/attackiq-research-reveals-iranian-cyber-groups" target="_blank" rel="noopener noreferrer">AttackIQ Research Reveals How Iranian Cyber Groups Hand Off Network Access to Enable Destructive Attacks</a></h2>
           <div class="news-meta">
@@ -429,7 +470,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>10h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>13h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/data-breach-impacts-40-irish-credit-unions-in-reported-it-provider-hack/" target="_blank" rel="noopener noreferrer">Data breach impacts 40 Irish credit unions in reported IT provider hack</a></h2>
           <div class="news-meta">
@@ -443,7 +484,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>11h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>14h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/10-year-old-nginx-http2-flaw-lets.html" target="_blank" rel="noopener noreferrer">10-Year-Old NGINX HTTP/2 Flaw Lets Unauthenticated Attackers Execute Code on Servers</a></h2>
           <div class="news-meta">
@@ -457,7 +498,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>12h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>14h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/f5-warns-6-critical-big-ip-flaws-can.html" target="_blank" rel="noopener noreferrer">F5 Warns 6 Critical BIG-IP Flaws Can Crash Traffic in Specific Setups, May Allow RCE</a></h2>
           <div class="news-meta">
@@ -471,7 +512,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>13h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>16h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/critical-apache-roller-rce-flaw-under.html" target="_blank" rel="noopener noreferrer">Critical Apache Roller RCE Flaw Under Active Exploitation, No Authentication Required</a></h2>
           <div class="news-meta">
@@ -485,7 +526,7 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>13h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>16h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/microsofts-agent-framework-pypi-package-compromised-to-steal-credentials/" target="_blank" rel="noopener noreferrer">Microsoft’s Agent Framework PyPI package compromised to steal credentials</a></h2>
           <div class="news-meta">
@@ -499,7 +540,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>13h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>16h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/java4shell-flaw-threatens-global-java-application-ecosystem" target="_blank" rel="noopener noreferrer">Java4Shell Flaw Threatens Global Enterprises, Java Application Ecosystem</a></h2>
           <div class="news-meta">
@@ -513,7 +554,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>15h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>18h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/from-deepfakes-to-helpdesk-impersonation-why-stronger-verification-matters/" target="_blank" rel="noopener noreferrer">From Deepfakes to Helpdesk Impersonation: Why Stronger Verification Matters</a></h2>
           <div class="news-meta">
@@ -527,7 +568,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>16h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>19h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/eggstreme-hackers-rebuild-malware-with.html" target="_blank" rel="noopener noreferrer">New EggStreme Malware Variant Goes Silent to Evade Security Tools in Government Attacks</a></h2>
           <div class="news-meta">
@@ -541,7 +582,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>16h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>19h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.darkreading.com/vulnerabilities-threats/major-brazilian-signature-app-rce-fraud" target="_blank" rel="noopener noreferrer">Major Brazilian Signature Apps Enable RCE &amp; Fraud</a></h2>
           <div class="news-meta">
@@ -554,7 +595,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>17h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>20h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/flash-chip-attack-bypasses-tpm-lockout.html" target="_blank" rel="noopener noreferrer">New Attack Bypasses TPM Lockout to Crack Windows Hello and BitLocker PINs in Days, Not Years</a></h2>
           <div class="news-meta">
@@ -568,7 +609,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>18h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>20h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/ai-pentesting-checklist-for-web-apps-15.html" target="_blank" rel="noopener noreferrer">AI Pentesting Checklist for Web Apps: 15 Questions to Ask Before Choosing a Vendor</a></h2>
           <div class="news-meta">
@@ -582,7 +623,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>18h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>21h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/java4shell-cve-2026-114938-enables-pre.html" target="_blank" rel="noopener noreferrer">Java4Shell Flaw (CVE-2026-114938) Enables Pre-Auth RCE in Jira, Jenkins, Keycloak and More</a></h2>
           <div class="news-meta">
@@ -596,7 +637,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>18h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>21h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/dizigom-illegal-streaming-service-with-21m-monthly-visits-shuts-down/" target="_blank" rel="noopener noreferrer">Dizigom illegal streaming service with 21M monthly visits shuts down</a></h2>
           <div class="news-meta">
@@ -609,7 +650,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>19h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>22h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/quality-isnt-main-worry-about-ai.html" target="_blank" rel="noopener noreferrer">Quality Isn’t The Main Worry About AI Pentesting — Data Privacy and Production Safety Are</a></h2>
           <div class="news-meta">
@@ -623,7 +664,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>19h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>22h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/apache-warns-of-roller-rce-vulnerability-exploited-in-attacks/" target="_blank" rel="noopener noreferrer">Apache warns of Roller RCE vulnerability exploited in attacks</a></h2>
           <div class="news-meta">
@@ -637,7 +678,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>20h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>23h old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-announces-windows-server-2028-with-hardened-security/" target="_blank" rel="noopener noreferrer">Microsoft announces Windows Server 2028 with hardened security</a></h2>
           <div class="news-meta">
@@ -651,21 +692,21 @@
           <div class="chips">
             <span class="severity severity-critical">Critical</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>21h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/hackers-exploiting-critical-puppet-rce.html" target="_blank" rel="noopener noreferrer">Hackers Exploiting Critical Puppet RCE Flaw Affecting Enterprise Management Servers</a></h2>
           <div class="news-meta">
             <time datetime="2026-11-18T08:24:31.000Z">November 18, 2026 at 8:24 AM UTC</time><a class="item-permalink" href="#reporting-eeab189c3475" aria-label="Permalink to this reporting item">Permalink</a>
           </div>
           <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Exploitation</span></div>
-          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a></div>
+          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/#cve-2026-115731" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="CVE analysis: CVE-2026-115731">SentryInsight: incident watch · CVE analysis: CVE-2026-115731</a><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a></div>
           <p class="news-summary">The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Tuesday added a critical security flaw impacting Perforce Puppet, an enterprise infrastructure-as-code (IaC) and configuration management platform, to its Known Exploited Vulnerabilities (KEV) catalog, citing reports of active exploitation. The vulnerability, tracked as CVE-2026-115731 (CVSS score: 9.4), is a case of…</p><a class="summary-continuation" href="https://thehackernews.com/2026/11/hackers-exploiting-critical-puppet-rce.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
         </article>
         <article class="news-item" id="reporting-e73903040477" data-source="The Hacker News" data-host="thehackernews.com" data-title="CISA Urges Immediate Patching of Java4Shell Flaw That Could Allow Remote Code Execution" data-summary="The U.S. Cybersecurity and Infrastructure Security Agency (CISA) has urged organizations to immediately patch a newly disclosed critical security flaw impacting Oracle Java. The flaw, tracked as CVE-2026-114938 (CVSS score: 8.1), refers to a case of out-of-bounds write that can lead to denial-of-service (DoS) or remote code execution under certain conditions. &quot;This critical memory-corruption…" data-severity="Elevated" data-tags="Vulnerability" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-11-18T08:24:23.000Z">
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>21h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/cisa-urges-immediate-patching-of.html" target="_blank" rel="noopener noreferrer">CISA Urges Immediate Patching of Java4Shell Flaw That Could Allow Remote Code Execution</a></h2>
           <div class="news-meta">
@@ -679,7 +720,7 @@
           <div class="chips">
             <span class="severity severity-monitor">Monitor</span>
             <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>21h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/british-scattered-spider-hacker-sentenced-to-6-years-in-prison/" target="_blank" rel="noopener noreferrer">British Scattered Spider hacker sentenced to 6 years in prison</a></h2>
           <div class="news-meta">
@@ -692,7 +733,7 @@
           <div class="chips">
             <span class="severity severity-elevated">Elevated</span>
             <span class="chip source-chip">The Hacker News</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>23h old</span></span>
+            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
           </div>
           <h2 class="news-title"><a href="https://thehackernews.com/2026/11/attackers-compromise-microsofts-agent.html" target="_blank" rel="noopener noreferrer">Attackers Compromise Microsoft&#39;s Agent Framework PyPI Package to Steal Cloud Credentials</a></h2>
           <div class="news-meta">
@@ -715,54 +756,6 @@
           <div class="facet-row"><span class="chip">Google</span><span class="chip">Data Breach</span><span class="chip">Cloud</span></div>
           <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
           <p class="news-summary">The Russia-linked cyber espionage group known as Cold Relic (formerly COLDRIVER and UNC4057) has been observed weaponizing a single cloud compromise into a launchpad for a series of linked intrusions resulting in third-party compromise. Google&#39;s Mandiant and Threat Intelligence Group (GTIG) said it investigated a 2026 compromise at a U.S.-based organization in which the adversary leveraged…</p><a class="summary-continuation" href="https://thehackernews.com/2026/11/russian-cold-relic-hackers-use-stolen.html" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at The Hacker News">Continues at The Hacker News <span aria-hidden="true">→</span></a>
-        </article>
-        <article class="news-item" id="reporting-e010dc913600" data-source="Krebs on Security" data-host="krebsonsecurity.com" data-title="Attackers Used Optimizely to A/B Test Malware on Top Websites" data-summary="At least 178 top web destinations unwittingly served a variety of malware exploits against visitors over the past 24 hours thanks to a security vulnerability involving Optimizely, a company that helps websites customize user experiences and test out new features. Experts say the incident, which saw data-stealing malicious software silently injected into sites like the BBC, CNN, Equifax, Ledger and Zoom, was exacerbated by the reality that few popular websites enforce strict rules on the sources of third-party content." data-severity="Elevated" data-tags="Vulnerability,Malware" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: vuln triage" data-age-bucket="Recent" data-published-at="2026-11-18T02:52:04.000Z">
-          <div class="chips">
-            <span class="severity severity-elevated">Elevated</span>
-            <span class="chip source-chip">Krebs on Security</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
-          </div>
-          <h2 class="news-title"><a href="https://krebsonsecurity.com/2026/11/attackers-used-optimizely-to-a-b-test-malware-on-top-websites/" target="_blank" rel="noopener noreferrer">Attackers Used Optimizely to A/B Test Malware on Top Websites</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-11-18T02:52:04.000Z">November 18, 2026 at 2:52 AM UTC</time><a class="item-permalink" href="#reporting-e010dc913600" aria-label="Permalink to this reporting item">Permalink</a>
-          </div>
-          <div class="facet-row"><span class="chip">Vulnerability</span><span class="chip">Malware</span></div>
-          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a></div>
-          <details class="summary-disclosure">
-            <summary class="summary-toggle" aria-controls="summary-full-27">
-              <span class="summary-preview-text">At least 178 top web destinations unwittingly served a variety of malware exploits against visitors over the past 24 hours thanks to a security vulnerability</span><span class="summary-ellipsis" aria-hidden="true">...</span>
-              <span class="summary-action">Show full summary</span>
-            </summary>
-            <p class="news-summary summary-full" id="summary-full-27">involving Optimizely, a company that helps websites customize user experiences and test out new features. Experts say the incident, which saw data-stealing malicious software silently injected into sites like the BBC, CNN, Equifax, Ledger and Zoom, was exacerbated by the reality that few popular websites enforce strict rules on the sources of third-party content.</p>
-          </details>
-        </article>
-        <article class="news-item" id="reporting-fca3dc2fb776" data-source="Bleeping Computer" data-host="bleepingcomputer.com" data-title="Critical Java4Shell flaw allows RCE attacks on major Java applications" data-summary="A critical vulnerability dubbed Java4Shell in OpenJDK, the open-source implementation of Java, can allow unauthenticated attackers to remotely execute code on popular enterprise applications, including Jenkins, Atlassian Jira, Confluence, and Keycloak…" data-severity="Critical" data-tags="Vulnerability" data-vendors="Atlassian" data-source-signal="Industry media" data-handoff-cues="SentryInsight: incident watch,SentryInsight: vuln triage,SentryInsight: vendor watch" data-age-bucket="Recent" data-published-at="2026-11-17T23:04:21.000Z">
-          <div class="chips">
-            <span class="severity severity-critical">Critical</span>
-            <span class="chip source-chip">Bleeping Computer</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
-          </div>
-          <h2 class="news-title"><a href="https://www.bleepingcomputer.com/news/security/critical-java4shell-flaw-allows-rce-attacks-on-major-java-applications/" target="_blank" rel="noopener noreferrer">Critical Java4Shell flaw allows RCE attacks on major Java applications</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-11-17T23:04:21.000Z">November 17, 2026 at 11:04 PM UTC</time><a class="item-permalink" href="#reporting-fca3dc2fb776" aria-label="Permalink to this reporting item">Permalink</a>
-          </div>
-          <div class="facet-row"><span class="chip">Atlassian</span><span class="chip">Vulnerability</span></div>
-          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: incident watch" data-destination-label="general report">SentryInsight: incident watch · general report</a><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vuln triage" data-destination-label="general report">SentryInsight: vuln triage · general report</a><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: vendor watch" data-destination-label="general report">SentryInsight: vendor watch · general report</a></div>
-          <p class="news-summary">A critical vulnerability dubbed Java4Shell in OpenJDK, the open-source implementation of Java, can allow unauthenticated attackers to remotely execute code on popular enterprise applications, including Jenkins, Atlassian Jira, Confluence, and Keycloak…</p><a class="summary-continuation" href="https://www.bleepingcomputer.com/news/security/critical-java4shell-flaw-allows-rce-attacks-on-major-java-applications/" target="_blank" rel="noopener noreferrer" aria-label="Continue reading at Bleeping Computer">Continues at Bleeping Computer <span aria-hidden="true">→</span></a>
-        </article>
-        <article class="news-item" id="reporting-eca290345628" data-source="Dark Reading" data-host="darkreading.com" data-title="Optimizely Malware Attacks Highlight Third-Party Vendor Risks" data-summary="At least 178 organizations, including several major brands, unwittingly exposed website visitors to hydra-like malware via a third-party platform." data-severity="Elevated" data-tags="Malware" data-vendors="" data-source-signal="Industry media" data-handoff-cues="SentryInsight: monitor" data-age-bucket="Recent" data-published-at="2026-11-17T22:34:22.000Z">
-          <div class="chips">
-            <span class="severity severity-elevated">Elevated</span>
-            <span class="chip source-chip">Dark Reading</span>
-            <span class="chip age-chip"><span data-age-label>Recent</span> · <span data-age-detail>1d old</span></span>
-          </div>
-          <h2 class="news-title"><a href="https://www.darkreading.com/cyber-risk/optimizely-malware-attacks-third-party-vendor-risks" target="_blank" rel="noopener noreferrer">Optimizely Malware Attacks Highlight Third-Party Vendor Risks</a></h2>
-          <div class="news-meta">
-            <time datetime="2026-11-17T22:34:22.000Z">November 17, 2026 at 10:34 PM UTC</time><a class="item-permalink" href="#reporting-eca290345628" aria-label="Permalink to this reporting item">Permalink</a>
-          </div>
-          <div class="facet-row"><span class="chip">Malware</span></div>
-          <div class="handoff-row" aria-label="Downstream handoff cues"><a class="handoff-cue" href="https://sentryinsight.ricomanifesto.com/" target="_blank" rel="noopener noreferrer" data-handoff-cue="SentryInsight: monitor" data-destination-label="general report">SentryInsight: monitor · general report</a></div>
-          <p class="news-summary">At least 178 organizations, including several major brands, unwittingly exposed website visitors to hydra-like malware via a third-party platform.</p>
         </article>
     </div>
   </main>
@@ -1112,7 +1105,7 @@
           }
         });
         const total = 30;
-        const srcCount = 4;
+        const srcCount = 3;
         const articleLabel = visible === 1 ? 'article' : 'articles';
         const hasComposedFilters = Boolean(term || severity || tag || vendor || age || handoff);
         const hasAdvancedFilters = Boolean(severity || tag || vendor || age || handoff);
