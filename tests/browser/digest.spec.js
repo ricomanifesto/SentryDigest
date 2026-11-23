@@ -14,6 +14,12 @@ const cveHandoffFixture = path.join(process.cwd(), 'test-results/cve-handoff.htm
 const summaryBehaviorFixture = path.join(process.cwd(), 'test-results/summary-behavior.html');
 const sourceHealthFixture = path.join(process.cwd(), 'test-results/source-health.html');
 
+async function gotoFixture(page, fixture, hash = '') {
+  const url = `http://127.0.0.1:4173/test-results/${path.basename(fixture)}`;
+  await page.route(url, (route) => route.fulfill({ path: fixture, contentType: 'text/html' }));
+  return page.goto(`${url}${hash ? `#${hash}` : ''}`);
+}
+
 function observeRuntimeFailures(page) {
   const failures = [];
   page.on('console', (message) => {
@@ -211,7 +217,7 @@ test('default digest avoids the generic dashboard visual tells', async ({ page }
 test('CVE handoff links do not depend on the daily feed mix', async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false, locale: 'en-US', timezoneId: 'UTC' });
   const page = await context.newPage();
-  const response = await page.goto('http://127.0.0.1:4173/test-results/cve-handoff.html');
+  const response = await gotoFixture(page, cveHandoffFixture);
 
   expect(response?.ok()).toBeTruthy();
   await expect(page.locator('a.handoff-cue[href*="#cve-"]')).toHaveAttribute(
@@ -225,7 +231,7 @@ test('quiet-source behavior does not depend on the daily feed mix', async ({ bro
   const context = await browser.newContext({ javaScriptEnabled: false, locale: 'en-US', timezoneId: 'UTC' });
   const page = await context.newPage();
   const runtimeFailures = observeRuntimeFailures(page);
-  const response = await page.goto('http://127.0.0.1:4173/test-results/source-health.html');
+  const response = await gotoFixture(page, sourceHealthFixture);
 
   expect(response?.ok()).toBeTruthy();
   const coverage = page.locator('.source-health-summary');
@@ -289,7 +295,7 @@ test('summary continuation behavior does not depend on the daily feed mix', asyn
   await context.route('https://publisher.example/security-story', async (route) => {
     await route.fulfill({ status: 200, contentType: 'text/html', body: '<title>Publisher story</title>' });
   });
-  const response = await page.goto('http://127.0.0.1:4173/test-results/summary-behavior.html');
+  const response = await gotoFixture(page, summaryBehaviorFixture);
 
   expect(response?.ok()).toBeTruthy();
   const continuation = page.locator('a.summary-continuation');
@@ -310,7 +316,7 @@ test('cadence stays current at the exact schedule boundary', async ({ browser })
   const page = await context.newPage();
   const runtimeFailures = observeRuntimeFailures(page);
   await page.clock.setFixedTime('2026-08-14T13:00:00.000Z');
-  const response = await page.goto('http://127.0.0.1:4173/test-results/cadence.html');
+  const response = await gotoFixture(page, cadenceFixture);
 
   expect(response?.ok()).toBeTruthy();
   const cadence = page.locator('.issue-trail-cadence');
@@ -325,7 +331,7 @@ test('an open digest names when its cadence falls behind', async ({ browser }) =
   const page = await context.newPage();
   const runtimeFailures = observeRuntimeFailures(page);
   await page.clock.install({ time: '2026-08-14T12:59:30.000Z' });
-  const response = await page.goto('http://127.0.0.1:4173/test-results/cadence.html');
+  const response = await gotoFixture(page, cadenceFixture);
 
   expect(response?.ok()).toBeTruthy();
   const cadence = page.locator('.issue-trail-cadence');
@@ -342,7 +348,7 @@ test('retained upstream context stays visible without JavaScript', async ({ brow
   const context = await browser.newContext({ javaScriptEnabled: false, locale: 'en-US', timezoneId: 'UTC' });
   const page = await context.newPage();
   const runtimeFailures = observeRuntimeFailures(page);
-  const response = await page.goto('http://127.0.0.1:4173/test-results/retained-context.html');
+  const response = await gotoFixture(page, retainedContextFixture);
 
   expect(response?.ok()).toBeTruthy();
   const contextLine = page.locator('.insight-context[data-context-mode="retained"]');
@@ -360,7 +366,7 @@ test('first degraded day stays actionable without JavaScript', async ({ browser 
   const context = await browser.newContext({ javaScriptEnabled: false, locale: 'en-US', timezoneId: 'UTC' });
   const page = await context.newPage();
   const runtimeFailures = observeRuntimeFailures(page);
-  const response = await page.goto('http://127.0.0.1:4173/test-results/stale-context.html');
+  const response = await gotoFixture(page, staleContextFixture);
 
   expect(response?.ok()).toBeTruthy();
   const contextLine = page.locator('.insight-context[data-context-mode="stale"]');
@@ -417,9 +423,9 @@ for (const provenance of ['retained', 'production']) {
     });
     const page = await context.newPage();
     const runtimeFailures = observeRuntimeFailures(page);
-    const response = await page.goto(
-      `http://127.0.0.1:4173${readerPath}#${article.id}`
-    );
+    const response = provenance === 'production'
+      ? await gotoFixture(page, path.join(process.cwd(), readerPath.slice(1)), article.id)
+      : await page.goto(`http://127.0.0.1:4173${readerPath}#${article.id}`);
 
     expect(response?.ok()).toBeTruthy();
     await expect(page.locator(`#${article.id}`)).toBeVisible();

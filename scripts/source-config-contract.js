@@ -1,4 +1,46 @@
+const net = require('node:net');
+
 const DEFAULT_MAX_NEWS_ITEMS = 30;
+const nonPublicIpv4 = new net.BlockList();
+for (const [address, prefix] of [
+  ['0.0.0.0', 8], ['10.0.0.0', 8], ['100.64.0.0', 10], ['127.0.0.0', 8],
+  ['169.254.0.0', 16], ['172.16.0.0', 12], ['192.0.0.0', 24], ['192.0.2.0', 24],
+  ['192.88.99.0', 24], ['192.168.0.0', 16], ['198.18.0.0', 15],
+  ['198.51.100.0', 24], ['203.0.113.0', 24], ['224.0.0.0', 4], ['240.0.0.0', 4],
+]) nonPublicIpv4.addSubnet(address, prefix, 'ipv4');
+const globalIpv6 = new net.BlockList();
+globalIpv6.addSubnet('2000::', 3, 'ipv6');
+const nonPublicIpv6 = new net.BlockList();
+for (const [address, prefix] of [
+  ['2001::', 23], ['2001:db8::', 32], ['2002::', 16], ['3fff::', 20],
+]) nonPublicIpv6.addSubnet(address, prefix, 'ipv6');
+
+function isPublicIpAddress(address) {
+  if (net.isIP(address) === 4) return !nonPublicIpv4.check(address, 'ipv4');
+  return net.isIP(address) === 6
+    && globalIpv6.check(address, 'ipv6')
+    && !nonPublicIpv6.check(address, 'ipv6');
+}
+
+// This is the feed transport policy, separate from article-link validation.
+// Hostnames are checked again through the socket's DNS lookup before connecting.
+function assertPublicFeedUrl(value) {
+  let url;
+  try {
+    if (typeof value !== 'string') throw new Error('not a string');
+    url = new URL(value);
+  } catch {
+    throw new Error('Feed destination must be a public http(s) URL');
+  }
+  const hostname = url.hostname.replace(/^\[|\]$/g, '').replace(/\.$/, '').toLowerCase();
+  if (!['http:', 'https:'].includes(url.protocol) || url.username || url.password || url.port
+      || (net.isIP(hostname) ? !isPublicIpAddress(hostname)
+        : !hostname.includes('.') || /(?:^|\.)(?:localhost|local|internal|home\.arpa)$/.test(hostname))) {
+    throw new Error('Feed destination must be a credential-free public http(s) URL');
+  }
+  url.hash = '';
+  return url;
+}
 
 function fail(failures, message) {
   failures.push(message);
@@ -87,6 +129,15 @@ function validateSourceConfig(config, failures = []) {
       if (!source.url || !isValidHttpUrl(source.url)) {
         fail(failures, `${label} must have an http(s) url`);
       }
+      let publicFeedUrl = false;
+      if (source.url && isValidHttpUrl(source.url)) {
+        try {
+          assertPublicFeedUrl(source.url);
+          publicFeedUrl = true;
+        } catch (error) {
+          fail(failures, `${label}: ${error.message}`);
+        }
+      }
       if (source.type !== 'rss') {
         fail(failures, `${label} has unsupported type "${source.type}"`);
       }
@@ -112,7 +163,7 @@ function validateSourceConfig(config, failures = []) {
       if (
         normalizedName
         && source.url
-        && isValidHttpUrl(source.url)
+        && publicFeedUrl
         && source.type === 'rss'
       ) {
         enabledRssSources.push(source);
@@ -155,7 +206,9 @@ function assertSourceConfigContract(config) {
 
 module.exports = {
   DEFAULT_MAX_NEWS_ITEMS,
+  assertPublicFeedUrl,
   assertSourceConfigContract,
+  isPublicIpAddress,
   isValidHttpUrl,
   normalizeHttpUrl,
   normalizeSourceName,

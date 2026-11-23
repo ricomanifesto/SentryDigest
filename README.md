@@ -55,6 +55,8 @@ Each entry in `config/news-sources.json` has this shape:
 
 `settings.maxNewsItems` sets the dashboard limit. The fetch job maintains `lastContributedAt`; leave it `null` when adding a source. A source is marked stale after 30 days without a new item.
 
+Feed URLs must use HTTP or HTTPS on the default port and target public hosts. The fetcher rejects credentials and validates DNS answers used by each connection and every redirect destination. Each feed has a 15-second total fetch deadline, at most five redirects, and a 5 MiB response-body limit. A feed that exceeds a limit fails independently, so successful sources can still refresh the digest.
+
 ## Automation
 
 GitHub Actions runs every three hours, after source-configuration changes on `main`, or by manual trigger. A successful run rebuilds and validates the site. When the output changes, the workflow commits the generated files and tells SentryInsight and GRCInsight that a new digest is ready.
@@ -78,6 +80,8 @@ node scripts/build-static-artifact.js --revision "$(git rev-parse HEAD)" --outpu
 ```
 
 The store and the receipts directory must be outside the repository. Before a build is accepted, every JSON and XML file must parse and the artifact must pass that commit's own `scripts/validate-artifacts.js`. Each build is written once to `builds/<sha256>/`, holding `artifact/` and a prebuilt `deploy/.vercel/output/` layout whose config is only `{"version": 3}`. `current.json` names the accepted build. A failed, interrupted or concurrent build leaves the accepted build in place. A killed build leaves `.lock`, which an operator removes after confirming no builder is running.
+
+Run `npm ci` in the builder checkout before building. The validator loads local modules from the pinned Git revision. Cheerio and its locked dependency tree are the only third-party modules the validator can load, and they come from the builder's installation. The pinned revision's `package-lock.json` must match those parser dependency entries. This requirement also applies to older revisions. The external build receipt records the pinned lockfile blob and the parser dependency versions and integrity values. The validator runs as trusted repository code under the build user's privileges.
 
 `npm test` covers the builder and its loopback server with temporary repositories. To accept a built store:
 

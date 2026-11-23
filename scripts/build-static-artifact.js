@@ -5,8 +5,10 @@
 const childProcess = require('node:child_process');
 const crypto = require('node:crypto');
 const fs = require('node:fs');
+const { isBuiltin } = require('node:module');
 const os = require('node:os');
 const path = require('node:path');
+const { isDeepStrictEqual } = require('node:util');
 
 const SITE = 'SentryDigest';
 const DEPLOY_CONFIG = Object.freeze({ version: 3 });
@@ -443,49 +445,144 @@ function validatorClosure(git, entries, revision) {
   const byPath = new Map(entries.map((entry) => [entry.path, entry]));
   if (!byPath.has(VALIDATOR)) fail(`${VALIDATOR} is required at revision ${revision} to validate the artifact`);
   const files = new Map();
+  const dependencies = new Set();
   const pending = [VALIDATOR];
   while (pending.length > 0) {
     const relativePath = pending.shift();
     if (files.has(relativePath)) continue;
+    if (path.posix.isAbsolute(relativePath) || relativePath.includes('\\') || relativePath.includes('\0')
+        || relativePath.split('/').some((segment) => !segment || segment === '.' || segment === '..')) {
+      fail(`artifact validator dependency ${relativePath} is not a safe relative path`);
+    }
     const entry = byPath.get(relativePath);
     if (!entry || entry.type !== 'blob' || !['100644', '100755'].includes(entry.mode)) {
       fail(`${relativePath} is required by the artifact validator but is not a regular file at revision ${revision}`);
     }
     const [bytes] = readPinnedBlobs(git, [entry.oid]);
     files.set(relativePath, bytes);
-    for (const match of bytes.toString('utf8').matchAll(/require\(\s*['"](\.{1,2}\/[^'"]+)['"]\s*\)/g)) {
+    for (const match of bytes.toString('utf8').matchAll(/require\s*\(\s*['"]([^'"]+)['"]\s*\)/g)) {
+      if (isBuiltin(match[1])) continue;
+      if (!match[1].startsWith('./') && !match[1].startsWith('../')) {
+        if (match[1] !== 'cheerio') fail(`artifact validator dependency ${match[1]} is not permitted`);
+        dependencies.add(match[1]);
+        continue;
+      }
       const base = path.posix.join(path.posix.dirname(relativePath), match[1]);
       const resolved = [base, `${base}.js`, `${base}.json`, `${base}/index.js`].find((candidate) => byPath.has(candidate));
       if (!resolved) fail(`${relativePath} requires ${match[1]}, which is not tracked at revision ${revision}`);
       pending.push(resolved);
     }
   }
-  return files;
+  return { files, dependencies };
+}
+
+// Third-party parsing is part of the trusted build tool, never loaded from the
+// source checkout or NODE_PATH. Historical validators must use the same locked
+// parser dependency tree; incompatible locks fail explicitly instead of falling
+// back to another installation. npm ci owns integrity of the tool installation.
+function validatorDependencies(git, entries, revision, dependencies) {
+  if (dependencies.size === 0) return { modules: {}, roots: [], receipt: { path: VALIDATOR, dependencies: [] } };
+  const lockEntry = entries.find((entry) => entry.path === 'package-lock.json');
+  if (!lockEntry || lockEntry.type !== 'blob' || !['100644', '100755'].includes(lockEntry.mode)) {
+    fail(`package-lock.json is required at revision ${revision} for artifact validator dependencies`);
+  }
+  const [lockBytes] = readPinnedBlobs(git, [lockEntry.oid]);
+  const pinned = JSON.parse(lockBytes);
+  const toolRoot = path.resolve(__dirname, '..');
+  const trusted = JSON.parse(fs.readFileSync(path.join(toolRoot, 'package-lock.json'), 'utf8'));
+  const pending = [...dependencies].map((name) => `node_modules/${name}`);
+  const roots = new Set();
+  while (pending.length > 0) {
+    const packagePath = pending.shift();
+    const root = path.join(toolRoot, ...packagePath.split('/'));
+    if (roots.has(root)) continue;
+    const locked = trusted.packages?.[packagePath];
+    if (!locked || !locked.integrity || !isDeepStrictEqual(pinned.packages?.[packagePath], locked)) {
+      fail(`package-lock.json at ${revision} is incompatible with the trusted validator dependency ${packagePath}`);
+    }
+    if (fs.realpathSync(root) !== root
+        || JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8')).version !== locked.version) {
+      fail(`trusted validator dependency ${packagePath} must be installed with npm ci`);
+    }
+    roots.add(root);
+    for (const name of Object.keys({ ...locked.dependencies, ...locked.optionalDependencies })) {
+      let parent = packagePath;
+      let resolved;
+      while (!resolved) {
+        const candidate = `${parent ? `${parent}/` : ''}node_modules/${name}`;
+        if (trusted.packages[candidate]) resolved = candidate;
+        else if (!parent) fail(`trusted validator dependency ${name} is missing from package-lock.json`);
+        else parent = parent.includes('/node_modules/') ? parent.slice(0, parent.lastIndexOf('/node_modules/')) : '';
+      }
+      pending.push(resolved);
+    }
+  }
+  const modules = Object.fromEntries([...dependencies].map((name) => {
+    const resolved = require.resolve(name, { paths: [toolRoot] });
+    if (!isWithin(resolved, path.join(toolRoot, 'node_modules', name))) fail(`trusted validator dependency ${name} is outside the tool installation`);
+    return [name, resolved];
+  }));
+  return {
+    modules,
+    roots: [...roots],
+    receipt: {
+      path: VALIDATOR,
+      package_lock_blob: lockEntry.oid,
+      dependencies: [...roots].map((root) => {
+        const packagePath = path.relative(toolRoot, root).split(path.sep).join('/');
+        const { version, integrity } = trusted.packages[packagePath];
+        return { path: packagePath, version, integrity };
+      }).sort((left, right) => comparePaths(left.path, right.path)),
+    },
+  };
 }
 
 const VALIDATOR_RUNNER = [
-  'const [validatorPath, artifactDir] = process.argv.slice(1);',
+  "const Module = require('node:module');",
+  "const path = require('node:path');",
+  'const [validatorPath, artifactDir, policyJson] = process.argv.slice(1);',
+  'const { files, modules, roots } = JSON.parse(policyJson);',
+  'const pinned = new Set(files);',
+  'const resolve = Module._resolveFilename;',
+  'const trusted = (file) => roots.some((root) => {',
+  '  const relative = path.relative(root, file);',
+  "  return relative !== '' && !relative.startsWith('..') && !path.isAbsolute(relative) && !relative.split(path.sep).includes('node_modules');",
+  '});',
+  'Module._resolveFilename = function(request, parent, ...options) {',
+  '  if (Module.isBuiltin(request)) return resolve.call(this, request, parent, ...options);',
+  '  if (parent && pinned.has(parent.filename)) {',
+  '    if (Object.hasOwn(modules, request)) return modules[request];',
+  "    if (!request.startsWith('./') && !request.startsWith('../')) throw new Error(`artifact validator dependency ${request} is not permitted`);",
+  '    const file = resolve.call(this, request, parent, ...options);',
+  '    if (!pinned.has(file)) throw new Error(`artifact validator dependency ${request} is not in the pinned closure`);',
+  '    return file;',
+  '  }',
+  '  const file = resolve.call(this, request, parent, ...options);',
+  '  if (!pinned.has(file) && !trusted(file)) throw new Error(`artifact validator dependency ${request} is outside the trusted dependency tree`);',
+  '  return file;',
+  '};',
   'const { validateArtifacts } = require(validatorPath);',
   "if (typeof validateArtifacts !== 'function') throw new Error('validateArtifacts is not exported');",
   'const result = validateArtifacts(artifactDir);',
   'process.stdout.write(JSON.stringify({ valid: result.valid === true, failures: result.failures || [] }));',
 ].join('\n');
 
-function runRepositoryValidator({ git, entries, revision, sourceRoot, stage, commands }) {
+function runRepositoryValidator({ git, entries, revision, stage, commands }) {
   const validatorRoot = path.join(stage, 'validator');
-  for (const [relativePath, bytes] of validatorClosure(git, entries, revision)) {
+  const { files, dependencies } = validatorClosure(git, entries, revision);
+  const { modules, roots, receipt } = validatorDependencies(git, entries, revision, dependencies);
+  const pinnedFiles = [];
+  for (const [relativePath, bytes] of files) {
     writeDurable(path.join(validatorRoot, ...relativePath.split('/')), bytes);
+    pinnedFiles.push(path.join(validatorRoot, ...relativePath.split('/')));
   }
   const artifactDir = path.join(stage, 'artifact');
   const validatorPath = path.join(validatorRoot, ...VALIDATOR.split('/'));
-  const nodePath = [process.env.NODE_PATH, path.join(sourceRoot, 'node_modules'), path.resolve(__dirname, '..', 'node_modules')]
-    .filter(Boolean)
-    .join(path.delimiter);
-  const argv = [process.execPath, '-e', VALIDATOR_RUNNER, validatorPath, artifactDir];
+  const argv = [process.execPath, '-e', VALIDATOR_RUNNER, validatorPath, artifactDir, JSON.stringify({ files: pinnedFiles, modules, roots })];
   const completed = childProcess.spawnSync(argv[0], argv.slice(1), {
     cwd: stage,
     encoding: 'utf8',
-    env: { ...process.env, NODE_PATH: nodePath },
+    env: { ...process.env, NODE_PATH: '', NODE_OPTIONS: '' },
     maxBuffer: 64 * 1024 * 1024,
   });
   commands.push({ argv: [argv[0], '-e', '<run validateArtifacts>', validatorPath, artifactDir], exit_status: completed.status ?? 1 });
@@ -500,6 +597,7 @@ function runRepositoryValidator({ git, entries, revision, sourceRoot, stage, com
     const more = result.failures.length > 5 ? `; and ${result.failures.length - 5} more` : '';
     fail(`artifact content failed ${VALIDATOR} at ${revision}: ${shown}${more}`);
   }
+  return receipt;
 }
 
 function fsyncDirectory(directory) {
@@ -694,7 +792,7 @@ function buildStaticArtifact({
 
     const artifact = inventoryOf(artifactDir, limits);
     checkContentSyntax(artifactDir, artifact.inventory);
-    runRepositoryValidator({ git, entries: tree, revision, sourceRoot, stage, commands });
+    const validator = runRepositoryValidator({ git, entries: tree, revision, stage, commands });
     const staticDigest = assertDeployLayout(path.join(stage, 'deploy'), artifact.digest, limits);
     const buildRelative = `builds/${artifact.digest}`;
     const buildDir = path.join(outputRoot, 'builds', artifact.digest);
@@ -742,6 +840,7 @@ function buildStaticArtifact({
       total_bytes: artifact.totalBytes,
       inventory: artifact.inventory,
       excluded_tracked_paths: excluded,
+      validator,
       deploy_layout: {
         path: `${buildRelative}/deploy/.vercel/output`,
         config: DEPLOY_CONFIG,
@@ -833,6 +932,7 @@ module.exports = {
   DEPLOY_CONFIG,
   StaticArtifactError,
   assertDeployLayout,
+  assertPublicPath,
   assertWellFormedXml,
   buildStaticArtifact,
   classifyTrackedPath,

@@ -1,9 +1,12 @@
 const fs = require('fs');
 const path = require('path');
+const dns = require('node:dns');
+const http = require('node:http');
+const https = require('node:https');
 const { isVirtualEventPromotion, normalizeFeedText } = require('./feed-content-policy');
 const { generateHTML } = require('./render-news-html');
 const { assertNewsDataContract } = require('./news-data-contract');
-const { assertSourceConfigContract } = require('./source-config-contract');
+const { assertPublicFeedUrl, assertSourceConfigContract, isPublicIpAddress } = require('./source-config-contract');
 const {
   getCurrentInsightCves,
   loadCurrentInsightFindings,
@@ -186,11 +189,136 @@ function assignFirstSeen(newsItems, previousNewsItems = [], generatedAt = new Da
   });
 }
 
-// Function to fetch RSS feed content
+const FEED_FETCH_LIMITS = Object.freeze({ timeoutMs: 15000, maxRedirects: 5, maxBytes: 5 * 1024 * 1024 });
+
+// Validate the answers used by the connection itself, rather than resolving
+// once for a preflight and letting the HTTP client resolve a second time.
+function publicFeedLookup(hostname, options, callback) {
+  dns.lookup(hostname, { all: true, verbatim: true }, (error, addresses) => {
+    if (error) return callback(error);
+    if (!addresses.length || addresses.some(({ address }) => !isPublicIpAddress(address))) {
+      callback(new Error('Feed destination did not resolve exclusively to public addresses'));
+      return;
+    }
+    if (options.all) callback(null, addresses);
+    else callback(null, addresses[0].address, addresses[0].family);
+  });
+}
+
+function fetchFeedXml(value, options = {}) {
+  const { timeoutMs, maxRedirects, maxBytes } = { ...FEED_FETCH_LIMITS, ...options };
+  if (!Number.isInteger(timeoutMs) || timeoutMs <= 0 || !Number.isInteger(maxBytes) || maxBytes <= 0
+      || !Number.isInteger(maxRedirects) || maxRedirects < 0) {
+    return Promise.reject(new Error('Invalid feed fetch limits'));
+  }
+  return new Promise((resolve, reject) => {
+    let activeRequest;
+    let activeResponse;
+    let settled = false;
+    const finish = (error, xml) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(deadline);
+      if (error) {
+        activeResponse?.destroy();
+        activeRequest?.destroy();
+        reject(error);
+      } else resolve(xml);
+    };
+    // One wall-clock budget covers DNS, headers, redirects and response body.
+    const deadline = setTimeout(() => finish(new Error(`Feed fetch timed out after ${timeoutMs}ms`)), timeoutMs);
+    const visit = (next, redirects) => {
+      let url;
+      try {
+        url = assertPublicFeedUrl(next);
+      } catch (error) {
+        finish(error);
+        return;
+      }
+      const transport = url.protocol === 'https:' ? https : http;
+      let disposed = false;
+      const failCurrentHop = (error) => { if (!disposed) finish(error); };
+      try {
+        activeRequest = transport.request(url, {
+          agent: false,
+          lookup: publicFeedLookup,
+          headers: { 'User-Agent': 'rss-parser', Accept: 'application/rss+xml', 'Accept-Encoding': 'identity' },
+        }, (response) => {
+          if (settled) {
+            response.destroy();
+            return;
+          }
+          activeResponse = response;
+          response.on('error', failCurrentHop);
+          if ([301, 302, 303, 307, 308].includes(response.statusCode) && response.headers.location) {
+            disposed = true;
+            response.destroy();
+            if (redirects >= maxRedirects) {
+              finish(new Error('Feed exceeded redirect limit'));
+              return;
+            }
+            try {
+              visit(new URL(response.headers.location, url).toString(), redirects + 1);
+            } catch (error) {
+              finish(error);
+            }
+            return;
+          }
+          response.on('aborted', () => finish(new Error('Feed response was aborted')));
+          if (response.statusCode < 200 || response.statusCode >= 300) {
+            finish(new Error(`Feed returned status ${response.statusCode}`));
+            return;
+          }
+          if (response.headers['content-encoding'] && response.headers['content-encoding'] !== 'identity') {
+            finish(new Error('Feed returned unsupported content encoding'));
+            return;
+          }
+          if (Number(response.headers['content-length']) > maxBytes) {
+            finish(new Error(`Feed body exceeds ${maxBytes} bytes`));
+            return;
+          }
+          const chunks = [];
+          let bytes = 0;
+          response.on('data', (chunk) => {
+            if (settled) return;
+            const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+            bytes += buffer.length;
+            if (bytes > maxBytes) finish(new Error(`Feed body exceeds ${maxBytes} bytes`));
+            else chunks.push(buffer);
+          });
+          response.on('end', () => {
+            try {
+              const charset = response.headers['content-type']?.match(/charset\s*=\s*["']?([^\s;"']+)/i)?.[1] || 'utf-8';
+              finish(null, new TextDecoder(charset).decode(Buffer.concat(chunks)));
+            } catch (error) {
+              finish(error);
+            }
+          });
+        });
+        activeRequest.on('error', failCurrentHop);
+        activeRequest.on('socket', (socket) => {
+          // Literal IPs bypass lookup. Check the actual peer as well, before
+          // Node flushes the request on connect; agent:false prevents reuse.
+          socket.prependOnceListener('connect', () => {
+            if (!isPublicIpAddress(socket.remoteAddress)) {
+              finish(new Error('Feed connected to a nonpublic destination'));
+            }
+          });
+        });
+        activeRequest.end();
+      } catch (error) {
+        finish(error);
+      }
+    };
+    visit(value, 0);
+  });
+}
+
+// Parse only XML returned by the bounded, public-destination transport.
 async function fetchRSSFeed(source) {
   const Parser = require('rss-parser');
   const parser = new Parser();
-  const feed = await parser.parseURL(source.url);
+  const feed = await parser.parseString(await fetchFeedXml(source.url));
   return feed.items.map(article => ({
     title: normalizeFeedText(article.title),
     link: article.link,
@@ -356,6 +484,8 @@ if (require.main === module) {
 module.exports = {
   assignFirstSeen,
   fetchAllNews,
+  fetchFeedXml,
+  FEED_FETCH_LIMITS,
   fetchNewsSnapshot,
   fetchRSSFeed,
   INVALID_FEED_DATE_FALLBACK,

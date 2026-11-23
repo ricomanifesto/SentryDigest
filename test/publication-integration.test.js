@@ -200,7 +200,7 @@ test('the publisher workflow is serialized, explicit and the only content-write 
   assert.match(workflow, /^permissions:\n {2}contents: write\n/m);
   assert.doesNotMatch(workflow, /actions: write|id-token|secrets: inherit/);
   assert.match(workflow, /concurrency:\n {2}group: publish-production\n {2}cancel-in-progress: false/);
-  assert.match(workflow, /ref: \$\{\{ inputs\.source_sha \|\| github\.sha \}\}/);
+  assert.match(workflow, /ref: \$\{\{ steps\.source\.outputs\.source_sha \}\}/);
   assert.match(workflow, /node publication\/cli\.js "\$INVOCATION"/);
   assert.match(workflow, /REPO_ACCESS_TOKEN: \$\{\{ secrets\.REPO_ACCESS_TOKEN \}\}/);
   // A manual publish runs the same repository gate as the scheduled update.
@@ -218,7 +218,7 @@ test('the update workflow hands the post-push commit to the publisher and gates 
     assert.ok(index > authorityIndex, step);
     assert.match(workflow.slice(index, index + 200), /if: steps\.commit\.outputs\.changes_made == 'true' && steps\.authority\.outputs\.mode != 'active'/);
   }
-  assert.match(workflow, /publish:\n\s+needs: update-news\n\s+uses: \.\/\.github\/workflows\/publish-production\.yml\n\s+with:\n\s+invocation: publish\n\s+source_sha: \$\{\{ needs\.update-news\.outputs\.head_sha \}\}\n\s+secrets:\n\s+REPO_ACCESS_TOKEN: \$\{\{ secrets\.REPO_ACCESS_TOKEN \}\}/);
+  assert.match(workflow, /publish:\n\s+if: github\.ref == 'refs\/heads\/main'\n\s+needs: update-news\n\s+uses: \.\/\.github\/workflows\/publish-production\.yml\n\s+with:\n\s+invocation: publish\n\s+source_sha: \$\{\{ needs\.update-news\.outputs\.head_sha \}\}\n\s+secrets:\n\s+REPO_ACCESS_TOKEN: \$\{\{ secrets\.REPO_ACCESS_TOKEN \}\}/);
   assert.match(workflow, /^permissions:\n {2}contents: write\n/m);
   assert.doesNotMatch(workflow, /actions: write/);
 });

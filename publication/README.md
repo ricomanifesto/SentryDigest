@@ -3,8 +3,8 @@
 This directory holds the publisher that moves accepted static content to the
 production artifact branch, the hosting adapter that branch carries, and the
 admission checks the report generators use for SentryDigest release events.
-The library, adapter and tests are identical in SentryDigest, SentryInsight
-and GRCInsight; only `site.json` differs.
+The publication components share a common design with SentryInsight and
+GRCInsight. Each repository owns its component revisions and validation.
 
 ## Configuration: `site.json`
 
@@ -19,6 +19,20 @@ and GRCInsight; only `site.json` differs.
   accepted public payload from a pinned commit.
 
 ## Release flow
+
+The GitHub Actions updater and publisher run only from `main`, including
+manual and reusable-workflow invocation. Before selecting a source or running
+repository code, the publisher fetches `refs/heads/main` into a dedicated
+trusted ref and checks the full source commit against that history. Scheduled
+and push callers may publish a main ancestor: their producer can push a new
+commit after the triggering event, and main can advance again before the
+publisher starts. Manual publishes require the current fetched main commit.
+Leaving `source_sha` blank selects that commit. `resume`, `rollback`, `resolve`
+and `seed` run the publisher from current main and refuse source overrides.
+The Commands section covers the direct CLI inputs.
+
+The workflow verifies commit provenance. GitHub repository and environment
+settings govern who can write to main and who can approve a deployment.
 
 1. The publisher builds the payload for an exact source commit and writes a
    release descriptor (`_release/descriptor.json`) with the payload digest,

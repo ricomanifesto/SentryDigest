@@ -122,8 +122,9 @@ function decodeHtmlEntities(value) {
 }
 
 function isSafeGeneratedArticleHref(value) {
-  const href = decodeHtmlEntities(value).trim();
-  if (href === '#') {
+  // Values come from the HTML parser, which has already decoded attributes.
+  const href = String(value).trim();
+  if (href.startsWith('#')) {
     return true;
   }
 
@@ -148,27 +149,20 @@ function normalizeGeneratedArticleLink(value) {
   return value;
 }
 
-function extractArticleHrefs(indexHtml) {
-  const hrefs = [];
-  const articlePattern = /<article\b[^>]*class="[^"]*\bnews-item\b[^"]*"[^>]*>[\s\S]*?<\/article>/gi;
-  const anchorPattern = /<a\b([^>]*)>/gi;
-  const hrefPattern = /\bhref\s*=\s*(["'])(.*?)\1/i;
-  let articleMatch;
+function extractArticleHrefs($) {
+  return $('article.news-item a[href]')
+    .not('.handoff-cue, .item-permalink, .summary-continuation')
+    .map((_, element) => $(element).attr('href'))
+    .get();
+}
 
-  while ((articleMatch = articlePattern.exec(indexHtml)) !== null) {
-    let anchorMatch;
-    while ((anchorMatch = anchorPattern.exec(articleMatch[0])) !== null) {
-      if (/\bclass\s*=\s*(["'])[^"']*\b(?:handoff-cue|item-permalink|summary-continuation)\b[^"']*\1/i.test(anchorMatch[1])) {
-        continue;
-      }
-      const hrefMatch = hrefPattern.exec(anchorMatch[1]);
-      if (hrefMatch) {
-        hrefs.push(hrefMatch[2]);
-      }
+function validateArticleHrefSafety($, label, failures) {
+  $('article.news-item a[href], article.reporting-item a[href]').each((_, element) => {
+    const href = $(element).attr('href');
+    if (!isSafeGeneratedArticleHref(href)) {
+      fail(failures, `${label} contains unsafe article href ${href}`);
     }
-  }
-
-  return hrefs;
+  });
 }
 
 function extractFeedItemMetadata(feedXml) {
@@ -887,6 +881,7 @@ function validateDigestArchives(repoRoot, sitemapXml, failures, options = {}) {
     }
     const $ = cheerio.load(issueHtml);
     validateHtmlPromotionExclusions($, `archive/${issueDate}/index.html`, failures);
+    validateArticleHrefSafety($, `archive/${issueDate}/index.html`, failures);
     const expectedCanonical = `${SITE_METADATA_CONTRACT.publicSiteUrl}archive/${issueDate}/`;
     if ($('link[rel="canonical"]').attr('href') !== expectedCanonical) {
       fail(failures, `archive/${issueDate}/index.html must publish its dated canonical URL`);
@@ -1331,21 +1326,17 @@ function validateArtifacts(repoRoot = path.join(__dirname, '..')) {
     validateOperatorLaneContract(indexHtml, newsData, failures, currentInsightCves);
     validateSourceCoverageContract(indexHtml, newsData, enabledSources, failures);
 
-    const articleCount = countMatches(indexHtml, /<article class="news-item"/g);
+    const $ = cheerio.load(indexHtml);
+    const articleCount = $('article.news-item').length;
     if (newsData.length > 0 && articleCount !== newsData.length) {
       fail(failures, `index.html renders ${articleCount} article cards, expected ${newsData.length}`);
     }
     validateRollingPermalinks(indexHtml, newsData, failures);
 
-    const articleHrefs = extractArticleHrefs(indexHtml);
-    articleHrefs.forEach((href) => {
-      if (!isSafeGeneratedArticleHref(href)) {
-        fail(failures, `index.html contains unsafe article href ${decodeHtmlEntities(href)}`);
-      }
-    });
+    const articleHrefs = extractArticleHrefs($);
+    validateArticleHrefSafety($, 'index.html', failures);
 
     const normalizedArticleHrefs = articleHrefs
-      .map(decodeHtmlEntities)
       .map(normalizeGeneratedArticleLink);
     const normalizedNewsData = newsData.map((article) => {
       if (!article || typeof article !== 'object' || Array.isArray(article) || typeof article.link !== 'string') {

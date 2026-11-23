@@ -148,3 +148,29 @@ test('validateSourceConfig accepts null or ISO contribution history and rejects 
   });
   assert.deepEqual(failures, ['config source 1 lastContributedAt must be null or a valid ISO timestamp']);
 });
+
+test('enabled feed sources require credential-free public destinations', () => {
+  const urls = [
+    'http://127.0.0.1/feed', 'http://2130706433/feed', 'http://10.1.2.3/feed',
+    'http://172.16.0.1/feed', 'http://192.168.1.2/feed', 'http://169.254.1.2/feed',
+    'http://100.64.0.1/feed', 'http://0.0.0.0/feed', 'http://224.0.0.1/feed',
+    'http://[::1]/feed', 'http://[fc00::1]/feed', 'http://[fe80::1]/feed',
+    'http://[::ffff:127.0.0.1]/feed', 'http://[2002:7f00:1::1]/feed',
+    'http://localhost/feed', 'http://service.local/feed', 'http://service.internal/feed',
+    'https://example.com:8443/feed', 'http://example.com:8080/feed',
+    'https://user:password@example.com/feed',
+  ];
+  for (const url of urls) {
+    const { failures, enabledRssSources } = validateSourceConfig({ sources: [enabledSource({ url })] });
+    assert.ok(failures.some((failure) => /public|destination/i.test(failure)), url);
+    assert.deepEqual(enabledRssSources, [], url);
+  }
+});
+
+test('public feed URLs retain HTTPS, IPv4 and global IPv6 compatibility', () => {
+  for (const url of ['https://feeds.example.com/feed.xml', 'http://8.8.8.8/feed', 'https://[2606:4700:4700::1111]/feed']) {
+    const { failures, enabledRssSources } = validateSourceConfig({ sources: [enabledSource({ url })] });
+    assert.deepEqual(failures, [], url);
+    assert.equal(enabledRssSources.length, 1);
+  }
+});

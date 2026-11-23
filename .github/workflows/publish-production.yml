@@ -26,7 +26,7 @@ on:
         options: [publish, resume, rollback, resolve, seed]
         default: resume
       source_sha:
-        description: 'Full source commit to publish (publish)'
+        description: 'Current main commit to publish; blank uses current main (publish only)'
         required: false
       release_key:
         description: 'Target release key (rollback) or the tip release key (resolve)'
@@ -53,18 +53,71 @@ concurrency:
 
 jobs:
   publish:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout source
-        uses: actions/checkout@v5
+      - name: Checkout trusted main
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ inputs.source_sha || github.sha }}
+          ref: refs/heads/main
+          fetch-depth: 0
+          persist-credentials: false
+
+      # No requested source, dependency hook or repository program is run until
+      # this runner-owned check proves its relation to a freshly fetched main.
+      - name: Verify source provenance
+        id: source
+        env:
+          INVOCATION: ${{ inputs.invocation }}
+          REQUESTED_SOURCE_SHA: ${{ inputs.source_sha }}
+          EVENT_SOURCE_SHA: ${{ github.sha }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          git fetch --no-tags origin +refs/heads/main:refs/remotes/origin/publisher-main
+          trusted_main=$(git rev-parse --verify 'refs/remotes/origin/publisher-main^{commit}')
+          case "$INVOCATION" in
+            publish)
+              if [ "$EVENT_NAME" = workflow_dispatch ]; then
+                source_sha="${REQUESTED_SOURCE_SHA:-$trusted_main}"
+              else
+                source_sha="${REQUESTED_SOURCE_SHA:-$EVENT_SOURCE_SHA}"
+              fi
+              ;;
+            resume|rollback|resolve|seed)
+              if [ -n "$REQUESTED_SOURCE_SHA" ]; then
+                echo 'source_sha is only supported for publish' >&2
+                exit 1
+              fi
+              source_sha="$trusted_main"
+              ;;
+            *) echo "Unknown invocation $INVOCATION" >&2; exit 1 ;;
+          esac
+          if [[ ! "$source_sha" =~ ^[0-9a-f]{40}$ ]]; then
+            echo 'Source must be a full commit id' >&2
+            exit 1
+          fi
+          git cat-file -e "${source_sha}^{commit}"
+          if ! git merge-base --is-ancestor "$source_sha" "$trusted_main"; then
+            echo 'Source is not part of trusted main history' >&2
+            exit 1
+          fi
+          if [ "$EVENT_NAME" = workflow_dispatch ] && [ "$source_sha" != "$trusted_main" ]; then
+            echo 'Manual publishing requires current main' >&2
+            exit 1
+          fi
+          echo "source_sha=$source_sha" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout verified source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ steps.source.outputs.source_sha }}
           fetch-depth: 0
 
       - name: Set up Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
         with:
           node-version: '24'
+          package-manager-cache: false
 
       - name: Install dependencies
         run: npm ci
@@ -85,7 +138,7 @@ jobs:
       - name: Run publisher
         env:
           INVOCATION: ${{ inputs.invocation }}
-          SOURCE_SHA: ${{ inputs.source_sha || github.sha }}
+          SOURCE_SHA: ${{ steps.source.outputs.source_sha }}
           RELEASE_KEY: ${{ inputs.release_key }}
           REASON: ${{ inputs.reason }}
           ATTESTATION: ${{ inputs.attestation }}

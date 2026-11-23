@@ -104,7 +104,7 @@ test('update workflow refreshes the branch before generating artifacts', () => {
 
   assert.match(
     workflow,
-    /- name: Refresh branch head\n\s+run: git pull --ff-only origin "\$GITHUB_REF_NAME"\s*\n\s+- name: Set up Node\.js/
+    /- name: Refresh branch head\n\s+run: git pull --ff-only origin main\s*\n\s+- name: Set up Node\.js/
   );
 });
 
@@ -120,10 +120,10 @@ test('update workflow runs the full test suite before committing', () => {
 test('update workflow installs Chromium and preserves rendered-page screenshots', () => {
   const workflow = readWorkflow();
 
-  assert.match(workflow, /actions\/setup-node@v6/);
+  assert.match(workflow, /actions\/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38/);
   assert.match(workflow, /node-version: '24'/);
   assert.match(workflow, /run: npx playwright install chromium --with-deps/);
-  assert.match(workflow, /uses: actions\/upload-artifact@v7/);
-  assert.equal((workflow.match(/uses: peter-evans\/repository-dispatch@v4/g) || []).length, 2);
+  assert.match(workflow, /uses: actions\/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9/);
+  assert.equal((workflow.match(/uses: peter-evans\/repository-dispatch@28959ce8df70de7be546dd1250a005dd32156697/g) || []).length, 2);
   assert.match(workflow, /path: test-results\/screenshots/);
 });

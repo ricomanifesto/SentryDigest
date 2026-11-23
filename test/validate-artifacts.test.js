@@ -1560,6 +1560,40 @@ test('validateArtifacts rejects single-quoted unsafe article links in generated 
   assert.match(result.failures.join('\n'), /index\.html contains unsafe article href javascript:alert\(1\)/);
 });
 
+test('validateArtifacts checks parsed article hrefs regardless of markup spelling or link class', () => {
+  for (const anchor of [
+    '<a href=mailto:reader@example.invalid>Unsupported source</a>',
+    '<a title="A > B" href="mailto:reader@example.invalid">Unsupported source</a>',
+    '<a class="summary-continuation" href="mailto:reader@example.invalid">Unsupported continuation</a>',
+    '<a class="item-permalink" href="mailto:reader@example.invalid">Unsupported permalink</a>',
+    '<a class="handoff-cue" href="mailto:reader@example.invalid">Unsupported handoff</a>',
+  ]) {
+    const repoRoot = createFixture();
+    const indexPath = path.join(repoRoot, 'index.html');
+    fs.writeFileSync(indexPath, fs.readFileSync(indexPath, 'utf8').replace(
+      '<a href="https://example.com/newer">Newer item</a>', anchor,
+    ));
+
+    const result = validateArtifacts(repoRoot);
+
+    assert.match(result.failures.join('\n'), /index\.html contains unsafe article href mailto:reader@example\.invalid/, anchor);
+    fs.rmSync(repoRoot, { recursive: true, force: true });
+  }
+});
+
+test('validateArtifacts accepts browser-decoded source hrefs and alternate article attribute quoting', () => {
+  const repoRoot = createFixture();
+  const indexPath = path.join(repoRoot, 'index.html');
+  fs.writeFileSync(indexPath, fs.readFileSync(indexPath, 'utf8')
+    .replaceAll('class="news-item"', "class='news-item'")
+    .replace('href="https://example.com/newer"', 'href=https&colon;//example.com/newer'));
+
+  const result = validateArtifacts(repoRoot);
+
+  assert.equal(result.valid, true, result.failures.join('\n'));
+  fs.rmSync(repoRoot, { recursive: true, force: true });
+});
+
 test('validateArtifacts rejects stale source health presented as ordinary quiet', () => {
   const lastUpdated = '2026-06-17T18:30:00.000Z';
   const newsData = [

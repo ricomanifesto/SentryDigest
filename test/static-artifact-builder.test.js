@@ -456,6 +456,66 @@ test('builds a revision that commits the static artifact tooling without publish
   for (const relativePath of Object.keys(tooling)) assert.ok(result.excludedPaths.includes(relativePath), relativePath);
 });
 
+test('the pinned validator refuses undeclared bare and absolute module dependencies', (t) => {
+  for (const dependency of ['validator-helper', 'absolute']) {
+    const fixture = createSource(t);
+    const helper = path.join(fixture.workspace, 'helper.js');
+    writeFile(fixture.workspace, 'helper.js', 'exports.valid = true;\n');
+    writeFile(fixture.source, 'node_modules/validator-helper/index.js', 'exports.valid = true;\n');
+    const request = dependency === 'absolute' ? helper : dependency;
+    writeFile(fixture.source, 'scripts/validate-artifacts.js', `const helper = require(${JSON.stringify(request)});\nexports.validateArtifacts = () => ({ valid: helper.valid, failures: [] });\n`);
+    const revision = commitAll(fixture.source, 'validator dependency');
+
+    assert.throws(() => build({ ...fixture, revision }), /validator.*dependency.*not permitted|not permitted.*validator/i);
+    assert.equal(fs.existsSync(path.join(fixture.output, 'current.json')), false);
+  }
+});
+
+test('the pinned validator uses the trusted parser instead of source or NODE_PATH modules', (t) => {
+  for (const ambient of ['source', 'NODE_PATH']) {
+    const fixture = createSource(t);
+    writeFile(fixture.source, 'package-lock.json', fs.readFileSync(path.join(__dirname, '..', 'package-lock.json')));
+    writeFile(fixture.source, 'scripts/validate-artifacts.js', "const parser = require('cheerio');\nexports.validateArtifacts = () => ({ valid: typeof parser.load === 'function', failures: ['trusted parser expected'] });\n");
+    const revision = commitAll(fixture.source, 'parser validator');
+    const modules = ambient === 'source' ? path.join(fixture.source, 'node_modules') : path.join(fixture.workspace, 'ambient-modules');
+    writeFile(modules, 'cheerio/package.json', '{"name":"cheerio","main":"index.js"}\n');
+    writeFile(modules, 'cheerio/index.js', 'exports.fixture = true;\n');
+    const priorNodePath = process.env.NODE_PATH;
+    if (ambient === 'NODE_PATH') process.env.NODE_PATH = modules;
+    try {
+      const result = build({ ...fixture, revision });
+      assert.ok(result.inventoryDigest, ambient);
+      const receipt = JSON.parse(fs.readFileSync(result.receiptPath));
+      assert.equal(receipt.validator.package_lock_blob, git(fixture.source, 'rev-parse', `${revision}:package-lock.json`));
+      assert.ok(receipt.validator.dependencies.length > 1, 'bind transitive parser dependencies');
+    } finally {
+      if (priorNodePath === undefined) delete process.env.NODE_PATH;
+      else process.env.NODE_PATH = priorNodePath;
+    }
+  }
+});
+
+test('the pinned validator refuses parser lockfiles incompatible with the trusted dependency tree', (t) => {
+  const fixture = createSource(t);
+  const lock = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'package-lock.json')));
+  lock.packages['node_modules/cheerio'].integrity = 'fixture-incompatible-integrity';
+  writeFile(fixture.source, 'package-lock.json', JSON.stringify(lock));
+  writeFile(fixture.source, 'scripts/validate-artifacts.js', "require('cheerio');\nexports.validateArtifacts = () => ({ valid: true, failures: [] });\n");
+  const revision = commitAll(fixture.source, 'incompatible parser lock');
+
+  assert.throws(() => build({ ...fixture, revision }), /package-lock\.json.*incompatible|dependency.*lock.*match/i);
+});
+
+test('relative validator modules are loaded from the pinned revision', (t) => {
+  const fixture = createSource(t);
+  writeFile(fixture.source, 'scripts/validate-artifacts.js', "const helper = require('./validator-helper');\nexports.validateArtifacts = () => ({ valid: helper.valid, failures: [] });\n");
+  writeFile(fixture.source, 'scripts/validator-helper.js', 'exports.valid = true;\n');
+  const revision = commitAll(fixture.source, 'relative validator helper');
+  writeFile(fixture.source, 'scripts/validator-helper.js', 'exports.valid = false;\n');
+
+  assert.ok(build({ ...fixture, revision }).inventoryDigest);
+});
+
 // Real committed content and the real repository validator, from a disposable clone.
 test('content gate on committed content keeps the accepted build', async (t) => {
   const root = path.join(__dirname, '..');
